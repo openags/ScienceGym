@@ -18,6 +18,9 @@ def validate():
         raw=(ROOT/g['path']).read_bytes();length=struct.unpack('<I',raw[12:16])[0];tree=json.loads(raw[20:20+length])
         check('explicit_pbr_materials_'+item['id'],all('material' in p for m in tree['meshes'] for p in m['primitives']) and bool(tree.get('materials')))
         check('explicit_surface_normals_'+item['id'],all('NORMAL' in p['attributes'] for m in tree['meshes'] for p in m['primitives']))
+        if item['id'] in ['krylon_51502','krylon_51602','pelco_16032']:
+            labels=[m['pbrMetallicRoughness'] for m in tree['materials'] if 'baseColorTexture' in m.get('pbrMetallicRoughness',{})]
+            check('coating_label_is_nonmetallic_'+item['id'],len(labels)==1 and labels[0].get('metallicFactor',1)==0)
         if item['id']=='rubbermaid_1997206':
             palette=np.array([45,48,51])/255;linear=((palette+.055)/1.055)**2.4
             factors=[m.get('pbrMetallicRoughness',{}).get('baseColorFactor',[1,1,1,1])[:3] for m in tree['materials']]
@@ -131,6 +134,20 @@ def validate():
     for key in ['unitree_g1_battery_v10','unitree_g1_charger_v10']:
         detail=next(i['details'] for i in report['items'] if i['id']==key)
         check(key+'_no_electrical_credit',detail['electrical_qualified'] is False)
+    for key in ['krylon_51502','krylon_51602']:
+        cap=mesh(key,'cap_hollow_shell');tip=mesh(key,'inferred_conical_actuator')
+        check(key+'_protective_cap_is_hollow',not cap.contains([[0,0,.19]]).any() and cap.contains([[0,0,.2075]]).all())
+        check(key+'_actuator_has_recessed_nozzle',not tip.contains([[0,-.005,.187]]).any() and tip.contains([[.003,-.004,.187]]).all())
+        check(key+'_selected_scale_not_manufacturer_dimensions',np.allclose(scenes[key].extents,[.066,.066,.208],atol=1e-6) and 'dimensions_m' not in facts[key],measured_mesh_m=scenes[key].extents.tolist(),status='selected hypothesis only')
+    bottle=mesh('pelco_16032','amber_bottle_open_mouth')
+    check('silver_bottle_actual_open_mouth',not bottle.contains([[0,0,.055],[0,0,.040]]).any() and bottle.contains([[.01175,0,.057],[0,0,.001]]).all())
+    stock=mesh('pelco_16032','nominal_paste_stock')
+    check('silver_nominal_mass_volume_consistent',abs(stock.volume*1e6*2.25-25)<.1,nominal_mass_from_mesh_g=float(stock.volume*1e6*2.25),scope='Nominal inventory volume, not material physics')
+    check('silver_stock_inside_cavity',stock.bounds[0,2]>=.002999 and stock.bounds[1,2]<.037 and stock.extents[0]<.028)
+    for key in ['krylon_51502','krylon_51602','pelco_16032']:
+        detail=next(i['details'] for i in report['items'] if i['id']==key)
+        check(key+'_unqualified_material_and_explicit_scale',detail['material_dynamics_qualified'] is False and 'hypothesis' in detail['dimensions_status'])
+        check(key+'_cap_part_binding',all(n in scenes[key].graph.nodes_geometry for n in detail['inspection']['parts']))
     out=dict(schema_version=1,checks_passed=all(c['passed'] for c in checks),checks=checks,supplies_sha256=sha(HERE/'supplies.json'),validator_sha256=sha(__file__),asset_acceptance=False,
         limitations=['Catalogue shape checks do not qualify handling, deformation or electrical functions','Staged quantity is a selected starting allocation, not full campaign coverage','Commercial models contain explicitly recorded local inferences; source CAD was not obtained'])
     write_json(HERE/'supply_checks.json',out);print(json.dumps(dict(checks=len(checks),passed=out['checks_passed'])))

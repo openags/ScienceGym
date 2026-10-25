@@ -6,7 +6,7 @@ clearance, sensor-only manipulation or complete paper campaign is claimed.
 Serve the repository root and open `/viewer/lab_review_v1/index.html`.
 The existing local server uses port 8769. The scene contains the complete
 official G1 29DoF + Inspire FTP geometry, three ordinary tool types and a
-selected OMAX ProtoMAX waterjet. Geometry sliders and the 68 per-point static
+selected OMAX ProtoMAX waterjet. Geometry sliders and the 71 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
@@ -14,7 +14,7 @@ inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
 The current derivative retains the official camera arms and replaces both
 collar halves, without rescaling the robot or cameras. Exact triangle checks
-find rigid clearance at sampled finger configurations and all 68 station
+find rigid clearance at sampled finger configurations and all 71 station
 postures. Compliant lining, preload, retention and cables remain unresolved, so
 these attachments are hidden by default and do not count as an installation.
 The viewer can display them for fit review, and records separate attachment
@@ -59,9 +59,12 @@ It makes no source downloads and cannot silently switch robot models.
 - `ordinary_tools_sources.json`: inspected catalog facts and authored assumptions.
 - `waterjet_sources.json`, `stock_sources.json`: selected fabrication-machine
   evidence, source conflicts, paper-derived sheet thickness and stock inferences.
+- `angular_accessory_sources.json`: inspected Harrick stage/base and Spectra-Tech
+  catalogue evidence, including the Nicolet 6700 optical direction. These define
+  reconstruction candidates; their geometry and spectrometer fit remain open.
 - `assets/unitree_g1_inspire_v1/space.json`: source-derived body/hand bound
   at 129 restricted static poses, with exact official wrist transforms.
-- `workspace_checks.json`: 68 separately tested palm-position targets, including 21 staged supply approaches and proposed camera-clearance screening; records
+- `workspace_checks.json`: 71 separately tested palm-position targets, including 24 staged supply approaches and proposed camera-clearance screening; records
   candidate joint coordinates, position errors, external obstacle conflicts and
   self-penetrations under the provisional collision model.
   Orientation, grasping, target-device internals, balance and paths are excluded.
@@ -89,18 +92,19 @@ The official integrated candidate can be inspected at
 three superseded robot/hand references; these are not additional required robots.
 The active scope is 63 resource groups / 136 component needs. The viewer keeps
 three historical choices in a separate filter and excludes them from current
-missing-asset counts. Of 63 active groups, 58 have partial geometry and five
+missing-asset counts. Of 63 active groups, 60 have partial geometry and three
 have none; this is not a completeness percentage.
 
 ## Added ordinary supplies and collar revision
 
-The scene now contains 56 placed instances. `supplies.json` binds nineteen
+The scene now contains 59 placed instances. `supplies.json` binds twenty-two
 additional reconstruction types: ST-450, AA.SA.T.6 tweezers, Wiha 26015,
 Bürkle 7102-2000, the source-identified ambient RTD, eight separate K-connector
 pairs in an ordinary tray, three film-stock types, masking tape, unmachined
 copper stock, a Rubbermaid 1997206 cart, a Justrite 09100 wipes can,
 OMAX 317864 workholding, Knipex 78 03 125 cutters, Noga RB1000/S10 deburring
-and Pomona 5908A meter leads, plus detached G1 battery and charger candidates.
+and Pomona 5908A meter leads, plus detached G1 battery and charger candidates, flat-white/black ColorMaster
+stock cans and a PELCO 16032 silver-paste candidate bottle.
 `supply_sources.json` separates manufacturer facts, paper facts, selected
 quantities, local inferences and unresolved functionality. `supply_checks.json`
 checks the actual meshes: catalogue envelopes, open cup and cart cavities,
@@ -120,6 +124,22 @@ storage. This bench does not establish a qualified charging location, autonomous
 battery replacement or a complete robot-service facility. Ordinary service tools
 and the charging/service method are still missing.
 
+Three coating-stock candidates now occupy the coating preparation bench:
+ColorMaster flat-white/black cans and a PELCO 16032 silver-paste bottle. The
+manufacturer photographs and catalogue references constrain their profiles;
+their dimensions remain explicit hypotheses, displayed as such in the viewer.
+The caps are separate hollow parts with exploded inspection views. The silver
+bottle has an open mouth and nominal stock volume from 25 g / 2.25 g/ml.
+Thread engagement, snap fit, spray/dispensing, material compatibility and cure
+are unqualified. The paper identifies neither paint SKU nor silver-paste brand.
+Manufacturer artwork is not embedded; labels are original identification text.
+The review canvas uses supersampling instead of MSAA after an observed
+SwiftShader depth artifact on cylindrical labels. Normal depth tests and
+foreground occlusion remain enabled; sensor target resolution is unchanged.
+The exact ColorMaster flat-white SDS, ordinary application tool and accepted
+coating/adhesive allocation remain missing. Adding these models does not close
+the consumable, ventilation or waste-handling acceptance requirements.
+
 The D405 rig has a new explicitly authored G1 collar, retained official camera
 arms and standard fastener meshes. Original source parts remain as failure
 fixtures. Positive rigid clearance and camera screw insertion are checked;
@@ -133,7 +153,7 @@ the middle shelf; tape and copper are near the accessible bench edge. The wipes
 can target is a selected release approach above its rim, not a low rim grasp or
 a demonstrated pedal/lid/disposal sequence.
 
-`staged_supply_bindings.json` binds twenty-one component needs to actual scene
+`staged_supply_bindings.json` binds twenty-four component needs to actual scene
 instances and named parts. Film sheets and connector pairs are counted
 individually; the same two tweezers are explicitly shared across handling roles.
 `readiness.json` pins these geometry identities and exposes staged quantities

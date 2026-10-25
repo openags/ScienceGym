@@ -13,15 +13,15 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "d27bb410ca68bae1a306af59820ecfb77a1f85f9a1bb4cc17db584f39c6494e9"
+      "sha256": "1101a565adb7168c92ef25b941c74bd32bd6120792d08ef3a04cd742c9cb3a72"
     },
     {
       "path": "assets/cooling_lab_v1/inventory.json",
-      "sha256": "ed997747f32ee6b591adbd592ec9a623a493eb7242dc2cc40c9531da39891c35"
+      "sha256": "40723b5735eaff2b34ee5176006adea8da48cb4f8189ef4429aa0910dd179980"
     },
     {
       "path": "assets/cooling_lab_v1/staged_supply_bindings.json",
-      "sha256": "d593e244a4a437ee9d1b255e33d10efe1ad9e917ed6c4a0183aeafe2dd6e81ec"
+      "sha256": "67fc0f3f6f307d461e886941cb67ce1cafda314af9f002f926daa9b5ad8b676a"
     },
     {
       "path": "tasks/directional_cooling_operations_v3/operations.json",
@@ -166,13 +166,13 @@
     "active_requirement_groups": 63,
     "historical_requirement_groups": 3,
     "active_component_requirements": 136,
-    "active_groups_without_geometry": 5,
+    "active_groups_without_geometry": 3,
     "manual_definitions": 200,
     "interfaces": 33,
     "branches": 11,
-    "scene_instances": 56,
-    "groups_with_partial_geometry": 58,
-    "components_with_staged_unit_bindings": 21,
+    "scene_instances": 59,
+    "groups_with_partial_geometry": 60,
+    "components_with_staged_unit_bindings": 24,
     "qualified_humanoid_branches": 0
   },
   "requirements": [
@@ -1591,16 +1591,69 @@
           "id": "consumables:consumable_07:component_1",
           "label": "white coating",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "can",
+            "members": [
+              {
+                "asset_id": "coating_white_stock",
+                "parts": [
+                  "can_identification_text",
+                  "cap_moulded_shoulder",
+                  "cap_hollow_shell",
+                  "inferred_press_pad",
+                  "nozzle_orifice_insert",
+                  "inferred_conical_actuator",
+                  "inferred_valve_stem",
+                  "valve_mounting_cup",
+                  "rolled_lower_seam",
+                  "sealed_can_shell"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_coating_white_stock.glb",
+                "geometry_sha256": "0197dde91c208e89f603f0ca88fbef7b3cfb5c0e0fee3f3916bb3bc498b82a6b"
+              }
+            ],
+            "scope": "One 340 g nominal closed stock unit. Quantity is staged inventory, not accepted coverage or number of specimens; exact paper SKU and consumption remain unreported.",
+            "campaign_sufficiency_accepted": false
+          }
         },
         {
           "id": "consumables:consumable_07:component_2",
           "label": "black coating",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "can",
+            "members": [
+              {
+                "asset_id": "coating_black_stock",
+                "parts": [
+                  "can_identification_text",
+                  "cap_moulded_shoulder",
+                  "cap_hollow_shell",
+                  "inferred_press_pad",
+                  "nozzle_orifice_insert",
+                  "inferred_conical_actuator",
+                  "inferred_valve_stem",
+                  "valve_mounting_cup",
+                  "rolled_lower_seam",
+                  "sealed_can_shell"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_coating_black_stock.glb",
+                "geometry_sha256": "3f1cf8d97cc96487a9ae13ad72dd393d819b415a7e8c13b46ea9ff2861dfbbdc"
+              }
+            ],
+            "scope": "One 340 g nominal closed stock unit. Quantity is staged inventory, not accepted coverage or number of specimens; exact paper SKU and consumption remain unreported.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "coating_white_stock",
+        "coating_black_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -1616,10 +1669,82 @@
           "id": "consumables:consumable_08:component_1",
           "label": "silver paste",
           "required_quantity": null,
-          "quantity_status": "not_allocated"
+          "quantity_status": "not_allocated",
+          "staged_candidates": {
+            "quantity": 1,
+            "unit": "bottle",
+            "members": [
+              {
+                "asset_id": "silver_paste_stock",
+                "parts": [
+                  "bottle_identification_text",
+                  "cap_inferred_sealing_liner",
+                  "cap_black_top",
+                  "cap_grip_rib_47",
+                  "cap_grip_rib_46",
+                  "cap_grip_rib_45",
+                  "cap_grip_rib_44",
+                  "cap_grip_rib_43",
+                  "cap_grip_rib_42",
+                  "cap_grip_rib_41",
+                  "cap_grip_rib_40",
+                  "cap_grip_rib_39",
+                  "cap_grip_rib_38",
+                  "cap_grip_rib_37",
+                  "cap_grip_rib_36",
+                  "cap_grip_rib_35",
+                  "cap_grip_rib_34",
+                  "cap_grip_rib_33",
+                  "cap_grip_rib_32",
+                  "cap_grip_rib_31",
+                  "cap_grip_rib_30",
+                  "cap_grip_rib_29",
+                  "cap_grip_rib_28",
+                  "cap_grip_rib_27",
+                  "cap_grip_rib_26",
+                  "cap_grip_rib_25",
+                  "cap_grip_rib_24",
+                  "cap_grip_rib_23",
+                  "cap_grip_rib_22",
+                  "cap_grip_rib_21",
+                  "cap_grip_rib_20",
+                  "cap_grip_rib_19",
+                  "cap_grip_rib_18",
+                  "cap_grip_rib_17",
+                  "cap_grip_rib_16",
+                  "cap_grip_rib_15",
+                  "cap_grip_rib_14",
+                  "cap_grip_rib_13",
+                  "cap_grip_rib_12",
+                  "cap_grip_rib_11",
+                  "cap_grip_rib_10",
+                  "cap_grip_rib_9",
+                  "cap_grip_rib_8",
+                  "cap_grip_rib_7",
+                  "cap_grip_rib_6",
+                  "cap_grip_rib_5",
+                  "cap_grip_rib_4",
+                  "cap_grip_rib_3",
+                  "cap_grip_rib_2",
+                  "cap_grip_rib_1",
+                  "cap_grip_rib_0",
+                  "cap_white_hollow_shell",
+                  "nominal_paste_stock",
+                  "inferred_neck_thread",
+                  "amber_bottle_open_mouth"
+                ],
+                "geometry_path": "assets/cooling_lab_v1/geometry/prepared_silver_paste_stock.glb",
+                "geometry_sha256": "0ae03b79f170874947daeb96be96f97b5601d519a823f50dabeb41a1eb4cc49f"
+              }
+            ],
+            "scope": "One nominal 25 g PELCO 16032 candidate; neither paper identity, compatibility, dispensing nor campaign sufficiency accepted.",
+            "campaign_sufficiency_accepted": false
+          }
         }
       ],
-      "scene_instances": [],
+      "scene_instances": [
+        "silver_paste_stock"
+      ],
       "authored_components": [],
       "selected_minimum_quantity": null,
       "quantity_basis": "Not yet allocated",
@@ -3601,10 +3726,7 @@
         "consumables:consumable_12",
         "consumables:consumable_13"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3638,10 +3760,7 @@
         "consumables:consumable_12",
         "consumables:consumable_13"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3862,9 +3981,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3889,9 +4006,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3916,9 +4031,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3943,9 +4056,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -3970,9 +4081,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4823,9 +4932,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4848,9 +4955,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4873,9 +4978,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -4898,9 +5001,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6727,9 +6828,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6752,9 +6851,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -6777,9 +6874,7 @@
         "consumables:consumable_08",
         "additional_reconstructed_materials:reversible_emitter_jig"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -7340,9 +7435,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -7367,9 +7460,7 @@
         "facility:COATING",
         "facility:WASTE"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",
@@ -8203,10 +8294,7 @@
         "consumables:consumable_12",
         "consumables:consumable_13"
       ],
-      "missing_scene_resources": [
-        "consumables:consumable_07",
-        "consumables:consumable_08"
-      ],
+      "missing_scene_resources": [],
       "embodiment_requirements": [
         "robot:G1_29DOF",
         "robot:INSPIRE_FTP_LEFT",

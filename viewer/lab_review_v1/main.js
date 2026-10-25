@@ -11,8 +11,11 @@ const digest=async buffer=>Array.from(new Uint8Array(await crypto.subtle.digest(
 const read=async p=>{const r=await fetch(p);if(!r.ok)throw Error(p+' HTTP '+r.status);const buffer=await r.arrayBuffer();fetchedHashes.set(p,await digest(buffer));return JSON.parse(new TextDecoder().decode(buffer))};
 const scene=new THREE.Scene();scene.background=new THREE.Color('#c9dce4');
 const camera=new THREE.PerspectiveCamera(42,1,.02,200);camera.up.set(0,0,1);
-const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;
+// SwiftShader MSAA produces depth artifacts on the thin cylindrical labels,
+// including with their container hidden. Supersample the review canvas instead;
+// retain normal depth testing and leave the fixed sensor render targets intact.
+const renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(Math.max(devicePixelRatio,1.5),2));renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
 const pmrem=new THREE.PMREMGenerator(renderer),reflectionRoom=new RoomEnvironment();
 scene.environment=pmrem.fromScene(reflectionRoom,.04).texture;scene.environmentIntensity=.32;scene.environmentRotation.x=Math.PI/2;reflectionRoom.dispose();pmrem.dispose();
@@ -108,6 +111,14 @@ function applyState(id,fraction){
   else {item.node.position.sub(state.pivot).applyQuaternion(q).add(state.pivot);item.node.quaternion.premultiply(q)}
  }
  document.documentElement.dataset.openState=id+':'+fraction;
+ if(state.config.frame_separated_parts&&$('isolate').checked){
+  const box=new THREE.Box3().setFromObject(groups.get(state.config.asset)),center=box.getCenter(new THREE.Vector3());
+  const direction=camera.position.clone().sub(controls.target).normalize(),distance=Math.max(...box.getSize(new THREE.Vector3()).toArray())*1.8/Math.min(1,camera.aspect);
+  setView(center.clone().addScaledVector(direction,distance).toArray(),center.toArray());
+  camera.updateMatrixWorld();const projected=[];
+  for(const x of [box.min.x,box.max.x])for(const y of [box.min.y,box.max.y])for(const z of [box.min.z,box.max.z])projected.push(new THREE.Vector3(x,y,z).project(camera));
+  document.documentElement.dataset.inspectionInFrame=String(projected.every(p=>Math.abs(p.x)<1&&Math.abs(p.y)<1&&Math.abs(p.z)<1));
+ }
  renderer.shadowMap.needsUpdate=true;
  requestRender();
 }
@@ -136,8 +147,8 @@ function selectAsset(id,focus=true){
  const units={tool:'件',vessel:'个',probe:'支',sheet:'张',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个'};
  for(const requirement of readiness?.requirements||[])for(const component of requirement.components){const staged=component.staged_candidates;if(!staged)continue;const count=staged.members.filter(m=>m.asset_id===id).length;if(count)detailRow('逐件候选 · '+component.label,count+' '+(units[staged.unit]||staged.unit)+'；按用途绑定，可共享，不代表完整实验用量或已完成操作')}
  const a=document.createElement('a');a.href=root+(asset.sources||asset.source_artifact.path);a.target='_blank';a.textContent='查看模型来源与重构依据 ↗';$('asset-detail').append(a);
- if(['fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger'].includes(id)){const review=document.createElement('a');review.href=root+'assets/cooling_lab_v1/preparation_review.json';review.target='_blank';review.textContent='备料、接线与服务资产的比对、差异和检查视图 ↗';$('asset-detail').append(review)}
- if(manifest.reference_comparisons?.[id]){const ref=manifest.reference_comparisons[id];if(ref.dimensions_label)detailRow('厂家标注尺寸',ref.dimensions_label);detailRow('比对边界',ref.model_scope);for(const source of ref.sources){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener';link.textContent=source.label+' ↗';if(source.scope)link.title=source.scope;$('asset-detail').append(link)}}
+ if(['fine_cutter','meter_leads_white','meter_leads_black','workholding_kit','deburring_tool','g1_spare_battery','g1_disconnected_charger','coating_white_stock','coating_black_stock','silver_paste_stock'].includes(id)){const review=document.createElement('a');review.href=root+'assets/cooling_lab_v1/preparation_review.json';review.target='_blank';review.textContent='备料、接线、涂覆与服务资产的比对和检查视图 ↗';$('asset-detail').append(review)}
+ if(manifest.reference_comparisons?.[id]){const ref=manifest.reference_comparisons[id];if(ref.dimensions_label)detailRow(ref.dimensions_kind==='inferred'?'推断尺寸（待核实）':'厂家标注尺寸',ref.dimensions_label);detailRow('比对边界',ref.model_scope);for(const source of ref.sources){const link=document.createElement('a');link.href=source.url;link.target='_blank';link.rel='noopener';link.textContent=source.label+' ↗';if(source.scope)link.title=source.scope;$('asset-detail').append(link)}}
  resetStates();const state=[...states.values()].find(s=>s.config.asset===id);$('state-control').hidden=!state;$('state-slider').value=0;
  if(state){$('state-label').textContent=state.config.label;$('state-slider').oninput=()=>applyState(state.config.id,Number($('state-slider').value)/100)}
  if(focus){$('isolate').checked=true;const bounds=new THREE.Box3().setFromObject(groups.get(id));const c=bounds.getCenter(new THREE.Vector3());const extent=Math.max(...bounds.getSize(new THREE.Vector3()).toArray());setView([c.x+extent*1.2,c.y-extent*1.8,c.z+extent*1.3],c.toArray())}

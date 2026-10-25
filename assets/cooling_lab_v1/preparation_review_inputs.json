@@ -2,7 +2,7 @@
   "schema_version": 1,
   "reviewed": "2026-10-25",
   "reviewer": "Codex author self-review; no owner acceptance",
-  "scope": "Selected preparation, wiring and detached robot-service assets; author comparison only, not owner acceptance",
+  "scope": "Selected preparation, wiring, detached robot-service and coating stock assets; author comparison only, not owner acceptance",
   "reuse": {
     "geometry": "Original reconstruction under the repository licence",
     "reference_media": "External references only; no redistribution licence established or manufacturer media copied into the repository",
@@ -32,6 +32,10 @@
     {
       "query": "site:unitree.com G1 battery charger CAD model",
       "outcome": "Official 2024 V1.0 manual images obtained; no exact CAD obtained. Current official charger rating differs, so this reconstruction is bound to the old manual. All source pixels remain external."
+    },
+    {
+      "query": "Krylon 51502/51602 manufacturer catalogue, SDS, package geometry; PELCO 16032 bottle photos and scale",
+      "outcome": "Downloaded and inspected manufacturer catalogue mirror (page 12, index page 57), official flat-white/black photographs and Ted Pella catalogue page 3. No exact CAD or calibrated package dimensions obtained. Bottle scale is a photo-relative hypothesis using the named 75 mm stand. Manufacturer 51602 flat-black SDS read via web extraction; direct download returned HTML. Legacy Krylon SDS links redirect to the current product index; white 51501 gloss and 2009 51502 Indoor/Outdoor MSDS are not accepted as exact ColorMaster flat-white SDS."
     }
   ],
   "items": [
@@ -136,6 +140,95 @@
         "Hardware revision corresponding to the current 54 V / 5 A specification"
       ],
       "operation_findings": "Disconnected asset on an inspection bench. No charging installation, routing, connector mating, thermal model or electrical function."
+    },
+    {
+      "source_record": "krylon_51502",
+      "reference_views": [
+        {
+          "url": "https://sherwin.scene7.com/is/image/sw/51502-Colormaster-Flat-White?wid=800",
+          "sha256": "52bb01396647ccb0a4b4aca47009d9d6ed9c489888bf9b2f6f06bb1f18a0d487",
+          "locator": "Inspected manufacturer front photograph; scale not calibrated",
+          "inspected": "Inspected manufacturer front photograph; scale not calibrated"
+        },
+        {
+          "url": "https://images.orgill.com/weblarge/10023/Krylon_3942_Catalog.pdf",
+          "sha256": "b131153fad2f53419df12266fa723f3a001ae1b579a5df94e0fd78117ca9820f",
+          "locator": "Manufacturer catalogue, printed page 12 / zero-based page 11 visually inspected; index page 57 maps K05150202/K05160202. Distributor mirror, original manufacturer document.",
+          "inspected": "Manufacturer catalogue, printed page 12 / zero-based page 11 visually inspected; index page 57 maps K05150202/K05160202. Distributor mirror, original manufacturer document."
+        }
+      ],
+      "appearance_findings": "Tapered hollow cap, separate pressure-can silhouette, rolled bottom seam and catalogue-described conical actuator reconstructed. Original identification only; rear artwork and nozzle internals unresolved.",
+      "unverified_views": [
+        "Measured package and cap dimensions",
+        "Open-cap close-up and nozzle stroke/force",
+        "Exact publication-era SKU/formulation and rear label"
+      ],
+      "operation_findings": "One capped stock can; cap slider is an exploded inspection displacement, not robot opening or spraying. Coating quantity allocation, substrate compatibility, ventilation and waste handling remain open.",
+      "model_view_directions": [
+        "closed",
+        "front",
+        "back",
+        "side",
+        "top",
+        "open"
+      ]
+    },
+    {
+      "source_record": "krylon_51602",
+      "reference_views": [
+        {
+          "url": "https://sherwin.scene7.com/is/image/sw/51602-Colormaster-Flat-Black?wid=800",
+          "sha256": "890619051ac72a11f3eb885968c453cc2daadd037c69c1a3fe17917be28d9290",
+          "locator": "Inspected manufacturer front photograph; scale not calibrated",
+          "inspected": "Inspected manufacturer front photograph; scale not calibrated"
+        },
+        {
+          "url": "https://images.orgill.com/weblarge/10023/Krylon_3942_Catalog.pdf",
+          "sha256": "b131153fad2f53419df12266fa723f3a001ae1b579a5df94e0fd78117ca9820f",
+          "locator": "Manufacturer catalogue, printed page 12 / zero-based page 11 visually inspected; index page 57 maps K05150202/K05160202. Distributor mirror, original manufacturer document.",
+          "inspected": "Manufacturer catalogue, printed page 12 / zero-based page 11 visually inspected; index page 57 maps K05150202/K05160202. Distributor mirror, original manufacturer document."
+        }
+      ],
+      "appearance_findings": "Tapered hollow cap, separate pressure-can silhouette, rolled bottom seam and catalogue-described conical actuator reconstructed. Original identification only; rear artwork and nozzle internals unresolved.",
+      "unverified_views": [
+        "Measured package and cap dimensions",
+        "Open-cap close-up and nozzle stroke/force",
+        "Exact publication-era SKU/formulation and rear label"
+      ],
+      "operation_findings": "One capped stock can; cap slider is an exploded inspection displacement, not robot opening or spraying. Coating quantity allocation, substrate compatibility, ventilation and waste handling remain open.",
+      "model_view_directions": [
+        "closed",
+        "front",
+        "back",
+        "side",
+        "top",
+        "open"
+      ]
+    },
+    {
+      "source_record": "pelco_16032",
+      "reference_views": [
+        {
+          "url": "https://www.tedpella.com/pdfs_html/Adhesives-Conductive.pdf",
+          "sha256": "91164b51b5c03fcdd1d03412bdf5e753cd3cb4851f648cefcb0dbf60e6063eb3",
+          "inspected": "Zero-based page 2: amber closed/open bottle, separate squeeze bottle and applicator. Preparation stand is a scale clue only."
+        }
+      ],
+      "appearance_findings": "Amber open-mouth bottle with neck shoulder, inferred thread, white ribbed cap and black top; nominal 25 g stock. Scale inferred with 75 mm photographed stand; perspective uncertainty remains. No SEM stand added to the pilot.",
+      "unverified_views": [
+        "Measured bottle, neck and cap dimensions",
+        "Thread specification, seal and opening requirements",
+        "Exact material identity and compatibility in the paper"
+      ],
+      "operation_findings": "Candidate bottle only. No assumed brush integrated into the cap: the catalogue does not establish one for 16032. Separate application tool and material handling still required.",
+      "model_view_directions": [
+        "closed",
+        "front",
+        "back",
+        "side",
+        "top",
+        "open"
+      ]
     }
   ],
   "decisions": {

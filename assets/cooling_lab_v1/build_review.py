@@ -54,7 +54,7 @@ def review():
       ('SPACE','人形机器人与携物空间',f"按 G1 官方模型的限定通行姿态采样和官方手部关节链范围，将检查半径设为 {scene['envelope']['transit_radius_m']:.2f} m，另加 0.10 m 设计余量；腕部安装沿用官方变换；该检查不覆盖行走与全部姿态。",'真实腕部安装、相机外形、完整身体姿态、携物与行走包络、制动和跌倒影响范围。'),
       ('LOAD','重型仪器与支撑','Cary 与 Nicolet 采用独立台架，实际模型按原比例放置。','91 kg Cary、69 kg Nicolet 及附件的台架承载、稳定性、固定和楼板载荷评估。'),
       ('WET','湿式校准与电气','A25 采用低台与独立接液盘；电测仪器在相邻干台，未虚构已接通管线。','真实排液路径、接液盘容量、溢流、线缆布置及设备手册要求的间距。'),
-      ('CHEMICAL','加工与涂覆隔离','独立加工间已放入选定 ProtoMAX 几何，涂覆间有抽排设施设计。','水刀工艺、夹持、安全联锁、供水排液与磨料服务尚未实现；涂料与清洗材料 SDS、抽排和废物设施仍待审查。'),
+      ('CHEMICAL','加工与涂覆隔离','独立加工间已放入选定 ProtoMAX 几何；涂覆间有抽排设施设计，备料台放置带盖的黑白喷罐和银浆瓶候选。','水刀工艺、夹持、安全联锁、供水排液与磨料服务尚未实现；哑光白色涂料的准确 SDS、清洗材料、喷涂/点胶工具、抽排和废物设施仍待审查。瓶罐尺度、材料兼容性与用量未验收。'),
       ('EGRESS','门、通道与应急','主入口和室外入口有明确通道，门扇打开后占用范围已建模，设置应急控制位置。','真实门系统、应急设备选型与位置、线路、安全功能和所在地要求审查。'),
       ('OUTDOOR','室外测量条件','放置白色和黑色装置、跟踪器及新建辐射传感器候选模型。','日照遮挡与天空视角、天气传感器套件、桅杆固定、防水供电和布线；当前开放地面不是论文屋顶复刻。'),
       ('FIDELITY','来源与设备真实性','每个导入模型都有来源文件、哈希和单位变换；新资产有厂家图纸位置及推断记录；G1 与 Inspire FTP 双手已采用官方几何。','全部资产逐项与实物资料对照，补齐未建工具、附件和材料，验证手部接触、驱动和载荷参数。'),
@@ -115,6 +115,7 @@ def review():
     evidence['LAB-02']+=['assets/g1_sensor_rig_v1/SOURCE.json','assets/g1_sensor_rig_v1/rig.json','assets/g1_sensor_rig_v1/fit_checks.json']
     evidence['LAB-02']+=['assets/g1_sensor_rig_v1/adapter.json','assets/g1_sensor_rig_v1/hardware_sources.json','assets/cooling_lab_v1/supplies.json','assets/cooling_lab_v1/supply_sources.json','assets/cooling_lab_v1/supply_checks.json']
     evidence['LAB-02']+=['assets/cooling_lab_v1/preparation_review_inputs.json']
+    evidence['LAB-02']+=['assets/cooling_lab_v1/angular_accessory_sources.json']
     evidence['LAB-07']+=['viewer/lab_review_v1/sensors.js']
     evidence['LAB-02']+=['assets/omega_5tc_v1/model.json','assets/omega_5tc_v1/VERIFICATION.json']
     evidence['LAB-02']+=['assets/unitree_g1_inspire_v1/SOURCE.json','assets/unitree_g1_inspire_v1/VERIFICATION.json','assets/unitree_g1_inspire_v1/selection.json','assets/unitree_g1_inspire_v1/integration.json','assets/unitree_g1_inspire_v1/collision.json']

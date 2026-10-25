@@ -37,10 +37,12 @@
     {
       "resource": "equipment:ANGLE_12",
       "source": "https://harricksci.com/content/Data_Sheet_Variable_Angle_Reflection_Accessory.pdf",
-      "inspected": "Both pages extracted text; no dimension drawing obtained",
+      "inspected": "Both pages rendered and visually inspected; official HRS image and legacy catalogue base diagrams also inspected. No dimension drawing obtained.",
       "finding": "Manufacturer documentation explicitly lists a 12-degree horizontal reflection stage VR1-HRS and a separate 12-degree absolute-reflectance stage VR1-VWA-12. Therefore the paper's angle is not evidence that a current 12.5-degree product should be substituted.",
       "unresolved": "The paper does not identify which exact legacy stage/base/spectrometer adapter was installed. The two candidates have different optical paths and sample handling. Overall and mounting dimensions remain missing.",
       "geometry_status": "not_built",
+      "current_source_review": "assets/cooling_lab_v1/angular_accessory_sources.json",
+      "candidate_decision": "VR1-HRS plus a separately reconstructed FTIR optical base is an authored demo choice. It is not identified as the paper's exact variant; mounting and dimensions remain open.",
       "additional_source": "https://harricksci.com/horizontal-12-stage-for-variable-angle-reflection-accessory/",
       "additional_finding": "The current manufacturer page identifies VR1-HRS and supplied 3, 6 and 13 mm aperture masks. These dimensions do not establish the outer stage, legacy optical base or spectrometer mating dimensions."
     },
@@ -62,7 +64,7 @@
         "assets/cooling_lab_v1/supply_sources.json",
         "assets/g1_sensor_rig_v1/hardware_sources.json"
       ],
-      "finding": "Nineteen supply types, including detached G1 service candidates, and a G1 collar derivative have generated geometry. Compound resource completeness remains unaccepted; the official original collar remains a rejected fixture.",
+      "finding": "Twenty-two supply types, including detached G1 service candidates and three coating stock candidates, have generated geometry. Compound resource completeness remains unaccepted; the official original camera collar remains a rejected fixture.",
       "unresolved": "Geometry availability does not resolve compound resource completeness, contact parameters, wiring, compliant lining or full campaign quantity allocation."
     },
     {
@@ -72,6 +74,8 @@
       "finding": "The Thermo-hosted VeeMax manual explicitly identifies PIKE Technologies. Its availability is not evidence that VeeMax is the paper's Spectra-Tech accessory. Do not silently replace the reported manufacturer.",
       "unresolved": "Exact Spectra-Tech legacy series, handed optical path, outside/mounting dimensions and supplied sample masks.",
       "geometry_status": "not_built",
+      "current_source_review": "assets/cooling_lab_v1/angular_accessory_sources.json",
+      "candidate_decision": "An obtained catalogue mirror now provides inspected model-500 imagery and a five-mirror diagram. The Nicolet 6700 manual p54 confirms right-to-left sample-bay optics, supporting 500/0014-010 as a demo candidate. Exact adapter and historical paper identity remain unresolved.",
       "additional_source": {
         "url": "https://www.artisantg.com/info/Thermo_Spectra_Tech_0004_006_Datasheet_202431313634.pdf",
         "publisher": "Thermo Scientific manufacturer catalogue, mirrored by Artisan Technology Group",
@@ -84,7 +88,7 @@
     {
       "resource": "consumables:consumable_08",
       "candidate": "PELCO 16032 colloidal silver paste, 25 g",
-      "selection_status": "source_candidate_only_not_selected_as_paper_product",
+      "selection_status": "demo_candidate_geometry_not_identified_paper_product",
       "sources": [
         {
           "url": "https://www.tedpella.com/SEMmisc_html/SEMpaint.aspx",
@@ -103,11 +107,20 @@
           "url": "https://www.tedpella.com/SDS_html/16032_16032-20_sds.pdf",
           "sha256": "8c248a11f158ebfa1e2e87573618404bd70209ad5440db936fc73565e9ffb269",
           "inspected": "Manufacturer SDS revision 04 dated 2023-01-11. Flammable paste; isolation from ignition sources and suitable exhaust are scene requirements, not accepted controls."
+        },
+        {
+          "url": "https://www.tedpella.com/pdfs_html/Adhesives-Conductive.pdf",
+          "sha256": "91164b51b5c03fcdd1d03412bdf5e753cd3cb4851f648cefcb0dbf60e6063eb3",
+          "locator": "Manufacturer catalogue zero-based page 2: closed/open bottle photograph visually inspected"
+        },
+        {
+          "url": "https://www.tedpella.com/SEMmod_html/15012.aspx",
+          "locator": "15012 stand diameter 75 mm and thickness 25 mm; only a rough relative-scale reference in the catalogue photo, not a dimension of the bottle"
         }
       ],
       "finding": "16032 is a room-temperature-curing candidate with 60% ±1% silver. The note distinguishes rapid surface hardening from full properties after 16–20 hours at room temperature. These are candidate material facts, not a selected paper procedure or measured simulation properties.",
-      "unresolved": "Paper brand/formulation, measured jar dimensions, thermal/substrate/thermocouple compatibility, dispensing tool, allocation and qualified ventilation/waste handling. The 25 g jar is distinct from the 20 g squeeze bottle. No heated cure selected.",
-      "geometry_status": "not_built",
+      "unresolved": "Paper brand/formulation, measured bottle dimensions, neck/cap mechanism, thermal/substrate/thermocouple compatibility, dispensing tool, allocation and qualified ventilation/waste handling. Cap view and nominal material volume do not qualify manipulation.",
+      "geometry_status": "closed_stock_candidate_and_exploded_cap_view",
       "manufacturer_files_redistributed": false
     },
     {
@@ -122,9 +135,9 @@
       "resource": "consumables:consumable_07",
       "source": "https://www.afi.cc/customer/asfain/PDFS/SW_KrylonCatalog_2020_FINAL.pdf",
       "inspected": "Search-index text of manufacturer 2020 catalogue, mirrored by AFI. Direct retrieval returned 404; catalogue images not visually reviewed.",
-      "finding": "Catalogue identifies K05150207 flat white and K05160207 flat black, 12 oz. The 2018 paper specifies flat white/black ColorMaster but no SKU. No replacement paint or inferred can dimensions accepted.",
-      "geometry_status": "not_built",
-      "unresolved": "Publication-era SKU/formulation and packaging generation, correct-product SDS, open-cap/back views and measured package dimensions. Official front photographs are now inspected, but 12 oz net contents and image DPI do not establish outside dimensions.",
+      "finding": "Manufacturer catalogue page 12 and index page 57 now obtained and inspected, identifying K05150202/K05160202 flat white/black ColorMaster. The paper reports no SKU. Both original-photo-based packages are staged with author-selected dimensions and separate caps; no manufacturer's measured can dimensions or exact paper generation claimed.",
+      "geometry_status": "two_capped_photo_constrained_candidates_with_explicit_scale_hypotheses",
+      "unresolved": "Publication-era formulation, flat-white correct-product SDS, measured package dimensions, cap fit, nozzle force, deposition, coating allocation and qualified extraction/waste methods.",
       "additional_sources": [
         {
           "url": "https://www.sherwin-williams.com/homeowners/products/krylon-colormaster-paint-primer",
@@ -140,6 +153,15 @@
           "url": "https://sherwin.scene7.com/is/image/sw/51602-Colormaster-Flat-Black?wid=800",
           "sha256": "890619051ac72a11f3eb885968c453cc2daadd037c69c1a3fe17917be28d9290",
           "inspected": "Manufacturer-hosted front view visually inspected; black cap and colour-specific label. No open-cap, rear or dimensioned view obtained."
+        },
+        {
+          "url": "https://images.orgill.com/weblarge/10023/Krylon_3942_Catalog.pdf",
+          "sha256": "b131153fad2f53419df12266fa723f3a001ae1b579a5df94e0fd78117ca9820f",
+          "locator": "Manufacturer catalogue, printed page 12 / zero-based page 11 visually inspected; index page 57 maps K05150202/K05160202. Distributor mirror, original manufacturer document."
+        },
+        {
+          "url": "https://www.grainger.com/sds/pdf/256916.pdf",
+          "inspected": "Manufacturer 51602 ColorMaster Flat Black SDS, revision 2021-01-18, 18 pages via web text extraction; direct local retrieval returned HTML, so no document hash claimed. Historical/current formulation equivalence unproven."
         }
       ],
       "rejected_source": {
@@ -155,6 +177,14 @@
         {
           "url": "https://www.sherwin-williams.com/document/SDS/en/724504016021/US/",
           "outcome": "Inferred UPC endpoint tested; HTTP 404, no SDS obtained"
+        },
+        {
+          "url": "https://www.krylon.com/document/SDS/en/US/724504015024",
+          "outcome": "Linked legacy manufacturer endpoint now redirects to all-products page; no flat-white SDS obtained"
+        },
+        {
+          "url": "https://www.krylon.com/document/SDS/en/US/724504016021",
+          "outcome": "Linked legacy manufacturer endpoint now redirects to all-products page"
         }
       ]
     }

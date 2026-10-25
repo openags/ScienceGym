@@ -258,6 +258,9 @@ def devices():
       ('ldpe_stock','ldpe_stock',[1.30,.53,1.1175],'raw_stock_shelf_2'),
       ('mylar_stock','mylar_stock',[1.80,.53,1.1175],'raw_stock_shelf_2'),
       ('masking_tape','masking_tape',[-4.3,6.80,.90],'coating_prep'),
+      ('coating_white_stock','krylon_51502',[-4.00,6.80,.90],'coating_prep'),
+      ('coating_black_stock','krylon_51602',[-3.80,6.80,.90],'coating_prep'),
+      ('silver_paste_stock','pelco_16032',[-4.65,6.80,.90],'coating_prep'),
       ('calibration_block_stock','calibration_copper_stock',[-4.8,1.10,.90],'fabrication_fixture'),
       ('utility_cart','rubbermaid_1997206',[3.80,.45,0],'cart_parking'),
       ('oily_waste_can','justrite_09100',[-3.20,9.30,0],'coating_waste_parking')]:
@@ -265,6 +268,8 @@ def devices():
         a=asset(key,record['label'],record['geometry']['path'],pos,z_up=True,station=station,resource=record['resources'][0],source_path='assets/cooling_lab_v1/supply_sources.json',
           note='厂家参数约束或明确标注设计值的重构；详情见来源对照。当前为待用陈列，数量、操作接触和完整方法仍待验收。')
         a['resource_ids']=record['resources'];a['source_record']=kind
+        if 'inspection' in record.get('details',{}):
+            states.append(dict(id=key+'_cap',asset=key,**record['details']['inspection']))
         if key in ['utility_cart','oily_waste_can']:
             bounds=np.array(a['normalized_bounds_m'])+pos
             obstacle(station,bounds.tolist(),'ordinary_movable_floor_asset')
@@ -354,8 +359,11 @@ def build():
                 'noga_rb1000':'六角柄对边 12 mm；S10 刀杆 Ø3.2 mm。柄长与刀刃曲线为推断。',
                 'pomona_5908a':'每根线两端出线口间长 1219.2 mm；线缆外径 3.6576 mm；每个直插头另长 68.58 mm。每件资产含 4 根断开的引线。',
                 'unitree_g1_battery_v10':'V1.0 图册壳体 120 × 182 × 80 mm；两侧卡舌伸出量为推断，计入实际包围盒。',
-                'unitree_g1_charger_v10':'V1.0 图册壳体 154 × 60 × 36 mm；线缆和未核实端头不包含在壳体尺寸内。'}
-            manifest['reference_comparisons'][a['id']]=dict(dimensions_label=dimensions.get(item['id']),model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
+                'unitree_g1_charger_v10':'V1.0 图册壳体 154 × 60 × 36 mm；线缆和未核实端头不包含在壳体尺寸内。',
+                'krylon_51502':'外径 66 mm、带盖高度 208 mm 为选定推断值；未取得厂家尺寸图。照片提供外形比例，净含量 340 g 不能换算成罐体尺寸。',
+                'krylon_51602':'外径 66 mm、带盖高度 208 mm 为选定推断值；未取得厂家尺寸图。照片提供外形比例，净含量 340 g 不能换算成罐体尺寸。',
+                'pelco_16032':'瓶身外径约 32 mm、带盖高度约 63 mm 为照片相对尺度推断；照片中的 75 mm 配样台仅作辅助参考，透视误差未消除。'}
+            manifest['reference_comparisons'][a['id']]=dict(dimensions_label=dimensions.get(item['id']),dimensions_kind='inferred' if item['id'] in ['krylon_51502','krylon_51602','pelco_16032'] else 'catalogue_or_paper',model_scope='已知参数与推断分开记录。推断：'+'；'.join(item['inferred'])+'。限制：'+'；'.join(item['limits']),sources=[dict(url=s['url'],label='厂家／论文依据',scope=s['locator']) for s in item['sources']])
             continue
         sources=record.get('sources') or record.get('source_documents') or record.get('source_records') or []
         if not sources and record.get('equipment'):

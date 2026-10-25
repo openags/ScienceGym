@@ -27,7 +27,7 @@ def build():
         views=[];obligations=[]
         for a in instances:
             assert sha(ROOT/a['geometry'])==a['geometry_sha256']
-            for direction in ['closed','front','back','side','top']:
+            for direction in note.get('model_view_directions',['closed','front','back','side','top']):
                 c=captures[a['id']+'_'+direction]
                 assert sha(ROOT/c['path'])==c['sha256']
                 views.append(dict(asset_id=a['id'],view=direction,**c))

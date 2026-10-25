@@ -20,7 +20,7 @@ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 def run(browser,url):
     source=(HERE/'main.js').read_text()
-    hook='\nwindow.renderProbe={renderer,scene,architecture,groups,requestRender};'
+    hook='\nwindow.renderProbe={THREE,renderer,scene,camera,architecture,groups,requestRender};'
     records=[];checks=[]
     def check(name,passed,**data):
         checks.append(dict(name=name,passed=bool(passed),**data))
@@ -57,13 +57,40 @@ def run(browser,url):
         page.evaluate('''()=>{const d=renderProbe;d.scene.traverse(o=>{if(o.isMesh)o.receiveShadow=o.userData.probeReceiveShadow});d.requestRender()}''')
         restored=capture('receiver_shadows_restored')
         check('rendering_restored_after_probe',np.max(np.abs(restored-with_shadows))<=1)
+        # MSAA previously corrupted the label even in otherwise unobstructed
+        # oblique views. Its ordinary depth-tested rendering must agree with
+        # the unobstructed reference, and still respect a foreground blocker.
+        page.locator('#asset-select').select_option('coating_white_stock')
+        page.locator('#isolate').check()
+        page.evaluate('''()=>{const d=renderProbe;d.label=d.groups.get('coating_white_stock').getObjectByName('can_identification_text');}''')
+        valid=capture('label_depth_valid')
+        page.evaluate('()=>{const d=renderProbe;d.label.material.depthTest=false;d.label.renderOrder=100;d.requestRender()}')
+        reference=capture('label_unobstructed_reference')
+        check('label_depth_has_no_visible_interference',np.max(np.abs(valid-reference))<=1)
+        page.evaluate('()=>{const d=renderProbe;d.label.material.depthTest=true;d.label.renderOrder=0;d.requestRender()}')
+        page.evaluate('''()=>{const d=renderProbe,T=d.THREE;
+          const center=new T.Box3().setFromObject(d.groups.get('coating_white_stock')).getCenter(new T.Vector3());
+          const direction=d.camera.position.clone().sub(center).normalize();
+          d.blocker=new T.Mesh(new T.PlaneGeometry(.16,.28),new T.MeshBasicMaterial({color:0xd02a90}));
+          d.blocker.position.copy(center.addScaledVector(direction,.12));d.blocker.quaternion.copy(d.camera.quaternion);
+          d.scene.add(d.blocker);d.requestRender()}''')
+        blocked=capture('label_foreground_occlusion')
+        page.evaluate('()=>{const d=renderProbe;d.label.visible=false;d.requestRender()}')
+        hidden=capture('label_hidden_behind_foreground')
+        check('foreground_blocks_label',np.max(np.abs(blocked-hidden))<=1)
+        page.evaluate('()=>{const d=renderProbe;d.label.visible=true;d.label.material.depthTest=false;d.label.renderOrder=100;d.requestRender()}')
+        invalid=capture('label_invalid_depth_disabled_fixture')
+        check('disabled_depth_fixture_rejected',int((np.max(np.abs(invalid-blocked),axis=2)>12).sum())>100)
+        page.evaluate('''()=>{const d=renderProbe;d.label.material.depthTest=true;d.label.renderOrder=0;
+          d.blocker.removeFromParent();d.blocker.geometry.dispose();d.blocker.material.dispose();d.requestRender()}''')
         check('no_rendering_errors',not errors,errors=errors)
+        render_config=page.evaluate('()=>({pixel_ratio:renderProbe.renderer.getPixelRatio(),context:renderProbe.renderer.getContext().getContextAttributes()})')
         version=b.version;b.close()
     files=[HERE/'main.js',HERE/'check_rendering.py',HERE/'render_batches.js',ROOT/'assets/cooling_lab_v1/scene.json',ROOT/'assets/cooling_lab_v1/room_details.py']
-    report=dict(passed=True,checks=checks,captures=records,browser=version,
+    report=dict(passed=True,checks=checks,captures=records,browser=version,renderer=render_config,
         source_files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in files],
         test_hook_sha256=hashlib.sha256(hook.encode()).hexdigest(),
-        scope='On/off receiver-shadow pixel comparison in the real renderer; not photometric, product-fidelity or safety acceptance')
+        scope='Receiver-shadow comparison, unobstructed label depth rendering and foreground occlusion with a rejected disabled-depth fixture; not photometric, product-fidelity or safety acceptance')
     (HERE/'RENDER_VERIFICATION.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(dict(passed=True,checks=len(checks),changed_floor_pixels=int(lower.sum())),indent=2))
 

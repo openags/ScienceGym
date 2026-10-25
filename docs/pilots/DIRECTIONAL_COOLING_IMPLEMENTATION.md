@@ -77,9 +77,9 @@ guarantee of general reliability.
   from the task's source records. Foam and acrylic stock were added separately;
   stock plan sizes and acrylic thickness remain authored selections.
 - New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
-  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 68-point station screen records
-  each position-only IK result and external obstacle conflicts, including 19
-  new supply approaches. Shoulder alignment, unused-arm retraction and
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 71-point station screen records
+  each position-only IK result and external obstacle conflicts, including 24
+  supply/service approaches. Shoulder alignment, unused-arm retraction and
   proposed-camera clearance are screened. The
   Cary mounting datum remains distinct from its authored 80 mm upper palm
   approach; finger contact and insertion remain open. Selected equipment/tools moved
@@ -110,15 +110,15 @@ guarantee of general reliability.
   envelope, stripped ends and weld details are inferred. No cable mechanics,
   DAQ connection, strain-relief or temperature observation credit is claimed.
 
-- Nineteen additional supply/service types now have source ledgers, real
+- Twenty-two additional supply/service types now have source ledgers, real
   openings and separate parts. They add a fine-wire stripping tool, ordinary
   tweezers, slotted driver, fill vessel, vented ambient RTD, eight K-connector
   pairs, thin raw films, masking stock, unmachined copper, a catalog cart and a
   separate wipes can. OMAX 317864 clamps, Knipex 78 03 125 cutters, Noga RB1000
   deburring and eight individual Pomona 5908A leads extend preparation and
   electrical stock. Local dimensions and material assumptions are explicit.
-  The scene has 56 instances; compound requirements and full campaign quantities
-  remain incomplete. Twenty-one component requirements now bind to named staged
+  The scene has 59 instances; compound requirements and full campaign quantities
+  remain incomplete. Twenty-four component requirements now bind to named staged
   units, including individual sheets and eight connector pairs. Shared tools
   remain the same physical instances. Staged assets are not executed preparation
   operations.
@@ -131,6 +131,12 @@ guarantee of general reliability.
   local geometry, connector details and charger revision remain explicit gaps.
   No charging, autonomous battery replacement or complete service facility is
   qualified. The approach shares the south cross-aisle and must stay clear.
+  Flat-white/black ColorMaster stock cans and a PELCO 16032 silver-paste
+  candidate add three capped units at the coating bench. Package scales are
+  explicit hypotheses; removable hollow caps and an open bottle mouth provide
+  inspection geometry. No spraying, adhesive application or material
+  compatibility is qualified. Exact paper SKU/brand, complete SDS coverage,
+  ordinary dispensing tools and campaign allocation remain open.
 
 ## Historical compatibility and remaining work
 

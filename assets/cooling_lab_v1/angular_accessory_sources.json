@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "inspected_date": "2026-10-25",
+  "scope": "Source evidence for the two outstanding angular-reflection accessory reconstructions; no geometry or installed configuration is qualified by this record",
+  "sources": [
+    {
+      "id": "PAPER_SI",
+      "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf",
+      "sha256": "61f8587c1b34a45072fac9b25591b89f1a1b00b212b61e9c29c41e2e73a340b3",
+      "inspected": "Supplementary Note 3, printed page 14: text rechecked. Nicolet 6700, SpectraTech variable-angle accessory and Harrick 12-degree specular accessory are named. Exact accessory SKUs, mounts and stage variants are not supplied."
+    },
+    {
+      "id": "HARRICK_CURRENT_DATASHEET",
+      "url": "https://harricksci.com/content/Data_Sheet_Variable_Angle_Reflection_Accessory.pdf",
+      "sha256": "76a8abcb7fcb3498f0886b00b751600f3820f1b4e12f56d01c347cc51840c045",
+      "inspected": "Both pages rendered and visually inspected: VR1-HRS horizontal stage, VR1-VWA-12 absolute-reflection stage and separate VRX optical bases. Horizontal samples face down; the HRS stage alone is not a complete accessory."
+    },
+    {
+      "id": "HARRICK_HRS_PHOTO",
+      "url": "https://cdn11.bigcommerce.com/s-eur4mqjvvd/images/stencil/728x728/products/877/960/Horizontal12degStageVRAs__51504.1644533304.jpg?c=1",
+      "sha256": "ff503520bbb2c8d6c4c106b2e57de2ab1e40e76a1509b57f38940a528dd4d88e",
+      "inspected": "Official front three-quarter image: open bracket, apertured horizontal top, sloped reflector assembly and a separate circular mask. No measured outer or mating dimensions."
+    },
+    {
+      "id": "HARRICK_HRS_PAGE",
+      "url": "https://harricksci.com/horizontal-12-stage-for-variable-angle-reflection-accessory/",
+      "inspected": "Manufacturer product description and image link. Plug-in horizontal 12-degree stage with interchangeable 3, 6 and 13 mm aperture masks."
+    },
+    {
+      "id": "HARRICK_LEGACY_CATALOGUE",
+      "url": "https://sep.turbifycdn.com/ty/cdn/eeffppkk/harrick-catalog.pdf",
+      "sha256": "8e2089d7c03262fdd82b73b2cf85c9b33c42f6a0a6007951d5f3144057d48c49",
+      "publisher": "Harrick manufacturer catalogue, externally mirrored",
+      "inspected": "Zero-based pages 141-143 / printed 125-127 rendered and visually inspected. Three optical-base diagrams distinguish the central four-mirror FTIR model from the outer UV-Vis models. Legacy base code is VR1-XXX. Zero-based page 73 code-chart text inspected; Avatar/Nexus are listed but Nicolet 6700 is not.",
+      "limits": "No outer/mount dimensions or established 6700 adapter. The text extractor reads the Avatar/Nexus code as N18; do not use an unverified OCR code for part selection."
+    },
+    {
+      "id": "SPECTRATECH_CATALOGUE",
+      "url": "https://2-lab.ru/files/catalog/2/31b17b05ef9d490c2b79b425dd947964.pdf",
+      "sha256": "9c8861630e1624eaa69acfcfaecc8f41b373bde198c07ffa9dbea5c563589efc",
+      "publisher": "Thermo Scientific manufacturer catalogue, distributor mirror",
+      "inspected": "Zero-based page 14 / printed 43 rendered and visually inspected. Model 500 photograph, five-mirror diagram, rotary sample assembly, angle scale, side housing, separate 6/13 mm U-slot masks and alignment mirror.",
+      "retrieval_note": "The mirror had a hostname/certificate mismatch. TLS verification was bypassed for this single unauthenticated public-document download. Content was inspected; publisher cryptographic authentication is not claimed."
+    },
+    {
+      "id": "NICOLET_OPTICAL_LAYOUT",
+      "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
+      "sha256": "0bd488af3213c5d68261feee2b48cc00bff740f42890a919b45450740af17e57",
+      "inspected": "Zero-based page 59 / printed 54 rendered and visually inspected: typical 6700 top-view layout has source/entrance optics to the right of the sample compartment and detector optics to the left. The adjacent printed page 55 is the rear-panel view, not the optical layout."
+    }
+  ],
+  "candidate_decisions": [
+    {
+      "resource": "equipment:ANGLE_12",
+      "candidate": "VR1-HRS horizontal stage plus a separately reconstructed FTIR optical base",
+      "basis": "Authored demo choice among documented 12-degree arrangements. The face-down horizontal stage supports a concrete loading interface without claiming the paper's unreported variant.",
+      "do_not_substitute": ["12.5-degree current-generation accessories", "VR1-VWA-12 double-reflection frame relabeled as HRS", "An HRS stage without its required optical base"],
+      "unresolved": ["Measured outer and mount dimensions", "Exact base variant and 6700 mating hardware", "Optical height and alignment", "Mask retention and sample support", "Local mirror and fastener details"],
+      "paper_identity_confirmed": false,
+      "geometry_built": false,
+      "owner_accepted": false
+    },
+    {
+      "resource": "equipment:ANGLE_VAR",
+      "candidate": "Spectra-Tech 500 / 0014-010 right-to-left configuration",
+      "basis": "The depicted 500 geometry and right-to-left path match the direction shown in the Nicolet 6700 manual. This is a reconstruction candidate, not proof of historical model or mounting compatibility.",
+      "source_facts": {"incidence_range_degrees": [20,85], "slot_mask_widths_mm": [6,13], "mask_part_numbers": ["3000-231","3000-230"], "alignment_mirror_part_number": "7004-001"},
+      "rejected_shortcuts": ["Selecting 501 solely because its catalogue row lists Nicolet Impact", "Relabeling PIKE VeeMax as Spectra-Tech", "Treating a photograph of model 500 as exact model 501 CAD"],
+      "unresolved": ["Measured envelope and mounting dimensions", "6700 adapter and optical height", "Sample-stage and mirror coupling", "Reference/sample retention", "Exact paper SKU"],
+      "paper_identity_confirmed": false,
+      "geometry_built": false,
+      "owner_accepted": false
+    }
+  ],
+  "retrieval_failures_preserved": [
+    {"url": "https://www.anadis.nl/source/Harrick/AnadisHarrick.pdf", "result": "Direct retrieval redirected to HTML, not a PDF; the separate Turbify mirror was obtained instead."},
+    {"url": "https://www.artisantg.com/info/Thermo_Spectra_Tech_0004_006_Datasheet_202431313634.pdf", "result": "Previous text-only extraction and failed local retrieval remain historical. The newly inspected document is from a different mirror, not a successful download from this URL."}
+  ],
+  "reuse": "Reference images and documents remain external and are not redistributed. Subsequent geometry must be original, with dimensional hypotheses and reference discrepancies exposed."
+}

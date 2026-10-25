@@ -4,8 +4,8 @@
     {
       "name": "batch_geometry_preserved",
       "passed": true,
-      "before_meshes": 5575,
-      "after_meshes": 575
+      "before_meshes": 5650,
+      "after_meshes": 648
     },
     {
       "name": "absent_normals_recovered",
@@ -15,18 +15,30 @@
     {
       "name": "all_scene_meshes_have_finite_normals",
       "passed": true,
-      "total": 617,
+      "total": 690,
       "missing": 0,
       "nonfinite": 0
     },
     {
       "name": "receiver_shadows_visible_on_floor_and_supports",
       "passed": true,
-      "changed_pixels": 238324,
+      "changed_pixels": 238511,
       "threshold_per_channel": 12
     },
     {
       "name": "rendering_restored_after_probe",
+      "passed": true
+    },
+    {
+      "name": "label_depth_has_no_visible_interference",
+      "passed": true
+    },
+    {
+      "name": "foreground_blocks_label",
+      "passed": true
+    },
+    {
+      "name": "disabled_depth_fixture_rejected",
       "passed": true
     },
     {
@@ -38,26 +50,61 @@
   "captures": [
     {
       "path": "viewer/lab_review_v1/evidence/receiver_shadows_on.png",
-      "sha256": "29423e53a5792b2b9435713eb3c935d35d4bef5b3b8f9d817ab66df86ca9d719"
+      "sha256": "05daf2892f047288fed40d51261ce14b7f0b6e5f65235d21cde1bd30e04fb32a"
     },
     {
       "path": "viewer/lab_review_v1/evidence/receiver_shadows_off.png",
-      "sha256": "bf9651b87ad26fb2e8b679fd6a82596e3896b365bdb60998a0dac0f0331fdebe"
+      "sha256": "48cb4e658ebdcc7f361e030ab246b667b9b890e344e6533dda70bd30a7349f48"
     },
     {
       "path": "viewer/lab_review_v1/evidence/receiver_shadows_restored.png",
-      "sha256": "29423e53a5792b2b9435713eb3c935d35d4bef5b3b8f9d817ab66df86ca9d719"
+      "sha256": "05daf2892f047288fed40d51261ce14b7f0b6e5f65235d21cde1bd30e04fb32a"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_depth_valid.png",
+      "sha256": "8fce1578708b9e3fc233407315d6a275e8dd55fb3bb2deaf7a6fd3fec8bab616"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_unobstructed_reference.png",
+      "sha256": "8fce1578708b9e3fc233407315d6a275e8dd55fb3bb2deaf7a6fd3fec8bab616"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_foreground_occlusion.png",
+      "sha256": "7f4e6df361762a285a770d8f970aefe38431587ba19e7b7ba544d438ae7d8530"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_hidden_behind_foreground.png",
+      "sha256": "7f4e6df361762a285a770d8f970aefe38431587ba19e7b7ba544d438ae7d8530"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_invalid_depth_disabled_fixture.png",
+      "sha256": "89b5940ce8e450cb34abbed81b812410bbcff18ed42976d313dd862a03c63342"
     }
   ],
   "browser": "131.0.6778.204",
+  "renderer": {
+    "pixel_ratio": 1.5,
+    "context": {
+      "alpha": true,
+      "antialias": false,
+      "depth": true,
+      "desynchronized": false,
+      "failIfMajorPerformanceCaveat": false,
+      "powerPreference": "default",
+      "premultipliedAlpha": true,
+      "preserveDrawingBuffer": true,
+      "stencil": false,
+      "xrCompatible": false
+    }
+  },
   "source_files": [
     {
       "path": "viewer/lab_review_v1/main.js",
-      "sha256": "fa05c8f31788eb8e9fe8f80a7771b43ed81499438beb173d2b877d6256571aa6"
+      "sha256": "42a40489b2843cb8caae42f8f03f99ab40ce719bfd1ad7a60bd6fe742d7b244c"
     },
     {
       "path": "viewer/lab_review_v1/check_rendering.py",
-      "sha256": "e16b9ad234b9d07844b7e2bd8e3103c6c0307d041954cc3a079293d6f3da02a2"
+      "sha256": "536d1aa13c59e91f15910df9dfd04eec972f6b0436244d40828ef1f9866dffe1"
     },
     {
       "path": "viewer/lab_review_v1/render_batches.js",
@@ -65,13 +112,13 @@
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
-      "sha256": "d27bb410ca68bae1a306af59820ecfb77a1f85f9a1bb4cc17db584f39c6494e9"
+      "sha256": "1101a565adb7168c92ef25b941c74bd32bd6120792d08ef3a04cd742c9cb3a72"
     },
     {
       "path": "assets/cooling_lab_v1/room_details.py",
       "sha256": "e3e0194ca03073304997a4bafab1dd8e6cb2015cbeb80d24cb3a80a2127e33ec"
     }
   ],
-  "test_hook_sha256": "f6b28a63f2057b12ca82928b02eda4b2f36d9b1938284b0cfd83aac207c47fa5",
-  "scope": "On/off receiver-shadow pixel comparison in the real renderer; not photometric, product-fidelity or safety acceptance"
+  "test_hook_sha256": "487516cc5b30e29ee6c8c091686cff7bc9908e51a1c14a3d60af5214522b4e05",
+  "scope": "Receiver-shadow comparison, unobstructed label depth rendering and foreground occlusion with a rejected disabled-depth fixture; not photometric, product-fidelity or safety acceptance"
 }
