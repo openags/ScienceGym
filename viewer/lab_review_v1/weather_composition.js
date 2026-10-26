@@ -33,7 +33,7 @@ export class WeatherComposition {
   }
   const body=document.getElementById('weather-identities');
   for(const e of this.record.physical_entities){const row=document.createElement('tr');
-   for(const text of [e.label,e.existing_scene_identity?'沿用 '+e.id:'新增候选 '+e.id,e.representations.length+' 个几何部件',e.id.startsWith('weather_tie_')?'原扎带与截尾共用身份':'选定 1 件／套，数量待验收']){const td=document.createElement('td');td.textContent=text;row.append(td)}body.append(row);
+   for(const text of [e.label,e.existing_scene_identity?'沿用 '+e.id:'新增候选 '+e.id,e.representations.length+' 个几何部件',e.id.startsWith('weather_tie_')?'原扎带与截尾共用身份':'选定 1 件／套，数量待验收']){const td=document.createElement('td');if(text===e.label&&e.id==='weather_wire_rope_cutter'){const a=document.createElement('a');a.href='wire_rope_cutter.html';a.textContent=text+' · 查看刀口与内部 ↗';td.append(a)}else td.textContent=text;row.append(td)}body.append(row);
   }
   document.getElementById('weather-focus').onchange=e=>{if(e.target.value){document.getElementById('weather-composed').checked=true;this.setEnabled(true);this.focusModule(e.target.value)}};
   document.getElementById('weather-composed').onchange=e=>this.setEnabled(e.target.checked);
@@ -41,7 +41,7 @@ export class WeatherComposition {
   document.getElementById('weather-composition-status').textContent='已载入 '+this.record.physical_entities.length+' 个逐件归属记录；其中 U30 与小车沿用原实例。安装参考与备料参考互斥显示，均未完成初始库存与运动验证。';
   window.scienceGymWeatherComposition=()=>{
    this.scene.updateMatrixWorld(true);
-   return {enabled:this.enabled,modules:[...this.modules].map(([id,m])=>({id,visible:m.group.visible,parts:m.actualParts.length,sourceParts:m.actualParts,worldMatrix:m.group.matrixWorld.toArray(),bounds:new THREE.Box3().setFromObject(m.group).min.toArray().concat(new THREE.Box3().setFromObject(m.group).max.toArray()),batch:m.batch})),
+   return {enabled:this.enabled,modules:[...this.modules].map(([id,m])=>({id,visible:m.group.visible,parts:m.actualParts.length,sourceParts:m.actualParts,worldMatrix:m.group.matrixWorld.toArray(),bounds:new THREE.Box3().setFromObject(m.group,true).min.toArray().concat(new THREE.Box3().setFromObject(m.group,true).max.toArray()),batch:m.batch})),
     baseVisibility:Object.fromEntries([...this.groups].map(([id,g])=>[id,g.visible])),floorVisibility:this.floorParts.map(p=>p.visible),entities:this.record.physical_entities.length,ownerAcceptance:this.record.owner_acceptance,robotUseQualified:this.record.robot_use_qualified};
   };
   document.documentElement.dataset.weatherCompositionLoaded='true';

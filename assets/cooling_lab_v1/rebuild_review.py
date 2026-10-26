@@ -35,6 +35,7 @@ def main():
       'assets/cooling_lab_v1/build_u30.py','assets/cooling_lab_v1/check_u30.py',
       'assets/cooling_lab_v1/build_mast_driver.py','assets/cooling_lab_v1/check_mast_driver.py',
       'assets/cooling_lab_v1/build_wind_driver.py','assets/cooling_lab_v1/check_wind_driver.py',
+      'assets/cooling_lab_v1/build_wire_rope_cutter.py','assets/cooling_lab_v1/check_wire_rope_cutter.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
       'assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_cover_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/inspect_tool_access.py',
@@ -73,6 +74,7 @@ def main():
         run('viewer/lab_review_v1/check_post_level.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/post_level.html')
         run('viewer/lab_review_v1/check_hose_clamp.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/hose_clamp.html')
         run('viewer/lab_review_v1/check_nut_driver.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/nut_driver.html')
+        run('viewer/lab_review_v1/check_wire_rope_cutter.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/wire_rope_cutter.html')
         run('viewer/lab_review_v1/check_u30.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/u30.html')
         run('viewer/lab_review_v1/check_mast_driver.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/mast_driver.html')
         run('viewer/lab_review_v1/check_weather_station.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather_station.html')

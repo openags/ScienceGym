@@ -16,7 +16,8 @@ def build():
         'outdoor_ground_checks','weather_service_checks','weather_wind_service_checks',
         'weather_remainders_assets','weather_remainders_checks',
         'nut_driver_assets','mast_driver_assets','wind_driver_assets',
-        'nut_driver_checks','mast_driver_checks','wind_driver_checks']
+        'nut_driver_checks','mast_driver_checks','wind_driver_checks',
+        'wire_rope_cutter_assets','wire_rope_cutter_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
     station=r['weather_station_assets'];storage=r['weather_storage_assets']
     site=station['station_origin_world_m'];modules=[];entities={}
@@ -83,6 +84,16 @@ def build():
             selected_required_units=1,shared_across_all_service_poses=True))
         for p in geometry['part_records']:
             member(identity,label,'tools:fastener_driver',identity,p['id'])
+    identity='weather_wire_rope_cutter';label='KNIPEX 95 61 190 · 钢丝绳剪'
+    geometry=r['wire_rope_cutter_assets']['geometry']
+    rest=r['wire_rope_cutter_checks']['resting_reference']
+    mod=module(identity,label,geometry,[8.93,18.595,.9])
+    mod['to_world']=(np.array(mod['to_world'])@np.array(rest['to_support_plane'])).tolist()
+    tools.append(dict(id=identity,station='weather_service',support_top_m=.9,
+        selected_required_units=1,shared_across_all_service_poses=True,
+        resting_reference_source='assets/cooling_lab_v1/wire_rope_cutter_checks.json'))
+    for p in geometry['part_records']:
+        member(identity,label,'tools:wire_stripper_and_driver',identity,p['id'])
     old={a['id']:a for a in r['scene']['assets']}
     refs=[Path(__file__)]+[HERE/(n+'.json') for n in names]
     record=dict(schema_version=1,status='laboratory_composition_candidate_not_initial_state',
@@ -100,7 +111,9 @@ def build():
             temporary_additional_stock=[dict(product='HellermannTyton 111-01975',units=1),dict(product='HellermannTyton 111-05440',units=1)],
             scope='Partial inspection only; omitted original components remain explicitly outside context. It is not a complete initial state or a transition.'),
         resource_bindings=[dict(resource_id='equipment:WEATHER',physical_entity_ids=[n for n,e in entities.items() if e['resource_id']=='equipment:WEATHER'],
-            completeness_accepted=False),dict(resource_id='tools:fastener_driver',physical_entity_ids=[t['id'] for t in tools],completeness_accepted=False)],
+            completeness_accepted=False),dict(resource_id='tools:fastener_driver',physical_entity_ids=[t['id'] for t in tools if t['id']!=identity],completeness_accepted=False),
+            dict(resource_id='tools:wire_stripper_and_driver',physical_entity_ids=[identity],completeness_accepted=False,
+                scope='Separate cable cutter candidate for guy/ground wire; does not replace the existing electronic cutter or establish complete wire-tool stock.')],
         limits=['Installed/reference, base-staging and partial preparation views are mutually exclusive representations, not extra inventory.',
             'Kit groups retain individually named parts; a group is not a welded or rigid simulation body.',
             'Permanent ties retain their original cutoff identity; removed U30 plugs remain part of that same logger.',

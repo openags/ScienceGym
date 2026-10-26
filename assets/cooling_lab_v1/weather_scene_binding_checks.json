@@ -92,6 +92,14 @@
       "passed": true
     },
     {
+      "name": "source_assets/cooling_lab_v1/wire_rope_cutter_assets.json",
+      "passed": true
+    },
+    {
+      "name": "source_assets/cooling_lab_v1/wire_rope_cutter_checks.json",
+      "passed": true
+    },
+    {
       "name": "every_rendered_part_has_exactly_one_inventory_owner",
       "passed": true
     },
@@ -128,7 +136,7 @@
       "passed": true
     },
     {
-      "name": "three_shared_ordinary_drivers",
+      "name": "three_shared_drivers_and_one_wire_rope_cutter",
       "passed": true
     },
     {
@@ -180,6 +188,10 @@
       "passed": true
     },
     {
+      "name": "upstream_wire_rope_cutter_checks",
+      "passed": true
+    },
+    {
       "name": "actual_part_names_station",
       "passed": true
     },
@@ -208,7 +220,11 @@
       "passed": true
     },
     {
-      "name": "complete_driver_on_actual_service_worktop_weather_nut_driver_sw7",
+      "name": "actual_part_names_weather_wire_rope_cutter",
+      "passed": true
+    },
+    {
+      "name": "complete_tool_on_actual_service_worktop_weather_nut_driver_sw7",
       "passed": true,
       "bounds_m": [
         [
@@ -224,7 +240,7 @@
       ]
     },
     {
-      "name": "complete_driver_on_actual_service_worktop_weather_nut_driver_half",
+      "name": "complete_tool_on_actual_service_worktop_weather_nut_driver_half",
       "passed": true,
       "bounds_m": [
         [
@@ -240,7 +256,7 @@
       ]
     },
     {
-      "name": "complete_driver_on_actual_service_worktop_weather_nut_driver_7_16",
+      "name": "complete_tool_on_actual_service_worktop_weather_nut_driver_7_16",
       "passed": true,
       "bounds_m": [
         [
@@ -256,6 +272,26 @@
       ]
     },
     {
+      "name": "complete_tool_on_actual_service_worktop_weather_wire_rope_cutter",
+      "passed": true,
+      "bounds_m": [
+        [
+          8.9299380460259,
+          18.572543639788428,
+          0.9
+        ],
+        [
+          9.120000492887867,
+          18.61745636021157,
+          0.9200156223459837
+        ]
+      ]
+    },
+    {
+      "name": "cutter_preserves_verified_resting_contacts",
+      "passed": true
+    },
+    {
       "name": "new_modules_clear_complete_remaining_lab_geometry",
       "passed": true,
       "narrow_phase_pairs": 0,
@@ -263,7 +299,7 @@
       "nonvolume_surface_checks": []
     },
     {
-      "name": "staged_drivers_clear_station_cart_and_each_other",
+      "name": "staged_tools_clear_station_cart_and_each_other",
       "passed": true,
       "narrow_phase_pairs": 0,
       "intersections": []
@@ -353,16 +389,28 @@
         18.529987244158985,
         0.9399744883179665
       ]
+    ],
+    "weather_wire_rope_cutter": [
+      [
+        8.9299380460259,
+        18.572543639788428,
+        0.9
+      ],
+      [
+        9.120000492887867,
+        18.61745636021157,
+        0.9200156223459837
+      ]
     ]
   },
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/check_weather_scene_binding.py",
-      "sha256": "bbb9231312201b51d40d5190cd25394d77e74831c83444652376395d165eef9a"
+      "sha256": "164e5ca3c66aefef6ff7338e8e1ead97c9993f6839c7394e656fbff50a771a9c"
     },
     {
       "path": "assets/cooling_lab_v1/weather_scene_binding.json",
-      "sha256": "9a9551dbd7ddcb807e4d3f9182c6268be5afbb4f2fb5d4eb93739386393b1acc"
+      "sha256": "7cea50ecd5a3bc7986a92224f35c3bc3259dd7fb810a55cdb8346f8a31d74832"
     },
     {
       "path": "assets/cooling_lab_v1/check_weather_assets.py",
@@ -370,10 +418,10 @@
     }
   ],
   "counts": {
-    "modules": 7,
-    "physical_entities": 28,
+    "modules": 8,
+    "physical_entities": 29,
     "existing_reused": 2,
-    "rendered_parts": 486,
+    "rendered_parts": 499,
     "base_scene_assets": 81,
     "hidden_base_assets": 2,
     "visible_base_assets": 79

@@ -135,6 +135,27 @@ is checked separately against the hex cavity. These tests do not qualify
 worm movement, hand access, torque, factory bond strength or robot execution.
 Local contours, socket depth and clearance remain inferred. No stock is added.
 
+The [wire-rope-cutter inspector](../../viewer/lab_review_v1/wire_rope_cutter.html)
+adds a KNIPEX 95 61 190 candidate for the tripod guy/ground wire. Manufacturer
+photographs and the joint cutaway constrain two crossed forged levers, actual
+blade bevels, two crimp recesses, a bolted pivot, an internal spring reference
+and plastic grips with steel cavities. These are original local geometry;
+official CAD was not retrieved. The metric 190 × 60 × 20 mm envelope has no
+stated jaw state; the US page's approximately 44.45 mm width is kept as a
+separate closed-photo interpretation. Both alternatives remain explicit.
+Static closed/open geometry, material separation, sampled intermediate poses
+and a selected 3 mm wire entry are checked. They do not establish cutting
+force, steel grade, spring action, retainer locking or robot grasp. The quoted
+5 mm wire-rope capacity must not be confused with the 6 mm copper-cable row.
+The tool remains an unaccepted candidate; inspection states add no stock.
+Full steel grip cores and separate coatings give an approximately 311 g mass
+under explicit inferred densities, checked against the 310 g catalogue value.
+The complete-lab composition adds one candidate on the outdoor service bench,
+using actual pivot/grip contacts and a support polygon that contains the
+inferred centre-of-mass range. This is static staging, not settling, locking,
+cutting or accepted initial inventory. The new inspector is linked from its
+entry in the complete-lab identity table.
+
 The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
 five-primary-port NRC candidate with 138 physical domains and five text faces.
 The source enclosure envelope excludes the separate two-plate mounting kit.
