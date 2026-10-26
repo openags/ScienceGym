@@ -740,10 +740,13 @@ identities and invalid stock/substitution claims. The allocation browser also
 rejects a stale composition record before rendering the inventory tables.
 
 `campaign_allocation.json` accounts for all 154 active component requirements
-and the eleven branches. Seventeen core equipment/probe components, sixteen stock
-components and four shared hand tools have explicit selected quantities; the other 117 retain
-unknown required quantities. These
-counts describe allocation work, not asset completeness. The paired power branch
+and the eleven branches. The quantity policy now separates 69 selected quantities,
+77 unresolved quantity/specification requirements and eight non-stock requirements:
+three output states, one configuration state, one coordinate-frame requirement and
+three camera-calibration conditions. All 154 requirements remain incomplete.
+`component_quantity_policy.json` records the basis and remaining conditions for 32
+new selections in addition to the existing 37 equipment, stock and tool allocations.
+These counts describe allocation work, not asset completeness. The paired power branch
 now has two separately staged KHR-2/2-P candidates, `heater_white` and `heater`,
 and two separate 2425 instances. Compatibility, mounting and wiring remain open.
 
@@ -755,7 +758,16 @@ hardware, manufacturing tools, services and repeat/reset consumption remain open
 `check_allocation.py` rejects duplicate unit counts and display-as-stock claims;
 it also reproduces the previous missing-second-heater deficit. The interactive
 review at `viewer/lab_review_v1/allocation.html` filters by branch, component and
-unallocated demand, and rejects a report whose source hashes have changed.
+unallocated demand or requirement type, and rejects a report whose source hashes have changed.
+Each row exposes its quantity basis and unresolved conditions. Counting one coating
+can or paste bottle does not establish material sufficiency. Shared tweezers and
+trays are the same objects across requirements. The source kinematic tree partitions
+the G1 visual model into 33 body parts and 30 parts per hand; the three component
+bindings do not create three robots. The native D435i has a selected quantity of
+one but no separately bounded camera-geometry binding; the source head frame and
+alternate D455 cannot fill that gap. Removing a hand part or a wrist camera exposes
+the corresponding deficit. Output states, frames and calibration conditions remain
+visible and unfulfilled instead of becoming fictitious stock units.
 
 `stock_cutplan.json` reserves 75 cut envelopes or witness regions on 40 actual
 stock sheets/blanks, eight hollow-tube sections, four purchased profiles and six

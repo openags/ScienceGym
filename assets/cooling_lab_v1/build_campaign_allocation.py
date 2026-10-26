@@ -67,13 +67,47 @@ DISPLAY_ONLY = {
 }
 
 
-def build_record(scene, readiness):
+def build_record(scene, readiness, quantity_policy=None):
     assets = {a['id']: a for a in scene['assets']}
     assert len(assets) == len(scene['assets']), 'duplicate scene asset identity'
     branches = {b['id']: b for b in readiness['branches']}
     assert set(branches) == set(DEMANDS), 'all branches require an explicit quantity review'
     items = {r['resource_id']: r for r in readiness['requirements']
              if r['disposition'] != 'historical_embodiment_reference'}
+    policy = quantity_policy if quantity_policy is not None else json.loads((HERE/'component_quantity_policy.json').read_text())
+    component_ids = {c['id']: c for r in items.values() for c in r['components']}
+    kinds = {r['component_id']: r for r in policy['requirements']}
+    selections = {r['component_id']: r for r in policy['selected_quantities']}
+    nonstock = {r['component_id']: r for r in policy['non_stock_requirements']}
+    assert len(kinds) == len(policy['requirements']) and set(kinds) == set(component_ids), 'every component needs exactly one quantity classification'
+    assert len(selections) == len(policy['selected_quantities']) and set(selections) <= set(kinds), 'duplicate or unknown quantity selection'
+    assert len(nonstock) == len(policy['non_stock_requirements']) and set(nonstock) <= set(kinds), 'duplicate or unknown non-stock requirement'
+    assert not set(selections).intersection(nonstock), 'non-stock requirement cannot supply inventory'
+    assert policy['owner_acceptance'] is None and not policy['qualified'], 'quantity policy cannot grant acceptance'
+    for identity, row in kinds.items():
+        assert row['label'] == component_ids[identity]['label'], 'quantity classification label drift'
+        assert row['quantity_applicable'] == (identity not in nonstock), 'non-stock requirement must remain separately accounted'
+    for identity, row in nonstock.items():
+        assert row['kind'] in {'output_state','configuration_state','frame_requirement','acceptance_condition'}
+        assert row['kind'] == kinds[identity]['kind'] and row['subjects'] and not row['complete']
+    for identity, row in selections.items():
+        assert row['label'] == component_ids[identity]['label'] and row['quantity'] > 0 and row['unit'] and row['basis']
+        assert row['basis_type'] == 'demo_selection_not_paper_reported' and row['remaining_requirements']
+    for source in policy['source_artifacts']:
+        assert sha(ROOT/source['path']) == source['sha256'], 'stale quantity policy source'
+    kinematics = json.loads((ROOT/'assets/unitree_g1_inspire_v1/kinematics.json').read_text())
+    hand_parts = {}
+    for side in ['left','right']:
+        links = {side+'_base_link'}
+        while True:
+            children = {j['id'] for j in kinematics['joints'] if j['parent'] in links}
+            if children <= links: break
+            links |= children
+        hand_parts[side] = {n for n,link in kinematics['part_links'].items() if link in links}
+        selected = selections['robot:INSPIRE_FTP_'+side.upper()+':component_1']['members']
+        assert len(selected)==1 and selected[0]['asset_id']=='g1' and set(selected[0]['parts'])==hand_parts[side], 'hand assignment differs from source kinematic subtree'
+    body = selections['robot:G1_29DOF:component_1']['members']
+    assert len(body)==1 and body[0]['asset_id']=='g1' and set(body[0]['parts'])==set(kinematics['part_links'])-hand_parts['left']-hand_parts['right'], 'body and hands must partition source visual parts'
     physical = []
     for a in scene['assets']:
         role, note = DISPLAY_ONLY.get(a['id'], ('staged_candidate', '已放置的候选实例；未验收配置、连接或物理行为'))
@@ -134,10 +168,22 @@ def build_record(scene, readiness):
         component=next(c for c in resource['components'] if c['label']==allocation['component_label']) if allocation['component_label'] else resource['components'][0]
         if not allocation['component_label']:assert len(resource['components'])==1
         stock_allocations[component['id']]=allocation
+    assert not set(selections).intersection(set(component_pool) | set(stock_allocations)), 'quantity policy duplicates existing allocation authority'
     for requirement in items.values():
         for component in requirement['components']:
             pool = component_pool.get(component['id'])
             staged = component.get('staged_candidates')
+            selection = selections.get(component['id'])
+            classification = kinds[component['id']]
+            nonstock_requirement = nonstock.get(component['id'])
+            if selection is not None and 'members' in selection:
+                assert staged is None, 'explicit members cannot silently replace prior staged evidence'
+                for member in selection['members']:
+                    if member['asset_id'] in assets:
+                        a = assets[member['asset_id']]
+                        assert requirement['resource_id'] in a.get('resource_ids',[a['resource_id']]), 'explicit candidate has wrong resource type'
+                staged = dict(unit=selection['unit'], quantity=len(selection['members']),
+                    members=selection['members'], scope=selection['basis']) if selection['members'] else None
             if pool:
                 evidence = dict(unit='instrument_or_probe', quantity=pool['staged_units'],
                                 members=[dict(asset_id=m) for m in pool['staged_unit_ids']])
@@ -145,6 +191,8 @@ def build_record(scene, readiness):
                 evidence = {k: staged[k] for k in ['unit', 'quantity', 'members', 'scope']}
                 accounted=set()
                 for member in staged['members']:
+                    assert member['asset_id'] not in DISPLAY_ONLY, 'display reference cannot supply component stock'
+                    assert len(member.get('parts',[])) == len(set(member.get('parts',[]))), 'duplicate named part within staged unit'
                     identifiers={(member['asset_id'],n) for n in member.get('parts',[])}
                     assert identifiers and not accounted.intersection(identifiers),'duplicate staged physical part'
                     accounted.update(identifiers)
@@ -157,20 +205,39 @@ def build_record(scene, readiness):
             else:
                 evidence = None
             stock_quantity=stock_allocations.get(component['id'],{}).get('selected_required_stock_units')
-            required=pool['selected_required_units'] if pool else stock_quantity
+            required=pool['selected_required_units'] if pool else selection['quantity'] if selection else stock_quantity
+            unit=selection['unit'] if selection else evidence['unit'] if evidence else None
+            if selection and evidence:
+                assert selection['unit'] == evidence['unit'], 'required and staged quantity units differ'
+            if nonstock_requirement:
+                assert required is None and evidence is None, 'output, frame or acceptance evidence cannot become initial stock'
+            basis=(selection['basis'] if selection else pool['quantity_basis'] if pool else
+                   'Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.' if stock_quantity is not None else
+                   nonstock_requirement['basis'] if nonstock_requirement else 'Quantity, specification and candidate completeness remain to be allocated.')
             rows.append(dict(id=component['id'], resource_id=requirement['resource_id'], label=component['label'],
                 required_quantity=required,
-                quantity_status='selected_unaccepted' if required is not None else 'unallocated',
+                required_unit=unit, quantity_basis=basis,
+                requirement_kind=classification['kind'], stock_quantity_applicable=classification['quantity_applicable'],
+                quantity_status='not_stock_quantity' if nonstock_requirement else 'selected_unaccepted' if required is not None else 'unallocated',
                 staged_candidates=evidence,
                 quantity_deficit=pool['quantity_deficit'] if pool else max(0,required-(evidence['quantity'] if evidence else 0)) if required is not None else None,
+                state_or_acceptance_requirement=nonstock_requirement,
+                remaining_requirements=selection['remaining_requirements'] if selection else [
+                    'Required state or acceptance evidence remains incomplete; no additional stock is created.' if nonstock_requirement else
+                    'Quantity/specification allocation and complete candidate configuration remain open.' if required is None else
+                    'Quantity selection does not establish initial-state, compatibility or operation acceptance.'],
                 branch_ids=[b['id'] for b in branch_rows if requirement['resource_id'] in b['required_resource_ids']],
                 complete=False, qualification=False))
-    return dict(schema_version=1, status='asset_allocation_draft',
+    uses = {}
+    for row in rows:
+        for member in (row['staged_candidates'] or {}).get('members', []):
+            uses.setdefault(member['asset_id'], set()).add(row['id'])
+    return dict(schema_version=2, status='asset_allocation_draft',
         scope='One complete campaign; quantities are independent of skill/branch/campaign validation repetitions',
         visibility='author_and_reviewer_only_not_actor_input',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)), sha256=sha(p)) for p in
             [HERE/'scene.json', HERE/'readiness.json', HERE/'pilot_contract.json', TASK/'resources.json',
-             TASK/'branches.json', TASK/'material_cards.json', HERE/'stock_cutplan.json',HERE/'fastener_tool_staging.json',Path(__file__)]],
+             TASK/'branches.json', TASK/'material_cards.json', HERE/'stock_cutplan.json',HERE/'fastener_tool_staging.json',HERE/'component_quantity_policy.json',Path(__file__)]],
         selected_policy=dict(apparatus_count=2, initial_completed_apparatus_count=0,
             configuration_reuse='Reuse the identified white/black pair for tracked and fixed branches; restore the same white apparatus before tracked mapping',
             historical_reuse_known=False, inferred_quantity_selection=True,
@@ -184,6 +251,8 @@ def build_record(scene, readiness):
                        configurations=['tracked_nano_PE', 'fixed_LDPE'], configuration_geometry_complete=False)
                    for c in ['white', 'black']],
         physical_instances=physical, pools=pools, stock_allocation={'path':'assets/cooling_lab_v1/stock_cutplan.json','sha256':sha(HERE/'stock_cutplan.json')},components=rows, branches=branch_rows,
+        shared_asset_references=[dict(asset_id=identity,component_ids=sorted(ids),adds_stock=False)
+                                 for identity,ids in sorted(uses.items()) if len(ids)>1],
         remaining=[
             dict(id='raw_stock', label='原料下料与制造条件', detail='两台装置的主要板材、管材、保温层、薄膜和框架已有逐件数量与下料范围；框架加工工具、孔与螺纹工艺、公差、存放约束及表面处理仍未补全。范围能放进原料不等于已加工。'),
             dict(id='fixed_pair', label='两套固定构型换装件', detail='已为两条遮阳带和四层 LDPE 预留原料，白色恢复另留两层 nano-PE；完整固定支架、换装连接和重复运行复位库存仍缺。'),
@@ -194,7 +263,10 @@ def build_record(scene, readiness):
             component_requirements=len(rows), selected_quantity_components=sum(r['required_quantity'] is not None for r in rows),
             components_with_staged_bindings=sum(r['staged_candidates'] is not None for r in rows),
             quantified_pool_deficit=sum(p['quantity_deficit'] for p in pools),
-            unallocated_component_quantities=sum(r['required_quantity'] is None for r in rows),
+            unallocated_component_quantities=sum(r['quantity_status']=='unallocated' for r in rows),
+            non_stock_requirements=sum(r['quantity_status']=='not_stock_quantity' for r in rows),
+            requirements_by_kind={kind:sum(r['requirement_kind']==kind for r in rows) for kind in sorted({r['requirement_kind'] for r in rows})},
+            incomplete_component_requirements=sum(not r['complete'] for r in rows),
             qualified_branches=0, branches=len(branch_rows)))
 
 

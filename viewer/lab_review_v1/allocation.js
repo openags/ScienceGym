@@ -1,6 +1,8 @@
 const $=id=>document.getElementById(id),root='../../';let report,stockPlan,labInventory;
 const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE',frame_machining_stock:'框架加工铝坯',cover_adhesive_stock:'带离型纸转移胶膜'};
 const unitLabels={instrument_or_probe:'台／支',tool:'件',vessel:'个',probe:'支',sheet:'张',plate:'块',tube:'段',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个','inspection asset':'件',individual_length:'根',fastener_or_pad_package:'件／包'};
+Object.assign(unitLabels,{assembly:'组',mask_set:'套遮罩',mirror:'片',can:'罐',bottle:'瓶',camera:'台'});
+const kindLabels={inventory_item:'实物／材料',assembly_component:'设备子组件',interface_requirement:'接口与配套',facility_requirement:'场地与服务',output_state:'待制造成品',configuration_state:'换装状态',frame_requirement:'坐标依据',acceptance_condition:'验收条件'};
 const mm=v=>Number((v*1000).toFixed(3));
 function cutLabel(c){
  const color=c.id.includes('white')?'白色装置':c.id.includes('black')?'黑色装置':'';
@@ -62,7 +64,7 @@ function renderInstallation(){
  $('identity-filter').addEventListener('change',renderIdentities);renderIdentities();
 }
 function render(){
- const branch=$('allocation-branch').value,query=$('allocation-search').value.trim().toLowerCase(),filter=$('allocation-filter').value;
+ const branch=$('allocation-branch').value,query=$('allocation-search').value.trim().toLowerCase(),filter=$('allocation-filter').value,kind=$('allocation-kind').value;
  $('branch-allocation').replaceChildren();
  for(const b of report.branches.filter(b=>branch==='all'||b.id===branch)){
   const box=element('details');box.open=branch!=='all';box.append(element('summary',b.id+' · '+branchLabels[b.id]));
@@ -73,12 +75,19 @@ function render(){
   table.append(body);box.append(table);
   box.append(element('p','这里只列已选定数量的核心设备；下面组件表保留全部关联需求与未分配项。'));$('branch-allocation').append(box);
  }
- const rows=report.components.filter(c=>(branch==='all'||c.branch_ids.includes(branch))&&(!query||JSON.stringify(c).toLowerCase().includes(query))&&(filter==='all'||filter==='unallocated'&&c.required_quantity===null||filter==='missing'&&!c.staged_candidates||filter==='quantified'&&c.required_quantity!==null));
+ const rows=report.components.filter(c=>(branch==='all'||c.branch_ids.includes(branch))&&(kind==='all'||c.requirement_kind===kind)&&(!query||JSON.stringify(c).toLowerCase().includes(query))&&(filter==='all'||filter==='unallocated'&&c.quantity_status==='unallocated'||filter==='missing'&&c.stock_quantity_applicable&&(!c.staged_candidates||c.staged_candidates.quantity===0)||filter==='quantified'&&c.required_quantity!==null||filter==='nonstock'&&!c.stock_quantity_applicable));
  $('allocation-components').replaceChildren();
  for(const c of rows){const s=c.staged_candidates,tr=element('tr');tr.dataset.component=c.id;
   const ids=s?[...new Set(s.members.map(m=>m.asset_id))].join('、'):'—';
-  const unit=s?(unitLabels[s.unit]||s.unit):'件';
-  for(const value of [c.resource_id+' / '+c.label,c.required_quantity===null?'待分配':c.required_quantity+' '+unit+'（选定）',s?s.quantity+' '+unit:'无逐件绑定',ids,c.quantity_deficit?'缺少 '+c.quantity_deficit+' '+unit:c.required_quantity===null?'用量与完整性待核对':'数量已有候选；完整性未验收'])tr.append(element('td',value));
+  const unit=unitLabels[c.required_unit||s?.unit]||c.required_unit||s?.unit||'件';
+  const quantity=!c.stock_quantity_applicable?'不计库存数量':c.required_quantity===null?'待分配':c.required_quantity+' '+unit+'（选定）';
+  const candidate=!c.stock_quantity_applicable?'需状态／验收证据':s?s.quantity+' '+unit:'无逐件绑定';
+  const state=!c.stock_quantity_applicable?'要求仍待完成':c.quantity_deficit?'缺少 '+c.quantity_deficit+' '+unit+'候选绑定':c.required_quantity===null?'数量、规格与配套待核对':'数量已有候选；完整性未验收';
+  for(const value of [c.resource_id+' / '+c.label,kindLabels[c.requirement_kind],quantity,candidate,ids])tr.append(element('td',value));
+  const status=element('td',state),details=element('details');details.append(element('summary','数量依据与剩余条件'),element('p',c.quantity_basis));
+  for(const text of c.remaining_requirements)details.append(element('p',text));
+  if(c.state_or_acceptance_requirement)details.append(element('p','关联对象：'+c.state_or_acceptance_requirement.subjects.join('、')));
+  status.append(details);tr.append(status);
   $('allocation-components').append(tr);
  }
  $('allocation-visible').textContent='显示 '+rows.length+' / '+report.components.length+' 项组件需求。';
@@ -89,11 +98,12 @@ async function start(){
  if(!stockPlan)throw Error('缺少已核对的下料分配');
  const inventoryResponse=await fetch(root+'assets/cooling_lab_v1/laboratory_inventory.json',{cache:'no-store'});if(!inventoryResponse.ok)throw Error('无法读取统一物品总表');labInventory=await inventoryResponse.json();
  for(const source of labInventory.source_artifacts){const r=await fetch(root+source.path,{cache:'no-store'});if(!r.ok)throw Error('缺失总表依据：'+source.path);const digest=await crypto.subtle.digest('SHA-256',await r.arrayBuffer());const actual=[...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('');if(actual!==source.sha256)throw Error('物品总表已过期：'+source.path)}
- const c=report.counts;$('allocation-counts').textContent=c.scene_instances+' 个场景实例中，'+c.reference_only_instances+' 个仅作完成态或备选参考。'+c.component_requirements+' 项组件需求中，'+c.selected_quantity_components+' 项已有选定数量，'+c.unallocated_component_quantities+' 项用量待分配；完整分支通过 0 / '+c.branches+'。';
+ const c=report.counts;$('allocation-counts').textContent=c.scene_instances+' 个场景实例中，'+c.reference_only_instances+' 个仅作完成态或备选参考。'+c.component_requirements+' 项要求：'+c.selected_quantity_components+' 项已有选定数量，'+c.unallocated_component_quantities+' 项数量或规格待分配，'+c.non_stock_requirements+' 项状态／坐标／校准要求不计库存数量。'+c.incomplete_component_requirements+' 项均未完成验收；完整分支通过 0 / '+c.branches+'。';
+ for(const [kind,count] of Object.entries(c.requirements_by_kind)){const option=element('option',kindLabels[kind]+'（'+count+'）');option.value=kind;$('allocation-kind').append(option)}
  for(const b of report.branches){const option=element('option',b.id+' · '+branchLabels[b.id]);option.value=b.id;$('allocation-branch').append(option)}
  for(const p of report.physical_instances.filter(p=>!p.initial_stock_credit))card('allocation-references',p.id+' · '+p.label,p.note);
  for(const gap of report.remaining)card('allocation-remaining',gap.label,gap.detail);
- for(const id of ['allocation-branch','allocation-filter','allocation-search'])$(id).addEventListener(id==='allocation-search'?'input':'change',render);
+ for(const id of ['allocation-branch','allocation-filter','allocation-kind','allocation-search'])$(id).addEventListener(id==='allocation-search'?'input':'change',render);
  $('stock-summary').textContent=stockPlan.sheets.length+' 片原料，'+stockPlan.sheets.reduce((n,s)=>n+s.cuts.length,0)+' 项轮廓／试片预留，以及 '+stockPlan.tubes.length+' 段空心管、'+stockPlan.profiles.length+' 根定尺型材。下料保留 1 mm 边缘与切割间隔；加工尚未验收。';
  const sheetNumbers={};for(const s of stockPlan.sheets){sheetNumbers[s.asset_id]=(sheetNumbers[s.asset_id]||0)+1;const o=element('option',stockLabels[s.asset_id]+' · 第 '+sheetNumbers[s.asset_id]+' 片 · 厚 '+mm(s.thickness_m)+' mm');o.value=s.id;$('stock-sheet').append(o)}
  for(const t of stockPlan.tubes)$('stock-tubes').append(element('p',(t.id.includes('white')?'白色':'黑色')+'装置 · '+(t.asset_id==='pe_tube_stock'?'PE':t.asset_id==='frame_profile_stock'?'立柱铝':'遮罩铝')+'管，内径 '+mm(t.inner_diameter_m)+' / 外径 '+mm(t.outer_diameter_m)+' mm：原长 '+mm(t.raw_length_m)+' → 成品 '+mm(t.finished_length_m)+' mm，另留 '+mm(t.cut_allowance_m)+' mm 切割余量。'));

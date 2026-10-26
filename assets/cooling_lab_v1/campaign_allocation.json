@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "status": "asset_allocation_draft",
   "scope": "One complete campaign; quantities are independent of skill/branch/campaign validation repetitions",
   "visibility": "author_and_reviewer_only_not_actor_input",
@@ -37,8 +37,12 @@
       "sha256": "0516274008b4f19cd4e3a61cd24d3af1d6e212c1d9b7a530a7a49ba8402bdf67"
     },
     {
+      "path": "assets/cooling_lab_v1/component_quantity_policy.json",
+      "sha256": "39d5e620bfa6caaf478535bf5b175e5ad4b808a256682f75fabb846e777cb842"
+    },
+    {
       "path": "assets/cooling_lab_v1/build_campaign_allocation.py",
-      "sha256": "f0928f246b424ab18d26b59877428fee8a79ce23035f714911d95848470c6db8"
+      "sha256": "f42762556915ac63942799ff60cc007f4659b18515391d125d55c2eb810e8979"
     }
   ],
   "selected_policy": {
@@ -1880,9 +1884,25 @@
       "resource_id": "equipment:COOLER",
       "label": "white tracked assembly",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Built white apparatus derived from identified raw stock; no completed object is supplied initially.",
+      "requirement_kind": "output_state",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "equipment:COOLER:component_1",
+        "kind": "output_state",
+        "subjects": [
+          "apparatus_white"
+        ],
+        "basis": "Built white apparatus derived from identified raw stock; no completed object is supplied initially.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -1900,9 +1920,25 @@
       "resource_id": "equipment:COOLER",
       "label": "black tracked assembly",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Built black apparatus derived from identified raw stock; no completed object is supplied initially.",
+      "requirement_kind": "output_state",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "equipment:COOLER:component_2",
+        "kind": "output_state",
+        "subjects": [
+          "apparatus_black"
+        ],
+        "basis": "Built black apparatus derived from identified raw stock; no completed object is supplied initially.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -1920,9 +1956,26 @@
       "resource_id": "equipment:COOLER",
       "label": "fixed-band configuration and reusable parts",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Fixed configuration reuses the same two apparatus outputs and separately allocated replacement parts; it is not a third apparatus.",
+      "requirement_kind": "configuration_state",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "equipment:COOLER:component_3",
+        "kind": "configuration_state",
+        "subjects": [
+          "apparatus_white",
+          "apparatus_black"
+        ],
+        "basis": "Fixed configuration reuses the same two apparatus outputs and separately allocated replacement parts; it is not a third apparatus.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -1940,6 +1993,10 @@
       "resource_id": "equipment:COOLER",
       "label": "height-adjustable support",
       "required_quantity": 2,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -1954,6 +2011,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -1971,6 +2032,10 @@
       "resource_id": "equipment:COOLER",
       "label": "frame extrusion stock",
       "required_quantity": 4,
+      "required_unit": "individual_length",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "individual_length",
@@ -2013,6 +2078,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -2030,6 +2099,10 @@
       "resource_id": "equipment:COOLER",
       "label": "upright tube stock",
       "required_quantity": 4,
+      "required_unit": "individual_length",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "individual_length",
@@ -2072,6 +2145,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -2089,6 +2166,10 @@
       "resource_id": "equipment:SMU",
       "label": "Keithley 2425",
       "required_quantity": 2,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2103,6 +2184,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2124,6 +2209,10 @@
       "resource_id": "equipment:DAQ",
       "label": "Measurement Computing USB-TC",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2135,6 +2224,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2156,6 +2249,10 @@
       "resource_id": "equipment:BATH",
       "label": "Thermo Scientific ARCTIC A25",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2167,6 +2264,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -2178,6 +2279,10 @@
       "resource_id": "equipment:DMM",
       "label": "Keithley 2000",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2189,6 +2294,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2210,6 +2319,10 @@
       "resource_id": "equipment:TC",
       "label": "identified K probes",
       "required_quantity": 8,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2242,6 +2355,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "TRACKED_STAGNATION",
@@ -2259,9 +2376,17 @@
       "resource_id": "equipment:TC",
       "label": "lead pairs",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "TRACKED_STAGNATION",
@@ -2279,9 +2404,17 @@
       "resource_id": "equipment:TC",
       "label": "numbered transition terminals",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "TRACKED_STAGNATION",
@@ -2299,9 +2432,17 @@
       "resource_id": "equipment:TC",
       "label": "strain relief",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "TRACKED_STAGNATION",
@@ -2319,6 +2460,10 @@
       "resource_id": "equipment:REF_RTD",
       "label": "Omega P-M-A-1/4-3-1/2-PS-12",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2330,6 +2475,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -2341,6 +2490,10 @@
       "resource_id": "equipment:AMB_RTD",
       "label": "ambient probe",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2352,6 +2505,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2369,9 +2526,17 @@
       "resource_id": "equipment:AMB_RTD",
       "label": "radiation shield",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2389,9 +2554,17 @@
       "resource_id": "equipment:AMB_RTD",
       "label": "mount",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2409,9 +2582,17 @@
       "resource_id": "equipment:AMB_RTD",
       "label": "lead termination",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2429,6 +2610,10 @@
       "resource_id": "equipment:HEATER",
       "label": "Omega KHR-2/2-P",
       "required_quantity": 2,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2443,6 +2628,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2464,6 +2653,10 @@
       "resource_id": "equipment:UVVIS",
       "label": "Agilent Cary 5000 with DRA-2500",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2475,6 +2668,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2496,6 +2693,10 @@
       "resource_id": "equipment:FTIR",
       "label": "Thermo Nicolet 6700 with PIKE Mid-IR IntegratIR",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2507,6 +2708,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -2527,8 +2732,12 @@
       "id": "equipment:ANGLE_12:component_1",
       "resource_id": "equipment:ANGLE_12",
       "label": "FTIR optical base",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "One selected FTIR optical base within the single Harrick HRS accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "assembly",
         "quantity": 1,
@@ -2583,7 +2792,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2595,8 +2808,12 @@
       "id": "equipment:ANGLE_12:component_2",
       "resource_id": "equipment:ANGLE_12",
       "label": "horizontal 12-degree sample stage",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "One selected horizontal 12-degree sample stage within the single Harrick HRS accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "assembly",
         "quantity": 1,
@@ -2620,7 +2837,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2632,8 +2853,12 @@
       "id": "equipment:ANGLE_12:component_3",
       "resource_id": "equipment:ANGLE_12",
       "label": "3/6/13 mm aperture masks",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "mask_set",
+      "quantity_basis": "One selected 3/6/13 mm aperture masks within the single Harrick HRS accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "mask_set",
         "quantity": 1,
@@ -2652,7 +2877,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2665,9 +2894,17 @@
       "resource_id": "equipment:ANGLE_12",
       "label": "Nicolet mating adapter and fasteners",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2679,8 +2916,12 @@
       "id": "equipment:ANGLE_VAR:component_1",
       "resource_id": "equipment:ANGLE_VAR",
       "label": "fixed M1 M2 M5 optical chassis",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "One selected fixed M1 M2 M5 optical chassis within the single Spectra-Tech 500 accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "assembly",
         "quantity": 1,
@@ -2791,7 +3032,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2803,8 +3048,12 @@
       "id": "equipment:ANGLE_VAR:component_2",
       "resource_id": "equipment:ANGLE_VAR",
       "label": "rotary M3 and M4 sample assembly",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "One selected rotary M3 and M4 sample assembly within the single Spectra-Tech 500 accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "assembly",
         "quantity": 1,
@@ -2835,7 +3084,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2847,8 +3100,12 @@
       "id": "equipment:ANGLE_VAR:component_3",
       "resource_id": "equipment:ANGLE_VAR",
       "label": "6/13 mm slot masks",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "mask_set",
+      "quantity_basis": "One selected 6/13 mm slot masks within the single Spectra-Tech 500 accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "mask_set",
         "quantity": 1,
@@ -2866,7 +3123,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2878,8 +3139,12 @@
       "id": "equipment:ANGLE_VAR:component_4",
       "resource_id": "equipment:ANGLE_VAR",
       "label": "alignment mirror",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "mirror",
+      "quantity_basis": "One selected alignment mirror within the single Spectra-Tech 500 accessory. Subassemblies and mask sets share their parent identity; masks are alternatives, not simultaneously installed.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "mirror",
         "quantity": 1,
@@ -2896,7 +3161,11 @@
         "scope": "Explicit inferred reconstruction candidate; not accepted mounting, optics, sample retention or campaign coverage",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Accessory-to-Nicolet fit, sample retention, mounting fasteners and optical compatibility remain unqualified."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2909,9 +3178,17 @@
       "resource_id": "equipment:ANGLE_VAR",
       "label": "Nicolet mating adapter and fasteners",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -2924,6 +3201,10 @@
       "resource_id": "equipment:SOLAR_TRACKER",
       "label": "EKO STR-32G",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2935,6 +3216,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2952,6 +3237,10 @@
       "resource_id": "equipment:DNI",
       "label": "EKO MS-56 pyrheliometer",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2963,6 +3252,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -2980,6 +3273,10 @@
       "resource_id": "equipment:GTI",
       "label": "EKO MS-402 pyranometer",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -2991,6 +3288,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3008,6 +3309,10 @@
       "resource_id": "equipment:WEATHER",
       "label": "U30 logger",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -3019,6 +3324,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3036,9 +3345,17 @@
       "resource_id": "equipment:WEATHER",
       "label": "temperature/humidity sensor",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3056,9 +3373,17 @@
       "resource_id": "equipment:WEATHER",
       "label": "wind sensor",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3076,9 +3401,17 @@
       "resource_id": "equipment:WEATHER",
       "label": "mast and brackets",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3096,9 +3429,17 @@
       "resource_id": "equipment:WEATHER",
       "label": "power and data connections",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -3116,9 +3457,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "cutting table and slats",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3137,9 +3486,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "stage and nozzle",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3158,9 +3515,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "guard and interlocks",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3179,9 +3544,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "pump and pressure circuit",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3200,9 +3573,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "abrasive hopper and feed",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3221,9 +3602,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "abrasive stock",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3242,9 +3631,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "water supply and filtration",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3263,9 +3660,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "drain and spent-abrasive collection",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3284,9 +3689,17 @@
       "resource_id": "equipment:WATERJET",
       "label": "controller and laptop",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3304,10 +3717,215 @@
       "id": "tools:caliper:component_1",
       "resource_id": "tools:caliper",
       "label": "dimensions and layer inspection",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "tool",
+      "quantity_basis": "One selected Mitutoyo 530-104 shared across sequential dimensional inspections.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "tool",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "caliper",
+            "parts": [
+              "metric_numerals",
+              "vernier_tick_20",
+              "vernier_tick_19",
+              "vernier_tick_18",
+              "vernier_tick_17",
+              "vernier_tick_16",
+              "vernier_tick_15",
+              "vernier_tick_14",
+              "vernier_tick_13",
+              "vernier_tick_12",
+              "vernier_tick_11",
+              "vernier_tick_10",
+              "vernier_tick_9",
+              "vernier_tick_8",
+              "vernier_tick_7",
+              "vernier_tick_6",
+              "vernier_tick_5",
+              "vernier_tick_4",
+              "vernier_tick_3",
+              "vernier_tick_2",
+              "vernier_tick_1",
+              "vernier_tick_0",
+              "main_tick_150",
+              "main_tick_149",
+              "main_tick_148",
+              "main_tick_147",
+              "main_tick_146",
+              "main_tick_145",
+              "main_tick_144",
+              "main_tick_143",
+              "main_tick_142",
+              "main_tick_141",
+              "main_tick_140",
+              "main_tick_139",
+              "main_tick_138",
+              "main_tick_137",
+              "main_tick_136",
+              "main_tick_135",
+              "main_tick_134",
+              "main_tick_133",
+              "main_tick_132",
+              "main_tick_131",
+              "main_tick_130",
+              "main_tick_129",
+              "main_tick_128",
+              "main_tick_127",
+              "main_tick_126",
+              "main_tick_125",
+              "main_tick_124",
+              "main_tick_123",
+              "main_tick_122",
+              "main_tick_121",
+              "main_tick_120",
+              "main_tick_119",
+              "main_tick_118",
+              "main_tick_117",
+              "main_tick_116",
+              "main_tick_115",
+              "main_tick_114",
+              "main_tick_113",
+              "main_tick_112",
+              "main_tick_111",
+              "main_tick_110",
+              "main_tick_109",
+              "main_tick_108",
+              "main_tick_107",
+              "main_tick_106",
+              "main_tick_105",
+              "main_tick_104",
+              "main_tick_103",
+              "main_tick_102",
+              "main_tick_101",
+              "main_tick_100",
+              "main_tick_99",
+              "main_tick_98",
+              "main_tick_97",
+              "main_tick_96",
+              "main_tick_95",
+              "main_tick_94",
+              "main_tick_93",
+              "main_tick_92",
+              "main_tick_91",
+              "main_tick_90",
+              "main_tick_89",
+              "main_tick_88",
+              "main_tick_87",
+              "main_tick_86",
+              "main_tick_85",
+              "main_tick_84",
+              "main_tick_83",
+              "main_tick_82",
+              "main_tick_81",
+              "main_tick_80",
+              "main_tick_79",
+              "main_tick_78",
+              "main_tick_77",
+              "main_tick_76",
+              "main_tick_75",
+              "main_tick_74",
+              "main_tick_73",
+              "main_tick_72",
+              "main_tick_71",
+              "main_tick_70",
+              "main_tick_69",
+              "main_tick_68",
+              "main_tick_67",
+              "main_tick_66",
+              "main_tick_65",
+              "main_tick_64",
+              "main_tick_63",
+              "main_tick_62",
+              "main_tick_61",
+              "main_tick_60",
+              "main_tick_59",
+              "main_tick_58",
+              "main_tick_57",
+              "main_tick_56",
+              "main_tick_55",
+              "main_tick_54",
+              "main_tick_53",
+              "main_tick_52",
+              "main_tick_51",
+              "main_tick_50",
+              "main_tick_49",
+              "main_tick_48",
+              "main_tick_47",
+              "main_tick_46",
+              "main_tick_45",
+              "main_tick_44",
+              "main_tick_43",
+              "main_tick_42",
+              "main_tick_41",
+              "main_tick_40",
+              "main_tick_39",
+              "main_tick_38",
+              "main_tick_37",
+              "main_tick_36",
+              "main_tick_35",
+              "main_tick_34",
+              "main_tick_33",
+              "main_tick_32",
+              "main_tick_31",
+              "main_tick_30",
+              "main_tick_29",
+              "main_tick_28",
+              "main_tick_27",
+              "main_tick_26",
+              "main_tick_25",
+              "main_tick_24",
+              "main_tick_23",
+              "main_tick_22",
+              "main_tick_21",
+              "main_tick_20",
+              "main_tick_19",
+              "main_tick_18",
+              "main_tick_17",
+              "main_tick_16",
+              "main_tick_15",
+              "main_tick_14",
+              "main_tick_13",
+              "main_tick_12",
+              "main_tick_11",
+              "main_tick_10",
+              "main_tick_9",
+              "main_tick_8",
+              "main_tick_7",
+              "main_tick_6",
+              "main_tick_5",
+              "main_tick_4",
+              "main_tick_3",
+              "main_tick_2",
+              "main_tick_1",
+              "main_tick_0",
+              "depth_rod",
+              "thumb_grip",
+              "lock_screw",
+              "vernier_face",
+              "slider_lower",
+              "slider_upper",
+              "slider_back",
+              "moving_inner_jaw",
+              "moving_outer_jaw",
+              "fixed_inner_jaw",
+              "fixed_outer_jaw",
+              "beam"
+            ]
+          }
+        ],
+        "scope": "One selected Mitutoyo 530-104 shared across sequential dimensional inspections.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Measurement access, calibration, applicable resolution and thin-film inspection remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3325,8 +3943,12 @@
       "id": "tools:film_jig:component_1",
       "resource_id": "tools:film_jig",
       "label": "ordinary film-edge handling tool selection",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 2,
+      "required_unit": "tool",
+      "quantity_basis": "One existing ordinary tweezer assigned to each white/black apparatus; reused for emitter handling. This is two physical tools across both requirements.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 2,
@@ -3355,7 +3977,11 @@
         "scope": "Shared ordinary tweezers also listed for underside handling; two actual tools total. Film retention and puncture risks remain unresolved.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Ordinary spacer/support method, thin-film contact and grip suitability remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -3373,9 +3999,17 @@
       "resource_id": "tools:film_jig",
       "label": "ordinary spacer and support method",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -3392,10 +4026,37 @@
       "id": "tools:supported_carrier:component_1",
       "resource_id": "tools:supported_carrier",
       "label": "transport without touching optical surfaces",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 2,
+      "required_unit": "tray",
+      "quantity_basis": "Reuse tray_white and tray_black from facility:CARRIERS; two total physical trays, not four.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "tray",
+        "quantity": 2,
+        "members": [
+          {
+            "asset_id": "tray_white",
+            "parts": [
+              "formed_tray"
+            ]
+          },
+          {
+            "asset_id": "tray_black",
+            "parts": [
+              "formed_tray"
+            ]
+          }
+        ],
+        "scope": "Reuse tray_white and tray_black from facility:CARRIERS; two total physical trays, not four.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Optical-surface protection, support and load qualification remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3416,8 +4077,12 @@
       "id": "tools:cutting_fixture:component_1",
       "resource_id": "tools:cutting_fixture",
       "label": "ordinary machine workholding",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "kit",
+      "quantity_basis": "One selected OMAX 317864 material-holding kit reused between sequential machining operations: four posts with T-nuts, three 8-inch arms and two 6-inch arms. The kit remains individually decomposed.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "kit",
         "quantity": 1,
@@ -3619,7 +4284,11 @@
         "scope": "One staged 317864 kit: 3 long arms, 2 medium arms, 4 posts and 4 T-nuts. Not installed; rail fit and restraint unqualified.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Stock-specific support, clamp access and complete machine compatibility remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3638,9 +4307,17 @@
       "resource_id": "tools:cutting_fixture",
       "label": "cutting tool",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3658,8 +4335,12 @@
       "id": "tools:cutting_fixture:component_3",
       "resource_id": "tools:cutting_fixture",
       "label": "deburring tool",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "tool",
+      "quantity_basis": "One ordinary deburring tool reused for sequential cut edges.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 1,
@@ -3681,7 +4362,11 @@
         "scope": "Selected RB1000/S10 candidate; cutting edge, blade retention and material removal unqualified.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Blade suitability, access and edge-quality acceptance remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3700,9 +4385,17 @@
       "resource_id": "tools:fastener_driver",
       "label": "remaining accessory fastener tool selection",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -3723,6 +4416,10 @@
       "resource_id": "tools:fastener_driver",
       "label": "2 mm straight hex driver",
       "required_quantity": 1,
+      "required_unit": "reusable_hand_tool",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "reusable_hand_tool",
@@ -3744,6 +4441,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -3764,6 +4465,10 @@
       "resource_id": "tools:fastener_driver",
       "label": "2.5 mm straight hex driver",
       "required_quantity": 1,
+      "required_unit": "reusable_hand_tool",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "reusable_hand_tool",
@@ -3785,6 +4490,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -3805,6 +4514,10 @@
       "resource_id": "tools:fastener_driver",
       "label": "3 mm straight hex driver",
       "required_quantity": 1,
+      "required_unit": "reusable_hand_tool",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "reusable_hand_tool",
@@ -3826,6 +4539,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -3846,6 +4563,10 @@
       "resource_id": "tools:fastener_driver",
       "label": "8 mm open and box wrench",
       "required_quantity": 1,
+      "required_unit": "reusable_hand_tool",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "reusable_hand_tool",
@@ -3864,6 +4585,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -3883,8 +4608,12 @@
       "id": "tools:wire_stripper_and_driver:component_1",
       "resource_id": "tools:wire_stripper_and_driver",
       "label": "fine-wire compatible stripping tool",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "tool",
+      "quantity_basis": "One selected fine-wire compatible stripping tool shared across sequential wiring operations.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 1,
@@ -3915,7 +4644,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Wire-size, insulation and terminal compatibility remain open; this quantity does not cover every outdoor cutting task."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3936,8 +4669,12 @@
       "id": "tools:wire_stripper_and_driver:component_2",
       "resource_id": "tools:wire_stripper_and_driver",
       "label": "terminal slotted driver",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "tool",
+      "quantity_basis": "One selected terminal slotted driver shared across sequential wiring operations.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 1,
@@ -3958,7 +4695,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Wire-size, insulation and terminal compatibility remain open; this quantity does not cover every outdoor cutting task."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -3979,8 +4720,12 @@
       "id": "tools:wire_stripper_and_driver:component_3",
       "resource_id": "tools:wire_stripper_and_driver",
       "label": "cutting tool",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "tool",
+      "quantity_basis": "One selected cutting tool shared across sequential wiring operations.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 1,
@@ -4002,7 +4747,11 @@
         "scope": "Selected 78 03 125 candidate. Manufacturer minimum 0.2 mm soft wire exceeds the finest thermocouple conductor; compatibility remains unresolved.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Wire-size, insulation and terminal compatibility remain open; this quantity does not cover every outdoor cutting task."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4024,9 +4773,17 @@
       "resource_id": "tools:wire_stripper_and_driver",
       "label": "inspection tool",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4048,9 +4805,17 @@
       "resource_id": "tools:coating_station",
       "label": "support, mask, coat and cure disks",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4064,9 +4829,17 @@
       "resource_id": "tools:storage_supports",
       "label": "accepted sample storage",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4088,9 +4861,17 @@
       "resource_id": "tools:storage_supports",
       "label": "rejected sample storage",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4112,9 +4893,17 @@
       "resource_id": "tools:storage_supports",
       "label": "reference standard storage",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4136,9 +4925,17 @@
       "resource_id": "tools:storage_supports",
       "label": "caps and plugs",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4160,6 +4957,10 @@
       "resource_id": "consumables:consumable_01",
       "label": "copper sheet",
       "required_quantity": 1,
+      "required_unit": "plate",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "plate",
@@ -4178,6 +4979,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4197,6 +5002,10 @@
       "resource_id": "consumables:consumable_02",
       "label": "aluminum sheet stock",
       "required_quantity": 7,
+      "required_unit": "plate",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "plate",
@@ -4263,6 +5072,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4282,6 +5095,10 @@
       "resource_id": "consumables:consumable_02",
       "label": "aluminum tube stock",
       "required_quantity": 2,
+      "required_unit": "tube",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tube",
@@ -4308,6 +5125,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4327,6 +5148,10 @@
       "resource_id": "consumables:consumable_02",
       "label": "aluminum angle stock",
       "required_quantity": 1,
+      "required_unit": "individual_length",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "individual_length",
@@ -4345,6 +5170,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4364,6 +5193,10 @@
       "resource_id": "consumables:consumable_03",
       "label": "solid PE tube",
       "required_quantity": 2,
+      "required_unit": "tube",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tube",
@@ -4398,6 +5231,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4417,6 +5254,10 @@
       "resource_id": "consumables:consumable_04",
       "label": "FOAMULAR 150",
       "required_quantity": 1,
+      "required_unit": "plate",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "plate",
@@ -4435,6 +5276,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4454,6 +5299,10 @@
       "resource_id": "consumables:consumable_05",
       "label": "Targray nanoporous PE separator",
       "required_quantity": 8,
+      "required_unit": "sheet",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "sheet",
@@ -4528,6 +5377,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4547,6 +5400,10 @@
       "resource_id": "consumables:consumable_06",
       "label": "LDPE bag film",
       "required_quantity": 6,
+      "required_unit": "sheet",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "sheet",
@@ -4605,6 +5462,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4623,8 +5484,12 @@
       "id": "consumables:consumable_07:component_1",
       "resource_id": "consumables:consumable_07",
       "label": "white coating",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "can",
+      "quantity_basis": "One selected white coating container as the supply candidate for the corresponding emitter and witness pieces. Container count is not a coating-volume sufficiency claim.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "can",
         "quantity": 1,
@@ -4650,7 +5515,11 @@
         "scope": "One 340 g nominal closed stock unit. Quantity is staged inventory, not accepted coverage or number of specimens; exact paper SKU and consumption remain unreported.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Net available material, coat thickness, witness consumption, cure requirements and trial/reset losses remain unallocated."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4663,8 +5532,12 @@
       "id": "consumables:consumable_07:component_2",
       "resource_id": "consumables:consumable_07",
       "label": "black coating",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "can",
+      "quantity_basis": "One selected black coating container as the supply candidate for the corresponding emitter and witness pieces. Container count is not a coating-volume sufficiency claim.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "can",
         "quantity": 1,
@@ -4690,7 +5563,11 @@
         "scope": "One 340 g nominal closed stock unit. Quantity is staged inventory, not accepted coverage or number of specimens; exact paper SKU and consumption remain unreported.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Net available material, coat thickness, witness consumption, cure requirements and trial/reset losses remain unallocated."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4703,8 +5580,12 @@
       "id": "consumables:consumable_08:component_1",
       "resource_id": "consumables:consumable_08",
       "label": "silver paste",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "bottle",
+      "quantity_basis": "One silver-paste supply container shared by sequential thermocouple attachments.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "bottle",
         "quantity": 1,
@@ -4775,7 +5656,11 @@
         "scope": "One nominal 25 g PELCO 16032 candidate; neither paper identity, compatibility, dispensing nor campaign sufficiency accepted.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Applied mass, usable contents, removal waste and trial/reset consumption remain unallocated."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4795,6 +5680,10 @@
       "resource_id": "consumables:consumable_09",
       "label": "aluminized Mylar",
       "required_quantity": 3,
+      "required_unit": "sheet",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "sheet",
@@ -4829,6 +5718,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4848,6 +5741,10 @@
       "resource_id": "consumables:consumable_10",
       "label": "acrylic",
       "required_quantity": 2,
+      "required_unit": "plate",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "plate",
@@ -4874,6 +5771,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -4893,9 +5794,17 @@
       "resource_id": "consumables:consumable_11",
       "label": "sensor leads",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -4916,8 +5825,12 @@
       "id": "consumables:consumable_11:component_2",
       "resource_id": "consumables:consumable_11",
       "label": "heater force/sense leads",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 8,
+      "required_unit": "lead",
+      "quantity_basis": "Four independently identified force/sense leads for each of the two simultaneous heater/SMU channels.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "lead",
         "quantity": 8,
@@ -5310,7 +6223,11 @@
         "scope": "Eight physical, disconnected 48-inch leads from four 5908A sets. Four per candidate channel; heater-side adaptors, installed route, electrical qualification and campaign sufficiency remain open.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Terminal fit, polarity, routing, strain relief and electrical qualification remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -5332,9 +6249,17 @@
       "resource_id": "consumables:consumable_11",
       "label": "instrument data cables",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -5356,9 +6281,17 @@
       "resource_id": "consumables:consumable_11",
       "label": "power leads",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -5380,6 +6313,10 @@
       "resource_id": "consumables:consumable_12",
       "label": "frame fasteners",
       "required_quantity": 84,
+      "required_unit": "fastener_or_pad_package",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "fastener_or_pad_package",
@@ -6070,6 +7007,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6089,6 +7030,10 @@
       "resource_id": "consumables:consumable_12",
       "label": "accessory fasteners",
       "required_quantity": null,
+      "required_unit": "T-nut",
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": {
         "unit": "T-nut",
@@ -6131,6 +7076,10 @@
         "missing_members": []
       },
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6150,9 +7099,17 @@
       "resource_id": "consumables:consumable_12",
       "label": "electrical termination fasteners",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6172,6 +7129,10 @@
       "resource_id": "consumables:consumable_12",
       "label": "height-adjuster mount fasteners",
       "required_quantity": 24,
+      "required_unit": "fastener_or_washer",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "fastener_or_washer",
@@ -6374,6 +7335,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6393,6 +7358,10 @@
       "resource_id": "consumables:consumable_12",
       "label": "shield attachment hardware",
       "required_quantity": 18,
+      "required_unit": "fastener_or_washer",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "fastener_or_washer",
@@ -6547,6 +7516,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6565,8 +7538,12 @@
       "id": "consumables:consumable_13:component_1",
       "resource_id": "consumables:consumable_13",
       "label": "masking tape",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "roll",
+      "quantity_basis": "One selected ordinary masking-tape roll reused for sequential coating preparation.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "roll",
         "quantity": 1,
@@ -6594,7 +7571,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Length per mask, adhesive compatibility, residue removal and reset consumption remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6608,9 +7589,17 @@
       "resource_id": "consumables:consumable_13",
       "label": "cleaning supplies",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6624,9 +7613,17 @@
       "resource_id": "consumables:consumable_13",
       "label": "wipes",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6640,9 +7637,17 @@
       "resource_id": "consumables:consumable_13",
       "label": "compatible waste containers",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -6655,8 +7660,12 @@
       "id": "additional_reconstructed_materials:calibration_block_stock:component_1",
       "resource_id": "additional_reconstructed_materials:calibration_block_stock",
       "label": "copper block raw stock",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "blank",
+      "quantity_basis": "One copper blank reserved for the common calibration-block output; the machined state is the same material lineage.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "blank",
         "quantity": 1,
@@ -6673,7 +7682,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Probe-hole layout, drill tools, chips and manufacturing allowance remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -6685,9 +7698,25 @@
       "resource_id": "additional_reconstructed_materials:calibration_block_stock",
       "label": "machined block state",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Machined state of the same copper blank; no extra block inventory.",
+      "requirement_kind": "output_state",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "additional_reconstructed_materials:calibration_block_stock:component_2",
+        "kind": "output_state",
+        "subjects": [
+          "calibration_block_stock"
+        ],
+        "basis": "Machined state of the same copper blank; no extra block inventory.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -6699,9 +7728,17 @@
       "resource_id": "additional_reconstructed_materials:calibration_block_stock",
       "label": "drill tooling",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -6713,9 +7750,17 @@
       "resource_id": "additional_reconstructed_materials:fine_wire_transition",
       "label": "compatible conductor pairs",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "MAP_CLEAR_DAY",
@@ -6729,8 +7774,12 @@
       "id": "additional_reconstructed_materials:fine_wire_transition:component_2",
       "resource_id": "additional_reconstructed_materials:fine_wire_transition",
       "label": "K-type connector pairs or transition terminals",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 8,
+      "required_unit": "connector_pair",
+      "quantity_basis": "One matched K-type connector pair for each of the eight selected probe identities tc_01 through tc_08.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "connector_pair",
         "quantity": 8,
@@ -7003,7 +8052,11 @@
         "scope": "Eight male/female pairs are present and disconnected; no extension wire, DAQ termination or electrical test is implied.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Fine-wire termination, extension-wire selection, numbering and strain relief remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "MAP_CLEAR_DAY",
@@ -7018,9 +8071,17 @@
       "resource_id": "additional_reconstructed_materials:fine_wire_transition",
       "label": "insulation and strain relief",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE",
         "MAP_CLEAR_DAY",
@@ -7035,9 +8096,17 @@
       "resource_id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
       "label": "water allocation",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7048,8 +8117,12 @@
       "id": "additional_reconstructed_materials:bath_water_and_fill_vessel:component_2",
       "resource_id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
       "label": "ordinary fill vessel",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "vessel",
+      "quantity_basis": "One ordinary fill jug shared across sequential bath filling operations.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "vessel",
         "quantity": 1,
@@ -7087,7 +8160,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Water volume, fill repetitions, drain hose and separate receiving vessel remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7099,9 +8176,17 @@
       "resource_id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
       "label": "drain hose",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7113,9 +8198,17 @@
       "resource_id": "additional_reconstructed_materials:bath_water_and_fill_vessel",
       "label": "collection vessel",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7127,9 +8220,17 @@
       "resource_id": "additional_reconstructed_materials:reversible_emitter_jig",
       "label": "ordinary edge support method",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -7146,8 +8247,12 @@
       "id": "additional_reconstructed_materials:reversible_emitter_jig:component_2",
       "resource_id": "additional_reconstructed_materials:reversible_emitter_jig",
       "label": "ordinary handling tool",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 2,
+      "required_unit": "tool",
+      "quantity_basis": "Reuse the same tweezers_white and tweezers_black tools allocated for film handling; no new pair is created.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tool",
         "quantity": 2,
@@ -7176,7 +8281,11 @@
         "scope": "Same two tweezers as film handling, not two additional tools. No fixture or verified turnover method is supplied.",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Surface contact suitability and ordinary edge-support method remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -7194,6 +8303,10 @@
       "resource_id": "accessory:DRA_2500",
       "label": "Agilent legacy internal DRA-2500",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -7205,6 +8318,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -7217,6 +8334,10 @@
       "resource_id": "accessory:INTEGRATIR",
       "label": "PIKE Mid-IR IntegratIR; selected DTGS variant",
       "required_quantity": 1,
+      "required_unit": "instrument_or_probe",
+      "quantity_basis": "Selected shared inventory for one campaign; not the historical instrument count",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "instrument_or_probe",
@@ -7228,6 +8349,10 @@
         ]
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL",
         "OPT_ANGULAR"
@@ -7240,9 +8365,17 @@
       "resource_id": "facility:ROOM",
       "label": "Indoor room shell, floor, doors, thresholds, service and egress routes",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7252,9 +8385,17 @@
       "resource_id": "facility:BENCHES",
       "label": "Assembly, dry instrument and wet calibration benches with rated support and access",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7264,9 +8405,17 @@
       "resource_id": "facility:STORAGE",
       "label": "Identified raw stock, consumables, tools, specimens and rejected-material storage",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7287,8 +8436,12 @@
       "id": "facility:CARRIERS:component_1",
       "resource_id": "facility:CARRIERS",
       "label": "ordinary specimen trays",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 2,
+      "required_unit": "tray",
+      "quantity_basis": "One existing ordinary tray assigned to each white/black specimen family; the same trays satisfy supported-carrier references.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "tray",
         "quantity": 2,
@@ -7313,7 +8466,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Surface protection, contamination separation, load capacity and staging positions remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7334,8 +8491,12 @@
       "id": "facility:CARRIERS:component_2",
       "resource_id": "facility:CARRIERS",
       "label": "ordinary heavy-equipment cart",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "cart",
+      "quantity_basis": "One existing ordinary equipment cart is reused for sequential transfers and weather references.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "cart",
         "quantity": 1,
@@ -7428,7 +8589,11 @@
         "scope": "Selected staged candidate; campaign sufficiency and functional compatibility remain unaccepted",
         "missing_members": []
       },
-      "quantity_deficit": null,
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Load/support suitability, retention and initial carrying configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7450,9 +8615,17 @@
       "resource_id": "facility:CARRIERS",
       "label": "staging positions",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7474,9 +8647,17 @@
       "resource_id": "facility:FABRICATION",
       "label": "Selected guarded fabrication machines and associated services",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7495,9 +8676,17 @@
       "resource_id": "facility:COATING",
       "label": "Coating/curing station, appropriate containment and extraction",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "OPT_HEMISPHERICAL",
@@ -7511,9 +8700,17 @@
       "resource_id": "facility:UTILITIES",
       "label": "grounded outlets",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL"
       ],
@@ -7525,9 +8722,17 @@
       "resource_id": "facility:UTILITIES",
       "label": "isolators",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL"
       ],
@@ -7539,9 +8744,17 @@
       "resource_id": "facility:UTILITIES",
       "label": "cable routes",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL"
       ],
@@ -7553,9 +8766,17 @@
       "resource_id": "facility:UTILITIES",
       "label": "data network",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "OPT_HEMISPHERICAL"
       ],
@@ -7567,9 +8788,17 @@
       "resource_id": "facility:WET_SERVICES",
       "label": "fill source",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7581,9 +8810,17 @@
       "resource_id": "facility:WET_SERVICES",
       "label": "drain path",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7595,9 +8832,17 @@
       "resource_id": "facility:WET_SERVICES",
       "label": "spill containment",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "CALIBRATE"
       ],
@@ -7609,9 +8854,17 @@
       "resource_id": "facility:SAFETY",
       "label": "access and egress",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7621,9 +8874,17 @@
       "resource_id": "facility:SAFETY",
       "label": "emergency controls",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7633,9 +8894,17 @@
       "resource_id": "facility:SAFETY",
       "label": "hazard-specific protective provisions",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7645,9 +8914,17 @@
       "resource_id": "facility:OUTDOOR",
       "label": "apparatus supports",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -7665,9 +8942,17 @@
       "resource_id": "facility:OUTDOOR",
       "label": "sensor mast",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -7685,9 +8970,17 @@
       "resource_id": "facility:OUTDOOR",
       "label": "weather protection",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -7705,9 +8998,17 @@
       "resource_id": "facility:OUTDOOR",
       "label": "power and data routing",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "ENVIRONMENT",
         "TRACKED_STAGNATION",
@@ -7725,9 +9026,17 @@
       "resource_id": "facility:WASTE",
       "label": "coating waste",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7749,9 +9058,17 @@
       "resource_id": "facility:WASTE",
       "label": "cleaning waste",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7773,9 +9090,17 @@
       "resource_id": "facility:WASTE",
       "label": "sharp stock waste",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7797,9 +9122,17 @@
       "resource_id": "facility:WASTE",
       "label": "discarded specimen storage",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7821,9 +9154,17 @@
       "resource_id": "facility:ROBOT_SERVICE",
       "label": "staging position",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7833,6 +9174,10 @@
       "resource_id": "facility:ROBOT_SERVICE",
       "label": "battery or charging service",
       "required_quantity": null,
+      "required_unit": "inspection asset",
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": {
         "unit": "inspection asset",
@@ -7905,6 +9250,10 @@
         "missing_members": []
       },
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7914,9 +9263,17 @@
       "resource_id": "facility:ROBOT_SERVICE",
       "label": "ordinary service tools",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "facility_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [],
       "complete": false,
       "qualification": false
@@ -7925,10 +9282,19 @@
       "id": "robot:HEAD_RGBD:component_1",
       "resource_id": "robot:HEAD_RGBD",
       "label": "native G1 D435i camera",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_quantity": 1,
+      "required_unit": "camera",
+      "quantity_basis": "One native G1 D435i is selected by the embodiment contract. The current head shell and d435_link frame do not provide separately bounded camera geometry.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
       "staged_candidates": null,
-      "quantity_deficit": null,
+      "quantity_deficit": 1,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Camera-specific physical geometry and inventory binding remain incomplete; the D455 alternate cannot supply this requirement.",
+        "Power/data, strain relief and optical calibration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7950,9 +9316,25 @@
       "resource_id": "robot:HEAD_RGBD",
       "label": "source head optical frame",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Source coordinate frame is a datum, not an extra physical camera or mounting bracket.",
+      "requirement_kind": "frame_requirement",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "robot:HEAD_RGBD:component_2",
+        "kind": "frame_requirement",
+        "subjects": [
+          "g1/d435_link"
+        ],
+        "basis": "Source coordinate frame is a datum, not an extra physical camera or mounting bracket.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7974,9 +9356,17 @@
       "resource_id": "robot:HEAD_RGBD",
       "label": "USB power/data and strain relief",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -7998,9 +9388,25 @@
       "resource_id": "robot:HEAD_RGBD",
       "label": "optical and mounting calibration",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+      "requirement_kind": "acceptance_condition",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "robot:HEAD_RGBD:component_4",
+        "kind": "acceptance_condition",
+        "subjects": [
+          "g1/d435_link"
+        ],
+        "basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8021,10 +9427,39 @@
       "id": "robot:WRIST_RGB_LEFT:component_1",
       "resource_id": "robot:WRIST_RGB_LEFT",
       "label": "selected left D405 camera",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "camera",
+      "quantity_basis": "One selected D405 for the left wrist; staged and mounted views refer to this same camera.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "camera",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "camera_wrist_left",
+            "parts": [
+              "appearance_lens_glass_1",
+              "appearance_inner_ring_1",
+              "appearance_lens_ring_1",
+              "appearance_lens_glass_0",
+              "appearance_inner_ring_0",
+              "appearance_lens_ring_0",
+              "appearance_front_glass",
+              "front_panel",
+              "shell"
+            ]
+          }
+        ],
+        "scope": "One selected D405 for the left wrist; staged and mounted views refer to this same camera.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Mount liner, preload, USB cable, strain relief and optical calibration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8046,9 +9481,17 @@
       "resource_id": "robot:WRIST_RGB_LEFT",
       "label": "left wrist mounting hardware",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8070,9 +9513,17 @@
       "resource_id": "robot:WRIST_RGB_LEFT",
       "label": "USB power/data and strain relief",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8094,9 +9545,25 @@
       "resource_id": "robot:WRIST_RGB_LEFT",
       "label": "optical and mounting calibration",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+      "requirement_kind": "acceptance_condition",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "robot:WRIST_RGB_LEFT:component_4",
+        "kind": "acceptance_condition",
+        "subjects": [
+          "camera_wrist_left"
+        ],
+        "basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8117,10 +9584,39 @@
       "id": "robot:WRIST_RGB_RIGHT:component_1",
       "resource_id": "robot:WRIST_RGB_RIGHT",
       "label": "selected right D405 camera",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "camera",
+      "quantity_basis": "One selected D405 for the right wrist; staged and mounted views refer to this same camera.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "camera",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "camera_wrist_right",
+            "parts": [
+              "appearance_lens_glass_1",
+              "appearance_inner_ring_1",
+              "appearance_lens_ring_1",
+              "appearance_lens_glass_0",
+              "appearance_inner_ring_0",
+              "appearance_lens_ring_0",
+              "appearance_front_glass",
+              "front_panel",
+              "shell"
+            ]
+          }
+        ],
+        "scope": "One selected D405 for the right wrist; staged and mounted views refer to this same camera.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Mount liner, preload, USB cable, strain relief and optical calibration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8142,9 +9638,17 @@
       "resource_id": "robot:WRIST_RGB_RIGHT",
       "label": "right wrist mounting hardware",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8166,9 +9670,17 @@
       "resource_id": "robot:WRIST_RGB_RIGHT",
       "label": "USB power/data and strain relief",
       "required_quantity": null,
+      "required_unit": null,
+      "quantity_basis": "Quantity, specification and candidate completeness remain to be allocated.",
+      "requirement_kind": "interface_requirement",
+      "stock_quantity_applicable": true,
       "quantity_status": "unallocated",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity/specification allocation and complete candidate configuration remain open."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8190,9 +9702,25 @@
       "resource_id": "robot:WRIST_RGB_RIGHT",
       "label": "optical and mounting calibration",
       "required_quantity": null,
-      "quantity_status": "unallocated",
+      "required_unit": null,
+      "quantity_basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+      "requirement_kind": "acceptance_condition",
+      "stock_quantity_applicable": false,
+      "quantity_status": "not_stock_quantity",
       "staged_candidates": null,
       "quantity_deficit": null,
+      "state_or_acceptance_requirement": {
+        "component_id": "robot:WRIST_RGB_RIGHT:component_4",
+        "kind": "acceptance_condition",
+        "subjects": [
+          "camera_wrist_right"
+        ],
+        "basis": "Calibration evidence is required; a calibration requirement cannot be satisfied by counting inventory.",
+        "complete": false
+      },
+      "remaining_requirements": [
+        "Required state or acceptance evidence remains incomplete; no additional stock is created."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8213,10 +9741,63 @@
       "id": "robot:G1_29DOF:component_1",
       "resource_id": "robot:G1_29DOF",
       "label": "Unitree G1 29DoF rev 1.0",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "Owner-selected G1 body, excluding both separately assigned hand subassemblies. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "assembly",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "g1",
+            "parts": [
+              "head_link_visual_0",
+              "left_ankle_pitch_link_visual_0",
+              "left_ankle_roll_link_visual_0",
+              "left_elbow_link_visual_0",
+              "left_hip_pitch_link_visual_0",
+              "left_hip_roll_link_visual_0",
+              "left_hip_yaw_link_visual_0",
+              "left_knee_link_visual_0",
+              "left_shoulder_pitch_link_visual_0",
+              "left_shoulder_roll_link_visual_0",
+              "left_shoulder_yaw_link_visual_0",
+              "left_wrist_pitch_link_visual_0",
+              "left_wrist_roll_link_visual_0",
+              "left_wrist_yaw_link_visual_0",
+              "logo_link_visual_0",
+              "pelvis_contour_link_visual_0",
+              "pelvis_visual_0",
+              "right_ankle_pitch_link_visual_0",
+              "right_ankle_roll_link_visual_0",
+              "right_elbow_link_visual_0",
+              "right_hip_pitch_link_visual_0",
+              "right_hip_roll_link_visual_0",
+              "right_hip_yaw_link_visual_0",
+              "right_knee_link_visual_0",
+              "right_shoulder_pitch_link_visual_0",
+              "right_shoulder_roll_link_visual_0",
+              "right_shoulder_yaw_link_visual_0",
+              "right_wrist_pitch_link_visual_0",
+              "right_wrist_roll_link_visual_0",
+              "right_wrist_yaw_link_visual_0",
+              "torso_link_visual_0",
+              "waist_roll_link_visual_0",
+              "waist_yaw_link_visual_0"
+            ]
+          }
+        ],
+        "scope": "Owner-selected G1 body, excluding both separately assigned hand subassemblies. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Initial robot pose, contacts, load behavior, sensing and operation remain unqualified."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8237,10 +9818,60 @@
       "id": "robot:INSPIRE_FTP_LEFT:component_1",
       "resource_id": "robot:INSPIRE_FTP_LEFT",
       "label": "Inspire FTP left",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "Owner-selected left Inspire FTP hand already included in g1. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "assembly",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "g1",
+            "parts": [
+              "left_base_link_visual_0",
+              "left_index_1_visual_0",
+              "left_index_2_visual_0",
+              "left_index_force_sensor_1_visual_0",
+              "left_index_force_sensor_2_visual_0",
+              "left_index_force_sensor_3_visual_0",
+              "left_little_1_visual_0",
+              "left_little_2_visual_0",
+              "left_little_force_sensor_1_visual_0",
+              "left_little_force_sensor_2_visual_0",
+              "left_little_force_sensor_3_visual_0",
+              "left_middle_1_visual_0",
+              "left_middle_2_visual_0",
+              "left_middle_force_sensor_1_visual_0",
+              "left_middle_force_sensor_2_visual_0",
+              "left_middle_force_sensor_3_visual_0",
+              "left_palm_force_sensor_visual_0",
+              "left_ring_1_visual_0",
+              "left_ring_2_visual_0",
+              "left_ring_force_sensor_1_visual_0",
+              "left_ring_force_sensor_2_visual_0",
+              "left_ring_force_sensor_3_visual_0",
+              "left_thumb_1_visual_0",
+              "left_thumb_2_visual_0",
+              "left_thumb_3_visual_0",
+              "left_thumb_4_visual_0",
+              "left_thumb_force_sensor_1_visual_0",
+              "left_thumb_force_sensor_2_visual_0",
+              "left_thumb_force_sensor_3_visual_0",
+              "left_thumb_force_sensor_4_visual_0"
+            ]
+          }
+        ],
+        "scope": "Owner-selected left Inspire FTP hand already included in g1. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Initial robot pose, contacts, load behavior, sensing and operation remain unqualified."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8261,10 +9892,60 @@
       "id": "robot:INSPIRE_FTP_RIGHT:component_1",
       "resource_id": "robot:INSPIRE_FTP_RIGHT",
       "label": "Inspire FTP right",
-      "required_quantity": null,
-      "quantity_status": "unallocated",
-      "staged_candidates": null,
-      "quantity_deficit": null,
+      "required_quantity": 1,
+      "required_unit": "assembly",
+      "quantity_basis": "Owner-selected right Inspire FTP hand already included in g1. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+      "requirement_kind": "assembly_component",
+      "stock_quantity_applicable": true,
+      "quantity_status": "selected_unaccepted",
+      "staged_candidates": {
+        "unit": "assembly",
+        "quantity": 1,
+        "members": [
+          {
+            "asset_id": "g1",
+            "parts": [
+              "right_base_link_visual_0",
+              "right_index_1_visual_0",
+              "right_index_2_visual_0",
+              "right_index_force_sensor_1_visual_0",
+              "right_index_force_sensor_2_visual_0",
+              "right_index_force_sensor_3_visual_0",
+              "right_little_1_visual_0",
+              "right_little_2_visual_0",
+              "right_little_force_sensor_1_visual_0",
+              "right_little_force_sensor_2_visual_0",
+              "right_little_force_sensor_3_visual_0",
+              "right_middle_1_visual_0",
+              "right_middle_2_visual_0",
+              "right_middle_force_sensor_1_visual_0",
+              "right_middle_force_sensor_2_visual_0",
+              "right_middle_force_sensor_3_visual_0",
+              "right_palm_force_sensor_visual_0",
+              "right_ring_1_visual_0",
+              "right_ring_2_visual_0",
+              "right_ring_force_sensor_1_visual_0",
+              "right_ring_force_sensor_2_visual_0",
+              "right_ring_force_sensor_3_visual_0",
+              "right_thumb_1_visual_0",
+              "right_thumb_2_visual_0",
+              "right_thumb_3_visual_0",
+              "right_thumb_4_visual_0",
+              "right_thumb_force_sensor_1_visual_0",
+              "right_thumb_force_sensor_2_visual_0",
+              "right_thumb_force_sensor_3_visual_0",
+              "right_thumb_force_sensor_4_visual_0"
+            ]
+          }
+        ],
+        "scope": "Owner-selected right Inspire FTP hand already included in g1. Exact named visual parts follow the official kinematic parent graph; this does not create a separate copy.",
+        "missing_members": []
+      },
+      "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Initial robot pose, contacts, load behavior, sensing and operation remain unqualified."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "CALIBRATE",
@@ -8286,6 +9967,10 @@
       "resource_id": "additional_reconstructed_materials:film_attachment_stock",
       "label": "film attachment adhesive stock",
       "required_quantity": 12,
+      "required_unit": "lined_adhesive_sheet",
+      "quantity_basis": "Explicit stock-cut or fastener-tool allocation; not a completed-state inventory.",
+      "requirement_kind": "inventory_item",
+      "stock_quantity_applicable": true,
       "quantity_status": "selected_unaccepted",
       "staged_candidates": {
         "unit": "lined_adhesive_sheet",
@@ -8405,6 +10090,10 @@
         "missing_members": []
       },
       "quantity_deficit": 0,
+      "state_or_acceptance_requirement": null,
+      "remaining_requirements": [
+        "Quantity selection does not establish initial-state, compatibility or operation acceptance."
+      ],
       "branch_ids": [
         "BUILD_PAIR",
         "TRACKED_STAGNATION",
@@ -9882,6 +11571,84 @@
       "qualified": false
     }
   ],
+  "shared_asset_references": [
+    {
+      "asset_id": "frame_profile_stock",
+      "component_ids": [
+        "equipment:COOLER:component_5",
+        "equipment:COOLER:component_6"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "g1",
+      "component_ids": [
+        "robot:G1_29DOF:component_1",
+        "robot:INSPIRE_FTP_LEFT:component_1",
+        "robot:INSPIRE_FTP_RIGHT:component_1"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "harrick_hrs",
+      "component_ids": [
+        "equipment:ANGLE_12:component_1",
+        "equipment:ANGLE_12:component_2",
+        "equipment:ANGLE_12:component_3"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "spectratech_500",
+      "component_ids": [
+        "equipment:ANGLE_VAR:component_1",
+        "equipment:ANGLE_VAR:component_2",
+        "equipment:ANGLE_VAR:component_3",
+        "equipment:ANGLE_VAR:component_4"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "tray_black",
+      "component_ids": [
+        "facility:CARRIERS:component_1",
+        "tools:supported_carrier:component_1"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "tray_white",
+      "component_ids": [
+        "facility:CARRIERS:component_1",
+        "tools:supported_carrier:component_1"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "tweezers_black",
+      "component_ids": [
+        "additional_reconstructed_materials:reversible_emitter_jig:component_2",
+        "tools:film_jig:component_1"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "tweezers_white",
+      "component_ids": [
+        "additional_reconstructed_materials:reversible_emitter_jig:component_2",
+        "tools:film_jig:component_1"
+      ],
+      "adds_stock": false
+    },
+    {
+      "asset_id": "workholding_kit",
+      "component_ids": [
+        "consumables:consumable_12:component_2",
+        "tools:cutting_fixture:component_1"
+      ],
+      "adds_stock": false
+    }
+  ],
   "remaining": [
     {
       "id": "raw_stock",
@@ -9913,10 +11680,22 @@
     "scene_instances": 81,
     "reference_only_instances": 4,
     "component_requirements": 154,
-    "selected_quantity_components": 37,
-    "components_with_staged_bindings": 63,
+    "selected_quantity_components": 69,
+    "components_with_staged_bindings": 70,
     "quantified_pool_deficit": 0,
-    "unallocated_component_quantities": 117,
+    "unallocated_component_quantities": 77,
+    "non_stock_requirements": 8,
+    "requirements_by_kind": {
+      "acceptance_condition": 3,
+      "assembly_component": 19,
+      "configuration_state": 1,
+      "facility_requirement": 27,
+      "frame_requirement": 1,
+      "interface_requirement": 24,
+      "inventory_item": 76,
+      "output_state": 3
+    },
+    "incomplete_component_requirements": 154,
     "qualified_branches": 0,
     "branches": 11
   }

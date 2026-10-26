@@ -152,8 +152,15 @@ guarantee of general reliability.
   or task credit. The same allocation page displays and filters these records.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
   covers all 154 component requirements and eleven branches, with selected
-  quantities for seventeen core components, sixteen stock components and four shared hand tools; quantities
-  for the remaining 117 are unknown. Two independent heater candidates now match the paired power requirement.
+  quantities for 69 components, 77 unresolved quantity/specification requirements,
+  and eight non-stock output/configuration/frame/calibration requirements. All
+  154 still require completion and acceptance. The
+  [quantity policy](../../assets/cooling_lab_v1/component_quantity_policy.json)
+  adds 32 explicit selections with remaining conditions, including shared tools,
+  containers, optical subassemblies and the selected robot components. One G1
+  retains distinct body/left-hand/right-hand part bindings without extra stock;
+  the head frame does not supply a separately modeled D435i. Two independent
+  heater candidates match the paired power requirement.
   Completed apparatus meshes and the fixed-configuration display are references,
   not prebuilt starting stock. The selected pair is reused by identity. The
   [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 75

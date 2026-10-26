@@ -40,6 +40,9 @@ def inspect():
     check('reference_candidates_never_reduce_base_deficits',all(
           (new['required_quantity'],new['quantity_deficit'])==(old['required_quantity'],old['quantity_deficit'])
           for new,old in zip(report['components'],allocation['components'])))
+    check('requirement_types_and_open_conditions_survive_inventory_merge',all(
+          all(new[k]==old[k] for k in ['requirement_kind','stock_quantity_applicable','quantity_status','required_unit','quantity_basis','state_or_acceptance_requirement','remaining_requirements'])
+          for new,old in zip(report['components'],allocation['components'])))
     needs={n['id']:n for n in report['installation_requirements']}
     silicone=needs['weather_need_silicone_grease']
     check('silicone_has_one_independent_tube',silicone['candidate_ids']==['weather_silicone_grease_93003'] and

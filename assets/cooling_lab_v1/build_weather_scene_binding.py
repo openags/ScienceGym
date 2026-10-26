@@ -10,7 +10,9 @@ from geometry_tools import HERE, ROOT, sha, write_json
 
 
 def build():
-    names=['scene','readiness','campaign_allocation','weather_station_assets',
+    # Bind geometry and physical identities. Readiness and campaign quantities
+    # are downstream review concerns, not inputs to this composition.
+    names=['scene','weather_station_assets',
         'weather_storage_assets','weather_preparation_assets','outdoor_ground_assets',
         'weather_station_checks','weather_storage_checks','weather_preparation_checks',
         'outdoor_ground_checks','weather_service_checks','weather_wind_service_checks',
