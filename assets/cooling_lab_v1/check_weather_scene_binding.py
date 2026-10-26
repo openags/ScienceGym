@@ -48,7 +48,7 @@ def build():
             mesh.apply_transform(m['to_world']);new[(m['id'],n)]=mesh
         array=np.array([p.bounds for p in parts.values()]);bounds[m['id']]=[array[:,0].min(axis=0).tolist(),array[:,1].max(axis=0).tolist()]
     bench=next(s for s in scene['support_surfaces'] if s['id']=='weather_service')
-    for t in r['staged_tool_candidates']:
+    for t in r['staged_tool_candidates']+r['staged_consumable_candidates']:
         lo,hi=np.array(bounds[t['id']]);x0,y0,x1,y1=bench['xy_bounds_m']
         check('complete_tool_on_actual_service_worktop_'+t['id'],abs(lo[2]-bench['top_m'])<1e-7 and lo[0]>=x0 and hi[0]<=x1 and lo[1]>=y0 and hi[1]<=y1,bounds_m=[lo.tolist(),hi.tolist()])
         if t['id']=='weather_wire_rope_cutter':
@@ -63,6 +63,11 @@ def build():
             expected=expected@np.array(reference['to_support_plane'])
             check('wrench_preserves_verified_resting_contacts',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
                 and all(c['inside_support'] for c in reference['range_checks']))
+        if t['id']=='weather_mast_grease_21030':
+            reference=json.loads((HERE/'mast_grease_checks.json').read_text())['resting_reference']
+            expected=np.eye(4);expected[:3,3]=[9.05,18.8,bench['top_m']]
+            check('grease_keeps_cap_base_support_and_separate_silicone_requirement',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
+                and reference['support_margin_m']>.010 and not t['silicone_channel_requirement_satisfied'] and t['net_mass_g']==85)
     def broad(a,b):return bool(np.all(np.minimum(a[1],b[1])-np.maximum(a[0],b[0])>1e-7))
     occupied=[];collisions=[];tested=0;nonvolume=[]
     # Read only possible neighbours, but use their complete actual meshes.
@@ -89,7 +94,7 @@ def build():
                 hit=manager.in_collision_single(b);nonvolume.append(dict(module=module,part=n,other=other,surface_intersection=bool(hit)))
                 if hit:collisions.append(dict(module=module,part=n,other=other,surface_intersection=True))
     check('new_modules_clear_complete_remaining_lab_geometry',not collisions,narrow_phase_pairs=tested,intersections=collisions,nonvolume_surface_checks=nonvolume)
-    tool_ids={t['id'] for t in r['staged_tool_candidates']};tool_hits=[];tool_pairs=0
+    tool_ids={t['id'] for t in r['staged_tool_candidates']+r['staged_consumable_candidates']};tool_hits=[];tool_pairs=0
     for (mid,n),a in new.items():
         if mid not in tool_ids or n.endswith('_text'):continue
         for (other,q),b in new.items():

@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_weather_scene_binding.py",
-      "sha256": "6c8be19b38616bcb9a0c02e879aff60c732af3a3fd1bcd29c76d15b984344d4d"
+      "sha256": "63896b2fc1d82ea57cce036c99c9a7767c804496231fcda614b4c4639f84b9e7"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
@@ -106,6 +106,14 @@
     {
       "path": "assets/cooling_lab_v1/adjustable_wrench_checks.json",
       "sha256": "370fbc89fa71afb2901b2358793ca792ddc26ec5251ad82cbfef33f0cfb09471"
+    },
+    {
+      "path": "assets/cooling_lab_v1/mast_grease_assets.json",
+      "sha256": "2c09624695642a781df6094d8f3a159ea03d6f82467046b4e656ddb7724f194c"
+    },
+    {
+      "path": "assets/cooling_lab_v1/mast_grease_checks.json",
+      "sha256": "7a76a37914f7db10b8881ba94ae4b68f33d4702dd0d929c25973803aa8020337"
     }
   ],
   "base_scene": {
@@ -8664,6 +8672,137 @@
           1.0
         ]
       ]
+    },
+    {
+      "id": "weather_mast_grease_21030",
+      "label": "Super Lube 21030 · 桅杆通用润滑脂 · 85 g",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/superlube_21030_mast_grease.glb",
+        "sha256": "ebb1294782526b2342dfc564f1c9d85523b613b061587978fa03350e0d3d0f01",
+        "parts": 5,
+        "bounds_m": [
+          [
+            -0.027,
+            -0.016024999999999998,
+            0.0
+          ],
+          [
+            0.027,
+            0.015998857479754738,
+            0.162
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "tube_shell_and_sealed_tail",
+            "role": "inferred_flexible_container_rigid_reference",
+            "bounds_m": [
+              [
+                -0.027,
+                -0.015999556043543597,
+                0.007
+              ],
+              [
+                0.027,
+                0.015998857479754738,
+                0.162
+              ]
+            ]
+          },
+          {
+            "id": "ribbed_hollow_cap",
+            "role": "removable_cap_with_thread_clearance_envelope",
+            "bounds_m": [
+              [
+                -0.0156598395241878,
+                -0.01565989747794881,
+                0.0
+              ],
+              [
+                0.01566,
+                0.01565989747794881,
+                0.018000000000000002
+              ]
+            ]
+          },
+          {
+            "id": "inferred_cap_sealing_annulus",
+            "role": "unqualified_sealing_reference",
+            "bounds_m": [
+              [
+                -0.011194987241575237,
+                -0.011198746740275062,
+                0.002
+              ],
+              [
+                0.0112,
+                0.011198746740275062,
+                0.007
+              ]
+            ]
+          },
+          {
+            "id": "nominal_85g_grease_stock",
+            "role": "nominal_material_stock_no_flow_model",
+            "bounds_m": [
+              [
+                -0.024672680293879413,
+                -0.015349910215112913,
+                0.007019999999999999
+              ],
+              [
+                0.024672915081412373,
+                0.015347955085664354,
+                0.12719789605836093
+              ]
+            ]
+          },
+          {
+            "id": "tube_identification_text",
+            "role": "original_identification_text",
+            "bounds_m": [
+              [
+                -0.018860487223233285,
+                -0.016024999999999998,
+                0.037
+              ],
+              [
+                0.018860487223233285,
+                -0.004234815614981854,
+                0.14
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "to_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          9.05
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          18.8
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.9
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
     }
   ],
   "physical_entities": [
@@ -11080,6 +11219,39 @@
       "initial_stock_credit": false,
       "quantity_accepted": false,
       "robot_use_qualified": false
+    },
+    {
+      "id": "weather_mast_grease_21030",
+      "label": "Super Lube 21030 · 桅杆通用润滑脂 · 85 g",
+      "resource_id": "consumables:mast_all_purpose_grease",
+      "existing_scene_identity": null,
+      "quantity": 1,
+      "allocation_basis": "one_container_and_85g_nominal_contents_not_extra_stock_per_inspection",
+      "representations": [
+        {
+          "module": "weather_mast_grease_21030",
+          "part": "tube_shell_and_sealed_tail"
+        },
+        {
+          "module": "weather_mast_grease_21030",
+          "part": "ribbed_hollow_cap"
+        },
+        {
+          "module": "weather_mast_grease_21030",
+          "part": "inferred_cap_sealing_annulus"
+        },
+        {
+          "module": "weather_mast_grease_21030",
+          "part": "nominal_85g_grease_stock"
+        },
+        {
+          "module": "weather_mast_grease_21030",
+          "part": "tube_identification_text"
+        }
+      ],
+      "initial_stock_credit": false,
+      "quantity_accepted": false,
+      "robot_use_qualified": false
     }
   ],
   "hide_scene_asset_ids": [
@@ -11152,6 +11324,18 @@
       "resting_reference_source": "assets/cooling_lab_v1/adjustable_wrench_checks.json"
     }
   ],
+  "staged_consumable_candidates": [
+    {
+      "id": "weather_mast_grease_21030",
+      "station": "weather_service",
+      "support_top_m": 0.9,
+      "selected_required_units": 1,
+      "net_mass_g": 85,
+      "resting_reference_source": "assets/cooling_lab_v1/mast_grease_checks.json",
+      "application_budget_source": "assets/cooling_lab_v1/mast_grease_assets.json",
+      "silicone_channel_requirement_satisfied": false
+    }
+  ],
   "alternative_context": {
     "path": "assets/cooling_lab_v1/weather_preparation_assets.json",
     "sha256": "4115dc4c60d13be6f0618aa0d586ff3c7c46b685c6ed24cb0c9bd8a6a8cce33f",
@@ -11213,6 +11397,14 @@
       ],
       "completeness_accepted": false,
       "scope": "Separate cable cutter candidate for guy/ground wire; does not replace the existing electronic cutter or establish complete wire-tool stock."
+    },
+    {
+      "resource_id": "consumables:mast_all_purpose_grease",
+      "physical_entity_ids": [
+        "weather_mast_grease_21030"
+      ],
+      "completeness_accepted": false,
+      "scope": "Metal mast only; separately required U30 silicone grease and ordinary application/cleanup supplies remain open."
     }
   ],
   "limits": [

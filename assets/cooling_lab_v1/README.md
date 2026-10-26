@@ -177,6 +177,28 @@ density range. These are rigid inspections only: inner nuts, counterholding,
 insertion paths, wrench rotation, grip, torque and initial-stock acceptance
 remain open. Manufacturer photos are referenced without redistribution.
 
+The [mast-grease inspector](../../viewer/lab_review_v1/mast_grease.html) adds one
+Super Lube 21030 85 g tube candidate, also staged on the weather-service bench.
+The manufacturer's catalogue photograph, technical sheet and SDS constrain its
+identity, tapered package, pale ribbed cap and material amount. No manufacturer
+package drawing was retrieved: the 54 × 32 × 162 mm scale, wall, nozzle, thread
+and sealing details remain explicit reconstruction hypotheses. Four separate
+solids retain the hollow tube, cap, sealing annulus and nominal grease stock.
+The cap-base support, actual mesh volume, material separation and empty nozzle
+inspection are checked. An initial too-small stock/wall visualization clearance
+caused tessellation intersections; the final 0.25 mm clearance passes the same
+solid-intersection check without changing the nominal mass.
+
+The inferred inventory allowance reserves 2 g per mast application from a
+0.1 mm film on the current joint envelope plus losses; three fresh applications
+reserve 6 g and leave 79 g. This is not an approved dose or completed transfer.
+Further trials/reset budgets, ordinary application tools and cleanup stock
+remain open. This silicone-free product does not satisfy the U30 manual's
+separate silicone-grease requirement. Tube deformation, dispensing, sealing,
+compatibility and robot operation remain unqualified. The complete composition
+now contains ten modules, 31 selected identities and 511 named geometry parts;
+these counts grant no accepted initial inventory or owner acceptance.
+
 The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
 five-primary-port NRC candidate with 138 physical domains and five text faces.
 The source enclosure envelope excludes the separate two-plate mounting kit.

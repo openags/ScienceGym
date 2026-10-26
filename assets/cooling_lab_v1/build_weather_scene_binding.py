@@ -17,7 +17,8 @@ def build():
         'weather_remainders_assets','weather_remainders_checks',
         'nut_driver_assets','mast_driver_assets','wind_driver_assets',
         'nut_driver_checks','mast_driver_checks','wind_driver_checks',
-        'wire_rope_cutter_assets','wire_rope_cutter_checks','adjustable_wrench_assets','adjustable_wrench_checks']
+        'wire_rope_cutter_assets','wire_rope_cutter_checks','adjustable_wrench_assets','adjustable_wrench_checks',
+        'mast_grease_assets','mast_grease_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
     station=r['weather_station_assets'];storage=r['weather_storage_assets']
     site=station['station_origin_world_m'];modules=[];entities={}
@@ -104,6 +105,15 @@ def build():
         resting_reference_source='assets/cooling_lab_v1/adjustable_wrench_checks.json'))
     for p in geometry['part_records']:
         member(identity,label,'tools:fastener_driver',identity,p['id'])
+    identity='weather_mast_grease_21030';label='Super Lube 21030 · 桅杆通用润滑脂 · 85 g'
+    geometry=r['mast_grease_assets']['geometry']
+    module(identity,label,geometry,[9.05,18.8,.9])
+    for p in geometry['part_records']:
+        member(identity,label,'consumables:mast_all_purpose_grease',identity,p['id'],basis='one_container_and_85g_nominal_contents_not_extra_stock_per_inspection')
+    consumables=[dict(id=identity,station='weather_service',support_top_m=.9,selected_required_units=1,
+        net_mass_g=85,resting_reference_source='assets/cooling_lab_v1/mast_grease_checks.json',
+        application_budget_source='assets/cooling_lab_v1/mast_grease_assets.json',
+        silicone_channel_requirement_satisfied=False)]
     old={a['id']:a for a in r['scene']['assets']}
     refs=[Path(__file__)]+[HERE/(n+'.json') for n in names]
     record=dict(schema_version=1,status='laboratory_composition_candidate_not_initial_state',
@@ -115,7 +125,7 @@ def build():
         preserved_independent_scene_asset_ids=['ambient_rtd','eko_ms402','eko_ms56','tracker'],
         identity_replacements=[dict(id=n,base_geometry=dict(path=old[n]['geometry'],sha256=old[n]['geometry_sha256']),
             basis='Earlier low-detail logger representation is replaced, not surface-equivalent' if n=='hobo_u30' else 'Original cart source geometry and unit identity are reused') for n in ['hobo_u30','utility_cart']],
-        staged_tool_candidates=tools,
+        staged_tool_candidates=tools,staged_consumable_candidates=consumables,
         alternative_context=dict(path='assets/cooling_lab_v1/weather_preparation_assets.json',sha256=sha(HERE/'weather_preparation_assets.json'),
             reused_tray_identity='weather_removed_parts_tray',simultaneously_visible=False,
             temporary_additional_stock=[dict(product='HellermannTyton 111-01975',units=1),dict(product='HellermannTyton 111-05440',units=1)],
@@ -123,7 +133,9 @@ def build():
         resource_bindings=[dict(resource_id='equipment:WEATHER',physical_entity_ids=[n for n,e in entities.items() if e['resource_id']=='equipment:WEATHER'],
             completeness_accepted=False),dict(resource_id='tools:fastener_driver',physical_entity_ids=[n for n,e in entities.items() if e['resource_id']=='tools:fastener_driver'],completeness_accepted=False),
             dict(resource_id='tools:wire_stripper_and_driver',physical_entity_ids=['weather_wire_rope_cutter'],completeness_accepted=False,
-                scope='Separate cable cutter candidate for guy/ground wire; does not replace the existing electronic cutter or establish complete wire-tool stock.')],
+                scope='Separate cable cutter candidate for guy/ground wire; does not replace the existing electronic cutter or establish complete wire-tool stock.'),
+            dict(resource_id='consumables:mast_all_purpose_grease',physical_entity_ids=['weather_mast_grease_21030'],completeness_accepted=False,
+                scope='Metal mast only; separately required U30 silicone grease and ordinary application/cleanup supplies remain open.')],
         limits=['Installed/reference, base-staging and partial preparation views are mutually exclusive representations, not extra inventory.',
             'Kit groups retain individually named parts; a group is not a welded or rigid simulation body.',
             'Permanent ties retain their original cutoff identity; removed U30 plugs remain part of that same logger.',
