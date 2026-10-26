@@ -26,14 +26,19 @@ def verify(folder):
  dof=model.joint('tray_free').dofadr[0];last=tr['time']>=tr['time'][-1]-1
  check('tray_stable_after_release',np.max(np.linalg.norm(tr['qvel'][last,dof:dof+6],axis=1))<.01)
  payload_body='buerkle_spatula' if result.get('payload_kind')=='spatula' else 'calibration_copper_stock'
- data.qpos[:]=tr['qpos'][-1];data.qvel[:]=tr['qvel'][-1];mujoco.mj_forward(model,data);traybody=model.body('carrier_tray').id;table=model.geom('bench_top').id;table_contact=False;hand_contact=False
+ data.qpos[:]=tr['qpos'][-1];data.qvel[:]=tr['qvel'][-1];mujoco.mj_forward(model,data);traybody=model.body('carrier_tray').id;table_contact=False;unexpected_contact=False
+ if result.get('environment')=='existing_complete_laboratory':
+  imported=json.loads((folder/'laboratory_import.json').read_text())
+  tables={model.geom(p['geom']).id for p in imported['parts'] if p['instance']=='architecture' and p['source_part']=='assembly_white_worktop'}
+  if not tables:raise ValueError('Existing laboratory worktop is missing')
+ else:tables={model.geom('bench_top').id}
  for c in data.contact:
   a,b=int(c.geom1),int(c.geom2)
   if model.geom_bodyid[a]!=traybody and model.geom_bodyid[b]!=traybody:continue
   other=b if model.geom_bodyid[a]==traybody else a
-  table_contact|=other==table
-  hand_contact|=model.geom_bodyid[other]!=0 and model.body(model.geom_bodyid[other]).name!=payload_body
- check('final_release_on_table',table_contact and not hand_contact and abs(pos[-1,2]-.9)<.005)
+  table_contact|=other in tables
+  unexpected_contact|=other not in tables and model.body(model.geom_bodyid[other]).name!=payload_body
+ check('final_release_on_table',table_contact and not unexpected_contact and abs(pos[-1,2]-.9)<.005,support_geoms=[model.geom(i).name for i in sorted(tables)])
  events=result['actor_last_output'].get('policy_events',[]);gates=[e for e in events if e['state'] in ['transfer','place','release','retract']]
  obs=json.loads((folder/'policy_observations.json').read_text());fresh=[]
  for e in gates:

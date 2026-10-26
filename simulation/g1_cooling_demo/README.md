@@ -1,11 +1,17 @@
-# G1 / Inspire standalone contact tests
+# G1 / Inspire contact runtime
 
-These are standalone workbench controller tests. Integration into the existing full laboratory is not implemented. They do not meet the requested laboratory demo.
+The contact plant now also runs in the existing complete laboratory. The
+[laboratory runtime](LABORATORY.md) imports the original room, furniture and
+equipment, with G1 and the white tray as dynamic bodies. Other equipment stays
+fixed; articulated devices, loaded walking and the full paper campaign remain
+open. The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
+shows the resulting contact subtask. The earlier independent workbench tests
+below remain unchanged as development evidence.
 
 The requested [full-laboratory conceptual film](../../viewer/cooling_concept_v1/watch.html)
 is available separately, with its [paper-operation mapping and reproduction notes](../../viewer/cooling_concept_v1/README.md).
 
-The current presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
+The earlier workbench presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
 
 Serve the repository root with `python -m http.server 8769 --bind 127.0.0.1` and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. The page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. The manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
 

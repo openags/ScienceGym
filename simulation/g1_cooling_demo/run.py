@@ -10,7 +10,7 @@ from world import build,initialize,HERE
 from balance import Balance
 
 
-def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to_source=False,payload=False,tray_offset=(0.,0.),finger_curl=0.,com_align=False,grip_force=None,payload_kind='copper'):
+def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to_source=False,payload=False,tray_offset=(0.,0.),finger_curl=0.,com_align=False,grip_force=None,payload_kind='copper',laboratory=False):
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
     if any(out.iterdir()):raise ValueError('Use a new attempt directory')
     snapshot=out/'source_snapshot';snapshot.mkdir()
@@ -18,10 +18,10 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
     for source in HERE.glob('*.py'):
         shutil.copy2(source,snapshot/source.name);pins[source.name]=hashlib.sha256(source.read_bytes()).hexdigest()
     sensor_actor=sensor_actor or closed_loop
-    path=build(out,tray=tray,tray_offset=tray_offset,payload=payload_kind if payload else False);m=mujoco.MjModel.from_xml_path(str(path));d=initialize(m)
+    path=build(out,tray=tray,tray_offset=tray_offset,payload=payload_kind if payload else False,laboratory=laboratory);m=mujoco.MjModel.from_xml_path(str(path));d=initialize(m)
     # Controller model contains only robot DOFs. Environment state is kept out
     # of its data structure; sensor transport is added separately.
-    control_path=build(out/'controller_model',tray=False);cm=mujoco.MjModel.from_xml_path(str(control_path));cd=initialize(cm)
+    control_path=build(out/'controller_model',tray=False,laboratory=laboratory,map_only=laboratory);cm=mujoco.MjModel.from_xml_path(str(control_path));cd=initialize(cm)
     control=Balance(cm,cd);zero=mujoco.MjData(cm);mujoco.mj_forward(cm,zero)
     control.palm_rotations={s:Rotation.from_euler('x',-45 if s=='left' else 45,degrees=True).as_matrix()@zero.site(s+'_wrist_reference').xmat.reshape(3,3) for s in ['left','right']}
     begin={s:cd.site(s+'_wrist_reference').xpos.copy() for s in ['left','right']}
@@ -35,7 +35,7 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
         if closed_loop:command.extend(['--finger-curl',str(finger_curl)])
         if closed_loop and com_align:command.append('--com-align')
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=open(out/'actor_stderr.log','w'))
-        depth_renderer=mujoco.Renderer(m,height=180,width=320);depth_renderer.enable_depth_rendering()
+        depth_renderer=mujoco.Renderer(m,height=180,width=320,max_geom=max(10000,m.ngeom+1000));depth_renderer.enable_depth_rendering()
         render_option=mujoco.MjvOption();render_option.geomgroup[3]=0;render_option.sitegroup[:]=0
     records=[];failure=None;events=[];start=time.monotonic()
     def event(name):events.append(dict(name=name,time_s=float(d.time)));print(name,round(d.time,3),flush=True)
@@ -108,10 +108,15 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
     result['payload_kind']=payload_kind if payload else None
     if sensor_actor:result['scope']='Native head depth and encoder/IMU actor in a separate process; inferred sensor and contact parameters, fixed-foot state estimate; full task and sensor calibration not qualified.'
     if closed_loop:result['scope']='Depth-observed stage transitions for a carrier transport subtask; inferred sensor/contact parameters and fixed-foot estimate, not full-paper qualification.'
+    result['environment']='existing_complete_laboratory' if laboratory else 'independent_contact_workbench'
+    if laboratory:
+        result['laboratory_import_sha256']=hashlib.sha256((out/'laboratory_import.json').read_bytes()).hexdigest()
+        result['controller_static_prior']='Authored architectural map only; loose apparatus and handled target absent from controller model'
+        result['scope']='G1 contact rollout at the existing laboratory white assembly bench; other equipment remains fixed initial obstacles, device articulation and full campaign unqualified.'
     if tray:
         qa=m.joint('tray_free').qposadr[0];trajectory=np.array([r[1][qa:qa+3] for r in records]);result['tray_motion']=dict(initial_m=trajectory[0].tolist(),final_m=trajectory[-1].tolist(),maximum_height_m=float(trajectory[:,2].max()),lift_detected=bool(trajectory[:,2].max()>trajectory[0,2]+.07))
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--duration',type=float,default=5);p.add_argument('--tray',action='store_true');p.add_argument('--sensor-actor',action='store_true');p.add_argument('--closed-loop',action='store_true');p.add_argument('--return-to-source',action='store_true');p.add_argument('--payload',action='store_true');p.add_argument('--payload-kind',choices=['copper','spatula'],default='copper');p.add_argument('--tray-offset',type=float,nargs=2,default=(0.,0.));p.add_argument('--finger-curl',type=float,default=0.);p.add_argument('--com-align',action='store_true');p.add_argument('--grip-force',type=float);a=p.parse_args();run(a.out,a.duration,a.tray,a.sensor_actor,a.closed_loop,a.return_to_source,a.payload,a.tray_offset,a.finger_curl,a.com_align,a.grip_force,a.payload_kind)
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--duration',type=float,default=5);p.add_argument('--tray',action='store_true');p.add_argument('--sensor-actor',action='store_true');p.add_argument('--closed-loop',action='store_true');p.add_argument('--return-to-source',action='store_true');p.add_argument('--payload',action='store_true');p.add_argument('--payload-kind',choices=['copper','spatula'],default='copper');p.add_argument('--tray-offset',type=float,nargs=2,default=(0.,0.));p.add_argument('--finger-curl',type=float,default=0.);p.add_argument('--com-align',action='store_true');p.add_argument('--grip-force',type=float);p.add_argument('--laboratory',action='store_true');a=p.parse_args();run(a.out,a.duration,a.tray,a.sensor_actor,a.closed_loop,a.return_to_source,a.payload,a.tray_offset,a.finger_curl,a.com_align,a.grip_force,a.payload_kind,a.laboratory)

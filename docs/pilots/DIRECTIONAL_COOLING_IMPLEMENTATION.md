@@ -56,6 +56,26 @@ all failures. Missed grasps, slips, incomplete connections, blocked covers and
 sensor failures must be recognized. These targets do not imply a statistical
 guarantee of general reliability.
 
+## Laboratory contact integration
+
+The G1 contact plant now imports the existing full laboratory instead of a
+separate primitive workbench. All 81 base asset identities are accounted for:
+G1 and the white tray are dynamic, and the other 79 assets remain fixed initial
+obstacles. The original 6,537 environment parts retain their source triangles,
+dimensions and placements. The actor receives only the authored architecture
+as a static map, plus depth, encoders and IMU observations; loose equipment and
+the target are absent from its model. OS capability isolation remains open.
+
+Two 80.54-second runs exercise empty and preloaded-tool tray transport and
+return on the actual white assembly bench. The
+[runtime guide and evidence](../../simulation/g1_cooling_demo/LABORATORY.md)
+retain their source snapshots, recorded sensor inputs, physics trajectories,
+independent replay and the failed first import attempt. Initial robot/tray
+staging is explicit setup, not executed preparation. Non-convex equipment
+cavities, device articulation, tool loading, locomotion, recovery and all eleven
+paper branches remain unqualified. The separate clean long-horizon film is an
+authored presentation and does not grant physical acceptance credit.
+
 ## Implemented asset-phase changes
 
 - The active constraint file and [readiness record](../../assets/cooling_lab_v1/readiness.json)

@@ -75,6 +75,13 @@ This requested conceptual animation follows the
 motion is separate from physical qualification. See the
 [reproduction notes](viewer/cooling_concept_v1/README.md).
 
+The [laboratory contact recording](viewer/cooling_lab_runtime_v1/index.html)
+now runs the G1 tray subtask on the original white assembly worktop, with the
+complete room and its equipment in the physical plant. Other equipment remains
+fixed; this is not the full paper campaign. Its
+[runtime guide](simulation/g1_cooling_demo/LABORATORY.md) includes sensor records,
+compiled-source geometry comparison and independent physical evaluation.
+
 An optional weather-station installation reference adds detailed component
 inspection and identity-preserving tool staging. The linked
 [tape-measure review](viewer/lab_review_v1/tape_measure.html) shows the selected
