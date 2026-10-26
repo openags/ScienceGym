@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-26**. Candidate count: **357**.
+Last screened: **2026-10-26**. Candidate count: **358**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3642,4 +3642,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 5979 (2026); published **8 July 2026**. Selected Results and Methods screened. Repeated measurements and specimen counts do not establish independent chamber replication; nitrogen-budget inferences are distinct from direct measurements.
 - Official [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75147-w/MediaObjects/41467_2026_75147_MOESM2_ESM.pdf) text accessible; selected environmental-condition, biomass-comparison and scheduling disclosures screened. Main/SI seasonal scheduling descriptions differ; this remains unresolved and no operating calendar is inferred. Remaining text, figure pixels, peer review and source data were not fully reviewed. Reporting Summary returned a tool Internal Error and remains unread.
 - Scope is prepared-biomass weighing and record coordination only. Fertilizer/slurry and isotope preparation, molecular assays, and gas/thermal manipulation are excluded. Specimen safety and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-26**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: prepared nanotube specimen optical metrology (2026-10-26)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Light-induced quantum friction of carbon nanotubes in water](https://www.nature.com/articles/s41586-026-10632-2) | Nature / 2026 | 10.1038/s41586-026-10632-2 | Prepared-specimen custody, reference measurements and repeated optical acquisition suggest a future coordinated metrology task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature* **654**, 941–947 (2026); published **10 June 2026**. Selected Results, FCS and particle-tracking Methods screened. Diffusion measurements, mechanistic interpretation and simulations are distinct evidence types; the authors leave a rigorous theoretical description unresolved.
+- Official [26-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10632-2/MediaObjects/41586_2026_10632_MOESM1_ESM.pdf) text accessible; selected reference-dye, temperature-control, tracking and FCS-simulation disclosures screened. Remaining text, figure pixels, peer review and linked data/code were not fully reviewed.
+- Scope is prepared, contained-specimen optical metrology only. Nanomaterial preparation, chemical modification and laser/THz operating procedures are excluded. Containment, exposure assessment, fixtures and instrument qualification remain prerequisites; no converted task or asset is supplied.
 - Access checked **2026-10-26**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
