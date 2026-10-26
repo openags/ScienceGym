@@ -143,6 +143,28 @@ excluded from the turning envelope after separate actual-hex fit checks.
 Socket outer diameter, internal depth, profile and local mount dimensions
 remain inferred. No torque, thread movement, hand access or inventory credit.
 
+The [integrated weather-station inspector](../../viewer/lab_review_v1/weather_station.html)
+combines 345 parts and text faces, preserving the reviewed component surfaces
+under recorded rigid placements. Four continuous leads retain their selected
+source lengths, enter actual logger grooves and include drip loops. Excess
+coils remain more than one foot from the enclosure. The complete support is
+rotated 30 degrees to clear the north-facing wind arm; this is an unaccepted
+layout selection. Fourteen ordinary HellermannTyton 111-01975 ties separately
+surround the actual mast, coils, adapters and RS3 bracket. Their molded heads
+have real feed passages and integral pawls, and their straps have inside
+serrations. Factory data-sheet / family-drawing differences remain explicit;
+300 mm stock and an 80 mm conservative containing-circle bound are used.
+Each retained strap and cutoff has a length balance. The checker covers
+41,482 cross-component, cable and tie pairs, complete lead lengths and bends,
+source-surface preservation, actual strap enclosure and failure examples.
+The separate page exposes whole-station and clipped detail views, including
+an explicitly hidden-door inspection. Grounding, physical storage of cutoffs
+and removed plugs, complete-tool/humanoid space and main-scene stock binding
+remain unfinished. Static retained shapes do not qualify ratcheting, friction,
+preload, gravity settling, sealing, electrical operation or robot execution.
+Rebuild locally with `build_cable_ties.py`, `build_weather_station.py` and
+`check_weather_station.py`, followed by the corresponding browser checker.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.
