@@ -13,6 +13,23 @@ official G1 29DoF + Inspire FTP geometry, ordinary tools including four newly
 staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders and the 94 per-point static
 access postures are inspection tools, not physics-controlled robot actions.
 
+The main viewer now has an optional **weather-station installation reference**
+inside the complete laboratory. Its 466 named parts cover the station, cart,
+ground and three ordinary drivers. `weather_scene_binding.json` assigns every
+part to exactly one of 27 selected identities. The existing U30 and utility
+cart are hidden in their original locations when their alternative representations
+are shown. Fourteen cutoffs remain associated with their original ties, and the
+three removed plugs remain part of the same logger. The independent Omega ambient
+probe and solar instruments are retained. Three shared drivers rest on the actual
+weather-service worktop. `weather_scene_binding_checks.json` checks identity
+conservation and placement against the remaining full laboratory geometry.
+
+The base scene still has 81 model instances. Alternative representations are
+not additional stock, and the partial low-mast view is not a complete starting
+state. The original floorplan and 94 workspace poses describe the base scene;
+selecting one of those poses returns to that scene. Terrain and the installed
+station have no dynamic, load, initial-state or owner-acceptance qualification.
+
 The separate [weather component inspector](../../viewer/lab_review_v1/weather.html)
 shows an RS3 shield kit and S-THB-M002 probe with continuous 2.0 m / 0.5 m leads,
 an inferred inline adapter and a selected RJ12 plug envelope. It retains source

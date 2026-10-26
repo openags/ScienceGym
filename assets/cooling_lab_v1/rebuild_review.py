@@ -50,6 +50,8 @@ def main():
       'assets/cooling_lab_v1/build_weather_preparation.py','assets/cooling_lab_v1/check_weather_preparation.py','assets/cooling_lab_v1/check_weather_wind_service.py','assets/cooling_lab_v1/check_weather_workspace.py']:
         run(script)
     run('assets/cooling_lab_v1/check_weather_workspace.py','--preparation')
+    run('assets/cooling_lab_v1/build_weather_scene_binding.py')
+    run('assets/cooling_lab_v1/check_weather_scene_binding.py')
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
             run(script,'--browser',a.browser,'--url',a.url)
@@ -73,6 +75,7 @@ def main():
         run('viewer/lab_review_v1/check_mast_driver.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/mast_driver.html')
         run('viewer/lab_review_v1/check_weather_station.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather_station.html')
         run('viewer/lab_review_v1/check_weather_workspace.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather_workspace.html')
+        run('viewer/lab_review_v1/check_weather_composition.py','--browser',a.browser,'--url',a.url)
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()

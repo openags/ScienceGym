@@ -4,6 +4,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {batchStaticMeshes} from './render_batches.js';
 import {SensorReview} from './sensors.js';
+import {WeatherComposition} from './weather_composition.js';
 
 const $=id=>document.getElementById(id),root='../../',folder=root+'assets/cooling_lab_v1/';
 const fetchedHashes=new Map();
@@ -44,7 +45,7 @@ function installRoomLights(){
 }
 const overlays=new THREE.Group(),labels=new THREE.Group(),measurements=new THREE.Group();scene.add(overlays,labels,measurements);
 let architecture,manifest,inventory,risks,report,bodyReport,readiness,allocation,workspace,selected=null,measureMode=false,measurePoints=[],pointerStart;
-let sensors=null,sensorRig=null;let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
+let sensors=null,sensorRig=null,weatherComposition=null;let robotRest=[];const accessMarker=new THREE.Group();scene.add(accessMarker);
 const groups=new Map(),states=new Map(),assetList=[],renderBatches=[];
 const loader=new GLTFLoader();
 const loadPinned=async(path,expected)=>{const r=await fetch(root+path+'?revision='+expected);if(!r.ok)throw Error(path+' HTTP '+r.status);const buffer=await r.arrayBuffer();if(await digest(buffer)!==expected)throw Error(path+' 的模型哈希与当前场景不一致');return loader.parseAsync(buffer,new URL(root+path,location.href).href)};
@@ -75,6 +76,7 @@ function resetStates(){for(const state of states.values())for(const item of stat
  if($('workspace-pose-status'))$('workspace-pose-status').textContent='选择检查点可查看静态姿态。';
  renderer.shadowMap.needsUpdate=true;requestRender()}
 function inspectWorkspace(target){
+ if(weatherComposition?.enabled)weatherComposition.setEnabled(false);
  resetStates();const result=target.result,group=groups.get('g1'),asset=assetList.find(a=>a.id==='g1');
  const k=states.get('g1_hands_inspection').config.kinematics;
  const world=new Map([[k.root_link,new THREE.Matrix4().fromArray(k.root_matrix.flat()).transpose()]]);
@@ -129,12 +131,14 @@ function visibility(){
  overlays.visible=!isolate&&$('show-space').checked;labels.visible=!isolate&&$('show-labels').checked;
  if(architecture)architecture.traverse(o=>{if(o.isMesh&&o.userData.cutaway)o.visible=$('show-walls').checked});
  roomLights.visible=!isolate;
+ if(weatherComposition)weatherComposition.applyVisibility(isolate);
  document.documentElement.dataset.roomShellVisible=String(!isolate&&$('show-walls').checked);
  renderer.shadowMap.needsUpdate=true;
  requestRender();
 }
 function detailRow(label,value){const d=document.createElement('div');d.className='detail-row';const b=document.createElement('b');b.textContent=label;const s=document.createElement('span');s.textContent=value;d.append(b,s);$('asset-detail').append(d)}
 function selectAsset(id,focus=true){
+ if(weatherComposition?.enabled&&weatherComposition.record.hide_scene_asset_ids.includes(id))weatherComposition.setEnabled(false);
  selected=id;const asset=assetList.find(a=>a.id===id);if(!asset)return;
  $('asset-select').value=id;$('asset-detail').replaceChildren();const h=document.createElement('h3');h.textContent=asset.label;$('asset-detail').append(h);
  $('asset-views').hidden=false;
@@ -183,7 +187,8 @@ function moveView(forward,side){
  const step=.25,x=camera.position.x+step*(Math.cos(lookYaw)*forward+Math.sin(lookYaw)*side),y=camera.position.y+step*(Math.sin(lookYaw)*forward-Math.cos(lookYaw)*side),r=.18;
  const onFloor=manifest.zones.some(z=>x>=z.bounds_m[0]+r&&x<=z.bounds_m[2]-r&&y>=z.bounds_m[1]+r&&y<=z.bounds_m[3]-r)||x>4.7&&x<7.3&&y>=.18&&y<=12.3||x>-.3&&x<.3&&(y>1.7&&y<3.3||y>6.7&&y<8.3);
  const bodySolids=manifest.assets.filter(a=>a.station==='circulation').map(a=>({bounds_m:a.normalized_bounds_m.map(b=>b.map((v,i)=>v+a.position_m[i]))}));
- const blocked=[...manifest.obstacles,...bodySolids].some(o=>{const [a,b]=o.bounds_m;return a[2]<1.85&&b[2]>.05&&x>a[0]-r&&x<b[0]+r&&y>a[1]-r&&y<b[1]+r});
+ const existingObstacles=manifest.obstacles.filter(o=>!weatherComposition?.enabled||o.id!=='cart_parking');
+ const blocked=[...existingObstacles,...bodySolids,...(weatherComposition?.cameraObstacles()||[])].some(o=>{const [a,b]=o.bounds_m;return a[2]<1.85&&b[2]>.05&&x>a[0]-r&&x<b[0]+r&&y>a[1]-r&&y<b[1]+r});
  if(onFloor&&!blocked){camera.position.set(x,y,1.65);aimRoom()}
  document.documentElement.dataset.cameraBlocked=String(!onFloor||blocked);
 }
@@ -245,7 +250,7 @@ try{
  const built=await loadPinned(manifest.architecture.path,manifest.architecture.sha256);prepare(built);architecture=built.scene;
  const architectureParts=new Map(manifest.architecture.part_records.map(p=>[p.id,p]));
  architecture.traverse(node=>{if(!node.isMesh)return;const part=architectureParts.get(node.name);node.userData.cutaway=part&&(['wall_upper','window','ceiling','ceiling_fixture','identification_label'].includes(part.role)||node.name.startsWith('door_'));if(node.material?.transparent)node.castShadow=false});
- renderBatches.push({id:'architecture',...batchStaticMeshes(architecture)});
+ renderBatches.push({id:'architecture',...batchStaticMeshes(architecture,new Set(['outdoor_floor']))});
  scene.add(architecture);visibility();
  for(let i=0;i<assetList.length;i+=3){await Promise.all(assetList.slice(i,i+3).map(async a=>{const model=await loadPinned(a.geometry,a.geometry_sha256);prepare(model);const group=model.scene;const protectedParts=new Set(a.id==='g1'?a.part_names:manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));renderBatches.push({id:a.id,...batchStaticMeshes(group,protectedParts)});group.position.set(...a.position_m);group.traverse(o=>{if(o.isMesh)o.userData.assetId=a.id});groups.set(a.id,group);scene.add(group);const option=document.createElement('option');option.value=a.id;option.textContent=a.label;$('asset-select').append(option)}));$('loading').textContent='载入模型 '+Math.min(i+3,assetList.length)+' / '+assetList.length}
  for(const config of manifest.inspection_states){const group=groups.get(config.asset),asset=assetList.find(a=>a.id===config.asset);const parts=[];group.traverse(node=>{if(config.parts.includes(node.name))parts.push({node,position:node.position.clone(),quaternion:node.quaternion.clone()})});if(parts.length!==config.parts.length)throw Error(config.id+' 的开闭部件未完整匹配');const p=config.pivot_m||[0,0,0];const n=asset.normalization_matrix;states.set(config.id,{config,parts,normalization:n,pivot:new THREE.Vector3(p[0]+n[0][3],p[1]+n[1][3],p[2]+n[2][3])})}
@@ -265,6 +270,12 @@ try{
  $('workspace-counts').textContent=workspace.counts.targets+' 个检查点：'+workspace.counts.position_candidates+' 个位置候选，'+workspace.counts.needs_revision+' 个需要调整或进一步求解。位置候选尚未通过操作验收。';
  for(const target of workspace.targets){const tr=document.createElement('tr');for(const text of [target.id,target.result.position_candidate?'位置候选':'待解决',(target.result.position_error_m*1000).toFixed(1)+' mm',target.result.external_overlaps.length+' 处',target.result.self_contacts_checked?target.result.self_penetrations_over_0_5mm.length+' 对':'未检查']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),button=document.createElement('button');button.textContent='查看静态姿态';button.dataset.target=target.id;button.onclick=()=>inspectWorkspace(target);td.append(button);tr.append(td);$('workspace-targets').append(tr)}
  $('workspace-reset').onclick=resetStates;
+ weatherComposition=new WeatherComposition({scene,groups,architecture,read,hashes:fetchedHashes,loadPinned,prepare,
+  refresh:()=>{if(weatherComposition?.enabled){resetStates();$('isolate').checked=false;
+   if(weatherComposition.record.hide_scene_asset_ids.includes(selected)){selected=null;$('asset-select').value='';$('asset-views').hidden=true;$('state-control').hidden=true;$('asset-detail').textContent='U30 与小车现在显示安装参考位置；选择原资产会恢复基础陈列。'}
+  }visibility()},
+  focus:(position,target)=>{setView(position,target);$('viewport').scrollIntoView({block:'center'})}});
+ await weatherComposition.load();
  document.documentElement.dataset.normalRepairs=repairedNormals;
  document.documentElement.dataset.renderBatches=JSON.stringify(renderBatches);
  document.documentElement.dataset.geometryPreserved=String(renderBatches.every(b=>b.sourceGeometryPreserved));
