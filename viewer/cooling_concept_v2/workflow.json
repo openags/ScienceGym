@@ -1,0 +1,844 @@
+{
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "requested_deliverable": "Clean conceptual long-horizon video in the existing complete laboratory",
+  "scenario": "Representative calibrated, optically characterized white/black tracked-stagnation workflow",
+  "duration_s": 818.5711026677743,
+  "robot": "Existing Unitree G1 + Inspire FTP, one identity throughout",
+  "source_scene": {
+    "path": "viewer/cooling_concept_v2/runtime_scene.json",
+    "sha256": "408ee9790ce7b3ff99125292aeafaad631989a09d4425be1831613b7ca8b458f",
+    "parent_path": "assets/cooling_lab_v1/scene.json"
+  },
+  "source_operations": {
+    "path": "tasks/directional_cooling_operations_v3/operations.json",
+    "sha256": "e296501cc9e642b9dd512bf6b946661196a1f5ab88ea089167c5f942cbe45baa"
+  },
+  "initial_conditions": [
+    "Machined/coated components and two constructed apparatus assemblies are already available; fabrication and curing are outside this concept sequence.",
+    "Calibration plumbing, supplied calibration conditions, optical references and compatible sample holders are prepared.",
+    "The existing utility cart is staged in the southern aisle with the identified DAQ and two disabled source meters.",
+    "White and black apparatus are staged at their respective assembly benches; their identities remain unchanged through cart and outdoor transfers.",
+    "A removable ordinary 1150 x 430 x 12 mm leveling board rests on the existing cart shelf supports; its load stability is not yet qualified.",
+    "Both inferred aluminum aperture lids have ordinary folded pull tabs; these handling details are not specified by the paper.",
+    "DRA-2500 and IntegratIR start in inferred installed configurations. The Cary PTFE standard is on its port; the FTIR gold standard starts and ends protected in its cap. Mounting, alignment and detector cable mating are not executed or qualified here."
+  ],
+  "sequence": [
+    {
+      "id": "intro",
+      "title": "论文实验准备",
+      "description": "Bhatia et al. · 定向辐射冷却实验",
+      "start_s": 0,
+      "end_s": 6,
+      "source_operation_refs": []
+    },
+    {
+      "id": "to_bath",
+      "title": "前往温度校准工位",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 6,
+      "end_s": 17.97822000568126,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "calibration",
+      "title": "校准温度探头",
+      "description": "水浴、参考 RTD 与热电偶通道比对",
+      "start_s": 17.97822000568126,
+      "end_s": 38.97822000568126,
+      "source_operation_refs": [
+        "CAL_MOUNT",
+        "CAL_ACQUIRE"
+      ]
+    },
+    {
+      "id": "to_reference",
+      "title": "核对参考温度读数",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 38.97822000568126,
+      "end_s": 44.14270515561219,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "核对参考与通道",
+      "description": "检查参考 RTD 和已分配探头身份",
+      "start_s": 44.14270515561219,
+      "end_s": 54.14270515561219,
+      "source_operation_refs": [
+        "CAL_MOUNT",
+        "CAL_ACQUIRE"
+      ]
+    },
+    {
+      "id": "to_cary",
+      "title": "转移至光学测量工位",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 54.14270515561219,
+      "end_s": 69.15527430559875,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "solar",
+      "title": "太阳波段光学测量",
+      "description": "先参考、再装样、闭盖扫描与取样",
+      "start_s": 69.15527430559875,
+      "end_s": 92.15527430559875,
+      "source_operation_refs": [
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "OPT_UNLOAD"
+      ]
+    },
+    {
+      "id": "to_ftir",
+      "title": "转移至红外光谱工位",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 92.15527430559875,
+      "end_s": 104.06601370135601,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "ftir_open",
+      "title": "打开红外仪器样品舱",
+      "description": "握住实际把手，沿铰链打开舱盖",
+      "start_s": 104.06601370135601,
+      "end_s": 124.06601370135601,
+      "source_operation_refs": [
+        "OPT_REFERENCE.03"
+      ]
+    },
+    {
+      "id": "approach_reference_cap",
+      "title": "前往参考片保护帽",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 124.06601370135601,
+      "end_s": 125.62730402393666,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "reference_restore",
+      "title": "将金参考片放到测量端口",
+      "description": "从保护帽取出同一参考片，支持非光学部位并放稳",
+      "start_s": 125.62730402393666,
+      "end_s": 152.5633133899344,
+      "source_operation_refs": [
+        "OPT_REFERENCE.06"
+      ]
+    },
+    {
+      "id": "close_reference_access",
+      "title": "返回样品舱把手",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 152.5633133899344,
+      "end_s": 154.44718435767632,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "ftir_background_close",
+      "title": "关闭背景测量样品舱",
+      "description": "背景采集前关闭样品舱",
+      "start_s": 154.44718435767632,
+      "end_s": 174.44718435767632,
+      "source_operation_refs": [
+        "OPT_REFERENCE.08"
+      ]
+    },
+    {
+      "id": "ftir_background",
+      "title": "红外背景采集准备",
+      "description": "参考片位于端口；扫描控制动作正在重建",
+      "start_s": 174.44718435767632,
+      "end_s": 180.44718435767632,
+      "source_operation_refs": [
+        "OPT_REFERENCE.09",
+        "OPT_REFERENCE.10"
+      ]
+    },
+    {
+      "id": "ftir_sample_open",
+      "title": "打开样品舱准备换样",
+      "description": "先停止背景采集，再打开样品舱",
+      "start_s": 180.44718435767632,
+      "end_s": 200.44718435767632,
+      "source_operation_refs": [
+        "OPT_MOUNT"
+      ]
+    },
+    {
+      "id": "approach_gold_reference",
+      "title": "前往参考片取放位置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 200.44718435767632,
+      "end_s": 202.33105532541825,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "reference_store",
+      "title": "取出并保护存放金参考片",
+      "description": "夹持非光学部位，侧向转移后放入保护帽",
+      "start_s": 202.33105532541825,
+      "end_s": 229.26706469141598,
+      "source_operation_refs": [
+        "OPT_REFERENCE",
+        "OPT_UNLOAD"
+      ]
+    },
+    {
+      "id": "infrared",
+      "title": "红外样品交换准备",
+      "description": "参考片已保护存放；薄样品与扫描控制动作正在重建",
+      "start_s": 229.26706469141598,
+      "end_s": 237.26706469141598,
+      "source_operation_refs": [
+        "OPT_MOUNT",
+        "OPT_SCAN"
+      ]
+    },
+    {
+      "id": "return_to_ftir_handle",
+      "title": "返回样品舱把手",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 237.26706469141598,
+      "end_s": 238.82835501399663,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "ftir_close",
+      "title": "关闭红外仪器样品舱",
+      "description": "握住把手，沿铰链盖回并撤手",
+      "start_s": 238.82835501399663,
+      "end_s": 258.82835501399666,
+      "source_operation_refs": [
+        "OPT_REFERENCE.08"
+      ]
+    },
+    {
+      "id": "to_white",
+      "title": "前往白色装置装配台",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 258.82835501399666,
+      "end_s": 276.0374595697558,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "assemble_white",
+      "title": "白色装置检查与探头安装",
+      "description": "检查双层纳米 PE 膜，安装探头并复位屏蔽与反射部件",
+      "start_s": 276.0374595697558,
+      "end_s": 303.0374595697558,
+      "source_operation_refs": [
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "TC_ATTACH"
+      ]
+    },
+    {
+      "id": "to_black",
+      "title": "前往黑色对照装置工位",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 303.0374595697558,
+      "end_s": 314.0282618391421,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "assemble_black",
+      "title": "黑色对照装置检查与探头安装",
+      "description": "保持装置结构一致，区分白／黑发射体身份",
+      "start_s": 314.0282618391421,
+      "end_s": 339.0282618391421,
+      "source_operation_refs": [
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "TC_ATTACH"
+      ]
+    },
+    {
+      "id": "to_wiring",
+      "title": "准备采集与转运",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 339.0282618391421,
+      "end_s": 347.96013882219654,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "wiring",
+      "title": "连接探头与采集通道",
+      "description": "输出关闭状态下接线、检查极性与线缆固定",
+      "start_s": 347.96013882219654,
+      "end_s": 365.96013882219654,
+      "source_operation_refs": [
+        "TC_ATTACH",
+        "SYNC",
+        "STOP_SAFE"
+      ]
+    },
+    {
+      "id": "to_pick_white",
+      "title": "装载白色装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 365.96013882219654,
+      "end_s": 369.53724937231425,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "pick_white",
+      "title": "双手托持白色装置",
+      "description": "从结构底座承托，避开薄膜和光学表面",
+      "start_s": 369.53724937231425,
+      "end_s": 378.31366899788327,
+      "source_operation_refs": [
+        "MOVE.02"
+      ]
+    },
+    {
+      "id": "carry_white",
+      "title": "将白色装置放上小车",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 378.31366899788327,
+      "end_s": 382.24446878394474,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "place_white",
+      "title": "白色装置入车",
+      "description": "放稳后松手",
+      "start_s": 382.24446878394474,
+      "end_s": 393.13004753157884,
+      "source_operation_refs": [
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "to_pick_black",
+      "title": "装载黑色对照装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 393.13004753157884,
+      "end_s": 402.79152178935675,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "pick_black",
+      "title": "双手托持黑色装置",
+      "description": "保持白／黑样机身份独立",
+      "start_s": 402.79152178935675,
+      "end_s": 412.10541807937483,
+      "source_operation_refs": [
+        "MOVE.02"
+      ]
+    },
+    {
+      "id": "carry_black",
+      "title": "将黑色装置放上小车",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 412.10541807937483,
+      "end_s": 421.1068064811501,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "place_black",
+      "title": "黑色装置入车",
+      "description": "保持装置间距与采集设备空间",
+      "start_s": 421.1068064811501,
+      "end_s": 432.00017809149455,
+      "source_operation_refs": [
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "grasp_cart",
+      "title": "握住小车把手",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 432.00017809149455,
+      "end_s": 436.5676275328274,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "take_cart_handle",
+      "title": "双手握住小车把手",
+      "description": "准备转运",
+      "start_s": 436.5676275328274,
+      "end_s": 442.5676275328274,
+      "source_operation_refs": [
+        "MOVE.02"
+      ]
+    },
+    {
+      "id": "turn_cart",
+      "title": "转向主通道",
+      "description": "沿主通道转运白／黑装置和采集设备",
+      "start_s": 442.5676275328274,
+      "end_s": 448.8409487572133,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "outdoor_transfer",
+      "title": "把实验装置运至室外",
+      "description": "沿主通道转运白／黑装置和采集设备",
+      "start_s": 448.8409487572133,
+      "end_s": 465.67643262818103,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "release_cart_handle",
+      "title": "停稳小车",
+      "description": "松开把手，准备卸载",
+      "start_s": 465.67643262818103,
+      "end_s": 471.67643262818103,
+      "source_operation_refs": [
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "approach_black_cart",
+      "title": "卸下黑色对照装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 471.67643262818103,
+      "end_s": 475.42354394325406,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "unload_black",
+      "title": "从小车取出黑色装置",
+      "description": "双手支持底座",
+      "start_s": 475.42354394325406,
+      "end_s": 484.27448271334123,
+      "source_operation_refs": [
+        "SITE_SETUP"
+      ]
+    },
+    {
+      "id": "carry_black_out",
+      "title": "布置黑色对照装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 484.27448271334123,
+      "end_s": 491.01632316139825,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "install_black",
+      "title": "黑色装置就位",
+      "description": "放置在独立室外支撑台上",
+      "start_s": 491.01632316139825,
+      "end_s": 503.3405586107477,
+      "source_operation_refs": [
+        "SITE_SETUP"
+      ]
+    },
+    {
+      "id": "approach_white_cart",
+      "title": "卸下白色冷却装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 503.3405586107477,
+      "end_s": 511.0687021106766,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "unload_white",
+      "title": "从小车取出白色装置",
+      "description": "双手支持底座",
+      "start_s": 511.0687021106766,
+      "end_s": 519.5417759040344,
+      "source_operation_refs": [
+        "SITE_SETUP"
+      ]
+    },
+    {
+      "id": "carry_white_out",
+      "title": "布置白色冷却装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 519.5417759040344,
+      "end_s": 532.0719162931583,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "install_white",
+      "title": "白色装置就位",
+      "description": "确认装置朝向与探头线缆",
+      "start_s": 532.0719162931583,
+      "end_s": 544.3961517425078,
+      "source_operation_refs": [
+        "SITE_SETUP"
+      ]
+    },
+    {
+      "id": "to_logger",
+      "title": "连接室外采集通道",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 544.3961517425078,
+      "end_s": 556.1977884857575,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "outdoor_connect",
+      "title": "检查延长线与采集",
+      "description": "连接已标识探头、固定线缆并开始同步记录",
+      "start_s": 556.1977884857575,
+      "end_s": 572.1977884857575,
+      "source_operation_refs": [
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC"
+      ]
+    },
+    {
+      "id": "baseline",
+      "title": "遮盖基线",
+      "description": "两只铝盖保持闭合；论文基线为五分钟，此处压缩展示等待",
+      "start_s": 572.1977884857575,
+      "end_s": 579.1977884857575,
+      "source_operation_refs": [
+        "LID_BASELINE"
+      ]
+    },
+    {
+      "id": "to_white_lid",
+      "title": "移除白色装置铝盖",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 579.1977884857575,
+      "end_s": 591.0453624463962,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "open_white",
+      "title": "移除白色装置铝盖",
+      "description": "保留两层 PE 膜，把铝盖放到支撑台",
+      "start_s": 591.0453624463962,
+      "end_s": 608.6862506417074,
+      "source_operation_refs": [
+        "LID_REMOVE"
+      ]
+    },
+    {
+      "id": "track_white",
+      "title": "调整白色装置反射片",
+      "description": "移动并锁定反射片，使其遮挡发射体处直射日光",
+      "start_s": 608.6862506417074,
+      "end_s": 619.6862506417074,
+      "source_operation_refs": [
+        "TRACK_ADJUST"
+      ]
+    },
+    {
+      "id": "to_black_lid",
+      "title": "移除黑色装置铝盖",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 619.6862506417074,
+      "end_s": 634.8106175872192,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "open_black",
+      "title": "移除黑色装置铝盖",
+      "description": "将第二只铝盖放到独立位置",
+      "start_s": 634.8106175872192,
+      "end_s": 652.4515057860724,
+      "source_operation_refs": [
+        "LID_REMOVE"
+      ]
+    },
+    {
+      "id": "track_black",
+      "title": "调整黑色装置反射片",
+      "description": "完成对照装置的遮阳调整",
+      "start_s": 652.4515057860724,
+      "end_s": 663.4515057860724,
+      "source_operation_refs": [
+        "TRACK_ADJUST"
+      ]
+    },
+    {
+      "id": "leave_optical_region",
+      "title": "离开光学测量区域",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 663.4515057860724,
+      "end_s": 670.2562590937766,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "acquire",
+      "title": "记录白／黑装置温度",
+      "description": "退出遮挡范围；展示采集过程，不生成实验结果",
+      "start_s": 670.2562590937766,
+      "end_s": 679.2562590937766,
+      "source_operation_refs": [
+        "TRACKED_STAGNATION"
+      ]
+    },
+    {
+      "id": "stop",
+      "title": "停止采集并断开连接",
+      "description": "确认输出关闭、保存记录，再处理线缆",
+      "start_s": 679.2562590937766,
+      "end_s": 691.2562590937766,
+      "source_operation_refs": [
+        "STOP_SAFE",
+        "UNMOUNT"
+      ]
+    },
+    {
+      "id": "to_collect_black",
+      "title": "收纳黑色装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 691.2562590937766,
+      "end_s": 697.8913682870178,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "cover_black",
+      "title": "盖回黑色装置铝盖",
+      "description": "取回支撑台上的铝盖，盖好后再搬运",
+      "start_s": 697.8913682870178,
+      "end_s": 715.532256485871,
+      "source_operation_refs": [
+        "UNMOUNT",
+        "RESET"
+      ]
+    },
+    {
+      "id": "collect_black",
+      "title": "收回黑色装置",
+      "description": "保留薄膜与探头，承托底座",
+      "start_s": 715.532256485871,
+      "end_s": 725.8564919352204,
+      "source_operation_refs": [
+        "UNMOUNT"
+      ]
+    },
+    {
+      "id": "return_black",
+      "title": "黑色装置回到小车",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 725.8564919352204,
+      "end_s": 732.6078419993004,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "stow_black",
+      "title": "收纳黑色装置",
+      "description": "放稳在原分配位置",
+      "start_s": 732.6078419993004,
+      "end_s": 743.5265990330782,
+      "source_operation_refs": [
+        "RESET"
+      ]
+    },
+    {
+      "id": "to_collect_white",
+      "title": "收纳白色装置",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 743.5265990330782,
+      "end_s": 754.8153228299863,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "cover_white",
+      "title": "盖回白色装置铝盖",
+      "description": "取回铝盖并保护发射孔，随后收纳装置",
+      "start_s": 754.8153228299863,
+      "end_s": 773.2064186732321,
+      "source_operation_refs": [
+        "UNMOUNT",
+        "RESET"
+      ]
+    },
+    {
+      "id": "collect_white",
+      "title": "收回白色装置",
+      "description": "保持器件身份与完整结构",
+      "start_s": 773.2064186732321,
+      "end_s": 783.5306541225815,
+      "source_operation_refs": [
+        "UNMOUNT"
+      ]
+    },
+    {
+      "id": "return_white",
+      "title": "白色装置回到小车",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 783.5306541225815,
+      "end_s": 796.3746650009253,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "stow_white",
+      "title": "收纳白色装置",
+      "description": "把装置放回小车并检查台面",
+      "start_s": 796.3746650009253,
+      "end_s": 806.9925302685523,
+      "source_operation_refs": [
+        "RESET"
+      ]
+    },
+    {
+      "id": "finish_position",
+      "title": "完成实验后的收纳",
+      "description": "在同一实验室中转移至下一工位",
+      "start_s": 806.9925302685523,
+      "end_s": 811.5711026677743,
+      "source_operation_refs": [
+        "MOVE.02",
+        "MOVE.04"
+      ]
+    },
+    {
+      "id": "finish",
+      "title": "实验流程完成",
+      "description": "白／黑装置、探头和记录保持对应",
+      "start_s": 811.5711026677743,
+      "end_s": 818.5711026677743,
+      "source_operation_refs": [
+        "ARCHIVE",
+        "RESET"
+      ]
+    }
+  ],
+  "source_logic": [
+    "Calibration precedes emitter probe installation.",
+    "Optical reference/sample loading precedes closed-cover acquisition.",
+    "White and black assemblies remain separate identified objects.",
+    "Transport and outdoor placement precede the covered-aperture baseline.",
+    "The aluminum aperture lids are removed after the covered baseline; both PE layers stay installed.",
+    "The reflector is adjusted and the operator withdraws from the optical area.",
+    "Acquisition is stopped before disconnecting and collecting the assemblies.",
+    "After acquisition stops, replace each aluminum cover before collecting the apparatus; return handling is an explicit reconstruction inference.",
+    "The IntegratIR substitution sequence first loads the gold standard and closes the access for background; it then removes and caps the standard before specimen exchange. The selector is initially SAMPLE; actual scan control and specimen handling remain incomplete."
+  ],
+  "presentation_inferences": [
+    "Authored kinematic choreography with exact source-geometry reviews; no force or dynamics validation.",
+    "Apparatus transport grips the two structural frame uprights; some development UI text still describes an obsolete base-support grasp.",
+    "Cover removal and replacement use a fitted articulated pinch; both PE films stay installed.",
+    "Calibration, optical loading, probe installation, reflector locking and wiring remain unfinished; generic work poses do not establish their completion.",
+    "The five-minute covered baseline is compressed for presentation; no measured temperature or cooling-power result is fabricated.",
+    "This selected route does not show PID-power sweeps, alternate LDPE/band configurations or all weather-dependent thermal-map sessions.",
+    "Nicolet cover motion is authored to 65 degrees; open-angle retention is inferred and not dynamically qualified.",
+    "Twenty apparatus/cover free-arm paths passed selected sampled regressions; the integrated reference prototype passed 1146 states. The reordered reference/access method in reference_02 passes 1660 sampled states; no whole-film acceptance."
+  ],
+  "video_overlays": false,
+  "physics_claim": false,
+  "qualification_credit": false,
+  "asset_count": 81,
+  "status": "unpublished_development_version_not_accepted",
+  "source_sha256": {
+    "main.js": "d8a7bd9e15db89b17ae73bc20ffc32f7a439a7b41eab1dbec7090bf2b046f54f",
+    "motion_poses.json": "5b6d0739d043f8f573e0490a829ec9c7bf920329ba03ef1df66675f6848db63d",
+    "hand_ik.js": "094713e61835cc381dd64caa58758026887d31e791ab488288ab039c9f1c1c05",
+    "grasp_profile.json": "32efa9ec6a0990c02aa27afbf3078c5ee239a3c582e8b7c03978bca336f3a265",
+    "optical_setup.json": "041ab666aa099da3e2ed432100984680fa1381e9464c107b9f37cb5c399dad2c",
+    "optical_approach_paths.json": "2948fc0ee2899e2d2a6f2f55e9b78f4c9777a86a791a51652994122b8483f992",
+    "manipulation_motion.js": "1d6d15379e11d23f1099b7c98319fbce959ecf5492a3ab2fa710eebdf9b2cde8",
+    "manipulation_approach_paths.json": "a157d1506a574b065c03d90b4a2a78e391efb05110d760ebaf8f0eec468ad6d1",
+    "lid_contact_paths.json": "786a6fa753ad8f33724d0eb206119c2086c41c0516a147c7d7286c7e1f341fec",
+    "reference_motion.js": "5e2c3b2992ca65ba4772f035d2c499f997bd5f1e19eb135aa0f8d999c48f4aa5",
+    "reference_transfer.json": "7aa5e8f69becd1ef523c8be90ce9125120ad074f5ba5629a734584771c028ef9",
+    "runtime_scene.json": "408ee9790ce7b3ff99125292aeafaad631989a09d4425be1831613b7ca8b458f",
+    "export_audit.py": "c8fb0541f015c70fc1db81e2834d20e3a5b6d796db314de1fbaef8ce23db6ac1"
+  },
+  "visual_acceptance": false,
+  "development_status": "viewer/cooling_concept_v2/development_status.json",
+  "timing_scope": "Current development choreography; not a rendered or accepted full film",
+  "planned_free_arm_paths": 20,
+  "film_delivered": false,
+  "reference_transfer": {
+    "path": "reference_transfer.json",
+    "one_way_duration_s": 26.936009365997723,
+    "sidestep": "Four 200 mm foot placements; 400 mm body translation; authored inverse kinematics, not dynamics"
+  },
+  "latest_reference_review": "audits/reference_02/sampled_interaction_review.json"
+}

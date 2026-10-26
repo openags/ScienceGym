@@ -57,6 +57,134 @@ all failures. Missed grasps, slips, incomplete connections, blocked covers and
 sensor failures must be recognized. These targets do not imply a statistical
 guarantee of general reliability.
 
+## ScienceGym manuscript after demo delivery
+
+On 27 October 2026 (Asia/Singapore), the owner requested an illustrated
+ScienceGym research manuscript **after completing the demo**. This is an
+additional deliverable; manuscript preparation must not displace the current
+demo repair and validation work. The current repository does not bundle a
+ScienceGym manuscript. Its README mentions an earlier manuscript outside this
+release, whose text and figures must be located and reviewed before reuse.
+
+After the demo is complete, write a full manuscript with an editable source,
+compiled PDF, references, and separately exportable figures. Explain the
+paper-to-manipulation reconstruction method, evidence and inferred steps,
+task and state representations, source-backed assets, humanoid execution,
+controller/evaluator separation, and reproducible evaluation. Include a
+system overview, a worked paper-to-task example, laboratory and asset figures,
+an annotated operation sequence, and plots based on recorded outcomes.
+Use actual traces for results and failures; the presentation film supplies
+illustrations only. Do not claim 1,000 completed papers, qualified branches,
+or success rates without the corresponding evidence. Venue-specific formatting
+can follow once the manuscript and results exist. The owner has authorized
+writing this paper, but has not requested journal/conference submission.
+
+The manuscript package will be maintained under `manuscript/sciencegym/` once
+writing starts, with `main.tex`, a bibliography, compiled PDF, and editable
+figure sources. The planned figure set is:
+
+1. ScienceGym system overview: paper evidence, reconstructed manipulation
+   steps, task/state representation, sourced assets, execution and evaluation.
+2. One worked reconstruction: an inspected paper passage or paraphrase linked
+   to its operation chain, with inferred details distinguished from evidence.
+3. Laboratory and commercial assets: dimensioned layout, robot access space,
+   and source-to-model comparisons with source attribution.
+4. A continuous demo sequence: actual rendered frames tied to timestamps,
+   object identities and operation IDs, including grasp and release details.
+5. Evaluation: plots generated from retained run records, covering the tested
+   scope, trial counts, failures and recovery; untested claims remain explicit.
+6. Failure analysis: examples such as contact errors or incorrect object-state
+   transitions, together with the implemented corrections and their evidence.
+
+Each figure and results table must identify its generating script, source
+revision and input records so it can be rebuilt. Presentation frames and
+measured simulation outcomes must be identified in their respective captions.
+The introduction, related work, method, demo case study, evaluation, limitations
+and conclusion should form a complete paper, rather than a collection of
+project screenshots. The available results determine the paper's claims;
+the intended future scale of 1,000 papers is not a completed dataset.
+
+The presentation-film repair remains a prerequisite for this writing request.
+The second development viewer now starts the Cary DRA and Nicolet IntegratIR
+inside their instrument bays, with their own PTFE and gold standards at the
+actual sphere ports. These are explicitly inferred initial configurations;
+installation, detector cable mating, optical alignment and support stability
+are not executed or qualified by their placement. The former flying specimen
+into an empty instrument bay has been removed.
+
+The two Nicolet cover phases now have a continuous arm solution and
+collision-planned approach/withdrawal paths. Their
+[`optical_07` sampled review](../../viewer/cooling_concept_v2/audits/optical_07/sampled_interaction_review.json)
+checks 410 states at 0.1-second spacing, including phase boundaries: no sampled
+robot/environment or unexpected self intersections, joint-limit or speed
+failures, or sole penetration; maximum palm/pregrasp endpoint error is
+0.198 mm. This is a geometric subtask result, not complete optical handling,
+force/dynamics validation, full-film acceptance or branch qualification.
+Earlier failed attempts remain available. The commercial cover's retention
+at the selected 65-degree open angle is an unresolved mechanical inference.
+
+The collision reviewers also now apply the instrument group's world transform
+to static source parts that the viewer merges for rendering. Historical
+aperture-cover and cart-room samples were rechecked after this fix and retained
+their zero unexpected intersection counts. The historical lowered-idle
+`idle_regression_04` revision was rejected for 108 robot/environment intersection
+states during bench approach and withdrawal. Twenty collision-planned free-arm
+paths now replace those transitions. A later aperture-cover IK branch jump
+was resolved with continuous contact seeds and four revised path endpoints.
+The independent [`approach_03` review](../../viewer/cooling_concept_v2/audits/approach_03/sampled_interaction_review.json)
+checks 2,732 selected states at 0.1-second spacing: zero unexpected environment,
+self or payload intersections, joint-limit/speed failures or sole penetration.
+Its cart/room check covers 367 states. The two return-carrying routes omitted
+by the original phase-name selection have a separate
+[`return_01` review](../../viewer/cooling_concept_v2/audits/return_01/sampled_interaction_review.json):
+207 states pass the same robot, payload and motion checks. Selection by action
+is now available to avoid relying only on phase names. These are sampled
+subtask reviews, not continuous-time, whole-film, contact-force or dynamics
+qualification. Earlier failed attempts and their exact source snapshots remain.
+
+The gold reference's initially protruding optical-face datum has been corrected
+to a selected 0.05 mm recess behind the supporting shoulder. The manufacturer's
+photograph establishes a central face within its holder, not this exact depth;
+the dimension remains an explicit inference. Its installed source-mesh review
+now reports no reference/port intersections. Screening 23 continuous left-arm
+lift candidates yielded one 61-knot candidate without sampled intersections in
+the stated planning region. That component began at a closed grasp and omitted
+ankle meshes. It is now integrated with planned hand entry/exit, partial opening,
+grasp closure, four grounded lateral steps, held-reference transfer, cap seating
+and release. The complete source robot and laboratory were then checked in
+[`reference_01`](../../viewer/cooling_concept_v2/audits/reference_01/sampled_interaction_review.json):
+1,146 sampled states pass joint, sole, self, robot/environment and reference/
+environment checks. Intended non-optical support contacts are bounded by
+part identity, contact location, support height and a 1 micrometre tolerance;
+the maximum reported numeric depths are 2.55 nm at the cap and 6.02 nm at the
+port panel. Optical-face contacts are never waived. This is sampled geometry,
+not force, balance, full optical procedure or film qualification.
+
+A separate inferred protective-cap candidate supports the non-optical holder
+shoulder while keeping the optical face 15.05 mm above its inner floor. Its
+local 51-state hand-closure review reports no hand/cap/reference intersections;
+the complete-asset candidate preserves the other 90 source parts exactly.
+It is saved under `assets/pike_integratir_dtgs_v1/revisions/cap_support/` and
+used by the development-only `viewer/cooling_concept_v2/runtime_scene.json`;
+the original laboratory manifest and asset remain intact. Internal fit
+dimensions are inferred, not manufacturer CAD or tolerances. The reviewers
+now read and verify the manifest and geometry hashes frozen with each export.
+
+The subsequent `reference_02` revision reorders the operation to match the
+IntegratIR substitution method: retrieve the capped standard, place it on the
+port, close the access for background, reopen, then remove and cap the standard
+before specimen exchange. The standard starts and ends in protected storage.
+Its [1,660 sampled states](../../viewer/cooling_concept_v2/audits/reference_02/sampled_interaction_review.json)
+pass the independent joint, sole, self, robot/environment and reference/
+environment checks. Background/sample scan controls and actual specimen
+exchange are still placeholders, so this
+sequence is not a completed optical measurement. The development timeline is
+818.57 seconds long; no corresponding full movie has been rendered or accepted.
+
+Reference/specimen
+exchange, calibration, sensor installation, reflector locking and wiring
+remain unfinished; no replacement full film or manuscript has been delivered.
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a
@@ -85,8 +213,15 @@ laboratory and transfers to stationary torque control at 6.602 s. It passes
 independent replay, feet-only floor contact and stopping checks. The official
 G1 29DoF velocity policy, training actuator assumptions, IMU heading correction,
 rotating sole-wrench constraints and all seven development attempts are
-recorded in the runtime guide. This is not yet joined to the tray sequence;
-carrying, goal-directed navigation and reliability qualification remain open.
+recorded in the runtime guide. A subsequent joined attempt,
+`simulation/g1_cooling_demo/runs/laboratory_mission_04`, ran walking, parking,
+posture preparation and tray manipulation in one 99.162-second simulation.
+Its independent evaluation **failed**: the tray returned 55.2 mm from its
+source location, exceeding the 20 mm threshold, and hand/worktop contacts
+were detected. Exact motor replay and payload containment passed. The run and
+three earlier failed attempts remain available; this adds no qualified branch
+or reliability credit. Carrying, navigation and complete campaign qualification
+remain open.
 
 ## Implemented asset-phase changes
 
