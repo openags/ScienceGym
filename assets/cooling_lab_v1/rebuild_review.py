@@ -50,6 +50,8 @@ def main():
       'assets/cooling_lab_v1/build_weather_preparation.py','assets/cooling_lab_v1/check_weather_preparation.py','assets/cooling_lab_v1/check_weather_wind_service.py','assets/cooling_lab_v1/check_weather_workspace.py']:
         run(script)
     run('assets/cooling_lab_v1/check_weather_workspace.py','--preparation')
+    run('assets/cooling_lab_v1/build_weather_remainders.py')
+    run('assets/cooling_lab_v1/check_weather_remainders.py')
     run('assets/cooling_lab_v1/build_weather_scene_binding.py')
     run('assets/cooling_lab_v1/check_weather_scene_binding.py')
     if a.browser:

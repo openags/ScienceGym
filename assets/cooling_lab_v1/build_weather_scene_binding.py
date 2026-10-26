@@ -14,6 +14,7 @@ def build():
         'weather_storage_assets','weather_preparation_assets','outdoor_ground_assets',
         'weather_station_checks','weather_storage_checks','weather_preparation_checks',
         'outdoor_ground_checks','weather_service_checks','weather_wind_service_checks',
+        'weather_remainders_assets','weather_remainders_checks',
         'nut_driver_assets','mast_driver_assets','wind_driver_assets',
         'nut_driver_checks','mast_driver_checks','wind_driver_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
@@ -60,6 +61,17 @@ def build():
         else:raise ValueError('Unassigned storage part '+n)
     for p in r['outdoor_ground_assets']['geometry']['part_records']:
         member('weather_ground_design','替代原室外平板的地面设计','facility:OUTDOOR','ground',p['id'],basis='replacement_site_geometry_not_portable_stock')
+    remainder=r['weather_remainders_assets']
+    module('remainders','小车下层：剩余线材与未用套件',remainder['geometry'],site)
+    for p in remainder['geometry']['part_records']:
+        n=p['id']
+        if n in ['guy_wire_remainder','ground_wire_remainder']:identity='weather_mast_anchoring_set'
+        elif n.startswith('wind_kit__'):identity='weather_wind'
+        elif n.startswith('rs3_kit__'):identity='weather_radiation_shield'
+        elif n.startswith('kit_tray__'):identity='weather_unused_kit_tray'
+        else:raise ValueError('Unassigned remaining-stock part '+n)
+        e=entities.get(identity)
+        member(identity,e['label'] if e else '新增 Bürkle 普通托盘：未用套件',e['resource_id'] if e else 'tools:supported_carrier','remainders',n)
     tools=[]
     for i,(name,identity,label) in enumerate([
         ('nut_driver_assets','weather_nut_driver_sw7','Wiha 34123 · SW7'),
