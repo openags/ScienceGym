@@ -14,9 +14,9 @@ staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders 
 access postures are inspection tools, not physics-controlled robot actions.
 
 The main viewer now has an optional **weather-station installation reference**
-inside the complete laboratory. Its 531 named parts cover the station, cart,
-ground, remaining/unused stock, six ordinary tools and a grease tube. `weather_scene_binding.json` assigns every
-part to exactly one of 32 selected identities. The existing U30 and utility
+inside the complete laboratory. Its 538 named parts cover the station, cart,
+ground, remaining/unused stock, seven ordinary tools and a grease tube. `weather_scene_binding.json` assigns every
+part to exactly one of 33 selected identities. The existing U30 and utility
 cart are hidden in their original locations when their alternative representations
 are shown. Fourteen cutoffs remain associated with their original ties, and the
 three removed plugs remain part of the same logger. The independent Omega ambient
@@ -196,7 +196,7 @@ Further trials/reset budgets, ordinary application tools and cleanup stock
 remain open. This silicone-free product does not satisfy the U30 manual's
 separate silicone-grease requirement. Tube deformation, dispensing, sealing,
 compatibility and robot operation remain unqualified. The complete composition
-now contains eleven modules, 32 selected identities and 531 named geometry parts;
+now contains twelve modules, 33 selected identities and 538 named geometry parts;
 these counts grant no accepted initial inventory or owner acceptance.
 
 The [tape-measure inspector](../../viewer/lab_review_v1/tape_measure.html) adds
@@ -224,6 +224,32 @@ brake transmission, elastic clip retention, hook lost motion, blade sag,
 internal-measurement datum, reverse CC scale, calibration and robot use remain
 unqualified. The selected external-measurement tool does not replace the
 existing caliper, establish complete initial inventory or grant owner acceptance.
+
+The [engineer-hammer inspector](../../viewer/lab_review_v1/engineer_hammer.html)
+adds an ordinary Stanley 56-204 candidate for the tripod manual's driving-tool
+requirement. Its 356 mm overall length and 135 mm head length come from 2011
+and 2022 manufacturer-authored catalogues hosted by distributors. Combining
+these editions is a selected reconstruction hypothesis; their shared family
+photographs do not identify one exact production revision. No official CAD
+or factory joint dimensions were retrieved.
+
+The model has one forged steel head with two machined surface domains, a real
+eye, an inferred continuous fiberglass core, yellow jacket and bonding annulus.
+The 1.8 kg catalogue value is head mass. An inferred steel section matches it;
+the represented whole tool is approximately 2.027 kg under selected material
+densities. The initial unconstrained handle loft pinched through the core
+between sections; shape-preserving radius interpolation now retains a continuous
+jacket and the actual surface checks cover that failure. Local section, eye,
+retention, edge rounding and reflectance remain hypotheses.
+
+The static resting reference uses actual head and handle contacts and retains
+at least 7.57 mm mass-centre support margin over the declared density range.
+Its first laboratory placement intersected the retained ambient RTD lead.
+The final candidate is on the front of the service worktop; the old location
+is retained as a negative collision case. Neither the cable nor other obstacles
+are hidden to make it fit. Source head mass is not a qualified tool inertia or
+robot payload rating. Retention strength, impact energy, stake/rod compatibility,
+soil response, tool transport and humanoid use remain unqualified.
 
 The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
 five-primary-port NRC candidate with 138 physical domains and five text faces.

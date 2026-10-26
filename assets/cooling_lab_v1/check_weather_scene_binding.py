@@ -34,7 +34,7 @@ def build():
     check('same_logger_keeps_three_removed_plugs',sum(p['module']=='storage' for p in entities['hobo_u30']['representations'])==3)
     ties=[e for e in r['physical_entities'] if e['id'].startswith('weather_tie_')]
     check('fourteen_ties_each_have_strap_and_cutoff',len(ties)==14 and all(len(e['representations'])==2 and {p['module'] for p in e['representations']}=={'station','storage'} for e in ties))
-    check('six_shared_weather_tools',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench','weather_tape_measure_bt5m'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
+    check('seven_shared_weather_tools',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench','weather_tape_measure_bt5m','weather_engineer_hammer_56_204'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
     check('partial_context_does_not_duplicate_tray_or_claim_initial_state',r['alternative_context']['reused_tray_identity']=='weather_removed_parts_tray' and not r['alternative_context']['simultaneously_visible'] and not r['initial_state_qualified'])
     check('no_acceptance_or_execution_credit',r['owner_acceptance'] is None and not any(r[k] for k in ['robot_use_qualified','installation_qualified','new_manipulation_development_allowed']) and all(not e['initial_stock_credit'] and not e['quantity_accepted'] for e in entities.values()))
     for ref in r['source_artifacts']:
@@ -74,6 +74,12 @@ def build():
             expected=expected@np.array(reference['to_support_plane'])
             check('tape_preserves_actual_base_support',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
                 and reference['support_margin_m']>.001)
+        if t['id']=='weather_engineer_hammer_56_204':
+            reference=json.loads((HERE/'engineer_hammer_checks.json').read_text())['resting_reference']
+            expected=np.eye(4);expected[:3,3]=[9.55,18.35,bench['top_m']]
+            expected=expected@np.array(reference['to_support_plane'])
+            check('hammer_keeps_actual_head_and_handle_support',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
+                and reference['support_margin_m']>.001 and all(c['inside_support'] for c in reference['range_checks']))
     def broad(a,b):return bool(np.all(np.minimum(a[1],b[1])-np.maximum(a[0],b[0])>1e-7))
     occupied=[];collisions=[];tested=0;nonvolume=[]
     # Read only possible neighbours, but use their complete actual meshes.
@@ -108,6 +114,20 @@ def build():
             tool_pairs+=1;v=overlap(a,b)
             if not np.isfinite(v) or abs(v)>.001:tool_hits.append(dict(tool=mid,part=n,other=other+'/'+q,intersection_mm3=v))
     check('staged_tools_clear_station_cart_and_each_other',not tool_hits,narrow_phase_pairs=tool_pairs,intersections=tool_hits)
+    # Retain the actual failed first placement over the ambient RTD lead.
+    # The cable stays in the scene; moving the tool, not hiding the obstacle,
+    # resolves this regression.
+    hammer='weather_engineer_hammer_56_204'
+    hammer_rest=json.loads((HERE/'engineer_hammer_checks.json').read_text())['resting_reference']['to_support_plane']
+    rejected=np.eye(4);rejected[:3,3]=[9.75,18.8,bench['top_m']];rejected=rejected@np.array(hammer_rest)
+    delta=rejected@np.linalg.inv(np.array(modules[hammer]['to_world']))
+    rtd=assets['ambient_rtd'];lead=load_parts(dict(path=rtd['geometry'],sha256=rtd['geometry_sha256']))['pfa_cable_nominal_6ft']
+    lead.apply_translation(rtd['position_m']);rejected_hits=[]
+    for (mid,n),m in new.items():
+        if mid!=hammer or n.endswith('_text'):continue
+        candidate=m.copy();candidate.apply_transform(delta);v=overlap(candidate,lead)
+        if v>.001:rejected_hits.append(dict(part=n,other='ambient_rtd/pfa_cable_nominal_6ft',intersection_mm3=v))
+    check('negative_hammer_placement_over_rtd_lead_rejected',bool(rejected_hits),rejected_to_world=rejected.tolist(),intersections=rejected_hits)
     failed=[c['name'] for c in checks if not c['passed']]
     paths=[Path(__file__),HERE/'weather_scene_binding.json',HERE/'check_weather_assets.py']
     result=dict(schema_version=1,passed=not failed,failed=failed,checks=checks,module_world_bounds_m=bounds,

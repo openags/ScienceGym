@@ -69,9 +69,12 @@ An optional weather-station installation reference adds detailed component
 inspection and identity-preserving tool staging. The linked
 [tape-measure review](viewer/lab_review_v1/tape_measure.html) shows the selected
 Hultafors BT5M casing, clip, hook and three static blade shapes. The complete
-composition has 32 selected physical identities and 531 named parts; these
+composition has 33 selected physical identities and 538 named parts; these
 review counts do not establish complete initial stock, accepted assets or
-robot execution. See the [asset review guide](assets/cooling_lab_v1/README.md).
+robot execution. The [engineer-hammer review](viewer/lab_review_v1/engineer_hammer.html)
+distinguishes catalogue head mass from inferred whole-tool mass and preserves
+a rejected placement over the ambient probe lead. See the
+[asset review guide](assets/cooling_lab_v1/README.md).
 
 The linked [central-support CAD review](viewer/lab_review_v1/lift.html) now
 preserves all 86 solids of a selected Thorlabs L200/M jack, with actual holes,

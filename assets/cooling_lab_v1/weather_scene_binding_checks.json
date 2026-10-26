@@ -124,6 +124,14 @@
       "passed": true
     },
     {
+      "name": "source_assets/cooling_lab_v1/engineer_hammer_assets.json",
+      "passed": true
+    },
+    {
+      "name": "source_assets/cooling_lab_v1/engineer_hammer_checks.json",
+      "passed": true
+    },
+    {
       "name": "every_rendered_part_has_exactly_one_inventory_owner",
       "passed": true
     },
@@ -160,7 +168,7 @@
       "passed": true
     },
     {
-      "name": "six_shared_weather_tools",
+      "name": "seven_shared_weather_tools",
       "passed": true
     },
     {
@@ -228,6 +236,10 @@
       "passed": true
     },
     {
+      "name": "upstream_engineer_hammer_checks",
+      "passed": true
+    },
+    {
       "name": "actual_part_names_station",
       "passed": true
     },
@@ -265,6 +277,10 @@
     },
     {
       "name": "actual_part_names_weather_tape_measure_bt5m",
+      "passed": true
+    },
+    {
+      "name": "actual_part_names_weather_engineer_hammer_56_204",
       "passed": true
     },
     {
@@ -380,6 +396,26 @@
       "passed": true
     },
     {
+      "name": "complete_tool_on_actual_service_worktop_weather_engineer_hammer_56_204",
+      "passed": true,
+      "bounds_m": [
+        [
+          9.217649774905782,
+          18.282499997317792,
+          0.9
+        ],
+        [
+          9.5742343149583,
+          18.41750000268221,
+          0.950397421048482
+        ]
+      ]
+    },
+    {
+      "name": "hammer_keeps_actual_head_and_handle_support",
+      "passed": true
+    },
+    {
       "name": "complete_tool_on_actual_service_worktop_weather_mast_grease_21030",
       "passed": true,
       "bounds_m": [
@@ -411,6 +447,58 @@
       "passed": true,
       "narrow_phase_pairs": 0,
       "intersections": []
+    },
+    {
+      "name": "negative_hammer_placement_over_rtd_lead_rejected",
+      "passed": true,
+      "rejected_to_world": [
+        [
+          0.999245465894285,
+          0.0,
+          -0.03883939867857502,
+          9.75
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          18.8
+        ],
+        [
+          0.03883939867857502,
+          0.0,
+          0.999245465894285,
+          0.9003870929261995
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "intersections": [
+        {
+          "part": "yellow_handle_jacket",
+          "other": "ambient_rtd/pfa_cable_nominal_6ft",
+          "intersection_mm3": 254.6830660553479
+        },
+        {
+          "part": "head_eye_bonding_annulus",
+          "other": "ambient_rtd/pfa_cable_nominal_6ft",
+          "intersection_mm3": 87.03891087650668
+        },
+        {
+          "part": "fiberglass_core",
+          "other": "ambient_rtd/pfa_cable_nominal_6ft",
+          "intersection_mm3": 838.9771511442365
+        },
+        {
+          "part": "forged_steel_head",
+          "other": "ambient_rtd/pfa_cable_nominal_6ft",
+          "intersection_mm3": 769.4600445013374
+        }
+      ]
     }
   ],
   "module_world_bounds_m": {
@@ -534,6 +622,18 @@
         0.9939999967813492
       ]
     ],
+    "weather_engineer_hammer_56_204": [
+      [
+        9.217649774905782,
+        18.282499997317792,
+        0.9
+      ],
+      [
+        9.5742343149583,
+        18.41750000268221,
+        0.950397421048482
+      ]
+    ],
     "weather_mast_grease_21030": [
       [
         9.022999999299646,
@@ -550,11 +650,11 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/check_weather_scene_binding.py",
-      "sha256": "40d92e5c16b3deb193f16ff051f9547fad68d0fcc7f5e5cda63bdedecb07a9d3"
+      "sha256": "bae4bb42d1b9b3ff1c3df9eb2699bb488fd10d2f4ac25a61624595a78fb71a80"
     },
     {
       "path": "assets/cooling_lab_v1/weather_scene_binding.json",
-      "sha256": "1660e10e01c25282d971862a53eb322bbe3234697a8deea79a03598f23478fe0"
+      "sha256": "f517c1877da734638c2dc40a7c4d2c9fe7ab3fadea9036e4658b005f47798a01"
     },
     {
       "path": "assets/cooling_lab_v1/check_weather_assets.py",
@@ -562,10 +662,10 @@
     }
   ],
   "counts": {
-    "modules": 11,
-    "physical_entities": 32,
+    "modules": 12,
+    "physical_entities": 33,
     "existing_reused": 2,
-    "rendered_parts": 531,
+    "rendered_parts": 538,
     "base_scene_assets": 81,
     "hidden_base_assets": 2,
     "visible_base_assets": 79
