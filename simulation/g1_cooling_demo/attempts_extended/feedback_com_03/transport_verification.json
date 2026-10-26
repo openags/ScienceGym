@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "executor_and_policy_completed",
+      "passed": true
+    },
+    {
+      "name": "floating_robot_without_weld",
+      "passed": true
+    },
+    {
+      "name": "motors_drive_hinges_only",
+      "passed": true
+    },
+    {
+      "name": "recorded_code_matches_snapshots",
+      "passed": true
+    },
+    {
+      "name": "motor_limits",
+      "passed": true
+    },
+    {
+      "name": "standing_throughout",
+      "passed": true
+    },
+    {
+      "name": "actual_outbound_transport",
+      "passed": true,
+      "maximum_m": 0.08593166989371936
+    },
+    {
+      "name": "actual_lift_at_least_7cm",
+      "passed": true,
+      "maximum_m": 0.09672578057160264
+    },
+    {
+      "name": "required_distinct_lifts",
+      "passed": true,
+      "intervals": [
+        {
+          "begin_s": 18.250000000000764,
+          "end_s": 25.159999999996934
+        },
+        {
+          "begin_s": 53.56000000001949,
+          "end_s": 60.34000000002778
+        }
+      ],
+      "required": 2
+    },
+    {
+      "name": "returned_to_source_within_2cm",
+      "passed": true,
+      "final_error_m": 0.0047035858160183325
+    },
+    {
+      "name": "tray_stable_after_release",
+      "passed": true
+    },
+    {
+      "name": "final_release_on_table",
+      "passed": true
+    },
+    {
+      "name": "outcome_transitions_have_fresh_depth_evidence",
+      "passed": true,
+      "transition_count": 8
+    },
+    {
+      "name": "separate_sensor_actor",
+      "passed": true
+    },
+    {
+      "name": "complete_tray_off_table_at_peak",
+      "passed": true,
+      "minimum_clearance_m": 0.0552260732482055
+    },
+    {
+      "name": "continuous_motor_replay_matches",
+      "passed": true,
+      "max_qpos_error": 0.0,
+      "max_qvel_error": 0.0
+    },
+    {
+      "name": "no_external_applied_forces",
+      "passed": true
+    }
+  ],
+  "scope": "One continuous carrier transport subtask; no full-paper or acceptance-trial credit.",
+  "whole_paper_validated": false,
+  "qualified_paper_branches": 0,
+  "metrics": {
+    "duration_s": 76.54000000000302,
+    "lift_m": 0.09672578057160264,
+    "maximum_transport_m": 0.08593166989371936,
+    "final_displacement_m": 0.0047035858160183325,
+    "minimum_tray_clearance_at_peak_m": 0.0552260732482055,
+    "lift_intervals": [
+      {
+        "begin_s": 18.250000000000764,
+        "end_s": 25.159999999996934
+      },
+      {
+        "begin_s": 53.56000000001949,
+        "end_s": 60.34000000002778
+      }
+    ],
+    "payload": null
+  },
+  "verifier_sha256": "7b97afe08922c18e70f1aa11e6334af3f670d12cbce01d6230fd1a73fbe9e4b7",
+  "limitations": [
+    "Idealized depth/IMU and fixed-foot localization.",
+    "Known empty-bench background model and single-carrier visual prior.",
+    "No sensor calibration, full laboratory dynamics, walking or complete paper branches.",
+    "A loaded case starts preloaded; it grants no loading or fabrication credit."
+  ]
+}

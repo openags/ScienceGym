@@ -11,7 +11,7 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 ROBOT=ROOT/'assets/unitree_g1_inspire_v1'
 
 
-def build(out, *, timestep=.002, tray=True):
+def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     xml=ET.parse(ROBOT/'simulation/robot.xml').getroot()
     xml.set('model','ScienceGym G1 Inspire contact development')
@@ -45,7 +45,7 @@ def build(out, *, timestep=.002, tray=True):
         mesh=trimesh.load(ROOT/item['geometry']['path'],force='scene').to_geometry()
         mesh.export(out/'tray_visual.stl')
         ET.SubElement(xml.find('asset'),'mesh',name='tray_visual',file=os.path.relpath(out/'tray_visual.stl',ROBOT))
-        body=ET.SubElement(world,'body',name='carrier_tray',pos='.51 0 .9005',quat='.7071067811865476 0 0 .7071067811865476')
+        body=ET.SubElement(world,'body',name='carrier_tray',pos=f'{.51+tray_offset[0]} {tray_offset[1]} .9005',quat='.7071067811865476 0 0 .7071067811865476')
         ET.SubElement(body,'freejoint',name='tray_free')
         # Selected 1.2 mm sheet and 304 steel density from existing asset
         # reconstruction; inertia follows the actual mesh and is not measured.
@@ -61,6 +61,27 @@ def build(out, *, timestep=.002, tray=True):
             fn=out/f'tray_collision_{i}.stl';trimesh.Trimesh(v,f,process=False).export(fn)
             ET.SubElement(xml.find('asset'),'mesh',name=f'tray_collision_{i}',file=os.path.relpath(fn,ROBOT))
             ET.SubElement(body,'geom',name=f'tray_contact_{i}',type='mesh',mesh=f'tray_collision_{i}',group='3',rgba='.3 .7 .3 .2',friction='.7 .005 .0001',solref='.01 1')
+        if payload and payload!='spatula':
+            stock=json.loads((ROOT/'assets/cooling_lab_v1/supplies.json').read_text())
+            item=next(x for x in stock['items'] if x['id']=='calibration_copper_stock')
+            copper=trimesh.load(ROOT/item['geometry']['path'],force='scene').to_geometry()
+            fn=out/'calibration_copper_stock.stl';copper.export(fn)
+            ET.SubElement(xml.find('asset'),'mesh',name='calibration_copper_stock',file=os.path.relpath(fn,ROBOT))
+            block=ET.SubElement(world,'body',name='calibration_copper_stock',pos=f'{.51+tray_offset[0]} {tray_offset[1]} .9021')
+            ET.SubElement(block,'freejoint',name='copper_stock_free')
+            mass=float(copper.volume*8960);inertia=copper.moment_inertia*8960
+            ET.SubElement(block,'inertial',pos=' '.join(map(str,copper.center_mass)),mass=str(mass),fullinertia=' '.join(map(str,[inertia[0,0],inertia[1,1],inertia[2,2],inertia[0,1],inertia[0,2],inertia[1,2]])))
+            # Source-defined 60 x 50 x 30 mm design stock, with inferred copper
+            # density. It starts in the carrier; loading is not robot credit.
+            ET.SubElement(block,'geom',name='copper_stock_contact',type='mesh',mesh='calibration_copper_stock',density='8960',rgba='.65 .31 .15 1',friction='.5 .005 .0001',group='2')
+        elif payload=='spatula':
+            spatula=trimesh.load(ROOT/'assets/cooling_lab_v1/geometry/buerkle_5386_0041_spatula.glb',force='scene').to_geometry()
+            fn=out/'buerkle_spatula.stl';spatula.export(fn)
+            ET.SubElement(xml.find('asset'),'mesh',name='buerkle_spatula',file=os.path.relpath(fn,ROBOT))
+            body=ET.SubElement(world,'body',name='buerkle_spatula',pos=f'{.51+tray_offset[0]} {tray_offset[1]} .9021',quat='.7071067811865476 0 0 .7071067811865476')
+            ET.SubElement(body,'freejoint',name='spatula_free');mass=float(spatula.volume*8000);inertia=spatula.moment_inertia*8000
+            ET.SubElement(body,'inertial',pos=' '.join(map(str,spatula.center_mass)),mass=str(mass),fullinertia=' '.join(map(str,[inertia[0,0],inertia[1,1],inertia[2,2],inertia[0,1],inertia[0,2],inertia[1,2]])))
+            ET.SubElement(body,'geom',name='buerkle_spatula_contact',type='mesh',mesh='buerkle_spatula',rgba='.7 .73 .75 1',friction='.5 .005 .0001',group='2')
     ET.SubElement(xml.find('asset'),'texture',name='sky',type='skybox',builtin='gradient',rgb1='.18 .25 .30',rgb2='.52 .59 .62',width='512',height='3072')
     ET.SubElement(world,'light',name='key',pos='0 -2 3',dir='.2 .5 -1',directional='true',diffuse='.8 .8 .8')
     ET.SubElement(world,'light',name='fill',pos='1 2 3',dir='-.2 -.5 -1',diffuse='.6 .6 .6')

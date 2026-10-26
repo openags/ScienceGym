@@ -31,9 +31,16 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
+        # Public work-order mass prior, expressed as the reaction on the robot.
+        # Include all DOFs in inverse dynamics so foot wrench allocation also
+        # accounts for the held load. Only resulting motor torques are applied.
+        if supported_mass:
+            for side in ['left','right']:
+                site=m.site(side+'_wrist_reference').id;j,_=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))
+                bias+=j[:3].T@np.array([0.,0.,supported_mass*9.81/2])
         js=[];acc=[]
         for i,site in enumerate(self.feet):
             j,dj=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]));js.append(j)

@@ -4,10 +4,11 @@ from pathlib import Path
 import numpy as np
 import imageio.v2 as imageio
 from PIL import Image,ImageDraw
+from depth_io import load
 
 def render(folder):
- folder=Path(folder);data=np.load(folder/'head_depth.npz');writer=imageio.get_writer(folder/'head_depth.mp4',fps=10,codec='libx264',quality=8,macro_block_size=4)
- for t,depth in zip(data['time'],data['depth']):
+ folder=Path(folder);writer=imageio.get_writer(folder/'head_depth.mp4',fps=10,codec='libx264',quality=8,macro_block_size=4)
+ for t,depth in load(folder):
   # A fixed meter scale for every frame, never per-frame normalization.
   v=np.clip((depth-.2)/1.8,0,1);rgb=np.stack([255*(1-v),210*np.sin(np.pi*v),255*v],axis=-1).astype(np.uint8)
   rgb[~np.isfinite(depth)|(depth>2)]=[12,23,30]
