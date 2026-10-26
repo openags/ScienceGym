@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-26**. Candidate count: **351**.
+Last screened: **2026-10-26**. Candidate count: **352**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3571,3 +3571,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-56438-0/MediaObjects/41467_2025_56438_MOESM1_ESM.pdf) text accessible; selected experimental captions and baseline table screened. Reporting Summary request returned Internal Error and was not retried. Figure pixels, remaining sections, source datasets and code were not fully reviewed.
 - This candidate concerns physical phenotyping, not the complete silicification study. Chemical preparation, digestion and elemental analysis are excluded from this lightweight scope. Plant provenance, environmental-control qualification and sample-history custody remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-26**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
+
+
+## Additional candidate: grassland specimen and moisture metrology (2026-10-26)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Divergent resource limitations of belowground versus aboveground productivity across grasslands](https://www.nature.com/articles/s41467-025-67040-9) | Nature Communications / 2026 | 10.1038/s41467-025-67040-9 | Longitudinal plot/sample custody, supplied root/shoot specimen weighing and scheduled soil-moisture measurements suggest a future field-to-laboratory coordination task. | OA main, scientific SI and reporting-summary PDF text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 335 (2026); first published **6 December 2025**, version of record **9 January 2026**. Selected field-measurement Methods screened. Original field observations must remain distinct from literature-derived meta-analysis data; subplot samples and repeated years are not independent treatment replicates.
+- Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67040-9/MediaObjects/41467_2025_67040_MOESM1_ESM.pdf) and [4-page Reporting Summary](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67040-9/MediaObjects/41467_2025_67040_MOESM2_ESM.pdf) text accessible; selected field-data captions, sampling and replication disclosures screened. Experimental establishment in 2018 and productivity observations in 2019–2023 are different time spans. Figure pixels, remaining sections and external raw data/code were not fully reviewed.
+- Candidate scope is physical specimen/moisture metrology, not complete ecosystem reproduction. Field disturbance, fertilizer deployment and thermal processing are excluded. Provenance, site permissions and instrument qualification remain prerequisites. No procedure, converted task or asset is supplied.
+- Access checked **2026-10-26**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher images, extracts or adapted assets redistributed.
