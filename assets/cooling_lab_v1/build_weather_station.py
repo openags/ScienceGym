@@ -24,25 +24,30 @@ def rotation(degrees,axis):return trimesh.transformations.rotation_matrix(np.deg
 
 
 def build():
-    names=['weather_support_assets','weather_site_review','u30_assets','u30_checks','hose_clamp_checks','hose_clamp_assets','weather_assets','wind_sensor_assets','wind_lead_assets','cable_tie_assets']
+    names=['weather_support_assets','weather_site_review','u30_assets','u30_checks','hose_clamp_checks','hose_clamp_assets','weather_assets','wind_sensor_assets','wind_lead_assets','cable_tie_assets','u30_ground_assets','u30_ground_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
     site=np.r_[r['weather_site_review']['mast_center_xy_m'],0.];g=Geometry();placements=[]
-    def add(group,ref,matrix,select=lambda n:True):
+    def add(group,ref,matrix,select=lambda n:True,overrides=None):
         for name,m in load_parts(ref).items():
             if not select(name):continue
-            local=m.copy();local.apply_transform(matrix);identity=group+'__'+name
+            effective=matrix@(overrides or {}).get(name,np.eye(4))
+            local=m.copy();local.apply_transform(effective);identity=group+'__'+name
             # Preserve local float32 vertices even though the site is 20 m
             # from the laboratory origin. World translation stays a matrix.
             g.scene.add_geometry(local,node_name=identity,geom_name=identity,transform=pose(translation=site))
             g.parts.append(dict(id=identity,role='incomplete_station_static_reference',bounds_m=(local.bounds+site).tolist()))
-            placements.append(dict(part=identity,group=group,source_geometry=ref['path'],source_part=name,source_to_station=matrix.tolist()))
+            placements.append(dict(part=identity,group=group,source_geometry=ref['path'],source_part=name,source_to_station=effective.tolist()))
     # Preserve north-facing wind alignment. Rotating the complete unaccepted
     # tripod/anchoring layout separates its guy lines from the wind arm.
     support_rotation=rotation(30,[0,0,1])
     add('support',r['weather_support_assets']['geometry'],pose(support_rotation,-support_rotation@site))
     logger_origin=np.array([0,-.147,1.1003]);logger=pose(translation=logger_origin)
-    removed_plugs={'unused_channel_plug_2','unused_channel_plug_6'}
-    add('u30',r['u30_assets']['geometry'],logger,lambda n:n not in removed_plugs)
+    grounding=r['u30_ground_assets'];adjustment=grounding['nut_adjustment']
+    assert np.allclose(logger_origin,grounding['selected_logger_origin_m'])
+    removed_plugs={'unused_channel_plug_4','unused_channel_plug_5',grounding['removed_channel_plug']}
+    add('u30',r['u30_assets']['geometry'],logger,lambda n:n not in removed_plugs,
+        {adjustment['source_part']:pose(translation=adjustment['translation_m'])})
+    add('logger_ground',grounding['geometry'],np.eye(4))
     # Source manual places the lower logger U-bolt just above the splice.
     # The exact heights and azimuths here remain selected layout candidates.
     rs_rotation=rotation(180,[0,0,1]);rs=pose(rs_rotation,[0,0,1.4])
@@ -80,12 +85,13 @@ def build():
         temperature_plug=temp_plug.tolist(),wind=wind.tolist(),wind_adapter=wind_adapter.tolist(),wind_plug=wind_plug.tolist())
     description=dict(selected_layout=layout,source_transforms=transforms)
     leads=sensor_routes(description,probe,r['wind_lead_assets'])+network_routes(description,probe,r['wind_lead_assets'])
-    assert {q['removed_channel_plug'] for q in leads if 'removed_channel_plug' in q}==removed_plugs
     cable_visual=load_parts(probe['geometry'])['probe_lead'].visual
     for lead in leads:
         m=cable_mesh(lead['points_m'],lead['radius_m']);m.visual=cable_visual.copy();name='routed__'+lead['id']
         g.scene.add_geometry(m,node_name=name,geom_name=name,transform=pose(translation=site))
         g.parts.append(dict(id=name,role='authored_installed_lead_shape',bounds_m=(m.bounds+site).tolist()))
+    leads.append(dict(**grounding['conductor'],removed_channel_plug=grounding['removed_channel_plug']))
+    assert {q['removed_channel_plug'] for q in leads if 'removed_channel_plug' in q}==removed_plugs
     ties=[];tie_visual=next(iter(load_parts(r['cable_tie_assets']['geometry']).values())).visual
     for identity,m,detail in station_ties(g.scene.geometry,leads):
         assert m.is_volume and len(m.split())==1,identity
@@ -97,16 +103,16 @@ def build():
             cutoff_disposition='Retained length accounted for; physical cutoff storage still required.'))
     geometry=g.export('weather_station_integration_candidate')
     refs=[Path(__file__),HERE/'check_weather_assets.py',HERE/'geometry_tools.py',HERE/'weather_station_routes.py',
-        HERE/'build_weather_assets.py',HERE/'build_wind_sensor.py',HERE/'build_cable_ties.py',HERE/'weather_station_retention.py']+[HERE/(n+'.json') for n in names]
+        HERE/'build_weather_assets.py',HERE/'build_wind_sensor.py',HERE/'build_cable_ties.py',HERE/'weather_station_retention.py',HERE/'build_u30_ground.py']+[HERE/(n+'.json') for n in names]
     record=dict(schema_version=1,status='incomplete_station_integration',geometry=geometry,
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in refs],
         station_origin_world_m=site.tolist(),rigid_placements=placements,
         selected_layout=layout,source_transforms=transforms,routed_leads=leads,retention_ties=ties,
+        grounding_reference=dict(source='u30_ground_assets.json',nut_adjustment=adjustment,source_terminal_identity_known=False),
         detached_channel_plugs=[dict(source_geometry=r['u30_assets']['geometry']['path'],source_part=n,
             disposition='Removed in this alternative reference; tracked storage placement still required') for n in sorted(removed_plugs)],
         missing=['Physical storage for the cable-tie cutoffs',
-            'Tracked storage location for the two removed channel plugs',
-            'Logger grounding lead and ordinary terminal connection',
+            'Tracked storage location for the three removed channel plugs',
             'Cross-component checks, complete-tool and humanoid space, main-scene inventory integration'],
         scope='Integration work in progress. Source solids and actual lead lengths are retained; routed cable shapes have no stiffness, gravity settling or retention qualification.',
         staged_in_lab=False,initial_stock_credit=False,installation_qualified=False,electrical_qualified=False,

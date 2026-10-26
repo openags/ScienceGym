@@ -56,11 +56,14 @@ def sensor_routes(station,weather,wind_leads):
     return results
 
 
-def network_routes(station,weather,wind_leads,clear_splice=True):
+def network_routes(station,weather,wind_leads,clear_splice=True,clear_mount_driver=True):
     """Two source-length network leads, with actual gland and plug endpoints."""
     transforms={k:np.asarray(v) for k,v in station['source_transforms'].items()}
     results=[];radius=.014;theta=np.linspace(0,np.pi/2,81)
-    for prefix,source,gland_x,plug_number in [('temperature',weather,-.032,2),('wind',wind_leads,.024,6)]:
+    # Central grooves leave lateral room beside both mounting nuts after the
+    # driver disengages. The prior 24 mm wind groove blocks the actual shaft.
+    wind_gland=(.010,5) if clear_mount_driver else (.024,6)
+    for prefix,source,gland_x,plug_number in [('temperature',weather,-.004,4),('wind',wind_leads,*wind_gland)]:
         lead=source['stored_leads'][1]
         start=point(transforms[prefix+'_adapter'],lead['endpoints_m'][0])
         end=point(transforms[prefix+'_plug'],lead['endpoints_m'][-1])

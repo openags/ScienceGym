@@ -144,9 +144,10 @@ Socket outer diameter, internal depth, profile and local mount dimensions
 remain inferred. No torque, thread movement, hand access or inventory credit.
 
 The [integrated weather-station inspector](../../viewer/lab_review_v1/weather_station.html)
-combines 345 parts and text faces, preserving the reviewed component surfaces
-under recorded rigid placements. Four continuous leads retain their selected
-source lengths, enter actual logger grooves and include drip loops. Excess
+combines 351 station parts and text faces with a separate 96-part ordinary
+cart/storage candidate, preserving reviewed component surfaces under recorded
+rigid placements. Four sensor/network leads retain their selected source
+lengths, enter actual logger grooves and include drip loops. Excess
 coils remain more than one foot from the enclosure. The complete support is
 rotated 30 degrees to clear the north-facing wind arm; this is an unaccepted
 layout selection. Fourteen ordinary HellermannTyton 111-01975 ties separately
@@ -155,15 +156,40 @@ have real feed passages and integral pawls, and their straps have inside
 serrations. Factory data-sheet / family-drawing differences remain explicit;
 300 mm stock and an 80 mm conservative containing-circle bound are used.
 Each retained strap and cutoff has a length balance. The checker covers
-41,482 cross-component, cable and tie pairs, complete lead lengths and bends,
+43,672 cross-component, cable and tie pairs, complete lead lengths and bends,
 source-surface preservation, actual strap enclosure and failure examples.
 The separate page exposes whole-station and clipped detail views, including
-an explicitly hidden-door inspection. Grounding, physical storage of cutoffs
-and removed plugs, complete-tool/humanoid space and main-scene stock binding
-remain unfinished. Static retained shapes do not qualify ratcheting, friction,
-preload, gravity settling, sealing, electrical operation or robot execution.
-Rebuild locally with `build_cable_ties.py`, `build_weather_station.py` and
-`check_weather_station.py`, followed by the corresponding browser checker.
+an explicitly hidden-door inspection. The supplied grounding accessory is
+represented by an explicit hypothesis: a selected 400 mm conductor, a separate
+black gland sleeve, and reference-constrained ordinary flag/ring terminals.
+Panduit drawings constrain dimensions without identifying Onset OEM parts.
+The 0.81 mm ring sits between the lower-left nut and existing washer; the nut
+moves by that thickness, leaving the actual U-bolt through its full envelope.
+Twenty-nine grounding checks cover the real openings and mounting stack.
+
+Fourteen cutoffs are clipped directly from stock tie meshes, retaining their
+tapered tips. Three removed original plugs and these tails have actual floor
+support in two additional Bürkle catalog trays on the existing Rubbermaid cart.
+The cart is an alternative placement of `utility_cart`, not a second inventory
+instance. Eighty-five storage checks include 32,870 pairs against the complete
+station. The displayed final storage state does not credit cutting or cleanup.
+
+The ordinary half-inch driver is checked at all four mounting nuts, and the SW7
+driver at the installed RS3 clamp. Complete station geometry, cables and storage
+remain in these checks. The prior wind groove blocks the actual tool shaft and
+is retained as a negative example; both network leads now use central grooves.
+Conservative regions cover turning, disengagement and lateral clearance, with
+the enclosure open and closed. Lower-nut space requires a 20 mm axial separation,
+10 mm downward region, 40 mm lateral region, another 30 mm downward region and
+100 mm extended axial space. These are static geometric unions, not robot
+trajectories. Sampled clasp/door motion is also checked in the installed context.
+Five tool placements are inspectable on the same page. Hand/body space, other
+interfaces and main-scene stock binding remain unfinished. Static shapes do
+not qualify ratcheting, friction, preload, gravity settling, sealing, electrical
+operation or robot execution. Rebuild in the order recorded in
+`rebuild_review.py`; the station chain adds `build_u30_ground.py`,
+`check_u30_ground.py`, `build_weather_storage.py`, `check_weather_storage.py`
+and `check_weather_service.py` before the corresponding browser checker.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting

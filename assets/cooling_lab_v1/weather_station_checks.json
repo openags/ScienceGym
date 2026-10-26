@@ -35,6 +35,10 @@
       "passed": true
     },
     {
+      "name": "source_assets/cooling_lab_v1/build_u30_ground.py",
+      "passed": true
+    },
+    {
       "name": "source_assets/cooling_lab_v1/weather_support_assets.json",
       "passed": true
     },
@@ -72,6 +76,14 @@
     },
     {
       "name": "source_assets/cooling_lab_v1/cable_tie_assets.json",
+      "passed": true
+    },
+    {
+      "name": "source_assets/cooling_lab_v1/u30_ground_assets.json",
+      "passed": true
+    },
+    {
+      "name": "source_assets/cooling_lab_v1/u30_ground_checks.json",
       "passed": true
     },
     {
@@ -463,6 +475,34 @@
       "passed": true
     },
     {
+      "name": "closed_connected_logger_ground__flag_tin_brass_contact",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__flag_nylon_housing",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__ring_tin_copper_stamp",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__ring_tin_brass_sleeve",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__ring_nylon_housing",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__continuous_ground_conductor",
+      "passed": true
+    },
+    {
+      "name": "closed_connected_logger_ground__black_gland_sleeve",
+      "passed": true
+    },
+    {
       "name": "closed_connected_u30__channel_insert_-62",
       "passed": true
     },
@@ -531,15 +571,11 @@
       "passed": true
     },
     {
-      "name": "closed_connected_u30__unused_channel_plug_3",
+      "name": "closed_connected_u30__unused_channel_plug_2",
       "passed": true
     },
     {
-      "name": "closed_connected_u30__unused_channel_plug_4",
-      "passed": true
-    },
-    {
-      "name": "closed_connected_u30__unused_channel_plug_5",
+      "name": "closed_connected_u30__unused_channel_plug_6",
       "passed": true
     },
     {
@@ -1462,19 +1498,20 @@
       "name": "source_surfaces_preserved_by_recorded_rigid_poses",
       "passed": true,
       "failures": [],
-      "count": 327
+      "count": 333
     },
     {
       "name": "cross_component_cable_and_tie_domains_do_not_intersect",
       "passed": true,
-      "pairs": 41482,
+      "pairs": 43672,
       "intersections": [],
       "scope": "Intragroup source components retain their existing checks and declared nominal thread overlaps; all distinct routed leads and ties are checked here."
     },
     {
-      "name": "source_length_temperature_sensor_lead",
+      "name": "declared_length_temperature_sensor_lead",
       "passed": true,
-      "actual_m": 2.0000000000000036
+      "actual_m": 2.0000000000000036,
+      "source_length_known": true
     },
     {
       "name": "continuous_bend_and_nonlocal_gap_temperature_sensor_lead",
@@ -1494,9 +1531,10 @@
       "vertical_lower_bound_m": 0.4493110326053462
     },
     {
-      "name": "source_length_wind_sensor_lead",
+      "name": "declared_length_wind_sensor_lead",
       "passed": true,
-      "actual_m": 2.4999999999996874
+      "actual_m": 2.4999999999996874,
+      "source_length_known": true
     },
     {
       "name": "continuous_bend_and_nonlocal_gap_wind_sensor_lead",
@@ -1516,17 +1554,18 @@
       "vertical_lower_bound_m": 0.4710203634190404
     },
     {
-      "name": "source_length_temperature_network_lead",
+      "name": "declared_length_temperature_network_lead",
       "passed": true,
-      "actual_m": 0.4999999999999994
+      "actual_m": 0.4999999999999996,
+      "source_length_known": true
     },
     {
       "name": "continuous_bend_and_nonlocal_gap_temperature_network_lead",
       "passed": true,
-      "length_m": 0.4999999999999994,
+      "length_m": 0.4999999999999996,
       "nonlocal_exclusion_arc_m": 0.01,
-      "conservative_nonlocal_surface_gap_m": 0.0065385158210229865,
-      "minimum_discrete_bend_radius_m": 0.013999999999111118
+      "conservative_nonlocal_surface_gap_m": 0.0064594948878027745,
+      "minimum_discrete_bend_radius_m": 0.00692106557782661
     },
     {
       "name": "endpoints_temperature_network_lead",
@@ -1537,17 +1576,18 @@
       "passed": true
     },
     {
-      "name": "source_length_wind_network_lead",
+      "name": "declared_length_wind_network_lead",
       "passed": true,
-      "actual_m": 0.5000000000000001
+      "actual_m": 0.5000000000000002,
+      "source_length_known": true
     },
     {
       "name": "continuous_bend_and_nonlocal_gap_wind_network_lead",
       "passed": true,
-      "length_m": 0.5000000000000001,
+      "length_m": 0.5000000000000002,
       "nonlocal_exclusion_arc_m": 0.01,
-      "conservative_nonlocal_surface_gap_m": 0.006767648149109749,
-      "minimum_discrete_bend_radius_m": 0.013999999999111118
+      "conservative_nonlocal_surface_gap_m": 0.0067665944873708415,
+      "minimum_discrete_bend_radius_m": 0.008506405650221278
     },
     {
       "name": "endpoints_wind_network_lead",
@@ -1555,6 +1595,28 @@
     },
     {
       "name": "drip_below_case_entry_wind_network_lead",
+      "passed": true
+    },
+    {
+      "name": "declared_length_logger_ground_lead",
+      "passed": true,
+      "actual_m": 0.3999999999999999,
+      "source_length_known": false
+    },
+    {
+      "name": "continuous_bend_and_nonlocal_gap_logger_ground_lead",
+      "passed": true,
+      "length_m": 0.3999999999999999,
+      "nonlocal_exclusion_arc_m": 0.01,
+      "conservative_nonlocal_surface_gap_m": 0.007225561753269003,
+      "minimum_discrete_bend_radius_m": 0.005499999999171331
+    },
+    {
+      "name": "endpoints_logger_ground_lead",
+      "passed": true
+    },
+    {
+      "name": "drip_below_case_entry_logger_ground_lead",
       "passed": true
     },
     {
@@ -1827,7 +1889,7 @@
     {
       "name": "negative_unrouted_network_lead_hits_splice_hardware",
       "passed": true,
-      "overlap_mm3": 69.05520864901104
+      "overlap_mm3": 72.14605076540283
     }
   ],
   "cable_clearances": [
@@ -1847,31 +1909,38 @@
     },
     {
       "id": "temperature_network_lead",
-      "length_m": 0.4999999999999994,
+      "length_m": 0.4999999999999996,
       "nonlocal_exclusion_arc_m": 0.01,
-      "conservative_nonlocal_surface_gap_m": 0.0065385158210229865,
-      "minimum_discrete_bend_radius_m": 0.013999999999111118
+      "conservative_nonlocal_surface_gap_m": 0.0064594948878027745,
+      "minimum_discrete_bend_radius_m": 0.00692106557782661
     },
     {
       "id": "wind_network_lead",
-      "length_m": 0.5000000000000001,
+      "length_m": 0.5000000000000002,
       "nonlocal_exclusion_arc_m": 0.01,
-      "conservative_nonlocal_surface_gap_m": 0.006767648149109749,
-      "minimum_discrete_bend_radius_m": 0.013999999999111118
+      "conservative_nonlocal_surface_gap_m": 0.0067665944873708415,
+      "minimum_discrete_bend_radius_m": 0.008506405650221278
+    },
+    {
+      "id": "logger_ground_lead",
+      "length_m": 0.3999999999999999,
+      "nonlocal_exclusion_arc_m": 0.01,
+      "conservative_nonlocal_surface_gap_m": 0.007225561753269003,
+      "minimum_discrete_bend_radius_m": 0.005499999999171331
     }
   ],
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/check_weather_station.py",
-      "sha256": "338e22295657411e67c12790588d47127c1bd201d847140f2e62a2df41d9ecf8"
+      "sha256": "8949cf1c049c04b871bd8fa7696121ce103163ddbe0109a74439b4a815dca540"
     },
     {
       "path": "assets/cooling_lab_v1/weather_station_assets.json",
-      "sha256": "fc057050c895dd8acc882a9ed3ac590554929f97bbb9b541ba9dc3aacc8b2fd4"
+      "sha256": "9dd1d5eb8d6d00cf384496eb7ab892bb7ac21b5bd6c2ed7f1da926ea3c040d77"
     },
     {
       "path": "assets/cooling_lab_v1/cable_tie_assets.json",
-      "sha256": "f3c356277becdfcbfe22aa4f8d563a3e455cf2f05e6e2b2a0b50b9b17f0eceaa"
+      "sha256": "630eb4870b6deb9a128a850fd0716b3705e1d359b31d1e427025095a4d4834ed"
     },
     {
       "path": "assets/cooling_lab_v1/check_u30.py",
@@ -1881,8 +1950,7 @@
   "scope": "Static source-preserving integration and ordinary retention geometry only. No gravity-settled cables, strain, ratchet, friction, preload, grounding, weatherproofing, whole-body access or robot operation is qualified.",
   "missing": [
     "Physical storage for the cable-tie cutoffs",
-    "Tracked storage location for the two removed channel plugs",
-    "Logger grounding lead and ordinary terminal connection",
+    "Tracked storage location for the three removed channel plugs",
     "Cross-component checks, complete-tool and humanoid space, main-scene inventory integration"
   ],
   "installation_qualified": false,

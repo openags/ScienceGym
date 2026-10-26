@@ -37,7 +37,7 @@ def build():
     hits=[];pairs=0
     for (n,m),(q,b) in itertools.combinations(physical.items(),2):
         group=n.split('__')[0]
-        if group==q.split('__')[0] and group not in ['routed','retention']:continue
+        if group==q.split('__')[0] and group not in ['routed','retention','logger_ground']:continue
         pairs+=1;v=overlap(m,b)
         if not np.isfinite(v) or abs(v)>.001:hits.append(dict(parts=[n,q],volume_mm3=v))
     check('cross_component_cable_and_tie_domains_do_not_intersect',not hits,pairs=pairs,intersections=hits,
@@ -45,7 +45,7 @@ def build():
     wires=[]
     for lead in r['routed_leads']:
         result=wire_clearance(lead);wires.append(dict(id=lead['id'],**result))
-        check('source_length_'+lead['id'],abs(result['length_m']-lead['length_m'])<1e-8,actual_m=result['length_m'])
+        check('declared_length_'+lead['id'],abs(result['length_m']-lead['length_m'])<1e-8,actual_m=result['length_m'],source_length_known=lead.get('source_length_known',True))
         check('continuous_bend_and_nonlocal_gap_'+lead['id'],result['minimum_discrete_bend_radius_m']>3*lead['radius_m'] and result['conservative_nonlocal_surface_gap_m']>0,**result)
         check('endpoints_'+lead['id'],np.allclose(np.asarray(lead['points_m'])[[0,-1]],lead['endpoints_m'],atol=1e-10))
         if 'coil' in lead:
@@ -66,7 +66,7 @@ def build():
         check('strap_surrounds_actual_support_'+t['id'],contour.covers(support))
         check('source_stock_balance_'+t['id'],abs(length(t['strap_centreline_plane_m'])+.0069-t['retained_developed_length_m'])<1e-9 and abs(t['retained_developed_length_m']+t['cutoff_developed_length_m']-.300)<1e-9 and t['cutoff_developed_length_m']>0)
         check('negative_displaced_strap_cannot_retain_'+t['id'],not Polygon(np.asarray(t['strap_centreline_plane_m'])+[1,0]).buffer(.0007).covers(support))
-    check('removed_plugs_are_tracked',sorted(x['source_part'] for x in r['detached_channel_plugs'])==['unused_channel_plug_2','unused_channel_plug_6'] and all('u30__'+x['source_part'] not in parts for x in r['detached_channel_plugs']))
+    check('removed_plugs_are_tracked',sorted(x['source_part'] for x in r['detached_channel_plugs'])==['unused_channel_plug_3','unused_channel_plug_4','unused_channel_plug_5'] and all('u30__'+x['source_part'] not in parts for x in r['detached_channel_plugs']))
     weather=json.loads((HERE/'weather_assets.json').read_text());probe=next(x for x in weather['items'] if x['id']=='onset_sthb_m002')
     wind=json.loads((HERE/'wind_lead_assets.json').read_text());bad=network_routes(r,probe,wind,clear_splice=False)[0]
     m=cable_mesh(bad['points_m'],bad['radius_m']);volume=sum(overlap(m,b) for n,b in physical.items() if 'mast_splice' in n)

@@ -43,7 +43,9 @@ def main():
       'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/check_allocation.py','assets/cooling_lab_v1/test_pilot_contract.py',
       'assets/cooling_lab_v1/build_weather_site_review.py','assets/cooling_lab_v1/build_outdoor_ground.py','assets/cooling_lab_v1/check_outdoor_ground.py',
       'assets/cooling_lab_v1/build_weather_support.py','assets/cooling_lab_v1/check_weather_support.py',
-      'assets/cooling_lab_v1/build_cable_ties.py','assets/cooling_lab_v1/build_weather_station.py','assets/cooling_lab_v1/check_weather_station.py']:
+      'assets/cooling_lab_v1/build_cable_ties.py','assets/cooling_lab_v1/build_u30_ground.py','assets/cooling_lab_v1/check_u30_ground.py',
+      'assets/cooling_lab_v1/build_weather_station.py','assets/cooling_lab_v1/check_weather_station.py',
+      'assets/cooling_lab_v1/build_weather_storage.py','assets/cooling_lab_v1/check_weather_storage.py','assets/cooling_lab_v1/check_weather_service.py']:
         run(script)
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
