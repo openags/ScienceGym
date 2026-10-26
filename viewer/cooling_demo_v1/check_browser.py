@@ -15,7 +15,7 @@ def run(browser,url):
         page.goto(url);page.wait_for_function('document.documentElement.dataset.ready==="true"')
         check('qualification_limit_visible','0 / 11' in page.inner_text('body'))
         check('checks_loaded',page.locator('#checks .check').count()>=14)
-        check('metrics_loaded',float(page.inner_text('#duration'))==38 and float(page.inner_text('#lift'))>=7)
+        check('metrics_loaded',float(page.inner_text('#duration'))>=80 and float(page.inner_text('#lift'))>=7)
         for a in page.locator('a').all():
             href=a.get_attribute('href')
             if href and not href.startswith('https:'):
@@ -27,8 +27,8 @@ def run(browser,url):
         if media:
             page.wait_for_function('document.documentElement.dataset.mediaReady==="true"')
             page.wait_for_function('document.querySelector("video").readyState>=1')
-            page.locator('#steps button').nth(6).click();page.wait_for_timeout(500)
-            playback=page.evaluate('document.querySelector("video").currentTime>=22')
+            page.locator('#steps button').nth(9).click();page.wait_for_timeout(500)
+            playback=page.evaluate('document.querySelector("video").currentTime>=45')
             check('timeline_video_seek',playback);page.evaluate('document.querySelector("video").pause()')
         page.screenshot(path=str(HERE/'desktop.png'),full_page=True)
         page.set_viewport_size({'width':390,'height':844});check('mobile_no_overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
