@@ -41,3 +41,23 @@ python simulation/g1_cooling_demo/isolation.py --restore-inputs simulation/g1_co
 `model_inputs.json` pins the compiled models, source GLBs, generated meshes and textures, including the isolated actor's model. Its ignored mesh/texture copies are restored by the second command above; recorded model and code bytes are preserved. `trace.npz`, depth chunks, proprioception, actor events and source snapshots preserve the original run. Independent evaluation replays motor commands continuously without pose corrections, checks final support against the original worktop, and checks tool containment at every recorded 100 Hz state. All attempts, including the initial compile failure on a zero-thickness sign, are retained in `laboratory_attempts.json`. These nominal examples are not a preregistered reliability campaign.
 
 The renderer records presentation-only lighting, colour-transfer and texture-origin adjustments separately. It does not alter geometry, sensor evidence, contacts or physical state. Mesh import and contact semantics follow the [MuJoCo mesh reference](https://mujoco.readthedocs.io/en/stable/XMLreference.html#asset-mesh).
+
+## Unloaded walking and stationary handoff
+
+`runs/laboratory_walking_07/` records 12 continuous seconds in the same laboratory, including 1.957 m of forward travel and transfer to stationary balance control at 6.602 s. The independent 500 Hz motor replay passes 13 checks with zero position/velocity discrepancy, including feet-only floor contact, lateral deviation below 0.25 m and stable parking. Ten geometry checks and seven actor-access checks also pass. The recording page includes this second, clean video. This sequence is not yet joined to the tray sequence and grants no carrying, navigation or reliability credit.
+
+The velocity policy and reference code are pinned from [Unitree's official G1 29DoF deployment](https://github.com/unitreerobotics/unitree_rl_lab/tree/4960b84732b0c2ec593dccbfe963fda1bcd7b1e3/deploy/robots/g1_29dof/config/policy/velocity/v0). `locomotion_policy/SOURCE.json` preserves hashes and upstream paths; the upstream Apache-2.0 licence is included. The 480-value input preserves the published term ordering, five-sample histories, encoder mapping, IMU convention and action scaling. The actor receives no root translation, contacts or scene object state. Its authored speed schedule and IMU heading correction are not goal-directed navigation.
+
+The walking plant uses the upstream training configuration's 0.01 kg m² body-joint rotor inertias and training gains, preserving the existing rigid-body inertias, hands and scene geometry. `actuator_adaptation.json` records this difference from the earlier tray plant. The stop transition uses a declared level-foot/IMU gate and the fixed-foot proprioceptive estimator, then the existing torque-based balance controller. Foot-wrench limits rotate with each sole; the pelvis target preserves the observed heading. A 90-degree rotation check gives a maximum motor-torque difference of 1.78e-11 N m. General localization, foot-slip detection and recovery remain open.
+
+All seven development versions remain in `walking_attempts.json`: initial support loss, insufficient movement, route deviation and wall contact, continued travel after stopping, unstable parking, failed controller handoff, and the passing final trial. Trial 02 retains a correction for four unintentionally altered little-finger rotor inertias; the current runner selects the 29 body joints by exact name. These changing versions must not be pooled into a reliability success rate.
+
+```sh
+python simulation/g1_cooling_demo/run_walking.py --out /tmp/g1-walking-new --speed .4 --hold-heading --stop-at 6 --duration 12 --park
+python simulation/g1_cooling_demo/verify_walking.py /tmp/g1-walking-new
+python simulation/g1_cooling_demo/verify_laboratory.py /tmp/g1-walking-new
+python simulation/g1_cooling_demo/verify_isolation.py /tmp/g1-walking-new
+python simulation/g1_cooling_demo/render_laboratory.py /tmp/g1-walking-new --movie --follow-robot
+```
+
+The same dependency and generated-input restoration instructions above apply. Recorded verifier copies are retained separately in `verification_sources/`; the actor and runner snapshots remain unchanged.

@@ -17,6 +17,9 @@ def package(folder):
    if item.get('file'):paths.add((texture_directory/item.get('file')).resolve())
  for name in ['assets/unitree_g1_inspire_v1/simulation/robot.xml','assets/unitree_g1_inspire_v1/SOURCE.json','assets/g1_sensor_rig_v1/rig.json','assets/cooling_lab_v1/ordinary_tools.json']:
   paths.add(ROOT/name)
+ isolation=folder/'actor_isolation.json'
+ if isolation.exists():
+  for item in json.loads(isolation.read_text())['input_files']:paths.add(folder/item['path'])
  lab_import=folder/'laboratory_import.json'
  if lab_import.exists():
   paths.add(ROOT/'assets/cooling_lab_v1/scene.json')

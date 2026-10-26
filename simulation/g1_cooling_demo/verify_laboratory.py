@@ -38,13 +38,14 @@ def verify(folder):
     check('all_original_asset_identities_once', set(actual) == expected and len(actual) == len(expected), count=len(actual))
     check('original_architecture_part_count', sum(p['instance']=='architecture' for p in imported['parts']) == source['architecture']['parts'])
     check('no_standalone_table_or_infinite_floor', all(model.geom(i).name not in {'bench_top','review_floor'} for i in range(model.ngeom)))
-    movable = {'pelvis', 'carrier_tray'}
+    movable = {row['body'] for row in imported['dynamic_bindings']}
+    declared_allowed = 'pelvis' in movable and movable <= {'pelvis','carrier_tray'}
     result_path = folder/'result.json'
     rollout = json.loads(result_path.read_text()) if result_path.exists() else {}
     if rollout.get('payload_present'):
         movable.add('buerkle_spatula' if rollout.get('payload_kind') == 'spatula' else 'calibration_copper_stock')
     roots = {model.body(model.jnt_bodyid[j]).name for j in range(model.njnt) if model.jnt_type[j] == mujoco.mjtJoint.mjJNT_FREE}
-    check('floating_robot_and_declared_objects', roots == movable and not np.any(model.eq_type == mujoco.mjtEq.mjEQ_WELD))
+    check('floating_robot_and_declared_objects', declared_allowed and roots == movable and not np.any(model.eq_type == mujoco.mjtEq.mjEQ_WELD))
 
     # The importer receipt is not trusted as geometric evidence. Reload every
     # original GLB, then compare its transformed vertices with the compiled mesh.

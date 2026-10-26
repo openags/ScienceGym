@@ -140,9 +140,12 @@ def attach(xml, out, *, map_only=False):
 
     arch = source['architecture']
     include('architecture', arch['path'], arch['sha256'], [0, 0, 0], 0)
+    dynamic_ids = {'g1'}
+    if world.find("body[@name='carrier_tray']") is not None:
+        dynamic_ids.add('tray_white')
     if not map_only:
         for item in source['assets']:
-            if item['id'] in {'g1', 'tray_white'}:
+            if item['id'] in dynamic_ids:
                 continue
             include(item['id'], item['geometry'], item['geometry_sha256'],
                     item['position_m'], item['yaw_rad'])
@@ -162,13 +165,13 @@ def attach(xml, out, *, map_only=False):
         scene_sha256=digest(SCENE), importer_sha256=digest(__file__),
         lab_from_work=LAB_FROM_WORK.tolist(), architecture_only=map_only,
         source_inputs=inputs, imported_instances=instances, parts=parts,
-        dynamic_bindings=[] if map_only else [dict(instance='g1', body='pelvis'),
-                                              dict(instance='tray_white', body='carrier_tray')],
+        dynamic_bindings=[] if map_only else [dict(instance='g1', body='pelvis')]+(
+            [dict(instance='tray_white', body='carrier_tray')] if 'tray_white' in dynamic_ids else []),
         initial_staging=[] if map_only else [
-            dict(instance='g1', laboratory_xy_m=[3.7, 2.02], yaw_rad=float(np.pi/2)),
+            dict(instance='g1', laboratory_xy_m=[3.7, 2.02], yaw_rad=float(np.pi/2))]+([
             dict(instance='tray_white', original_m=[3.4, 2.8, .9],
                  laboratory_m=[3.7, 2.53, .9005], yaw_rad=float(np.pi),
-                 basis='Authored initial staging on the existing white bench; not an executed preparation step')],
+                 basis='Authored initial staging on the existing white bench; not an executed preparation step')] if 'tray_white' in dynamic_ids else []),
         collision_scope='Per-part convex mesh obstacles; non-convex equipment cavities and device articulation are not qualified',
         source_documentation='https://mujoco.readthedocs.io/en/stable/XMLreference.html#asset-mesh',
         assets_accepted=False, physical_campaign_qualified=False)

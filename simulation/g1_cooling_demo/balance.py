@@ -54,7 +54,7 @@ class Balance:
         cd=np.zeros(3) if self.previous_comj is None else (cj-self.previous_comj)@d.qvel/dt;self.previous_comj=cj.copy()
         rows.append(12*pad(cj));ys.append(12*(70*(self.com_target-d.subtree_com[m.body('pelvis').id])-18*cj@d.qvel-cd))
         pj,pdj=self.jacobian(d.body('pelvis').xpos,m.body('pelvis').id)
-        upright=Rotation.from_matrix(d.body('pelvis').xmat.reshape(3,3).T).as_rotvec()
+        upright=Rotation.from_matrix(getattr(self,'pelvis_rotation',np.eye(3))@d.body('pelvis').xmat.reshape(3,3).T).as_rotvec()
         rows.append(8*pad(pj[3:]));ys.append(8*(60*upright-16*pj[3:]@d.qvel-pdj[3:]@d.qvel))
         for side,ref in (targets or {}).items():
             site=m.site(side+'_wrist_reference').id;j,dj=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))
@@ -71,10 +71,14 @@ class Balance:
         hi=[-bias[self.unactuated],np.concatenate(acc),eqacc,m.actuator_ctrlrange[:,1]-bias[self.va]]
         wr=[];wl=[];wh=[]
         for foot in range(2):
-            off=n+foot*6;row=np.zeros(total);row[off+2]=1;wr.append(row);wl.append(5);wh.append(800)
+            off=n+foot*6
+            frame=self.foot_rotations[foot] if getattr(self,'rotate_foot_constraints',False) else np.eye(3)
+            row=np.zeros(total);row[off:off+3]=frame[:,2];wr.append(row);wl.append(5);wh.append(800)
             for axis,mu in [(0,.6),(1,.6),(3,.025),(4,.07),(5,.012)]:
                 for sign in [-1,1]:
-                    row=np.zeros(total);row[off+axis]=sign;row[off+2]=-mu;wr.append(row);wl.append(-np.inf);wh.append(0)
+                    row=np.zeros(total);start=off+(3 if axis>=3 else 0)
+                    row[start:start+3]=sign*frame[:,axis%3];row[off:off+3]-=mu*frame[:,2]
+                    wr.append(row);wl.append(-np.inf);wh.append(0)
         A.append(np.array(wr));lo.append(wl);hi.append(wh)
         solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(np.triu(P)),q=q,A=sparse.csc_matrix(np.vstack(A)),l=np.concatenate(lo),u=np.concatenate(hi),verbose=False,eps_abs=2e-5,eps_rel=2e-5,max_iter=6000,polishing=True)
         if self.previous is not None:solver.warm_start(x=self.previous)

@@ -17,7 +17,7 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def render(folder, movie=False):
+def render(folder, movie=False, follow_robot=False):
     folder = Path(folder).resolve()
     result = json.loads((folder/'result.json').read_text())
     if result.get('environment') != 'existing_complete_laboratory':
@@ -52,12 +52,20 @@ def render(folder, movie=False):
         mujoco.mj_forward(model, data)
         u = float(np.clip(t/8, 0, 1)); u = u*u*(3-2*u)
         camera.distance = 3.5-.65*u
+        if follow_robot:
+            camera.lookat[:] = data.body('pelvis').xpos + [.15,0,.15]
+            camera.distance = 3.4
+            camera.azimuth = 74
+            camera.elevation = -15
         renderer.update_scene(data, camera=camera, scene_option=option)
         return renderer.render().copy()
 
-    for name,t in [('first',0),('grasp',14),('lift',21),('place',30),('return_lift',57),('last',trace['time'][-1])]:
+    stills = [('first',0),('grasp',14),('lift',21),('place',30),('return_lift',57),('last',trace['time'][-1])]
+    if follow_robot:
+        stills = [('first',0),('start',2),('walking',4),('braking',result.get('stop_at_s',6)),('parked',9),('last',trace['time'][-1])]
+    for name,t in stills:
         Image.fromarray(frame(t)).save(folder/(name+'.png'))
-    times = np.arange(0, trace['time'][-1], 1/24)
+    times = np.arange(int(np.ceil((trace['time'][-1]-1e-8)*24)))/24
     if movie:
         temporary = folder/'episode.rendering.mp4'
         encoder = subprocess.Popen(['ffmpeg','-y','-v','error','-f','rawvideo','-pix_fmt','rgb24',
@@ -87,6 +95,9 @@ def render(folder, movie=False):
         physics_scope='Recorded laboratory carrier transport and return; other equipment fixed; no campaign qualification')
     if movie:
         receipt['video_sha256'] = sha(folder/'episode.mp4')
+    if follow_robot:
+        receipt['physics_scope'] = 'Recorded unloaded walking and stationary-control handoff; no carrying or campaign qualification'
+        receipt['presentation_adjustments'][-1] = 'Continuous camera translation following the recorded pelvis'
     (folder/'render_receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
     print('render_complete', str(folder), flush=True)
 
@@ -95,5 +106,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('folder')
     parser.add_argument('--movie', action='store_true')
+    parser.add_argument('--follow-robot', action='store_true')
     args = parser.parse_args()
-    render(args.folder, args.movie)
+    render(args.folder, args.movie, args.follow_robot)

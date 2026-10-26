@@ -7,7 +7,10 @@ fixed; articulated devices, loaded walking and the full paper campaign remain
 open. The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
 shows the resulting contact subtask with enforced actor access isolation. The
 runtime guide records the namespace probes and independent packet-rejection
-check. Sensor calibration and general localization remain open. The earlier independent workbench tests
+check. A separate 12-second unloaded walking and stationary-control handoff
+recording advances 1.96 m, with independent replay and contact checks. It is
+not yet joined to the tray sequence. Sensor calibration and general localization
+remain open. The earlier independent workbench tests
 below remain unchanged as development evidence.
 
 The requested [full-laboratory conceptual film](../../viewer/cooling_concept_v1/watch.html)

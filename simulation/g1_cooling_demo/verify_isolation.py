@@ -46,7 +46,8 @@ def verify(folder):
     # plant and cannot modify the completed episode. Malformed packet content
     # is synthetic, not hidden ground truth from an experiment.
     prefix = namespace_prefix(code, folder/'actor_bundle/model')
-    command = prefix + [sys.executable,'/actor/actor_feedback.py','--model','/model/world.xml']
+    entry_point = 'walking_actor.py' if 'walking_actor.py' in receipt['source_modules'] else 'actor_feedback.py'
+    command = prefix + [sys.executable,'/actor/'+entry_point,'--model','/model/world.xml']
     process = subprocess.Popen(command, env=receipt['environment'], stdin=subprocess.PIPE,
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
     packet = dict(time_s=0., joint_position=np.zeros(53), joint_velocity=np.zeros(53),
@@ -64,6 +65,7 @@ def verify(folder):
     report = dict(passed=all(c['passed'] for c in checks), checks=checks,
                   verifier_sha256=sha(__file__), isolation_receipt_sha256=sha(folder/'actor_isolation.json'),
                   probe_command_prefix=prefix,
+                  tested_actor_entry_point=entry_point,
                   scope='Observed access controls and packet rejection for this actor bundle; not a security audit of the kernel/GPU or sensor calibration')
     (folder/'isolation_verification.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report))

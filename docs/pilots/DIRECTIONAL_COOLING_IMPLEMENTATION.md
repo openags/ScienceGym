@@ -80,6 +80,14 @@ cavities, device articulation, tool loading, locomotion, recovery and all eleven
 paper branches remain unqualified. The separate clean long-horizon film is an
 authored presentation and does not grant physical acceptance credit.
 
+A separate 12-second unloaded walking trial now advances 1.957 m in the same
+laboratory and transfers to stationary torque control at 6.602 s. It passes
+independent replay, feet-only floor contact and stopping checks. The official
+G1 29DoF velocity policy, training actuator assumptions, IMU heading correction,
+rotating sole-wrench constraints and all seven development attempts are
+recorded in the runtime guide. This is not yet joined to the tray sequence;
+carrying, goal-directed navigation and reliability qualification remain open.
+
 ## Implemented asset-phase changes
 
 - The active constraint file and [readiness record](../../assets/cooling_lab_v1/readiness.json)

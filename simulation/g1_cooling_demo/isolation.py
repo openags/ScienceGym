@@ -38,7 +38,7 @@ def namespace_prefix(code, model_dir):
     return command
 
 
-def prepare(out, control_model, actor_command):
+def prepare(out, control_model, actor_command, *, extra_modules=(), policy_files=()):
     """Fail closed if the namespace or its active denial probes fail.
 
     The bundle deliberately excludes world construction, source task plans,
@@ -53,7 +53,10 @@ def prepare(out, control_model, actor_command):
     code, model_dir = bundle/'code', bundle/'model'
     code.mkdir(parents=True)
     model_dir.mkdir()
-    for name in ACTOR_MODULES:
+    modules = list(ACTOR_MODULES) + list(extra_modules)
+    if any(Path(name).name != name or not name.endswith('.py') for name in modules):
+        raise ValueError('Actor modules must be local Python module names')
+    for name in modules:
         shutil.copyfile(HERE/name, code/name)
     xml = ET.parse(control_model).getroot()
     compiler = xml.find('compiler')
@@ -75,6 +78,11 @@ def prepare(out, control_model, actor_command):
             item.set('file', name)
             files.append(dict(path=str(target.relative_to(out)), sha256=digest))
         compiler.set(attribute, subdir)
+    for source in map(Path, policy_files):
+        target = model_dir/'policy'/source.name
+        target.parent.mkdir(exist_ok=True)
+        shutil.copyfile(source, target)
+        files.append(dict(path=str(target.relative_to(out)), sha256=sha(source)))
     ET.indent(xml)
     ET.ElementTree(xml).write(model_dir/'world.xml', encoding='unicode')
     # This engine-side audit happens before the bundle is exposed to the actor.
@@ -108,7 +116,7 @@ def prepare(out, control_model, actor_command):
     result['passed'] = bool(result.get('passed') and probe.returncode==0 and all(result['namespace_separation'].values()))
     result.update(returncode=probe.returncode, stderr=probe.stderr,
                   source_model_sha256=sha(control_model), bundled_model_sha256=sha(model_dir/'world.xml'),
-                  source_modules={name:sha(code/name) for name in ACTOR_MODULES},
+                  source_modules={name:sha(code/name) for name in modules},
                   input_files=sorted({r['path']:r for r in files}.values(),key=lambda r:r['path']),
                   isolation_source_sha256=sha(__file__), probe_source_sha256=sha(HERE/'isolation_probe.py'),
                   command_prefix=command, environment=environment,
@@ -138,9 +146,12 @@ def restore_inputs(folder):
                 source = (directory/node.get('file')).resolve()
                 available[sha(source)] = source
     model_dir = folder/'actor_bundle/model'
+    if (folder/'policy_source').is_dir():
+        for source in (folder/'policy_source').rglob('*'):
+            if source.is_file(): available[sha(source)] = source
     for row in receipt['input_files']:
         target = (folder/row['path']).resolve()
-        if not target.is_relative_to(model_dir) or target.parent.name not in {'meshes','textures'}:
+        if not target.is_relative_to(model_dir) or target.parent.name not in {'meshes','textures','policy'}:
             raise ValueError('Unexpected bundle target')
         target.parent.mkdir(parents=True,exist_ok=True)
         if not target.exists():

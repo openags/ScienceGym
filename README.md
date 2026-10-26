@@ -75,12 +75,15 @@ This requested conceptual animation follows the
 motion is separate from physical qualification. See the
 [reproduction notes](viewer/cooling_concept_v1/README.md).
 
-The [laboratory contact recording](viewer/cooling_lab_runtime_v1/index.html)
+The [laboratory contact and walking recordings](viewer/cooling_lab_runtime_v1/index.html)
 now runs the G1 tray subtask on the original white assembly worktop, with the
 complete room and its equipment in the physical plant. Other equipment remains
 fixed; this is not the full paper campaign. Its
 [runtime guide](simulation/g1_cooling_demo/LABORATORY.md) includes sensor records,
 compiled-source geometry comparison and independent physical evaluation.
+A separate 12-second run advances 1.96 m in the laboratory aisle and transfers
+to stable standing. It passes independent replay and feet-only floor-contact
+checks; walking and tray manipulation have not yet been joined into one task.
 
 An optional weather-station installation reference adds detailed component
 inspection and identity-preserving tool staging. The linked

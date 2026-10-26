@@ -11,6 +11,13 @@ Promise.all([load('result.json'),load('transport_verification.json'),load('labor
  document.documentElement.dataset.ready='true';
 }).catch(error=>status.textContent=error.message);
 async function seekable(video){const response=await fetch(video.getAttribute('src'));if(!response.ok)throw Error('录像暂不可用');const url=URL.createObjectURL(await response.blob()),t=video.currentTime,playing=!video.paused;await new Promise(resolve=>{video.addEventListener('loadedmetadata',resolve,{once:true});video.src=url;video.load();});video.currentTime=t;if(playing)await video.play();window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});}
-Promise.all([seekable(main),seekable(depth)]).then(()=>document.documentElement.dataset.mediaReady='true').catch(error=>status.textContent=error.message);
+Promise.all([seekable(main),seekable(depth),seekable(document.querySelector('#walking'))]).then(()=>document.documentElement.dataset.mediaReady='true').catch(error=>status.textContent=error.message);
 function sync(){if(Number.isFinite(depth.duration)&&Math.abs(depth.currentTime-main.currentTime)>.16)depth.currentTime=Math.min(main.currentTime,depth.duration);}
 main.addEventListener('timeupdate',sync);main.addEventListener('seeked',sync);main.addEventListener('play',()=>{sync();depth.play().catch(()=>{});});main.addEventListener('pause',()=>depth.pause());main.addEventListener('ratechange',()=>depth.playbackRate=main.playbackRate);
+const walkingBase='../../simulation/g1_cooling_demo/runs/laboratory_walking_07/';
+for(const [id,file]of Object.entries({download:'episode.mp4',verdict:'walking_verification.json',geometry:'laboratory_verification.json',isolation:'isolation_verification.json',trace:'trace.npz'}))document.querySelector('#walking-'+id).href=walkingBase+file;
+Promise.all(['result.json','walking_verification.json','laboratory_verification.json','isolation_verification.json'].map(async name=>{const response=await fetch(walkingBase+name);if(!response.ok)throw Error('行走记录暂不可用');return response.json();})).then(([run,verdict,geometry,isolation])=>{
+ const forward=verdict.checks.find(c=>c.name==='forward_motion_exceeds_one_metre').forward_m;
+ document.querySelector('#walking-status').textContent=verdict.passed&&geometry.passed&&isolation.passed?`${run.simulated_seconds.toFixed(0)} 秒连续运行，前进 ${forward.toFixed(2)} 米；${run.parking_time_s.toFixed(2)} 秒切换站立控制。行走、接触和独立重放检查通过。`:'行走检查存在未通过项，请查看记录。';
+ document.documentElement.dataset.walkingReady='true';
+}).catch(error=>document.querySelector('#walking-status').textContent=error.message);
