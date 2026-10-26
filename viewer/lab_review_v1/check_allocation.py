@@ -64,6 +64,24 @@ def run(url, browser):
         check('search_matches_physical_identity',page.locator('#allocation-components tr').count()==1 and 'equipment:HEATER' in page.locator('#allocation-components').inner_text())
         page.locator('#allocation-search').fill('');page.locator('#allocation-filter').select_option('unallocated')
         check('unknown_quantities_not_zero',page.locator('#allocation-components tr').count()==117 and '待分配' in page.locator('#allocation-components').inner_text())
+        check('unified_identities_include_temporary_stock',page.locator('#identity-rows tr').count()==114 and '2 根临时扎带' in page.locator('#identity-summary').inner_text())
+        check('installation_needs_expose_missing_supplies',page.locator('#installation-needs tr').count()==15 and '4 项尚无候选物品' in page.locator('#installation-summary').inner_text())
+        silicone=page.locator('[data-need="weather_need_silicone_grease"]').inner_text()
+        check('silicone_remains_missing_in_browser','待分配' in silicone and '缺少候选物品' in silicone and '21030' not in silicone)
+        page.locator('#installation-panel').scroll_into_view_if_needed();capture('installation_needs')
+        page.locator('#identity-filter').select_option('reused')
+        check('logger_and_cart_are_two_reused_identities',page.locator('#identity-rows tr').count()==2 and
+              page.locator('[data-identity="hobo_u30"]').count()==1 and page.locator('[data-identity="utility_cart"]').count()==1)
+        page.locator('#identity-panel').scroll_into_view_if_needed();capture('shared_identities')
+        page.locator('#identity-filter').select_option('weather')
+        check('weather_identities_include_two_temporary_ties',page.locator('#identity-rows tr').count()==35 and
+              page.locator('[data-identity="weather_temporary_leg"]').count()==1 and page.locator('[data-identity="weather_temporary_brace"]').count()==1)
+        page.locator('#identity-filter').select_option('unplaced')
+        check('missing_initial_placement_excludes_staged_tools_and_site',page.locator('#identity-rows tr').count()==24 and
+              page.locator('[data-identity="weather_tape_measure_bt5m"]').count()==0 and page.locator('[data-identity="weather_ground_design"]').count()==0)
+        page.set_viewport_size({'width':390,'height':844})
+        check('inventory_mobile_no_overflow',not page.evaluate('document.documentElement.scrollWidth > innerWidth'))
+        page.set_viewport_size({'width':1440,'height':1000})
         check('no_browser_errors',not errors)
         # A real changed source must prevent a stale report from being rendered.
         page.route('**/assets/cooling_lab_v1/scene.json',lambda route:route.fulfill(status=200,content_type='application/json',body='{}'))
@@ -74,8 +92,13 @@ def run(url, browser):
         page.route('**/assets/cooling_lab_v1/stock_cutplan.json',lambda route:route.fulfill(status=200,content_type='application/json',body='{}'))
         page.reload();page.wait_for_function('document.documentElement.dataset.allocationLoaded === "error"')
         check('stale_cutplan_rejected','stock_cutplan.json' in page.locator('#allocation-error').inner_text() and page.locator('#stock-plan polygon').count()==0)
+        page.unroute('**/assets/cooling_lab_v1/stock_cutplan.json')
+        page.route('**/assets/cooling_lab_v1/weather_scene_binding.json',lambda route:route.fulfill(status=200,content_type='application/json',body='{}'))
+        page.reload();page.wait_for_function('document.documentElement.dataset.allocationLoaded === "error"')
+        check('stale_composition_blocks_unified_inventory','weather_scene_binding.json' in page.locator('#allocation-error').inner_text() and page.locator('#identity-rows tr').count()==0 and page.locator('#installation-needs tr').count()==0)
         b.close()
     paths=[HERE/'allocation.html',HERE/'allocation.js',HERE/'allocation.css',HERE/'style.css',Path(__file__),ROOT/'assets/cooling_lab_v1/campaign_allocation.json',ROOT/'assets/cooling_lab_v1/stock_cutplan.json']
+    paths += [ROOT/'assets/cooling_lab_v1/laboratory_inventory.json',ROOT/'assets/cooling_lab_v1/laboratory_inventory_checks.json']
     record=dict(passed=all(c['passed'] for c in checks),checks=checks,captures=captures,
                 source_artifacts=[dict(path=str(f.relative_to(ROOT)),sha256=sha(f)) for f in paths])
     (HERE/'ALLOCATION_VERIFICATION.json').write_text(json.dumps(record,indent=2)+'\n')

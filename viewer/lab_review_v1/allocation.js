@@ -1,4 +1,4 @@
-const $=id=>document.getElementById(id),root='../../';let report,stockPlan;
+const $=id=>document.getElementById(id),root='../../';let report,stockPlan,labInventory;
 const stockLabels={copper_sheet_stock:'铜板',aluminum_sheet_stock:'铝板',foam_stock:'泡沫板',acrylic_stock:'亚克力板',mylar_stock:'镀铝 PET',nano_pe_stock:'纳米多孔 PE',ldpe_stock:'LDPE',frame_machining_stock:'框架加工铝坯',cover_adhesive_stock:'带离型纸转移胶膜'};
 const unitLabels={instrument_or_probe:'台／支',tool:'件',vessel:'个',probe:'支',sheet:'张',plate:'块',tube:'段',roll:'卷',blank:'块',cart:'辆',tray:'个',connector_pair:'对',kit:'套',lead:'根','T-nut':'个','inspection asset':'件',individual_length:'根',fastener_or_pad_package:'件／包'};
 const mm=v=>Number((v*1000).toFixed(3));
@@ -40,6 +40,27 @@ unitLabels.catalog_lab_jack='台';unitLabels.fastener_or_washer='件';unitLabels
 const roleName=role=>roleLabels[role]||(role.startsWith('map_')?'热分布点 '+role.slice(4):role.startsWith('calibration_probe_')?'校准探头 '+role.slice(18):role);
 function element(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e}
 function card(target,title,detail){const e=element('div');e.className='risk-card';e.append(element('h3',title),element('p',detail));$(target).append(e)}
+function renderIdentities(){
+ const mode=$('identity-filter').value;
+ const rows=labInventory.identities.filter(e=>mode==='all'||mode==='weather'&&(e.installed_reference_present||e.preparation_reference_present)||mode==='unplaced'&&e.initial_state_status==='initial_placement_missing'||mode==='reused'&&e.base_candidate_placement&&e.installed_reference_present);
+ $('identity-rows').replaceChildren();
+ const status={base_candidate_placement_unqualified:'已有陈列位置，初始状态未验收',context_candidate_placement_unqualified:'已有工具台位置，初始状态未验收',initial_placement_missing:'初始存放位置待补',facility_design_not_portable_stock:'场地设计，不计可搬运库存'};
+ for(const e of rows){const tr=element('tr');tr.dataset.identity=e.id;
+  const contexts=[...new Set(e.representations.map(r=>({base_display:'基础陈列',weather_installed_reference:'安装参考',weather_partial_preparation:'低位准备参考'}[r.context])))];
+  for(const value of [e.label,e.id,contexts.join(' / '),status[e.initial_state_status]])tr.append(element('td',value));$('identity-rows').append(tr);
+ }
+ $('identity-visible').textContent='显示 '+rows.length+' / '+labInventory.identities.length+' 个审查身份。';
+}
+function renderInstallation(){
+ const c=labInventory.counts;$('installation-summary').textContent=c.installation_requirements+' 项安装补充需求，其中 '+c.installation_needs_without_candidate+' 项尚无候选物品，'+c.installation_quantities_unallocated+' 项数量或容量待分配。';
+ for(const n of labInventory.installation_requirements){const tr=element('tr');tr.dataset.need=n.id;
+  const unit={tool:'件',container:'管',g:'g',wipe:'张',tie:'根'}[n.unit]||n.unit;
+  const status=n.candidate_ids.length?'候选未验收；初始准备待核对':'缺少候选物品';
+  for(const value of [n.label,n.required_quantity===null?'待分配':n.required_quantity+' '+unit,n.candidate_ids.join('、')||'—',status])tr.append(element('td',value));$('installation-needs').append(tr);
+ }
+ $('identity-summary').textContent=c.base_identities+' 个基础陈列身份 + '+c.context_identities+' 个气象站组合身份 − '+c.reused_identities+' 个重复展示身份 + '+c.preparation_only_identities+' 根临时扎带 = '+c.unique_review_identities+' 个审查身份（含 '+c.facility_designs+' 个场地设计）。这不是可执行初始库存数量。';
+ $('identity-filter').addEventListener('change',renderIdentities);renderIdentities();
+}
 function render(){
  const branch=$('allocation-branch').value,query=$('allocation-search').value.trim().toLowerCase(),filter=$('allocation-filter').value;
  $('branch-allocation').replaceChildren();
@@ -66,6 +87,8 @@ async function start(){
  const response=await fetch(root+'assets/cooling_lab_v1/campaign_allocation.json',{cache:'no-store'});if(!response.ok)throw Error('无法读取分配记录');report=await response.json();
  for(const source of report.source_artifacts){const r=await fetch(root+source.path,{cache:'no-store'});if(!r.ok)throw Error('缺失依据：'+source.path);const bytes=await r.arrayBuffer(),digest=await crypto.subtle.digest('SHA-256',bytes);const actual=[...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('');if(actual!==source.sha256)throw Error('分配记录已过期：'+source.path);if(source.path===report.stock_allocation.path){if(actual!==report.stock_allocation.sha256)throw Error('下料分配版本不一致');stockPlan=JSON.parse(new TextDecoder().decode(bytes))}}
  if(!stockPlan)throw Error('缺少已核对的下料分配');
+ const inventoryResponse=await fetch(root+'assets/cooling_lab_v1/laboratory_inventory.json',{cache:'no-store'});if(!inventoryResponse.ok)throw Error('无法读取统一物品总表');labInventory=await inventoryResponse.json();
+ for(const source of labInventory.source_artifacts){const r=await fetch(root+source.path,{cache:'no-store'});if(!r.ok)throw Error('缺失总表依据：'+source.path);const digest=await crypto.subtle.digest('SHA-256',await r.arrayBuffer());const actual=[...new Uint8Array(digest)].map(v=>v.toString(16).padStart(2,'0')).join('');if(actual!==source.sha256)throw Error('物品总表已过期：'+source.path)}
  const c=report.counts;$('allocation-counts').textContent=c.scene_instances+' 个场景实例中，'+c.reference_only_instances+' 个仅作完成态或备选参考。'+c.component_requirements+' 项组件需求中，'+c.selected_quantity_components+' 项已有选定数量，'+c.unallocated_component_quantities+' 项用量待分配；完整分支通过 0 / '+c.branches+'。';
  for(const b of report.branches){const option=element('option',b.id+' · '+branchLabels[b.id]);option.value=b.id;$('allocation-branch').append(option)}
  for(const p of report.physical_instances.filter(p=>!p.initial_stock_credit))card('allocation-references',p.id+' · '+p.label,p.note);
@@ -76,6 +99,6 @@ async function start(){
  for(const t of stockPlan.tubes)$('stock-tubes').append(element('p',(t.id.includes('white')?'白色':'黑色')+'装置 · '+(t.asset_id==='pe_tube_stock'?'PE':t.asset_id==='frame_profile_stock'?'立柱铝':'遮罩铝')+'管，内径 '+mm(t.inner_diameter_m)+' / 外径 '+mm(t.outer_diameter_m)+' mm：原长 '+mm(t.raw_length_m)+' → 成品 '+mm(t.finished_length_m)+' mm，另留 '+mm(t.cut_allowance_m)+' mm 切割余量。'));
  for(const p of stockPlan.profiles)$('stock-profiles').append(element('p',(p.id.includes('white')?'白色':'黑色')+'装置 · '+(p.id.endsWith('left')?'左':'右')+'侧 20-2020 型材，选定采购长度 '+mm(p.length_m)+' mm；未验收供应公差。'));
  for(const c of stockPlan.angle_cuts)$('stock-angles').append(element('p',(c.id.includes('white')?'白色':'黑色')+'装置 · 第 '+c.id.at(-1)+' 个角铝固定片：切宽 '+mm(c.finished_length_m)+' mm，另留 '+mm(c.kerf_allowance_m)+' mm 切割余量；孔位加工未验收。'));
- $('stock-sheet').addEventListener('change',renderStock);renderStock();render();document.documentElement.dataset.allocationLoaded='true';
+ $('stock-sheet').addEventListener('change',renderStock);renderStock();render();renderInstallation();document.documentElement.dataset.allocationLoaded='true';
 }
 start().catch(e=>{$('allocation-error').textContent=String(e);document.documentElement.dataset.allocationLoaded='error'});

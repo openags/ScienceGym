@@ -659,6 +659,30 @@ The inspector links this comparison for each new asset. Associations are not
 accepted operation-to-part bindings. Missing reference views and all acceptance
 decisions remain explicit; CAD download listings are not downloaded CAD.
 
+The allocation page also reads `laboratory_inventory.json`, a downstream join
+of the base allocation, installed weather station and partial preparation view.
+Its 114 review identities are 81 base identities plus 33 installed-context
+identities, minus the reused logger and cart, plus two additional temporary
+ties. This count includes one site design and compound kit groups; it is not a
+count of portable objects or executable initial stock. All 161 preparation
+parts retain identity links, including the reused plug tray. Fourteen permanent
+ties keep their own cutoffs; the two sacrificial temporary ties remain separate
+with their removal/disposal unresolved. Eight tool/grease candidates retain
+their existing worktop locations. Twenty-four other portable context identities
+still lack initial placement bindings.
+
+Fifteen supplementary installation needs preserve the 154 original component
+requirements and their deficits. Four needs have no selected candidate:
+U30 silicone grease, two ordinary grease applicators and wiping material.
+Silicone quantity, wipe count and residue-collection capacity remain unknown.
+The optional S-ADAPT-X5-10 grease is not credited to the selected base U30;
+the silicone-free 21030 tube cannot satisfy that requirement. These source
+distinctions are recorded in `weather_inventory_sources.json`.
+Rebuild with `build_laboratory_inventory.py` after the scene binding, then run
+`check_laboratory_inventory.py`. The checker covers missing pieces, duplicate
+identities and invalid stock/substitution claims. The allocation browser also
+rejects a stale composition record before rendering the inventory tables.
+
 `campaign_allocation.json` accounts for all 154 active component requirements
 and the eleven branches. Seventeen core equipment/probe components, sixteen stock
 components and four shared hand tools have explicit selected quantities; the other 117 retain

@@ -136,6 +136,15 @@ guarantee of general reliability.
   remain the same physical instances. Staged assets are not executed preparation
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
+- The [unified inventory](../../assets/cooling_lab_v1/laboratory_inventory.json)
+  reconciles base, installed-weather and partial-preparation views into 114
+  review identities, including one site design. U30, cart, sensor leads and
+  removed parts keep their identities; two temporary ties are additional stock,
+  separate from the fourteen retained ties and their cutoffs. Fifteen explicit
+  installation needs expose missing silicone grease, two ordinary applicators
+  and wiping stock. Three quantities/capacities remain unknown. These additions
+  preserve every original component and deficit; they grant no initial-state
+  or task credit. The same allocation page displays and filters these records.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
   covers all 154 component requirements and eleven branches, with selected
   quantities for seventeen core components, sixteen stock components and four shared hand tools; quantities

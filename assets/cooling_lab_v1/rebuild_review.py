@@ -59,6 +59,8 @@ def main():
     run('assets/cooling_lab_v1/check_weather_remainders.py')
     run('assets/cooling_lab_v1/build_weather_scene_binding.py')
     run('assets/cooling_lab_v1/check_weather_scene_binding.py')
+    run('assets/cooling_lab_v1/build_laboratory_inventory.py')
+    run('assets/cooling_lab_v1/check_laboratory_inventory.py')
     run('assets/cooling_lab_v1/check_adjustable_wrench_service.py')
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
