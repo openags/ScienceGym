@@ -7,7 +7,9 @@ def package(folder):
  folder=Path(folder).resolve()
  def row(p):return dict(path=str(p.relative_to(ROOT)),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
  paths=set()
- for model in [folder/'world.xml',folder/'controller_model/world.xml']:
+ models=[folder/'world.xml',folder/'controller_model/world.xml']
+ if (folder/'actor_bundle/model/world.xml').exists():models.append(folder/'actor_bundle/model/world.xml')
+ for model in models:
   tree=ET.parse(model).getroot();directory=(model.parent/tree.find('compiler').get('meshdir','')).resolve();paths.add(model)
   for item in tree.findall('asset/mesh'):paths.add((directory/item.get('file')).resolve())
   texture_directory=(model.parent/tree.find('compiler').get('texturedir','')).resolve()

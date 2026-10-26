@@ -6,6 +6,7 @@ import numpy as np
 import mujoco
 import trimesh
 from scipy.spatial.transform import Rotation
+from robot_state import initialize
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 ROBOT=ROOT/'assets/unitree_g1_inspire_v1'
@@ -91,16 +92,3 @@ def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, 
         attach(xml,out,map_only=map_only)
     path=out/'world.xml';ET.indent(xml);ET.ElementTree(xml).write(path,encoding='unicode')
     return path
-
-
-def initialize(m):
-    d=mujoco.MjData(m)
-    for side in ['left','right']:
-        d.joint(side+'_hip_pitch_joint').qpos[0]=-.06
-        d.joint(side+'_knee_joint').qpos[0]=.12
-        d.joint(side+'_ankle_pitch_joint').qpos[0]=-.06
-        d.joint(side+'_elbow_joint').qpos[0]=.45
-    mujoco.mj_forward(m,d)
-    d.qpos[2]-=min(d.site(s+'_sole').xpos[2] for s in ['left','right'])
-    mujoco.mj_forward(m,d)
-    return d

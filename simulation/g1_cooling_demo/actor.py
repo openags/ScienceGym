@@ -3,7 +3,7 @@ import argparse,pickle,sys
 import numpy as np
 import mujoco
 from scipy.spatial.transform import Rotation
-from world import initialize
+from robot_state import initialize
 from balance import Balance
 from observations import StateEstimate
 

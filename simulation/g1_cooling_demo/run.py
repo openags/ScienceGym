@@ -10,7 +10,7 @@ from world import build,initialize,HERE
 from balance import Balance
 
 
-def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to_source=False,payload=False,tray_offset=(0.,0.),finger_curl=0.,com_align=False,grip_force=None,payload_kind='copper',laboratory=False):
+def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to_source=False,payload=False,tray_offset=(0.,0.),finger_curl=0.,com_align=False,grip_force=None,payload_kind='copper',laboratory=False,isolate_actor=True):
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
     if any(out.iterdir()):raise ValueError('Use a new attempt directory')
     snapshot=out/'source_snapshot';snapshot.mkdir()
@@ -25,7 +25,7 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
     control=Balance(cm,cd);zero=mujoco.MjData(cm);mujoco.mj_forward(cm,zero)
     control.palm_rotations={s:Rotation.from_euler('x',-45 if s=='left' else 45,degrees=True).as_matrix()@zero.site(s+'_wrist_reference').xmat.reshape(3,3) for s in ['left','right']}
     begin={s:cd.site(s+'_wrist_reference').xpos.copy() for s in ['left','right']}
-    process=None;depth_renderer=None;sensor_records=[];last_actor=None;depth_frames=[];policy_records=[];complete_time=None
+    process=None;depth_renderer=None;sensor_records=[];last_actor=None;depth_frames=[];policy_records=[];complete_time=None;isolation_receipt=None
     joints=[j for j in range(m.njnt) if m.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE]
     if sensor_actor:
         command=[sys.executable,str(HERE/('actor_feedback.py' if closed_loop else 'actor.py')),'--model',str(control_path)]
@@ -34,7 +34,11 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
         if closed_loop:command.extend(['--grip-force',str(grip_force if grip_force is not None else 18 if payload and payload_kind=='copper' else 15)])
         if closed_loop:command.extend(['--finger-curl',str(finger_curl)])
         if closed_loop and com_align:command.append('--com-align')
-        process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=open(out/'actor_stderr.log','w'))
+        actor_environment=None
+        if isolate_actor:
+            from isolation import prepare
+            command,actor_environment,isolation_receipt=prepare(out,control_path,command)
+        process=subprocess.Popen(command,env=actor_environment,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=open(out/'actor_stderr.log','w'),close_fds=True)
         depth_renderer=mujoco.Renderer(m,height=180,width=320,max_geom=max(10000,m.ngeom+1000));depth_renderer.enable_depth_rendering()
         render_option=mujoco.MjvOption();render_option.geomgroup[3]=0;render_option.sitegroup[:]=0
     records=[];failure=None;events=[];start=time.monotonic()
@@ -103,6 +107,8 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
         sensor_isolation_qualified=False,manipulation_qualified=False,whole_paper_validated=False,
         scope='G1/Inspire floating-base contact development; simulator proprioception diagnostic, not sensor-only campaign qualification.')
     result.update(source_sha256=pins,actor_process_separate=sensor_actor,actor_last_output={k:v for k,v in (last_actor or {}).items() if k!='torque'},actor_input_fields=list(sensor_records[0])+['depth'] if sensor_records else [])
+    result['actor_access_isolated']=bool(isolation_receipt and isolation_receipt['passed'])
+    if isolation_receipt:result['actor_isolation_sha256']=hashlib.sha256((out/'actor_isolation.json').read_bytes()).hexdigest()
     result.update(closed_loop_task_policy=closed_loop,return_to_source=return_to_source,payload_present=payload,initial_tray_offset_m=list(tray_offset))
     result.update(finger_curl_rad=finger_curl,com_alignment=com_align,grip_force_n=grip_force if grip_force is not None else 18 if payload and payload_kind=='copper' else 15)
     result['payload_kind']=payload_kind if payload else None
@@ -119,4 +125,4 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--duration',type=float,default=5);p.add_argument('--tray',action='store_true');p.add_argument('--sensor-actor',action='store_true');p.add_argument('--closed-loop',action='store_true');p.add_argument('--return-to-source',action='store_true');p.add_argument('--payload',action='store_true');p.add_argument('--payload-kind',choices=['copper','spatula'],default='copper');p.add_argument('--tray-offset',type=float,nargs=2,default=(0.,0.));p.add_argument('--finger-curl',type=float,default=0.);p.add_argument('--com-align',action='store_true');p.add_argument('--grip-force',type=float);p.add_argument('--laboratory',action='store_true');a=p.parse_args();run(a.out,a.duration,a.tray,a.sensor_actor,a.closed_loop,a.return_to_source,a.payload,a.tray_offset,a.finger_curl,a.com_align,a.grip_force,a.payload_kind,a.laboratory)
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--duration',type=float,default=5);p.add_argument('--tray',action='store_true');p.add_argument('--sensor-actor',action='store_true');p.add_argument('--closed-loop',action='store_true');p.add_argument('--return-to-source',action='store_true');p.add_argument('--payload',action='store_true');p.add_argument('--payload-kind',choices=['copper','spatula'],default='copper');p.add_argument('--tray-offset',type=float,nargs=2,default=(0.,0.));p.add_argument('--finger-curl',type=float,default=0.);p.add_argument('--com-align',action='store_true');p.add_argument('--grip-force',type=float);p.add_argument('--laboratory',action='store_true');p.add_argument('--unisolated-actor',action='store_true',help='Explicit legacy diagnostic; disables filesystem/PID/network isolation');a=p.parse_args();run(a.out,a.duration,a.tray,a.sensor_actor,a.closed_loop,a.return_to_source,a.payload,a.tray_offset,a.finger_curl,a.com_align,a.grip_force,a.payload_kind,a.laboratory,not a.unisolated_actor)

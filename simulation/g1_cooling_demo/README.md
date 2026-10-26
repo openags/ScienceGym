@@ -5,7 +5,9 @@ The contact plant now also runs in the existing complete laboratory. The
 equipment, with G1 and the white tray as dynamic bodies. Other equipment stays
 fixed; articulated devices, loaded walking and the full paper campaign remain
 open. The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
-shows the resulting contact subtask. The earlier independent workbench tests
+shows the resulting contact subtask with enforced actor access isolation. The
+runtime guide records the namespace probes and independent packet-rejection
+check. Sensor calibration and general localization remain open. The earlier independent workbench tests
 below remain unchanged as development evidence.
 
 The requested [full-laboratory conceptual film](../../viewer/cooling_concept_v1/watch.html)
@@ -17,7 +19,7 @@ Serve the repository root with `python -m http.server 8769 --bind 127.0.0.1` and
 
 ## Reproduce
 
-Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:
+Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. Current sensor runs also require Linux with bubblewrap and enabled unprivileged namespaces; see [the runtime guide](LABORATORY.md). The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:
 
 ```sh
 export OPENBLAS_NUM_THREADS=1

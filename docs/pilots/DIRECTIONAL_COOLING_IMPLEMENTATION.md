@@ -19,7 +19,8 @@ with Inspire FTP left/right for the current asset integration, based on the
 robot sensors; adaptations remain limited to added cameras and ordinary tools.
 Robot-specific fixtures and added fiducials are excluded. The previous H2 /
 Dex5-S assets and body evidence remain historical references.
-Model acquisition and static inspection do not authorize new manipulation work.
+Model acquisition and static inspection grant no manipulation qualification.
+The owner's development authorization is recorded below.
 
 ## Delivery order and acceptance
 
@@ -33,8 +34,8 @@ acceptance nor manipulation qualification and does not change the full target.
    reconstruct commercial equipment from inspected manufacturer sources;
    represent operational parts and access states; check complete humanoid,
    hand and carried-load geometry. Deliver a source/model comparison and a
-   dimensioned interactive scene. The owner must accept this exact revision
-   before new manipulation sequences are developed.
+   dimensioned interactive scene. Acceptance of this exact revision remains
+   pending; the later authorization permits parallel manipulation development.
 2. **Sensor-driven capabilities.** Add calibrated head RGB-D and bilateral wrist
    RGB observation models, plus evidenced proprioceptive/contact channels.
    Isolate the controller process from simulator truth and evaluator records.
@@ -64,10 +65,13 @@ G1 and the white tray are dynamic, and the other 79 assets remain fixed initial
 obstacles. The original 6,537 environment parts retain their source triangles,
 dimensions and placements. The actor receives only the authored architecture
 as a static map, plus depth, encoders and IMU observations; loose equipment and
-the target are absent from its model. OS capability isolation remains open.
+the target are absent from its model. The latest actor uses read-only bundles
+and separate filesystem, PID and network namespaces. Active probes and a
+forbidden-packet rejection test check this enforcement; sensor calibration
+and general localization remain open.
 
-Two 80.54-second runs exercise empty and preloaded-tool tray transport and
-return on the actual white assembly bench. The
+Three 80.54-second runs exercise empty, preloaded-tool and isolated-actor tray
+transport and return on the actual white assembly bench. The
 [runtime guide and evidence](../../simulation/g1_cooling_demo/LABORATORY.md)
 retain their source snapshots, recorded sensor inputs, physics trajectories,
 independent replay and the failed first import attempt. Initial robot/tray
@@ -327,7 +331,7 @@ and custom tools. It is historical evidence and must not become the humanoid
 runtime input. The 20-second H2 foundation reads privileged simulator state and
 does not qualify sensor-only manipulation. Preserve both records with their
 original scope. New task/controller bindings require their own revision and
-evidence after scene acceptance.
+evidence under the recorded parallel-development authorization.
 
 The current scene is **not ready for whole-laboratory acceptance**. Remaining
 items include the hand's qualified contact/dynamic description, camera mounting, ordinary
@@ -337,9 +341,10 @@ full carried-load space checks, and evidence for installation/support/services.
 No owner approval or scene safety qualification is inferred from green checks.
 
 Build and verification instructions are in the
-[laboratory package](../../assets/cooling_lab_v1/README.md). Runtime observation
-isolation, controllers and new manipulation sequences are intentionally deferred
-under the owner's asset-first order; static policy tests are not runtime isolation.
+[laboratory package](../../assets/cooling_lab_v1/README.md). The later parallel
+development authorization permits the contact runtime described above. Its
+isolated sensor actor and stationary tray sequence have recorded execution
+evidence; the complete paper task and scene acceptance remain open.
 
 ## Current embodiment resource integration
 
