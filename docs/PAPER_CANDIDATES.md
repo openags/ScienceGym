@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-25**. Candidate count: **350**.
+Last screened: **2026-10-26**. Candidate count: **351**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3559,3 +3559,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [44-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67265-8/MediaObjects/41467_2025_67265_MOESM1_ESM.pdf) text accessible; selected workflow and spectral-quality captions screened. Reporting-summary request returned Internal Error and was not retried. Figure pixels, remaining sections and external data/code were not fully reviewed.
 - This safe physical-phenotyping candidate extends the earlier nonbiological discovery focus. Field collection, chemical digestion, grinding and thermal processing are excluded. Sample provenance, handling suitability and instrument qualification remain prerequisites. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-25**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
+
+
+## Additional candidate: controlled-environment plant phenotyping (2026-10-26)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Convergent evidence for the temperature-dependent emergence of silicification in terrestrial plants](https://www.nature.com/articles/s41467-025-56438-0) | Nature Communications / 2025 | 10.1038/s41467-025-56438-0 | Plant identity tracking across controlled-environment treatments, scheduled imaging, length measurement, weighing and chlorophyll-meter acquisition suggest a long-horizon phenotyping candidate. | OA main and scientific supplementary PDF text accessible; selected content screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **16**, 1155 (2025), published **29 January 2025**. Selected plant-growth and phenotyping Methods screened. Pot-level replication must remain distinct from plants within each pot; chlorophyll-meter readings and concentrations derived by calibration are not interchangeable raw measurements.
+- Official [17-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-56438-0/MediaObjects/41467_2025_56438_MOESM1_ESM.pdf) text accessible; selected experimental captions and baseline table screened. Reporting Summary request returned Internal Error and was not retried. Figure pixels, remaining sections, source datasets and code were not fully reviewed.
+- This candidate concerns physical phenotyping, not the complete silicification study. Chemical preparation, digestion and elemental analysis are excluded from this lightweight scope. Plant provenance, environmental-control qualification and sample-history custody remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-26**; publisher license **CC BY 4.0**. Citation metadata and original commentary only.
