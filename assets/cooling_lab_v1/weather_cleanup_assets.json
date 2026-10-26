@@ -1,0 +1,5564 @@
+{
+  "schema_version": 1,
+  "status": "ordinary_cleanup_candidates_pending_review",
+  "source_artifacts": [
+    {
+      "path": "assets/cooling_lab_v1/build_weather_cleanup.py",
+      "sha256": "4111d5313b167052d0c0b166452fc58b307b9af73de89d421a99860ee3e3550a"
+    },
+    {
+      "path": "assets/cooling_lab_v1/weather_cleanup_sources.json",
+      "sha256": "63bf0830985a17c83b8a82c5bdf70694d3849fc42c6f9773fcc94c43930a0203"
+    },
+    {
+      "path": "assets/cooling_lab_v1/geometry_tools.py",
+      "sha256": "17a42c83a9eed029e57df2f932199e7d691ba74198c8fa666572cd3ae48237a0"
+    },
+    {
+      "path": "assets/cooling_lab_v1/build_supplies.py",
+      "sha256": "3399b70c984e0408ed85322003ac689333a380c98703a9d2e2364e1f9297c298"
+    },
+    {
+      "path": "assets/cooling_lab_v1/mast_grease_assets.json",
+      "sha256": "2c09624695642a781df6094d8f3a159ea03d6f82467046b4e656ddb7724f194c"
+    },
+    {
+      "path": "assets/cooling_lab_v1/silicone_grease_assets.json",
+      "sha256": "ebcf853f36b161e1359e5ea54e490b566502caf1054f5411812b94b704d1a3e8"
+    },
+    {
+      "path": "assets/cooling_lab_v1/supply_sources.json",
+      "sha256": "b498f22ca84b21be4125d73af349041603323647b7b09e2ade8ffb33e9d916b1"
+    }
+  ],
+  "applicators": [
+    {
+      "id": "weather_mast_applicator",
+      "label": "Bürkle 5386-0041 · 桅杆润滑脂专用",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/buerkle_5386_0041_spatula.glb",
+        "sha256": "24ee760c4f880b4247cade3264ba624875493d0efd1c218f0935fd85ef037734",
+        "parts": 1,
+        "bounds_m": [
+          [
+            -0.075,
+            -0.0045000000000000005,
+            0.0
+          ],
+          [
+            0.075,
+            0.0045000000000000005,
+            0.0035
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "continuous_stainless_spatula",
+            "role": "ordinary_reusable_spatula",
+            "bounds_m": [
+              [
+                -0.075,
+                -0.0045000000000000005,
+                0.0
+              ],
+              [
+                0.075,
+                0.0045000000000000005,
+                0.0035
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "assigned_grease_identity": "weather_mast_grease_21030",
+      "selected_required_units": 1,
+      "shared_between_grease_families": false,
+      "rest": {
+        "to_support_plane": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "contact_basis": "round_handle_tangent_line",
+        "dynamic_stability_qualified": false,
+        "anti_roll_feature": false
+      }
+    },
+    {
+      "id": "weather_silicone_applicator",
+      "label": "Bürkle 5386-0041 · 硅脂专用",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/buerkle_5386_0041_spatula.glb",
+        "sha256": "24ee760c4f880b4247cade3264ba624875493d0efd1c218f0935fd85ef037734",
+        "parts": 1,
+        "bounds_m": [
+          [
+            -0.075,
+            -0.0045000000000000005,
+            0.0
+          ],
+          [
+            0.075,
+            0.0045000000000000005,
+            0.0035
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "continuous_stainless_spatula",
+            "role": "ordinary_reusable_spatula",
+            "bounds_m": [
+              [
+                -0.075,
+                -0.0045000000000000005,
+                0.0
+              ],
+              [
+                0.075,
+                0.0045000000000000005,
+                0.0035
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "assigned_grease_identity": "weather_silicone_grease_93003",
+      "selected_required_units": 1,
+      "shared_between_grease_families": false,
+      "rest": {
+        "to_support_plane": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "contact_basis": "round_handle_tangent_line",
+        "dynamic_stability_qualified": false,
+        "anti_roll_feature": false
+      }
+    }
+  ],
+  "wipe_pack": {
+    "id": "weather_wipes_tx609",
+    "label": "Texwipe TX609 · 300 张干擦拭材料",
+    "geometry": {
+      "path": "assets/cooling_lab_v1/geometry/texwipe_tx609_300_wipes.glb",
+      "sha256": "58c435749203b6902513b44dfade3abbcbfe33f25ea0b4c8926b78edc6bb896d",
+      "parts": 303,
+      "bounds_m": [
+        [
+          -0.126,
+          -0.15,
+          0.0
+        ],
+        [
+          0.126,
+          0.15,
+          0.11608
+        ]
+      ],
+      "axes": "+Z up; SI metres",
+      "part_records": [
+        {
+          "id": "wipe_001",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0055
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.005849999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_002",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.00585
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0062
+            ]
+          ]
+        },
+        {
+          "id": "wipe_003",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0062
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.006549999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_004",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.00655
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0069
+            ]
+          ]
+        },
+        {
+          "id": "wipe_005",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0069
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0072499999999999995
+            ]
+          ]
+        },
+        {
+          "id": "wipe_006",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0072499999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.007599999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_007",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0076
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.00795
+            ]
+          ]
+        },
+        {
+          "id": "wipe_008",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.00795
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0083
+            ]
+          ]
+        },
+        {
+          "id": "wipe_009",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0083
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.00865
+            ]
+          ]
+        },
+        {
+          "id": "wipe_010",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.00865
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.009
+            ]
+          ]
+        },
+        {
+          "id": "wipe_011",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.009
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.009349999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_012",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.009349999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.009699999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_013",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.009699999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.010049999999999998
+            ]
+          ]
+        },
+        {
+          "id": "wipe_014",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01005
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0104
+            ]
+          ]
+        },
+        {
+          "id": "wipe_015",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0104
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01075
+            ]
+          ]
+        },
+        {
+          "id": "wipe_016",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.010750000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0111
+            ]
+          ]
+        },
+        {
+          "id": "wipe_017",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0111
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01145
+            ]
+          ]
+        },
+        {
+          "id": "wipe_018",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01145
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0118
+            ]
+          ]
+        },
+        {
+          "id": "wipe_019",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0118
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01215
+            ]
+          ]
+        },
+        {
+          "id": "wipe_020",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01215
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.012499999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_021",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.012499999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.012849999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_022",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.012849999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.013199999999999998
+            ]
+          ]
+        },
+        {
+          "id": "wipe_023",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0132
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01355
+            ]
+          ]
+        },
+        {
+          "id": "wipe_024",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01355
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0139
+            ]
+          ]
+        },
+        {
+          "id": "wipe_025",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0139
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.014249999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_026",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01425
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0146
+            ]
+          ]
+        },
+        {
+          "id": "wipe_027",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0146
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01495
+            ]
+          ]
+        },
+        {
+          "id": "wipe_028",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01495
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0153
+            ]
+          ]
+        },
+        {
+          "id": "wipe_029",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0153
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01565
+            ]
+          ]
+        },
+        {
+          "id": "wipe_030",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.015649999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.016
+            ]
+          ]
+        },
+        {
+          "id": "wipe_031",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.016
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.016350000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_032",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.016349999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0167
+            ]
+          ]
+        },
+        {
+          "id": "wipe_033",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0167
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.017050000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_034",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.017049999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0174
+            ]
+          ]
+        },
+        {
+          "id": "wipe_035",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0174
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.017750000000000002
+            ]
+          ]
+        },
+        {
+          "id": "wipe_036",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01775
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0181
+            ]
+          ]
+        },
+        {
+          "id": "wipe_037",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.018099999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01845
+            ]
+          ]
+        },
+        {
+          "id": "wipe_038",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.018449999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0188
+            ]
+          ]
+        },
+        {
+          "id": "wipe_039",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.018799999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01915
+            ]
+          ]
+        },
+        {
+          "id": "wipe_040",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01915
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.019500000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_041",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.019499999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.01985
+            ]
+          ]
+        },
+        {
+          "id": "wipe_042",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.01985
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.020200000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_043",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.020199999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02055
+            ]
+          ]
+        },
+        {
+          "id": "wipe_044",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.02055
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.020900000000000002
+            ]
+          ]
+        },
+        {
+          "id": "wipe_045",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0209
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02125
+            ]
+          ]
+        },
+        {
+          "id": "wipe_046",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.021249999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0216
+            ]
+          ]
+        },
+        {
+          "id": "wipe_047",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0216
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.021950000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_048",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.021949999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0223
+            ]
+          ]
+        },
+        {
+          "id": "wipe_049",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0223
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.022650000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_050",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.022649999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.023
+            ]
+          ]
+        },
+        {
+          "id": "wipe_051",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.023
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.023350000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_052",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.023349999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0237
+            ]
+          ]
+        },
+        {
+          "id": "wipe_053",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0237
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.024050000000000002
+            ]
+          ]
+        },
+        {
+          "id": "wipe_054",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.024049999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.024399999999999998
+            ]
+          ]
+        },
+        {
+          "id": "wipe_055",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.024399999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02475
+            ]
+          ]
+        },
+        {
+          "id": "wipe_056",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.02475
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.025100000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_057",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.025099999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02545
+            ]
+          ]
+        },
+        {
+          "id": "wipe_058",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.02545
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.025800000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_059",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.025799999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02615
+            ]
+          ]
+        },
+        {
+          "id": "wipe_060",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.02615
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.026500000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_061",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.026499999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.02685
+            ]
+          ]
+        },
+        {
+          "id": "wipe_062",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.02685
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.027200000000000002
+            ]
+          ]
+        },
+        {
+          "id": "wipe_063",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.027199999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.027549999999999998
+            ]
+          ]
+        },
+        {
+          "id": "wipe_064",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.027549999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0279
+            ]
+          ]
+        },
+        {
+          "id": "wipe_065",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0279
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.028250000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_066",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.028249999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0286
+            ]
+          ]
+        },
+        {
+          "id": "wipe_067",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0286
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.028950000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_068",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.028949999999999997
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0293
+            ]
+          ]
+        },
+        {
+          "id": "wipe_069",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0293
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.029650000000000003
+            ]
+          ]
+        },
+        {
+          "id": "wipe_070",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.029649999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03
+            ]
+          ]
+        },
+        {
+          "id": "wipe_071",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.030350000000000002
+            ]
+          ]
+        },
+        {
+          "id": "wipe_072",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.030349999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.030699999999999998
+            ]
+          ]
+        },
+        {
+          "id": "wipe_073",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.030699999999999998
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03105
+            ]
+          ]
+        },
+        {
+          "id": "wipe_074",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03105
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.031400000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_075",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0314
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03175
+            ]
+          ]
+        },
+        {
+          "id": "wipe_076",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03175
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.032100000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_077",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0321
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03245
+            ]
+          ]
+        },
+        {
+          "id": "wipe_078",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03245
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0328
+            ]
+          ]
+        },
+        {
+          "id": "wipe_079",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.032799999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03315
+            ]
+          ]
+        },
+        {
+          "id": "wipe_080",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03315
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0335
+            ]
+          ]
+        },
+        {
+          "id": "wipe_081",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.033499999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03385
+            ]
+          ]
+        },
+        {
+          "id": "wipe_082",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03385
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0342
+            ]
+          ]
+        },
+        {
+          "id": "wipe_083",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0342
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.034550000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_084",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03455
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0349
+            ]
+          ]
+        },
+        {
+          "id": "wipe_085",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0349
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.035250000000000004
+            ]
+          ]
+        },
+        {
+          "id": "wipe_086",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03525
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0356
+            ]
+          ]
+        },
+        {
+          "id": "wipe_087",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0356
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03595
+            ]
+          ]
+        },
+        {
+          "id": "wipe_088",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.035949999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0363
+            ]
+          ]
+        },
+        {
+          "id": "wipe_089",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0363
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03665
+            ]
+          ]
+        },
+        {
+          "id": "wipe_090",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.036649999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.037
+            ]
+          ]
+        },
+        {
+          "id": "wipe_091",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.037
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03735
+            ]
+          ]
+        },
+        {
+          "id": "wipe_092",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.037349999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0377
+            ]
+          ]
+        },
+        {
+          "id": "wipe_093",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0377
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03805
+            ]
+          ]
+        },
+        {
+          "id": "wipe_094",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.038049999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0384
+            ]
+          ]
+        },
+        {
+          "id": "wipe_095",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0384
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03875
+            ]
+          ]
+        },
+        {
+          "id": "wipe_096",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03874999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.039099999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_097",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.039099999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.03945
+            ]
+          ]
+        },
+        {
+          "id": "wipe_098",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.03945
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0398
+            ]
+          ]
+        },
+        {
+          "id": "wipe_099",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.039799999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04015
+            ]
+          ]
+        },
+        {
+          "id": "wipe_100",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04015
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0405
+            ]
+          ]
+        },
+        {
+          "id": "wipe_101",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.040499999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04085
+            ]
+          ]
+        },
+        {
+          "id": "wipe_102",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04085
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0412
+            ]
+          ]
+        },
+        {
+          "id": "wipe_103",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.041199999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04155
+            ]
+          ]
+        },
+        {
+          "id": "wipe_104",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04155
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0419
+            ]
+          ]
+        },
+        {
+          "id": "wipe_105",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04189999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.042249999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_106",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.042249999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0426
+            ]
+          ]
+        },
+        {
+          "id": "wipe_107",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0426
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04295
+            ]
+          ]
+        },
+        {
+          "id": "wipe_108",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.042949999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0433
+            ]
+          ]
+        },
+        {
+          "id": "wipe_109",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0433
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04365
+            ]
+          ]
+        },
+        {
+          "id": "wipe_110",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.043649999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.044
+            ]
+          ]
+        },
+        {
+          "id": "wipe_111",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.044
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04435
+            ]
+          ]
+        },
+        {
+          "id": "wipe_112",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.044349999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0447
+            ]
+          ]
+        },
+        {
+          "id": "wipe_113",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0447
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04505
+            ]
+          ]
+        },
+        {
+          "id": "wipe_114",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04504999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.045399999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_115",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.045399999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04575
+            ]
+          ]
+        },
+        {
+          "id": "wipe_116",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04575
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0461
+            ]
+          ]
+        },
+        {
+          "id": "wipe_117",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.046099999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04645
+            ]
+          ]
+        },
+        {
+          "id": "wipe_118",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04645
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0468
+            ]
+          ]
+        },
+        {
+          "id": "wipe_119",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.046799999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04715
+            ]
+          ]
+        },
+        {
+          "id": "wipe_120",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04715
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0475
+            ]
+          ]
+        },
+        {
+          "id": "wipe_121",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.047499999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04785
+            ]
+          ]
+        },
+        {
+          "id": "wipe_122",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04785
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0482
+            ]
+          ]
+        },
+        {
+          "id": "wipe_123",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.04819999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.048549999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_124",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.048549999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0489
+            ]
+          ]
+        },
+        {
+          "id": "wipe_125",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0489
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04925
+            ]
+          ]
+        },
+        {
+          "id": "wipe_126",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.049249999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0496
+            ]
+          ]
+        },
+        {
+          "id": "wipe_127",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0496
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.04995
+            ]
+          ]
+        },
+        {
+          "id": "wipe_128",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.049949999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0503
+            ]
+          ]
+        },
+        {
+          "id": "wipe_129",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0503
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05065
+            ]
+          ]
+        },
+        {
+          "id": "wipe_130",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.050649999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.051
+            ]
+          ]
+        },
+        {
+          "id": "wipe_131",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.051
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05135
+            ]
+          ]
+        },
+        {
+          "id": "wipe_132",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05134999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.051699999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_133",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.051699999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05205
+            ]
+          ]
+        },
+        {
+          "id": "wipe_134",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05205
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0524
+            ]
+          ]
+        },
+        {
+          "id": "wipe_135",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.052399999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05275
+            ]
+          ]
+        },
+        {
+          "id": "wipe_136",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05275
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0531
+            ]
+          ]
+        },
+        {
+          "id": "wipe_137",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.053099999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05345
+            ]
+          ]
+        },
+        {
+          "id": "wipe_138",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05345
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0538
+            ]
+          ]
+        },
+        {
+          "id": "wipe_139",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.053799999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05415
+            ]
+          ]
+        },
+        {
+          "id": "wipe_140",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05415
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0545
+            ]
+          ]
+        },
+        {
+          "id": "wipe_141",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05449999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.054849999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_142",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.054849999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0552
+            ]
+          ]
+        },
+        {
+          "id": "wipe_143",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0552
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05555
+            ]
+          ]
+        },
+        {
+          "id": "wipe_144",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.055549999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0559
+            ]
+          ]
+        },
+        {
+          "id": "wipe_145",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0559
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05625
+            ]
+          ]
+        },
+        {
+          "id": "wipe_146",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.056249999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0566
+            ]
+          ]
+        },
+        {
+          "id": "wipe_147",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0566
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05695
+            ]
+          ]
+        },
+        {
+          "id": "wipe_148",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.056949999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0573
+            ]
+          ]
+        },
+        {
+          "id": "wipe_149",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0573
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05765
+            ]
+          ]
+        },
+        {
+          "id": "wipe_150",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05764999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.057999999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_151",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.057999999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05835
+            ]
+          ]
+        },
+        {
+          "id": "wipe_152",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05835
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0587
+            ]
+          ]
+        },
+        {
+          "id": "wipe_153",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.058699999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05905
+            ]
+          ]
+        },
+        {
+          "id": "wipe_154",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05905
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0594
+            ]
+          ]
+        },
+        {
+          "id": "wipe_155",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.059399999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.05975
+            ]
+          ]
+        },
+        {
+          "id": "wipe_156",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.05975
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0601
+            ]
+          ]
+        },
+        {
+          "id": "wipe_157",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.060099999999999994
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06045
+            ]
+          ]
+        },
+        {
+          "id": "wipe_158",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06045
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0608
+            ]
+          ]
+        },
+        {
+          "id": "wipe_159",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06079999999999999
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.061149999999999996
+            ]
+          ]
+        },
+        {
+          "id": "wipe_160",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.061149999999999996
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0615
+            ]
+          ]
+        },
+        {
+          "id": "wipe_161",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0615
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06185
+            ]
+          ]
+        },
+        {
+          "id": "wipe_162",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.061849999999999995
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0622
+            ]
+          ]
+        },
+        {
+          "id": "wipe_163",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0622
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06255
+            ]
+          ]
+        },
+        {
+          "id": "wipe_164",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06255000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0629
+            ]
+          ]
+        },
+        {
+          "id": "wipe_165",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06290000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06325
+            ]
+          ]
+        },
+        {
+          "id": "wipe_166",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06325
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06359999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_167",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0636
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06394999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_168",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06395
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0643
+            ]
+          ]
+        },
+        {
+          "id": "wipe_169",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06430000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06465
+            ]
+          ]
+        },
+        {
+          "id": "wipe_170",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06465000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.065
+            ]
+          ]
+        },
+        {
+          "id": "wipe_171",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.065
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06534999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_172",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06535
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0657
+            ]
+          ]
+        },
+        {
+          "id": "wipe_173",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06570000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06605
+            ]
+          ]
+        },
+        {
+          "id": "wipe_174",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06605000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0664
+            ]
+          ]
+        },
+        {
+          "id": "wipe_175",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0664
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06674999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_176",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06675
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06709999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_177",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0671
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06745
+            ]
+          ]
+        },
+        {
+          "id": "wipe_178",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06745000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0678
+            ]
+          ]
+        },
+        {
+          "id": "wipe_179",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06780000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06815
+            ]
+          ]
+        },
+        {
+          "id": "wipe_180",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06815000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0685
+            ]
+          ]
+        },
+        {
+          "id": "wipe_181",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0685
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06885
+            ]
+          ]
+        },
+        {
+          "id": "wipe_182",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06885000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0692
+            ]
+          ]
+        },
+        {
+          "id": "wipe_183",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06920000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.06955
+            ]
+          ]
+        },
+        {
+          "id": "wipe_184",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.06955000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0699
+            ]
+          ]
+        },
+        {
+          "id": "wipe_185",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0699
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07024999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_186",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07025
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0706
+            ]
+          ]
+        },
+        {
+          "id": "wipe_187",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07060000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07095
+            ]
+          ]
+        },
+        {
+          "id": "wipe_188",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07095000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0713
+            ]
+          ]
+        },
+        {
+          "id": "wipe_189",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07130000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07165
+            ]
+          ]
+        },
+        {
+          "id": "wipe_190",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07165
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.072
+            ]
+          ]
+        },
+        {
+          "id": "wipe_191",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07200000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07235
+            ]
+          ]
+        },
+        {
+          "id": "wipe_192",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07235000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0727
+            ]
+          ]
+        },
+        {
+          "id": "wipe_193",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07270000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07305
+            ]
+          ]
+        },
+        {
+          "id": "wipe_194",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07305
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07339999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_195",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0734
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07375
+            ]
+          ]
+        },
+        {
+          "id": "wipe_196",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07375000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0741
+            ]
+          ]
+        },
+        {
+          "id": "wipe_197",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07410000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07445
+            ]
+          ]
+        },
+        {
+          "id": "wipe_198",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07445000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0748
+            ]
+          ]
+        },
+        {
+          "id": "wipe_199",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0748
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07515
+            ]
+          ]
+        },
+        {
+          "id": "wipe_200",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07515000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0755
+            ]
+          ]
+        },
+        {
+          "id": "wipe_201",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07550000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07585
+            ]
+          ]
+        },
+        {
+          "id": "wipe_202",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07585000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0762
+            ]
+          ]
+        },
+        {
+          "id": "wipe_203",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0762
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07654999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_204",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07655
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0769
+            ]
+          ]
+        },
+        {
+          "id": "wipe_205",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07690000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07725
+            ]
+          ]
+        },
+        {
+          "id": "wipe_206",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07725000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0776
+            ]
+          ]
+        },
+        {
+          "id": "wipe_207",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07760000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07795
+            ]
+          ]
+        },
+        {
+          "id": "wipe_208",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07795
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0783
+            ]
+          ]
+        },
+        {
+          "id": "wipe_209",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07830000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07865
+            ]
+          ]
+        },
+        {
+          "id": "wipe_210",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07865000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.079
+            ]
+          ]
+        },
+        {
+          "id": "wipe_211",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07900000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.07935
+            ]
+          ]
+        },
+        {
+          "id": "wipe_212",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07935
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0797
+            ]
+          ]
+        },
+        {
+          "id": "wipe_213",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.07970000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08005
+            ]
+          ]
+        },
+        {
+          "id": "wipe_214",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08005000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0804
+            ]
+          ]
+        },
+        {
+          "id": "wipe_215",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08040000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08075
+            ]
+          ]
+        },
+        {
+          "id": "wipe_216",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08075000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0811
+            ]
+          ]
+        },
+        {
+          "id": "wipe_217",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0811
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08145
+            ]
+          ]
+        },
+        {
+          "id": "wipe_218",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08145000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0818
+            ]
+          ]
+        },
+        {
+          "id": "wipe_219",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08180000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08215
+            ]
+          ]
+        },
+        {
+          "id": "wipe_220",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08215000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0825
+            ]
+          ]
+        },
+        {
+          "id": "wipe_221",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0825
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08285
+            ]
+          ]
+        },
+        {
+          "id": "wipe_222",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08285000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0832
+            ]
+          ]
+        },
+        {
+          "id": "wipe_223",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08320000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08355
+            ]
+          ]
+        },
+        {
+          "id": "wipe_224",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08355000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0839
+            ]
+          ]
+        },
+        {
+          "id": "wipe_225",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08390000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08425
+            ]
+          ]
+        },
+        {
+          "id": "wipe_226",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08425
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0846
+            ]
+          ]
+        },
+        {
+          "id": "wipe_227",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08460000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08495
+            ]
+          ]
+        },
+        {
+          "id": "wipe_228",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08495000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0853
+            ]
+          ]
+        },
+        {
+          "id": "wipe_229",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08530000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08565
+            ]
+          ]
+        },
+        {
+          "id": "wipe_230",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08565
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.086
+            ]
+          ]
+        },
+        {
+          "id": "wipe_231",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08600000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08635
+            ]
+          ]
+        },
+        {
+          "id": "wipe_232",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08635000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0867
+            ]
+          ]
+        },
+        {
+          "id": "wipe_233",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08670000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08705
+            ]
+          ]
+        },
+        {
+          "id": "wipe_234",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08705000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0874
+            ]
+          ]
+        },
+        {
+          "id": "wipe_235",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0874
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08775
+            ]
+          ]
+        },
+        {
+          "id": "wipe_236",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08775000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0881
+            ]
+          ]
+        },
+        {
+          "id": "wipe_237",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08810000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08845
+            ]
+          ]
+        },
+        {
+          "id": "wipe_238",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08845000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0888
+            ]
+          ]
+        },
+        {
+          "id": "wipe_239",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0888
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08915
+            ]
+          ]
+        },
+        {
+          "id": "wipe_240",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08915000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0895
+            ]
+          ]
+        },
+        {
+          "id": "wipe_241",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08950000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.08985
+            ]
+          ]
+        },
+        {
+          "id": "wipe_242",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.08985000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0902
+            ]
+          ]
+        },
+        {
+          "id": "wipe_243",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09020000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09055
+            ]
+          ]
+        },
+        {
+          "id": "wipe_244",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09055
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0909
+            ]
+          ]
+        },
+        {
+          "id": "wipe_245",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09090000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09125
+            ]
+          ]
+        },
+        {
+          "id": "wipe_246",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09125000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0916
+            ]
+          ]
+        },
+        {
+          "id": "wipe_247",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09160000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09195
+            ]
+          ]
+        },
+        {
+          "id": "wipe_248",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09195
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0923
+            ]
+          ]
+        },
+        {
+          "id": "wipe_249",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09230000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09265
+            ]
+          ]
+        },
+        {
+          "id": "wipe_250",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09265000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.093
+            ]
+          ]
+        },
+        {
+          "id": "wipe_251",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09300000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09335
+            ]
+          ]
+        },
+        {
+          "id": "wipe_252",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09335000000000002
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0937
+            ]
+          ]
+        },
+        {
+          "id": "wipe_253",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0937
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09405
+            ]
+          ]
+        },
+        {
+          "id": "wipe_254",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09405000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0944
+            ]
+          ]
+        },
+        {
+          "id": "wipe_255",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09440000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09475
+            ]
+          ]
+        },
+        {
+          "id": "wipe_256",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09475000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0951
+            ]
+          ]
+        },
+        {
+          "id": "wipe_257",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0951
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09545
+            ]
+          ]
+        },
+        {
+          "id": "wipe_258",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09545000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0958
+            ]
+          ]
+        },
+        {
+          "id": "wipe_259",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09580000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09615
+            ]
+          ]
+        },
+        {
+          "id": "wipe_260",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09615000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0965
+            ]
+          ]
+        },
+        {
+          "id": "wipe_261",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.0965
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09684999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_262",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09685
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0972
+            ]
+          ]
+        },
+        {
+          "id": "wipe_263",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09720000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09755
+            ]
+          ]
+        },
+        {
+          "id": "wipe_264",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09755000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0979
+            ]
+          ]
+        },
+        {
+          "id": "wipe_265",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09790000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09825
+            ]
+          ]
+        },
+        {
+          "id": "wipe_266",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09825
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0986
+            ]
+          ]
+        },
+        {
+          "id": "wipe_267",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09860000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09895
+            ]
+          ]
+        },
+        {
+          "id": "wipe_268",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09895000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.0993
+            ]
+          ]
+        },
+        {
+          "id": "wipe_269",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09930000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09965
+            ]
+          ]
+        },
+        {
+          "id": "wipe_270",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.09965
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.09999999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_271",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10035
+            ]
+          ]
+        },
+        {
+          "id": "wipe_272",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10035000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1007
+            ]
+          ]
+        },
+        {
+          "id": "wipe_273",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10070000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10105
+            ]
+          ]
+        },
+        {
+          "id": "wipe_274",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10105000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1014
+            ]
+          ]
+        },
+        {
+          "id": "wipe_275",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1014
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10175
+            ]
+          ]
+        },
+        {
+          "id": "wipe_276",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10175000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1021
+            ]
+          ]
+        },
+        {
+          "id": "wipe_277",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10210000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10245
+            ]
+          ]
+        },
+        {
+          "id": "wipe_278",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10245000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1028
+            ]
+          ]
+        },
+        {
+          "id": "wipe_279",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1028
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10314999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_280",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10315
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1035
+            ]
+          ]
+        },
+        {
+          "id": "wipe_281",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10350000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10385
+            ]
+          ]
+        },
+        {
+          "id": "wipe_282",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10385000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1042
+            ]
+          ]
+        },
+        {
+          "id": "wipe_283",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10420000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10455
+            ]
+          ]
+        },
+        {
+          "id": "wipe_284",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10455
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1049
+            ]
+          ]
+        },
+        {
+          "id": "wipe_285",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10490000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10525
+            ]
+          ]
+        },
+        {
+          "id": "wipe_286",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10525000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1056
+            ]
+          ]
+        },
+        {
+          "id": "wipe_287",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10560000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10595
+            ]
+          ]
+        },
+        {
+          "id": "wipe_288",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10595
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10629999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_289",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1063
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10665
+            ]
+          ]
+        },
+        {
+          "id": "wipe_290",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10665000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.107
+            ]
+          ]
+        },
+        {
+          "id": "wipe_291",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10700000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10735
+            ]
+          ]
+        },
+        {
+          "id": "wipe_292",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10735000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1077
+            ]
+          ]
+        },
+        {
+          "id": "wipe_293",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1077
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10805
+            ]
+          ]
+        },
+        {
+          "id": "wipe_294",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10805000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1084
+            ]
+          ]
+        },
+        {
+          "id": "wipe_295",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10840000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10875
+            ]
+          ]
+        },
+        {
+          "id": "wipe_296",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10875000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1091
+            ]
+          ]
+        },
+        {
+          "id": "wipe_297",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.1091
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.10944999999999999
+            ]
+          ]
+        },
+        {
+          "id": "wipe_298",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10945
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1098
+            ]
+          ]
+        },
+        {
+          "id": "wipe_299",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.10980000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.11015
+            ]
+          ]
+        },
+        {
+          "id": "wipe_300",
+          "role": "individually_identified_wipe",
+          "bounds_m": [
+            [
+              -0.1143,
+              -0.1143,
+              0.11015000000000001
+            ],
+            [
+              0.1143,
+              0.1143,
+              0.1105
+            ]
+          ]
+        },
+        {
+          "id": "inner_bag",
+          "role": "inferred_flexible_packaging_film",
+          "bounds_m": [
+            [
+              -0.122,
+              -0.138,
+              0.0020000000000000018
+            ],
+            [
+              0.122,
+              0.138,
+              0.114
+            ]
+          ]
+        },
+        {
+          "id": "outer_bag",
+          "role": "inferred_flexible_packaging_film",
+          "bounds_m": [
+            [
+              -0.126,
+              -0.15,
+              0.0
+            ],
+            [
+              0.126,
+              0.15,
+              0.116
+            ]
+          ]
+        },
+        {
+          "id": "pack_identification_text",
+          "role": "original_identification_text",
+          "bounds_m": [
+            [
+              -0.095,
+              -0.0475,
+              0.11608
+            ],
+            [
+              0.095,
+              0.0475,
+              0.11608
+            ]
+          ]
+        }
+      ],
+      "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+    },
+    "unit_ids": [
+      "weather_wipes_tx609/wipe_001",
+      "weather_wipes_tx609/wipe_002",
+      "weather_wipes_tx609/wipe_003",
+      "weather_wipes_tx609/wipe_004",
+      "weather_wipes_tx609/wipe_005",
+      "weather_wipes_tx609/wipe_006",
+      "weather_wipes_tx609/wipe_007",
+      "weather_wipes_tx609/wipe_008",
+      "weather_wipes_tx609/wipe_009",
+      "weather_wipes_tx609/wipe_010",
+      "weather_wipes_tx609/wipe_011",
+      "weather_wipes_tx609/wipe_012",
+      "weather_wipes_tx609/wipe_013",
+      "weather_wipes_tx609/wipe_014",
+      "weather_wipes_tx609/wipe_015",
+      "weather_wipes_tx609/wipe_016",
+      "weather_wipes_tx609/wipe_017",
+      "weather_wipes_tx609/wipe_018",
+      "weather_wipes_tx609/wipe_019",
+      "weather_wipes_tx609/wipe_020",
+      "weather_wipes_tx609/wipe_021",
+      "weather_wipes_tx609/wipe_022",
+      "weather_wipes_tx609/wipe_023",
+      "weather_wipes_tx609/wipe_024",
+      "weather_wipes_tx609/wipe_025",
+      "weather_wipes_tx609/wipe_026",
+      "weather_wipes_tx609/wipe_027",
+      "weather_wipes_tx609/wipe_028",
+      "weather_wipes_tx609/wipe_029",
+      "weather_wipes_tx609/wipe_030",
+      "weather_wipes_tx609/wipe_031",
+      "weather_wipes_tx609/wipe_032",
+      "weather_wipes_tx609/wipe_033",
+      "weather_wipes_tx609/wipe_034",
+      "weather_wipes_tx609/wipe_035",
+      "weather_wipes_tx609/wipe_036",
+      "weather_wipes_tx609/wipe_037",
+      "weather_wipes_tx609/wipe_038",
+      "weather_wipes_tx609/wipe_039",
+      "weather_wipes_tx609/wipe_040",
+      "weather_wipes_tx609/wipe_041",
+      "weather_wipes_tx609/wipe_042",
+      "weather_wipes_tx609/wipe_043",
+      "weather_wipes_tx609/wipe_044",
+      "weather_wipes_tx609/wipe_045",
+      "weather_wipes_tx609/wipe_046",
+      "weather_wipes_tx609/wipe_047",
+      "weather_wipes_tx609/wipe_048",
+      "weather_wipes_tx609/wipe_049",
+      "weather_wipes_tx609/wipe_050",
+      "weather_wipes_tx609/wipe_051",
+      "weather_wipes_tx609/wipe_052",
+      "weather_wipes_tx609/wipe_053",
+      "weather_wipes_tx609/wipe_054",
+      "weather_wipes_tx609/wipe_055",
+      "weather_wipes_tx609/wipe_056",
+      "weather_wipes_tx609/wipe_057",
+      "weather_wipes_tx609/wipe_058",
+      "weather_wipes_tx609/wipe_059",
+      "weather_wipes_tx609/wipe_060",
+      "weather_wipes_tx609/wipe_061",
+      "weather_wipes_tx609/wipe_062",
+      "weather_wipes_tx609/wipe_063",
+      "weather_wipes_tx609/wipe_064",
+      "weather_wipes_tx609/wipe_065",
+      "weather_wipes_tx609/wipe_066",
+      "weather_wipes_tx609/wipe_067",
+      "weather_wipes_tx609/wipe_068",
+      "weather_wipes_tx609/wipe_069",
+      "weather_wipes_tx609/wipe_070",
+      "weather_wipes_tx609/wipe_071",
+      "weather_wipes_tx609/wipe_072",
+      "weather_wipes_tx609/wipe_073",
+      "weather_wipes_tx609/wipe_074",
+      "weather_wipes_tx609/wipe_075",
+      "weather_wipes_tx609/wipe_076",
+      "weather_wipes_tx609/wipe_077",
+      "weather_wipes_tx609/wipe_078",
+      "weather_wipes_tx609/wipe_079",
+      "weather_wipes_tx609/wipe_080",
+      "weather_wipes_tx609/wipe_081",
+      "weather_wipes_tx609/wipe_082",
+      "weather_wipes_tx609/wipe_083",
+      "weather_wipes_tx609/wipe_084",
+      "weather_wipes_tx609/wipe_085",
+      "weather_wipes_tx609/wipe_086",
+      "weather_wipes_tx609/wipe_087",
+      "weather_wipes_tx609/wipe_088",
+      "weather_wipes_tx609/wipe_089",
+      "weather_wipes_tx609/wipe_090",
+      "weather_wipes_tx609/wipe_091",
+      "weather_wipes_tx609/wipe_092",
+      "weather_wipes_tx609/wipe_093",
+      "weather_wipes_tx609/wipe_094",
+      "weather_wipes_tx609/wipe_095",
+      "weather_wipes_tx609/wipe_096",
+      "weather_wipes_tx609/wipe_097",
+      "weather_wipes_tx609/wipe_098",
+      "weather_wipes_tx609/wipe_099",
+      "weather_wipes_tx609/wipe_100",
+      "weather_wipes_tx609/wipe_101",
+      "weather_wipes_tx609/wipe_102",
+      "weather_wipes_tx609/wipe_103",
+      "weather_wipes_tx609/wipe_104",
+      "weather_wipes_tx609/wipe_105",
+      "weather_wipes_tx609/wipe_106",
+      "weather_wipes_tx609/wipe_107",
+      "weather_wipes_tx609/wipe_108",
+      "weather_wipes_tx609/wipe_109",
+      "weather_wipes_tx609/wipe_110",
+      "weather_wipes_tx609/wipe_111",
+      "weather_wipes_tx609/wipe_112",
+      "weather_wipes_tx609/wipe_113",
+      "weather_wipes_tx609/wipe_114",
+      "weather_wipes_tx609/wipe_115",
+      "weather_wipes_tx609/wipe_116",
+      "weather_wipes_tx609/wipe_117",
+      "weather_wipes_tx609/wipe_118",
+      "weather_wipes_tx609/wipe_119",
+      "weather_wipes_tx609/wipe_120",
+      "weather_wipes_tx609/wipe_121",
+      "weather_wipes_tx609/wipe_122",
+      "weather_wipes_tx609/wipe_123",
+      "weather_wipes_tx609/wipe_124",
+      "weather_wipes_tx609/wipe_125",
+      "weather_wipes_tx609/wipe_126",
+      "weather_wipes_tx609/wipe_127",
+      "weather_wipes_tx609/wipe_128",
+      "weather_wipes_tx609/wipe_129",
+      "weather_wipes_tx609/wipe_130",
+      "weather_wipes_tx609/wipe_131",
+      "weather_wipes_tx609/wipe_132",
+      "weather_wipes_tx609/wipe_133",
+      "weather_wipes_tx609/wipe_134",
+      "weather_wipes_tx609/wipe_135",
+      "weather_wipes_tx609/wipe_136",
+      "weather_wipes_tx609/wipe_137",
+      "weather_wipes_tx609/wipe_138",
+      "weather_wipes_tx609/wipe_139",
+      "weather_wipes_tx609/wipe_140",
+      "weather_wipes_tx609/wipe_141",
+      "weather_wipes_tx609/wipe_142",
+      "weather_wipes_tx609/wipe_143",
+      "weather_wipes_tx609/wipe_144",
+      "weather_wipes_tx609/wipe_145",
+      "weather_wipes_tx609/wipe_146",
+      "weather_wipes_tx609/wipe_147",
+      "weather_wipes_tx609/wipe_148",
+      "weather_wipes_tx609/wipe_149",
+      "weather_wipes_tx609/wipe_150",
+      "weather_wipes_tx609/wipe_151",
+      "weather_wipes_tx609/wipe_152",
+      "weather_wipes_tx609/wipe_153",
+      "weather_wipes_tx609/wipe_154",
+      "weather_wipes_tx609/wipe_155",
+      "weather_wipes_tx609/wipe_156",
+      "weather_wipes_tx609/wipe_157",
+      "weather_wipes_tx609/wipe_158",
+      "weather_wipes_tx609/wipe_159",
+      "weather_wipes_tx609/wipe_160",
+      "weather_wipes_tx609/wipe_161",
+      "weather_wipes_tx609/wipe_162",
+      "weather_wipes_tx609/wipe_163",
+      "weather_wipes_tx609/wipe_164",
+      "weather_wipes_tx609/wipe_165",
+      "weather_wipes_tx609/wipe_166",
+      "weather_wipes_tx609/wipe_167",
+      "weather_wipes_tx609/wipe_168",
+      "weather_wipes_tx609/wipe_169",
+      "weather_wipes_tx609/wipe_170",
+      "weather_wipes_tx609/wipe_171",
+      "weather_wipes_tx609/wipe_172",
+      "weather_wipes_tx609/wipe_173",
+      "weather_wipes_tx609/wipe_174",
+      "weather_wipes_tx609/wipe_175",
+      "weather_wipes_tx609/wipe_176",
+      "weather_wipes_tx609/wipe_177",
+      "weather_wipes_tx609/wipe_178",
+      "weather_wipes_tx609/wipe_179",
+      "weather_wipes_tx609/wipe_180",
+      "weather_wipes_tx609/wipe_181",
+      "weather_wipes_tx609/wipe_182",
+      "weather_wipes_tx609/wipe_183",
+      "weather_wipes_tx609/wipe_184",
+      "weather_wipes_tx609/wipe_185",
+      "weather_wipes_tx609/wipe_186",
+      "weather_wipes_tx609/wipe_187",
+      "weather_wipes_tx609/wipe_188",
+      "weather_wipes_tx609/wipe_189",
+      "weather_wipes_tx609/wipe_190",
+      "weather_wipes_tx609/wipe_191",
+      "weather_wipes_tx609/wipe_192",
+      "weather_wipes_tx609/wipe_193",
+      "weather_wipes_tx609/wipe_194",
+      "weather_wipes_tx609/wipe_195",
+      "weather_wipes_tx609/wipe_196",
+      "weather_wipes_tx609/wipe_197",
+      "weather_wipes_tx609/wipe_198",
+      "weather_wipes_tx609/wipe_199",
+      "weather_wipes_tx609/wipe_200",
+      "weather_wipes_tx609/wipe_201",
+      "weather_wipes_tx609/wipe_202",
+      "weather_wipes_tx609/wipe_203",
+      "weather_wipes_tx609/wipe_204",
+      "weather_wipes_tx609/wipe_205",
+      "weather_wipes_tx609/wipe_206",
+      "weather_wipes_tx609/wipe_207",
+      "weather_wipes_tx609/wipe_208",
+      "weather_wipes_tx609/wipe_209",
+      "weather_wipes_tx609/wipe_210",
+      "weather_wipes_tx609/wipe_211",
+      "weather_wipes_tx609/wipe_212",
+      "weather_wipes_tx609/wipe_213",
+      "weather_wipes_tx609/wipe_214",
+      "weather_wipes_tx609/wipe_215",
+      "weather_wipes_tx609/wipe_216",
+      "weather_wipes_tx609/wipe_217",
+      "weather_wipes_tx609/wipe_218",
+      "weather_wipes_tx609/wipe_219",
+      "weather_wipes_tx609/wipe_220",
+      "weather_wipes_tx609/wipe_221",
+      "weather_wipes_tx609/wipe_222",
+      "weather_wipes_tx609/wipe_223",
+      "weather_wipes_tx609/wipe_224",
+      "weather_wipes_tx609/wipe_225",
+      "weather_wipes_tx609/wipe_226",
+      "weather_wipes_tx609/wipe_227",
+      "weather_wipes_tx609/wipe_228",
+      "weather_wipes_tx609/wipe_229",
+      "weather_wipes_tx609/wipe_230",
+      "weather_wipes_tx609/wipe_231",
+      "weather_wipes_tx609/wipe_232",
+      "weather_wipes_tx609/wipe_233",
+      "weather_wipes_tx609/wipe_234",
+      "weather_wipes_tx609/wipe_235",
+      "weather_wipes_tx609/wipe_236",
+      "weather_wipes_tx609/wipe_237",
+      "weather_wipes_tx609/wipe_238",
+      "weather_wipes_tx609/wipe_239",
+      "weather_wipes_tx609/wipe_240",
+      "weather_wipes_tx609/wipe_241",
+      "weather_wipes_tx609/wipe_242",
+      "weather_wipes_tx609/wipe_243",
+      "weather_wipes_tx609/wipe_244",
+      "weather_wipes_tx609/wipe_245",
+      "weather_wipes_tx609/wipe_246",
+      "weather_wipes_tx609/wipe_247",
+      "weather_wipes_tx609/wipe_248",
+      "weather_wipes_tx609/wipe_249",
+      "weather_wipes_tx609/wipe_250",
+      "weather_wipes_tx609/wipe_251",
+      "weather_wipes_tx609/wipe_252",
+      "weather_wipes_tx609/wipe_253",
+      "weather_wipes_tx609/wipe_254",
+      "weather_wipes_tx609/wipe_255",
+      "weather_wipes_tx609/wipe_256",
+      "weather_wipes_tx609/wipe_257",
+      "weather_wipes_tx609/wipe_258",
+      "weather_wipes_tx609/wipe_259",
+      "weather_wipes_tx609/wipe_260",
+      "weather_wipes_tx609/wipe_261",
+      "weather_wipes_tx609/wipe_262",
+      "weather_wipes_tx609/wipe_263",
+      "weather_wipes_tx609/wipe_264",
+      "weather_wipes_tx609/wipe_265",
+      "weather_wipes_tx609/wipe_266",
+      "weather_wipes_tx609/wipe_267",
+      "weather_wipes_tx609/wipe_268",
+      "weather_wipes_tx609/wipe_269",
+      "weather_wipes_tx609/wipe_270",
+      "weather_wipes_tx609/wipe_271",
+      "weather_wipes_tx609/wipe_272",
+      "weather_wipes_tx609/wipe_273",
+      "weather_wipes_tx609/wipe_274",
+      "weather_wipes_tx609/wipe_275",
+      "weather_wipes_tx609/wipe_276",
+      "weather_wipes_tx609/wipe_277",
+      "weather_wipes_tx609/wipe_278",
+      "weather_wipes_tx609/wipe_279",
+      "weather_wipes_tx609/wipe_280",
+      "weather_wipes_tx609/wipe_281",
+      "weather_wipes_tx609/wipe_282",
+      "weather_wipes_tx609/wipe_283",
+      "weather_wipes_tx609/wipe_284",
+      "weather_wipes_tx609/wipe_285",
+      "weather_wipes_tx609/wipe_286",
+      "weather_wipes_tx609/wipe_287",
+      "weather_wipes_tx609/wipe_288",
+      "weather_wipes_tx609/wipe_289",
+      "weather_wipes_tx609/wipe_290",
+      "weather_wipes_tx609/wipe_291",
+      "weather_wipes_tx609/wipe_292",
+      "weather_wipes_tx609/wipe_293",
+      "weather_wipes_tx609/wipe_294",
+      "weather_wipes_tx609/wipe_295",
+      "weather_wipes_tx609/wipe_296",
+      "weather_wipes_tx609/wipe_297",
+      "weather_wipes_tx609/wipe_298",
+      "weather_wipes_tx609/wipe_299",
+      "weather_wipes_tx609/wipe_300"
+    ],
+    "packaging_parts": [
+      "inner_bag",
+      "outer_bag"
+    ],
+    "selected_packs": 1,
+    "wipes_per_pack": 300,
+    "expected_dry_mass_per_wipe_g": 3.60579924,
+    "expected_total_dry_wipe_mass_g": 1081.7397720000001,
+    "isolated_reference": {
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/texwipe_tx609_one_wipe_reference.glb",
+        "sha256": "72c389bda0b4cc121157e9bb415ad01b6e11e558ca321791e6e3c3992f994a53",
+        "parts": 1,
+        "bounds_m": [
+          [
+            -0.1143,
+            -0.1143,
+            0.0
+          ],
+          [
+            0.1143,
+            0.1143,
+            0.00035
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "wipe_001",
+            "role": "same_wipe_001_isolated_reference",
+            "bounds_m": [
+              [
+                -0.1143,
+                -0.1143,
+                0.0
+              ],
+              [
+                0.1143,
+                0.1143,
+                0.00035
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "physical_identity": "weather_wipes_tx609/wipe_001",
+      "adds_stock": false
+    },
+    "application_budget": {
+      "status": "inferred_stock_plan_not_executed_consumption",
+      "per_fresh_assembly": 12,
+      "fresh_assemblies": 3,
+      "reserved_wipes": 36,
+      "remaining_wipes": 264,
+      "allocations": [
+        {
+          "assembly": 1,
+          "role": "mast_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_001",
+            "weather_wipes_tx609/wipe_002"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 1,
+          "role": "mast_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_003",
+            "weather_wipes_tx609/wipe_004"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 1,
+          "role": "silicone_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_005",
+            "weather_wipes_tx609/wipe_006",
+            "weather_wipes_tx609/wipe_007",
+            "weather_wipes_tx609/wipe_008"
+          ],
+          "quantity": 4
+        },
+        {
+          "assembly": 1,
+          "role": "silicone_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_009",
+            "weather_wipes_tx609/wipe_010",
+            "weather_wipes_tx609/wipe_011",
+            "weather_wipes_tx609/wipe_012"
+          ],
+          "quantity": 4
+        },
+        {
+          "assembly": 2,
+          "role": "mast_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_013",
+            "weather_wipes_tx609/wipe_014"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 2,
+          "role": "mast_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_015",
+            "weather_wipes_tx609/wipe_016"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 2,
+          "role": "silicone_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_017",
+            "weather_wipes_tx609/wipe_018",
+            "weather_wipes_tx609/wipe_019",
+            "weather_wipes_tx609/wipe_020"
+          ],
+          "quantity": 4
+        },
+        {
+          "assembly": 2,
+          "role": "silicone_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_021",
+            "weather_wipes_tx609/wipe_022",
+            "weather_wipes_tx609/wipe_023",
+            "weather_wipes_tx609/wipe_024"
+          ],
+          "quantity": 4
+        },
+        {
+          "assembly": 3,
+          "role": "mast_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_025",
+            "weather_wipes_tx609/wipe_026"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 3,
+          "role": "mast_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_027",
+            "weather_wipes_tx609/wipe_028"
+          ],
+          "quantity": 2
+        },
+        {
+          "assembly": 3,
+          "role": "silicone_preclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_029",
+            "weather_wipes_tx609/wipe_030",
+            "weather_wipes_tx609/wipe_031",
+            "weather_wipes_tx609/wipe_032"
+          ],
+          "quantity": 4
+        },
+        {
+          "assembly": 3,
+          "role": "silicone_postclean",
+          "unit_ids": [
+            "weather_wipes_tx609/wipe_033",
+            "weather_wipes_tx609/wipe_034",
+            "weather_wipes_tx609/wipe_035",
+            "weather_wipes_tx609/wipe_036"
+          ],
+          "quantity": 4
+        }
+      ],
+      "trial_reset_budget_complete": false
+    },
+    "destination_scope": "Dry lubricant cleanup on service components; not qualified for optical coatings, finished emitters or precision optical surfaces."
+  },
+  "waste_reservation": {
+    "candidate_identity": "oily_waste_can",
+    "reserved_volume_l": 3,
+    "upper_bound_grease_mass_g": 15,
+    "nominal_dry_wipe_mass_g": 129.80877264,
+    "estimated_loose_wipe_volume_l": 2.633801184,
+    "loose_volume_factor": 4,
+    "material_scope": "Only the two grease families on the 36 reserved wipes; free liquids, packaging and coating/solvent waste excluded.",
+    "nominal_catalogue_capacity_l": 23,
+    "available_capacity_qualified": false,
+    "material_compatibility_qualified": false,
+    "actual_transfer_complete": false
+  },
+  "limitations": [
+    "Blade thickness, transition and edge radii remain inferred; metal-on-elastomer scratching and tool grip need validation.",
+    "Round handle is a neutral-roll rest reference, not an anti-roll fixture; no dynamic stability credit.",
+    "Compressed stack and pouch dimensions are inferred. Bags and all 300 wipes remain separate named parts; no cloth or opening dynamics.",
+    "TDS sorption figures are not converted into grease capacity. Wipe counts and loose waste volume are planning inferences.",
+    "Packaging collection, full trials/resets and actual waste handling remain open."
+  ],
+  "owner_acceptance": null,
+  "initial_stock_credit": false,
+  "robot_use_qualified": false
+}

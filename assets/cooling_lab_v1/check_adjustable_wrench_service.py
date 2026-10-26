@@ -8,7 +8,8 @@ from pathlib import Path
 import numpy as np
 import trimesh
 from geometry_tools import HERE,ROOT,sha,write_json
-from check_weather_assets import load_parts,overlap
+from check_weather_assets import overlap
+from review_mesh_io import load_parts
 
 
 def translation(v):
@@ -94,7 +95,7 @@ def build():
             check('actual_nut_has_static_tool_candidate_'+target,bool(clear),clear_candidate_ids=clear)
     check('all_selected_poses_fit_actual_hexes',all(r['datum_fit'] for r in candidates))
     result=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,targets=targets,candidates=candidates,
-        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'adjustable_wrench_assets.json',HERE/'adjustable_wrench_checks.json',HERE/'weather_scene_binding.json',HERE/'weather_station_assets.json',HERE/'check_weather_assets.py']],
+        source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'adjustable_wrench_assets.json',HERE/'adjustable_wrench_checks.json',HERE/'weather_scene_binding.json',HERE/'weather_station_assets.json',HERE/'check_weather_assets.py',HERE/'review_mesh_io.py']],
         scope='Six actual outer nuts; six discrete clockings each. Whole tool against complete selected station/storage/remaining stock and nearby lab geometry. No approach or rotation sweep.',
         limitations=['Exact contact clearance and fastener dimensions are inferred, not manufacturing tolerances. The selected 6.7 mm minimum axial overlap is a geometry screening threshold, not a rated engagement requirement.','Inner jam nuts, paired counterholding, insertion/removal, hand clearance, torque and load remain unqualified.'],
         selected_tool_state='half_inch_reference',robot_use_qualified=False,torque_qualified=False,owner_acceptance=None)

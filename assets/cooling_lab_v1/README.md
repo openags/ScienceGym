@@ -14,13 +14,13 @@ staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders 
 access postures are inspection tools, not physics-controlled robot actions.
 
 The main viewer now has an optional **weather-station installation reference**
-inside the complete laboratory. Its 543 named parts cover the station, cart,
-ground, remaining/unused stock, seven ordinary tools and two independent grease tubes. `weather_scene_binding.json` assigns every
-part to exactly one of 34 selected identities. The existing U30 and utility
+inside the complete laboratory. Its 848 named parts cover the station, cart,
+ground, remaining/unused stock, nine ordinary tools, two independent grease tubes and one wipe pack. `weather_scene_binding.json` assigns every
+part to exactly one of 37 selected identities. The existing U30 and utility
 cart are hidden in their original locations when their alternative representations
 are shown. Fourteen cutoffs remain associated with their original ties, and the
 three removed plugs remain part of the same logger. The independent Omega ambient
-probe and solar instruments are retained. The tools and grease tubes rest on the actual
+probe and solar instruments are retained. The tools and consumable candidates are placed on the actual
 weather-service worktop. `weather_scene_binding_checks.json` checks identity
 conservation and placement against the remaining full laboratory geometry.
 The cart's lower shelf supports the remaining 4.719934 m guy wire and 2.706960 m
@@ -196,7 +196,7 @@ Further trials/reset budgets, ordinary application tools and cleanup stock
 remain open. This silicone-free product does not satisfy the U30 manual's
 separate silicone-grease requirement. Tube deformation, dispensing, sealing,
 compatibility and robot operation remain unqualified. The complete composition
-now contains thirteen modules, 34 selected identities and 543 named geometry parts;
+now contains sixteen modules, 37 selected identities and 848 named geometry parts;
 these counts grant no accepted initial inventory or owner acceptance.
 
 The [silicone-grease inspector](../../viewer/lab_review_v1/silicone_grease.html)
@@ -219,10 +219,37 @@ The EPDM channel is distinct from the silicone-rubber door gasket, which the
 candidate excludes. Actual cable-jacket compatibility remains unqualified.
 An explicitly inferred 3 g allowance per fresh assembly reserves 9 g for three
 assemblies, leaving 76 g. It includes a future external-power cable path that
-is not yet installed; trials, resets, application tools, wiping stock and waste
-transfer remain open. The tube rests on its cap base at the service bench.
+is not yet installed. Separate application tools and wiping stock are now
+selected; full trial/reset quantities and actual material transfers remain open. The tube rests on its cap base at the service bench.
 Neither source compatibility ratings nor static geometry qualify dispensing,
 sealing, robot operation or the complete installation.
+
+The [cleanup inspector](../../viewer/lab_review_v1/cleanup.html) adds two separate
+Bürkle 5386-0041 spatulas and one Texwipe TX609 pack. Each 150 mm spatula has
+source-sized 45 × 9 mm angular/rounded ends and a 60 mm, diameter 3.5 mm round
+stem. Blade thickness, transition and edge radii are inferred. The round stem
+has a neutral-roll reference contact; this does not qualify stable support,
+robot grip or safe metal contact with a soft seal.
+
+The wipe pack contains 300 separate named sheets, two hollow packaging films
+and independently laid-out text. Sheet size uses 9 inches (228.6 mm), retaining
+the manufacturer's rounded 23 cm notation separately. Typical 69 g/m² basis
+weight implies about 3.606 g per sheet, not a per-lot measurement. Compressed
+sheet thickness and the double pouch geometry remain inferred. Thirty-six
+unique sheets are reserved for three fresh assemblies, leaving 264; the isolated
+sheet view reuses wipe_001. A 3 L planning reservation in the existing can covers
+this grease-wipe stream only. Packaging, free liquids, coating/solvent waste and
+sharps are excluded. Clean packaging collection and full trial/reset budgets
+remain open; no wiping, bag opening, residue transfer or disposal is executed.
+
+`review_mesh_io.py` preserves the actual authored cavity winding. The former
+per-component normal repair incorrectly turned each enclosed inner boundary
+positive, filling a sealed bag for intersection tests. The new cleanup checker
+retains that failure as a negative case. Composition and wrench-service checks
+now use the winding-preserving reader and recheck actual surrounding geometry;
+legacy standalone readers are not globally migrated by this change. A separate
+negative case retains the initially too-long inner bag that intersected the
+outer heat-sealed margin. The final inner margin stays inside the outer cavity.
 
 The [tape-measure inspector](../../viewer/lab_review_v1/tape_measure.html) adds
 one Hultafors BT5M / 356103 candidate for external wire-length measurement,
@@ -686,22 +713,24 @@ decisions remain explicit; CAD download listings are not downloaded CAD.
 
 The allocation page also reads `laboratory_inventory.json`, a downstream join
 of the base allocation, installed weather station and partial preparation view.
-Its 115 review identities are 81 base identities plus 34 installed-context
+Its 118 review identities are 81 base identities plus 37 installed-context
 identities, minus the reused logger and cart, plus two additional temporary
 ties. This count includes one site design and compound kit groups; it is not a
 count of portable objects or executable initial stock. All 161 preparation
 parts retain identity links, including the reused plug tray. Fourteen permanent
 ties keep their own cutoffs; the two sacrificial temporary ties remain separate
-with their removal/disposal unresolved. Nine tool/grease candidates retain
+with their removal/disposal unresolved. Twelve tool/consumable candidates retain
 their existing worktop locations. Twenty-four other portable context identities
 still lack initial placement bindings.
 
-Fifteen supplementary installation needs preserve the 154 original component
-requirements and their deficits. Three needs have no selected candidate:
-two ordinary grease applicators and wiping material.
-Wipe count and residue-collection capacity remain unknown. One separate 85 g
-silicone-grease tube has an inferred reservation; full trial/reset quantities
-and material compatibility remain unqualified.
+Sixteen supplementary installation needs preserve the 154 original component
+requirements and their deficits. The two ordinary grease applicators and one
+TX609 pack are now assigned; one clean-packaging collection point still lacks
+a candidate. The 36-wipe and 3 L waste reservations are engineering planning
+values, not completed consumption or qualified capacity. Two packaging films
+retain their identities rather than disappearing into the grease-waste stream.
+One separate 85 g silicone-grease tube has an inferred reservation; full
+trial/reset quantities and material compatibility remain unqualified.
 The optional S-ADAPT-X5-10 grease is not credited to the selected base U30;
 the silicone-free 21030 tube cannot satisfy that requirement. These source
 distinctions are recorded in `weather_inventory_sources.json`.

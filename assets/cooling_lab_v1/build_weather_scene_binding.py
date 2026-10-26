@@ -19,7 +19,8 @@ def build():
         'nut_driver_checks','mast_driver_checks','wind_driver_checks',
         'wire_rope_cutter_assets','wire_rope_cutter_checks','adjustable_wrench_assets','adjustable_wrench_checks',
         'mast_grease_assets','mast_grease_checks','tape_measure_assets','tape_measure_checks',
-        'engineer_hammer_assets','engineer_hammer_checks','silicone_grease_assets','silicone_grease_checks']
+        'engineer_hammer_assets','engineer_hammer_checks','silicone_grease_assets','silicone_grease_checks',
+        'weather_cleanup_assets','weather_cleanup_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
     station=r['weather_station_assets'];storage=r['weather_storage_assets']
     site=station['station_origin_world_m'];modules=[];entities={}
@@ -143,6 +144,24 @@ def build():
         net_mass_g=85,resting_reference_source='assets/cooling_lab_v1/silicone_grease_checks.json',
         application_budget_source='assets/cooling_lab_v1/silicone_grease_assets.json',
         selected_for_channel=True,silicone_channel_requirement_satisfied=False))
+    cleanup=r['weather_cleanup_assets']
+    for item,y in zip(cleanup['applicators'],[18.50,18.60]):
+        identity=item['id'];geometry=item['geometry'];module(identity,item['label'],geometry,[9.35,y,.9])
+        for p in geometry['part_records']:
+            member(identity,item['label'],'tools:grease_applicator',identity,p['id'],basis='one_separate_ordinary_spatula_per_grease_family')
+        tools.append(dict(id=identity,station='weather_service',support_top_m=.9,selected_required_units=1,
+            shared_across_all_service_poses=True,shared_between_grease_families=False,
+            assigned_grease_identity=item['assigned_grease_identity'],
+            resting_reference_source='assets/cooling_lab_v1/weather_cleanup_assets.json',
+            dynamic_stability_qualified=False))
+    item=cleanup['wipe_pack'];identity=item['id'];geometry=item['geometry']
+    module(identity,item['label'],geometry,[9.96,18.36,.9])
+    for p in geometry['part_records']:
+        member(identity,item['label'],'consumables:cleaning_wipes',identity,p['id'],basis='one_pack_with_300_individual_wipes_and_two_packaging_films')
+    entities[identity]['contained_unit_ids']=item['unit_ids']
+    entities[identity]['packaging_parts']=item['packaging_parts']
+    consumables.append(dict(id=identity,station='weather_service',support_top_m=.9,selected_required_units=1,
+        selected_packs=1,contained_wipes=300,application_budget_source='assets/cooling_lab_v1/weather_cleanup_assets.json'))
     old={a['id']:a for a in r['scene']['assets']}
     refs=[Path(__file__)]+[HERE/(n+'.json') for n in names]
     record=dict(schema_version=1,status='laboratory_composition_candidate_not_initial_state',
@@ -168,9 +187,13 @@ def build():
             dict(resource_id='tools:engineer_hammer',physical_entity_ids=['weather_engineer_hammer_56_204'],completeness_accepted=False,
                 scope='Ordinary driving-tool candidate for the tripod manual stake/ground-rod requirement. Head-only catalogue mass and inferred whole-tool mass remain distinct; strike, target compatibility and robot use are unqualified.'),
             dict(resource_id='consumables:mast_all_purpose_grease',physical_entity_ids=['weather_mast_grease_21030'],completeness_accepted=False,
-                scope='Metal mast only; independent from the selected U30 silicone grease. Ordinary application/cleanup supplies remain open.'),
+                scope='Metal mast only; independent from the selected U30 silicone grease. Application/cleanup behavior and complete trial/reset budgets remain open.'),
             dict(resource_id='consumables:u30_silicone_grease',physical_entity_ids=['weather_silicone_grease_93003'],completeness_accepted=False,
-                scope='One selected 85 g tube for the EPDM channel; two source-density scenarios are the same stock. Silicone-rubber door gasket excluded; cable compatibility and actual application remain open.')],
+                scope='One selected 85 g tube for the EPDM channel; two source-density scenarios are the same stock. Silicone-rubber door gasket excluded; cable compatibility and actual application remain open.'),
+            dict(resource_id='tools:grease_applicator',physical_entity_ids=[i['id'] for i in cleanup['applicators']],completeness_accepted=False,
+                scope='Two separate ordinary spatulas; same model, different stock identities and lubricant assignments. Contact and roll stability unqualified.'),
+            dict(resource_id='consumables:cleaning_wipes',physical_entity_ids=['weather_wipes_tx609'],completeness_accepted=False,
+                scope='One 300-wipe pack with individually named sheets and two packaging films; trial/reset and packaging collection remain open.')],
         limits=['Installed/reference, base-staging and partial preparation views are mutually exclusive representations, not extra inventory.',
             'Kit groups retain individually named parts; a group is not a welded or rigid simulation body.',
             'Permanent ties retain their original cutoff identity; removed U30 plugs remain part of that same logger.',

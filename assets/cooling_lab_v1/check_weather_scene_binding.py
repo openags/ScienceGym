@@ -5,7 +5,8 @@ from pathlib import Path
 import numpy as np
 import trimesh
 from geometry_tools import HERE, ROOT, sha, write_json
-from check_weather_assets import load_parts, overlap
+from check_weather_assets import overlap
+from review_mesh_io import load_parts
 
 
 def membership_valid(record):
@@ -34,7 +35,9 @@ def build():
     check('same_logger_keeps_three_removed_plugs',sum(p['module']=='storage' for p in entities['hobo_u30']['representations'])==3)
     ties=[e for e in r['physical_entities'] if e['id'].startswith('weather_tie_')]
     check('fourteen_ties_each_have_strap_and_cutoff',len(ties)==14 and all(len(e['representations'])==2 and {p['module'] for p in e['representations']}=={'station','storage'} for e in ties))
-    check('seven_shared_weather_tools',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench','weather_tape_measure_bt5m','weather_engineer_hammer_56_204'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
+    check('nine_individually_assigned_weather_tools',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench','weather_tape_measure_bt5m','weather_engineer_hammer_56_204','weather_mast_applicator','weather_silicone_applicator'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
+    check('all_wipes_and_both_films_keep_parent_identity',len(entities['weather_wipes_tx609']['contained_unit_ids'])==300 and
+          entities['weather_wipes_tx609']['packaging_parts']==['inner_bag','outer_bag'] and len(entities['weather_wipes_tx609']['representations'])==303)
     check('partial_context_does_not_duplicate_tray_or_claim_initial_state',r['alternative_context']['reused_tray_identity']=='weather_removed_parts_tray' and not r['alternative_context']['simultaneously_visible'] and not r['initial_state_qualified'])
     check('no_acceptance_or_execution_credit',r['owner_acceptance'] is None and not any(r[k] for k in ['robot_use_qualified','installation_qualified','new_manipulation_development_allowed']) and all(not e['initial_stock_credit'] and not e['quantity_accepted'] for e in entities.values()))
     for ref in r['source_artifacts']:
@@ -73,6 +76,9 @@ def build():
             expected=np.array(reference['to_support_plane']);expected[:3,3]+=[9.68,18.58,bench['top_m']]
             check('silicone_tube_keeps_cap_base_support_and_one_identity',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
                 and t['net_mass_g']==85 and t['selected_required_units']==1 and t['selected_for_channel'] and not t['silicone_channel_requirement_satisfied'])
+        if t['id'] in ['weather_mast_applicator','weather_silicone_applicator']:
+            check('separate_lubricant_assignment_'+t['id'],not t['shared_between_grease_families'] and not t['dynamic_stability_qualified'] and
+                t['assigned_grease_identity']=={'weather_mast_applicator':'weather_mast_grease_21030','weather_silicone_applicator':'weather_silicone_grease_93003'}[t['id']])
         if t['id']=='weather_tape_measure_bt5m':
             reference=json.loads((HERE/'tape_measure_checks.json').read_text())['resting_reference']
             expected=np.eye(4);expected[:3,3]=[9.25,18.8,bench['top_m']]
@@ -134,7 +140,7 @@ def build():
         if v>.001:rejected_hits.append(dict(part=n,other='ambient_rtd/pfa_cable_nominal_6ft',intersection_mm3=v))
     check('negative_hammer_placement_over_rtd_lead_rejected',bool(rejected_hits),rejected_to_world=rejected.tolist(),intersections=rejected_hits)
     failed=[c['name'] for c in checks if not c['passed']]
-    paths=[Path(__file__),HERE/'weather_scene_binding.json',HERE/'check_weather_assets.py']
+    paths=[Path(__file__),HERE/'weather_scene_binding.json',HERE/'check_weather_assets.py',HERE/'review_mesh_io.py']
     result=dict(schema_version=1,passed=not failed,failed=failed,checks=checks,module_world_bounds_m=bounds,
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in paths],
         counts=dict(modules=len(modules),physical_entities=len(entities),existing_reused=2,rendered_parts=len(new),

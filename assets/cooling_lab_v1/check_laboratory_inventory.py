@@ -7,22 +7,22 @@ from geometry_tools import HERE, ROOT, sha, write_json
 
 
 def inspect():
-    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets']
+    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets']
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in names]
-    allocation,binding,sources,grease,preparation,silicone_asset=inputs
+    allocation,binding,sources,grease,preparation,silicone_asset,cleanup=inputs
     report=json.loads((HERE/'laboratory_inventory.json').read_text())
     checks=[]
     def check(name,passed):
         checks.append(dict(name=name,passed=bool(passed)))
         if not passed:raise AssertionError(name)
     check('report_matches_current_inputs',report==build_record(*inputs))
-    refs={s['path']:s['sha256'] for r in [report,allocation,binding,grease,preparation,silicone_asset] for s in r.get('source_artifacts',[])}
+    refs={s['path']:s['sha256'] for r in [report,allocation,binding,grease,preparation,silicone_asset,cleanup] for s in r.get('source_artifacts',[])}
     for path,digest in refs.items():check('source_'+path,sha(ROOT/path)==digest)
     geometry={r['geometry']['path']:r['geometry']['sha256'] for e in report['identities'] for r in e['representations']}
     for path,digest in geometry.items():check('geometry_'+path,sha(ROOT/path)==digest)
     ids={e['id']:e for e in report['identities']}
     check('base_and_context_do_not_duplicate_logger_or_cart',
-          len(ids)==81+34-2+2 and report['reused_identity_ids']==['hobo_u30','utility_cart'])
+          len(ids)==81+37-2+2 and report['reused_identity_ids']==['hobo_u30','utility_cart'])
     for identity in ['hobo_u30','utility_cart']:
         check(identity+'_both_contexts_same_identity',
               {r['context'] for r in ids[identity]['representations']}=={'base_display','weather_installed_reference'})
@@ -56,10 +56,15 @@ def inspect():
           not silicone['material_scope']['whole_assembly_compatibility_qualified'])
     check('single_mast_tube_has_single_85g_budget',needs['weather_need_mast_grease']['candidate_ids']==['weather_mast_grease_21030'] and
           needs['weather_need_mast_grease']['material_reservation']['three_campaign_reservation_g']==6)
-    check('applicators_and_wipes_not_claimed_from_container_mesh',all(not needs[n]['candidate_ids'] for n in
-          ['weather_need_mast_applicator','weather_need_silicone_applicator','weather_need_wipes']))
-    check('existing_waste_can_has_no_invented_capacity',needs['weather_need_residue_collection']['candidate_ids']==['oily_waste_can'] and
-          needs['weather_need_residue_collection']['required_quantity'] is None)
+    check('two_independent_applicators_and_one_pack_bound',
+          needs['weather_need_mast_applicator']['candidate_ids']==['weather_mast_applicator'] and
+          needs['weather_need_silicone_applicator']['candidate_ids']==['weather_silicone_applicator'] and
+          needs['weather_need_wipes']['candidate_ids']==['weather_wipes_tx609'] and len(ids['weather_wipes_tx609']['contained_unit_ids'])==300)
+    check('existing_waste_can_only_has_unqualified_planning_reservation',needs['weather_need_residue_collection']['candidate_ids']==['oily_waste_can'] and
+          needs['weather_need_residue_collection']['required_quantity']==3 and needs['weather_need_residue_collection']['unit']=='L' and
+          not needs['weather_need_residue_collection']['waste_reservation']['available_capacity_qualified'])
+    check('packaging_cannot_disappear_or_be_mixed_into_grease_waste',not needs['weather_need_clean_packaging_collection']['candidate_ids'] and
+          set(needs['weather_need_clean_packaging_collection']['retained_unit_ids'])=={'weather_wipes_tx609/inner_bag','weather_wipes_tx609/outer_bag'})
     check('facility_is_not_portable_stock',ids['weather_ground_design']['initial_state_status']=='facility_design_not_portable_stock')
     check('initial_inventory_stays_unqualified',not report['initial_inventory_complete'] and
           not any(e['initial_stock_credit'] or e['initial_state_qualified'] for e in ids.values()) and report['owner_acceptance'] is None)
@@ -81,6 +86,8 @@ def inspect():
     rejected('negative_temporary_tie_cannot_disappear',lambda x:x[4]['temporary_ties'].pop())
     rejected('negative_density_scenarios_cannot_double_silicone_stock',lambda x:x[5]['material_allocation'].update(selected_containers=2))
     rejected('negative_channel_silicone_cannot_lose_door_gasket_exclusion',lambda x:x[5]['material_allocation'].update(excluded_destination_parts=[]))
+    rejected('negative_same_wipe_reserved_twice',lambda x:x[6]['wipe_pack']['application_budget']['allocations'][1]['unit_ids'].__setitem__(0,x[6]['wipe_pack']['application_budget']['allocations'][0]['unit_ids'][0]))
+    rejected('negative_two_families_cannot_share_applicator_identity',lambda x:x[6]['applicators'][1].update(id=x[6]['applicators'][0]['id']))
     negative_count=sum(c['name'].startswith('negative_') for c in checks)
     result=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,negative_cases=negative_count,
         scope='Canonical identity and requirement accounting; no initial-state, safety, material compatibility or robot qualification.',

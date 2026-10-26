@@ -54,7 +54,7 @@ function renderIdentities(){
 function renderInstallation(){
  const c=labInventory.counts;$('installation-summary').textContent=c.installation_requirements+' 项安装补充需求，其中 '+c.installation_needs_without_candidate+' 项尚无候选物品，'+c.installation_quantities_unallocated+' 项数量或容量待分配。';
  for(const n of labInventory.installation_requirements){const tr=element('tr');tr.dataset.need=n.id;
-  const unit={tool:'件',container:'管',g:'g',wipe:'张',tie:'根'}[n.unit]||n.unit;
+  const unit={tool:'件',container:'管',g:'g',wipe:'张',tie:'根',pack:'包',collection_point:'处'}[n.unit]||n.unit;
   const status=n.candidate_ids.length?'候选未验收；初始准备待核对':'缺少候选物品';
   for(const value of [n.label,n.required_quantity===null?'待分配':n.required_quantity+' '+unit,n.candidate_ids.join('、')||'—',status])tr.append(element('td',value));$('installation-needs').append(tr);
  }

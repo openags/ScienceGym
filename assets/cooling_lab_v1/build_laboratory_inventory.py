@@ -25,7 +25,7 @@ COMPONENT_REFERENCES = {
 }
 
 
-def build_record(allocation, binding, sources, grease, preparation, silicone):
+def build_record(allocation, binding, sources, grease, preparation, silicone, cleanup):
     base = {p['id']: p for p in allocation['physical_instances']}
     assert len(base) == len(allocation['physical_instances']), 'duplicate base identity'
     weather = {p['id']: p for p in binding['physical_entities']}
@@ -61,6 +61,9 @@ def build_record(allocation, binding, sources, grease, preparation, silicone):
         row['installed_reference_present'] = True
         row['context_quantity'] = e['quantity']
         row['allocation_basis'] = e['allocation_basis']
+        if 'contained_unit_ids' in e:
+            row['contained_unit_ids']=copy.deepcopy(e['contained_unit_ids'])
+            row['packaging_unit_ids']=[e['id']+'/'+part for part in e['packaging_parts']]
         grouped = {}
         for ref in e['representations']:
             key = (ref['module'], ref['part'])
@@ -149,6 +152,7 @@ def build_record(allocation, binding, sources, grease, preparation, silicone):
     need('weather_need_mast_grease','桅杆通用润滑脂','consumables:mast_all_purpose_grease',
          ['weather_mast_grease_21030'], 1, 'container', 'One selected 85 g tube; per-application mass is an inference.', source_ids=['ONSET_TRIPOD'])
     needs[-1]['material_reservation'] = copy.deepcopy(grease['application_budget'])
+    needs[-1]['application_supplies'] = dict(applicator_identity='weather_mast_applicator',wipe_pack_identity='weather_wipes_tx609')
     need('weather_need_silicone_grease','U30 线槽硅脂','consumables:u30_silicone_grease',
          ['weather_silicone_grease_93003'], 1, 'container',
          'One selected 85 g tube, shared across two conflicting source-density scenarios. Application mass is an inference, not a qualified dose.',
@@ -156,15 +160,26 @@ def build_record(allocation, binding, sources, grease, preparation, silicone):
          ['weather_mast_grease_21030', 'unselected_S-ADAPT-X5-10_grease', 'RX3004_5g_packet_assumption'])
     needs[-1]['material_reservation'] = copy.deepcopy(silicone['application_budget'])
     needs[-1]['material_scope'] = copy.deepcopy(silicone['material_allocation'])
+    needs[-1]['material_scope'].update(applicator_identity='weather_silicone_applicator',cleanup_stock_identity='weather_wipes_tx609')
     needs[-1]['source_artifacts'] = [dict(path='assets/cooling_lab_v1/silicone_grease_assets.json',
                                         sha256=sha(HERE/'silicone_grease_assets.json'))]
     for family, label in [('mast','桅杆润滑脂普通涂抹工具'), ('silicone','硅脂普通涂抹工具')]:
-        need('weather_need_'+family+'_applicator', label, 'tools:grease_applicator', [], 1, 'tool',
-             'Engineering inference: a separate ordinary applicator for each grease family; tool selection and material compatibility remain open.')
-    need('weather_need_wipes','涂抹前后擦拭材料','consumables:cleaning_wipes',[],None,'wipe',
-         'Count and compatible material remain unallocated; one waste container is not wipe stock.', source_ids=['ONSET_U30_NRC'])
-    need('weather_need_residue_collection','残脂／擦拭物收集容量','facility:WASTE',['oily_waste_can'],None,'g',
-         'Existing can is only a service candidate; liner, material compatibility and free capacity are not allocated.')
+        need('weather_need_'+family+'_applicator', label, 'tools:grease_applicator', ['weather_'+family+'_applicator'], 1, 'tool',
+             'One ordinary Buerkle 5386-0041 assigned to this grease family only; contact compatibility, roll stability and manipulation remain unqualified.')
+    pack=cleanup['wipe_pack'];reserved=[n for row in pack['application_budget']['allocations'] for n in row['unit_ids']]
+    assert len(reserved)==len(set(reserved))==pack['application_budget']['reserved_wipes'], 'wipe reservation duplicated'
+    assert set(reserved)<=set(identities[pack['id']]['contained_unit_ids']), 'reserved wipe absent from scene inventory'
+    assert len({a['id'] for a in cleanup['applicators']})==2, 'grease families cannot share one applicator'
+    need('weather_need_wipes','涂抹前后擦拭材料 · 300 张／包','consumables:cleaning_wipes',[pack['id']],1,'pack',
+         'One selected TX609 pack, not the ten-pack shipping case. Thirty-six separate sheets reserved for three fresh assemblies; trials/resets remain open.', source_ids=['ONSET_U30_NRC'])
+    needs[-1]['material_reservation']=copy.deepcopy(pack['application_budget'])
+    need('weather_need_residue_collection','残脂／擦拭物收集容量','facility:WASTE',['oily_waste_can'],3,'L',
+         'Inferred 3 L planning reservation in the existing 23 L nominal can; available capacity, mixture compatibility and actual transfers remain unqualified.',
+         exclusion=['free liquids','packaging films','coating/solvent waste','sharps'])
+    needs[-1]['waste_reservation']=copy.deepcopy(cleanup['waste_reservation'])
+    need('weather_need_clean_packaging_collection','干净包装膜收集位置','facility:WASTE',[],1,'collection_point',
+         'Two retained clean packaging films require a separate collection point; not allocated to the grease-wipe can.')
+    needs[-1]['retained_unit_ids']=copy.deepcopy(identities[pack['id']]['packaging_unit_ids'])
     for tie in temporary.values():
         need('weather_need_'+tie['id'],'临时固定扎带 · '+tie['product'],'consumables:temporary_tie',
              ['weather_'+tie['id']],1,'tie','One additional sacrificial tie in the low-mast reference; reset stock and post-cut disposition remain open.')
@@ -176,7 +191,7 @@ def build_record(allocation, binding, sources, grease, preparation, silicone):
     assert 'u30__door_perimeter_gasket' in silicone['material_allocation']['excluded_destination_parts']
     paths = [Path(__file__), HERE/'campaign_allocation.json', HERE/'weather_scene_binding.json',
              HERE/'weather_inventory_sources.json', HERE/'mast_grease_assets.json',HERE/'weather_preparation_assets.json',
-             HERE/'silicone_grease_assets.json']
+             HERE/'silicone_grease_assets.json',HERE/'weather_cleanup_assets.json']
     return dict(schema_version=1, status='laboratory_inventory_incomplete',
         scope='One canonical identity registry across base, installed-weather and partial-preparation displays, base component requirements, and supplementary installation needs. Not an initial simulation state or controller input.',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in paths],
@@ -196,7 +211,7 @@ def build_record(allocation, binding, sources, grease, preparation, silicone):
 
 def build():
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in
-            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets']]
+            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets']]
     result=build_record(*inputs)
     write_json(HERE/'laboratory_inventory.json',result)
     print(json.dumps(result['counts']))
