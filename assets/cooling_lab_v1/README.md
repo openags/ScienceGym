@@ -14,13 +14,13 @@ staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders 
 access postures are inspection tools, not physics-controlled robot actions.
 
 The main viewer now has an optional **weather-station installation reference**
-inside the complete laboratory. Its 538 named parts cover the station, cart,
-ground, remaining/unused stock, seven ordinary tools and a grease tube. `weather_scene_binding.json` assigns every
-part to exactly one of 33 selected identities. The existing U30 and utility
+inside the complete laboratory. Its 543 named parts cover the station, cart,
+ground, remaining/unused stock, seven ordinary tools and two independent grease tubes. `weather_scene_binding.json` assigns every
+part to exactly one of 34 selected identities. The existing U30 and utility
 cart are hidden in their original locations when their alternative representations
 are shown. Fourteen cutoffs remain associated with their original ties, and the
 three removed plugs remain part of the same logger. The independent Omega ambient
-probe and solar instruments are retained. The tools and grease tube rest on the actual
+probe and solar instruments are retained. The tools and grease tubes rest on the actual
 weather-service worktop. `weather_scene_binding_checks.json` checks identity
 conservation and placement against the remaining full laboratory geometry.
 The cart's lower shelf supports the remaining 4.719934 m guy wire and 2.706960 m
@@ -196,8 +196,33 @@ Further trials/reset budgets, ordinary application tools and cleanup stock
 remain open. This silicone-free product does not satisfy the U30 manual's
 separate silicone-grease requirement. Tube deformation, dispensing, sealing,
 compatibility and robot operation remain unqualified. The complete composition
-now contains twelve modules, 33 selected identities and 538 named geometry parts;
+now contains thirteen modules, 34 selected identities and 543 named geometry parts;
 these counts grant no accepted initial inventory or owner acceptance.
+
+The [silicone-grease inspector](../../viewer/lab_review_v1/silicone_grease.html)
+adds a separate Super Lube 93003 85 g candidate for the U30 EPDM cable channel.
+The selected product is not identified as Onset's supplied grease or an approved
+substitute. The catalogue and source photograph establish the SKU, package mass,
+silver tapered tube, hanging slot and ribbed cap. No dimensioned package drawing
+was found: 54 × 32 × 152 mm, the shoulder, wall, thread and sealing details remain
+inferred. The model uses independently laid-out identification text; exact
+package artwork and the textured sealed tail are not reproduced.
+
+The March 2024 TDS gives specific gravity 1.11 at 25 °C; the September 2025 SDS
+gives 0.96 at 20 °C. Their discrepancy remains unresolved. Two mutually exclusive
+stock geometries represent the same 85 g tube: 76.58 or 88.54 mL. They never count
+as two containers. Actual exported mass, cavity volume, hollow cap, nozzle and
+intersections are checked. A 0.5 mm display clearance and finer material
+tessellation resolve the observed stock/wall overlap and mass error.
+
+The EPDM channel is distinct from the silicone-rubber door gasket, which the
+candidate excludes. Actual cable-jacket compatibility remains unqualified.
+An explicitly inferred 3 g allowance per fresh assembly reserves 9 g for three
+assemblies, leaving 76 g. It includes a future external-power cable path that
+is not yet installed; trials, resets, application tools, wiping stock and waste
+transfer remain open. The tube rests on its cap base at the service bench.
+Neither source compatibility ratings nor static geometry qualify dispensing,
+sealing, robot operation or the complete installation.
 
 The [tape-measure inspector](../../viewer/lab_review_v1/tape_measure.html) adds
 one Hultafors BT5M / 356103 candidate for external wire-length measurement,
@@ -661,20 +686,22 @@ decisions remain explicit; CAD download listings are not downloaded CAD.
 
 The allocation page also reads `laboratory_inventory.json`, a downstream join
 of the base allocation, installed weather station and partial preparation view.
-Its 114 review identities are 81 base identities plus 33 installed-context
+Its 115 review identities are 81 base identities plus 34 installed-context
 identities, minus the reused logger and cart, plus two additional temporary
 ties. This count includes one site design and compound kit groups; it is not a
 count of portable objects or executable initial stock. All 161 preparation
 parts retain identity links, including the reused plug tray. Fourteen permanent
 ties keep their own cutoffs; the two sacrificial temporary ties remain separate
-with their removal/disposal unresolved. Eight tool/grease candidates retain
+with their removal/disposal unresolved. Nine tool/grease candidates retain
 their existing worktop locations. Twenty-four other portable context identities
 still lack initial placement bindings.
 
 Fifteen supplementary installation needs preserve the 154 original component
-requirements and their deficits. Four needs have no selected candidate:
-U30 silicone grease, two ordinary grease applicators and wiping material.
-Silicone quantity, wipe count and residue-collection capacity remain unknown.
+requirements and their deficits. Three needs have no selected candidate:
+two ordinary grease applicators and wiping material.
+Wipe count and residue-collection capacity remain unknown. One separate 85 g
+silicone-grease tube has an inferred reservation; full trial/reset quantities
+and material compatibility remain unqualified.
 The optional S-ADAPT-X5-10 grease is not credited to the selected base U30;
 the silicone-free 21030 tube cannot satisfy that requirement. These source
 distinctions are recorded in `weather_inventory_sources.json`.

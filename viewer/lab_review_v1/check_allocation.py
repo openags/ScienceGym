@@ -64,17 +64,17 @@ def run(url, browser):
         check('search_matches_physical_identity',page.locator('#allocation-components tr').count()==1 and 'equipment:HEATER' in page.locator('#allocation-components').inner_text())
         page.locator('#allocation-search').fill('');page.locator('#allocation-filter').select_option('unallocated')
         check('unknown_quantities_not_zero',page.locator('#allocation-components tr').count()==117 and '待分配' in page.locator('#allocation-components').inner_text())
-        check('unified_identities_include_temporary_stock',page.locator('#identity-rows tr').count()==114 and '2 根临时扎带' in page.locator('#identity-summary').inner_text())
-        check('installation_needs_expose_missing_supplies',page.locator('#installation-needs tr').count()==15 and '4 项尚无候选物品' in page.locator('#installation-summary').inner_text())
+        check('unified_identities_include_temporary_stock',page.locator('#identity-rows tr').count()==115 and '2 根临时扎带' in page.locator('#identity-summary').inner_text())
+        check('installation_needs_expose_missing_supplies',page.locator('#installation-needs tr').count()==15 and '3 项尚无候选物品' in page.locator('#installation-summary').inner_text())
         silicone=page.locator('[data-need="weather_need_silicone_grease"]').inner_text()
-        check('silicone_remains_missing_in_browser','待分配' in silicone and '缺少候选物品' in silicone and '21030' not in silicone)
+        check('silicone_is_one_independent_unaccepted_candidate','1 管' in silicone and 'weather_silicone_grease_93003' in silicone and '候选未验收' in silicone and '21030' not in silicone)
         page.locator('#installation-panel').scroll_into_view_if_needed();capture('installation_needs')
         page.locator('#identity-filter').select_option('reused')
         check('logger_and_cart_are_two_reused_identities',page.locator('#identity-rows tr').count()==2 and
               page.locator('[data-identity="hobo_u30"]').count()==1 and page.locator('[data-identity="utility_cart"]').count()==1)
         page.locator('#identity-panel').scroll_into_view_if_needed();capture('shared_identities')
         page.locator('#identity-filter').select_option('weather')
-        check('weather_identities_include_two_temporary_ties',page.locator('#identity-rows tr').count()==35 and
+        check('weather_identities_include_two_temporary_ties',page.locator('#identity-rows tr').count()==36 and
               page.locator('[data-identity="weather_temporary_leg"]').count()==1 and page.locator('[data-identity="weather_temporary_brace"]').count()==1)
         page.locator('#identity-filter').select_option('unplaced')
         check('missing_initial_placement_excludes_staged_tools_and_site',page.locator('#identity-rows tr').count()==24 and

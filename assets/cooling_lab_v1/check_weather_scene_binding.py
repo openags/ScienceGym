@@ -68,6 +68,11 @@ def build():
             expected=np.eye(4);expected[:3,3]=[9.05,18.8,bench['top_m']]
             check('grease_keeps_cap_base_support_and_separate_silicone_requirement',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
                 and reference['support_margin_m']>.010 and not t['silicone_channel_requirement_satisfied'] and t['net_mass_g']==85)
+        if t['id']=='weather_silicone_grease_93003':
+            reference=json.loads((HERE/'silicone_grease_checks.json').read_text())['resting_reference']
+            expected=np.array(reference['to_support_plane']);expected[:3,3]+=[9.68,18.58,bench['top_m']]
+            check('silicone_tube_keeps_cap_base_support_and_one_identity',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
+                and t['net_mass_g']==85 and t['selected_required_units']==1 and t['selected_for_channel'] and not t['silicone_channel_requirement_satisfied'])
         if t['id']=='weather_tape_measure_bt5m':
             reference=json.loads((HERE/'tape_measure_checks.json').read_text())['resting_reference']
             expected=np.eye(4);expected[:3,3]=[9.25,18.8,bench['top_m']]

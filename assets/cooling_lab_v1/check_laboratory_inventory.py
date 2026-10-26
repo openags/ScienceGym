@@ -7,22 +7,22 @@ from geometry_tools import HERE, ROOT, sha, write_json
 
 
 def inspect():
-    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets']
+    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets']
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in names]
-    allocation,binding,sources,grease,preparation=inputs
+    allocation,binding,sources,grease,preparation,silicone_asset=inputs
     report=json.loads((HERE/'laboratory_inventory.json').read_text())
     checks=[]
     def check(name,passed):
         checks.append(dict(name=name,passed=bool(passed)))
         if not passed:raise AssertionError(name)
     check('report_matches_current_inputs',report==build_record(*inputs))
-    refs={s['path']:s['sha256'] for r in [report,allocation,binding,grease,preparation] for s in r.get('source_artifacts',[])}
+    refs={s['path']:s['sha256'] for r in [report,allocation,binding,grease,preparation,silicone_asset] for s in r.get('source_artifacts',[])}
     for path,digest in refs.items():check('source_'+path,sha(ROOT/path)==digest)
     geometry={r['geometry']['path']:r['geometry']['sha256'] for e in report['identities'] for r in e['representations']}
     for path,digest in geometry.items():check('geometry_'+path,sha(ROOT/path)==digest)
     ids={e['id']:e for e in report['identities']}
     check('base_and_context_do_not_duplicate_logger_or_cart',
-          len(ids)==81+33-2+2 and report['reused_identity_ids']==['hobo_u30','utility_cart'])
+          len(ids)==81+34-2+2 and report['reused_identity_ids']==['hobo_u30','utility_cart'])
     for identity in ['hobo_u30','utility_cart']:
         check(identity+'_both_contexts_same_identity',
               {r['context'] for r in ids[identity]['representations']}=={'base_display','weather_installed_reference'})
@@ -42,8 +42,18 @@ def inspect():
           for new,old in zip(report['components'],allocation['components'])))
     needs={n['id']:n for n in report['installation_requirements']}
     silicone=needs['weather_need_silicone_grease']
-    check('silicone_grease_is_explicitly_missing',not silicone['candidate_ids'] and silicone['required_quantity'] is None and
+    check('silicone_has_one_independent_tube',silicone['candidate_ids']==['weather_silicone_grease_93003'] and
+          silicone['required_quantity']==1 and silicone['unit']=='container' and
           'weather_mast_grease_21030' in silicone['excluded_substitutions'])
+    check('silicone_reservation_is_inferred_and_not_doubled_by_density_scenarios',
+          silicone['material_reservation']['three_campaign_reservation_g']==9 and
+          silicone['material_reservation']['nominal_remaining_after_reservation_g']==76 and
+          not silicone['material_reservation']['dose_qualified'] and
+          silicone['material_scope']['selected_containers']==1)
+    check('silicone_channel_selection_excludes_silicone_door_gasket',
+          silicone['material_scope']['selected_for_channel'] and
+          silicone['material_scope']['excluded_destination_parts']==['u30__door_perimeter_gasket'] and
+          not silicone['material_scope']['whole_assembly_compatibility_qualified'])
     check('single_mast_tube_has_single_85g_budget',needs['weather_need_mast_grease']['candidate_ids']==['weather_mast_grease_21030'] and
           needs['weather_need_mast_grease']['material_reservation']['three_campaign_reservation_g']==6)
     check('applicators_and_wipes_not_claimed_from_container_mesh',all(not needs[n]['candidate_ids'] for n in
@@ -69,11 +79,14 @@ def inspect():
     rejected('negative_mast_grease_as_silicone',lambda x:x[2]['stock_policy'].update(mast_21030_satisfies_silicone_requirement=True))
     rejected('negative_multiple_tubes_from_inspection_states',lambda x:x[3]['material_allocation'].update(selected_containers=2))
     rejected('negative_temporary_tie_cannot_disappear',lambda x:x[4]['temporary_ties'].pop())
-    result=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,negative_cases=9,
+    rejected('negative_density_scenarios_cannot_double_silicone_stock',lambda x:x[5]['material_allocation'].update(selected_containers=2))
+    rejected('negative_channel_silicone_cannot_lose_door_gasket_exclusion',lambda x:x[5]['material_allocation'].update(excluded_destination_parts=[]))
+    negative_count=sum(c['name'].startswith('negative_') for c in checks)
+    result=dict(schema_version=1,passed=all(c['passed'] for c in checks),checks=checks,negative_cases=negative_count,
         scope='Canonical identity and requirement accounting; no initial-state, safety, material compatibility or robot qualification.',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in [Path(__file__),HERE/'laboratory_inventory.json']])
     write_json(HERE/'laboratory_inventory_checks.json',result)
-    print(json.dumps(dict(passed=result['passed'],checks=len(checks),negative_cases=9)))
+    print(json.dumps(dict(passed=result['passed'],checks=len(checks),negative_cases=negative_count)))
 
 
 if __name__=='__main__':inspect()

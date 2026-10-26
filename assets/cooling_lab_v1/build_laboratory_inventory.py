@@ -25,7 +25,7 @@ COMPONENT_REFERENCES = {
 }
 
 
-def build_record(allocation, binding, sources, grease, preparation):
+def build_record(allocation, binding, sources, grease, preparation, silicone):
     base = {p['id']: p for p in allocation['physical_instances']}
     assert len(base) == len(allocation['physical_instances']), 'duplicate base identity'
     weather = {p['id']: p for p in binding['physical_entities']}
@@ -150,9 +150,14 @@ def build_record(allocation, binding, sources, grease, preparation):
          ['weather_mast_grease_21030'], 1, 'container', 'One selected 85 g tube; per-application mass is an inference.', source_ids=['ONSET_TRIPOD'])
     needs[-1]['material_reservation'] = copy.deepcopy(grease['application_budget'])
     need('weather_need_silicone_grease','U30 线槽硅脂','consumables:u30_silicone_grease',
-         [], None, 'g', 'Manufacturer requires a light coating; exact package and sufficient mass are not yet selected.',
+         ['weather_silicone_grease_93003'], 1, 'container',
+         'One selected 85 g tube, shared across two conflicting source-density scenarios. Application mass is an inference, not a qualified dose.',
          'equipment:WEATHER:component_5', ['ONSET_U30_NRC','ONSET_EXPANDER'],
          ['weather_mast_grease_21030', 'unselected_S-ADAPT-X5-10_grease', 'RX3004_5g_packet_assumption'])
+    needs[-1]['material_reservation'] = copy.deepcopy(silicone['application_budget'])
+    needs[-1]['material_scope'] = copy.deepcopy(silicone['material_allocation'])
+    needs[-1]['source_artifacts'] = [dict(path='assets/cooling_lab_v1/silicone_grease_assets.json',
+                                        sha256=sha(HERE/'silicone_grease_assets.json'))]
     for family, label in [('mast','桅杆润滑脂普通涂抹工具'), ('silicone','硅脂普通涂抹工具')]:
         need('weather_need_'+family+'_applicator', label, 'tools:grease_applicator', [], 1, 'tool',
              'Engineering inference: a separate ordinary applicator for each grease family; tool selection and material compatibility remain open.')
@@ -165,8 +170,13 @@ def build_record(allocation, binding, sources, grease, preparation):
              ['weather_'+tie['id']],1,'tie','One additional sacrificial tie in the low-mast reference; reset stock and post-cut disposition remain open.')
     # A returned list of alternate meshes must never increase nominal grease.
     assert grease['net_mass_g'] == 85 and grease['material_allocation']['selected_containers'] == 1
+    assert silicone['net_mass_g'] == 85 and silicone['material_allocation']['selected_containers'] == 1
+    assert silicone['material_allocation']['physical_identity'] == 'weather_silicone_grease_93003'
+    assert silicone['material_allocation']['selected_for_channel']
+    assert 'u30__door_perimeter_gasket' in silicone['material_allocation']['excluded_destination_parts']
     paths = [Path(__file__), HERE/'campaign_allocation.json', HERE/'weather_scene_binding.json',
-             HERE/'weather_inventory_sources.json', HERE/'mast_grease_assets.json',HERE/'weather_preparation_assets.json']
+             HERE/'weather_inventory_sources.json', HERE/'mast_grease_assets.json',HERE/'weather_preparation_assets.json',
+             HERE/'silicone_grease_assets.json']
     return dict(schema_version=1, status='laboratory_inventory_incomplete',
         scope='One canonical identity registry across base, installed-weather and partial-preparation displays, base component requirements, and supplementary installation needs. Not an initial simulation state or controller input.',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in paths],
@@ -186,7 +196,7 @@ def build_record(allocation, binding, sources, grease, preparation):
 
 def build():
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in
-            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets']]
+            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets']]
     result=build_record(*inputs)
     write_json(HERE/'laboratory_inventory.json',result)
     print(json.dumps(result['counts']))

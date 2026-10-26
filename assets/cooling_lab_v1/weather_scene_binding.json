@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_weather_scene_binding.py",
-      "sha256": "d0c2ba5b1bdcc37abb0a135399c1b0bd1c02a7550a3d4cc2f1a9d380a6ec3f46"
+      "sha256": "87a5a8805301305d642eaa476597bc351826e6340a6def9ba62c0d3738aae1d8"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
@@ -130,6 +130,14 @@
     {
       "path": "assets/cooling_lab_v1/engineer_hammer_checks.json",
       "sha256": "9ae71b95de94c489e04ed1b0a91166840211702c8bacc8d95302d1d3f4b72fa3"
+    },
+    {
+      "path": "assets/cooling_lab_v1/silicone_grease_assets.json",
+      "sha256": "ebcf853f36b161e1359e5ea54e490b566502caf1054f5411812b94b704d1a3e8"
+    },
+    {
+      "path": "assets/cooling_lab_v1/silicone_grease_checks.json",
+      "sha256": "49bf32f29be84f6a412d131404cce587017424fde409ac3d23912ee0e8fdb258"
     }
   ],
   "base_scene": {
@@ -9353,6 +9361,137 @@
           1.0
         ]
       ]
+    },
+    {
+      "id": "weather_silicone_grease_93003",
+      "label": "Super Lube 93003 · U30 线槽硅脂 · 85 g",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/superlube_93003_silicone_grease_tds_1_11.glb",
+        "sha256": "b07758fc49fd30919eed0cfe59c3a16567eed94693899708891b26866215affd",
+        "parts": 5,
+        "bounds_m": [
+          [
+            -0.027,
+            -0.016024999999999998,
+            0.0
+          ],
+          [
+            0.027,
+            0.015999280015388757,
+            0.152
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "tube_shell_and_sealed_tail",
+            "role": "inferred_flexible_container_rigid_reference",
+            "bounds_m": [
+              [
+                -0.027,
+                -0.015999556043543597,
+                0.007
+              ],
+              [
+                0.027,
+                0.015999280015388757,
+                0.152
+              ]
+            ]
+          },
+          {
+            "id": "ribbed_hollow_cap",
+            "role": "removable_cap_with_thread_clearance_envelope",
+            "bounds_m": [
+              [
+                -0.0156598395241878,
+                -0.01565989747794881,
+                0.0
+              ],
+              [
+                0.01566,
+                0.01565989747794881,
+                0.016
+              ]
+            ]
+          },
+          {
+            "id": "inferred_cap_sealing_annulus",
+            "role": "unqualified_sealing_reference",
+            "bounds_m": [
+              [
+                -0.011194987241575237,
+                -0.011198746740275062,
+                0.002
+              ],
+              [
+                0.0112,
+                0.011198746740275062,
+                0.007
+              ]
+            ]
+          },
+          {
+            "id": "nominal_85g_silicone_stock",
+            "role": "same_85g_stock_alternative_density_hypothesis",
+            "bounds_m": [
+              [
+                -0.023336597689548485,
+                -0.015099957683314,
+                0.007019999999999999
+              ],
+              [
+                0.023336656000766474,
+                0.015099985563055264,
+                0.10772154400881437
+              ]
+            ]
+          },
+          {
+            "id": "tube_identification_text",
+            "role": "original_identification_text",
+            "bounds_m": [
+              [
+                -0.018828604730304416,
+                -0.016024999999999998,
+                0.03
+              ],
+              [
+                0.018828604730304416,
+                -0.004460858236236712,
+                0.13
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "to_world": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          9.68
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          18.58
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.9
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
     }
   ],
   "physical_entities": [
@@ -11936,6 +12075,39 @@
       "initial_stock_credit": false,
       "quantity_accepted": false,
       "robot_use_qualified": false
+    },
+    {
+      "id": "weather_silicone_grease_93003",
+      "label": "Super Lube 93003 · U30 线槽硅脂 · 85 g",
+      "resource_id": "consumables:u30_silicone_grease",
+      "existing_scene_identity": null,
+      "quantity": 1,
+      "allocation_basis": "one_85g_tube_shared_across_both_source_density_scenarios",
+      "representations": [
+        {
+          "module": "weather_silicone_grease_93003",
+          "part": "tube_shell_and_sealed_tail"
+        },
+        {
+          "module": "weather_silicone_grease_93003",
+          "part": "ribbed_hollow_cap"
+        },
+        {
+          "module": "weather_silicone_grease_93003",
+          "part": "inferred_cap_sealing_annulus"
+        },
+        {
+          "module": "weather_silicone_grease_93003",
+          "part": "nominal_85g_silicone_stock"
+        },
+        {
+          "module": "weather_silicone_grease_93003",
+          "part": "tube_identification_text"
+        }
+      ],
+      "initial_stock_credit": false,
+      "quantity_accepted": false,
+      "robot_use_qualified": false
     }
   ],
   "hide_scene_asset_ids": [
@@ -12034,6 +12206,17 @@
       "resting_reference_source": "assets/cooling_lab_v1/mast_grease_checks.json",
       "application_budget_source": "assets/cooling_lab_v1/mast_grease_assets.json",
       "silicone_channel_requirement_satisfied": false
+    },
+    {
+      "id": "weather_silicone_grease_93003",
+      "station": "weather_service",
+      "support_top_m": 0.9,
+      "selected_required_units": 1,
+      "net_mass_g": 85,
+      "resting_reference_source": "assets/cooling_lab_v1/silicone_grease_checks.json",
+      "application_budget_source": "assets/cooling_lab_v1/silicone_grease_assets.json",
+      "selected_for_channel": true,
+      "silicone_channel_requirement_satisfied": false
     }
   ],
   "alternative_context": {
@@ -12120,7 +12303,15 @@
         "weather_mast_grease_21030"
       ],
       "completeness_accepted": false,
-      "scope": "Metal mast only; separately required U30 silicone grease and ordinary application/cleanup supplies remain open."
+      "scope": "Metal mast only; independent from the selected U30 silicone grease. Ordinary application/cleanup supplies remain open."
+    },
+    {
+      "resource_id": "consumables:u30_silicone_grease",
+      "physical_entity_ids": [
+        "weather_silicone_grease_93003"
+      ],
+      "completeness_accepted": false,
+      "scope": "One selected 85 g tube for the EPDM channel; two source-density scenarios are the same stock. Silicone-rubber door gasket excluded; cable compatibility and actual application remain open."
     }
   ],
   "limits": [

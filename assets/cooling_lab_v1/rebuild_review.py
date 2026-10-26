@@ -38,6 +38,7 @@ def main():
       'assets/cooling_lab_v1/build_wire_rope_cutter.py','assets/cooling_lab_v1/check_wire_rope_cutter.py',
       'assets/cooling_lab_v1/build_adjustable_wrench.py','assets/cooling_lab_v1/check_adjustable_wrench.py',
       'assets/cooling_lab_v1/build_mast_grease.py','assets/cooling_lab_v1/check_mast_grease.py',
+      'assets/cooling_lab_v1/build_silicone_grease.py','assets/cooling_lab_v1/check_silicone_grease.py',
       'assets/cooling_lab_v1/build_tape_measure.py','assets/cooling_lab_v1/check_tape_measure.py',
       'assets/cooling_lab_v1/build_engineer_hammer.py','assets/cooling_lab_v1/check_engineer_hammer.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
@@ -84,6 +85,7 @@ def main():
         run('viewer/lab_review_v1/check_wire_rope_cutter.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/wire_rope_cutter.html')
         run('viewer/lab_review_v1/check_adjustable_wrench.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/adjustable_wrench.html')
         run('viewer/lab_review_v1/check_mast_grease.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/mast_grease.html')
+        run('viewer/lab_review_v1/check_silicone_grease.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/silicone_grease.html')
         run('viewer/lab_review_v1/check_tape_measure.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/tape_measure.html')
         run('viewer/lab_review_v1/check_engineer_hammer.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/engineer_hammer.html')
         run('viewer/lab_review_v1/check_u30.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/u30.html')

@@ -137,12 +137,15 @@ guarantee of general reliability.
   operations.
   Clamp installation/force and wire-tool compatibility remain unresolved.
 - The [unified inventory](../../assets/cooling_lab_v1/laboratory_inventory.json)
-  reconciles base, installed-weather and partial-preparation views into 114
+  reconciles base, installed-weather and partial-preparation views into 115
   review identities, including one site design. U30, cart, sensor leads and
   removed parts keep their identities; two temporary ties are additional stock,
   separate from the fourteen retained ties and their cutoffs. Fifteen explicit
-  installation needs expose missing silicone grease, two ordinary applicators
-  and wiping stock. Three quantities/capacities remain unknown. These additions
+  installation needs expose two missing ordinary applicators and wiping stock.
+  Wipe quantity and residue capacity remain unknown. One separate 85 g silicone
+  tube is selected for the EPDM channel, with two conflicting manufacturer
+  density scenarios sharing one identity. The silicone door gasket is excluded;
+  cable-jacket compatibility and application remain unqualified. These additions
   preserve every original component and deficit; they grant no initial-state
   or task credit. The same allocation page displays and filters these records.
 - The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)

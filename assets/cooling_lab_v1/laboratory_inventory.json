@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_laboratory_inventory.py",
-      "sha256": "9284089dfc4405149adf16eb2c240e7e9fb7fa0972969dbdc6793c64a1c6eec1"
+      "sha256": "dfa518b06450db45138a8c3d2d3a2d0fa62e100e77dc774b4bc2429ea312abf9"
     },
     {
       "path": "assets/cooling_lab_v1/campaign_allocation.json",
@@ -13,11 +13,11 @@
     },
     {
       "path": "assets/cooling_lab_v1/weather_scene_binding.json",
-      "sha256": "f517c1877da734638c2dc40a7c4d2c9fe7ab3fadea9036e4658b005f47798a01"
+      "sha256": "d84341031b66f7df09176460ad1fc47666701146ec642c093b57aac1f0f166ce"
     },
     {
       "path": "assets/cooling_lab_v1/weather_inventory_sources.json",
-      "sha256": "d805e7dee2f6153760bcf76edbb373564c082c19a0cca9177e2560433334cecd"
+      "sha256": "9f93813acc1b103179a436ba61937399a79cfe7a795e0eb9035d55558aeb4b81"
     },
     {
       "path": "assets/cooling_lab_v1/mast_grease_assets.json",
@@ -26,6 +26,10 @@
     {
       "path": "assets/cooling_lab_v1/weather_preparation_assets.json",
       "sha256": "4115dc4c60d13be6f0618aa0d586ff3c7c46b685c6ed24cb0c9bd8a6a8cce33f"
+    },
+    {
+      "path": "assets/cooling_lab_v1/silicone_grease_assets.json",
+      "sha256": "ebcf853f36b161e1359e5ea54e490b566502caf1054f5411812b94b704d1a3e8"
     }
   ],
   "identities": [
@@ -5727,6 +5731,61 @@
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_container_and_85g_nominal_contents_not_extra_stock_per_inspection"
+    },
+    {
+      "id": "weather_silicone_grease_93003",
+      "label": "Super Lube 93003 · U30 线槽硅脂 · 85 g",
+      "kind": "context_candidate",
+      "base_candidate_placement": false,
+      "installed_reference_present": true,
+      "representations": [
+        {
+          "context": "weather_installed_reference",
+          "module": "weather_silicone_grease_93003",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/superlube_93003_silicone_grease_tds_1_11.glb",
+            "sha256": "b07758fc49fd30919eed0cfe59c3a16567eed94693899708891b26866215affd"
+          },
+          "parts": [
+            "tube_shell_and_sealed_tail",
+            "ribbed_hollow_cap",
+            "inferred_cap_sealing_annulus",
+            "nominal_85g_silicone_stock",
+            "tube_identification_text"
+          ],
+          "to_world": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              9.68
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              18.58
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.9
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "initial_stock_credit": false,
+      "initial_state_qualified": false,
+      "initial_state_status": "context_candidate_placement_unqualified",
+      "context_quantity": 1,
+      "allocation_basis": "one_85g_tube_shared_across_both_source_density_scenarios"
     },
     {
       "id": "weather_temporary_leg",
@@ -12712,11 +12771,13 @@
         "MAP_CLEAR_NIGHT",
         "MAP_HAZY_NOON"
       ],
-      "required_quantity": null,
-      "unit": "g",
-      "quantity_basis": "Manufacturer requires a light coating; exact package and sufficient mass are not yet selected.",
-      "candidate_ids": [],
-      "candidate_identity_count": 0,
+      "required_quantity": 1,
+      "unit": "container",
+      "quantity_basis": "One selected 85 g tube, shared across two conflicting source-density scenarios. Application mass is an inference, not a qualified dose.",
+      "candidate_ids": [
+        "weather_silicone_grease_93003"
+      ],
+      "candidate_identity_count": 1,
       "initial_stock_credit": 0,
       "initial_state_qualified": false,
       "complete": false,
@@ -12729,7 +12790,52 @@
         "unselected_S-ADAPT-X5-10_grease",
         "RX3004_5g_packet_assumption"
       ],
-      "status": "missing_candidate"
+      "status": "candidate_initial_state_unqualified",
+      "material_reservation": {
+        "status": "inferred_inventory_planning_allowance_not_approved_dose",
+        "per_channel_g": 0.5,
+        "per_cable_path_g": 0.5,
+        "reserved_cable_paths": [
+          "temperature",
+          "wind",
+          "ground",
+          "future_external_power"
+        ],
+        "application_and_wipe_loss_g": 0.5,
+        "per_fresh_assembly_g": 3.0,
+        "three_campaign_reservation_g": 9.0,
+        "nominal_remaining_after_reservation_g": 76.0,
+        "dose_qualified": false,
+        "validation_trial_and_reset_budget_complete": false,
+        "basis": "Manufacturer specifies a light coating. Pea-size description is not a calibrated dose. Four paths reserve future external power as well as three presently represented cables; its connection remains open."
+      },
+      "material_scope": {
+        "physical_identity": "weather_silicone_grease_93003",
+        "selected_containers": 1,
+        "selected_for_channel": true,
+        "silicone_channel_requirement_satisfied": false,
+        "selected_destination": "U30 EPDM cable channel",
+        "excluded_destination_parts": [
+          "u30__door_perimeter_gasket"
+        ],
+        "additional_exclusions": [
+          "optical_surfaces",
+          "mixing_with_mast_grease"
+        ],
+        "manufacturer_epdm_compatibility_rating": "E",
+        "manufacturer_silicone_rubber_compatibility_rating": "NC",
+        "actual_cable_jacket_compatibility_qualified": false,
+        "whole_assembly_compatibility_qualified": false,
+        "applicator_identity": null,
+        "cleanup_stock_identity": null,
+        "material_disposition": "Contained stock only; no application, residue or waste transfer."
+      },
+      "source_artifacts": [
+        {
+          "path": "assets/cooling_lab_v1/silicone_grease_assets.json",
+          "sha256": "ebcf853f36b161e1359e5ea54e490b566502caf1054f5411812b94b704d1a3e8"
+        }
+      ]
     },
     {
       "id": "weather_need_mast_applicator",
@@ -12935,7 +13041,7 @@
       "optional_expander_grease_stock_credit": 0,
       "rx3004_packet_mass_applies_to_u30": false,
       "mast_21030_satisfies_silicone_requirement": false,
-      "silicone_requirement": "Choose an evidenced silicone-grease supply and package quantity. Do not infer a free packet from another kit or a 5 g amount from RX3004.",
+      "silicone_requirement": "One separate 85 g Super Lube 93003 candidate is selected in silicone_grease_assets.json for the EPDM channel. It is not identified as Onset-supplied grease or a qualified substitution. Do not infer a free packet from another kit or a 5 g amount from RX3004. Actual cable-jacket compatibility, application and reset budgets remain open.",
       "application_tools": "Select two ordinary applicators, one assigned to each grease family, to avoid cross-contamination. The quantity is an engineering inventory inference, not a manufacturer tool prescription.",
       "cleanup": "Allocate compatible wiping material and trace residue into the existing waste-service requirement. A waste-can model does not establish material compatibility or remaining capacity. Wipe count and grease-transfer quantities remain unallocated."
     }
@@ -12946,16 +13052,16 @@
   ],
   "counts": {
     "base_identities": 81,
-    "context_identities": 33,
+    "context_identities": 34,
     "reused_identities": 2,
     "preparation_only_identities": 2,
-    "unique_review_identities": 114,
+    "unique_review_identities": 115,
     "facility_designs": 1,
-    "context_only_identities": 33,
+    "context_only_identities": 34,
     "base_component_requirements": 154,
     "installation_requirements": 15,
-    "installation_needs_without_candidate": 4,
-    "installation_quantities_unallocated": 3,
+    "installation_needs_without_candidate": 3,
+    "installation_quantities_unallocated": 2,
     "qualified_initial_identities": 0,
     "qualified_branches": 0
   },
