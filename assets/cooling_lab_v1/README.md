@@ -14,13 +14,13 @@ staged fastening tools, and a selected OMAX ProtoMAX waterjet. Geometry sliders 
 access postures are inspection tools, not physics-controlled robot actions.
 
 The main viewer now has an optional **weather-station installation reference**
-inside the complete laboratory. Its 486 named parts cover the station, cart,
-ground, remaining/unused stock and three ordinary drivers. `weather_scene_binding.json` assigns every
-part to exactly one of 28 selected identities. The existing U30 and utility
+inside the complete laboratory. Its 531 named parts cover the station, cart,
+ground, remaining/unused stock, six ordinary tools and a grease tube. `weather_scene_binding.json` assigns every
+part to exactly one of 32 selected identities. The existing U30 and utility
 cart are hidden in their original locations when their alternative representations
 are shown. Fourteen cutoffs remain associated with their original ties, and the
 three removed plugs remain part of the same logger. The independent Omega ambient
-probe and solar instruments are retained. Three shared drivers rest on the actual
+probe and solar instruments are retained. The tools and grease tube rest on the actual
 weather-service worktop. `weather_scene_binding_checks.json` checks identity
 conservation and placement against the remaining full laboratory geometry.
 The cart's lower shelf supports the remaining 4.719934 m guy wire and 2.706960 m
@@ -196,8 +196,34 @@ Further trials/reset budgets, ordinary application tools and cleanup stock
 remain open. This silicone-free product does not satisfy the U30 manual's
 separate silicone-grease requirement. Tube deformation, dispensing, sealing,
 compatibility and robot operation remain unqualified. The complete composition
-now contains ten modules, 31 selected identities and 511 named geometry parts;
+now contains eleven modules, 32 selected identities and 531 named geometry parts;
 these counts grant no accepted initial inventory or owner acceptance.
+
+The [tape-measure inspector](../../viewer/lab_review_v1/tape_measure.html) adds
+one Hultafors BT5M / 356103 candidate for external wire-length measurement,
+as required by the tripod manufacturer's tool list. The selected metric
+product has a 5 m capacity, 19 mm steel blade and manufacturer-photographed
+87 × 30 × 78 mm body; the clip protrudes beyond that body envelope. The
+manufacturer gallery's different 5.4 m variant and ambiguous shop dimensions
+are excluded. No official CAD or published whole-tool mass was retrieved.
+
+The original reconstruction includes hollow case halves, separate rubber
+domains, a pivoting thumb switch, blind axle seats, recessed housing screws,
+a mushroom-mounted clip with a broad slotted paddle and curved returns,
+and a three-rivet sliding hook. Local dimensions, strip curvature, thickness
+and internal clearance remain explicit hypotheses. Three independent static
+shapes preserve one inferred 5.30 m continuous steel strip, including hidden
+lead and tail; they are not an animated retraction or three physical tools.
+Original metric graduations follow the actual exported blade facets. The
+geometry checks reject buried text, overlapping solids and unsupported staging.
+
+The closed candidate rests on the actual weather-service worktop, with its
+complete clip and hook clear of neighbouring objects. Its source and scale
+inspector is linked from the shared inventory table. Return spring/reel,
+brake transmission, elastic clip retention, hook lost motion, blade sag,
+internal-measurement datum, reverse CC scale, calibration and robot use remain
+unqualified. The selected external-measurement tool does not replace the
+existing caliper, establish complete initial inventory or grant owner acceptance.
 
 The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
 five-primary-port NRC candidate with 138 physical domains and five text faces.

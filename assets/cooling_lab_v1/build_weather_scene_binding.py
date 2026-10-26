@@ -18,7 +18,7 @@ def build():
         'nut_driver_assets','mast_driver_assets','wind_driver_assets',
         'nut_driver_checks','mast_driver_checks','wind_driver_checks',
         'wire_rope_cutter_assets','wire_rope_cutter_checks','adjustable_wrench_assets','adjustable_wrench_checks',
-        'mast_grease_assets','mast_grease_checks']
+        'mast_grease_assets','mast_grease_checks','tape_measure_assets','tape_measure_checks']
     r={n:json.loads((HERE/(n+'.json')).read_text()) for n in names}
     station=r['weather_station_assets'];storage=r['weather_storage_assets']
     site=station['station_origin_world_m'];modules=[];entities={}
@@ -105,6 +105,16 @@ def build():
         resting_reference_source='assets/cooling_lab_v1/adjustable_wrench_checks.json'))
     for p in geometry['part_records']:
         member(identity,label,'tools:fastener_driver',identity,p['id'])
+    identity='weather_tape_measure_bt5m';label='Hultafors BT5M · 5 m 钢卷尺'
+    geometry=next(i['geometry'] for i in r['tape_measure_assets']['items'] if i['id']=='retracted')
+    rest=r['tape_measure_checks']['resting_reference']
+    mod=module(identity,label,geometry,[9.25,18.8,.9])
+    mod['to_world']=(np.array(mod['to_world'])@np.array(rest['to_support_plane'])).tolist()
+    tools.append(dict(id=identity,station='weather_service',support_top_m=.9,
+        selected_required_units=1,shared_across_all_service_poses=True,
+        resting_reference_source='assets/cooling_lab_v1/tape_measure_checks.json'))
+    for p in geometry['part_records']:
+        member(identity,label,'tools:tape_measure',identity,p['id'],basis='one_case_blade_and_clip_identity_shared_across_all_inspection_shapes')
     identity='weather_mast_grease_21030';label='Super Lube 21030 · 桅杆通用润滑脂 · 85 g'
     geometry=r['mast_grease_assets']['geometry']
     module(identity,label,geometry,[9.05,18.8,.9])
@@ -134,6 +144,8 @@ def build():
             completeness_accepted=False),dict(resource_id='tools:fastener_driver',physical_entity_ids=[n for n,e in entities.items() if e['resource_id']=='tools:fastener_driver'],completeness_accepted=False),
             dict(resource_id='tools:wire_stripper_and_driver',physical_entity_ids=['weather_wire_rope_cutter'],completeness_accepted=False,
                 scope='Separate cable cutter candidate for guy/ground wire; does not replace the existing electronic cutter or establish complete wire-tool stock.'),
+            dict(resource_id='tools:tape_measure',physical_entity_ids=['weather_tape_measure_bt5m'],completeness_accepted=False,
+                scope='Additional requirement from the tripod manufacturer tool list for external wire-length measurement; does not replace the existing caliper. Calibration and complete initial-state reconciliation remain open.'),
             dict(resource_id='consumables:mast_all_purpose_grease',physical_entity_ids=['weather_mast_grease_21030'],completeness_accepted=False,
                 scope='Metal mast only; separately required U30 silicone grease and ordinary application/cleanup supplies remain open.')],
         limits=['Installed/reference, base-staging and partial preparation views are mutually exclusive representations, not extra inventory.',

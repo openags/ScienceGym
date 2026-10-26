@@ -43,15 +43,15 @@ access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECK
 and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
-contains a physical-scale scene with four zones, 71 placed asset instances,
+contains a physical-scale scene with four zones, 81 placed asset instances,
 an enclosed laboratory with windows, open double doors, a panel ceiling,
 lighting and cabinet benches, separately identified authored facilities, a dimensioned floor
 plan, source links, surface-to-surface measurement and articulated inspection
 states. Three new outdoor-instrument reconstructions use manufacturer manuals
 and dimension drawings. All assets and the whole scene remain **unaccepted**;
-missing equipment, camera installation and infrastructure stay visible in the 66-row
+missing equipment, camera installation and infrastructure stay visible in the 67-row
 resource inventory (including three superseded robot/hand references). The G1
-layout checks, 129 restricted source-kinematic poses and 84 station access
+layout checks, restricted source-kinematic checks and 94 station access
 points provide bounded geometric evidence. The station report records static position candidates with camera-attachment clearance screening. Native G1 head RGB / ideal
 depth and candidate wrist RGB inspection views now follow the displayed pose.
 Official wrist camera mounts are available for comparison, with observed
@@ -64,6 +64,14 @@ finishes use separate colour, normal and roughness/metalness channels; missing
 mesh normals are recovered for visible receiver shadows. Static render batching
 preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
+
+An optional weather-station installation reference adds detailed component
+inspection and identity-preserving tool staging. The linked
+[tape-measure review](viewer/lab_review_v1/tape_measure.html) shows the selected
+Hultafors BT5M casing, clip, hook and three static blade shapes. The complete
+composition has 32 selected physical identities and 531 named parts; these
+review counts do not establish complete initial stock, accepted assets or
+robot execution. See the [asset review guide](assets/cooling_lab_v1/README.md).
 
 The linked [central-support CAD review](viewer/lab_review_v1/lift.html) now
 preserves all 86 solids of a selected Thorlabs L200/M jack, with actual holes,
