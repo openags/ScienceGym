@@ -34,6 +34,7 @@ def main():
       'assets/cooling_lab_v1/build_nut_driver.py','assets/cooling_lab_v1/check_nut_driver.py',
       'assets/cooling_lab_v1/build_u30.py','assets/cooling_lab_v1/check_u30.py',
       'assets/cooling_lab_v1/build_mast_driver.py','assets/cooling_lab_v1/check_mast_driver.py',
+      'assets/cooling_lab_v1/build_wind_driver.py','assets/cooling_lab_v1/check_wind_driver.py',
       'assets/cooling_lab_v1/build_apparatus_cover.py','assets/cooling_lab_v1/check_apparatus_cover.py','assets/cooling_lab_v1/build_cover_stock.py',
       'assets/cooling_lab_v1/build_apparatus_stock.py','assets/cooling_lab_v1/check_cover_stock.py','assets/cooling_lab_v1/check_apparatus_mounting.py','assets/cooling_lab_v1/check_apparatus_frame.py','assets/cooling_lab_v1/build_frame_stock.py','assets/cooling_lab_v1/check_frame_stock.py','assets/cooling_lab_v1/build_stock_cutplan.py','assets/cooling_lab_v1/check_stock_cutplan.py','assets/cooling_lab_v1/build_waterjet.py',
       'assets/cooling_lab_v1/inspect_tool_access.py',
@@ -43,10 +44,12 @@ def main():
       'assets/cooling_lab_v1/validate_review.py','assets/cooling_lab_v1/check_allocation.py','assets/cooling_lab_v1/test_pilot_contract.py',
       'assets/cooling_lab_v1/build_weather_site_review.py','assets/cooling_lab_v1/build_outdoor_ground.py','assets/cooling_lab_v1/check_outdoor_ground.py',
       'assets/cooling_lab_v1/build_weather_support.py','assets/cooling_lab_v1/check_weather_support.py',
-      'assets/cooling_lab_v1/build_cable_ties.py','assets/cooling_lab_v1/build_u30_ground.py','assets/cooling_lab_v1/check_u30_ground.py',
+      'assets/cooling_lab_v1/build_cable_ties.py','assets/cooling_lab_v1/build_long_cable_ties.py','assets/cooling_lab_v1/build_u30_ground.py','assets/cooling_lab_v1/check_u30_ground.py',
       'assets/cooling_lab_v1/build_weather_station.py','assets/cooling_lab_v1/check_weather_station.py',
-      'assets/cooling_lab_v1/build_weather_storage.py','assets/cooling_lab_v1/check_weather_storage.py','assets/cooling_lab_v1/check_weather_service.py']:
+      'assets/cooling_lab_v1/build_weather_storage.py','assets/cooling_lab_v1/check_weather_storage.py','assets/cooling_lab_v1/check_weather_service.py',
+      'assets/cooling_lab_v1/build_weather_preparation.py','assets/cooling_lab_v1/check_weather_preparation.py','assets/cooling_lab_v1/check_weather_wind_service.py','assets/cooling_lab_v1/check_weather_workspace.py']:
         run(script)
+    run('assets/cooling_lab_v1/check_weather_workspace.py','--preparation')
     if a.browser:
         for script in ['viewer/lab_review_v1/check_browser.py','viewer/lab_review_v1/check_rendering.py','viewer/lab_review_v1/check_pose_projection.py','viewer/lab_review_v1/check_sensors.py']:
             run(script,'--browser',a.browser,'--url',a.url)
@@ -69,6 +72,7 @@ def main():
         run('viewer/lab_review_v1/check_u30.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/u30.html')
         run('viewer/lab_review_v1/check_mast_driver.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/mast_driver.html')
         run('viewer/lab_review_v1/check_weather_station.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather_station.html')
+        run('viewer/lab_review_v1/check_weather_workspace.py','--browser',a.browser,'--url',a.url.rsplit('/',1)[0]+'/weather_workspace.html')
     print('Asset-review candidate rebuilt. Owner acceptance and all humanoid execution gates remain open.')
 
 if __name__=='__main__':main()

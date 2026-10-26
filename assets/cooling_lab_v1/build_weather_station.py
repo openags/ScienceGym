@@ -40,7 +40,11 @@ def build():
     # Preserve north-facing wind alignment. Rotating the complete unaccepted
     # tripod/anchoring layout separates its guy lines from the wind arm.
     support_rotation=rotation(30,[0,0,1])
-    add('support',r['weather_support_assets']['geometry'],pose(support_rotation,-support_rotation@site))
+    # Legs/guys may rotate independently around the circular mast. Preserve
+    # the manual's north/south lower creases and north-facing upper dimple.
+    undo_mast=pose(support_rotation.T,site-support_rotation.T@site)
+    add('support',r['weather_support_assets']['geometry'],pose(support_rotation,-support_rotation@site),
+        overrides={n:undo_mast for n in ['lower_mast_with_indexing_creases','upper_mast_with_dimple_and_crossarm_holes']})
     logger_origin=np.array([0,-.147,1.1003]);logger=pose(translation=logger_origin)
     grounding=r['u30_ground_assets'];adjustment=grounding['nut_adjustment']
     assert np.allclose(logger_origin,grounding['selected_logger_origin_m'])
@@ -78,7 +82,7 @@ def build():
     wind_entry=np.asarray(r['wind_lead_assets']['modular_plug']['cable_entry_m'])
     wind_plug=logger@pose(R,np.array([.036,.030,.067])-R@wind_entry)
     add('wind_plug',r['wind_lead_assets']['geometry'],wind_plug,plug_filter)
-    layout=dict(logger_origin_m=logger_origin.tolist(),support_azimuth_rotation_deg=30,
+    layout=dict(logger_origin_m=logger_origin.tolist(),support_azimuth_rotation_deg=30,mast_index_north_axis=[0,1,0],
         guy_azimuths_deg=[120,240,0],north_axis=[0,1,0],rs3_clamp_height_m=1.4,wind_origin_m=[0,.0255,1.6],
         temperature_adapter_centre_m=temp_adapter_origin.tolist(),wind_adapter_centre_m=wind_adapter_origin.tolist())
     transforms=dict(temperature_head=head.tolist(),temperature_adapter=temp_adapter.tolist(),

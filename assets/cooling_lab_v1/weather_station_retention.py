@@ -52,7 +52,11 @@ def station_ties(parts,leads):
            ('temperature_network',1.260,[mast,temp_net]),('wind_network',1.280,[mast,wind_net])]
     matrices=[]
     for name,z,selection in plans:
-        matrix=np.eye(4);matrix[2,3]=z;matrices.append((name,matrix,selection))
+        matrix=np.eye(4);matrix[2,3]=z
+        # Face ordinary coil heads south, away from the north-facing wind
+        # arm. The previous northward palm allowance sat 10 mm from its tube.
+        if '_coil_' in name:matrix[:2,:2]=-np.eye(2)
+        matrices.append((name,matrix,selection))
     bracket=next(n for n in parts if n.endswith('inclined_mounting_bracket'))
     for i,y in enumerate([-.130,-.075],1):
         matrix=np.eye(4);matrix[:3,:3]=np.array([[1,0,0],[0,0,1],[0,-1,0]]);matrix[1,3]=y

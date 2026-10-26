@@ -20,9 +20,9 @@ THICKNESS=.0012
 STOCK_LENGTH=.300
 
 
-def head_mesh():
+def head_mesh(length=.007,width=.0078):
     # mm. The feed direction is +Y, the molded root leaves towards +X.
-    molded=(cq.Workplane('XZ').rect(7,7.8).workplane(offset=5.8).rect(6.2,6.8).loft(combine=True))
+    molded=(cq.Workplane('XZ').rect(length*1000,width*1000).workplane(offset=5.8).rect(length*1000-.8,width*1000-1.0).loft(combine=True))
     side_edges=[e for e in molded.val().Edges() if abs(e.tangentAt().y)>.9]
     head=molded.newObject(side_edges).fillet(.25).val()
     opening=cq.Solid.makeBox(3.3,6.2,5.0,cq.Vector(-1.6,-6,-2.5))
@@ -33,7 +33,7 @@ def head_mesh():
     return cad_mesh(head.fuse(pawl))
 
 
-def strap_mesh(points,serrated=True,tip=False):
+def strap_mesh(points,serrated=True,tip=False,width=WIDTH,thickness=THICKNESS):
     """Sweep an eight-corner grooved rectangular section in the XY plane."""
     p=np.asarray(points);s=np.r_[0,np.cumsum(np.linalg.norm(np.diff(p,axis=0),axis=1))]
     # All tooth breaks are sampled, rather than aliased by route vertices.
@@ -56,13 +56,13 @@ def strap_mesh(points,serrated=True,tip=False):
     depth[(samples<.006)|(samples>s[-1]-.017)]=0
     # Nonzero base groove avoids duplicate section corners at tooth crests.
     depth+=.000002
-    width=np.full(len(samples),WIDTH)
-    if tip:width*=1-.65*np.clip((samples-(s[-1]-.016))/.016,0,1)
+    widths=np.full(len(samples),width)
+    if tip:widths*=1-.65*np.clip((samples-(s[-1]-.016))/.016,0,1)
     vertices=[]
-    for xy,n,d,w in zip(q,normal,depth,width):
-        for offset,z in [(-THICKNESS/2,-w/2),(THICKNESS/2,-w/2),(THICKNESS/2,w/2),
-                         (-THICKNESS/2,w/2),(-THICKNESS/2,w*.36),(-THICKNESS/2+d,w*.36),
-                         (-THICKNESS/2+d,-w*.36),(-THICKNESS/2,-w*.36)]:
+    for xy,n,d,w in zip(q,normal,depth,widths):
+        for offset,z in [(-thickness/2,-w/2),(thickness/2,-w/2),(thickness/2,w/2),
+                         (-thickness/2,w/2),(-thickness/2,w*.36),(-thickness/2+d,w*.36),
+                         (-thickness/2+d,-w*.36),(-thickness/2,-w*.36)]:
             vertices.append([*(xy+n*offset),z])
     faces=[]
     for i in range(len(q)-1):
@@ -78,21 +78,22 @@ def strap_mesh(points,serrated=True,tip=False):
     return mesh
 
 
-def stock_tie():
+def stock_tie(length=STOCK_LENGTH,head_length=.007,head_width=.0078,width=WIDTH,thickness=THICKNESS):
     # Straight projected overall length is exactly 300 mm including the head.
-    p=np.array([[.0034,-.0006],[STOCK_LENGTH-.0035,-.0006]])
-    strap=strap_mesh(p,tip=True)
-    return trimesh.boolean.union([head_mesh(),strap],engine='manifold')
+    p=np.array([[head_length/2-.0001,-thickness/2],[length-head_length/2,-thickness/2]])
+    strap=strap_mesh(p,tip=True,width=width,thickness=thickness)
+    return trimesh.boolean.union([head_mesh(head_length,head_width),strap],engine='manifold')
 
 
-def installed_tie(projected_points):
+def installed_tie(projected_points,stock_length=STOCK_LENGTH,head_length=.007,head_width=.0078,width=WIDTH,thickness=THICKNESS,trim=True):
     """Wrap a projected support/bundle envelope, keeping the head outside it.
 
     Inputs and outputs are metres in the tie plane. The 0.1 mm selected surface
     gap is a geometry allowance, not preload or evidence of physical retention.
     A short flush tail and the removed stock length are explicitly recorded.
     """
-    hull=MultiPoint(np.asarray(projected_points)).convex_hull.buffer(.0007,resolution=48)
+    clearance=thickness/2+.0001
+    hull=MultiPoint(np.asarray(projected_points)).convex_hull.buffer(clearance,resolution=48)
     perimeter=hull.exterior
     contour=np.array([perimeter.interpolate(s).coords[0] for s in np.linspace(0,perimeter.length,int(np.ceil(perimeter.length/.0004)),endpoint=False)])
     area=np.sum(contour[:,0]*np.roll(contour[:,1],-1)-contour[:,1]*np.roll(contour[:,0],-1))
@@ -110,20 +111,24 @@ def installed_tie(projected_points):
         if len(indices)>len(contour):raise ValueError('Invalid tie perimeter')
     arc=contour[indices]
     tangent=lambda idx:contour[(idx+1)%len(contour)]-contour[(idx-1)%len(contour)]
-    root=head_origin+[.0034,-.0006];entry=head_origin+[0,-.0062];end=head_origin+[0,0]
+    root=head_origin+[head_length/2-.0001,-thickness/2];entry=head_origin+[0,-.0062];end=head_origin+[0,0]
     path=joined(bezier(root,arc[0],[1,0],tangent(right),(.005,.005)),arc,
                 bezier(arc[-1],entry,tangent(left),[0,1],(.004,.002)),np.linspace(entry,end,32))
-    head=head_mesh();head.apply_translation([*head_origin,0])
-    mesh=trimesh.boolean.union([head,strap_mesh(path)],engine='manifold')
-    retained=length(path)+.0069 # 7 mm head minus the 0.1 mm molded-root overlap.
-    if retained>=STOCK_LENGTH:raise ValueError('Selected tie is too short: '+str(retained))
-    enclosed=Polygon(path).buffer(.0007).covers(MultiPoint(np.asarray(projected_points)).convex_hull)
+    retained=length(path)+head_length-.0001
+    if retained>=stock_length:raise ValueError('Selected tie is too short: '+str(retained))
+    enclosed=Polygon(path).buffer(clearance).covers(MultiPoint(np.asarray(projected_points)).convex_hull)
     assert enclosed,'Tie path failed to surround the support/bundle'
+    tail=0. if trim else stock_length-retained
+    if tail:path=joined(path,np.linspace(end,end+[0,tail],max(2,int(np.ceil(tail/.00025)))))
+    head=head_mesh(head_length,head_width);head.apply_translation([*head_origin,0])
+    mesh=trimesh.boolean.union([head,strap_mesh(path,tip=not trim,width=width,thickness=thickness)],engine='manifold')
+    retained+=tail
     return mesh,dict(head_origin_plane_m=head_origin.tolist(),strap_centreline_plane_m=path.tolist(),
-        retained_developed_length_m=retained,cutoff_developed_length_m=STOCK_LENGTH-retained,
-        stock_projected_length_m=STOCK_LENGTH,selected_nominal_surface_gap_m=.0001,
+        retained_developed_length_m=retained,cutoff_developed_length_m=stock_length-retained,
+        stock_projected_length_m=stock_length,selected_nominal_surface_gap_m=.0001,
+        protruding_uncut_tail_length_m=tail,
         envelope_perimeter_m=float(hull.length),envelope_bounds_m=list(hull.bounds),
-        flush_cut=True,ratchet_qualified=False,retention_qualified=False)
+        flush_cut=trim,ratchet_qualified=False,retention_qualified=False)
 
 
 def build():

@@ -148,9 +148,10 @@ combines 351 station parts and text faces with a separate 96-part ordinary
 cart/storage candidate, preserving reviewed component surfaces under recorded
 rigid placements. Four sensor/network leads retain their selected source
 lengths, enter actual logger grooves and include drip loops. Excess
-coils remain more than one foot from the enclosure. The complete support is
-rotated 30 degrees to clear the north-facing wind arm; this is an unaccepted
-layout selection. Fourteen ordinary HellermannTyton 111-01975 ties separately
+coils remain more than one foot from the enclosure. The legs and anchoring
+layout rotate 30 degrees to clear the north-facing wind arm; both mast sections
+retain the original north-facing index features. This is an unaccepted layout
+selection. Fourteen ordinary HellermannTyton 111-01975 ties separately
 surround the actual mast, coils, adapters and RS3 bracket. Their molded heads
 have real feed passages and integral pawls, and their straps have inside
 serrations. Factory data-sheet / family-drawing differences remain explicit;
@@ -183,13 +184,56 @@ the enclosure open and closed. Lower-nut space requires a 20 mm axial separation
 10 mm downward region, 40 mm lateral region, another 30 mm downward region and
 100 mm extended axial space. These are static geometric unions, not robot
 trajectories. Sampled clasp/door motion is also checked in the installed context.
-Five tool placements are inspectable on the same page. Hand/body space, other
+Seven tool placements are inspectable on the same page. Hand/body space, other
 interfaces and main-scene stock binding remain unfinished. Static shapes do
 not qualify ratcheting, friction, preload, gravity settling, sealing, electrical
 operation or robot execution. Rebuild in the order recorded in
 `rebuild_review.py`; the station chain adds `build_u30_ground.py`,
 `check_u30_ground.py`, `build_weather_storage.py`, `check_weather_storage.py`
 and `check_weather_service.py` before the corresponding browser checker.
+The two wind mounting nuts use a separately built Wiha 34142 7/16-inch tool,
+with the source's 125 mm blade, 246 mm overall length and 41 mm grip diameter.
+Its smaller 16.5 mm socket exterior and internal clearances remain photo-guided
+inferences. Twenty-nine tool checks cover actual nut seating and the blind
+hex cavity. Ten further checks retain the complete installed and low-mast
+contexts around both tool positions, including conservative full turning and
+100 mm axial-clearance unions. The driver is not relabeled from a different
+drive size; its handle alone shares the independently inspected family envelope.
+These records do not qualify hand contact, torque or thread movement.
+
+The [humanoid space inspector](../../viewer/lab_review_v1/weather_workspace.html)
+shows the full 93-mesh G1/FTP and six proposed wrist attachments at independent
+palm-position allowances. The installed reference retains three unresolved high
+points in the restricted nominal-standing search. Position candidates do not
+qualify hand orientation, finger contact, balance, walking, payload or entry
+paths; target equipment remains in the collision checks.
+
+A separate 161-part low-mast context follows the tripod guide's upright
+temporary placement beside a leg and brace. Original upper components and
+complete 2.0 / 2.5 m sensor leads retain rigid source surfaces. Both 0.5 m network
+leads end at their actual free connectors in an ordinary catalog tray. A 300 mm
+T50I and a 390 mm T50L tie retain their uncut tails. The T50L article's nominal
+thickness and head dimensions differ from its linked family drawings; those
+differences remain explicit in `long_cable_tie_sources.json`. The 209 geometry
+and source checks include 12,880 material pairs, true source-surface preservation,
+complete lead lengths, temporary strap enclosure and actual connector support.
+The previous simple lowering hits a tripod leg and remains a failure example.
+Coil tie heads now face south, away from the wind arm. Fixed failed hand poses
+retain the previous arm and temporary-tail intersections; an unraised unused
+hand crossing the ground during deep flexion supplies a further counterexample.
+Finite crouched space candidates preserve the sole orientation and solve root
+height from the actual foot vertices. Ground checks also retain all hand and
+wrist-attachment surfaces. These candidates do not establish balance or a
+transition controller.
+The installed screen retains 11 candidates from 14 points and three unresolved
+high points. The low context now has six candidates from six points, retaining
+each earlier posture's failures. The floor-tray candidate requires deep static
+leg flexion and a raised unused arm; its balance and entry path remain open.
+This is a partial asset inspection: final logger, splice and guy parts have
+explicit dispositions outside the view, without claimed physical storage in
+that state. The guide recommends two people to join the mast; a single G1's
+support/lift/join capability remains unresolved. Neither view grants owner
+acceptance, initial stock, an assembly sequence or robot execution credit.
 
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting

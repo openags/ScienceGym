@@ -32,6 +32,10 @@ def run(browser,url):
             mode='tool_'+target;page.select_option('#station-select',mode);state=page.evaluate('scienceGymStationInspection()')
             check('installed_tool_'+target,len(state['visible'])==355 and state['active']=='station' and state['clipPlanes']==6 and 'steel_shaft_and_blind_socket' in state['visible'])
             page.locator('[data-view="oblique"]').click();capture(page,mode+'_oblique')
+        for side in ['left','right']:
+            mode='tool_wind_mast_quarter_nut_'+side;page.select_option('#station-select',mode);state=page.evaluate('scienceGymStationInspection()')
+            check('installed_seven_sixteenths_tool_'+side,len(state['visible'])==355 and state['active']=='station' and state['clipPlanes']==6 and 'steel_shaft_and_blind_socket' in state['visible'])
+            page.locator('[data-view="oblique"]').click();capture(page,mode+'_oblique')
         for mode,view in [('head','front'),('head','top'),('stock','top'),('coils','rear'),('adapters','rear'),('bracket','bottom'),('ground','front'),('flag','rear'),('ring','front'),('trays','top')]:
             page.select_option('#station-select',mode);page.locator('[data-view="'+view+'"]').click();capture(page,mode+'_'+view)
         page.select_option('#station-select','logger');page.check('#hide-door');state=page.evaluate('scienceGymStationInspection()');record=json.loads((ROOT/'assets/cooling_lab_v1/u30_assets.json').read_text())
@@ -43,7 +47,7 @@ def run(browser,url):
         page.route('**/assets/cooling_lab_v1/weather_station_assets.json',lambda route:route.fulfill(status=200,content_type='application/json',body=json.dumps(record)))
         page.reload(wait_until='domcontentloaded');page.wait_for_function('document.documentElement.dataset.stationLoaded === "error"',timeout=120000)
         check('modified_candidate_rejected',page.locator('#lift-viewport canvas').count()==0);version=b.version;b.close()
-    paths=[Path(__file__),HERE/'weather_station.html',HERE/'weather_station.js',HERE/'style.css',HERE/'lift.css',ROOT/'assets/cooling_lab_v1/weather_station_assets.json',ROOT/'assets/cooling_lab_v1/weather_station_checks.json',ROOT/'assets/cooling_lab_v1/cable_tie_assets.json',ROOT/'assets/cooling_lab_v1/u30_ground_assets.json',ROOT/'assets/cooling_lab_v1/u30_ground_checks.json',ROOT/'assets/cooling_lab_v1/weather_storage_assets.json',ROOT/'assets/cooling_lab_v1/weather_storage_checks.json',ROOT/'assets/cooling_lab_v1/weather_service_checks.json']
+    paths=[Path(__file__),HERE/'weather_station.html',HERE/'weather_station.js',HERE/'style.css',HERE/'lift.css',ROOT/'assets/cooling_lab_v1/weather_station_assets.json',ROOT/'assets/cooling_lab_v1/weather_station_checks.json',ROOT/'assets/cooling_lab_v1/cable_tie_assets.json',ROOT/'assets/cooling_lab_v1/u30_ground_assets.json',ROOT/'assets/cooling_lab_v1/u30_ground_checks.json',ROOT/'assets/cooling_lab_v1/weather_storage_assets.json',ROOT/'assets/cooling_lab_v1/weather_storage_checks.json',ROOT/'assets/cooling_lab_v1/weather_service_checks.json',ROOT/'assets/cooling_lab_v1/weather_wind_service_checks.json',ROOT/'assets/cooling_lab_v1/wind_driver_checks.json']
     report=dict(passed=True,checks=checks,captures=captures,browser=version,source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in paths],scope='Static review and truthful incomplete status. No installation, electrical or robot qualification.')
     (HERE/'WEATHER_STATION_VERIFICATION.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(dict(passed=True,checks=len(checks),captures=len(captures))))
 
