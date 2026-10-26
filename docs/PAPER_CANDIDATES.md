@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-26**. Candidate count: **355**.
+Last screened: **2026-10-26**. Candidate count: **356**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3618,4 +3618,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 6958 (2026); first published **29 May 2026**, version of record **22 July 2026**. Selected Results and measurement Methods screened. Memory-window error bars reflect threshold-choice ranges, not independent specimen replication. Graphite-device transport and graphene-device microscopy evidence must remain distinct.
 - Official [11-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-73318-3/MediaObjects/41467_2026_73318_MOESM1_ESM.pdf) text accessible; selected substrate-control, angle-fitting and reference-standard disclosures screened. Remaining text, figure pixels, peer-review file and source-data workbook were not fully reviewed.
 - Scope is prepared-specimen optical/probe metrology only. Fabrication, thermal/vacuum processing, electrical cleaning and high-voltage transport sweeps are excluded; fixture, instrument and electrical-safety qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-26**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: prepared bilayer specimen metrology (2026-10-26)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Spatiotemporal modulation of surface texture for information encoding and object manipulation](https://www.nature.com/articles/s41467-026-74794-3) | Nature Communications / 2026 | 10.1038/s41467-026-74794-3 | Prepared-specimen tracking, optical registration and mechanical-property comparisons suggest a future multi-instrument measurement task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7817 (2026); first published **22 June 2026**, version of record **5 August 2026**. Selected characterization Methods and Results screened. Optical texture measurements, mechanical tests and finite-element predictions are distinct evidence types; demonstration paths do not establish autonomous robot control.
+- Official [28-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74794-3/MediaObjects/41467_2026_74794_MOESM1_ESM.pdf) text accessible; selected adhesion, modulus-fitting and motion-analysis disclosures screened. Motion analysis explicitly describes manual stimulus translation. Remaining text, figure pixels, movies, additional-file descriptions, peer review and source-data archive were not fully reviewed.
+- Scope is prepared-specimen metrology only. Synthesis, curing, laser/thermal actuation and welding operations are excluded; fixture, instrument and specimen-safety qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-26**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
