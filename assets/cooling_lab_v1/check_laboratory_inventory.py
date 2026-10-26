@@ -7,9 +7,9 @@ from geometry_tools import HERE, ROOT, sha, write_json
 
 
 def inspect():
-    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets']
+    names=['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets','weather_initial_stock_assets']
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in names]
-    allocation,binding,sources,grease,preparation,silicone_asset,cleanup=inputs
+    allocation,binding,sources,grease,preparation,silicone_asset,cleanup,initial=inputs
     report=json.loads((HERE/'laboratory_inventory.json').read_text())
     checks=[]
     def check(name,passed):
@@ -25,16 +25,18 @@ def inspect():
           len(ids)==81+37-2+2 and report['reused_identity_ids']==['hobo_u30','utility_cart'])
     for identity in ['hobo_u30','utility_cart']:
         check(identity+'_both_contexts_same_identity',
-              {r['context'] for r in ids[identity]['representations']}=={'base_display','weather_installed_reference'})
+              {r['context'] for r in ids[identity]['representations']}==({'base_display','weather_installed_reference','weather_initial_stock_candidate'} if identity=='hobo_u30' else {'base_display','weather_installed_reference'}))
     check('removed_plugs_belong_to_same_logger',
           any(r.get('module')=='storage' and any(p.startswith('removed__') for p in r['parts']) for r in ids['hobo_u30']['representations']))
     ties=[e for e in ids.values() if e['id'].startswith('weather_tie_')]
     check('fourteen_ties_not_twenty_eight_pieces_of_stock',len(ties)==14 and all(e['context_quantity']==1 and
-          {r['module'] for r in e['representations']}=={'station','storage','preparation'} for e in ties))
+          {r['module'] for r in e['representations']}=={'station','storage','preparation','initial_stock'} for e in ties))
     check('two_sacrificial_ties_are_additional_stock',all(n in ids and ids[n]['context_quantity']==1 for n in
           ['weather_temporary_leg','weather_temporary_brace']))
     check('preparation_tray_is_same_identity',any(r['context']=='weather_partial_preparation' for r in ids['weather_removed_parts_tray']['representations']))
     check('staged_tool_locations_not_reported_as_absent',ids['weather_tape_measure_bt5m']['initial_state_status']=='context_candidate_placement_unqualified')
+    check('unpacked_positions_keep_all_existing_identities',report['counts']['unpacked_weather_identity_candidates']==38 and report['counts']['identities_without_initial_placement']==0 and
+          sum(e['initial_state_status']=='unpacked_candidate_placement_unqualified' for e in ids.values())==25)
     check('all_154_original_components_retained',len(report['components'])==154 and
           {r['id'] for r in report['components']}=={r['id'] for r in allocation['components']})
     check('reference_candidates_never_reduce_base_deficits',all(

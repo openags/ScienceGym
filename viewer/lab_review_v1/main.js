@@ -77,6 +77,7 @@ function resetStates(){for(const state of states.values())for(const item of stat
  renderer.shadowMap.needsUpdate=true;requestRender()}
 function inspectWorkspace(target){
  if(weatherComposition?.enabled)weatherComposition.setEnabled(false);
+ if(weatherComposition?.initial?.enabled)weatherComposition.initial.setEnabled(false);
  resetStates();const result=target.result,group=groups.get('g1'),asset=assetList.find(a=>a.id==='g1');
  const k=states.get('g1_hands_inspection').config.kinematics;
  const world=new Map([[k.root_link,new THREE.Matrix4().fromArray(k.root_matrix.flat()).transpose()]]);
@@ -139,6 +140,7 @@ function visibility(){
 function detailRow(label,value){const d=document.createElement('div');d.className='detail-row';const b=document.createElement('b');b.textContent=label;const s=document.createElement('span');s.textContent=value;d.append(b,s);$('asset-detail').append(d)}
 function selectAsset(id,focus=true){
  if(weatherComposition?.enabled&&weatherComposition.record.hide_scene_asset_ids.includes(id))weatherComposition.setEnabled(false);
+ if(weatherComposition?.initial?.enabled&&weatherComposition.initial.record.hide_base_identity_ids.includes(id))weatherComposition.initial.setEnabled(false);
  selected=id;const asset=assetList.find(a=>a.id===id);if(!asset)return;
  $('asset-select').value=id;$('asset-detail').replaceChildren();const h=document.createElement('h3');h.textContent=asset.label;$('asset-detail').append(h);
  $('asset-views').hidden=false;
@@ -271,11 +273,13 @@ try{
  for(const target of workspace.targets){const tr=document.createElement('tr');for(const text of [target.id,target.result.position_candidate?'位置候选':'待解决',(target.result.position_error_m*1000).toFixed(1)+' mm',target.result.external_overlaps.length+' 处',target.result.self_contacts_checked?target.result.self_penetrations_over_0_5mm.length+' 对':'未检查']){const td=document.createElement('td');td.textContent=text;tr.append(td)}const td=document.createElement('td'),button=document.createElement('button');button.textContent='查看静态姿态';button.dataset.target=target.id;button.onclick=()=>inspectWorkspace(target);td.append(button);tr.append(td);$('workspace-targets').append(tr)}
  $('workspace-reset').onclick=resetStates;
  weatherComposition=new WeatherComposition({scene,groups,architecture,read,hashes:fetchedHashes,loadPinned,prepare,
-  refresh:()=>{if(weatherComposition?.enabled){resetStates();$('isolate').checked=false;
-   if(weatherComposition.record.hide_scene_asset_ids.includes(selected)){selected=null;$('asset-select').value='';$('asset-views').hidden=true;$('state-control').hidden=true;$('asset-detail').textContent='U30 与小车现在显示安装参考位置；选择原资产会恢复基础陈列。'}
+  refresh:()=>{if(weatherComposition?.enabled||weatherComposition?.initial?.enabled){resetStates();$('isolate').checked=false;
+   const hidden=weatherComposition.enabled?weatherComposition.record.hide_scene_asset_ids:weatherComposition.initial.record.hide_base_identity_ids;
+   if(hidden.includes(selected)){selected=null;$('asset-select').value='';$('asset-views').hidden=true;$('state-control').hidden=true;$('asset-detail').textContent='同一物品现在显示所选参考状态；选择原资产会恢复基础陈列。'}
   }visibility()},
   focus:(position,target)=>{setView(position,target);$('viewport').scrollIntoView({block:'center'})}});
  await weatherComposition.load();
+ if(new URLSearchParams(location.search).get('weather')==='initial'){weatherComposition.initial.setEnabled(true);weatherComposition.initial.focus('all')}
  document.documentElement.dataset.normalRepairs=repairedNormals;
  document.documentElement.dataset.renderBatches=JSON.stringify(renderBatches);
  document.documentElement.dataset.geometryPreserved=String(renderBatches.every(b=>b.sourceGeometryPreserved));

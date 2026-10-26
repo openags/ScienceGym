@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {batchStaticMeshes} from './render_batches.js';
+import {WeatherInitialStock} from './weather_initial_stock.js';
 
 // A downstream scene composition. Alternative representations reuse physical
 // identities; toggling this reviewer state never changes a simulation state.
@@ -44,16 +45,19 @@ export class WeatherComposition {
    return {enabled:this.enabled,modules:[...this.modules].map(([id,m])=>({id,visible:m.group.visible,parts:m.actualParts.length,sourceParts:m.actualParts,worldMatrix:m.group.matrixWorld.toArray(),bounds:new THREE.Box3().setFromObject(m.group,true).min.toArray().concat(new THREE.Box3().setFromObject(m.group,true).max.toArray()),batch:m.batch})),
     baseVisibility:Object.fromEntries([...this.groups].map(([id,g])=>[id,g.visible])),floorVisibility:this.floorParts.map(p=>p.visible),entities:this.record.physical_entities.length,ownerAcceptance:this.record.owner_acceptance,robotUseQualified:this.record.robot_use_qualified};
   };
+  this.initial=new WeatherInitialStock(this);await this.initial.load();
   document.documentElement.dataset.weatherCompositionLoaded='true';
  }
- setEnabled(enabled){this.enabled=enabled;document.getElementById('weather-composed').checked=enabled;this.refresh()}
+ setEnabled(enabled){this.enabled=enabled;if(enabled)this.initial?.disable();document.getElementById('weather-composed').checked=enabled;this.refresh()}
  applyVisibility(isolate){
-  for(const {group} of this.modules.values())group.visible=this.enabled&&!isolate;
+  for(const [id,{group}] of this.modules)group.visible=(this.enabled||(this.initial?.enabled&&this.initial.toolIds.has(id)))&&!isolate;
   for(const p of this.floorParts||[])p.visible=!this.enabled;
   if(this.enabled&&!isolate)for(const id of this.record.hide_scene_asset_ids)this.groups.get(id).visible=false;
-  document.documentElement.dataset.weatherComposition=this.enabled?'installed_reference':'base_staging_reference';
+  if(this.initial?.group){this.initial.group.visible=this.initial.enabled&&!isolate;if(this.initial.enabled&&!isolate)for(const id of this.initial.record.hide_base_identity_ids)this.groups.get(id).visible=false}
+  document.documentElement.dataset.weatherComposition=this.enabled?'installed_reference':this.initial?.enabled?'initial_stock_candidate':'base_staging_reference';
  }
  cameraObstacles(){
+  if(this.initial?.enabled)return [...this.initial.obstacles(),...[...this.modules].filter(([id])=>this.initial.toolIds.has(id)).map(([,m])=>{const b=new THREE.Box3().setFromObject(m.group);return {bounds_m:[b.min.toArray(),b.max.toArray()]}})];
   if(!this.enabled)return [];
   return [...this.modules].filter(([id])=>id!=='ground').map(([,m])=>{const b=new THREE.Box3().setFromObject(m.group);return {bounds_m:[b.min.toArray(),b.max.toArray()]}});
  }

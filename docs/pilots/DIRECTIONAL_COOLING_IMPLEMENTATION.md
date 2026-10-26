@@ -23,6 +23,12 @@ Model acquisition and static inspection do not authorize new manipulation work.
 
 ## Delivery order and acceptance
 
+On 26 October 2026 the owner explicitly authorized parallel scene and G1
+manipulation development for the one-hour delivery sprint. The exact reply and
+scope are retained in `assets/cooling_lab_v1/development_authorization.json`.
+This supersedes the sequencing restriction below, but grants neither scene
+acceptance nor manipulation qualification and does not change the full target.
+
 1. **Assets and laboratory.** Decompose and allocate all required resources;
    reconstruct commercial equipment from inspected manufacturer sources;
    represent operational parts and access states; check complete humanoid,
@@ -329,3 +335,13 @@ The lab viewer can display each tested posture. Target-interior access,
 contact qualification, revised camera installation and carried-object clearance stay
 open. Do not reuse the H2 spatial certificate or mix FTP and DFQ joint names.
 The owner scene gate remains open.
+
+## 2026-10-26 one-hour development delivery
+
+The owner explicitly authorized scene and operation development in parallel; see `assets/cooling_lab_v1/development_authorization.json`. This changes development sequencing only. Scene acceptance, qualified skill/branch counts and full-campaign requirements remain unchanged.
+
+`simulation/g1_cooling_demo/` now provides an actual G1 29DoF / Inspire FTP floating-base contact runtime. A separate actor reads native-head depth, joint encoders and IMU data; it localizes an empty Bürkle tray, approaches with both hands, applies joint torques to grip, lifts, transfers, places and retracts. The packaged 38-second development episode, all earlier attempts, exact source snapshots, physics/sensor records, independent continuous motor replay and video are linked from `viewer/cooling_demo_v1/index.html`.
+
+This is one empty-tray subskill on a local test workbench. It does not cover the whole paper, loaded walking, assembly, connectors, thin films, configuration switching, recovery or cleanup. The task policy uses timed stages after initial depth localization. Fixed-foot localization, idealized sensors, inferred contact parameters and a non-hardened process boundary are not qualified. **0/11 paper branches and 0 full campaigns remain qualified.** The full laboratory viewer and its initial weather-stock layout are separate review scenes; they are not yet the complete dynamic runtime world.
+
+The initial weather-stock candidate now preserves source components and assigns the previously missing portable weather identities to ordinary bench, shelf and tray locations. Folding and support placements are reconstruction candidates, not verified manipulation or stable-load outcomes. New initial-stock and allocation checks do not grant equipment or owner acceptance.

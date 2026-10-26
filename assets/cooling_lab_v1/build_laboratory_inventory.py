@@ -25,7 +25,7 @@ COMPONENT_REFERENCES = {
 }
 
 
-def build_record(allocation, binding, sources, grease, preparation, silicone, cleanup):
+def build_record(allocation, binding, sources, grease, preparation, silicone, cleanup, initial):
     base = {p['id']: p for p in allocation['physical_instances']}
     assert len(base) == len(allocation['physical_instances']), 'duplicate base identity'
     weather = {p['id']: p for p in binding['physical_entities']}
@@ -110,6 +110,25 @@ def build_record(allocation, binding, sources, grease, preparation, silicone, cl
         identities[identity]['representations'].append(dict(context='weather_partial_preparation',module='preparation',
             geometry={k:preparation['geometry'][k] for k in ['path','sha256']},parts=parts,
             to_world=[[1,0,0,origin[0]],[0,1,0,origin[1]],[0,0,1,origin[2]],[0,0,0,1]]))
+    # The unpacked layout adds locations, never objects or qualification.
+    expected_initial=(set(weather)-{'weather_ground_design'})|{'weather_temporary_leg','weather_temporary_brace'}
+    assert set(initial['physical_identity_ids'])==expected_initial and len(initial['physical_identity_ids'])==len(expected_initial), 'initial identities missing or duplicated'
+    assert not initial['initial_stock_credit'] and initial['owner_acceptance'] is None and not initial['robot_use_qualified'], 'unaccepted layout cannot grant stock or operation credit'
+    grouped_initial={};seen_initial=set()
+    for p in initial['placements']+[p for p in initial['leads'] if p.get('authored_shape')]:
+        assert p['part'] not in seen_initial, 'initial mesh assigned twice'
+        assert p['identity'] in expected_initial, 'unknown initial owner'
+        seen_initial.add(p['part']);grouped_initial.setdefault(p['identity'],[]).append(p['part'])
+    assert seen_initial=={p['id'] for p in initial['geometry']['part_records']}, 'initial mesh omitted from inventory'
+    assert set(initial['retained_base_identity_ids'])=={'utility_cart'}, 'initial cart no longer reuses parked identity'
+    assert set(grouped_initial)|set(initial['retained_base_identity_ids'])|{m['id'] for m in initial['retained_tool_modules']}==expected_initial, 'initial identity lacks actual geometry'
+    for identity in expected_initial:identities[identity]['initial_context_present']=True
+    for identity,parts in grouped_initial.items():
+        row=identities[identity]
+        row['initial_state_status']='unpacked_candidate_placement_unqualified'
+        row['representations'].append(dict(context=initial['state_id'],module='initial_stock',
+            geometry={k:initial['geometry'][k] for k in ['path','sha256']},parts=parts,
+            to_world=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]))
     assert not sources['stock_policy']['optional_expander_selected'], 'selected configuration changed; review kit stock'
     assert not sources['stock_policy']['mast_21030_satisfies_silicone_requirement'], 'silicone-free grease misallocated'
     assert sources['stock_policy']['optional_expander_grease_stock_credit'] == 0, 'unselected kit credited as stock'
@@ -191,14 +210,17 @@ def build_record(allocation, binding, sources, grease, preparation, silicone, cl
     assert 'u30__door_perimeter_gasket' in silicone['material_allocation']['excluded_destination_parts']
     paths = [Path(__file__), HERE/'campaign_allocation.json', HERE/'weather_scene_binding.json',
              HERE/'weather_inventory_sources.json', HERE/'mast_grease_assets.json',HERE/'weather_preparation_assets.json',
-             HERE/'silicone_grease_assets.json',HERE/'weather_cleanup_assets.json']
+             HERE/'silicone_grease_assets.json',HERE/'weather_cleanup_assets.json',
+             HERE/'weather_initial_stock_assets.json',HERE/'weather_initial_stock_checks.json']
     return dict(schema_version=1, status='laboratory_inventory_incomplete',
-        scope='One canonical identity registry across base, installed-weather and partial-preparation displays, base component requirements, and supplementary installation needs. Not an initial simulation state or controller input.',
+        scope='One canonical identity registry across base, unpacked-weather stock, installed-weather and partial-preparation displays. Unpacked placements do not qualify the initial simulation state or controller input.',
         source_artifacts=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p)) for p in paths],
         identities=list(identities.values()), components=components, installation_requirements=needs,
         sources=sources, reused_identity_ids=sorted(reused),
         counts=dict(base_identities=len(base), context_identities=len(weather), reused_identities=len(reused),
             preparation_only_identities=len(temporary),
+            unpacked_weather_identity_candidates=len(expected_initial),
+            identities_without_initial_placement=sum(r['initial_state_status']=='initial_placement_missing' for r in identities.values()),
             unique_review_identities=len(identities), facility_designs=sum(r['kind']=='facility_design' for r in identities.values()),
             context_only_identities=sum(not r['base_candidate_placement'] for r in identities.values()),
             base_component_requirements=len(components), installation_requirements=len(needs),
@@ -211,7 +233,7 @@ def build_record(allocation, binding, sources, grease, preparation, silicone, cl
 
 def build():
     inputs=[json.loads((HERE/(n+'.json')).read_text()) for n in
-            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets']]
+            ['campaign_allocation','weather_scene_binding','weather_inventory_sources','mast_grease_assets','weather_preparation_assets','silicone_grease_assets','weather_cleanup_assets','weather_initial_stock_assets']]
     result=build_record(*inputs)
     write_json(HERE/'laboratory_inventory.json',result)
     print(json.dumps(result['counts']))

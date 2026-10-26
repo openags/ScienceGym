@@ -107,7 +107,7 @@ def run(url, browser):
         check('weather_identities_include_two_temporary_ties',page.locator('#identity-rows tr').count()==39 and
               page.locator('[data-identity="weather_temporary_leg"]').count()==1 and page.locator('[data-identity="weather_temporary_brace"]').count()==1)
         page.locator('#identity-filter').select_option('unplaced')
-        check('missing_initial_placement_excludes_staged_tools_and_site',page.locator('#identity-rows tr').count()==24 and
+        check('unpacked_layout_removes_missing_location_flags_without_qualification',page.locator('#identity-rows tr').count()==0 and
               page.locator('[data-identity="weather_tape_measure_bt5m"]').count()==0 and page.locator('[data-identity="weather_ground_design"]').count()==0)
         page.set_viewport_size({'width':390,'height':844})
         check('inventory_mobile_no_overflow',not page.evaluate('document.documentElement.scrollWidth > innerWidth'))

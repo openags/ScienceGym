@@ -46,9 +46,9 @@ function renderIdentities(){
  const mode=$('identity-filter').value;
  const rows=labInventory.identities.filter(e=>mode==='all'||mode==='weather'&&(e.installed_reference_present||e.preparation_reference_present)||mode==='unplaced'&&e.initial_state_status==='initial_placement_missing'||mode==='reused'&&e.base_candidate_placement&&e.installed_reference_present);
  $('identity-rows').replaceChildren();
- const status={base_candidate_placement_unqualified:'已有陈列位置，初始状态未验收',context_candidate_placement_unqualified:'已有工具台位置，初始状态未验收',initial_placement_missing:'初始存放位置待补',facility_design_not_portable_stock:'场地设计，不计可搬运库存'};
+ const status={base_candidate_placement_unqualified:'已有陈列位置，初始状态未验收',context_candidate_placement_unqualified:'已有工具台位置，初始状态未验收',unpacked_candidate_placement_unqualified:'已有拆箱后备料位置，初始状态未验收',initial_placement_missing:'初始存放位置待补',facility_design_not_portable_stock:'场地设计，不计可搬运库存'};
  for(const e of rows){const tr=element('tr');tr.dataset.identity=e.id;
-  const contexts=[...new Set(e.representations.map(r=>({base_display:'基础陈列',weather_installed_reference:'安装参考',weather_partial_preparation:'低位准备参考'}[r.context])))];
+  const contexts=[...new Set(e.representations.map(r=>({base_display:'基础陈列',weather_installed_reference:'安装参考',weather_partial_preparation:'低位准备参考',weather_initial_stock_candidate:'拆箱后备料候选'}[r.context])))];
   for(const value of [e.label,e.id,contexts.join(' / '),status[e.initial_state_status]])tr.append(element('td',value));$('identity-rows').append(tr);
  }
  $('identity-visible').textContent='显示 '+rows.length+' / '+labInventory.identities.length+' 个审查身份。';

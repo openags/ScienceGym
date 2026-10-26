@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "status": "laboratory_inventory_incomplete",
-  "scope": "One canonical identity registry across base, installed-weather and partial-preparation displays, base component requirements, and supplementary installation needs. Not an initial simulation state or controller input.",
+  "scope": "One canonical identity registry across base, unpacked-weather stock, installed-weather and partial-preparation displays. Unpacked placements do not qualify the initial simulation state or controller input.",
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_laboratory_inventory.py",
-      "sha256": "508b1448eb1ccec6d04b95badbc489f8f3328758ecb9ce830e8a176ab1bd71b1"
+      "sha256": "3f61e00c8a66991bcbe275f1525755aa9e1772f636a7491529d5320dac90f8a4"
     },
     {
       "path": "assets/cooling_lab_v1/campaign_allocation.json",
@@ -34,6 +34,14 @@
     {
       "path": "assets/cooling_lab_v1/weather_cleanup_assets.json",
       "sha256": "64948ab2c2a0bfbf0d89e94254494bb4cf1863c4887ce527edaadbb9610d241e"
+    },
+    {
+      "path": "assets/cooling_lab_v1/weather_initial_stock_assets.json",
+      "sha256": "df08c749879bc3b89df01ce1525db43829cfd32c05b650981337f71e07d0464a"
+    },
+    {
+      "path": "assets/cooling_lab_v1/weather_initial_stock_checks.json",
+      "sha256": "b00432fe829527863128e11a5ee860a63fb9738270f4e9eca0f724c489f6de31"
     }
   ],
   "identities": [
@@ -1196,13 +1204,193 @@
               1.0
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "u30_stock__mount_2_saddle",
+            "u30_stock__mount_2_nut_right",
+            "u30_stock__mount_2_washer_right",
+            "u30_stock__mount_2_nut_left",
+            "u30_stock__mount_2_washer_left",
+            "u30_stock__mount_2_u_bolt",
+            "u30_stock__mount_2_plate",
+            "u30_stock__mount_2_case_screw_59",
+            "u30_stock__mount_2_case_screw_-59",
+            "u30_stock__mount_1_saddle",
+            "u30_stock__mount_1_nut_right",
+            "u30_stock__mount_1_washer_right",
+            "u30_stock__mount_1_nut_left",
+            "u30_stock__mount_1_washer_left",
+            "u30_stock__mount_1_u_bolt",
+            "u30_stock__mount_1_plate",
+            "u30_stock__mount_1_case_screw_59",
+            "u30_stock__mount_1_case_screw_-59",
+            "u30_stock__battery_two_pole_plug",
+            "u30_stock__battery_insulated_lead_2",
+            "u30_stock__battery_plug_contact_2",
+            "u30_stock__battery_female_spade_2",
+            "u30_stock__battery_spade_boot_2",
+            "u30_stock__battery_insulated_lead_1",
+            "u30_stock__battery_plug_contact_1",
+            "u30_stock__battery_female_spade_1",
+            "u30_stock__battery_spade_boot_1",
+            "u30_stock__unused_relay_terminal_block",
+            "u30_stock__unused_relay_terminal_screw_2",
+            "u30_stock__unused_relay_terminal_screw_1",
+            "u30_stock__ground_connection_tab",
+            "u30_stock__ground_tab_holder",
+            "u30_stock__battery_input_header",
+            "u30_stock__battery_input_pin_2",
+            "u30_stock__battery_input_pin_1",
+            "u30_stock__external_power_header",
+            "u30_stock__external_power_pin_2",
+            "u30_stock__external_power_pin_1",
+            "u30_stock__usb_mini_b_dielectric",
+            "u30_stock__usb_mini_b_shell",
+            "u30_stock__usb_contact_5",
+            "u30_stock__usb_contact_4",
+            "u30_stock__usb_contact_3",
+            "u30_stock__usb_contact_2",
+            "u30_stock__usb_contact_1",
+            "u30_stock__battery_retaining_bar",
+            "u30_stock__battery_bar_screw_56",
+            "u30_stock__battery_bar_screw_-56",
+            "u30_stock__battery_terminal_2",
+            "u30_stock__battery_terminal_insulator_2",
+            "u30_stock__battery_terminal_1",
+            "u30_stock__battery_terminal_insulator_1",
+            "u30_stock__sealed_battery_lid",
+            "u30_stock__sealed_battery_body",
+            "u30_stock__usb_carrier_board",
+            "u30_stock__sensor_port_carrier",
+            "u30_stock__internal_package_visual_4",
+            "u30_stock__internal_package_visual_3",
+            "u30_stock__internal_package_visual_2",
+            "u30_stock__internal_package_visual_1",
+            "u30_stock__internal_board_visual_envelope",
+            "u30_stock__logger_clear_cover",
+            "u30_stock__logger_rear_tray",
+            "u30_stock__status_SENSOR_text",
+            "u30_stock__status_ALARM_text",
+            "u30_stock__status_LOG_text",
+            "u30_stock__unused_analog_port_cover",
+            "u30_stock__analog_blank_screw_60",
+            "u30_stock__analog_blank_screw_24",
+            "u30_stock__inactive_status_lens_170",
+            "u30_stock__inactive_status_lens_164",
+            "u30_stock__inactive_status_lens_158",
+            "u30_stock__logger_mount_screw_61_172",
+            "u30_stock__logger_mount_screw_61_91",
+            "u30_stock__logger_mount_screw_-61_172",
+            "u30_stock__logger_mount_screw_-61_91",
+            "u30_stock__sensor_jack_5",
+            "u30_stock__sensor_jack_5_contact_6",
+            "u30_stock__sensor_jack_5_contact_5",
+            "u30_stock__sensor_jack_5_contact_4",
+            "u30_stock__sensor_jack_5_contact_3",
+            "u30_stock__sensor_jack_5_contact_2",
+            "u30_stock__sensor_jack_5_contact_1",
+            "u30_stock__sensor_jack_4",
+            "u30_stock__sensor_jack_4_contact_6",
+            "u30_stock__sensor_jack_4_contact_5",
+            "u30_stock__sensor_jack_4_contact_4",
+            "u30_stock__sensor_jack_4_contact_3",
+            "u30_stock__sensor_jack_4_contact_2",
+            "u30_stock__sensor_jack_4_contact_1",
+            "u30_stock__sensor_jack_3",
+            "u30_stock__sensor_jack_3_contact_6",
+            "u30_stock__sensor_jack_3_contact_5",
+            "u30_stock__sensor_jack_3_contact_4",
+            "u30_stock__sensor_jack_3_contact_3",
+            "u30_stock__sensor_jack_3_contact_2",
+            "u30_stock__sensor_jack_3_contact_1",
+            "u30_stock__sensor_jack_2",
+            "u30_stock__sensor_jack_2_contact_6",
+            "u30_stock__sensor_jack_2_contact_5",
+            "u30_stock__sensor_jack_2_contact_4",
+            "u30_stock__sensor_jack_2_contact_3",
+            "u30_stock__sensor_jack_2_contact_2",
+            "u30_stock__sensor_jack_2_contact_1",
+            "u30_stock__sensor_jack_1",
+            "u30_stock__sensor_jack_1_contact_6",
+            "u30_stock__sensor_jack_1_contact_5",
+            "u30_stock__sensor_jack_1_contact_4",
+            "u30_stock__sensor_jack_1_contact_3",
+            "u30_stock__sensor_jack_1_contact_2",
+            "u30_stock__sensor_jack_1_contact_1",
+            "u30_stock__vent_membrane",
+            "u30_stock__vent_frame",
+            "u30_stock__channel_thumb_knob_56",
+            "u30_stock__channel_screw_56",
+            "u30_stock__channel_thumb_knob_-62",
+            "u30_stock__channel_screw_-62",
+            "u30_stock__primary_channel_retaining_bar",
+            "u30_stock__unused_channel_plug_7",
+            "u30_stock__unused_channel_plug_6",
+            "u30_stock__unused_channel_plug_5",
+            "u30_stock__unused_channel_plug_4",
+            "u30_stock__unused_channel_plug_3",
+            "u30_stock__unused_channel_plug_2",
+            "u30_stock__unused_channel_plug_1",
+            "u30_stock__primary_split_rubber_channel",
+            "u30_stock__device_text",
+            "u30_stock__model_text",
+            "u30_stock__door_perimeter_gasket",
+            "u30_stock__hinged_door",
+            "u30_stock__outer_case",
+            "u30_stock__latch_pin_2",
+            "u30_stock__latch_clasp_2",
+            "u30_stock__hinge_pin_2",
+            "u30_stock__latch_pin_1",
+            "u30_stock__latch_clasp_1",
+            "u30_stock__hinge_pin_1",
+            "u30_stock__logger_case_insert_61_172",
+            "u30_stock__logger_case_insert_61_91",
+            "u30_stock__logger_case_insert_-61_172",
+            "u30_stock__logger_case_insert_-61_91",
+            "u30_stock__channel_insert_56",
+            "u30_stock__channel_insert_-62"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "base_candidate_placement_unqualified",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "replacement_detail_for_existing_logger_identity"
+      "allocation_basis": "replacement_detail_for_existing_logger_identity",
+      "initial_context_present": true
     },
     {
       "id": "g1",
@@ -2342,7 +2530,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "base_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "same_source_cart_rigidly_relocated"
+      "allocation_basis": "same_source_cart_rigidly_relocated",
+      "initial_context_present": true
     },
     {
       "id": "oily_waste_can",
@@ -2690,14 +2879,162 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "folded_tripod__leg_1",
+            "folded_tripod__leg_brace_1",
+            "folded_tripod__foot_plate_and_fork_1",
+            "folded_tripod__upper_leg_1_pivot_bolt",
+            "folded_tripod__upper_leg_1_pivot_nut",
+            "folded_tripod__foot_1_pivot_bolt",
+            "folded_tripod__foot_1_pivot_nut",
+            "folded_tripod__inner_brace_1_pivot_bolt",
+            "folded_tripod__inner_brace_1_pivot_nut",
+            "folded_tripod__outer_brace_1_pivot_bolt",
+            "folded_tripod__outer_brace_1_pivot_nut",
+            "folded_tripod__leg_2",
+            "folded_tripod__leg_brace_2",
+            "folded_tripod__foot_plate_and_fork_2",
+            "folded_tripod__upper_leg_2_pivot_bolt",
+            "folded_tripod__upper_leg_2_pivot_nut",
+            "folded_tripod__foot_2_pivot_bolt",
+            "folded_tripod__foot_2_pivot_nut",
+            "folded_tripod__inner_brace_2_pivot_bolt",
+            "folded_tripod__inner_brace_2_pivot_nut",
+            "folded_tripod__outer_brace_2_pivot_bolt",
+            "folded_tripod__outer_brace_2_pivot_nut",
+            "folded_tripod__leg_3",
+            "folded_tripod__leg_brace_3",
+            "folded_tripod__foot_plate_and_fork_3",
+            "folded_tripod__upper_leg_3_pivot_bolt",
+            "folded_tripod__upper_leg_3_pivot_nut",
+            "folded_tripod__foot_3_pivot_bolt",
+            "folded_tripod__foot_3_pivot_nut",
+            "folded_tripod__inner_brace_3_pivot_bolt",
+            "folded_tripod__inner_brace_3_pivot_nut",
+            "folded_tripod__outer_brace_3_pivot_bolt",
+            "folded_tripod__outer_brace_3_pivot_nut",
+            "folded_tripod__upper_leg_clamp_triangular_band",
+            "folded_tripod__lower_brace_clamp_triangular_band",
+            "lower_mast_with_indexing_creases__lower_mast_with_indexing_creases",
+            "upper_mast_with_dimple_and_crossarm_holes__upper_mast_with_dimple_and_crossarm_holes",
+            "tripod_slotted_flush_mast_plug__slotted_flush_mast_plug",
+            "tripod_mast_splice_nut_right__mast_splice_nut_right",
+            "tripod_mast_splice_flat_washer_right__mast_splice_flat_washer_right",
+            "tripod_mast_splice_nut_left__mast_splice_nut_left",
+            "tripod_mast_splice_flat_washer_left__mast_splice_flat_washer_left",
+            "tripod_mast_splice_concave_saddle__mast_splice_concave_saddle",
+            "tripod_mast_splice_u_bolt__mast_splice_u_bolt",
+            "tripod_lower_brace_clamp_outer_nut_3__lower_brace_clamp_outer_nut_3",
+            "tripod_lower_brace_clamp_inner_nut_3__lower_brace_clamp_inner_nut_3",
+            "tripod_lower_brace_clamp_radial_bolt_3__lower_brace_clamp_radial_bolt_3",
+            "tripod_lower_brace_clamp_outer_nut_2__lower_brace_clamp_outer_nut_2",
+            "tripod_lower_brace_clamp_inner_nut_2__lower_brace_clamp_inner_nut_2",
+            "tripod_lower_brace_clamp_radial_bolt_2__lower_brace_clamp_radial_bolt_2",
+            "tripod_lower_brace_clamp_outer_nut_1__lower_brace_clamp_outer_nut_1",
+            "tripod_lower_brace_clamp_inner_nut_1__lower_brace_clamp_inner_nut_1",
+            "tripod_lower_brace_clamp_radial_bolt_1__lower_brace_clamp_radial_bolt_1",
+            "tripod_upper_leg_clamp_outer_nut_3__upper_leg_clamp_outer_nut_3",
+            "tripod_upper_leg_clamp_inner_nut_3__upper_leg_clamp_inner_nut_3",
+            "tripod_upper_leg_clamp_radial_bolt_3__upper_leg_clamp_radial_bolt_3",
+            "tripod_upper_leg_clamp_outer_nut_2__upper_leg_clamp_outer_nut_2",
+            "tripod_upper_leg_clamp_inner_nut_2__upper_leg_clamp_inner_nut_2",
+            "tripod_upper_leg_clamp_radial_bolt_2__upper_leg_clamp_radial_bolt_2",
+            "tripod_upper_leg_clamp_outer_nut_1__upper_leg_clamp_outer_nut_1",
+            "tripod_upper_leg_clamp_inner_nut_1__upper_leg_clamp_inner_nut_1",
+            "tripod_upper_leg_clamp_radial_bolt_1__upper_leg_clamp_radial_bolt_1",
+            "guy_stake_1__guy_stake_1",
+            "foot_stake_1__foot_stake_1",
+            "turnbuckle_1__turnbuckle_1_body",
+            "turnbuckle_1__turnbuckle_1_eye_lower",
+            "turnbuckle_1__turnbuckle_1_eye_upper",
+            "guy_stake_2__guy_stake_2",
+            "foot_stake_2__foot_stake_2",
+            "turnbuckle_2__turnbuckle_2_body",
+            "turnbuckle_2__turnbuckle_2_eye_lower",
+            "turnbuckle_2__turnbuckle_2_eye_upper",
+            "guy_stake_3__guy_stake_3",
+            "foot_stake_3__foot_stake_3",
+            "turnbuckle_3__turnbuckle_3_body",
+            "turnbuckle_3__turnbuckle_3_eye_lower",
+            "turnbuckle_3__turnbuckle_3_eye_upper",
+            "ground_rod__ground_rod",
+            "uncut_guy_wire__uncut_guy_wire",
+            "uncut_ground_wire__uncut_ground_wire",
+            "guy_collar_band__guy_collar_triangular_band",
+            "ground_mast_nut_right__ground_mast_nut_right",
+            "ground_mast_nut_left__ground_mast_nut_left",
+            "ground_mast_saddle__ground_mast_saddle",
+            "ground_mast_u_bolt__ground_mast_u_bolt",
+            "ground_rod_clamp_bolt__ground_rod_clamp_bolt",
+            "ground_rod_clamp_body__ground_rod_clamp_body",
+            "wire_clamp_6_screw__wire_clamp_6_screw",
+            "wire_clamp_6_body__wire_clamp_6_body",
+            "wire_clamp_5_screw__wire_clamp_5_screw",
+            "wire_clamp_5_body__wire_clamp_5_body",
+            "wire_clamp_4_screw__wire_clamp_4_screw",
+            "wire_clamp_4_body__wire_clamp_4_body",
+            "wire_clamp_3_screw__wire_clamp_3_screw",
+            "wire_clamp_3_body__wire_clamp_3_body",
+            "wire_clamp_2_screw__wire_clamp_2_screw",
+            "wire_clamp_2_body__wire_clamp_2_body",
+            "wire_clamp_1_screw__wire_clamp_1_screw",
+            "wire_clamp_1_body__wire_clamp_1_body",
+            "s_hook_3__s_hook_3",
+            "s_hook_2__s_hook_2",
+            "s_hook_1__s_hook_1",
+            "guy_collar_outer_nut_3__guy_collar_outer_nut_3",
+            "guy_collar_inner_nut_3__guy_collar_inner_nut_3",
+            "guy_collar_eye_bolt_3__guy_collar_eye_bolt_3",
+            "guy_collar_outer_nut_2__guy_collar_outer_nut_2",
+            "guy_collar_inner_nut_2__guy_collar_inner_nut_2",
+            "guy_collar_eye_bolt_2__guy_collar_eye_bolt_2",
+            "guy_collar_outer_nut_1__guy_collar_outer_nut_1",
+            "guy_collar_inner_nut_1__guy_collar_inner_nut_1",
+            "guy_collar_eye_bolt_1__guy_collar_eye_bolt_1"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_selected_kit_set_not_one_rigid_manufactured_object",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_logger_ground_lead",
@@ -2748,13 +3085,57 @@
               1.0
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "logger_ground_stock__black_gland_sleeve",
+            "logger_ground_stock__continuous_ground_conductor",
+            "logger_ground_stock__ring_nylon_housing",
+            "logger_ground_stock__ring_tin_brass_sleeve",
+            "logger_ground_stock__ring_tin_copper_stamp",
+            "logger_ground_stock__flag_nylon_housing",
+            "logger_ground_stock__flag_tin_brass_contact"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_radiation_shield",
@@ -2938,14 +3319,92 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "rs3_shield__rod_spacer_right_6",
+            "rs3_shield__rod_spacer_right_5",
+            "rs3_shield__rod_spacer_right_4",
+            "rs3_shield__rod_spacer_right_3",
+            "rs3_shield__rod_spacer_right_2",
+            "rs3_shield__rod_spacer_right_1",
+            "rs3_shield__tie_rod_right",
+            "rs3_shield__rod_spacer_left_6",
+            "rs3_shield__rod_spacer_left_5",
+            "rs3_shield__rod_spacer_left_4",
+            "rs3_shield__rod_spacer_left_3",
+            "rs3_shield__rod_spacer_left_2",
+            "rs3_shield__rod_spacer_left_1",
+            "rs3_shield__tie_rod_left",
+            "rs3_shield__shield_lamella_7",
+            "rs3_shield__shield_lamella_6",
+            "rs3_shield__shield_lamella_5",
+            "rs3_shield__shield_lamella_4",
+            "rs3_shield__shield_lamella_3",
+            "rs3_shield__shield_lamella_2",
+            "rs3_shield__shield_lamella_1",
+            "rs3_bracket__inclined_mounting_bracket",
+            "rs3_kit_tie_1__loose_tie_1_strap",
+            "rs3_kit_tie_1__loose_tie_1_head",
+            "rs3_kit_tie_2__loose_tie_2_strap",
+            "rs3_kit_tie_2__loose_tie_2_head",
+            "rs3_kit_tie_3__loose_tie_3_strap",
+            "rs3_kit_tie_3__loose_tie_3_head",
+            "rs3_kit_tie_4__loose_tie_4_strap",
+            "rs3_kit_tie_4__loose_tie_4_head",
+            "rs3_kit_tie_5__loose_tie_5_strap",
+            "rs3_kit_tie_5__loose_tie_5_head",
+            "rs3_kit_tie_6__loose_tie_6_strap",
+            "rs3_kit_tie_6__loose_tie_6_head",
+            "rs3_knurled_nut_left__knurled_nut_left",
+            "rs3_knurled_nut_right__knurled_nut_right",
+            "rs3_optional_wall_screw_1__optional_wall_screw_1",
+            "rs3_optional_wall_screw_2__optional_wall_screw_2",
+            "rs3_hose_clamp__slotted_hex_worm_screw",
+            "rs3_hose_clamp__asymmetric_housing",
+            "rs3_hose_clamp__continuous_stamped_band"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "selected_additional_candidate",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_wind",
@@ -3136,14 +3595,90 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "wind_arm__bent_hollow_arm",
+            "wind_arm__stationary_hourglass_housing",
+            "wind_arm__lower_speed_shaft",
+            "wind_arm__upper_direction_d_shaft",
+            "wind_arm__lower_bearing_envelope",
+            "wind_arm__upper_bearing_envelope",
+            "wind_three_cup_rotor__three_cup_rotor",
+            "wind_three_cup_rotor__cup_set_screw",
+            "wind_vane_with_d_bore__vane_with_d_bore",
+            "wind_vane_with_d_bore__vane_set_screw",
+            "wind_vane_with_d_bore__brass_vane_nose",
+            "wind_mast_saddle_and_sleeve__mast_saddle_and_sleeve",
+            "wind_mast_quarter_nut_right__mast_quarter_nut_right",
+            "wind_mast_split_lock_washer_right__mast_split_lock_washer_right",
+            "wind_mast_flat_washer_right__mast_flat_washer_right",
+            "wind_mast_quarter_nut_left__mast_quarter_nut_left",
+            "wind_mast_split_lock_washer_left__mast_split_lock_washer_left",
+            "wind_mast_flat_washer_left__mast_flat_washer_left",
+            "wind_mast_u_bolt__mast_u_bolt",
+            "wind_arm_4_40_nut__arm_4_40_nut",
+            "wind_arm_tooth_lock_washer__arm_tooth_lock_washer",
+            "wind_arm_cross_screw__arm_cross_screw",
+            "wind_kit_supplied_0050_hex_key_candidate__supplied_0050_hex_key_candidate",
+            "wind_kit_optional_wood_lag_2__optional_wood_lag_2",
+            "wind_kit_optional_wood_lag_1__optional_wood_lag_1",
+            "wind_adapter__wind_adapter_relief_right",
+            "wind_adapter__wind_adapter_hex_cap_right",
+            "wind_adapter__wind_adapter_relief_left",
+            "wind_adapter__wind_adapter_hex_cap_left",
+            "wind_adapter__wind_adapter_ribbed_tube",
+            "wind_free_plug__modular_plug_body_and_latch",
+            "wind_free_plug__plug_contact_6",
+            "wind_free_plug__plug_contact_5",
+            "wind_free_plug__plug_contact_4",
+            "wind_free_plug__plug_contact_3",
+            "wind_free_plug__plug_contact_2",
+            "wind_free_plug__plug_contact_1",
+            "wind_stock__wind_sensor_lead",
+            "wind_stock__wind_network_lead"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "selected_additional_candidate",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_temperature_humidity",
@@ -3251,14 +3786,65 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "temperature_sensor__modular_plug_body_and_latch",
+            "temperature_sensor__plug_contact_6",
+            "temperature_sensor__plug_contact_5",
+            "temperature_sensor__plug_contact_4",
+            "temperature_sensor__plug_contact_3",
+            "temperature_sensor__plug_contact_2",
+            "temperature_sensor__plug_contact_1",
+            "temperature_sensor__inline_adapter_candidate",
+            "temperature_sensor__network_lead",
+            "temperature_sensor__probe_lead",
+            "temperature_sensor__probe_strain_relief_candidate",
+            "temperature_sensor__sensor_board_envelope",
+            "temperature_sensor__rh_membrane_cap",
+            "temperature_sensor__probe_receptacle"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "selected_additional_candidate",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_coil_lower",
@@ -3377,14 +3963,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_coil_lower__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_coil_upper",
@@ -3503,14 +4127,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_coil_upper__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_coil_lower",
@@ -3629,14 +4291,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_coil_lower__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_coil_upper",
@@ -3755,14 +4455,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_coil_upper__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_adapter_lower",
@@ -3881,14 +4619,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_adapter_lower__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_adapter_upper",
@@ -4007,14 +4783,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_adapter_upper__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_adapter_lower",
@@ -4133,14 +4947,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_adapter_lower__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_adapter_upper",
@@ -4259,14 +5111,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_adapter_upper__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_lead",
@@ -4385,14 +5275,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_lead__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_lead",
@@ -4511,14 +5439,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_lead__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_temperature_network",
@@ -4637,14 +5603,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_temperature_network__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_wind_network",
@@ -4763,14 +5767,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_wind_network__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_rs3_bracket_1",
@@ -4889,14 +5931,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_rs3_bracket_1__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_tie_rs3_bracket_2",
@@ -5015,14 +6095,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_tie_rs3_bracket_2__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "one_source_tie_split_into_retained_strap_and_cutoff",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_cutoff_tray",
@@ -5067,13 +6185,51 @@
               1.0
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_cutoff_tray__formed_tray"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_removed_parts_tray",
@@ -5155,14 +6311,52 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_removed_parts_tray__formed_tray"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "selected_additional_candidate",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_ground_design",
@@ -5264,13 +6458,51 @@
               1.0
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_unused_kit_tray__formed_tray"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_nut_driver_sw7",
@@ -5324,7 +6556,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_nut_driver_half",
@@ -5378,7 +6611,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_nut_driver_7_16",
@@ -5432,7 +6666,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_wire_rope_cutter",
@@ -5495,7 +6730,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_adjustable_wrench",
@@ -5552,7 +6788,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "selected_additional_candidate"
+      "allocation_basis": "selected_additional_candidate",
+      "initial_context_present": true
     },
     {
       "id": "weather_tape_measure_bt5m",
@@ -5622,7 +6859,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_case_blade_and_clip_identity_shared_across_all_inspection_shapes"
+      "allocation_basis": "one_case_blade_and_clip_identity_shared_across_all_inspection_shapes",
+      "initial_context_present": true
     },
     {
       "id": "weather_engineer_hammer_56_204",
@@ -5679,7 +6917,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_forged_head_and_attached_handle_not_separate_striking_caps"
+      "allocation_basis": "one_forged_head_and_attached_handle_not_separate_striking_caps",
+      "initial_context_present": true
     },
     {
       "id": "weather_mast_grease_21030",
@@ -5734,7 +6973,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_container_and_85g_nominal_contents_not_extra_stock_per_inspection"
+      "allocation_basis": "one_container_and_85g_nominal_contents_not_extra_stock_per_inspection",
+      "initial_context_present": true
     },
     {
       "id": "weather_silicone_grease_93003",
@@ -5789,7 +7029,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_85g_tube_shared_across_both_source_density_scenarios"
+      "allocation_basis": "one_85g_tube_shared_across_both_source_density_scenarios",
+      "initial_context_present": true
     },
     {
       "id": "weather_mast_applicator",
@@ -5840,7 +7081,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_separate_ordinary_spatula_per_grease_family"
+      "allocation_basis": "one_separate_ordinary_spatula_per_grease_family",
+      "initial_context_present": true
     },
     {
       "id": "weather_silicone_applicator",
@@ -5891,7 +7133,8 @@
       "initial_state_qualified": false,
       "initial_state_status": "context_candidate_placement_unqualified",
       "context_quantity": 1,
-      "allocation_basis": "one_separate_ordinary_spatula_per_grease_family"
+      "allocation_basis": "one_separate_ordinary_spatula_per_grease_family",
+      "initial_context_present": true
     },
     {
       "id": "weather_wipes_tx609",
@@ -6550,7 +7793,8 @@
       "packaging_unit_ids": [
         "weather_wipes_tx609/inner_bag",
         "weather_wipes_tx609/outer_bag"
-      ]
+      ],
+      "initial_context_present": true
     },
     {
       "id": "weather_temporary_leg",
@@ -6595,15 +7839,53 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_temporary_leg__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "additional_sacrificial_tie_not_one_of_fourteen_retained_ties",
       "disposition": "Removal and post-cut stock/waste geometry remain unspecified.",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     },
     {
       "id": "weather_temporary_brace",
@@ -6648,15 +7930,53 @@
               1
             ]
           ]
+        },
+        {
+          "context": "weather_initial_stock_candidate",
+          "module": "initial_stock",
+          "geometry": {
+            "path": "assets/cooling_lab_v1/geometry/weather_initial_stock_candidate.glb",
+            "sha256": "babe4796e7e733a4f4032733e68d35efd7e9649f2efd7dcbfbb91cff2b4dd8d0"
+          },
+          "parts": [
+            "weather_temporary_brace__molded_head_pawl_and_serrated_strap"
+          ],
+          "to_world": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1
+            ]
+          ]
         }
       ],
       "initial_stock_credit": false,
       "initial_state_qualified": false,
-      "initial_state_status": "initial_placement_missing",
+      "initial_state_status": "unpacked_candidate_placement_unqualified",
       "context_quantity": 1,
       "allocation_basis": "additional_sacrificial_tie_not_one_of_fourteen_retained_ties",
       "disposition": "Removal and post-cut stock/waste geometry remain unspecified.",
-      "preparation_reference_present": true
+      "preparation_reference_present": true,
+      "initial_context_present": true
     }
   ],
   "components": [
@@ -15694,6 +17014,8 @@
     "context_identities": 37,
     "reused_identities": 2,
     "preparation_only_identities": 2,
+    "unpacked_weather_identity_candidates": 38,
+    "identities_without_initial_placement": 0,
     "unique_review_identities": 118,
     "facility_designs": 1,
     "context_only_identities": 37,
