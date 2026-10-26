@@ -65,6 +65,16 @@ mesh normals are recovered for visible receiver shadows. Static render batching
 preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
 
+The [9-minute 39-second laboratory presentation](viewer/cooling_concept_v1/watch.html)
+shows one G1 / Inspire robot moving through this full laboratory and its outdoor
+area: calibration, optical handling, apparatus preparation, cart transport,
+covered baseline, lid removal, reflector adjustment and collection. The
+[clean MP4](viewer/cooling_concept_v1/episode.mp4) has no text overlays or watermark.
+This requested conceptual animation follows the
+[paper-operation mapping](viewer/cooling_concept_v1/workflow.json); its authored
+motion is separate from physical qualification. See the
+[reproduction notes](viewer/cooling_concept_v1/README.md).
+
 An optional weather-station installation reference adds detailed component
 inspection and identity-preserving tool staging. The linked
 [tape-measure review](viewer/lab_review_v1/tape_measure.html) shows the selected
