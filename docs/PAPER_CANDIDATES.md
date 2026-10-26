@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-26**. Candidate count: **352**.
+Last screened: **2026-10-26**. Candidate count: **353**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3583,3 +3583,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67040-9/MediaObjects/41467_2025_67040_MOESM1_ESM.pdf) and [4-page Reporting Summary](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-025-67040-9/MediaObjects/41467_2025_67040_MOESM2_ESM.pdf) text accessible; selected field-data captions, sampling and replication disclosures screened. Experimental establishment in 2018 and productivity observations in 2019–2023 are different time spans. Figure pixels, remaining sections and external raw data/code were not fully reviewed.
 - Candidate scope is physical specimen/moisture metrology, not complete ecosystem reproduction. Field disturbance, fertilizer deployment and thermal processing are excluded. Provenance, site permissions and instrument qualification remain prerequisites. No procedure, converted task or asset is supplied.
 - Access checked **2026-10-26**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher images, extracts or adapted assets redistributed.
+
+
+## Additional candidate: prepared tree-ring specimen metrology (2026-10-26)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bedrock lithology determines forest demographic responses to drought](https://www.nature.com/articles/s41467-026-76754-3) | Nature Communications / 2026 | 10.1038/s41467-026-76754-3 | Supplied wood-core custody, mounted-specimen inspection, repeated ring-width measurement and cross-dating quality checks suggest a future sample-to-instrument coordination task. | OA main, scientific SI and reporting-summary PDF text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8574 (2026), published **19 August 2026**. Selected specimen-measurement Methods screened. This is observational forest research with physical laboratory measurements, not a controlled drought intervention. The introduction reports 1721 series/10 species whereas Methods reports 1754 series/12 species; reconciliation is required before task conversion. Multiple cores from one tree are not independent trees.
+- Official [41-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76754-3/MediaObjects/41467_2026_76754_MOESM1_ESM.pdf) and [4-page Reporting Summary](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-76754-3/MediaObjects/41467_2026_76754_MOESM3_ESM.pdf) text accessible; selected sample/network and replication disclosures screened. Figure pixels, remaining text, peer-review file and external data/code were not fully reviewed.
+- Scope is prepared-specimen optical metrology only. Field coring, cutting/polishing and chemical isotope preparation are excluded; provenance, fixture and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-26**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher images or adapted assets redistributed.
