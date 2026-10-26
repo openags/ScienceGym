@@ -129,6 +129,20 @@ inferred. This is neither manufacturer CAD nor an identified paper SKU.
 It adds no inventory; installed sensor cables, tool access, sealing, electrical
 behavior, load capacity and humanoid operation remain unqualified.
 
+The [mast nut-driver inspector](../../viewer/lab_review_v1/mast_driver.html)
+adds the source-sized Wiha 34143 1/2-inch tool. Its complete socket, shaft and
+grip are checked at all four U30 mounting nuts with the enclosure both open
+and closed. The previous inferred mount axes obstructed the socket; local
+plate/axis dimensions are revised and the original positions retained as
+negative examples. Lower-channel hardware still blocks unrestricted straight
+withdrawal. Conservative static regions cover 20 mm axial disengagement,
+25 mm outward clearance and a subsequent 100 mm axial space; these are asset
+space checks, not a robot trajectory. The fixed U-bolt is retained in these
+checks, with a real invariant socket void; only the driven target nut is
+excluded from the turning envelope after separate actual-hex fit checks.
+Socket outer diameter, internal depth, profile and local mount dimensions
+remain inferred. No torque, thread movement, hand access or inventory credit.
+
 The native G1 D435i supplies nominal head RGB and ideal geometric depth
 inspection views; the two D405 wrist views use an unaccepted mounting
 candidate. The original Unitree STEP collar is undersized for this G1 wrist.

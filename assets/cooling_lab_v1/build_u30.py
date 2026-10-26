@@ -280,9 +280,13 @@ def mast_mount(g):
     """Ordinary two-plate mounting kit; unpublished local profiles inferred."""
     half_spacing=52.324/2;rod_radius=7.9375/2
     mast_y=147.;arc_y=mast_y+20.5+.1-(half_spacing-rod_radius)
-    for index,(plate_z,fix_z,bolt_z) in enumerate([(12.4,25.4,2.4),(187.,174.,197.)],1):
+    # Local plate dimensions are unpublished. The former 36 mm plate / 2.4
+    # mm lower axis let a real selected nut driver strike the box floor.
+    # Upper socket clearance is 0.55 mm. The lower axis also clears the
+    # projecting unused-channel tails along the complete tool shaft.
+    for index,(plate_z,fix_z,bolt_z) in enumerate([(11.05,25.4,-.3),(187.75,174.,198.5)],1):
         prefix='mount_'+str(index)+'_'
-        outline=[(-70,-18),(70,-18),(75,-13),(75,13),(70,18),(-70,18),(-75,13),(-75,-13)]
+        outline=[(-70,-20.5),(70,-20.5),(75,-15.5),(75,15.5),(70,20.5),(-70,20.5),(-75,15.5),(-75,-15.5)]
         plate=(cq.Workplane('XZ').polyline(outline).close().extrude(-3).val()
             .translate((0,118.1,plate_z)))
         for x in [-59,59]:
@@ -318,8 +322,9 @@ def mast_mount(g):
             solid(g,prefix+'nut_'+side,nut,STEEL,metal=.8,role='inferred_mount_fastener')
         solid(g,prefix+'saddle',saddle,STEEL,metal=.8,role='inferred_source_mount_saddle')
     return dict(mast_axis_xy_m=[0,.147],selected_mast_diameter_m=.041,
-        plate_centres_m=[[0,.1196,z] for z in [.0124,.187]],
-        u_bolt_axes_z_m=[.0024,.197],selected_leg_centre_spacing_m=.052324,
+        plate_centres_m=[[0,.1196,z] for z in [.01105,.18775]],
+        u_bolt_axes_z_m=[-.0003,.1985],selected_leg_centre_spacing_m=.052324,
+        selected_plate_height_m=.041,prior_tool_obstructed_axes_z_m=[.0024,.197],
         selected_rod_diameter_m=.0079375,selected_nut_AF_m=.0127,
         datum_limit='2.06 inch wall-mount hole spacing reused as a selected U-bolt leg spacing; source does not give a full kit engineering drawing. Nominal 1-5/8 inch pipe designation is not treated as a measured pipe diameter.',
         load_qualified=False)
