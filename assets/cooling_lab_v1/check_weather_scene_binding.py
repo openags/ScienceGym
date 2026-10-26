@@ -34,7 +34,7 @@ def build():
     check('same_logger_keeps_three_removed_plugs',sum(p['module']=='storage' for p in entities['hobo_u30']['representations'])==3)
     ties=[e for e in r['physical_entities'] if e['id'].startswith('weather_tie_')]
     check('fourteen_ties_each_have_strap_and_cutoff',len(ties)==14 and all(len(e['representations'])==2 and {p['module'] for p in e['representations']}=={'station','storage'} for e in ties))
-    check('three_shared_drivers_and_one_wire_rope_cutter',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
+    check('three_shared_drivers_cutter_and_adjustable_wrench',set(t['id'] for t in r['staged_tool_candidates'])=={'weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench'} and all(t['selected_required_units']==1 and t['shared_across_all_service_poses'] for t in r['staged_tool_candidates']))
     check('partial_context_does_not_duplicate_tray_or_claim_initial_state',r['alternative_context']['reused_tray_identity']=='weather_removed_parts_tray' and not r['alternative_context']['simultaneously_visible'] and not r['initial_state_qualified'])
     check('no_acceptance_or_execution_credit',r['owner_acceptance'] is None and not any(r[k] for k in ['robot_use_qualified','installation_qualified','new_manipulation_development_allowed']) and all(not e['initial_stock_credit'] and not e['quantity_accepted'] for e in entities.values()))
     for ref in r['source_artifacts']:
@@ -56,6 +56,12 @@ def build():
             expected=np.eye(4);expected[:3,3]=[8.93,18.595,bench['top_m']]
             expected=expected@np.array(reference['to_support_plane'])
             check('cutter_preserves_verified_resting_contacts',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
+                and all(c['inside_support'] for c in reference['range_checks']))
+        if t['id']=='weather_adjustable_wrench':
+            reference=json.loads((HERE/'adjustable_wrench_checks.json').read_text())['resting_reference']
+            expected=np.eye(4);expected[:3,3]=[8.93,18.7,bench['top_m']]
+            expected=expected@np.array(reference['to_support_plane'])
+            check('wrench_preserves_verified_resting_contacts',np.allclose(modules[t['id']]['to_world'],expected,atol=1e-10)
                 and all(c['inside_support'] for c in reference['range_checks']))
     def broad(a,b):return bool(np.all(np.minimum(a[1],b[1])-np.maximum(a[0],b[0])>1e-7))
     occupied=[];collisions=[];tested=0;nonvolume=[]

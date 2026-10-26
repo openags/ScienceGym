@@ -156,6 +156,27 @@ inferred centre-of-mass range. This is static staging, not settling, locking,
 cutting or accepted initial inventory. The new inspector is linked from its
 entry in the complete-lab identity table.
 
+The [adjustable-wrench inspector](../../viewer/lab_review_v1/adjustable_wrench.html)
+adds an original Crescent AC28VS candidate from manufacturer photographs and
+dimensions: 203.2 mm length, 7.62 mm jaw thickness and 28.575 mm nominal capacity.
+Five separate solids retain the forged body, actual sliding guide/rack, helical
+worm, axle and inferred spring. Two original ordinary scales correspond to
+the jaw datum. Three exported openings and seventeen independent intermediate
+states pass geometric checks; no continuous transmission is qualified.
+The estimated 273 g mass is consistent with the 281 g catalogue value under
+an inferred steel density. Local profiles, the spring layout and dimensions
+without manufacturer datums remain explicit hypotheses.
+
+All six actual tripod outer jam nuts have two clear static tool clockings
+among six examined each. The other 24 poses retain their actual collisions
+with the clamp bands, legs or neighbouring hardware. The approximately
+6.79 mm axial engagement is a geometry reference, not a rated load condition.
+The complete-lab composition stages one shared tool using actual worm/body
+contacts, with at least 2.35 mm support margin across the selected steel
+density range. These are rigid inspections only: inner nuts, counterholding,
+insertion paths, wrench rotation, grip, torque and initial-stock acceptance
+remain open. Manufacturer photos are referenced without redistribution.
+
 The [U30 inspector](../../viewer/lab_review_v1/u30.html) adds a source-guided
 five-primary-port NRC candidate with 138 physical domains and five text faces.
 The source enclosure envelope excludes the separate two-plate mounting kit.

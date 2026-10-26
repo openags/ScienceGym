@@ -29,16 +29,17 @@ def run(browser,url):
         page.check('#weather-composed');page.locator('[data-view="outdoor"]').click();s=page.evaluate('scienceGymWeatherComposition()')
         check('installed_reference_visible_without_duplicate_instances',s['enabled'] and s['floorVisibility']==[False] and all(m['visible'] for m in s['modules']) and {n for n,v in s['baseVisibility'].items() if not v}=={'hobo_u30','utility_cart'})
         check('independent_ambient_and_solar_instruments_preserved',all(s['baseVisibility'][n] for n in record['preserved_independent_scene_asset_ids']))
-        check('all_named_parts_loaded',sum(m['parts'] for m in s['modules'])==499 and s['entities']==29)
+        check('all_named_parts_loaded',sum(m['parts'] for m in s['modules'])==506 and s['entities']==30)
         expected={m['id']:m for m in record['modules']}
         for m in s['modules']:
             check('actual_world_transform_'+m['id'],np.allclose(np.asarray(m['worldMatrix']).reshape(4,4).T,expected[m['id']]['to_world'],atol=1e-10,rtol=0))
             check('actual_world_bounds_'+m['id'],np.allclose(np.asarray(m['bounds']).reshape(2,3),geometry['module_world_bounds_m'][m['id']],atol=1e-5,rtol=0))
             check('source_geometry_preserved_'+m['id'],m['batch']['sourceGeometryPreserved'] and set(m['sourceParts'])=={p['id'] for p in expected[m['id']]['geometry']['part_records']})
-        check('identity_and_scope_visible',page.locator('#weather-identities tr').count()==29 and '切换不是机器人搬运或装配' in page.locator('#weather-composition-review').inner_text() and not s['robotUseQualified'] and s['ownerAcceptance'] is None)
+        check('identity_and_scope_visible',page.locator('#weather-identities tr').count()==30 and '切换不是机器人搬运或装配' in page.locator('#weather-composition-review').inner_text() and not s['robotUseQualified'] and s['ownerAcceptance'] is None)
         check('cutter_source_and_joint_inspector_link',page.locator('#weather-identities a[href="wire_rope_cutter.html"]').count()==1)
+        check('wrench_source_and_actual_nut_inspector_link',page.locator('#weather-identities a[href="adjustable_wrench.html"]').count()==1)
         capture(page,'outdoor')
-        for identity in ['station','storage','remainders','weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter']:
+        for identity in ['station','storage','remainders','weather_nut_driver_sw7','weather_nut_driver_half','weather_nut_driver_7_16','weather_wire_rope_cutter','weather_adjustable_wrench']:
             page.select_option('#weather-focus',identity);capture(page,identity)
         page.uncheck('#weather-composed');s=page.evaluate('scienceGymWeatherComposition()')
         check('base_restores_exactly_one_logger_and_cart',s['baseVisibility']['hobo_u30'] and s['baseVisibility']['utility_cart'] and s['floorVisibility']==[True] and not any(m['visible'] for m in s['modules']))

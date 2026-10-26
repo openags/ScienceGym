@@ -5,7 +5,7 @@
   "source_artifacts": [
     {
       "path": "assets/cooling_lab_v1/build_weather_scene_binding.py",
-      "sha256": "de399bc159d7450340aabfac5fe7309bdf574e3e7da41197242df23491865161"
+      "sha256": "6c8be19b38616bcb9a0c02e879aff60c732af3a3fd1bcd29c76d15b984344d4d"
     },
     {
       "path": "assets/cooling_lab_v1/scene.json",
@@ -98,6 +98,14 @@
     {
       "path": "assets/cooling_lab_v1/wire_rope_cutter_checks.json",
       "sha256": "136c01c63af8fceac2fbada54acb368cf74f127caecc4d1805bdbf64d4a2bfa7"
+    },
+    {
+      "path": "assets/cooling_lab_v1/adjustable_wrench_assets.json",
+      "sha256": "c7621ade9e712db075373f0025d1385c23733f973116f9fb0a9012537cf71e25"
+    },
+    {
+      "path": "assets/cooling_lab_v1/adjustable_wrench_checks.json",
+      "sha256": "370fbc89fa71afb2901b2358793ca792ddc26ec5251ad82cbfef33f0cfb09471"
     }
   ],
   "base_scene": {
@@ -8493,6 +8501,169 @@
           1.0
         ]
       ]
+    },
+    {
+      "id": "weather_adjustable_wrench",
+      "label": "Crescent AC28VS · 活动扳手",
+      "geometry": {
+        "path": "assets/cooling_lab_v1/geometry/crescent_ac28vs_half_inch_reference.glb",
+        "sha256": "3420b7bb19437b5767af7e6b62602b69cc58cd6bda732842f4a8c42e86976223",
+        "parts": 7,
+        "bounds_m": [
+          [
+            5.350794309549656e-06,
+            -0.017398392000119133,
+            -0.00833120010793209
+          ],
+          [
+            0.20319973638307598,
+            0.03215370741112875,
+            0.00833120010793209
+          ]
+        ],
+        "axes": "+Z up; SI metres",
+        "part_records": [
+          {
+            "id": "forged_body_and_fixed_jaw",
+            "role": "source_constrained_fixed_body",
+            "bounds_m": [
+              [
+                5.350794309549656e-06,
+                -0.017398392000119133,
+                -0.004750000000000002
+              ],
+              [
+                0.20319973638307598,
+                0.03215370741112875,
+                0.004750000000000095
+              ]
+            ]
+          },
+          {
+            "id": "sliding_jaw_and_rack",
+            "role": "inferred_one_piece_slider_and_rack",
+            "bounds_m": [
+              [
+                0.005676404464512692,
+                -0.016773063539502087,
+                -0.00381
+              ],
+              [
+                0.04071784444171245,
+                0.02082072540471623,
+                0.00381
+              ]
+            ]
+          },
+          {
+            "id": "helical_adjustment_worm",
+            "role": "inferred_continuous_worm",
+            "bounds_m": [
+              [
+                0.034875166522138526,
+                -0.001139820241622529,
+                -0.00833120010793209
+              ],
+              [
+                0.05395986143156626,
+                0.014700132688629202,
+                0.00833120010793209
+              ]
+            ]
+          },
+          {
+            "id": "worm_axle",
+            "role": "inferred_factory_axle",
+            "bounds_m": [
+              [
+                0.04021918193320871,
+                -0.00465143491245233,
+                -0.001499328648425255
+              ],
+              [
+                0.048551835103174734,
+                0.016409377690777827,
+                0.0015
+              ]
+            ]
+          },
+          {
+            "id": "axial_spring_reference",
+            "role": "unresolved_source_tension_spring_reference",
+            "bounds_m": [
+              [
+                0.04411181686491733,
+                -0.0017252403515108598,
+                -0.002049939205787853
+              ],
+              [
+                0.04830675089466277,
+                0.0004333938906683453,
+                0.002049533740756626
+              ]
+            ]
+          },
+          {
+            "id": "metric_scale_text",
+            "role": "original_ordinary_scale_artwork",
+            "bounds_m": [
+              [
+                0.02705146986486612,
+                -0.015010543865474768,
+                0.00381003
+              ],
+              [
+                0.04002832420562641,
+                0.012674131523965706,
+                0.00381003
+              ]
+            ]
+          },
+          {
+            "id": "inch_scale_text",
+            "role": "original_ordinary_scale_artwork",
+            "bounds_m": [
+              [
+                0.02705146986486612,
+                -0.015010543865474768,
+                -0.00381003
+              ],
+              [
+                0.04002832420562641,
+                0.012674131523965706,
+                -0.00381003
+              ]
+            ]
+          }
+        ],
+        "appearance": "Authored sRGB palette converted to linear glTF factors. Sharp-edge normal splits preserve triangle positions; not measured reflectance."
+      },
+      "to_world": [
+        [
+          0.9997407367865956,
+          -0.00013838684513090756,
+          0.022769278830831328,
+          8.93
+        ],
+        [
+          -9.058571263971706e-20,
+          0.9999815307594008,
+          0.006077675549547305,
+          18.7
+        ],
+        [
+          -0.022769699369887375,
+          -0.0060760998318543,
+          0.999722272334391,
+          0.9093776297640335
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
     }
   ],
   "physical_entities": [
@@ -10868,6 +11039,47 @@
       "initial_stock_credit": false,
       "quantity_accepted": false,
       "robot_use_qualified": false
+    },
+    {
+      "id": "weather_adjustable_wrench",
+      "label": "Crescent AC28VS · 活动扳手",
+      "resource_id": "tools:fastener_driver",
+      "existing_scene_identity": null,
+      "quantity": 1,
+      "allocation_basis": "selected_additional_candidate",
+      "representations": [
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "forged_body_and_fixed_jaw"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "sliding_jaw_and_rack"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "helical_adjustment_worm"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "worm_axle"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "axial_spring_reference"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "metric_scale_text"
+        },
+        {
+          "module": "weather_adjustable_wrench",
+          "part": "inch_scale_text"
+        }
+      ],
+      "initial_stock_credit": false,
+      "quantity_accepted": false,
+      "robot_use_qualified": false
     }
   ],
   "hide_scene_asset_ids": [
@@ -10930,6 +11142,14 @@
       "selected_required_units": 1,
       "shared_across_all_service_poses": true,
       "resting_reference_source": "assets/cooling_lab_v1/wire_rope_cutter_checks.json"
+    },
+    {
+      "id": "weather_adjustable_wrench",
+      "station": "weather_service",
+      "support_top_m": 0.9,
+      "selected_required_units": 1,
+      "shared_across_all_service_poses": true,
+      "resting_reference_source": "assets/cooling_lab_v1/adjustable_wrench_checks.json"
     }
   ],
   "alternative_context": {
@@ -10981,7 +11201,8 @@
       "physical_entity_ids": [
         "weather_nut_driver_sw7",
         "weather_nut_driver_half",
-        "weather_nut_driver_7_16"
+        "weather_nut_driver_7_16",
+        "weather_adjustable_wrench"
       ],
       "completeness_accepted": false
     },
