@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-27**. Candidate count: **362**.
+Last screened: **2026-10-27**. Candidate count: **363**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3703,3 +3703,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74748-9/MediaObjects/41467_2026_74748_MOESM1_ESM.pdf) text accessible; selected comparison and specimen-location captions screened. The separate video-description PDF identifies an atom-probe reconstruction, not an experimental workflow recording. Remaining text, figure/table pixels, video, peer review and source data were not fully reviewed.
 - Scope is prepared-specimen custody and measurement-record coordination only. Alloy melting, thermal processing, machining, ion-beam preparation and specialized instrument operation are excluded; fixtures, specimen handling and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-27**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: colloidal feedback measurement coordination (2026-10-27)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The extraction of work from hidden degrees of freedom](https://www.nature.com/articles/s41567-026-03442-w) | Nature Physics / 2026 | 10.1038/s41567-026-03442-w | Prepared-capillary custody, synchronized imaging, repeated feedback comparisons and calibration records suggest a future long-horizon optical-measurement task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** Published **16 October 2026**. Selected main results and experimental Methods screened. Measured colloidal trajectories, statistical control ensembles and simulated memoryless baselines remain distinct.
+- Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41567-026-03442-w/MediaObjects/41567_2026_3442_MOESM1_ESM.pdf) text accessible; selected synchronization, specimen-history and control-comparison disclosures screened. Preparation quantities and camera descriptions differ between main and SI and remain unresolved. Remaining text, figure pixels, peer review, code and data were not fully reviewed.
+- Scope is qualified prepared-specimen handling and measurement-record coordination only. Chemical preparation, laser alignment and optical-system operation are excluded pending qualification. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-27**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
