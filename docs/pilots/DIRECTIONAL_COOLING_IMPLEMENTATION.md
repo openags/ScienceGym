@@ -185,6 +185,45 @@ Reference/specimen
 exchange, calibration, sensor installation, reflector locking and wiring
 remain unfinished; no replacement full film or manuscript has been delivered.
 
+The optical-specimen repair now distinguishes the selected **25 mm optical
+witness** from the paper's **50 mm apparatus emitter**. Two identified copper
+witnesses, each with three coating layers and an ordinary annular edge holder,
+replace the unsupported primitive disc in the development scene. Stock and
+paint types follow the reconstruction; holder details, the masked rim, coating
+thickness and optical-face recess are explicitly inferred. They do not stand
+in for the separate two-layer nanoporous/LDPE optical specimens. The scene now
+contains the original 81 identities plus these two witnesses.
+
+The [assembly review](../../assets/cooling_optical_specimens_v1/assembly_review.json)
+checks 55 pairs of independently reloaded CAD solids without positive-volume
+overlap. It retains FCL's ambiguous triangle-contact depths at coplanar
+clip/carrier surfaces rather than treating those depths as solid penetration.
+The [staging review](../../viewer/cooling_concept_v2/specimen_staging.json)
+checks both witnesses against the laboratory geometry and the actual Cary
+benchtop; the complete footprint stays at least 82.5 mm inside its edge.
+
+Ordinary Ideal-tek tweezers now have a source-mesh closing model and an opposed
+Inspire-finger fit. The elastic shape is an engineering inference, not a force
+model. Local checks cover 51 coupled finger/tool closure states and 82 approach/
+closure states with the tips straddling the annular wall from above. The tips
+stay approximately 1.2 mm above the support plane, avoiding the need to reach
+under a flat specimen. The original heel-only tray placement failed because
+one spring arm extended lower than the heel block; the corrected candidate
+uses the actual joined-end surfaces and retains both supports. Eight of 16
+open-hand candidates clear the tool, tray and bench plane. This proposed tool
+staging has **not** been inserted into the film or credited as a pickup.
+
+One [61-pose FTIR extraction candidate](../../viewer/cooling_concept_v2/previews/specimen_port_refined.json)
+passes the local robot/self/tool/witness/environment checks after refining a
+continuous right-arm solution. The specimen and tool follow actual palm FK.
+The planning region is the FTIR bench and nearby instruments; ankle meshes,
+between-pose swept clearance, free-arm entry, initial tool pickup, sample
+delivery, release, station transfer, forces and dynamics remain outside this
+result. [Inspection frames in the full laboratory](../../viewer/cooling_concept_v2/previews/specimen_port_inspection/0_close.jpg)
+show this isolated held-specimen initial condition; it is not a new complete
+workflow or a replacement video. The older failed search and staging records
+are retained. These results grant no branch or campaign qualification credit.
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a

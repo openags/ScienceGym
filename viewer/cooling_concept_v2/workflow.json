@@ -6,7 +6,7 @@
   "robot": "Existing Unitree G1 + Inspire FTP, one identity throughout",
   "source_scene": {
     "path": "viewer/cooling_concept_v2/runtime_scene.json",
-    "sha256": "408ee9790ce7b3ff99125292aeafaad631989a09d4425be1831613b7ca8b458f",
+    "sha256": "616fdac1813b46c6e35bc40c83618613a142d286838ea55e7591bd371264fe0c",
     "parent_path": "assets/cooling_lab_v1/scene.json"
   },
   "source_operations": {
@@ -20,7 +20,8 @@
     "White and black apparatus are staged at their respective assembly benches; their identities remain unchanged through cart and outdoor transfers.",
     "A removable ordinary 1150 x 430 x 12 mm leveling board rests on the existing cart shelf supports; its load stability is not yet qualified.",
     "Both inferred aluminum aperture lids have ordinary folded pull tabs; these handling details are not specified by the paper.",
-    "DRA-2500 and IntegratIR start in inferred installed configurations. The Cary PTFE standard is on its port; the FTIR gold standard starts and ends protected in its cap. Mounting, alignment and detector cable mating are not executed or qualified here."
+    "DRA-2500 and IntegratIR start in inferred installed configurations. The Cary PTFE standard is on its port; the FTIR gold standard starts and ends protected in its cap. Mounting, alignment and detector cable mating are not executed or qualified here.",
+    "Two identified 25 mm copper optical witnesses start in inferred annular holders on the Cary bench. They are distinct from the 50 mm apparatus emitters; stock/coating allocation, masked rim and holder construction are explicit inferences."
   ],
   "sequence": [
     {
@@ -201,8 +202,7 @@
       "start_s": 202.33105532541825,
       "end_s": 229.26706469141598,
       "source_operation_refs": [
-        "OPT_REFERENCE",
-        "OPT_UNLOAD"
+        "OPT_MOUNT.03"
       ]
     },
     {
@@ -325,8 +325,8 @@
     },
     {
       "id": "pick_white",
-      "title": "双手托持白色装置",
-      "description": "从结构底座承托，避开薄膜和光学表面",
+      "title": "双手握持白色装置框架",
+      "description": "握住两侧框架立柱，避开薄膜和光学表面",
       "start_s": 369.53724937231425,
       "end_s": 378.31366899788327,
       "source_operation_refs": [
@@ -463,7 +463,7 @@
     {
       "id": "unload_black",
       "title": "从小车取出黑色装置",
-      "description": "双手支持底座",
+      "description": "双手握持两侧框架立柱",
       "start_s": 475.42354394325406,
       "end_s": 484.27448271334123,
       "source_operation_refs": [
@@ -505,7 +505,7 @@
     {
       "id": "unload_white",
       "title": "从小车取出白色装置",
-      "description": "双手支持底座",
+      "description": "双手握持两侧框架立柱",
       "start_s": 511.0687021106766,
       "end_s": 519.5417759040344,
       "source_operation_refs": [
@@ -685,7 +685,7 @@
     {
       "id": "collect_black",
       "title": "收回黑色装置",
-      "description": "保留薄膜与探头，承托底座",
+      "description": "保留薄膜与探头，握持两侧框架立柱",
       "start_s": 715.532256485871,
       "end_s": 725.8564919352204,
       "source_operation_refs": [
@@ -738,7 +738,7 @@
     {
       "id": "collect_white",
       "title": "收回白色装置",
-      "description": "保持器件身份与完整结构",
+      "description": "握持框架并保持器件身份",
       "start_s": 773.2064186732321,
       "end_s": 783.5306541225815,
       "source_operation_refs": [
@@ -802,7 +802,7 @@
   ],
   "presentation_inferences": [
     "Authored kinematic choreography with exact source-geometry reviews; no force or dynamics validation.",
-    "Apparatus transport grips the two structural frame uprights; some development UI text still describes an obsolete base-support grasp.",
+    "Apparatus transport grips the two structural frame uprights; the development UI now names these contact regions.",
     "Cover removal and replacement use a fitted articulated pinch; both PE films stay installed.",
     "Calibration, optical loading, probe installation, reflector locking and wiring remain unfinished; generic work poses do not establish their completion.",
     "The five-minute covered baseline is compressed for presentation; no measured temperature or cooling-power result is fabricated.",
@@ -813,10 +813,10 @@
   "video_overlays": false,
   "physics_claim": false,
   "qualification_credit": false,
-  "asset_count": 81,
+  "asset_count": 83,
   "status": "unpublished_development_version_not_accepted",
   "source_sha256": {
-    "main.js": "d8a7bd9e15db89b17ae73bc20ffc32f7a439a7b41eab1dbec7090bf2b046f54f",
+    "main.js": "052018ceb8e97ecb56d7aad8fb47c9e8978d6f264442ea4efe2669076f42f925",
     "motion_poses.json": "5b6d0739d043f8f573e0490a829ec9c7bf920329ba03ef1df66675f6848db63d",
     "hand_ik.js": "094713e61835cc381dd64caa58758026887d31e791ab488288ab039c9f1c1c05",
     "grasp_profile.json": "32efa9ec6a0990c02aa27afbf3078c5ee239a3c582e8b7c03978bca336f3a265",
@@ -827,7 +827,7 @@
     "lid_contact_paths.json": "786a6fa753ad8f33724d0eb206119c2086c41c0516a147c7d7286c7e1f341fec",
     "reference_motion.js": "5e2c3b2992ca65ba4772f035d2c499f997bd5f1e19eb135aa0f8d999c48f4aa5",
     "reference_transfer.json": "7aa5e8f69becd1ef523c8be90ce9125120ad074f5ba5629a734584771c028ef9",
-    "runtime_scene.json": "408ee9790ce7b3ff99125292aeafaad631989a09d4425be1831613b7ca8b458f",
+    "runtime_scene.json": "616fdac1813b46c6e35bc40c83618613a142d286838ea55e7591bd371264fe0c",
     "export_audit.py": "c8fb0541f015c70fc1db81e2834d20e3a5b6d796db314de1fbaef8ce23db6ac1"
   },
   "visual_acceptance": false,
@@ -840,5 +840,12 @@
     "one_way_duration_s": 26.936009365997723,
     "sidestep": "Four 200 mm foot placements; 400 mm body translation; authored inverse kinematics, not dynamics"
   },
-  "latest_reference_review": "audits/reference_02/sampled_interaction_review.json"
+  "latest_reference_review": "audits/reference_02/sampled_interaction_review.json",
+  "optical_specimen_development": {
+    "manifest": "assets/cooling_optical_specimens_v1/manifest.json",
+    "staging": "specimen_staging.json",
+    "tool_fit": "previews/specimen_tool_fit.json",
+    "port_extraction_candidate": "previews/specimen_port_refined.json",
+    "integration": "Only static witness staging is integrated. Tool pickup, sample exchanges, between-pose clearance and controls remain incomplete."
+  }
 }

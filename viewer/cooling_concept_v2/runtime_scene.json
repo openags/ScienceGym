@@ -42845,6 +42845,166 @@
       "note": "论文未报告水刀型号；这是本 demo 的选定设备。厂家尺寸约束与结构图重构，工艺、配套服务、夹持和安全联锁尚未实现。",
       "sources": "assets/cooling_lab_v1/waterjet_sources.json",
       "review_scope": "Existing source-based reconstruction; import proves neither product fidelity nor hardware qualification"
+    },
+    {
+      "id": "optical_witness_white",
+      "label": "白色铜质光学试片 · 25 mm",
+      "resource_id": "optical_witness:white",
+      "station": "optics_cary",
+      "geometry": "assets/cooling_optical_specimens_v1/witness_white.glb",
+      "geometry_sha256": "d50e763963ad67b8ee88067a6de8c8619acb648e549e37b4a511bb01757e03c4",
+      "position_m": [
+        3.08,
+        8.2,
+        0.850001
+      ],
+      "yaw_rad": 0,
+      "normalized_bounds_m": [
+        [
+          -0.01749216765165329,
+          -0.017498042434453964,
+          0.0
+        ],
+        [
+          0.017500000074505806,
+          0.017498042434453964,
+          0.0024800000246614218
+        ]
+      ],
+      "normalization_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "part_count": 11,
+      "part_names": [
+        "retainer_screw_240",
+        "spring_clip_240",
+        "retainer_screw_120",
+        "spring_clip_120",
+        "retainer_screw_0",
+        "spring_clip_0",
+        "paint_coat_3",
+        "paint_coat_2",
+        "paint_coat_1",
+        "copper_witness",
+        "annular_carrier"
+      ],
+      "status": "geometry-reviewed inferred optical specimen; manipulation pending",
+      "source_record": "assets/cooling_optical_specimens_v1/manifest.json",
+      "lineage": {
+        "apparatus_parent": "white",
+        "material": "copper",
+        "coating": "Krylon Colormaster flat white",
+        "coat_count": 3,
+        "distinction": "Independent optical witness, not the 50 mm apparatus emitter; material/paint lot matching is an inferred allocation, not a measured fabrication receipt"
+      }
+    },
+    {
+      "id": "optical_witness_black",
+      "label": "黑色铜质光学试片 · 25 mm",
+      "resource_id": "optical_witness:black",
+      "station": "optics_cary",
+      "geometry": "assets/cooling_optical_specimens_v1/witness_black.glb",
+      "geometry_sha256": "0e8f5c98ce256fe980fd49e66187729761a8a84709bdf63ddbfc8f7e4e521119",
+      "position_m": [
+        3.15,
+        8.2,
+        0.850001
+      ],
+      "yaw_rad": 0,
+      "normalized_bounds_m": [
+        [
+          -0.01749216765165329,
+          -0.017498042434453964,
+          0.0
+        ],
+        [
+          0.017500000074505806,
+          0.017498042434453964,
+          0.0024800000246614218
+        ]
+      ],
+      "normalization_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "part_count": 11,
+      "part_names": [
+        "retainer_screw_240",
+        "spring_clip_240",
+        "retainer_screw_120",
+        "spring_clip_120",
+        "retainer_screw_0",
+        "spring_clip_0",
+        "paint_coat_3",
+        "paint_coat_2",
+        "paint_coat_1",
+        "copper_witness",
+        "annular_carrier"
+      ],
+      "status": "geometry-reviewed inferred optical specimen; manipulation pending",
+      "source_record": "assets/cooling_optical_specimens_v1/manifest.json",
+      "lineage": {
+        "apparatus_parent": "black",
+        "material": "copper",
+        "coating": "Krylon Colormaster flat black",
+        "coat_count": 3,
+        "distinction": "Independent optical witness, not the 50 mm apparatus emitter; material/paint lot matching is an inferred allocation, not a measured fabrication receipt"
+      }
     }
   ],
   "authored_components": [
@@ -68851,6 +69011,11 @@
   "development_scene_revision": {
     "parent_scene": "assets/cooling_lab_v1/scene.json",
     "parent_scene_sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9",
-    "scope": "Reference-cap development variant for full-scene geometric review; original laboratory manifest preserved"
+    "scope": "Reference-cap development variant for full-scene geometric review; original laboratory manifest preserved",
+    "optical_specimens": {
+      "manifest": "assets/cooling_optical_specimens_v1/manifest.json",
+      "staging": "viewer/cooling_concept_v2/specimen_staging.json",
+      "scope": "Identity-preserving optical witnesses; inferred dimensions and supports, no executed handling or measurement claim"
+    }
   }
 }

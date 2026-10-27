@@ -39,7 +39,7 @@ work('ftir_background_close','关闭背景测量样品舱','背景采集前关�
 work('ftir_background','红外背景采集准备','参考片位于端口；扫描控制动作正在重建',6,'wait',['OPT_REFERENCE.09','OPT_REFERENCE.10']);
 work('ftir_sample_open','打开样品舱准备换样','先停止背景采集，再打开样品舱',20,'ftir_open',['OPT_MOUNT']);
 move('approach_gold_reference','前往参考片取放位置',[[9.20,7.85],[9.35,7.85]],1.7);
-const referenceStore=work('reference_store','取出并保护存放金参考片','夹持非光学部位，侧向转移后放入保护帽',referenceTransfer.duration_s,'reference_store',['OPT_REFERENCE','OPT_UNLOAD']);
+const referenceStore=work('reference_store','取出并保护存放金参考片','夹持非光学部位，侧向转移后放入保护帽',referenceTransfer.duration_s,'reference_store',['OPT_MOUNT.03']);
 last=referenceTransfer.segments.at(-1).rows.at(-1).root.slice(0,2).map(row=>row[3]);lastYaw=1.7;
 const ftir=work('infrared','红外样品交换准备','参考片已保护存放；薄样品与扫描控制动作正在重建',8,'wait',['OPT_MOUNT','OPT_SCAN']);
 move('return_to_ftir_handle','返回样品舱把手',[[9.00,7.85],[9.05,7.85]],Math.PI/2);
@@ -51,7 +51,7 @@ const assembleBlack=work('assemble_black','黑色对照装置检查与探头安�
 move('to_wiring','准备采集与转运',[[7.4,1.95],[6.3,1.95],[4.905,1.78]],-Math.PI/2);
 const wiring=work('wiring','连接探头与采集通道','输出关闭状态下接线、检查极性与线缆固定',18,'wiring',['TC_ATTACH','SYNC','STOP_SAFE']);
 move('to_pick_white','装载白色装置',[[4.6,1.95],[4.25,1.95],[3.65,2.19]],Math.PI/2);
-const pickWhite=work('pick_white','双手托持白色装置','从结构底座承托，避开薄膜和光学表面',8,'pick',['MOVE.02']);
+const pickWhite=work('pick_white','双手握持白色装置框架','握住两侧框架立柱，避开薄膜和光学表面',8,'pick',['MOVE.02']);
 move('carry_white','将白色装置放上小车',[[3.65,1.8],[4.4,1.95],[4.70,1.71]],-Math.PI/2,'carry');
 const placeWhite=work('place_white','白色装置入车','放稳后松手',10,'place',['MOVE.04']);
 move('to_pick_black','装载黑色对照装置',[[4.70,1.95],[6.3,1.95],[9.55,2.19]],Math.PI/2);
@@ -64,11 +64,11 @@ const pushTurn=move('turn_cart','转向主通道',[[5.7,1.25],[5.4,1.65],[5.5,2.
 const pushOutdoor=move('outdoor_transfer','把实验装置运至室外',[[6,5.2],[6,8.8],[6,11.6],[6,13.27]],Math.PI/2,'push');
 work('release_cart_handle','停稳小车','松开把手，准备卸载',6,'push_release',['MOVE.04']);
 move('approach_black_cart','卸下黑色对照装置',[[6.75,13.4],[6.47,14.00]],Math.PI);
-const unloadBlack=work('unload_black','从小车取出黑色装置','双手支持底座',8,'pick',['SITE_SETUP']);
+const unloadBlack=work('unload_black','从小车取出黑色装置','双手握持两侧框架立柱',8,'pick',['SITE_SETUP']);
 move('carry_black_out','布置黑色对照装置',[[8,14.2],[9.5,15.12]],Math.PI/2,'carry');
 const installBlack=work('install_black','黑色装置就位','放置在独立室外支撑台上',10,'place',['SITE_SETUP']);
 move('approach_white_cart','卸下白色冷却装置',[[9.5,14.3],[7.2,14.5],[6.47,14.60]],Math.PI);
-const unloadWhite=work('unload_white','从小车取出白色装置','双手支持底座',8,'pick',['SITE_SETUP']);
+const unloadWhite=work('unload_white','从小车取出白色装置','双手握持两侧框架立柱',8,'pick',['SITE_SETUP']);
 move('carry_white_out','布置白色冷却装置',[[6.9,14.60],[6.9,13.35],[4.5,13.35],[3.4,14.3],[2.5,15.12]],Math.PI/2,'carry');
 const installWhite=work('install_white','白色装置就位','确认装置朝向与探头线缆',10,'place',['SITE_SETUP']);
 move('to_logger','连接室外采集通道',[[4.3,13.3],[6.9,13.3],[6.55,14.4]],Math.PI);
@@ -85,12 +85,12 @@ const acquire=work('acquire','记录白／黑装置温度','退出遮挡范围�
 const stop=work('stop','停止采集并断开连接','确认输出关闭、保存记录，再处理线缆',12,'wiring',['STOP_SAFE','UNMOUNT']);
 move('to_collect_black','收纳黑色装置',[[8,14.2],[9.5,15.12]],Math.PI/2);
 const coverBlack=work('cover_black','盖回黑色装置铝盖','取回支撑台上的铝盖，盖好后再搬运',14,'cover_black',['UNMOUNT','RESET']);
-const collectBlack=work('collect_black','收回黑色装置','保留薄膜与探头，承托底座',8,'pick',['UNMOUNT']);
+const collectBlack=work('collect_black','收回黑色装置','保留薄膜与探头，握持两侧框架立柱',8,'pick',['UNMOUNT']);
 move('return_black','黑色装置回到小车',[[8,14.2],[7.1,14.00],[6.47,14.00]],Math.PI,'carry');
 const stowBlack=work('stow_black','收纳黑色装置','放稳在原分配位置',10,'place',['RESET']);
 move('to_collect_white','收纳白色装置',[[6.9,13.3],[4.2,13.3],[2.5,15.12]],Math.PI/2);
 const coverWhite=work('cover_white','盖回白色装置铝盖','取回铝盖并保护发射孔，随后收纳装置',14,'cover_white',['UNMOUNT','RESET']);
-const collectWhite=work('collect_white','收回白色装置','保持器件身份与完整结构',8,'pick',['UNMOUNT']);
+const collectWhite=work('collect_white','收回白色装置','握持框架并保持器件身份',8,'pick',['UNMOUNT']);
 move('return_white','白色装置回到小车',[[3.6,14.3],[4.3,13.3],[6.9,13.3],[6.9,14.60],[6.47,14.60]],Math.PI,'carry');
 const stowWhite=work('stow_white','收纳白色装置','把装置放回小车并检查台面',10,'place',['RESET']);
 move('finish_position','完成实验后的收纳',[[7.1,14.60],[7.2,13.3]],Math.PI/4);
@@ -326,7 +326,7 @@ function animateObjects(t,r){for(const n of nodeRest){n.rest.decompose(n.node.po
  // Assemblies start fabricated. Inspection must not levitate their bonded films or fastened parts.
  for(const which of ['white','black']){const pose=lidAt(t,which);lidMeshes[which].position.copy(pose.position);lidMeshes[which].rotation.z=pose.yaw;}
  for(const [p,id]of[[trackWhite,'cooler_white'],[trackBlack,'cooler_black']]){const a=smooth((t-p.start)/p.duration);if(a<=0)continue;for(const n of nodeRest)if(n.asset===id&&(n.node.name.includes('solar_reflector')||n.node.name.includes('frame_carriage')))n.node.position.x+=.025*a;}
- if(witness)witness.position.set(3.12,8.10,.8505); // Staged specimen; optical transfers are being reconstructed.
+ // Identified optical witnesses retain their supported staging poses until their transfer is implemented.
 
  for(const cable of cables){const show=t>=outdoorConnect.start&&t<stop.end;const progress=clamp((t-outdoorConnect.start)/10,0,1)*(1-smooth((t-stop.start-3)/8));cable.visible=show;cable.geometry.setDrawRange(0,Math.floor(cable.geometry.index.count*progress/3)*3);}
  scene.updateMatrixWorld(true);
@@ -339,7 +339,7 @@ try{
  [manifest,poses,graspProfile,opticalSetup,opticalApproaches]=await Promise.all([read('viewer/cooling_concept_v2/runtime_scene.json'),read('viewer/cooling_concept_v2/motion_poses.json'),read('viewer/cooling_concept_v2/grasp_profile.json'),read('viewer/cooling_concept_v2/optical_setup.json'),read('viewer/cooling_concept_v2/optical_approach_paths.json')]);kin=manifest.inspection_states.find(s=>s.id==='g1_hands_inspection').kinematics;handIK=new HandIK(kin);const coverKin=structuredClone(kin);coverKin.joints.find(j=>j.name==='right_shoulder_roll_joint').limits.upper=-.025;opticalIK=new HandIK(coverKin);
  architecture=await load(manifest.architecture.path,manifest.architecture.sha256);const roles=new Map(manifest.architecture.part_records.map(p=>[p.id,p.role]));architecture.traverse(n=>{if(n.isMesh)n.userData.cutaway=['ceiling','ceiling_fixture'].includes(roles.get(n.name));});batchStaticMeshes(architecture);scene.add(architecture);
  for(const p of manifest.room_design.light_positions_m){const light=new THREE.PointLight(0xfff5df,6,8,2);light.position.set(...p);scene.add(light);}
- for(let i=0;i<manifest.assets.length;i+=5){await Promise.all(manifest.assets.slice(i,i+5).map(async a=>{const g=await load(a.geometry,a.geometry_sha256);const protectedParts=new Set(a.id==='g1'?a.part_names:manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));if(a.id.startsWith('cooler_')||['dra','pike'].includes(a.id))a.part_names.forEach(n=>protectedParts.add(n));Object.keys(opticalSetup.parts[a.id]||{}).forEach(n=>protectedParts.add(n));batchStaticMeshes(g,protectedParts);g.position.set(...a.position_m);groups.set(a.id,g);scene.add(g);g.traverse(n=>{if(!n.isMesh)return;n.updateMatrix();if(a.id==='g1'){const link=kin.part_links[n.name];if(link)robotParts.push({node:n,rest:n.matrix.clone(),bindInverse:M(kin.bind_world[link]).invert()});}else{const installed=opticalSetup.parts[a.id]?.[n.name];const rest=installed?M(installed.matrix).multiply(n.matrix):n.matrix.clone();nodeRest.push({asset:a.id,node:n,rest});}});}));$('loading').textContent=`载入实验室设备 ${Math.min(i+5,manifest.assets.length)} / ${manifest.assets.length}`;}
+ for(let i=0;i<manifest.assets.length;i+=5){await Promise.all(manifest.assets.slice(i,i+5).map(async a=>{const g=await load(a.geometry,a.geometry_sha256);const protectedParts=new Set(a.id==='g1'?a.part_names:manifest.inspection_states.filter(s=>s.asset===a.id).flatMap(s=>s.parts));if(a.id.startsWith('cooler_')||a.id.startsWith('optical_witness_')||['dra','pike'].includes(a.id))a.part_names.forEach(n=>protectedParts.add(n));Object.keys(opticalSetup.parts[a.id]||{}).forEach(n=>protectedParts.add(n));batchStaticMeshes(g,protectedParts);g.position.set(...a.position_m);groups.set(a.id,g);scene.add(g);g.traverse(n=>{if(!n.isMesh)return;n.updateMatrix();if(a.id==='g1'){const link=kin.part_links[n.name];if(link)robotParts.push({node:n,rest:n.matrix.clone(),bindInverse:M(kin.bind_world[link]).invert()});}else{const installed=opticalSetup.parts[a.id]?.[n.name];const rest=installed?M(installed.matrix).multiply(n.matrix):n.matrix.clone();nodeRest.push({asset:a.id,node:n,rest});}});}));$('loading').textContent=`载入实验室设备 ${Math.min(i+5,manifest.assets.length)} / ${manifest.assets.length}`;}
  const plateData=opticalSetup.mount_plate,plateGeometry=new THREE.BufferGeometry();plateGeometry.setAttribute('position',new THREE.Float32BufferAttribute(plateData.vertices.flat(),3));plateGeometry.setIndex(plateData.faces.flat());plateGeometry.computeVertexNormals();const opticalPlate=new THREE.Mesh(plateGeometry,new THREE.MeshStandardMaterial({color:0x434b50,metalness:.7,roughness:.45}));opticalPlate.castShadow=true;opticalPlate.receiveShadow=true;scene.add(opticalPlate);extraMeshes.set(plateData.id,opticalPlate);
  const cartDeck=new THREE.Group();cartDeck.name='transport_leveling_deck';
  const deckMaterial=new THREE.MeshStandardMaterial({color:0x475359,roughness:.86});
@@ -349,7 +349,7 @@ try{
  groups.get('tray_white').position.set(3.12,2.8,.9);groups.get('tray_black').position.set(9.7,3.4,.9);
  for(const [which,id]of[['white','cooler_white'],['black','cooler_black']]){const g=groups.get(id);g.updateMatrixWorld(true);let plate;g.traverse(n=>{if(n.name.endsWith('__aperture_plate'))plate=n;});plate.geometry.computeBoundingBox();const box=plate.geometry.boundingBox.clone().applyMatrix4(plate.matrix);const local=box.getCenter(new THREE.Vector3());local.z=box.max.z+.001;const lid=new THREE.Mesh(new THREE.CylinderGeometry(.037,.037,.002,48),new THREE.MeshStandardMaterial({color:0xc6ccce,metalness:.85,roughness:.25}));lid.geometry.rotateX(Math.PI/2);lid.userData.local=local;lid.castShadow=true;lid.receiveShadow=true;scene.add(lid);lidMeshes[which]=lid;extraMeshes.set('aperture_lid_'+which,lid);const tab=new THREE.Mesh(new THREE.BoxGeometry(.014,.002,.040),lid.material);tab.position.set(0,-.026,.021);tab.rotation.z=graspProfile.lid.tab_normal_angle_rad-Math.PI/2;tab.castShadow=true;lid.add(tab);extraMeshes.set('aperture_lid_tab_'+which,tab);}
  for(const x of [2.5,9.5]){const pts=[V([x,15.55,.97]),V([x+.28,15.4,.89]),V([x+.45,15.3,.12]),V([x+.45,14.8,.025]),V([6,14.8,.025]),V([6,14.3,.86])];const curve=new THREE.CatmullRomCurve3(pts),geom=new THREE.TubeGeometry(curve,120,.002,5,false),line=new THREE.Mesh(geom,new THREE.MeshStandardMaterial({color:0x282b2d,roughness:.8}));scene.add(line);cables.push(line);}
- const material=new THREE.MeshStandardMaterial({color:0xe8e6d5,roughness:.85,metalness:.05});witness=new THREE.Mesh(new THREE.CylinderGeometry(.025,.025,.001,48),material);witness.geometry.rotateX(Math.PI/2);witness.castShadow=true;scene.add(witness);extraMeshes.set('optical_witness',witness);
+ witness=groups.get('optical_witness_white');
  window.inspectOptical=(station,opened=true)=>{renderAt(0);if(opened)applyState(station==='cary'?'cary_lid':'nicolet_cover',1);scene.updateMatrixWorld(true);const port=V(opticalSetup.ports[station==='cary'?'cary_reflectance':'ftir_sample'].position_m);camera.position.copy(port).add(V([.48,-.64,.57]));camera.lookAt(port);localKey.position.copy(port).add(V([0,-.3,1]));localKey.target.position.copy(port);renderer.render(scene,camera);return renderer.domElement.toDataURL('image/jpeg',.95).split(',')[1];};
  window.handCheck=t=>{const r=robotAt(t),joints=constrainHands(r,jointPose(r));return {time_s:t,phase:r.p.id,joints,targets:contactDiagnostics};};
  window.auditFrame=t=>{const r=robotAt(t);poseRobot(r);scene.updateMatrixWorld(true);animateObjects(t,r);const robot=groups.get('g1');return {time_s:t,phase:r.p.id,kind:r.p.kind,action:r.p.action||r.p.mode,joints:{...robotJoints},hand_targets:contactDiagnostics,robot_position:r.position.toArray(),robot_yaw:r.yaw,groups:Object.fromEntries([...groups].map(([id,g])=>[id,g.matrixWorld.toArray()])),links:Object.fromEntries([...robotFrames].map(([id,m])=>[id,robot.matrixWorld.clone().multiply(m).toArray()])),parts:nodeRest.filter(n=>['cooler_white','cooler_black','cary','nicolet','bath','dra','pike'].includes(n.asset)).map(n=>({asset:n.asset,name:n.node.name,matrix:n.node.matrixWorld.toArray()})),extra_matrices:Object.fromEntries([...extraMeshes].map(([id,n])=>[id,n.matrixWorld.toArray()])),lids:Object.fromEntries(Object.entries(lidMeshes).map(([id,n])=>[id,n.position.toArray()])),witness:witness.position.toArray()};};
