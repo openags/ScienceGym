@@ -59,7 +59,7 @@ def mesh_bytes(mesh):
             + vertices.tobytes() + normals.tobytes() + uv.tobytes() + faces.tobytes())
 
 
-def attach(xml, out, *, map_only=False):
+def attach(xml, out, *, map_only=False, articulated_ftir=False):
     """Replace the standalone table/floor with the original laboratory.
 
     The actor receives only the authored architectural map, not loose equipment
@@ -104,7 +104,7 @@ def attach(xml, out, *, map_only=False):
             material_names[key] = name
         return material_names[key]
 
-    def include(identifier, path, expected, position, yaw):
+    def include(identifier, path, expected, position, yaw, mechanism=None):
         path = ROOT / path
         if digest(path) != expected:
             raise ValueError('Source geometry hash changed: ' + str(path))
@@ -113,11 +113,19 @@ def attach(xml, out, *, map_only=False):
         body = ET.SubElement(lab, 'body', name='lab_' + identifier,
                              pos=numbers(position),
                              quat=numbers([np.cos(yaw/2), 0, 0, np.sin(yaw/2)]))
+        bindings, cells, device = {}, {}, None
+        if mechanism is not None:
+            from ftir_device import prepare
+            bindings, cells, device = prepare(xml, body, model, mechanism)
+        device_geoms = {}
         count = 0
         for node in sorted(model.graph.nodes_geometry):
             transform, geometry = model.graph[node]
             mesh = model.geometry[geometry].copy()
             mesh.apply_transform(transform)
+            parent, offset = bindings.get(node, (body, np.zeros(3)))
+            source_bounds = mesh.bounds.tolist()
+            mesh.apply_translation(-offset)
             singular = np.linalg.svd(mesh.vertices-mesh.vertices.mean(axis=0), compute_uv=False)
             planar = bool(singular[-1] < max(1e-10, singular[0]*1e-9))
             filename = cached(mesh_bytes(mesh), '.msh')
@@ -127,16 +135,49 @@ def attach(xml, out, *, map_only=False):
                               file=os.path.relpath(filename, ROBOT), inertia='shell')
                 mesh_names[filename] = name
             name = 'lab_part_' + str(len(parts))
-            ET.SubElement(body, 'geom', name=name, type='mesh', mesh=mesh_names[filename],
+            visual_geom = ET.SubElement(parent, 'geom', name=name, type='mesh', mesh=mesh_names[filename],
                           material=material(mesh), group='2',
-                          contype='0' if planar else '1', conaffinity='0' if planar else '1', friction='.7 .005 .0001')
+                          contype='0' if planar or node in cells else '1',
+                          conaffinity='0' if planar or node in cells else '1', friction='.7 .005 .0001')
+            if device:
+                visual_geom.set('solref', '.004 1')
+                visual_geom.set('solimp', '.99 .99 .0005')
+            contacts = []
+            for index, cell in enumerate(cells.get(node, [])):
+                cell = cell.copy(); cell.apply_translation(-offset)
+                fn = cached(mesh_bytes(cell), '.msh')
+                if fn not in mesh_names:
+                    mn = 'lab_mesh_' + str(len(mesh_names))
+                    ET.SubElement(assets, 'mesh', name=mn, file=os.path.relpath(fn, ROBOT), inertia='shell')
+                    mesh_names[fn] = mn
+                cn = name + '_cell_' + str(index)
+                ET.SubElement(parent, 'geom', name=cn, type='mesh', mesh=mesh_names[fn],
+                              group='3', rgba='.3 .7 .3 .2', friction='.7 .005 .0001',
+                              solref='.004 1', solimp='.99 .99 .0005')
+                contacts.append(cn)
+            device_geoms[node] = contacts or ([] if planar else [name])
             parts.append(dict(geom=name, instance=identifier, source_part=node,
-                              source_bounds_m=mesh.bounds.tolist(), vertices=len(mesh.vertices),
+                              source_bounds_m=source_bounds, vertices=len(mesh.vertices),
                               triangles=len(mesh.faces), mesh_sha256=filename.stem,
-                              contact='none_zero_thickness_source_surface' if planar else 'source_part_convex_hull'))
+                              contact='conforming_convex_cells' if contacts else 'none_zero_thickness_source_surface' if planar else 'source_part_convex_hull',
+                              **(dict(contact_geoms=contacts, body=parent.get('name')) if device else {})))
             count += 1
+        if device:
+            # Only the nested sliding door needs explicit parent contacts.
+            # Keep the robot's existing adjacent-link filtering unchanged.
+            contact = xml.find('contact')
+            if contact is None: contact = ET.SubElement(xml, 'contact')
+            sliding = [n for n, (b, _) in bindings.items() if b.get('name') == 'nicolet_sliding_door']
+            cover = [n for n, (b, _) in bindings.items() if b.get('name') == 'nicolet_cover']
+            for a in sliding:
+                for b in cover:
+                    for ga in device_geoms[a]:
+                        for gb in device_geoms[b]:
+                            ET.SubElement(contact, 'pair', geom1=ga, geom2=gb, solref='.004 1', solimp='.99 .99 .0005')
+            device['part_geoms'] = device_geoms
+            (out/'ftir_device.json').write_text(json.dumps(device, indent=2)+'\n')
         instances.append(dict(id=identifier, parts=count, position_m=position, yaw_rad=yaw,
-                              state='fixed_initial_obstacle'))
+                              state='passive_articulated_device' if device else 'fixed_initial_obstacle'))
 
     arch = source['architecture']
     include('architecture', arch['path'], arch['sha256'], [0, 0, 0], 0)
@@ -147,8 +188,14 @@ def attach(xml, out, *, map_only=False):
         for item in source['assets']:
             if item['id'] in dynamic_ids:
                 continue
-            include(item['id'], item['geometry'], item['geometry_sha256'],
-                    item['position_m'], item['yaw_rad'])
+            if articulated_ftir and item['id'] == 'nicolet':
+                from ftir_device import source_override
+                revision = source_override()
+                include(item['id'], revision['path'], revision['sha256'],
+                        item['position_m'], item['yaw_rad'], mechanism=item)
+            else:
+                include(item['id'], item['geometry'], item['geometry_sha256'],
+                        item['position_m'], item['yaw_rad'])
     statistic = xml.find('statistic')
     if statistic is None:
         statistic = ET.SubElement(xml, 'statistic')
@@ -172,7 +219,8 @@ def attach(xml, out, *, map_only=False):
             dict(instance='tray_white', original_m=[3.4, 2.8, .9],
                  laboratory_m=[3.7, 2.53, .9005], yaw_rad=float(np.pi),
                  basis='Authored initial staging on the existing white bench; not an executed preparation step')] if 'tray_white' in dynamic_ids else []),
-        collision_scope='Per-part convex mesh obstacles; non-convex equipment cavities and device articulation are not qualified',
+        collision_scope='Per-part convex obstacles; optional Nicolet operating clearances use conforming convex cells. Other device cavities and all operation qualification remain open',
+        articulated_ftir=bool(articulated_ftir and not map_only),
         source_documentation='https://mujoco.readthedocs.io/en/stable/XMLreference.html#asset-mesh',
         assets_accepted=False, physical_campaign_qualified=False)
     (out/'laboratory_import.json').write_text(json.dumps(manifest, indent=2)+'\n')

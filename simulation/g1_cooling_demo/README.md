@@ -2,9 +2,11 @@
 
 The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
-equipment, with G1 and the white tray as dynamic bodies. Other equipment stays
-fixed; articulated devices, loaded walking and the full paper campaign remain
-open. The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
+equipment, with G1 and the white tray as dynamic bodies. A separate
+[passive FTIR device candidate](FTIR_DEVICE.md) adds contact-driven cover and
+key diagnostics in that laboratory; G1 operation of those mechanisms remains
+open. Loaded walking and the full paper campaign also remain open.
+The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
 shows the resulting contact subtask with enforced actor access isolation. The
 runtime guide records the namespace probes and independent packet-rejection
 check. A separate 12-second unloaded walking and stationary-control handoff
@@ -13,12 +15,15 @@ not yet joined to the tray sequence. Sensor calibration and general localization
 remain open. The earlier independent workbench tests
 below remain unchanged as development evidence.
 
-The requested [full-laboratory conceptual film](../../viewer/cooling_concept_v1/watch.html)
-is available separately, with its [paper-operation mapping and reproduction notes](../../viewer/cooling_concept_v1/README.md).
+The current [continuous FTIR measurement film](../../viewer/cooling_concept_v2/measurement_demo.html)
+shows 9 minutes 1 second of tool collection, walking to the material bench,
+carrying the witness back, gold-reference/sample operations and cleanup in the
+full laboratory. Its [delivery record](../../viewer/cooling_concept_v2/measurement_delivery.json)
+distinguishes the geometric review from unfinished physical qualification.
 
 The earlier workbench presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
 
-Serve the repository root with `python -m http.server 8769 --bind 127.0.0.1` and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. The page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. The manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
+Serve the repository with `python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1` (including video range requests) and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. This older workbench page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. Its manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
 
 ## Reproduce
 

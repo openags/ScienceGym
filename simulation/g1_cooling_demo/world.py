@@ -12,7 +12,7 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 ROBOT=ROOT/'assets/unitree_g1_inspire_v1'
 
 
-def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False):
+def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False, articulated_ftir=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     xml=ET.parse(ROBOT/'simulation/robot.xml').getroot()
     xml.set('model','ScienceGym G1 Inspire contact development')
@@ -89,6 +89,6 @@ def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, 
     visual=ET.SubElement(xml,'visual');ET.SubElement(visual,'global',offwidth='1280',offheight='960')
     if laboratory:
         from laboratory import attach
-        attach(xml,out,map_only=map_only)
+        attach(xml,out,map_only=map_only,articulated_ftir=articulated_ftir)
     path=out/'world.xml';ET.indent(xml);ET.ElementTree(xml).write(path,encoding='unicode')
     return path

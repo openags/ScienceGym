@@ -70,7 +70,8 @@ def run(folder, duration=14, speed=.2, gains='training', hold_heading=False, sto
         policy_files=[policy/'deploy.yaml',policy/'policy.onnx'])
     log = open(folder/'actor_stderr.log','w')
     process = subprocess.Popen(command, env=environment, stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=log,close_fds=True)
-    joints = [model.joint(j).name for j in range(model.njnt) if model.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE]
+    from observations import robot_joints
+    joints = [model.joint(j).name for j in robot_joints(model)]
     records, sensors, outputs = [], [], []
     failure = None; started = time.monotonic();response={}
     try:

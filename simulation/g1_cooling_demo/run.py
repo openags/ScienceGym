@@ -26,7 +26,8 @@ def run(out,duration=5,tray=False,sensor_actor=False,closed_loop=False,return_to
     control.palm_rotations={s:Rotation.from_euler('x',-45 if s=='left' else 45,degrees=True).as_matrix()@zero.site(s+'_wrist_reference').xmat.reshape(3,3) for s in ['left','right']}
     begin={s:cd.site(s+'_wrist_reference').xpos.copy() for s in ['left','right']}
     process=None;depth_renderer=None;sensor_records=[];last_actor=None;depth_frames=[];policy_records=[];complete_time=None;isolation_receipt=None
-    joints=[j for j in range(m.njnt) if m.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE]
+    from observations import robot_joints
+    joints=robot_joints(m)
     if sensor_actor:
         command=[sys.executable,str(HERE/('actor_feedback.py' if closed_loop else 'actor.py')),'--model',str(control_path)]
         if closed_loop and return_to_source:command.append('--return-to-source')

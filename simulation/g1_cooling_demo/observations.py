@@ -8,10 +8,32 @@ import numpy as np
 import mujoco
 
 
+def robot_joints(model):
+    """Enumerate robot encoder joints, never passive equipment hinges/slides."""
+    root = model.body('pelvis').id
+    result = []
+    for joint in range(model.njnt):
+        if model.jnt_type[joint] != mujoco.mjtJoint.mjJNT_HINGE:
+            continue
+        body = int(model.jnt_bodyid[joint])
+        while body and body != root:
+            body = int(model.body_parentid[body])
+        if body != root:
+            continue
+        name = model.joint(joint).name
+        for suffix, kind in [('_encoder', mujoco.mjtSensor.mjSENS_JOINTPOS),
+                             ('_velocity', mujoco.mjtSensor.mjSENS_JOINTVEL)]:
+            sensor = model.sensor(name + suffix).id
+            if model.sensor_type[sensor] != kind or model.sensor_objid[sensor] != joint:
+                raise ValueError('Encoder is not bound to the declared robot joint: ' + name)
+        result.append(joint)
+    return result
+
+
 class StateEstimate:
     def __init__(self,m,d):
         self.m,self.d=m,d
-        self.joints=[j for j in range(m.njnt) if m.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE]
+        self.joints=robot_joints(m)
         self.qa=m.jnt_qposadr[self.joints];self.va=m.jnt_dofadr[self.joints]
         self.anchors=np.array([d.site(s+'_sole').xpos.copy() for s in ['left','right']])
 
