@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import trimesh
 from source_geometry import manifest_for_export
+from deformed_geometry import DeformedGeometry
 
 ROOT=Path(__file__).resolve().parents[2]
 ARTICULATED={'cooler_white','cooler_black','cary','nicolet','bath','dra','pike'}
@@ -22,7 +23,7 @@ def joined(scene):
     return trimesh.util.concatenate(pieces)
 
 def audit(folder):
-    folder=Path(folder);manifest=manifest_for_export(folder)
+    folder=Path(folder);manifest=manifest_for_export(folder);deformation=DeformedGeometry(folder,manifest)
     kin=next(s['kinematics'] for s in manifest['inspection_states'] if s['id']=='g1_hands_inspection')
     environment=trimesh.collision.CollisionManager();robot=trimesh.collision.CollisionManager()
     source=mesh_scene(manifest['architecture']['path']);roles={p['id']:p['role'] for p in manifest['architecture']['part_records']};floor_tops={}
@@ -61,6 +62,7 @@ def audit(folder):
         frame_digest.update(line.encode())
         frame=json.loads(line);frame_count+=1
         for identity in instances:environment.set_transform(identity,matrix(frame['groups'][identity]))
+        deformation.apply(environment,frame)
         for label,(identity,rest) in part_defaults.items():environment.set_transform(label,matrix(frame['groups'][identity])@rest)
         if 'transport_leveling_deck' in environment._objs:environment.set_transform('transport_leveling_deck',matrix(frame['groups']['utility_cart']))
         for identity,transform in frame.get('extra_matrices',{}).items():environment.set_transform('extra::'+identity,matrix(transform))
@@ -89,6 +91,7 @@ def audit(folder):
         if frame_count%200==0:print('checked',frame_count,'wall_s',round(time.monotonic()-began,1),flush=True)
     stream.close()
     report=dict(passed=False,scope='Sampled exact-triangle intersections and palm proximity; intersections include intended contacts awaiting classification; no physical simulation claim',articulated_source_parts=len(part_defaults),static_part_transform_policy='group world transform times original source node transform, then explicit articulated overrides',frames=frame_count,frames_with_nonfloor_intersections=len(failures),phase_counts=dict(phase_counts),contact_pairs=contact_summary,carry_contact_samples=carry_gaps,frames_sha256=frame_digest.hexdigest(),verifier_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+    report['deformed_geometry']=dict(identities=list(deformation.definitions),maximum_render_source_vertex_error_m=deformation.maximum_vertex_error_m,verifier_sha256=hashlib.sha256(Path(__file__).with_name('deformed_geometry.py').read_bytes()).hexdigest())
     (folder/'geometry_review.json').write_text(json.dumps(report,indent=2)+'\n')
     (folder/'intersection_frames.json').write_text(json.dumps(failures,indent=2)+'\n')
     print(json.dumps(dict(frames=frame_count,intersection_frames=len(failures),phase_counts=dict(phase_counts))),flush=True)

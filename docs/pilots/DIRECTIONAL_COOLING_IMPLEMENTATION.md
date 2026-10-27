@@ -224,6 +224,50 @@ show this isolated held-specimen initial condition; it is not a new complete
 workflow or a replacement video. The older failed search and staging records
 are retained. These results grant no branch or campaign qualification credit.
 
+The subsequent local FTIR exchange episode composes **78 segments over
+372.55 seconds**: ordinary-tool pickup, white-witness mounting, tool return,
+white-witness retrieval and restaging, then the same cycle for the black
+witness. The actual source hand and palm FK drive the same tool and carrier
+identities throughout. The tray/tool staging is rotated and shifted on the
+existing benchtop to clear the SpectraTech accessory. Source-mesh leg IK adds
+twelve grounded lateral foot placements between the staging and port stances.
+No added robot fixture or altered equipment envelope is used for clearance.
+
+Inspect this separately initialized episode at
+`http://localhost:8769/viewer/cooling_concept_v2/index.html?episode=ftir`.
+It begins with the witnesses and tools already delivered, the Nicolet access
+open, and the reference capped. Those initial conditions do not execute the
+missing Cary-to-FTIR delivery, background/sample controls or the full paper
+workflow. The default development film and the rejected 9m39s video are not
+replaced by this local episode. Camera-only inspection frames are retained in
+`viewer/cooling_concept_v2/previews/optical_episode_inspection/`.
+
+The local episode's independent export contains 4,038 states at 0.1-second
+spacing plus both sides of operation boundaries. The exporter records the
+actual renderer's tweezer deformation. The reviewers reconstruct that shape
+from the pinned source GLB and check its vertices before using it for contact
+queries. Robot/environment, robot self-contact, joint/sole and tool/specimen/
+tray-environment reviews are kept under `audits/optical_exchange_01/`.
+Their aggregate verdict is generated only after all records exist:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/optical_exchange_01 --step .1 --episode ftir
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_optical_exchange.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/review_optical_episode.py viewer/cooling_concept_v2/audits/optical_exchange_01
+```
+
+The retained [aggregate review](../../viewer/cooling_concept_v2/audits/optical_exchange_01/sampled_interaction_review.json)
+passes all 4,038 states: zero unexpected robot/environment, self or tool/
+specimen/tray-environment intersections; zero joint-limit, speed, sole,
+source-FK or object-ownership failures. All 78 segments are represented.
+
+These checks concern sampled geometry. Dynamic balance, contact forces,
+sensor-driven execution, complete film acceptance and the eleven qualified
+paper branches remain separate unfinished requirements.
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a

@@ -1,10 +1,10 @@
 {
-  "updated_utc": "2026-10-27T00:20:46.307917+00:00",
+  "updated_utc": "2026-10-27T01:29:35.373744+00:00",
   "status": "development_not_accepted",
   "user_report": "Interpenetration and incorrect physical interaction in the 9m39 original concept film",
   "published_film": "viewer/cooling_concept_v1/episode.mp4",
   "published_film_replaced": false,
-  "current_work": "Integrate the screened ordinary-tweezer/annular-witness handling into the complete optical procedure: real tool pickup, sample delivery, port exchange and release, followed by full-scene review and scan controls.",
+  "current_work": "Connect the reviewed local FTIR exchange episode to actual specimen delivery, Cary handling and background/sample scan controls in the full paper timeline; then repair calibration, sensor installation, locking and wiring before full-film review.",
   "completed_changes": [
     "Rerouted paths and loading positions around utility cart",
     "Shared object-relative hand targets and source-joint inverse kinematics",
@@ -41,20 +41,23 @@
     "Replaced the unsupported primitive optical disc with two identified 25 mm copper witnesses and inferred ordinary annular carriers; 55 CAD-solid pairs and full-lab static staging checked",
     "Fitted source Inspire fingers to deforming Ideal-tek tweezers; 51 local closure states and 82 carrier-wall approach/closure states clear, without force qualification",
     "Screened one continuous 61-pose FTIR extraction candidate against local source geometry; it remains an isolated held-specimen initial condition, outside the full film",
-    "Screened an inclined ordinary-tray support for the existing tweezers and eight local hand-closure candidates; no executed tool pickup or full-lab placement credit"
+    "Screened an inclined ordinary-tray support for the existing tweezers and eight local hand-closure candidates; no executed tool pickup or full-lab placement credit",
+    "Composed a separately initialized 372.55 s, 78-segment FTIR episode with ordinary-tweezer pickup, both identified witness mount/retrieve cycles, twelve-foot-placement lateral transfers and tool return. Upstream delivery and scans are not executed.",
+    "Independent optical_exchange_01 review: 4038 full-laboratory states, zero unexpected robot/environment, self or tool/specimen/tray-environment intersections and zero joint/sole/FK/ownership failures. The reviewer reconstructs the renderer tweezer deformation from source geometry. No dynamics or whole-film credit."
   ],
   "latest_reach_check": "audits/reference_02/sampled_interaction_review.json",
-  "latest_speed_check": "audits/reference_02/motion_review.json",
+  "latest_speed_check": "audits/optical_exchange_01/motion_review.json",
   "full_collision_pipeline": {
     "folders": [
       "audits/approach_03",
       "audits/return_01",
-      "audits/reference_02"
+      "audits/reference_02",
+      "audits/optical_exchange_01"
     ],
-    "status": "Selected apparatus transport/cover checks and reordered optical reference/access checks pass on their pinned source revisions. No whole-film or full optical procedure acceptance."
+    "status": "Selected apparatus/reference checks and the separately initialized FTIR witness exchange pass sampled geometric reviews on their pinned revisions. No whole-film, dynamics or complete optical-procedure acceptance."
   },
   "remaining": [
-    "Complete FTIR/Cary specimen exchange, actual background/sample scan control and final protected storage; reference handling and cover motion alone do not complete the optical procedure",
+    "Integrate the reviewed local FTIR specimen exchange with executed specimen delivery, Cary handling, actual background/sample scan control and final protected storage in the full paper timeline",
     "Repair bath calibration, probe installation, reflector unlocking/support/adjustment/relocking and cable handling; old generic gestures remain in these stages",
     "Review the finished timeline at final frame spacing, including all empty-hand travel and revised optical procedures; selected interaction passes are not whole-film acceptance",
     "Resolve inferred optical mounts, alignment, detector cables and support/contamination qualification of protective-cap storage; the corrected reference-face recess remains an inferred dimension",
@@ -364,6 +367,23 @@
         "tolerance_m": 1e-06,
         "rule": "Only non-optical holder/cap-rim and shoulder/top-panel contacts with bounded contact points and support-height checks; optical-face intersections are never waived"
       }
+    },
+    "optical_exchange_01": {
+      "passed": true,
+      "scope": "Sampled source geometry for the separately initialized FTIR exchange episode: both identified witnesses, ordinary tool pickup, mounting, tool return, retrieval and restaging. Delivered materials, open access and capped reference are initial conditions. No upstream delivery, scan acquisition, balance, force, dynamics, sensor-driven control, full-film or paper-branch qualification.",
+      "duration_s": 372.55458854387166,
+      "frames": 4038,
+      "sample_step_s": 0.1,
+      "robot_environment_intersection_frames": 0,
+      "self_intersection_frames": 0,
+      "tool_specimen_environment_intersection_frames": 0,
+      "joint_limit_failures": 0,
+      "joint_speed_failures": 0,
+      "sole_penetration_failures": 0,
+      "kinematic_failures": 0,
+      "maximum_source_fk_matrix_error": 1.7763568394002505e-15,
+      "maximum_object_matrix_error": 3.552713678800501e-15,
+      "maximum_render_source_vertex_error_m": 1.32085788487335e-10
     }
   },
   "latest_lid_edge_check": "previews/lid_transfer_edges.json",
@@ -443,5 +463,16 @@
     "port_extraction_candidate": "previews/specimen_port_refined.json",
     "integration": "Only static witness staging is integrated. Tool pickup, sample exchanges, between-pose clearance and controls remain incomplete.",
     "inspection": "previews/specimen_port_inspection/preview.json"
+  },
+  "latest_local_optical_episode": "index.html?episode=ftir",
+  "optical_exchange_episode": {
+    "duration_s": 372.55458854387166,
+    "segments": 78,
+    "viewer": "index.html?episode=ftir",
+    "review": "audits/optical_exchange_01/sampled_interaction_review.json",
+    "initial_conditions": "Materials delivered to FTIR staging, access open, reference capped; upstream delivery is not executed",
+    "source": "optical_episode.json",
+    "replacement_full_film": false,
+    "force_or_dynamics_qualified": false
   }
 }
