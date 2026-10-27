@@ -356,13 +356,14 @@ try{
  window.auditFrame=t=>{const r=robotAt(t);poseRobot(r);scene.updateMatrixWorld(true);animateObjects(t,r);return snapshotScene(t,r);};
  window.concept={manifest,criticalTimes:referenceTransfer.segments.flatMap(s=>[referenceStore.start+s.start,referenceStore.start+s.end,referenceRestore.end-s.start,referenceRestore.end-s.end]),extraGeometry:[...extraMeshes].map(([id,n])=>({id,vertices:Array.from(n.geometry.attributes.position.array),indices:n.geometry.index?Array.from(n.geometry.index.array):Array.from({length:n.geometry.attributes.position.count},(_,i)=>i)})),duration:end,phases:phases.map(({curve,...p})=>p),sourceHashes,assetCount:groups.size,robotCount:1,renderAt,rendererInfo:()=>renderer.info.render,frameJpeg:t=>{renderAt(t);return renderer.domElement.toDataURL('image/jpeg',.92).split(',')[1]}};window.renderAt=renderAt;renderAt(0);$('seek').max=end;$('loading').remove();document.documentElement.dataset.ready='true';
  $('play').onclick=()=>{playing=!playing;clock=performance.now();$('play').textContent=playing?'暂停':'播放';};$('seek').oninput=e=>{playing=false;renderAt(Number(e.target.value));};function tick(t){if(playing){renderAt(now+(t-clock)/1000);if(now>=end)playing=false;}clock=t;requestAnimationFrame(tick);}requestAnimationFrame(tick);
- if(new URLSearchParams(location.search).get('episode')==='ftir'){
+ const episodeName=new URLSearchParams(location.search).get('episode');
+ if(['ftir','ftir_delivery'].includes(episodeName)){
   document.documentElement.dataset.ready='false';
   const {installOpticalEpisode}=await import('./optical_episode.js');
   await installOpticalEpisode({scene,groups,renderer,camera,localKey,handIK,manifest,sourceHashes,extraGeometry:window.concept.extraGeometry,read,
    reset:()=>{const t=referenceStore.end+.01,r=robotAt(t);poseRobot(r);scene.updateMatrixWorld(true);animateObjects(t,r);},
    pose:(q,root)=>{const position=V([root[0][3],root[1][3],root[2][3]]),r={position,rootZ:position.z,yaw:Math.atan2(root[1][0],root[0][0])};const previousJoint=jointPose,previousConstrain=constrainHands;jointPose=()=>({...q});constrainHands=(_,q)=>q;try{poseRobot(r)}finally{jointPose=previousJoint;constrainHands=previousConstrain;}contactDiagnostics=[];return r;},
-   snapshot:snapshotScene});
+   snapshot:snapshotScene},episodeName==='ftir_delivery'?'optical_delivery_episode.json':'optical_episode.json');
   document.documentElement.dataset.ready='true';
  }
 }catch(e){$('error').textContent=e.stack;console.error(e);}

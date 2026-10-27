@@ -25,8 +25,8 @@ function sample(segment, time) {
   return {q, root, rootRows: Array.from({length: 4}, (_, i) => elements.slice(i * 4, i * 4 + 4)), closure: THREE.MathUtils.lerp(a.closure, b.closure, u)};
 }
 
-export async function installOpticalEpisode(ctx) {
-  const episode = await ctx.read('viewer/cooling_concept_v2/optical_episode.json');
+export async function installOpticalEpisode(ctx, filename = 'optical_episode.json') {
+  const episode = await ctx.read('viewer/cooling_concept_v2/' + filename);
   if (!episode.continuous_at_segment_boundaries) throw Error('Optical episode has discontinuous boundaries');
   const descriptor = episode.deformable_tool;
   if (descriptor.model !== 'symmetric_fixed_heel_cantilever_v1') throw Error('Unknown tweezer deformation');
@@ -69,7 +69,8 @@ export async function installOpticalEpisode(ctx) {
     const index = episode.segments.findIndex(s => t < s.end);
     const selected = index < 0 ? episode.segments.length - 1 : index;
     const segment = episode.segments[selected], state = sample(segment, t);
-    ctx.reset();
+    // Instrument state is fixed for this separately initialized episode.
+    // reset() ran at installation; each moving group is assigned below.
     const r = ctx.pose(state.q, state.rootRows); r.p = phases[selected];
     const toolPose = segment.tool_held ? state.root.clone().multiply(ctx.handIK.forward(state.q).world.get('right_palm_force_sensor')).multiply(palmToTool) : matrix(episode.tool_rest);
     apply(tool, toolPose); deform(state.closure);
@@ -91,7 +92,8 @@ export async function installOpticalEpisode(ctx) {
     ctx.localKey.target.position.copy(frame.r.position).add(new THREE.Vector3(0, .3, 1));
     ctx.renderer.render(ctx.scene, ctx.camera);
     if (!clean) {
-      document.getElementById('title').textContent = (frame.segment.id.startsWith('white') ? '白色' : '黑色') + '试片 · ' + (frame.segment.id.includes('_retrieve') ? '取回与收纳' : '装样与工具归位');
+      const activity = frame.segment.id.includes('_delivery') ? '工位间送样' : frame.segment.id.includes('_retrieve') ? '取回与收纳' : '装样与工具归位';
+      document.getElementById('title').textContent = (frame.segment.id.startsWith('white') ? '白色' : '黑色') + '试片 · ' + activity;
       document.getElementById('detail').textContent = '红外工位取放检查 · ' + frame.segment.id;
       document.getElementById('seek').value = now;
     }
@@ -117,7 +119,7 @@ export async function installOpticalEpisode(ctx) {
   // No replacement film exists yet. Do not expose the original film as this episode.
   document.querySelector('a[download]').hidden = true;
   const steps = document.querySelector('a[href="workflow.json"]');
-  steps.href = 'optical_episode.json'; steps.textContent = '取放步骤与初始条件';
+  steps.href = filename; steps.textContent = '取放步骤与初始条件';
   function tick(clock) {
     if (playing) {
       renderAt(now + (clock - previousClock) / 1000);

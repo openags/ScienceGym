@@ -10,7 +10,9 @@ def review(folder):
     names=['export.json','geometry_review.json','self_contact_review.json','motion_review.json','optical_exchange_review.json']
     reports={name:json.loads((folder/name).read_text()) for name in names}
     export,geometry,self_contact,motion,optical=[reports[name] for name in names]
-    assert export['episode']=='ftir' and export['sample_step_s']<=.1
+    assert export['episode'] in ['ftir','ftir_delivery'] and export['sample_step_s']<=.1
+    config_name='optical_delivery_episode.json' if export['episode']=='ftir_delivery' else 'optical_episode.json'
+    config=json.loads((folder/'source'/config_name).read_text())
     for name,sha in export['source_sha256'].items():
         assert hashlib.sha256((folder/'source'/name).read_bytes()).hexdigest()==sha,name
     assert hashlib.sha256((folder/'frames.jsonl.gz').read_bytes()).hexdigest()==export['compressed_frames_sha256']
@@ -22,7 +24,9 @@ def review(folder):
     passed=geometry['frames_with_nonfloor_intersections']==0 and all(r['passed'] for r in [self_contact,motion,optical])
     result=dict(
         passed=passed,
-        scope='Sampled source geometry for the separately initialized FTIR exchange episode: both identified witnesses, ordinary tool pickup, mounting, tool return, retrieval and restaging. Delivered materials, open access and capped reference are initial conditions. No upstream delivery, scan acquisition, balance, force, dynamics, sensor-driven control, full-film or paper-branch qualification.',
+        scope='Sampled source geometry for a separately initialized optical episode. '+config['scope']+' No balance, force, dynamics, sensor-driven control, full-film or paper-branch qualification.',
+        initial_conditions=config['initial_conditions'],episode=export['episode'],
+        phase_selection=export['phase_pattern'],covers_entire_episode=set(export['selected_phases'])=={s['id'] for s in config['segments']},
         duration_s=export['scene']['duration'],frames=export['frame_count'],sample_step_s=export['sample_step_s'],phases=export['selected_phases'],
         robot_environment_intersection_frames=geometry['frames_with_nonfloor_intersections'],
         self_intersection_frames=len(self_contact['intersection_frames']),

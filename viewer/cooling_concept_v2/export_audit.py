@@ -9,8 +9,9 @@ BROWSER='/tmp/sciencegym-browser/chrome-headless-shell-linux64/chrome-headless-s
 def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     pins={n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in ['main.js','motion_poses.json','hand_ik.js','grasp_profile.json','optical_setup.json','optical_approach_paths.json','manipulation_motion.js','manipulation_approach_paths.json','lid_contact_paths.json','reference_motion.js','reference_transfer.json','runtime_scene.json','export_audit.py']}
-    if episode=='ftir':
-        for n in ['optical_episode.js','optical_episode.json']:pins[n]=hashlib.sha256((HERE/n).read_bytes()).hexdigest()
+    if episode:
+        config={'ftir':'optical_episode.json','ftir_delivery':'optical_delivery_episode.json'}[episode]
+        for n in ['optical_episode.js',config]:pins[n]=hashlib.sha256((HERE/n).read_bytes()).hexdigest()
     snapshots=out/'source';snapshots.mkdir(exist_ok=True)
     for name in pins:(snapshots/name).write_bytes((HERE/name).read_bytes())
     with sync_playwright() as p:
@@ -31,7 +32,11 @@ def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
         frame_digest=hashlib.sha256()
         with gzip.open(out/'frames.jsonl.gz','wt') as stream:
             for i,t in enumerate(sorted(times)):
-                frame=page.evaluate('(t)=>auditFrame(t)',t);line=json.dumps(frame,separators=(',',':'))+'\n';stream.write(line);frame_digest.update(line.encode())
+                # Serialize inside the browser to avoid transferring thousands
+                # of matrix elements as individual protocol values per frame.
+                line=page.evaluate('''t=>JSON.stringify(auditFrame(t),(key,value)=>{if(typeof value==='number'&&!Number.isFinite(value))throw Error('Nonfinite scene value: '+key);return value})''',t)+'\n'
+                if i==0:assert json.loads(line)==page.evaluate('(t)=>auditFrame(t)',t),'Scene serialization changed values'
+                stream.write(line);frame_digest.update(line.encode())
                 if i%200==0:print('frame',i,'time',round(t,2),flush=True)
         if errors:raise RuntimeError(errors)
         assert all(hashlib.sha256((HERE/n).read_bytes()).hexdigest()==sha for n,sha in pins.items())
@@ -40,4 +45,4 @@ def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
         browser.close();print('exported',len(times),flush=True)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('out');parser.add_argument('--step',type=float,default=.5);parser.add_argument('--phases');parser.add_argument('--actions');parser.add_argument('--episode',choices=['ftir']);args=parser.parse_args();export(args.out,args.step,args.phases,args.actions,args.episode)
+    parser=argparse.ArgumentParser();parser.add_argument('out');parser.add_argument('--step',type=float,default=.5);parser.add_argument('--phases');parser.add_argument('--actions');parser.add_argument('--episode',choices=['ftir','ftir_delivery']);args=parser.parse_args();export(args.out,args.step,args.phases,args.actions,args.episode)

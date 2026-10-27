@@ -268,6 +268,43 @@ These checks concern sampled geometry. Dynamic balance, contact forces,
 sensor-driven execution, complete film acceptance and the eleven qualified
 paper branches remain separate unfinished requirements.
 
+The extended `?episode=ftir_delivery` mode now executes two Cary-to-FTIR
+witness deliveries before that exchange sequence. Both witnesses begin at
+their original Cary-side support poses. The robot collects the staged tool,
+walks to each witness, grasps its annular wall, turns and walks forward to the
+FTIR station, places the witness, and returns the tool. Lowering/raising the
+carrying hand occurs in the aisle. The earlier high-hand walking variant was
+rejected during visual inspection; its source export and images are retained.
+
+This extended sequence has **136 segments over 774.92 seconds**. Its
+[new-prefix review](../../viewer/cooling_concept_v2/audits/optical_delivery_02/sampled_interaction_review.json)
+checks 4,364 states with no unexpected intersections or joint/sole/ownership
+failures. Its unchanged exchange suffix is checked against every one of the
+earlier 4,038 recorded states, including source assets, deforming vertices and
+scene transforms; the maximum numeric difference is 2.58e-13. The
+[composition receipt](../../viewer/cooling_concept_v2/audits/optical_delivery_composed_02/composed_review.json)
+records complete segment coverage by those two evidence sets. Their state
+counts overlap at the handoff and are not summed as unique states.
+
+The tools are initially allocated to FTIR, the access is open and the reference
+is capped. Cary reference/sample clamping, actual background/sample acquisition,
+supply preparation and integration with the remaining paper operations are
+still unfinished. This extended interactive sequence does not replace the
+rejected full film or grant dynamic/branch qualification. Inspection images
+are under `viewer/cooling_concept_v2/previews/optical_delivery_inspection/`.
+Reproduce its new evidence in a fresh audit directory with:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/optical_delivery_recheck --step .1 --episode ftir_delivery --phases '_delivery_|^white_mount_free_entry$'
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_optical_exchange.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/review_optical_episode.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/verify_delivery_suffix.py viewer/cooling_concept_v2/audits/optical_delivery_suffix_recheck
+python viewer/cooling_concept_v2/review_delivery_episode.py viewer/cooling_concept_v2/audits/optical_delivery_recheck viewer/cooling_concept_v2/audits/optical_delivery_suffix_recheck viewer/cooling_concept_v2/audits/optical_delivery_composed_recheck
+```
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a

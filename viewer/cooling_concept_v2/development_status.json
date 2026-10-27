@@ -1,10 +1,10 @@
 {
-  "updated_utc": "2026-10-27T01:29:35.373744+00:00",
+  "updated_utc": "2026-10-27T02:27:10.629523+00:00",
   "status": "development_not_accepted",
   "user_report": "Interpenetration and incorrect physical interaction in the 9m39 original concept film",
   "published_film": "viewer/cooling_concept_v1/episode.mp4",
   "published_film_replaced": false,
-  "current_work": "Connect the reviewed local FTIR exchange episode to actual specimen delivery, Cary handling and background/sample scan controls in the full paper timeline; then repair calibration, sensor installation, locking and wiring before full-film review.",
+  "current_work": "Connect the reviewed Cary-to-FTIR witness delivery/exchange sequence to actual Cary reference/sample clamping and background/sample acquisition controls, then replace the remaining calibration, probe, locking and wiring placeholders in the full paper timeline.",
   "completed_changes": [
     "Rerouted paths and loading positions around utility cart",
     "Shared object-relative hand targets and source-joint inverse kinematics",
@@ -43,21 +43,26 @@
     "Screened one continuous 61-pose FTIR extraction candidate against local source geometry; it remains an isolated held-specimen initial condition, outside the full film",
     "Screened an inclined ordinary-tray support for the existing tweezers and eight local hand-closure candidates; no executed tool pickup or full-lab placement credit",
     "Composed a separately initialized 372.55 s, 78-segment FTIR episode with ordinary-tweezer pickup, both identified witness mount/retrieve cycles, twelve-foot-placement lateral transfers and tool return. Upstream delivery and scans are not executed.",
-    "Independent optical_exchange_01 review: 4038 full-laboratory states, zero unexpected robot/environment, self or tool/specimen/tray-environment intersections and zero joint/sole/FK/ownership failures. The reviewer reconstructs the renderer tweezer deformation from source geometry. No dynamics or whole-film credit."
+    "Independent optical_exchange_01 review: 4038 full-laboratory states, zero unexpected robot/environment, self or tool/specimen/tray-environment intersections and zero joint/sole/FK/ownership failures. The reviewer reconstructs the renderer tweezer deformation from source geometry. No dynamics or whole-film credit.",
+    "Added actual Cary-side witness pickup and two forward-facing cross-station delivery trips before the existing FTIR exchange. The same tool and both witness identities persist through 136 segments over 774.92 s.",
+    "Rejected the high-hand aisle-carrying posture after visual inspection; introduced lower chest-level carrying with explicit lowering/raising in the aisle and source-leg IK foot placements.",
+    "Independent optical_delivery_02 prefix review: 4364 states with zero unexpected robot/environment, self or tool/specimen/tray intersections and zero joint/sole/FK/ownership failures. Every prior exchange state was compared in the extended viewer: 4038 states match within 2.58e-13; source geometry and deformed vertices match."
   ],
   "latest_reach_check": "audits/reference_02/sampled_interaction_review.json",
-  "latest_speed_check": "audits/optical_exchange_01/motion_review.json",
+  "latest_speed_check": "audits/optical_delivery_02/motion_review.json",
   "full_collision_pipeline": {
     "folders": [
       "audits/approach_03",
       "audits/return_01",
       "audits/reference_02",
-      "audits/optical_exchange_01"
+      "audits/optical_exchange_01",
+      "audits/optical_delivery_02",
+      "audits/optical_delivery_composed_02"
     ],
-    "status": "Selected apparatus/reference checks and the separately initialized FTIR witness exchange pass sampled geometric reviews on their pinned revisions. No whole-film, dynamics or complete optical-procedure acceptance."
+    "status": "Selected apparatus/reference checks and the separately initialized optical delivery/exchange sequence have sampled geometric coverage on pinned revisions. Cary measurement, scans, full-film acceptance and dynamics remain open."
   },
   "remaining": [
-    "Integrate the reviewed local FTIR specimen exchange with executed specimen delivery, Cary handling, actual background/sample scan control and final protected storage in the full paper timeline",
+    "Integrate Cary reference/sample clamping and actual scan controls with the reviewed Cary-to-FTIR delivery/exchange sequence in the full paper timeline; initial tool allocation and reference/access setup still need their preceding task bindings",
     "Repair bath calibration, probe installation, reflector unlocking/support/adjustment/relocking and cable handling; old generic gestures remain in these stages",
     "Review the finished timeline at final frame spacing, including all empty-hand travel and revised optical procedures; selected interaction passes are not whole-film acceptance",
     "Resolve inferred optical mounts, alignment, detector cables and support/contamination qualification of protective-cap storage; the corrected reference-face recess remains an inferred dimension",
@@ -384,6 +389,37 @@
       "maximum_source_fk_matrix_error": 1.7763568394002505e-15,
       "maximum_object_matrix_error": 3.552713678800501e-15,
       "maximum_render_source_vertex_error_m": 1.32085788487335e-10
+    },
+    "optical_delivery_02": {
+      "passed": true,
+      "scope": "Sampled source geometry for a separately initialized optical episode. Prepend executed Cary-to-FTIR witness delivery to the optical exchange.\n\nBoth witnesses begin at their existing Cary-side support poses. The same tool\ntravels empty to each witness, grasps its annular wall, returns with it, and\nplaces it at the declared FTIR staging pose before any exchange begins.\nInitial tool allocation, instrument access/reference setup and acquisition\nremain outside this episode. No dynamics or sensor-control credit.\n No balance, force, dynamics, sensor-driven control, full-film or paper-branch qualification.",
+      "duration_s": 774.9245260249947,
+      "frames": 4364,
+      "sample_step_s": 0.1,
+      "covers_entire_episode": false,
+      "robot_environment_intersection_frames": 0,
+      "self_intersection_frames": 0,
+      "tool_specimen_environment_intersection_frames": 0,
+      "joint_limit_failures": 0,
+      "joint_speed_failures": 0,
+      "sole_penetration_failures": 0,
+      "kinematic_failures": 0
+    },
+    "optical_delivery_composed_02": {
+      "passed": true,
+      "scope": "Combine newly checked delivery states with verified unchanged exchange states.\n\nThe prefix requires its own full-scene checks. Prior suffix evidence is reused\nonly after source and every recorded renderer state match inside the extended\nepisode. This grants sampled geometric coverage, not a completed paper demo.\n",
+      "duration_s": 774.9245260249947,
+      "delivery_duration_s": 402.36993748112303,
+      "segments": 136,
+      "newly_reviewed_prefix_states": 4364,
+      "reused_suffix_states": 4038,
+      "state_count_note": "Counts describe two review sets, with overlap at the handoff; they are not summed as unique states.",
+      "suffix_maximum_state_difference": 2.5743296383495817e-13,
+      "initial_conditions": [
+        "Both identified witnesses begin at their existing Cary-side bench support poses. Cary measurement and clamp operation are not executed.",
+        "The ordinary tweezers and tray are already allocated to FTIR staging. Supply preparation is not executed.",
+        "The Nicolet access is open and its reference is capped. Background/sample acquisition and the complete paper workflow are not executed."
+      ]
     }
   },
   "latest_lid_edge_check": "previews/lid_transfer_edges.json",
@@ -464,14 +500,18 @@
     "integration": "Only static witness staging is integrated. Tool pickup, sample exchanges, between-pose clearance and controls remain incomplete.",
     "inspection": "previews/specimen_port_inspection/preview.json"
   },
-  "latest_local_optical_episode": "index.html?episode=ftir",
+  "latest_local_optical_episode": "index.html?episode=ftir_delivery",
   "optical_exchange_episode": {
-    "duration_s": 372.55458854387166,
-    "segments": 78,
-    "viewer": "index.html?episode=ftir",
-    "review": "audits/optical_exchange_01/sampled_interaction_review.json",
-    "initial_conditions": "Materials delivered to FTIR staging, access open, reference capped; upstream delivery is not executed",
-    "source": "optical_episode.json",
+    "duration_s": 774.9245260249947,
+    "segments": 136,
+    "viewer": "index.html?episode=ftir_delivery",
+    "review": "audits/optical_delivery_composed_02/composed_review.json",
+    "initial_conditions": [
+      "Both identified witnesses begin at their existing Cary-side bench support poses. Cary measurement and clamp operation are not executed.",
+      "The ordinary tweezers and tray are already allocated to FTIR staging. Supply preparation is not executed.",
+      "The Nicolet access is open and its reference is capped. Background/sample acquisition and the complete paper workflow are not executed."
+    ],
+    "source": "optical_delivery_episode.json",
     "replacement_full_film": false,
     "force_or_dynamics_qualified": false
   }
