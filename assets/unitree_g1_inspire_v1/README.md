@@ -39,6 +39,20 @@ grasping, sensor-only controller or manipulation sequence is qualified.
   The zero-thumb pose still has small false contacts with the approximate
   palm geometry. See the package's correspondence reports and the FTIR run
   contact reviews; full-range hand contact qualification remains open.
+- `collision_refinements/distal_v1/`: optional right index-2 and thumb-4
+  contact exteriors built by `build_distal_collision.py`. The package contains
+  8,582 index cells and 12,031 thumb cells, with source and generated hashes.
+  A sealed thumb void is filled for collision only after checking its minimum
+  1.208 mm wall separation. The index exterior receives 1 micrometre bounded
+  simplification; maximum sampled exterior deviation is 1.066 micrometres.
+  These sampled checks are not a global surface-error certificate. Visuals,
+  explicit body inertias and source limits are preserved. The compiled review
+  in `simulation/g1_cooling_demo/analysis/ftir_distal_contact_04` removes the
+  selected false hull contacts while retaining real source intersections.
+  Cover attempt 11 still slips; this package does not qualify a grasp. Thin
+  mesh cells use shell centering while the bodies retain explicit inertials.
+  The large cell count increases simulation cost. Builder versions are pinned
+  in the package's `environment.json` and the simulation requirements.
 - `space.json`: 129 restricted static source-kinematic poses, official wrist
   transforms and a conservative hand-chain radius. The 0.60 m body/hand radius,
   0.10 m route margin and 1.43 m height allowance exclude cameras and dynamic

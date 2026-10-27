@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import sys
 import time
+import xml.etree.ElementTree as ET
 
 import mujoco
 import numpy as np
@@ -19,20 +20,34 @@ from observations import robot_joints
 from world import build, HERE
 
 
-def run(out,duration=40,timestep=.002,operation='press'):
+def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
     if operation not in {'press','cover'}:raise ValueError('Unknown FTIR operation')
     cover=operation=='cover'
     actor_name='ftir_cover_actor.py' if cover else 'ftir_actor.py'
-    initial_xy=[5.95,-5.35] if cover else [5.95,-5.55]
+    initial_xy=([5.95,-5.35] if cover else [5.95,-5.55]) if initial_xy is None else list(map(float,initial_xy))
+    if len(initial_xy)!=2 or not np.isfinite(initial_xy).all():raise ValueError('Initial robot map XY must contain two finite values')
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
     if any(out.iterdir()):raise ValueError('Use a new empty FTIR attempt directory')
     snapshot=out/'source_snapshot';snapshot.mkdir();pins={}
     for path in HERE.glob('*.py'):
         shutil.copyfile(path,snapshot/path.name);pins[path.name]=hashlib.sha256(path.read_bytes()).hexdigest()
     path=build(out,timestep=timestep,tray=False,laboratory=True,articulated_ftir=True,
-               refined_thumb_contacts=True,sole_contact_time_constant=.004,hand_touch=cover)
+               refined_thumb_contacts=True,sole_contact_time_constant=.004,hand_touch=cover,refined_distal_contacts=cover)
     control=build(out/'controller_model',timestep=timestep,tray=False,laboratory=True,map_only=True,
                   refined_thumb_contacts=True,sole_contact_time_constant=.004,hand_touch=cover)
+    if cover:
+        # State estimation, arm IK and the balance QP use robot kinematics and
+        # explicit body dynamics, never the predictor's contact solver. Keep
+        # its source meshes compact; native tactile observations come from
+        # the separately simulated full-resolution physical plant.
+        predictor=ET.parse(control);option=predictor.getroot().find('option')
+        flag=option.find('flag')
+        if flag is None:flag=ET.SubElement(option,'flag')
+        flag.set('contact','disable');ET.indent(predictor);predictor.write(control,encoding='unicode')
+        (out/'controller_model/profile.json').write_text(json.dumps(dict(
+            collision_solver_used=False,source_body_dynamics_unchanged=True,physical_plant_contacts_disabled=False,
+            rationale='Robot state/IK/inverse-dynamics predictor; hand touch remains a plant sensor input.',
+            regression='simulation/g1_cooling_demo/analysis/ftir_predictor_contact_01/review.json'),indent=2)+'\n')
     model=mujoco.MjModel.from_xml_path(str(path));data=(initialize_cover if cover else initialize)(model,initial_xy)
     robot=set()
     for body in range(model.nbody):

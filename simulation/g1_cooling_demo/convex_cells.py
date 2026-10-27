@@ -54,7 +54,7 @@ def clean(mesh):
     return mesh
 
 
-def decompose(mesh):
+def decompose(mesh, holes=None):
     from meshpy.tet import MeshInfo, Options, build
 
     mesh = clean(mesh)
@@ -66,6 +66,7 @@ def decompose(mesh):
     info = MeshInfo()
     info.set_points(mesh.vertices)
     info.set_facets(mesh.faces)
+    if holes is not None and len(holes):info.set_holes(holes)
     tet = build(info, options=Options('pYQ'))
     points = np.asarray(tet.points)
     elements = np.asarray(tet.elements)

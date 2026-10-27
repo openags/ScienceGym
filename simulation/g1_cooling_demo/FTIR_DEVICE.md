@@ -205,8 +205,10 @@ Retained attempts:
 | `ftir_cover_07` | Putting the wrist reaction into the full floating-base balance QP restores the support check and lifts to 37.50 degrees, then loses contact. The hand releases and withdraws, but final arm return fails. The independent prior-limit check also rejects the old grasp. |
 | `ftir_cover_08` | The refined grasp passes the source prior/joint-limit checks and lifts to 22.43 degrees. Finger self contacts and loss of pad/handle contact remain; withdrawal reaches an arm limit. This run also fails opening acceptance. |
 | `ftir_cover_09` | A smooth 15-degree rolling allowance keeps the nominal hand clear of the cover through the planned arc, but the physical grasp still slips. The lid reaches 22.99 degrees; withdrawal again reaches an arm limit. Support, source limits, isolation and exact replay pass; grasp retention, opening and release fail. |
+| `ftir_cover_10` | A grasp centered further inside the source pads reaches about 4.5 N on each digit, but loses contact before the confirmation interval completes. Maximum cover opening is 0.72 degrees; recovery stops at an arm limit. Source limits, support, isolation and exact replay pass. |
+| `ftir_cover_11` | With source-derived distal contact cells and lower controller grip targets, the hand establishes grip and lifts to 14.01 degrees, then slips. Recovery stops at an arm limit. Source limits, support, isolation, release and exact motor replay pass; grasp retention, opening and unintended-contact checks fail. |
 
-All nine attempts retain source snapshots, isolated input bundles, lossless
+All eleven attempts retain source snapshots, isolated input bundles, lossless
 sensor records, every physics-step state and motor command, and independent
 replay reports. Exact motor replay and the isolation checks pass, while the
 opening checks fail. In run 04 the idle left arm clears the bench, but early
@@ -236,6 +238,55 @@ compiled convex hulls still report contact. Both grasp placement/control
 and the contact representation need correction; removing false hull
 contacts alone cannot be counted as a successful grasp.
 
+`refine_ftir_pad_centers.py` adds an exposed-face margin to the source-relative
+grasp search. The previous index contact was only about 0.11 mm from the pad
+edge. Search 06 finds 24 local candidates with at least 0.5 mm projected margin;
+candidate 0 is used by attempts 10/11. The nearby authored stance
+`--initial-xy 5.95 -5.32` passes arm-path preflight where the old stance fails.
+This 3 cm setup adjustment is not executed walking. Search 05 and the later
+large-pad search 08 have zero accepted candidates; their collision failures
+remain recorded. Search 07 corrects small-triangle proximity evaluation by
+performing distance queries in millimetres and converting the results back to
+metres. The earlier exact FCL distance checks are separate from that numerical
+issue. All these searches remain development geometry screens.
+
+The optional `collision_refinements/distal_v1` package replaces two filled
+distal-finger hulls with 20,613 source-derived convex cells. The manufacturer
+exterior meshes contain intersections that prevent direct tetrahedralization.
+The builder fills a demonstrably sealed thumb cavity for collision and applies
+1 micrometre index exterior simplification before conforming decomposition.
+Source visuals, body inertias, joint bounds and collision filters remain
+unchanged. Compiled checks in `analysis/ftir_distal_contact_04` remove selected
+false contacts from runs 03/09 and retain their real intersections. The package
+does not make run 11 a successful grasp. See its manifest for source hashes,
+sampled surface error, sealed-void separation and serialization checks.
+
+Run 11's offline `analysis/ftir_cover_drift_11` examines the saved geometry.
+Between 14.5 and 19 seconds, the mean of the two selected source pad centers
+moves about 2.46 mm along one wrist-frame axis as the fingers flex. That is
+larger than the nominal pad-edge margins. These centers are not pressure
+centroids, and the observation alone does not establish the cause of slipping.
+It motivates checking finger-dependent grasp centering before another attempt;
+recorded instrument states are not controller inputs.
+
+After run 11, the runner keeps the high-resolution contacts in the physical
+plant but uses the compact source robot in the actor's kinematic/dynamic
+predictor with its unused contact solver disabled. Ten retained sensor-state
+comparisons in `analysis/ftir_predictor_contact_01` produce identical estimated
+state, mass/bias/passive terms, IK and balance torques, including a wrist load.
+That sampled regression takes 0.89 s with the old predictor and 0.044 s with the
+compact predictor; it is not a full-run speed benchmark or execution check.
+Run 11 itself used the earlier full-resolution predictor. A future complete
+run still must validate the revised runner.
+
+The official Inspire tactile-hand manual is linked with a content hash in
+`analysis/inspire_tactile_definition_01/source.json`. Its tactile arrays report
+16-bit raw samples (0–4096), while force-control registers are a separate
+interface. The seven scalar Newton channels above remain an inferred simulator
+abstraction. Source mesh sizes suggest distinguishing small terminal pads from
+larger fingertip pads, but that mapping is not a calibrated register-to-mesh
+binding; the rejected large-pad search does not authorize a collision exemption.
+
 The separate offline plane study `analysis/ftir_cover_plane_04` rejects
 views with fewer than 500 supporting depth pixels. On development runs
 07/08 it accepts 60/59 of 81 frames, with maximum accepted-frame angle errors
@@ -259,7 +310,7 @@ pad grasp.
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 \
 python simulation/g1_cooling_demo/run_ftir_cover.py \
-  --out simulation/g1_cooling_demo/runs/ftir_cover_new --duration 60
+  --out simulation/g1_cooling_demo/runs/ftir_cover_new --duration 60 --initial-xy 5.95 -5.32
 OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_cover.py \
   simulation/g1_cooling_demo/runs/ftir_cover_new
 OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py \

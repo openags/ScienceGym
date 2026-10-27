@@ -50,6 +50,9 @@ class CoverActor(FTIRActor):
         self.filtered_load = np.zeros(2)
         self.grip_effort = np.zeros(2)
         self.grip_control = None
+        # Stop closing before the narrow pads roll off the bar. These are
+        # development controller targets, not changes to acceptance criteria.
+        self.grip_lower_n,self.grip_upper_n,self.grip_confirm_n = 4.,8.,3.
         self.initial_com = self.d.subtree_com[self.m.body('pelvis').id].copy()
         self.centered_com = self.balance.com_target.copy()
         self.wrist_integral = np.zeros(3)
@@ -195,14 +198,14 @@ class CoverActor(FTIRActor):
                 self.balance.palm_rotations={'right':target_R};targets={'right':target}
                 contact=min(self.last_touch.values())>.15
                 if name=='close':
-                    if np.min(self.filtered_load)>=4.5:
+                    if np.min(self.filtered_load)>=self.grip_confirm_n:
                         if self.grasp_since is None:self.grasp_since=t
                         if t-self.grasp_since>=.2:self.grasp_confirmed=True
                     else:self.grasp_since=None;self.grasp_confirmed=False
                 force_active=name in {'close','lift','hold'} and not self.failure
                 if force_active:
                     ramp=min(1.,max(0.,(t-self.phase_started)/1.5)) if name=='close' else 1.
-                    low,high=6.*ramp,10.
+                    low,high=self.grip_lower_n*ramp,self.grip_upper_n
                     force_error=np.maximum(0.,low-self.filtered_load)-np.maximum(0.,self.filtered_load-high)
                     self.grip_effort=np.clip(self.grip_effort+.08*dt*force_error,0.,.65)
                     # Loaded finger contacts push the compliant wrist away
@@ -216,7 +219,8 @@ class CoverActor(FTIRActor):
                 else:
                     self.grip_effort[:]=0;self.wrist_integral[:]=0
                     self.wrist_load_compensation=None
-                self.grip_control=dict(filtered_load_n=self.filtered_load.tolist(),additional_effort_nm=self.grip_effort.tolist(),active=force_active)
+                self.grip_control=dict(filtered_load_n=self.filtered_load.tolist(),additional_effort_nm=self.grip_effort.tolist(),active=force_active,
+                                       target_band_n=[self.grip_lower_n,self.grip_upper_n],confirmation_threshold_n=self.grip_confirm_n)
                 if name in {'lift','hold'}:
                     if contact:self.lost_since=None
                     elif self.lost_since is None:self.lost_since=t

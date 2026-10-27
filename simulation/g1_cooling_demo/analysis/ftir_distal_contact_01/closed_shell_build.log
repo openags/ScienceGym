@@ -1,0 +1,17 @@
+decompose right_thumb_4 faces 10924 holes 1
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/unitree_g1_inspire_v1/build_distal_collision.py", line 73, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--out',required=True);a=p.parse_args();build(a.out)
+                                                                                       ^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/unitree_g1_inspire_v1/build_distal_collision.py", line 50, in build
+    cells=decompose(core,holes=holes);dest=out/link;dest.mkdir();pieces=[];volume=0.
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/convex_cells.py", line 70, in decompose
+    tet = build(info, options=Options('pYQ'))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/sciencegym-sim-venv/lib/python3.12/site-packages/meshpy/tet.py", line 191, in build
+    return tetrahedralize(mesh_info, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/sciencegym-sim-venv/lib/python3.12/site-packages/meshpy/tet.py", line 160, in tetrahedralize
+    internals.tetrahedralize(options, mesh_info, mesh)
+RuntimeError: TetGen runtime error code 3
