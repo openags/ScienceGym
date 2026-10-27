@@ -331,6 +331,65 @@ Rebuild and review with `build_cary_clamp_candidate.py`,
 `review_cary_clamp.py`, and `preview_cary_clamp.py` under
 `viewer/cooling_concept_v2/`, using the simulation Python environment.
 
+### Executed Cary access preparation
+
+The separate `?episode=cary_access` viewer now composes 23 segments over
+81.09 seconds in the same complete laboratory. G1 grips the main lid pull,
+slides it 150 mm, releases and withdraws, takes four grounded foot placements
+to the hood stance, grips and unhooks the removable hood, steps backward,
+lowers it for carrying, moves sideways, approaches the bench, seats the hood,
+releases it and withdraws its hand. The hood follows source palm FK while
+held and remains at its supported bench pose after release. Every boundary
+checks joint, root, lid and hood continuity. This is access preparation;
+reference/sample exchange, acquisition, cover restoration and the whole paper
+workflow remain unfinished.
+
+The [cover revision](../../assets/cary_5000_v1/revisions/cover_clearance/operable_revision.json)
+adds open-bottom hose-barb reliefs and a selected 20 mm grip clearance while
+preserving 103 unrelated source parts. These local dimensions are explicitly
+inferred, not manufacturer CAD or measured dimensions. The manufacturer manual
+allows complete hood removal. Opening the main lid in two stages is an
+inferred operation sequence: this episode performs only the first 150 mm.
+The original hood and the earlier relief-only revision remain available.
+
+The first exported access attempt retains an oversized lid-finger gap. The
+second tightens the static fit to 0.1 mm but reveals seven interpolated thumb
+intersection states. `refine_cary_lid_path.py` inserts 47 projected contact
+knots to constrain motion between endpoints. Those failed exports and their
+exact renderer sources remain under `audits/cary_access_01` and
+`audits/cary_access_02`. A third export finds one 78 micrometre hood/rail
+interpenetration during the first lift. `refine_cary_cover_path.py` inserts
+180 constrained lift knots, preserving the asset's dimensions and rail fit.
+A key-pose fit is not treated as proof of continuous contact. The clearance
+checker also bounds the actual source-normal overlap
+at nominal hood/base bearing faces; it does not excuse arbitrary contact
+depths. Inspection captures are under
+`viewer/cooling_concept_v2/previews/cary_episode_inspection/`.
+
+The final [sampled access review](../../viewer/cooling_concept_v2/audits/cary_access_04/sampled_interaction_review.json)
+covers all 23 segments in 4,933 states, using 0.1-second samples plus knots
+and boundary samples. It reports zero unexpected robot/environment, self or
+moving-device intersections, and zero joint/sole, FK, ownership, grasp-clearance
+or bench-support failures. Maximum sampled index/thumb clearances are 0.105 mm
+at the main-lid pull and 0.118 mm at the hood handle. The resting hood's bottom
+is 0.976 micrometres above the actual source worktop. These toleranced geometric
+contacts do not establish grasp retention or support forces.
+
+Export and independently review the live access episode with:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/cary_access_recheck --step .1 --episode cary_access
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_cary_access.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/review_cary_episode.py viewer/cooling_concept_v2/audits/cary_access_recheck
+```
+
+The access variant does not install the separate working clamp candidate.
+The original 9 min 39 s movie remains unchanged; this episode does not replace
+it or grant contact-force, balance, dynamics, branch or campaign qualification.
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a
