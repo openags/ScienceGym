@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-27**. Candidate count: **360**.
+Last screened: **2026-10-27**. Candidate count: **361**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3679,3 +3679,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [32-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69907-x/MediaObjects/41467_2026_69907_MOESM1_ESM.pdf) text accessible; selected calibration, uncertainty and sampling-point disclosures screened. Apparent reversed temperature bias remains within experimental uncertainty. Remaining text, figure pixels, peer review and source data were not fully reviewed.
 - Scope is prepared-specimen optical metrology and record coordination only. Fabrication, plasma processing, cryogenic/vacuum handling, electrical heating and laser operation are excluded; instrument and fixture qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-27**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: prepared membrane specimen metrology (2026-10-27)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [In situ synchrotron X-ray scattering reveals organic-mediated scaling mechanisms on desalination membranes](https://www.nature.com/articles/s41467-026-70508-x) | Nature Communications / 2026 | 10.1038/s41467-026-70508-x | Prepared-coupon custody, reference comparisons, spatial registration and repeated spectral mapping suggest a future coordinated environmental-metrology task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 4157 (2026); first published **10 March 2026**, version of record **7 May 2026**. Selected Results and Methods screened. Membrane measurements and membrane-free solution scattering remain distinct; model-derived interfacial quantities are not direct measurements.
+- Official [42-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70508-x/MediaObjects/41467_2026_70508_MOESM1_ESM.pdf) text accessible; selected replicate, infrared-reference and normalization disclosures screened. Flow-condition descriptions differ across passages and remain unresolved. Remaining text, figure pixels, peer review and source data were not fully reviewed.
+- Scope is prepared-specimen custody and measurement-record coordination only. Chemical preparation, pressure-system operation, sectioning and radiation-facility operation are excluded; specimen and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-27**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
