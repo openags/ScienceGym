@@ -46,19 +46,39 @@ def verify(folder):
     # plant and cannot modify the completed episode. Malformed packet content
     # is synthetic, not hidden ground truth from an experiment.
     prefix = namespace_prefix(code, folder/'actor_bundle/model')
-    entry_point = 'walking_actor.py' if 'walking_actor.py' in receipt['source_modules'] else 'actor_feedback.py'
+    entry_point = result.get('actor_entry_point') or ('walking_actor.py' if 'walking_actor.py' in receipt['source_modules'] else 'actor_feedback.py')
+    if entry_point not in receipt['source_modules']:
+        raise ValueError('Recorded actor entry point is not in the pinned bundle')
     command = prefix + [sys.executable,'/actor/'+entry_point,'--model','/model/world.xml']
+    if entry_point=='ftir_actor.py':
+        from depth_io import load as load_depth
+        recorded=np.load(folder/'sensor_observations.npz')
+        packet={k:recorded[k][0] for k in recorded.files}
+        packet['depth']=next(load_depth(folder))[1]
+        colors=json.loads((folder/'head_rgb_index.json').read_text())
+        packet['rgb']=np.load(folder/colors['chunks'][0]['path'])['rgb'][0]
+        baseline=subprocess.Popen(command,env=receipt['environment'],stdin=subprocess.PIPE,
+                                  stdout=subprocess.PIPE,stderr=subprocess.PIPE,close_fds=True)
+        baseline_out,baseline_err=baseline.communicate(pickle.dumps(packet,protocol=5),timeout=60)
+        baseline_response=pickle.loads(baseline_out)
+        check('valid_recorded_rgbd_packet_accepted',baseline.returncode==0 and baseline_response.get('error') is None
+              and np.shape(baseline_response.get('torque'))==(model.nu,) and np.isfinite(baseline_response['torque']).all(),
+              stderr=baseline_err.decode(errors='replace'))
+        check('no_instrument_state_in_actor_model',not any(n.startswith(('nicolet_','lab_nicolet')) for n in names))
+        packet['simulator_object_pose']='deliberately_forbidden_synthetic_field'
+    else:
+        packet = dict(time_s=0., joint_position=np.zeros(53), joint_velocity=np.zeros(53),
+                      imu_quaternion=np.array([1.,0.,0.,0.]), imu_gyro=np.zeros(3), depth=None,
+                      simulator_object_pose='deliberately_forbidden_synthetic_field')
     process = subprocess.Popen(command, env=receipt['environment'], stdin=subprocess.PIPE,
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
-    packet = dict(time_s=0., joint_position=np.zeros(53), joint_velocity=np.zeros(53),
-                  imu_quaternion=np.array([1.,0.,0.,0.]), imu_gyro=np.zeros(3), depth=None,
-                  simulator_object_pose='deliberately_forbidden_synthetic_field')
     stdout, stderr = process.communicate(pickle.dumps(packet, protocol=5), timeout=60)
     try:
         response = pickle.loads(stdout)
     except Exception as error:
         response = dict(error='Invalid actor response: '+str(error))
-    rejection = bool(process.returncode==0 and response.get('error')=='Non-sensor field in actor input'
+    expected_error='Non-sensor field in FTIR actor input' if entry_point=='ftir_actor.py' else 'Non-sensor field in actor input'
+    rejection = bool(process.returncode==0 and response.get('error')==expected_error
                      and np.array_equal(response.get('torque'), np.zeros(model.nu)))
     check('forbidden_packet_rejected_before_control', rejection, error=response.get('error'),
           process_returncode=process.returncode, stderr=stderr.decode(errors='replace'))

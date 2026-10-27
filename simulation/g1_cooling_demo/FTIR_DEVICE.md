@@ -79,9 +79,74 @@ and unused internal details remain unqualified.
 Masses, densities, friction, damping, spring rates and joint stops are explicitly
 inferred in `ftir_device.json`. The model is not calibrated manufacturer
 mechanics. The body/hand motion, perception of the device, grasp of its handle,
-actual G1 button contact, accessory installation, sample/tool dynamics and the
-full procedure remain to implement and validate. Qualified paper branches and
+accessory installation, sample/tool dynamics and the full procedure remain to
+implement and validate. The bounded G1 button attempt below does not change
+this status. Qualified paper branches and
 campaigns remain **zero**.
+
+## G1 observation and key contact
+
+`run_ftir_press.py` starts the floating G1 at an authored stationary posture
+in the existing laboratory. Native head RGB and depth locate the four blue
+instrument controls using their object-relative layout. The isolated actor
+receives the 53 robot encoder joints, IMU and images. Its model contains the
+robot and architecture, without instrument bodies, device joints or reference
+trajectories. It derives a right-index approach from the observed BACKGROUND
+surface, applies robot motor torques, holds briefly and returns its hand.
+This is one mechanical key press, not an acquisition or experimental branch.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 \
+python simulation/g1_cooling_demo/run_ftir_press.py \
+  --out simulation/g1_cooling_demo/runs/ftir_press_new --timestep .002
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_press.py \
+  simulation/g1_cooling_demo/runs/ftir_press_new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py \
+  simulation/g1_cooling_demo/runs/ftir_press_new
+```
+
+- Press 01 fails before reaching: the original left prepared hand intersects
+  the hip. Press 02 clears that setup but reaches a shoulder-roll IK limit.
+- Press 03 reaches and depresses the key, then fails to withdraw because its
+  free-space wrist-orientation condition remains active during contact.
+- Press 04 completes press and return, but its independent review rejects
+  false palm/thumb collisions and excessively compliant floor contact.
+- [Press 05](runs/ftir_press_05/physical_press_review.json) completes 27.622 s
+  and replays all 13,812 recorded states exactly. The intended index pad
+  depresses BACKGROUND to 0.3214 mm, sustains the pressed/contact condition for
+  1.14 s, then releases to 0.0178 mm. Other keys stay untouched. No external
+  body/joint forces or device actuators are used. Only the soles/floor and
+  intended pad/key contact occur. Maximum numerical penetration is 0.2434 mm
+  at a sole and 0.0972 mm at the key, within the declared finite tolerances.
+  Source motor and joint bounds, support and numerical checks pass.
+- [Press 05 isolation](runs/ftir_press_05/isolation_verification.json) accepts
+  a valid recorded RGB-D packet and rejects the same packet with an extra
+  synthetic object-pose field. Filesystem, process and network denial probes
+  pass, and the exact actor code and model inputs are pinned.
+- [Press 06](runs/ftir_press_06/physical_press_review.json) reruns the same
+  setup with a 1 ms step and the same camera/control rates. All 27,641 states
+  replay exactly and the same independent contact/isolation checks pass.
+  Peak key travel is 0.3138 mm, compared with 0.3214 mm at 2 ms; release returns
+  to 0.0178 mm in both runs. This is a two-step-size development comparison,
+  not a perturbation or repeatability campaign. The combined metrics are in
+  `ftir_press_development_review.json`.
+
+The clean [27.625-second press video](runs/ftir_press_05/press.mp4) renders the
+recorded plant states without interpolating physics. Its 663 frames map back
+to retained trace indices in `press_video.json`. It has no text overlays and
+is linked separately from the nine-minute authored workflow on the player.
+To export a checked new run, use `render_ftir_press.py RUN_DIRECTORY` with the
+same EGL environment variables as above.
+
+The thumb-2 refinement is an approximate source-derived contact representation,
+not a visual change or a globally qualified hand model. Sole/floor pairs use an
+inferred 4 ms contact time constant and 0.99 impedance; these are numerical
+development parameters, not measured floor or shoe properties. Camera optics,
+ideal images and fixed-foot state estimation remain uncalibrated. Acquisition
+configuration, walking to the instrument, accessory installation, sample and
+reference exchange, robust recovery and repeatability are still outside this
+single-attempt result. The clean nine-minute cross-station video remains the
+separate authored workflow demonstration.
 
 Technical references: [MuJoCo collision computation](https://mujoco.readthedocs.io/en/latest/computation/)
 and [MeshPy/TetGen interface](https://documen.tician.de/meshpy/tri-tet.html).

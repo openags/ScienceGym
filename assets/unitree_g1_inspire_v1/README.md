@@ -28,6 +28,17 @@ grasping, sensor-only controller or manipulation sequence is qualified.
   was reached; warnings are retained in `collision_components_build.log`.
   Small source components and other links still use convex hulls. Contact over
   the complete operating range and with objects remains unqualified.
+- `collision_refinements/thumb_2_v1/`: an optional runtime replacement for
+  the two filled thumb-2 hulls, with 128 source-derived convex pieces per hand.
+  The original single hull has about 3.82 times the source solid volume.
+  This refinement preserves visuals, inertias, joint limits and collision
+  filters. It removes the false initial palm/thumb contact in the FTIR press
+  setup. It is still approximate: sampled outward excess is up to 1.12 mm,
+  and sampled missing surface distance up to 0.228 mm. Both 128-piece caps
+  were reached; the requested 0.1 mm metric is not an achieved global bound.
+  The zero-thumb pose still has small false contacts with the approximate
+  palm geometry. See the package's correspondence reports and the FTIR run
+  contact reviews; full-range hand contact qualification remains open.
 - `space.json`: 129 restricted static source-kinematic poses, official wrist
   transforms and a conservative hand-chain radius. The 0.60 m body/hand radius,
   0.10 m route margin and 1.43 m height allowance exclude cameras and dynamic

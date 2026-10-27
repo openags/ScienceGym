@@ -12,11 +12,14 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 ROBOT=ROOT/'assets/unitree_g1_inspire_v1'
 
 
-def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False, articulated_ftir=False):
+def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False, articulated_ftir=False, sole_contact_time_constant=None, refined_thumb_contacts=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     xml=ET.parse(ROBOT/'simulation/robot.xml').getroot()
     xml.set('model','ScienceGym G1 Inspire contact development')
     xml.find('compiler').set('meshdir',os.path.relpath(ROBOT,out))
+    if refined_thumb_contacts:
+        from thumb_contacts import attach as attach_thumb_contacts
+        attach_thumb_contacts(xml,out)
     xml.find('option').attrib.update(timestep=str(timestep),iterations='100',tolerance='1e-9',solver='Newton')
     world=xml.find('worldbody');world.find("geom[@name='review_floor']").set('rgba','.25 .30 .32 1')
     for side in ['left','right']:
@@ -28,10 +31,12 @@ def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, 
     ET.SubElement(xml.find('sensor'),'framequat',name='imu_orientation',objtype='site',objname='pelvis_imu')
     ET.SubElement(xml.find('sensor'),'gyro',name='imu_angular_velocity',site='pelvis_imu')
     rig=json.loads((ROOT/'assets/g1_sensor_rig_v1/rig.json').read_text())
-    optical=next(c for c in rig['optics'] if c['id']=='head_depth');t=np.asarray(optical['parent_from_optical'])
     camera_body=xml.find(".//body[@name='d435_link']")
-    q=Rotation.from_matrix(t[:3,:3]@np.diag([1,-1,-1])).as_quat();q=np.r_[q[3],q[:3]]
-    ET.SubElement(camera_body,'camera',name='head_depth',pos=' '.join(map(str,t[:3,3])),quat=' '.join(map(str,q)),fovy='58')
+    for camera_name in ['head_depth', 'head_rgb']:
+        optical=next(c for c in rig['optics'] if c['id']==camera_name);t=np.asarray(optical['parent_from_optical'])
+        q=Rotation.from_matrix(t[:3,:3]@np.diag([1,-1,-1])).as_quat();q=np.r_[q[3],q[:3]]
+        ET.SubElement(camera_body,'camera',name=camera_name,pos=' '.join(map(str,t[:3,3])),
+                      quat=' '.join(map(str,q)),fovy=str(optical['profile']['vertical_fov_deg']))
     for name,position,size,color in [('bench_top',[.83,0,.875],[.45,.70,.025],[.39,.44,.45,1]),
             ('bench_leg_a',[.43,-.65,.425],[.025,.025,.425],[.65,.67,.66,1]),
             ('bench_leg_b',[1.29,-.65,.425],[.025,.025,.425],[.65,.67,.66,1]),
@@ -90,5 +95,23 @@ def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, 
     if laboratory:
         from laboratory import attach
         attach(xml,out,map_only=map_only,articulated_ftir=articulated_ftir)
+    if sole_contact_time_constant is not None:
+        if not laboratory:raise ValueError('Sole contact profile requires source laboratory floors')
+        imported=json.loads((out/'laboratory_import.json').read_text())
+        floors=[p['geom'] for p in imported['parts'] if p['instance']=='architecture' and p['source_part'] in
+                {'indoor_floor','annex_floor','outdoor_floor','outdoor_access_path'}]
+        soles=[g.get('name') for side in ['left','right'] for g in
+               xml.find(f".//body[@name='{side}_ankle_roll_link']").findall('geom') if '_collision_' in g.get('name','')]
+        contact=xml.find('contact')
+        if contact is None:contact=ET.SubElement(xml,'contact')
+        for sole in soles:
+            for floor in floors:
+                ET.SubElement(contact,'pair',geom1=sole,geom2=floor,
+                              solref=f'{sole_contact_time_constant} 1',solimp='.99 .99 .001',
+                              friction='.7 .7 .005 .0001 .0001')
+        (out/'sole_contact_profile.json').write_text(json.dumps(dict(
+            soles=soles,floors=floors,time_constant_s=sole_contact_time_constant,damping_ratio=1.,
+            impedance=.99,parameters_inferred=True,
+            scope='Numerical contact compliance; source foot/floor shapes and body dynamics are unchanged. Timestep sensitivity remains required.'),indent=2)+'\n')
     path=out/'world.xml';ET.indent(xml);ET.ElementTree(xml).write(path,encoding='unicode')
     return path
