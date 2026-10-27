@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-27**. Candidate count: **361**.
+Last screened: **2026-10-27**. Candidate count: **362**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3690,4 +3690,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** *Nature Communications* **17**, 4157 (2026); first published **10 March 2026**, version of record **7 May 2026**. Selected Results and Methods screened. Membrane measurements and membrane-free solution scattering remain distinct; model-derived interfacial quantities are not direct measurements.
 - Official [42-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70508-x/MediaObjects/41467_2026_70508_MOESM1_ESM.pdf) text accessible; selected replicate, infrared-reference and normalization disclosures screened. Flow-condition descriptions differ across passages and remain unresolved. Remaining text, figure pixels, peer review and source data were not fully reviewed.
 - Scope is prepared-specimen custody and measurement-record coordination only. Chemical preparation, pressure-system operation, sectioning and radiation-facility operation are excluded; specimen and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-27**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: prepared alloy specimen mechanical metrology (2026-10-27)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Strength-ductility synergy in lightweight aluminium alloys with nano-layered fibres and core-shell nano-particles](https://www.nature.com/articles/s41467-026-74748-9) | Nature Communications / 2026 | 10.1038/s41467-026-74748-9 | Prepared-specimen custody, repeated mechanical measurements and matched pre/post-test imaging suggest a future coordinated materials-metrology task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 8242 (2026); first published **23 June 2026**, version of record **12 August 2026**. Selected Results and Methods screened. Measured mechanical properties and model-estimated strengthening contributions remain distinct.
+- Official [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74748-9/MediaObjects/41467_2026_74748_MOESM1_ESM.pdf) text accessible; selected comparison and specimen-location captions screened. The separate video-description PDF identifies an atom-probe reconstruction, not an experimental workflow recording. Remaining text, figure/table pixels, video, peer review and source data were not fully reviewed.
+- Scope is prepared-specimen custody and measurement-record coordination only. Alloy melting, thermal processing, machining, ion-beam preparation and specialized instrument operation are excluded; fixtures, specimen handling and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-27**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
