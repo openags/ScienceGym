@@ -1,0 +1,147 @@
+{
+  "scope": "Bounded offline reference-grasp searches using unchanged selected G1/Inspire source meshes and prepared Nicolet/PIKE geometry. No qualified execution.",
+  "reports": [
+    {
+      "path": "simulation/g1_cooling_demo/analysis/nicolet_slider_access_03/review.json",
+      "sha256": "e6f3a7b71bade61e464a2cc831afd1ff9963ed49dc5cedfdcf0b1236ceb3691c",
+      "pad_fits": 32,
+      "passed_pad_fits": 7,
+      "placements": 672,
+      "seated_hand_clearance_candidates": 0,
+      "passed_hand_paths": 0,
+      "rejected": {
+        "pad_fit": 25,
+        "reference_contact": 336,
+        "instrument_contact": 336
+      }
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/nicolet_slider_access_04/review.json",
+      "sha256": "1f88eea5272bfccc82919cc7a0d2299ce8ce221d8c7f7d5b188be48163ba803e",
+      "pad_fits": 48,
+      "passed_pad_fits": 19,
+      "placements": 1824,
+      "seated_hand_clearance_candidates": 0,
+      "passed_hand_paths": 0,
+      "rejected": {
+        "pad_fit": 29,
+        "reference_contact": 840,
+        "instrument_contact": 984
+      }
+    }
+  ],
+  "top_instrument_pairs": [
+    {
+      "parts": [
+        "left_base_link",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 768
+    },
+    {
+      "parts": [
+        "left_thumb_2",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 637
+    },
+    {
+      "parts": [
+        "left_base_link",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 596
+    },
+    {
+      "parts": [
+        "left_little_2",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 527
+    },
+    {
+      "parts": [
+        "left_ring_1",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 506
+    },
+    {
+      "parts": [
+        "left_palm_force_sensor",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 505
+    },
+    {
+      "parts": [
+        "left_little_1",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 483
+    },
+    {
+      "parts": [
+        "left_little_1",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 447
+    },
+    {
+      "parts": [
+        "left_little_2",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 440
+    },
+    {
+      "parts": [
+        "left_middle_1",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 432
+    },
+    {
+      "parts": [
+        "left_palm_force_sensor",
+        "nicolet::sample_access_sliding_window"
+      ],
+      "placement_count": 400
+    },
+    {
+      "parts": [
+        "left_thumb_1",
+        "nicolet::sample_bay_lid"
+      ],
+      "placement_count": 388
+    }
+  ],
+  "finding": "Pad-level geometry fits exist, but none of the tested seated whole-hand placements clears both reference and instrument. No insertion trajectory was credited.",
+  "qualification": {
+    "equipment_geometry_changed": false,
+    "selected_hand_changed": false,
+    "controller_changed": false,
+    "new_physical_attempts": 0,
+    "whole_robot_checked": false,
+    "physics_qualified": false,
+    "complete_branches": 0
+  },
+  "limits": [
+    "This bounded search is not an infeasibility proof.",
+    "Reference holder and window dimensions remain inferred; failed geometry fits do not validate those dimensions.",
+    "Pad clearance criteria are proposal filters, not replacement physical acceptance criteria.",
+    "Search 03 retains all optimization fits and rejection counts; search 04 additionally retains every placement and collision pair.",
+    "No fit was adopted into the authored video or physical controller."
+  ],
+  "next_decision": "Resolve access with a source-supported cover manipulation or ordinary handling tool; do not resize equipment for robot clearance or assert that a vendor handle exists without evidence.",
+  "primary_references": [
+    {
+      "url": "https://www.piketech.com/files/user-manuals/MidIntegratIRwDTGSManual.pdf",
+      "scope": "Installed accessory and reference substitution; does not establish holder dimensions or access through this modeled sliding opening."
+    },
+    {
+      "url": "https://www.piketech.com/files/user-manuals/UpwardIntegratIR_Manual.pdf",
+      "scope": "Manufacturer search identifies part 048-3000; no new dimensional specification established in this turn."
+    }
+  ]
+}
