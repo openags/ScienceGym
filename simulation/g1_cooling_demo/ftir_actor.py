@@ -20,8 +20,8 @@ from ftir_vision import KeyRowObservation
 class FTIRActor:
     fields={'time_s','joint_position','joint_velocity','imu_quaternion','imu_gyro','depth','rgb'}
 
-    def __init__(self, model, xy, label='BACKGROUND'):
-        self.m=model;self.d=initialize(model,xy);self.label=label
+    def __init__(self, model, xy, label='BACKGROUND', initial_state=None):
+        self.m=model;self.d=initialize(model,xy) if initial_state is None else initial_state;self.label=label
         self.estimate=StateEstimate(model,self.d);self.balance=Balance(model,self.d)
         self.balance.rotate_foot_constraints=True
         self.vision=KeyRowObservation(model,self.d);self.hand=PointingHand(model);self.ik=ArmIK(model)

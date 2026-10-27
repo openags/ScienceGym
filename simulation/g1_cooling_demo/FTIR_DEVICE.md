@@ -153,3 +153,85 @@ and [MeshPy/TetGen interface](https://documen.tician.de/meshpy/tri-tet.html).
 MeshPy's wrapper is MIT-licensed; its bundled TetGen has separate
 [licensing terms](https://documen.tician.de/meshpy/faq.html). This repository
 uses the installed offline mesher and does not vendor its implementation.
+
+## Sensor-based cover grasp development
+
+`run_ftir_cover.py` starts another isolated actor in the complete laboratory.
+It observes the native RGB-D key row, fits the handle cylinder in the depth
+image, and uses object-relative hinge dimensions to construct an opening arc.
+The grasp prior contains no instrument world placement or plant trajectory.
+The complete approach, opening arc and withdrawal receive robot-only IK
+preflight. The prepared standing posture is setup, not walking credit.
+
+Seven native scalar touch sensors cover the source right index and thumb pad
+meshes. Their bounds derive from those meshes with a 0.1 mm margin. Readings
+contain neither contacted-object identities nor device joint state; self
+contact can also load them. This is an inferred force abstraction, not a
+calibrated reproduction of the manufacturer's tactile arrays. The controller
+must establish both pad loads before lifting and releases/withdraws when
+contact is lost. Independent review checks the actual handle contacts and
+passive cover angle after execution; controller state alone is not success.
+
+The source-pad grasp search in `fit_ftir_cover_pad_grasp.py` requires two
+opposing distal tactile pads and whole-hand source-mesh clearance. Its first
+16 candidates were invalid: the search had omitted the thumb-1 joint limit
+and selected 1.20 rad against the source upper bound of 1.1641 rad. The plant
+therefore could not reproduce the planned hand shape. Runs 04–07 preserve
+that failure; their opening motion does not qualify the grip. The corrected
+search checks nominal and closed configurations, including mimic joints,
+and the actor now rejects an out-of-range prior before commanding motors.
+The independent verifier also checks commanded grasp limits separately from
+the measured joint trajectory.
+
+`refine_ftir_cover_grasp.py` keeps a source-relative palm rotation while
+refitting the fingers and palm translation inside those source limits. Its
+exact triangle-mesh acceptance checks are separate from the optimization's
+surface-point approximation. Whole-body reach and physical execution are
+still required after these local geometric searches. Refinement 04 finds
+18 local candidates that pass the observed arm-path preflight; candidate 0
+is used by run 08. The preceding 12-candidate bounded search failed the
+full path screens, and its rejected approach/stance variants are retained.
+
+Retained attempts:
+
+| Run | Observed outcome |
+| --- | --- |
+| `ftir_cover_01` | Camera view loses enough key-row depth points after settling; no approach. |
+| `ftir_cover_02` | Reaches the approach, but the extended thumb hits the case during alignment. |
+| `ftir_cover_03` | Simultaneous approach/curl and depth handle fitting reach the grip pose, but the old whole-finger grasp does not load both tactile pads. Recovery completes. |
+| `ftir_cover_04` | The new pad-specific grasp establishes two contacts and physically lifts the cover 2.84 degrees, then loses the thumb pad during lift. Recovery completes; the cover closes. |
+| `ftir_cover_05` | Bounded tactile load adaptation reaches about 5 N per digit, but continued timed closure and wrist deflection lose the grip before lifting. Recovery completes. |
+| `ftir_cover_06` | Sensor-terminated closure and wrist load compensation lift to 28.60 degrees. Pad contact is lost; whole-body support review fails and recovery reaches an arm limit. |
+| `ftir_cover_07` | Putting the wrist reaction into the full floating-base balance QP restores the support check and lifts to 37.50 degrees, then loses contact. The hand releases and withdraws, but final arm return fails. The independent prior-limit check also rejects the old grasp. |
+| `ftir_cover_08` | The refined grasp passes the source prior/joint-limit checks and lifts to 22.43 degrees. Finger self contacts and loss of pad/handle contact remain; withdrawal reaches an arm limit. This run also fails opening acceptance. |
+
+All eight attempts retain source snapshots, isolated input bundles, lossless
+sensor records, every physics-step state and motor command, and independent
+replay reports. Exact motor replay and the isolation checks pass, while the
+opening checks fail. In run 04 the idle left arm clears the bench, but early
+sole penetration still exceeds the declared 1 mm tolerance. A smooth initial
+COM transfer in run 05 reduces peak sole penetration from 3.856 mm to
+0.575 mm, within the same declared tolerance. Runs 02/03 also
+include bench contacts. The source-mesh diagnostic for run 03 identifies a
+false convex-hull self contact between index-2 and thumb-4; it does not justify
+discarding real finger/case contacts.
+
+Reports are under `runs/ftir_cover_*/physical_cover_review.json` and
+`isolation_verification.json`. The diagnostic data under
+`analysis/ftir_cover_*` records
+the geometric and sensing decisions. The handle-depth predictions are saved
+separately from the held-out plant-state error review; that truth is not fed
+back to the actor. Cover opening remains unqualified. Review versions in
+runs 01–04 counted whole-finger handle loads; later versions require actual
+tactile-pad/handle contacts, so a link-shell contact cannot stand in for a
+pad grasp.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 \
+python simulation/g1_cooling_demo/run_ftir_cover.py \
+  --out simulation/g1_cooling_demo/runs/ftir_cover_new --duration 60
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_cover.py \
+  simulation/g1_cooling_demo/runs/ftir_cover_new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py \
+  simulation/g1_cooling_demo/runs/ftir_cover_new
+```

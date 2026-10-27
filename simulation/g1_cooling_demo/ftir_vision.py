@@ -23,7 +23,7 @@ class KeyRowObservation:
         if rgb is None or depth is None:
             return None
         rgb = np.asarray(rgb, dtype=float); depth = np.asarray(depth)
-        if rgb.shape != (360, 640, 3) or depth.shape != (180, 320):
+        if rgb.shape != (360, 640, 3) or depth.shape not in {(180, 320), (360, 640)}:
             raise ValueError('Unexpected native head image shapes')
         red, green, blue = rgb.transpose(2, 0, 1)
         mask = (blue > red*1.5+2) & (blue > green*1.15+1) & (blue > 8)

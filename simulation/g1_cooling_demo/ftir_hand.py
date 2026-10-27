@@ -35,6 +35,16 @@ def initialize(model, xy=(5.95, -5.55)):
     return data
 
 
+def initialize_cover(model, xy=(5.95, -5.35)):
+    """Prepared cover stance: observe the controls without clipping the row."""
+    data=initialize(model,xy)
+    data.joint('waist_pitch_joint').qpos[0]=-.3
+    data.joint('waist_yaw_joint').qpos[0]=-.2
+    data.joint('left_shoulder_pitch_joint').qpos[0]=.2
+    mujoco.mj_forward(model,data)
+    return data
+
+
 class PointingHand:
     def __init__(self, model):
         data = mujoco.MjData(model)

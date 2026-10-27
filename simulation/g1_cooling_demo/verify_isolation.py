@@ -50,7 +50,7 @@ def verify(folder):
     if entry_point not in receipt['source_modules']:
         raise ValueError('Recorded actor entry point is not in the pinned bundle')
     command = prefix + [sys.executable,'/actor/'+entry_point,'--model','/model/world.xml']
-    if entry_point=='ftir_actor.py':
+    if entry_point in {'ftir_actor.py','ftir_cover_actor.py'}:
         from depth_io import load as load_depth
         recorded=np.load(folder/'sensor_observations.npz')
         packet={k:recorded[k][0] for k in recorded.files}
@@ -77,7 +77,7 @@ def verify(folder):
         response = pickle.loads(stdout)
     except Exception as error:
         response = dict(error='Invalid actor response: '+str(error))
-    expected_error='Non-sensor field in FTIR actor input' if entry_point=='ftir_actor.py' else 'Non-sensor field in actor input'
+    expected_error='Non-sensor field in FTIR actor input' if entry_point in {'ftir_actor.py','ftir_cover_actor.py'} else 'Non-sensor field in actor input'
     rejection = bool(process.returncode==0 and response.get('error')==expected_error
                      and np.array_equal(response.get('torque'), np.zeros(model.nu)))
     check('forbidden_packet_rejected_before_control', rejection, error=response.get('error'),

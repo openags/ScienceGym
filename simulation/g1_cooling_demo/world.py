@@ -12,7 +12,7 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
 ROBOT=ROOT/'assets/unitree_g1_inspire_v1'
 
 
-def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False, articulated_ftir=False, sole_contact_time_constant=None, refined_thumb_contacts=False):
+def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, laboratory=False, map_only=False, articulated_ftir=False, sole_contact_time_constant=None, refined_thumb_contacts=False, hand_touch=False):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     xml=ET.parse(ROBOT/'simulation/robot.xml').getroot()
     xml.set('model','ScienceGym G1 Inspire contact development')
@@ -20,6 +20,9 @@ def build(out, *, timestep=.002, tray=True, tray_offset=(0.,0.), payload=False, 
     if refined_thumb_contacts:
         from thumb_contacts import attach as attach_thumb_contacts
         attach_thumb_contacts(xml,out)
+    if hand_touch:
+        from hand_touch import attach as attach_hand_touch
+        attach_hand_touch(xml,ROBOT,out)
     xml.find('option').attrib.update(timestep=str(timestep),iterations='100',tolerance='1e-9',solver='Newton')
     world=xml.find('worldbody');world.find("geom[@name='review_floor']").set('rgba','.25 .30 .32 1')
     for side in ['left','right']:

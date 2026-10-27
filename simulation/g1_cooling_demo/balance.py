@@ -31,9 +31,16 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
+        # Desired wrist forces on a contacted object imply opposite external
+        # reactions on the robot. Include their full generalized load in the
+        # floating-base QP so the feet and body support it as well as the arm.
+        # These are model loads only; the plant receives motor torques.
+        for side,force in (contact_forces or {}).items():
+            site=m.site(side+'_wrist_reference').id;j,_=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))
+            bias+=j[:3].T@np.asarray(force)
         # Public work-order mass prior, expressed as the reaction on the robot.
         # Include all DOFs in inverse dynamics so foot wrench allocation also
         # accounts for the held load. Only resulting motor torques are applied.
