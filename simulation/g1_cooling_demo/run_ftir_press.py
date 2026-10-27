@@ -15,16 +15,18 @@ import numpy as np
 
 from depth_io import save as save_depth
 from ftir_hand import initialize, initialize_cover
+from ftir_slider_posture import initialize_slider
 from isolation import prepare
 from observations import robot_joints
 from world import build, HERE
 
 
 def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
-    if operation not in {'press','cover'}:raise ValueError('Unknown FTIR operation')
+    if operation not in {'press','cover','slider_scan'}:raise ValueError('Unknown FTIR operation')
     cover=operation=='cover'
-    actor_name='ftir_cover_actor.py' if cover else 'ftir_actor.py'
-    initial_xy=([5.95,-5.35] if cover else [5.95,-5.55]) if initial_xy is None else list(map(float,initial_xy))
+    scan=operation=='slider_scan'
+    actor_name='ftir_slider_scan_actor.py' if scan else 'ftir_cover_actor.py' if cover else 'ftir_actor.py'
+    initial_xy=([5.95,-5.20] if scan else [5.95,-5.35] if cover else [5.95,-5.55]) if initial_xy is None else list(map(float,initial_xy))
     if len(initial_xy)!=2 or not np.isfinite(initial_xy).all():raise ValueError('Initial robot map XY must contain two finite values')
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
     if any(out.iterdir()):raise ValueError('Use a new empty FTIR attempt directory')
@@ -35,7 +37,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
                refined_thumb_contacts=True,sole_contact_time_constant=.004,hand_touch=cover,refined_distal_contacts=cover)
     control=build(out/'controller_model',timestep=timestep,tray=False,laboratory=True,map_only=True,
                   refined_thumb_contacts=True,sole_contact_time_constant=.004,hand_touch=cover)
-    if cover:
+    if cover or scan:
         # State estimation, arm IK and the balance QP use robot kinematics and
         # explicit body dynamics, never the predictor's contact solver. Keep
         # its source meshes compact; native tactile observations come from
@@ -46,9 +48,10 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
         flag.set('contact','disable');ET.indent(predictor);predictor.write(control,encoding='unicode')
         (out/'controller_model/profile.json').write_text(json.dumps(dict(
             collision_solver_used=False,source_body_dynamics_unchanged=True,physical_plant_contacts_disabled=False,
-            rationale='Robot state/IK/inverse-dynamics predictor; hand touch remains a plant sensor input.',
+            hand_touch_available=cover,
+            rationale='Robot state/IK/inverse-dynamics predictor; contact solving remains in the separate physical plant.',
             regression='simulation/g1_cooling_demo/analysis/ftir_predictor_contact_01/review.json'),indent=2)+'\n')
-    model=mujoco.MjModel.from_xml_path(str(path));data=(initialize_cover if cover else initialize)(model,initial_xy)
+    model=mujoco.MjModel.from_xml_path(str(path));data=(initialize_slider if scan else initialize_cover if cover else initialize)(model,initial_xy)
     robot=set()
     for body in range(model.nbody):
         parent=body
@@ -69,10 +72,11 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
         (out/'result.json').write_text(json.dumps(result,indent=2)+'\n');return result
     (out/'staging.json').write_text(json.dumps(dict(robot_map_xy_prior_m=initial_xy,
         initial_qpos=data.qpos.tolist(),scope='Authored robot pose at the FTIR station, not executed walking/preparation',
-        target_instruction='Grasp, open and release the cover with the right hand' if cover else 'Press BACKGROUND with the right index finger and retract',
+        target_instruction='Observe the key row and turn the torso to the approach orientation' if scan else 'Grasp, open and release the cover with the right hand' if cover else 'Press BACKGROUND with the right index finger and retract',
         cameras='Native head RGB/depth profiles, ideal rendering and uncalibrated nominal source extrinsics'),indent=2)+'\n')
     command=[sys.executable,str(HERE/actor_name),'--model',str(control),'--initial-xy',*map(str,initial_xy)]
     modules=['ftir_actor.py','ftir_hand.py','ftir_vision.py'];policies=[]
+    if scan:modules.extend([actor_name,'ftir_slider_posture.py'])
     if cover:
         from hand_touch import read as read_touch
         modules.extend([actor_name,'ftir_cover_geometry.py'])
@@ -82,17 +86,17 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
         policies.append(prior)
     command,environment,receipt=prepare(out,control,command,extra_modules=modules,policy_files=policies)
     log=open(out/'actor_stderr.log','w');process=subprocess.Popen(command,env=environment,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=log,close_fds=True)
-    depth_height,depth_width=(360,640) if cover else (180,320)
+    depth_height,depth_width=(360,640) if cover or scan else (180,320)
     (out/'sensor_profile.json').write_text(json.dumps(dict(depth_resolution=[depth_width,depth_height],
         rgb_resolution=[640,360],delivered_frames_per_second=10,ideal_depth=True,extrinsics_calibrated=False,
         source='https://www.realsenseai.com/wp-content/uploads/2023/10/Intel-RealSense-D400-Series-Datasheet-September-2023.pdf',
-        note='Head-mounted D435i nominal optics. Cover uses a supported 640x360 depth image size, sampled at 10 Hz. The older press profile uses a lower-resolution numerical render.'),indent=2)+'\n')
+        note='Head-mounted D435i nominal optics. Cover and torso-scan attempts use a supported 640x360 depth image size, sampled at 10 Hz. The older press profile uses a lower-resolution numerical render.'),indent=2)+'\n')
     depth_renderer=mujoco.Renderer(model,height=depth_height,width=depth_width,max_geom=model.ngeom+1000);depth_renderer.enable_depth_rendering()
     color_renderer=mujoco.Renderer(model,height=360,width=640,max_geom=model.ngeom+1000)
     option=mujoco.MjvOption();option.geomgroup[3]=0;option.sitegroup[:]=0
     names=[model.joint(j).name for j in robot_joints(model)]
     records=[];sensors=[];depths=[];colors=[];responses=[];response={};failure=None;complete_time=None
-    monitor=open(out/'actor_monitor.jsonl','w') if cover else None
+    monitor=open(out/'actor_monitor.jsonl','w') if cover or scan else None
     started=time.monotonic()
     camera_every=round(.1/model.opt.timestep);response_every=round(.01/model.opt.timestep)
     try:
@@ -141,14 +145,14 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
             part=colors[start:start+50];filename=directory/f'{start:06d}.npz';np.savez_compressed(filename,time=np.array([r[0] for r in part]),rgb=np.array([r[1] for r in part]));chunks.append(dict(path=str(filename.relative_to(out)),frames=len(part),sha256=hashlib.sha256(filename.read_bytes()).hexdigest()))
         (out/'head_rgb_index.json').write_text(json.dumps(dict(camera='head_rgb',frames=len(colors),chunks=chunks),indent=2)+'\n')
     (out/'actor_responses.json').write_text(json.dumps(responses,indent=2)+'\n')
-    result=dict(status='failed' if failure else 'attempt_finished_pending_independent_cover_verification' if cover else 'attempt_finished_pending_independent_switch_verification',failure=failure,
+    result=dict(status='failed' if failure else 'preparation_finished_pending_independent_verification' if scan else 'attempt_finished_pending_independent_cover_verification' if cover else 'attempt_finished_pending_independent_switch_verification',failure=failure,
                 simulated_seconds=float(data.time),physics_timestep_s=model.opt.timestep,source_sha256=pins,actor_entry_point=actor_name,
                 model_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
                 actor_isolation_sha256=hashlib.sha256((out/'actor_isolation.json').read_bytes()).hexdigest(),
                 actor_access_isolated=receipt['passed'],actor_input_fields=list(sensors[0])+['depth','rgb'] if sensors else [],
                 actor_last_output={k:v for k,v in response.items() if k!='torque'},environment='existing_complete_laboratory',
                 setup_credit=False,qualified_skill=False,qualified_paper_branch=False,
-                scope='One tactile-gated cover opening attempt from an authored stationary initial posture' if cover else 'One observed BACKGROUND key press attempt from an authored stationary initial posture')
+                scope='One RGB-D observation and torso preparation attempt; no walking, window manipulation or skill qualification' if scan else 'One tactile-gated cover opening attempt from an authored stationary initial posture' if cover else 'One observed BACKGROUND key press attempt from an authored stationary initial posture')
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ['status','failure','simulated_seconds']}),flush=True)
     return result
 

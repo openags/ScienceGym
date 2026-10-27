@@ -381,6 +381,48 @@ abstraction. Source mesh sizes suggest distinguishing small terminal pads from
 larger fingertip pads, but that mapping is not a calibrated register-to-mesh
 binding; the rejected large-pad search does not authorize a collision exemption.
 
+Sliding-window development in `analysis/nicolet_slider_push_01` and `02`
+keeps the equipment geometry unchanged. A top/front-top index-pad push is an
+inferred manipulation strategy for opening a 70 mm access gap before trying
+the cover edge. It is not full slider travel, reference exchange or a vendor
+procedure. The separate two-pad cover-edge search in
+`analysis/nicolet_window_edge_01` rejects all 9,720 placements.
+
+The push search finds locally clear hand paths, but whole-arm entry requires
+obstacle avoidance. The first RRT path passes instrument-only checks and then
+fails the independent full-room review in 50 entry/return states against the
+bench. Adding the existing public architectural map to planning yields a new
+path with no additional room intersections in 1,867 sampled states across
+6,538 room meshes. The separate 821-state return review retains 2 mm free-space
+clearance. Original source foot/shank and foot/floor overlaps remain recorded;
+these results do not certify whole-body source clearance or physical motion.
+See `nicolet_slider_push_02/geometry_summary.json` for the bound reports.
+
+`robot_source_meshes.py` extracts original visual triangles from the actor's
+public robot model, without scene object poses or simulator contacts. Its
+geometry agrees with the independently exported source GLB to 65 nanometres,
+with identical triangle counts and source adjacency. Planning must still run
+from the actor's current sensor estimate and observed device registration.
+The retained offline RRT waypoints are diagnostic evidence, not actor inputs.
+
+`run_ftir_slider_scan.py` separately exercises observation and torso preparation
+using native RGB/depth, encoders and IMU in the isolated actor. It starts from
+an authored stationary pose and does not push the window. Attempt 01 identifies
+the key row and turns successfully, but independent replay rejects left-hand
+and wrist contact with the bench. The revised preparation places the unused
+left shoulder at 0.5 rad after a retained-state clearance screen. Every attempt
+keeps its own source snapshot; `physical_scan_review.json` and
+`isolation_verification.json` determine its outcome. Neither preparation nor
+the geometric arm search qualifies walking, window manipulation or a branch.
+Attempt 02 completes 11.15 simulated seconds and passes every-state motor
+replay, unchanged contact/support thresholds, motor/joint limits and active
+isolation checks. Its actor accepts 39 key-row observations. This is one
+preparation pass after one rejected attempt, with zero physical slider pushes.
+The observed posture differs from the earlier hypothetical path setup, so the
+next actor must recompute its approach from the actual preparation sensors.
+The retained two-attempt comparison is
+`analysis/nicolet_slider_push_02/preparation_comparison.json`.
+
 The separate offline plane study `analysis/ftir_cover_plane_04` rejects
 views with fewer than 500 supporting depth pixels. On development runs
 07/08 it accepts 60/59 of 81 frames, with maximum accepted-frame angle errors

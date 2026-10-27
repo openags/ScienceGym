@@ -1,0 +1,111 @@
+{
+  "scope": "Observation and torso preparation from authored stationary setup, independent physical replay and isolation. No walking, grasp, slider motion, sensor calibration, reliability campaign or paper-branch credit.",
+  "attempts": [
+    {
+      "run": "ftir_slider_scan_01",
+      "physical_review_passed": false,
+      "isolation_passed": true,
+      "seconds": 11.150000000000393,
+      "states": 5576,
+      "accepted_key_observations": 40,
+      "checks": {
+        "attempt_finished": true,
+        "exact_motor_replay": true,
+        "no_external_forces": true,
+        "no_device_actuators": true,
+        "controls_observed": true,
+        "torso_reached_approach_orientation": true,
+        "all_keys_untouched": true,
+        "cover_and_window_remained_closed": true,
+        "key_stops_respected": true,
+        "source_motor_limits_respected": true,
+        "source_robot_joint_limits_respected": true,
+        "no_unintended_or_excess_contact": false,
+        "upright_supported": true,
+        "no_numerical_warnings": true
+      },
+      "first_violations": [
+        {
+          "time_s": 1.1220000000000008,
+          "parts": [
+            "lab_part_1475",
+            "left_index_1_collision_0"
+          ],
+          "distance_m": -2.746298286347796e-05,
+          "allowed_m": 2e-05
+        },
+        {
+          "time_s": 1.1220000000000008,
+          "parts": [
+            "lab_part_1475",
+            "left_index_1_collision_0"
+          ],
+          "distance_m": -5.534160553150513e-05,
+          "allowed_m": 2e-05
+        },
+        {
+          "time_s": 1.1240000000000008,
+          "parts": [
+            "lab_part_1475",
+            "left_index_1_collision_0"
+          ],
+          "distance_m": -6.946503515615308e-05,
+          "allowed_m": 2e-05
+        }
+      ],
+      "maximum_replay_position_error": 0.0,
+      "maximum_replay_velocity_error": 0.0,
+      "source_hashes": {
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_01/result.json": "96aba32c94b4d38ef840f065f78fcd20840f16bdb6e0908b2919f795c7e5f31c",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_01/physical_scan_review.json": "2d66971d5c53b51698341f8f815375792839f248b023f86b1cf6d947415a7070",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_01/isolation_verification.json": "c479548beb5badb1ab9a25244a9af1a348deb7b540916317f598ef068da0afc7",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_01/trace.npz": "7ffcf7de8080eeaa2592352c02cdbca4e5736304ad3722cfeb9ff23e73d721b3"
+      }
+    },
+    {
+      "run": "ftir_slider_scan_02",
+      "physical_review_passed": true,
+      "isolation_passed": true,
+      "seconds": 11.150000000000393,
+      "states": 5576,
+      "accepted_key_observations": 39,
+      "checks": {
+        "attempt_finished": true,
+        "exact_motor_replay": true,
+        "no_external_forces": true,
+        "no_device_actuators": true,
+        "controls_observed": true,
+        "torso_reached_approach_orientation": true,
+        "all_keys_untouched": true,
+        "cover_and_window_remained_closed": true,
+        "key_stops_respected": true,
+        "source_motor_limits_respected": true,
+        "source_robot_joint_limits_respected": true,
+        "no_unintended_or_excess_contact": true,
+        "upright_supported": true,
+        "no_numerical_warnings": true
+      },
+      "first_violations": [],
+      "maximum_replay_position_error": 0.0,
+      "maximum_replay_velocity_error": 0.0,
+      "source_hashes": {
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_02/result.json": "2c6e9a3e0307c713b1961957f38948fab60d97938b96235a14791dac4996ec09",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_02/physical_scan_review.json": "a229bce371041e066feac209a489de10c2a8e42a4996cfc6197044f3802c7c90",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_02/isolation_verification.json": "6c58495f7c74ccef515e959bdccd02d17ce644290cee2062519aa09932e2363e",
+        "simulation/g1_cooling_demo/runs/ftir_slider_scan_02/trace.npz": "7f1167a3d8fd37254df5186c13a02af39bfc7c4ee29bbe0f9d707aa13c98178f"
+      }
+    }
+  ],
+  "physical_preparation_passes": 1,
+  "window_push_attempts": 0,
+  "qualified_paper_branches": 0,
+  "video_changed": false,
+  "video_duration_s": 333.1666666667,
+  "metadata_note": "The retained predictor-profile rationale in runs 01/02 mentions hand touch from the older cover template; their packet schemas contain no tactile channel. Future runner metadata now states this explicitly. Original receipts remain unchanged.",
+  "next_requirements": [
+    "Recompute approach from scan02 encoders/IMU and RGB-D registration; previous arm path used a different hypothetical full-body posture",
+    "Observe the actual closed-window grip before contact",
+    "Build isolated actor planning, bounded push and withdrawal; never load the offline joint reference path",
+    "Independently verify slider displacement, intended contact, support, replay and isolation"
+  ]
+}
