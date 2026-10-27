@@ -46,9 +46,17 @@ def initialize_cover(model, xy=(5.95, -5.35)):
 
 
 class PointingHand:
-    def __init__(self, model):
+    def __init__(self, model, hand_q=None):
         data = mujoco.MjData(model)
-        for name, value in POINTING.items(): data.joint(name).qpos[0] = value
+        pose = dict(POINTING)
+        pose.update(hand_q or {})
+        for name, value in pose.items():
+            joint = model.joint(name)
+            if name not in POINTING or not np.isfinite(value):
+                raise ValueError('Invalid source hand pose')
+            if model.jnt_limited[joint.id] and not model.jnt_range[joint.id,0] <= value <= model.jnt_range[joint.id,1]:
+                raise ValueError('Hand pose exceeds source joint bounds')
+            data.joint(name).qpos[0] = value
         mimic(model, data); mujoco.mj_forward(model, data)
         geom = model.geom('right_index_force_sensor_3_collision_0').id
         mesh = model.geom_dataid[geom]

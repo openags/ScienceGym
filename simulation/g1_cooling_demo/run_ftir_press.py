@@ -21,8 +21,9 @@ from observations import robot_joints
 from world import build, HERE
 
 
-def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
+def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_prior=None):
     if operation not in {'press','cover','slider_scan','slider'}:raise ValueError('Unknown FTIR operation')
+    if slider_prior is not None and operation!='slider':raise ValueError('A slider prior requires the slider operation')
     cover=operation=='cover'
     scan=operation=='slider_scan'
     slider=operation=='slider'
@@ -95,7 +96,8 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None):
         prior=out/'policy_source/slider_push_prior.json'
         shape=out/'object_shape_source/nicolet_passive_dynamics.glb'
         root=HERE.parents[1]
-        shutil.copyfile(root/'assets/nicolet_6700_mechanism_v1/slider_push_prior.json',prior)
+        prior_source=root/'assets/nicolet_6700_mechanism_v1/slider_push_prior.json' if slider_prior is None else Path(slider_prior).resolve()
+        shutil.copyfile(prior_source,prior)
         shutil.copyfile(root/'assets/nicolet_6700_mechanism_v1/revisions/passive_dynamics/geometry/nicolet_passive_dynamics.glb',shape)
         policies.append(prior);shapes.append(shape)
     command,environment,receipt=prepare(out,control,command,extra_modules=modules,policy_files=policies,shape_files=shapes)

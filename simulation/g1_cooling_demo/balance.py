@@ -31,7 +31,7 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
         # Desired wrist forces on a contacted object imply opposite external
@@ -80,6 +80,15 @@ class Balance:
             if hasattr(self,'palm_rotations'):
                 rotation_error=Rotation.from_matrix(self.palm_rotations[side]@d.site_xmat[site].reshape(3,3).T).as_rotvec()
                 rows.append(30*pad(j[3:]));ys.append(30*(60*rotation_error-16*j[3:]@d.qvel-dj[3:]@d.qvel))
+        # Wrist tracking alone does not constrain a loaded, underactuated
+        # fingertip. Track the robot's encoder-predicted surface point as an
+        # additional Cartesian task; this does not attach it to an object.
+        for task in (point_targets or []):
+            point=np.asarray(task['point'],dtype=float);target=np.asarray(task['target'],dtype=float)
+            if point.shape!=(3,) or target.shape!=(3,) or not np.isfinite(np.r_[point,target]).all():
+                raise ValueError('Invalid robot surface-point target')
+            j,dj=self.jacobian(point,m.body(task['body']).id)
+            rows.append(60*pad(j[:3]));ys.append(60*(100*(target-point)-22*j[:3]@d.qvel-dj[:3]@d.qvel))
         rows.append(np.c_[np.zeros((12+k,n)),np.eye(12+k)*.0005]);ys.append(np.zeros(12+k))
         cost=np.vstack(rows);desired=np.concatenate(ys);P=cost.T@cost+np.eye(total)*1e-6;q=-cost.T@desired
         eqerr=np.array([d.qpos[a]-c*d.qpos[b]-offset for a,b,c,offset in self.eqdata])

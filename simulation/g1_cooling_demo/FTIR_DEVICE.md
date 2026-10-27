@@ -496,16 +496,74 @@ limits pass, but travel and unintended contact still fail; index/window
 penetration reaches 0.1595 mm. The completed two-attempt comparison is
 `analysis/nicolet_slider_push_03/push_attempts_01_02.json`.
 
-The current controller also projects preload perpendicular to the free slider
+The controller in attempt 03 projects preload perpendicular to the free slider
 axis. The earlier tilted surface normal imposed 0.518 N along that axis, while
 contact-interval replays show approximately 0.2–0.26 N axial object reaction;
 the window advances beyond the commanded stroke before pad contact is lost.
 The projection separates preload from commanded advancement without changing
-the geometry, 2 N magnitude or acceptance limits. This is a new control
-hypothesis for attempt 03, not a passing physical result.
+the geometry, 2 N magnitude or acceptance limits. Attempt 03 still fails after
+6.08 mm of window travel. All 48,797 states replay exactly, and isolation,
+support and source limits pass. Contact migrates to the index link, lid and
+window; those contacts and the short travel fail the unchanged acceptance
+checks. At 47 s the slider is only 0.134 mm ahead of the commanded wrist
+advance, but finger flexion shifts the pad by about 2.50 mm along the contact
+normal while the wrist error is 0.58 mm. Wrist tracking alone therefore does
+not establish fingertip tracking.
+
+The current controller adds a Cartesian task at the encoder-predicted pad
+point during contact search and pushing. It compensates the measured scalar
+tactile load along the estimated public-CAD surface normal; bounded position
+admittance pursues the 2 N pressure target. It no longer assumes that a desired
+2 N contact load is already present. The force direction remains an inference,
+not a measured three-axis wrench. The regression in
+`analysis/nicolet_slider_push_04/point_task_regression.json` verifies unchanged
+default controller calls, the contact-point Jacobian and the new task response
+within source motor bounds. Attempt 04 passes the unchanged independent
+physical requirements and process-isolation review. Its 54,052 retained
+states replay with zero position and velocity error. Final slider travel is
+72.752 mm; the intended distal pad drives 72.587 mm during 11.210 s of
+contact. No unintended contact exceeds the existing bounds, and source
+joint/motor limits and supported balance pass. This is one development
+success from an authored standing pose, not skill reliability qualification.
+The observed scalar pressure varies during the stroke; the controller does
+not establish constant 2 N pressure.
+
+`runs/ftir_slider_04/slider.mp4` is a clean 1 min 48 s rendering of the
+reviewed trace in the original laboratory. The rendering receipt maps all
+2,595 frames to retained physical states; it contains no interpolated robot
+or object motion. It is a single operation, separate from the authored
+5 min 33 s cross-workstation FTIR demonstration.
+
+Original source-triangle checks at 71 retained poses per failed run identify
+13 and 10 index-link/window intersections in attempts 01 and 02. These are not
+merely native convex-hull false contacts. A separate comparison of 71 existing
+object-local hand candidates finds 3.35 mm nominal index-link/window clearance
+for the selected pose. Other candidates need fresh current-state arm planning
+and physical validation; bending the finger alone does not certify clearance.
 These attempts start from authored standing setup. Walking between stations,
 full hinged-cover opening, reference/sample exchange and branch repeatability
 remain separate requirements; qualified paper branches are still zero.
+
+The optional `run_ftir_slider.py --prior PATH` pins another public object-local
+affordance set in the isolated bundle. Attempt 05 uses the clearance-ranked
+prior in `analysis/nicolet_slider_push_04/clearance_ranked_prior.json`; the
+runtime planner selects candidate 19 and executes its entry in 17.32 s,
+compared with 31.50 s for attempt 04. It subsequently loses contact and
+executes the abort return, so it is a failed attempt despite its final slider
+position falling inside the requested range. Inspection also identifies a
+phase-entry bug: converged wrist pose and elapsed seek time could bypass
+tactile acquisition. All 39,652 states replay exactly and isolation passes;
+the final 70.042 mm travel, 62.385 mm intended-pad-driven displacement,
+contact limits and supported balance pass, but the controller abort makes
+the attempt fail overall. The five-trial comparison, including every failed
+check, is `analysis/nicolet_slider_push_04/push_attempts_01_05.json`.
+
+The current actor fixes the
+phase-entry bug by requiring confirmed touch for this
+transition and clears confirmation when the load drops below the acquisition
+threshold. The retained-case regression passes; attempt 06 tests that guard
+with the canonical prior used in the successful attempt 04. Its physical
+result is pending.
 
 The separate `ftir_slider_outcome.py` prototype recenters the same depth fit
 at a commanded position without reading the plant slider joint. It is not in
@@ -515,6 +573,27 @@ unchanged 0.8 mm gate. Across eight retained observation poses, the unchanged
 gate accepts six true-target frames and rejects all 32 non-target controls.
 These development measurements retain both false rejections. They do not
 establish post-push visibility, online completion detection or calibration.
+
+The labeled static endpoint fixtures in
+`analysis/nicolet_slider_push_04/endpoint_views.json` test three possible
+post-push torso viewing angles. A proposed baseline-corrected 66–74 mm
+sensor guard accepts all six valid fixtures but also one of 18 invalid
+fixtures: a true 80 mm opening is estimated at 73.625 mm when only a narrow
+part of the grip is in the depth crop. That candidate guard is rejected for
+runtime use. The original target observer and physical 65–75 mm acceptance
+requirement are unchanged. These fixtures change evaluator-side geometry
+for sensor diagnostics; they are not executed posture transitions.
+
+The separate `SliderRangeObservation` prototype additionally requires
+observed axial grip extent of at least half its public CAD width, rejecting
+a cropped edge that cannot establish slider position. A subsequent labeled
+study on run 05 endpoint geometry and four different viewing angles is saved
+in `analysis/nicolet_slider_push_04/endpoint_views_02.json`. It accepts 20 of
+32 physically in-range fixtures and none of 24 out-of-range fixtures. All
+four 70 mm target fixtures pass; the conservative guard also rejects valid
+states near the physical range boundaries. Those false rejections remain in
+the report. This observer is not integrated into the actor, and executed
+post-push viewing, reacquisition and sensor calibration remain unverified.
 
 The separate offline plane study `analysis/ftir_cover_plane_04` rejects
 views with fewer than 500 supporting depth pixels. On development runs

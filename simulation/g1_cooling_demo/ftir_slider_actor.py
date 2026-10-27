@@ -14,6 +14,15 @@ from scipy.spatial.transform import Rotation
 from ftir_slider_scan_actor import SliderScanActor
 from ftir_slider_planning import SliderPlanner
 from ftir_slider_vision import SliderObservation
+from ftir_hand import PointingHand
+
+
+def motion_ready(kind, progress, position_error, rotation_error, contact_confirmed):
+    """A reached arm pose cannot substitute for acquiring tactile contact."""
+    if kind == 'seek':
+        return bool(contact_confirmed)
+    return progress >= 1 and (kind == 'push' or
+                              (position_error < .005 and rotation_error < .035))
 
 
 class SliderActor(SliderScanActor):
@@ -42,15 +51,9 @@ class SliderActor(SliderScanActor):
         self.solution=self.planner.build()
         self.baseline_posture=self.d.qpos[self.balance.qa].copy()
         self.pointing=self.solution['candidate']['hand_q']
+        self.hand=PointingHand(self.m,self.pointing)
         self.folded={n:float(self.d.joint(n).qpos[0]) for n in self.pointing}
         self.normal=np.array(self.solution['outward_normal']);self.direction=np.array(self.solution['direction'])
-        # Position control advances along the free slider axis. Keep the
-        # modeled preload perpendicular to that axis, so the bevel normal
-        # does not also command an untracked forward force on the window.
-        self.load_normal=self.normal-self.direction*(self.normal@self.direction)/(self.direction@self.direction)
-        if np.linalg.norm(self.load_normal)<.5:
-            raise RuntimeError('Slider preload direction is ill-conditioned')
-        self.load_normal/=np.linalg.norm(self.load_normal)
         self.contact_position=np.array(self.solution['contact_palm_position_m'])
         self.contact_rotation=np.array(self.solution['contact_palm_rotation'])
         heights=(self.hand.pad_vertices@self.contact_rotation.T)@self.normal
@@ -73,7 +76,7 @@ class SliderActor(SliderScanActor):
         self.motions=motions;self.phase=0;self.prepared=True;self.finished=False
         self.events.append(dict(state='observed_geometry_path_planned',time_s=t,
                                 source='current_encoders_IMU_RGBD_and_public_unposed_CAD',solution=self.solution,
-                                model_preload_normal=self.load_normal.tolist(),
+                                load_model='measured_distal_tactile_along_public_surface_normal',
                                 accepted_grip_observations=len(self.grip_observations),
                                 grip_observations=self.grip_observations[-8:]))
         self.begin_phase(t)
@@ -117,7 +120,7 @@ class SliderActor(SliderScanActor):
             dt=.01 if self.last_time is None else t-self.last_time
             self.estimate.update({k:v for k,v in obs.items() if k not in {'rgb','right_touch_n'}})
             self.filtered_touch+=(1-np.exp(-dt/.05))*(float(touch[2])-self.filtered_touch)
-            posture=self.baseline_posture.copy();force=None
+            posture=self.baseline_posture.copy();force=None;point_target=None;requested_load=0.
             if not self.finished:
                 motion=self.motions[self.phase];name=motion['name'];kind=motion['kind']
                 recovered_now=False
@@ -135,15 +138,23 @@ class SliderActor(SliderScanActor):
                 elif kind=='seek':
                     self.contact_offset=-.0015*s
                     target=self.contact_position+self.normal*self.contact_offset
-                    force=-self.load_normal*min(2.,2*u)
+                    requested_load=.2
+                    # Compensate the observed contact reaction, rather than
+                    # assuming that the full requested preload already exists.
+                    # The bounded position search establishes first contact.
+                    force=-self.normal*min(self.filtered_touch,6.)
                     if self.filtered_touch>.2:
                         if self.touch_since is None:self.touch_since=t
                         if t-self.touch_since>=.2:self.contact_confirmed=True
-                    else:self.touch_since=None
+                    else:self.touch_since=None;self.contact_confirmed=False
                 elif kind=='push':
                     self.contact_offset=float(np.clip(self.contact_offset-.0005*(2.-self.filtered_touch)*dt,-.003,.001))
                     target=self.contact_position+s*self.direction*.07+self.normal*self.contact_offset
-                    force=-self.load_normal*2.
+                    requested_load=2.
+                    # Pressure error moves the bounded contact target above.
+                    # The inverse model uses the measured tactile load so an
+                    # unbalanced assumed 2 N load cannot curl the finger.
+                    force=-self.normal*min(self.filtered_touch,6.)
                     if self.filtered_touch<.1:
                         if self.lost_since is None:self.lost_since=t
                     else:self.lost_since=None
@@ -151,17 +162,22 @@ class SliderActor(SliderScanActor):
                 if kind in {'seek','push'} and (self.filtered_touch>6. or (kind=='push' and self.lost_since is not None and t-self.lost_since>.35)):
                     self.recover(t,'Tactile load exceeded bound or contact was lost')
                     target=self.start_position;target_R=self.start_rotation;force=None
+                    requested_load=0.
                     recovered_now=True
                 for n,v in hand.items():posture[self.actuator_ids[n]]=v
                 q,pe,re=self.ik.solve(self.d,target,target_R,hint)
                 if pe>.003 or re>.035:raise RuntimeError(f'Slider arm IK failed in {name}: {pe:.6f} m, {re:.6f} rad')
                 self.latest_ik=q;posture[self.arm_actuators]=q
                 self.last_target=target.copy();self.last_rotation=target_R.copy()
+                if kind in {'seek','push'} and not recovered_now:
+                    point_target=target+target_R@self.pad_contact
                 self.commanded_pose=dict(position_m=target.tolist(),rotation=target_R.tolist(),normal_offset_m=self.contact_offset,
-                                         desired_pad_force_n=None if force is None else force.tolist())
+                                         requested_distal_load_n=requested_load,
+                                         modeled_pad_force_n=None if force is None else force.tolist(),
+                                         desired_pad_position_m=None if point_target is None else point_target.tolist())
                 error=float(np.linalg.norm(target-self.d.site('right_wrist_reference').xpos))
                 rotation_error=float(np.linalg.norm(Rotation.from_matrix(target_R@self.d.site('right_wrist_reference').xmat.reshape(3,3).T).as_rotvec()))
-                ready=(kind=='seek' and self.contact_confirmed) or (u>=1 and (kind=='push' or (error<.005 and rotation_error<.035)))
+                ready=motion_ready(kind,u,error,rotation_error,self.contact_confirmed)
                 if recovered_now:
                     pass
                 elif ready:
@@ -173,7 +189,7 @@ class SliderActor(SliderScanActor):
                         else:self.begin_phase(t)
                 elif kind=='seek' and u>=1:
                     self.recover(t,'No confirmed distal-pad contact during bounded search')
-                    force=None;self.last_target=self.start_position.copy();self.last_rotation=self.start_rotation.copy()
+                    force=None;point_target=None;self.last_target=self.start_position.copy();self.last_rotation=self.start_rotation.copy()
                 elif t-self.phase_started>motion['duration']+5.:
                     raise RuntimeError('Robot did not settle in slider phase '+name)
             else:
@@ -181,7 +197,8 @@ class SliderActor(SliderScanActor):
             self.balance.palm_rotations={'right':self.last_rotation}
             pad_point=self.hand.observed_contact_point(self.d,self.pad_contact)
             self.last_torque=self.balance.torque(posture=posture,targets={'right':self.last_target},
-                surface_forces=None if force is None else [dict(body='right_index_force_sensor_3',point=pad_point,force=force)],dt=dt)
+                surface_forces=None if force is None else [dict(body='right_index_force_sensor_3',point=pad_point,force=force)],
+                point_targets=None if point_target is None else [dict(body='right_index_force_sensor_3',point=pad_point,target=point_target)],dt=dt)
             self.last_time=t;self.next_control=(round(t*100)+1)/100
         return dict(torque=self.last_torque,error=None,policy_state='finished' if self.finished else self.motions[self.phase]['name'],
                     policy_complete=self.finished,policy_failure=self.failure,events=self.events,

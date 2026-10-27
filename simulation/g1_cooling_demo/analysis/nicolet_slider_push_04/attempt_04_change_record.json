@@ -1,0 +1,34 @@
+{
+  "attempt": "ftir_slider_04",
+  "changes": [
+    "Add a Cartesian task at the encoder-predicted distal-pad point during contact search and pushing. Wrist/orientation tasks remain.",
+    "Model contact reaction from the filtered native distal tactile scalar along the public CAD surface normal. The 2 N pressure goal is pursued by bounded position admittance; it is no longer assumed as an already-existing load."
+  ],
+  "evidence": {
+    "third_maximum_slider_travel_m": 0.0060819342599872156,
+    "third_physical_passed": false,
+    "third_exact_motor_replay": true,
+    "finger_normal_deflection_at_47_s_m": -0.0025024712202309403,
+    "wrist_normal_error_at_47_s_m": -0.000575085421240407,
+    "point_task_regression": "point_task_regression.json"
+  },
+  "force_direction_note": "Only scalar touch is observed. The force direction is a public-CAD estimate, not a measured 3D wrench or plant-contact query.",
+  "unchanged": [
+    "robot and equipment geometry",
+    "current straight-index affordance candidates",
+    "source joint/motor limits",
+    "2 mm free-space planning margin",
+    "2 N pressure goal",
+    "6 N overload guard",
+    "70 mm requested travel",
+    "all independent physical acceptance thresholds"
+  ],
+  "source_hashes": {
+    "simulation/g1_cooling_demo/balance.py": "1e29c6f6ef0fb7a63df72dbf4f19d23451c8e76d493da9a5bb219651b367dbe6",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "c0d44cfb767d195e5f70f35a32b7c9ead4426660df997e5437696a15a7dfb9ba",
+    "simulation/g1_cooling_demo/verify_ftir_slider.py": "7d267dcf732095ad9eddf32fe741b1c60ce78502b84c8ad17df3bd23ac03a34a",
+    "simulation/g1_cooling_demo/runs/ftir_slider_03/source_snapshot/balance.py": "ea90b7b2aec7c1b5a4b9e8f4d797919937c3182f6b1e97a2445b535ef2c69dc8",
+    "simulation/g1_cooling_demo/runs/ftir_slider_03/source_snapshot/ftir_slider_actor.py": "644891bcc3349e7243cb6a1d73c86cefce698f24c6695a04db3df32aa01ade51"
+  },
+  "physical_efficacy_verified": false
+}
