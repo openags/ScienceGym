@@ -313,25 +313,85 @@
       "isolation_passed": true,
       "trace_sha256": "a86f2649e0f291f829a11b328a4464f1b68f73687890a3ca8e31aa4f2b2d8e24",
       "verifier_sha256": "2c7a883af478fc3c9f1863c8d7abab9f8a12e6d2fa2357693e1def818c96c9cc"
+    },
+    {
+      "run": "ftir_cover_12",
+      "status": "failed",
+      "failure": "Cover arm target infeasible in clear_abort: 0.00305 m, 0.00944 rad",
+      "duration_s": 26.529999999996175,
+      "maximum_open_angle_deg": 13.956858536616993,
+      "passed": false,
+      "checks": {
+        "attempt_finished": false,
+        "exact_motor_replay": true,
+        "no_external_forces": true,
+        "no_device_actuators": true,
+        "opposed_grasp_before_lift": true,
+        "opposed_contact_retained_during_lift": false,
+        "cover_opened": false,
+        "cover_remained_open_after_release": false,
+        "hand_released_and_withdrawn": true,
+        "hinge_stops_respected": true,
+        "source_motor_limits_respected": true,
+        "source_grasp_prior_limits_respected": true,
+        "source_robot_joint_limits_respected": true,
+        "no_unintended_or_excess_contact": false,
+        "upright_supported": true,
+        "no_numerical_warnings": true
+      },
+      "isolation_passed": true,
+      "trace_sha256": "ffe9a84f8947e41b96f14b2a67e9b1b5037e9ac2e6444984d8ac5c5e2a4dc07e",
+      "verifier_sha256": "2c7a883af478fc3c9f1863c8d7abab9f8a12e6d2fa2357693e1def818c96c9cc"
+    },
+    {
+      "run": "ftir_cover_13",
+      "status": "failed",
+      "failure": "Opposed contact was lost during loaded cover grasp",
+      "duration_s": 38.25000000000078,
+      "maximum_open_angle_deg": 0.789556246696892,
+      "passed": false,
+      "checks": {
+        "attempt_finished": false,
+        "exact_motor_replay": true,
+        "no_external_forces": true,
+        "no_device_actuators": true,
+        "opposed_grasp_before_lift": true,
+        "opposed_contact_retained_during_lift": false,
+        "cover_opened": false,
+        "cover_remained_open_after_release": false,
+        "hand_released_and_withdrawn": true,
+        "hinge_stops_respected": true,
+        "source_motor_limits_respected": true,
+        "source_grasp_prior_limits_respected": true,
+        "source_robot_joint_limits_respected": true,
+        "no_unintended_or_excess_contact": false,
+        "upright_supported": true,
+        "no_numerical_warnings": true
+      },
+      "isolation_passed": true,
+      "trace_sha256": "25c938e9cdc815da7e9281a37ca2b2a0fe056330b8a03718c113979d29f716de",
+      "verifier_sha256": "2c7a883af478fc3c9f1863c8d7abab9f8a12e6d2fa2357693e1def818c96c9cc"
     }
   ],
   "qualified_skill": false,
   "qualified_paper_branch": false,
   "current_prior": "assets/nicolet_6700_mechanism_v1/cover_grasp_prior.json",
-  "current_prior_sha256": "60b7e12322966874936a348b74c63afcdefd6e1c6ddc0671d440d385ff2f699d",
+  "current_prior_sha256": "a830e98f2b61057e37ab526f525a35d788bf40fdfb3166d3514bf0ed5a2ee800",
   "review_changes": [
     "Runs 01\u201304 count whole-finger handle forces. Later reviews require actual pad/handle contacts.",
     "Source commanded-grasp limits are checked explicitly from run 07 onward. The old 1.20 rad thumb target was invalid; run 08 uses a bounded refinement.",
     "Run 09 limits relative handle rolling smoothly to 15 degrees. Coordinate-consistent nominal source-mesh and robot-only IK checks pass; physical opening still fails. Offline plane study 04 is not an actor input.",
     "Runs 10/11 use central-pad search 06 candidate 0 and a 3 cm authored stance adjustment; neither establishes walking credit.",
     "Run 11 replaces filled distal collision hulls with source-derived exterior cells. Selected false contacts are removed, but physical grasp retention still fails.",
-    "After run 11, a compact actor predictor with its unused collision solver disabled passes 10 sampled state/IK/torque comparisons. It has not yet been exercised in a complete physical attempt."
+    "After run 11, a compact actor predictor with its unused collision solver disabled passes 10 sampled state/IK/torque comparisons. Runs 12/13 subsequently exercise it in failed physical attempts with exact replay.",
+    "Run 12 exercises the compact predictor and encoder-based pad centering, but the grasp still slips at 13.96 degrees. Run 13 adds an inferred 3 N preload and staged retreat. It loses grip during preload at 0.79 degrees, completes recovery control and settles. All 19,126 states replay exactly and isolation passes; opening, retained opposition and unintended-contact checks still fail."
   ],
   "remaining": [
+    "Resolve the source support for the inferred cylindrical cover handle and the installed-accessory access route before treating this grasp family as the commercial-device task.",
     "Stable pad contact throughout lifting and release, including finger-dependent grasp centering",
     "Contact qualification beyond the selected repaired distal-finger states",
     "Reachable recovery after loaded body motion",
-    "Full execution with the compact predictor",
-    "Repeatability and integration with walking and sample manipulation"
+    "Repeatability and integration with walking and sample manipulation",
+    "Evaluate larger independently articulated grasp regions or an officially supported alternate hand; no hardware change is qualified."
   ]
 }

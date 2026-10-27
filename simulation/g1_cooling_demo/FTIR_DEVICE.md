@@ -207,8 +207,10 @@ Retained attempts:
 | `ftir_cover_09` | A smooth 15-degree rolling allowance keeps the nominal hand clear of the cover through the planned arc, but the physical grasp still slips. The lid reaches 22.99 degrees; withdrawal again reaches an arm limit. Support, source limits, isolation and exact replay pass; grasp retention, opening and release fail. |
 | `ftir_cover_10` | A grasp centered further inside the source pads reaches about 4.5 N on each digit, but loses contact before the confirmation interval completes. Maximum cover opening is 0.72 degrees; recovery stops at an arm limit. Source limits, support, isolation and exact replay pass. |
 | `ftir_cover_11` | With source-derived distal contact cells and lower controller grip targets, the hand establishes grip and lifts to 14.01 degrees, then slips. Recovery stops at an arm limit. Source limits, support, isolation, release and exact motor replay pass; grasp retention, opening and unintended-contact checks fail. |
+| `ftir_cover_12` | Encoder-based pad-center compensation and the compact predictor still lose the grasp at 13.96 degrees. Recovery reaches the same arm limit. All 13,266 states replay exactly; source limits, support, release and isolation pass. Opening, retained opposition and unintended-contact checks fail. |
+| `ftir_cover_13` | The 3 N preload loses grip before lifting; maximum opening is 0.79 degrees. Staged recovery finishes and the robot settles for five seconds. All 19,126 states replay exactly; source limits, support, release and isolation pass. Opening, retained opposition and unintended-contact checks fail. |
 
-All eleven attempts retain source snapshots, isolated input bundles, lossless
+All thirteen reviewed attempts retain source snapshots, isolated input bundles, lossless
 sensor records, every physics-step state and motor command, and independent
 replay reports. Exact motor replay and the isolation checks pass, while the
 opening checks fail. In run 04 the idle left arm clears the bench, but early
@@ -276,8 +278,84 @@ comparisons in `analysis/ftir_predictor_contact_01` produce identical estimated
 state, mass/bias/passive terms, IK and balance torques, including a wrist load.
 That sampled regression takes 0.89 s with the old predictor and 0.044 s with the
 compact predictor; it is not a full-run speed benchmark or execution check.
-Run 11 itself used the earlier full-resolution predictor. A future complete
-run still must validate the revised runner.
+Run 11 itself used the earlier full-resolution predictor. Run 12 exercises the
+compact predictor in a full failed attempt, with exact motor replay and
+isolation checks. Its failure does not establish a successful grasp.
+
+Run 12 adds encoder-based centering from the selected source pad points. It
+latches their wrist-frame midpoint when lifting begins and applies a filtered
+wrist correction, bounded to 4 mm and 6 mm/s in the wrist frame. It uses no
+instrument state or object-specific contact labels. The grip still slips;
+several millimetres of loaded wrist tracking error remain. The source face
+points are planning landmarks, not measured tactile pressure centroids.
+
+Run 13 executes a further development variant. A 3 N inferred tangential
+opening-effort prior ramps in a separate preload phase; lift requires settled
+wrist tracking and both pad loads. The 3 N value is an uncalibrated control
+prior, not a manufacturer specification or a live device measurement. The
+plant still receives only bounded robot motor torques. It loses grip during
+preload, then completes its recovery control sequence and five-second settling
+period at 38.25 s. Independent motor replay is exact, and isolation, source
+limits, final withdrawal and support pass. Cover opening, retained opposition
+and unintended-contact checks fail; this provides no qualification credit.
+The cover closes after release, with transient cover/support penetration up to
+about 11 micrometres versus the unchanged 2 micrometre device threshold.
+The full contact report also retains non-pad thumb/handle contacts. Recovery
+control completion does not establish collision-qualified recovery.
+
+The revised retreat first opens the fingers by a small bounded amount while
+moving 2 cm away, then retreats another 2 cm. Clear/return waypoints use source
+arm joint configurations under the current body estimate. The thumb abducts
+before the remaining fingers fold. `analysis/ftir_recovery_path_01`–`04` retain
+the rejected alternatives: full finger opening hits the cover lip, an 8 cm
+retreat intersects the torso, and simultaneous refolding intersects index and
+thumb shells. The final static screen has no excess contact in 558 full-body
+states across a 0–16 degree cover-angle sweep at one retained sensor posture.
+This is a bounded static screen, not physical recovery qualification.
+
+Runtime profiling in `analysis/ftir_runtime_profile_01` finds approximately
+38 ms per unloaded full-plant step, dominated by narrow-phase collision work.
+The timings are under concurrent development load. The experimental contained
+cell-growth search in `analysis/ftir_distal_contact_06` preserves original-cell
+coverage and accepts expansions only inside the source exterior, but its
+bounded partial candidates still have more cells than the active package.
+They are not adopted. The official pinned G1/Dex3 source comparison in
+`analysis/g1_dex3_comparison_01` is also a candidate inspection only; the
+selected robot, laboratory and delivered movie are unchanged. Its unloaded
+source-model timing excludes the laboratory and is not an end-to-end speed
+comparison or evidence of a successful grasp.
+
+The subsequent Dex3 source search intersects the official URDF and MJCF joint
+limits, including the differing thumb-1 upper limits. Projected source surfaces
+propose grips; exact triangle distances reject bar intersections. Search 02
+finds 298 local bar candidates. The whole-instrument roll screen retains 301
+placements across 136 distinct hand configurations, but all eight whole-robot
+reach/path screens fail. Nearby stance, left-hand folding, alternative arm
+seeds and cylinder rolling allowances remain explicit hypotheses, without
+walking or execution credit. No Dex3 physics attempt or hardware selection
+change has been made.
+
+The fixed-wrist preview in grasp search 02 changes MuJoCo parent filtering,
+so its native self-contact rows must not be interpreted as floating-robot
+contacts. The instrument screen uses the original floating model instead.
+Raw palm/thumb-proximal visual overlap remains recorded near the joint
+assembly. Reach screen 03 onward checks native mesh-hull collisions against
+original triangles; selected wrist reports are false positives, while real
+shoulder/torso intersections and joint limits still reject the paths. A static
+triangle check does not repair a runtime hull or establish physical safety.
+
+Manufacturer-source reinspection in `analysis/nicolet_cover_affordance_01`
+identifies a more fundamental unresolved premise. The current 8 mm cylindrical
+front bar and its 76 mm span are inferred, not manufacturer CAD or measured
+dimensions. The inspected brochure shows the sliding-window grip, and the
+guide distinguishes that window from the hinged cover. These sources do not
+establish the modeled separate front bar; they also do not prove its absence
+on every hardware revision. Further development must resolve the gripping
+interface and installed IntegratIR access route before treating this bar-grasp
+family as a faithful commercial-device task. The generic transmission example
+uses the sliding door, but that does not establish this accessory's access
+clearance. Existing assets, movies and failed run snapshots remain evidence;
+none gains qualification from the new searches.
 
 The official Inspire tactile-hand manual is linked with a content hash in
 `analysis/inspire_tactile_definition_01/source.json`. Its tactile arrays report

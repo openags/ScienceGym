@@ -57,6 +57,68 @@ class CoverActor(FTIRActor):
         self.centered_com = self.balance.com_target.copy()
         self.wrist_integral = np.zeros(3)
         self.wrist_load_compensation = None
+        self.pad_centers = {name:np.asarray(point,dtype=float) for name,point in
+                            self.prior['pad_grasp']['source_center_points_m'].items()}
+        if set(self.pad_centers)!=set(self.prior['pad_grasp']['pad_parts']):
+            raise ValueError('Grasp centering requires the selected source pad points')
+        if any(p.shape!=(3,) or not np.isfinite(p).all() for p in self.pad_centers.values()):
+            raise ValueError('Invalid source pad center')
+        self.center_reference = None
+        self.center_local_offset = np.zeros(3)
+        self.center_world_offset = np.zeros(3)
+        self.center_status = None
+        self.opening_force_n=float(self.prior.get('opening_tangent_force_n',0.))
+        if not np.isfinite(self.opening_force_n) or not 0<=self.opening_force_n<=4:
+            raise ValueError('Invalid bounded opening-effort prior')
+        self.arm_retract_state=None
+
+    def pad_midpoint(self):
+        """Selected source pad centers in the encoder-estimated wrist frame."""
+        points = [self.d.body(name).xpos+self.d.body(name).xmat.reshape(3,3)@local
+                  for name,local in self.pad_centers.items()]
+        wrist = self.d.site('right_wrist_reference')
+        return wrist.xmat.reshape(3,3).T@(np.mean(points,axis=0)-wrist.xpos)
+
+    def center_offset(self, name, rotation, dt, smooth):
+        # Finger flexion changes the pinch center even when the wrist tracks
+        # its planned path. Counter that change through an ordinary wrist
+        # target. No object pose, contact identity or applied object force is
+        # available here. Source points are not pressure centroids.
+        if name in {'preload','lift','hold'}:
+            current = self.pad_midpoint()
+            if self.center_reference is None:self.center_reference=current.copy()
+            raw = self.center_reference-current
+            bounded = raw*min(1.,.004/max(np.linalg.norm(raw),1e-12))
+            step = (1-np.exp(-dt/.05))*(bounded-self.center_local_offset)
+            step *= min(1.,.006*dt/max(np.linalg.norm(step),1e-12))
+            self.center_local_offset += step
+            self.center_world_offset = rotation@self.center_local_offset
+            self.center_status=dict(mode='encoder_source_pad_centering',reference_wrist_m=self.center_reference.tolist(),
+                                    measured_wrist_m=current.tolist(),raw_offset_m=raw.tolist(),
+                                    filtered_offset_m=self.center_local_offset.tolist(),maximum_offset_m=.004,
+                                    maximum_local_offset_speed_m_s=.006)
+            return self.center_world_offset.copy()
+        if name in {'release','withdraw'}:
+            self.center_status=dict(mode='frozen_during_release',offset_world_m=self.center_world_offset.tolist())
+            return self.center_world_offset.copy()
+        if name=='clear':
+            offset=(1-smooth)*self.center_world_offset
+            self.center_status=dict(mode='clearance_blend_out',offset_world_m=offset.tolist())
+            return offset
+        self.center_status=None
+        return np.zeros(3)
+
+    def arm_pose(self, q):
+        """FK waypoint under the current proprioceptive body estimate."""
+        data=self.ik.data;data.qpos[:]=self.d.qpos;data.qpos[self.ik.qa]=q
+        mujoco.mj_kinematics(self.m,data)
+        return data.site('right_wrist_reference').xpos.copy(),data.site('right_wrist_reference').xmat.reshape(3,3).copy()
+
+    @staticmethod
+    def hand_release(q):
+        result=dict(q)
+        for name in ['right_index_1_joint','right_thumb_2_joint']:result[name]=max(0.,result[name]-.08)
+        return result
 
     def make_plan(self, t):
         recent = self.observations[-8:]
@@ -92,10 +154,11 @@ class CoverActor(FTIRActor):
             # until the final palm pose makes its distal link hit the case.
             ('align',4.,self.grip_position,self.grip_rotation,self.prior['nominal_grip_q']),
             ('close',3.,self.grip_position,self.grip_rotation,self.closed_q),
+            ('preload',1.5,self.grip_position,self.grip_rotation,self.closed_q),
             ('lift',8.,end,end_R,self.closed_q),
             ('hold',2.,end,end_R,self.closed_q),
-            ('release',2.,end,end_R,self.open_q),
-            ('withdraw',3.,end+self.front*.08,end_R,self.open_q),
+            ('release',2.,end+self.front*.02,end_R,self.hand_release(self.closed_q)),
+            ('withdraw',3.,end+self.front*.04,end_R,self.hand_release(self.closed_q)),
             ('clear',6.,self.raised,self.initial_R,folded),
             ('return',3.,self.initial,self.initial_R,folded)]
         previous, previous_R = self.initial, self.initial_R
@@ -103,13 +166,19 @@ class CoverActor(FTIRActor):
         worst = [0.,0.]
         for name, _, goal, rot, _ in self.plan:
             rotations = Slerp([0,1],Rotation.from_matrix([previous_R,rot]))
+            start_q=seed.copy()
             for u in np.linspace(0,1,51):
                 v = u*u*(3-2*u)
                 target, target_R = self.arc(v) if name=='lift' else (previous+v*(goal-previous),rotations([v]).as_matrix()[0])
+                if name in {'clear','return'}:
+                    finish_q=self.raised_arm_q if name=='clear' else self.original_posture[self.arm_actuators]
+                    seed=start_q+v*(finish_q-start_q)
+                    target,target_R=self.arm_pose(seed)
                 seed, pe, re = self.ik.solve(self.d,target,target_R,seed)
                 worst = [max(worst[0],pe),max(worst[1],re)]
                 if pe>.003 or re>.035:
                     raise RuntimeError(f'Observed cover IK preflight failed in {name}: {pe:.5f} m, {re:.5f} rad')
+            if name=='raise':self.raised_arm_q=seed.copy()
             previous, previous_R = goal, rot
         self.previous_position, self.previous_rotation, self.previous_q = self.initial,self.initial_R,folded
         self.phase,self.phase_started = 0,t
@@ -142,14 +211,20 @@ class CoverActor(FTIRActor):
         rotation = self.d.site('right_wrist_reference').xmat.reshape(3,3).copy()
         actual = {n:float(self.d.joint(n).qpos[0]) for n in self.open_q}
         folded = {n:float(self.original_posture[self.actuator_ids[n]]) for n in self.open_q}
-        self.plan = [('release_abort',2.,current,rotation,self.open_q),
-                     ('withdraw_abort',3.,current+self.front*.08,rotation,self.open_q),
+        released=self.hand_release(actual)
+        self.plan = [('release_abort',2.,current+self.front*.02,rotation,released),
+                     ('withdraw_abort',3.,current+self.front*.04,rotation,released),
                      ('clear_abort',6.,self.raised,self.initial_R,folded),
                      ('return_abort',3.,self.initial,self.initial_R,folded)]
         self.previous_position,self.previous_rotation,self.previous_q = current,rotation,actual
         self.phase,self.phase_started,self.reached_since = 0,t,None
         self.grip_effort[:] = 0
         self.wrist_integral[:] = 0
+        self.center_reference = None
+        self.center_local_offset[:] = 0
+        self.center_world_offset[:] = 0
+        self.center_status = None
+        self.arm_retract_state=None
         self.events.append(dict(state='recovery_started',time_s=t,reason=reason))
 
     def update(self, obs):
@@ -183,9 +258,30 @@ class CoverActor(FTIRActor):
                 target,target_R=self.arc(smooth) if name=='lift' else (
                     self.previous_position+smooth*(goal-self.previous_position),
                     Slerp([0,1],Rotation.from_matrix([self.previous_rotation,rotation]))([smooth]).as_matrix()[0])
+                nominal_target=target.copy()
+                centering=self.center_offset(name,target_R,dt,smooth)
+                target=target+centering
+                effective_goal=goal+(np.zeros(3) if name=='clear' else centering)
                 hand_target={n:self.previous_q[n]+smooth*(v-self.previous_q[n]) for n,v in hand.items()}
+                if name in {'clear','return','clear_abort','return_abort'}:
+                    key=(name,self.phase_started)
+                    if self.arm_retract_state is None or self.arm_retract_state[0]!=key:
+                        self.arm_retract_state=(key,self.d.qpos[self.ik.qa].copy())
+                    finish=self.raised_arm_q if name.startswith('clear') else self.original_posture[self.arm_actuators]
+                    retract_q=self.arm_retract_state[1]+smooth*(finish-self.arm_retract_state[1])
+                    target,target_R=self.arm_pose(retract_q)
+                    effective_goal,rotation=self.arm_pose(finish)
+                    nominal_target=target.copy();self.center_status=None
+                    if name.startswith('clear'):
+                        # Abduct the thumb first, then fold the remaining
+                        # finger joints. Simultaneous folding intersects the
+                        # source index and thumb shells in the retained case.
+                        for n,value in hand.items():
+                            stage=np.clip(u/.4,0,1) if n=='right_thumb_1_joint' else np.clip((u-.4)/.6,0,1)
+                            blend=stage*stage*(3-2*stage)
+                            hand_target[n]=self.previous_q[n]+blend*(value-self.previous_q[n])
                 for n,v in hand_target.items():posture[self.actuator_ids[n]]=v
-                seed=self.d.qpos[self.ik.qa] if self.latest_ik is None else self.latest_ik
+                seed=retract_q if name in {'clear','return','clear_abort','return_abort'} else self.d.qpos[self.ik.qa] if self.latest_ik is None else self.latest_ik
                 q,pe,re=self.ik.solve(self.d,target,target_R,seed)
                 if pe>.003 or re>.035:
                     if name!='release_abort':raise RuntimeError(f'Cover arm target infeasible in {name}: {pe:.5f} m, {re:.5f} rad')
@@ -202,7 +298,7 @@ class CoverActor(FTIRActor):
                         if self.grasp_since is None:self.grasp_since=t
                         if t-self.grasp_since>=.2:self.grasp_confirmed=True
                     else:self.grasp_since=None;self.grasp_confirmed=False
-                force_active=name in {'close','lift','hold'} and not self.failure
+                force_active=name in {'close','preload','lift','hold'} and not self.failure
                 if force_active:
                     ramp=min(1.,max(0.,(t-self.phase_started)/1.5)) if name=='close' else 1.
                     low,high=self.grip_lower_n*ramp,self.grip_upper_n
@@ -213,38 +309,48 @@ class CoverActor(FTIRActor):
                     # robot motors; no force is written to the instrument.
                     error=target-self.d.site('right_wrist_reference').xpos
                     self.wrist_integral=np.clip(self.wrist_integral+500.*dt*error,-8.,8.)
-                    compensation=np.clip(500.*error+self.wrist_integral,-10.,10.)
+                    feedback=500.*error+self.wrist_integral
+                    angle=np.pi/3*smooth if name=='lift' else np.pi/3 if name=='hold' else 0.
+                    radial=Rotation.from_rotvec(-self.axis*angle).as_matrix()@(self.handle-self.pivot)
+                    tangent=np.cross(-self.axis,radial);tangent/=np.linalg.norm(tangent)
+                    effort_prior=self.opening_force_n*(smooth if name=='preload' else 1. if name in {'lift','hold'} else 0.)*tangent
+                    compensation=np.clip(feedback+effort_prior,-10.,10.)
                     forces={'right':compensation}
-                    self.wrist_load_compensation=dict(force_n=compensation.tolist(),integral_n=self.wrist_integral.tolist(),position_error_m=error.tolist())
+                    self.wrist_load_compensation=dict(force_n=compensation.tolist(),integral_n=self.wrist_integral.tolist(),position_error_m=error.tolist(),
+                                                      feedback_force_n=feedback.tolist(),inferred_opening_effort_n=effort_prior.tolist())
                 else:
                     self.grip_effort[:]=0;self.wrist_integral[:]=0
                     self.wrist_load_compensation=None
                 self.grip_control=dict(filtered_load_n=self.filtered_load.tolist(),additional_effort_nm=self.grip_effort.tolist(),active=force_active,
                                        target_band_n=[self.grip_lower_n,self.grip_upper_n],confirmation_threshold_n=self.grip_confirm_n)
-                if name in {'lift','hold'}:
+                if name in {'preload','lift','hold'}:
                     if contact:self.lost_since=None
                     elif self.lost_since is None:self.lost_since=t
-                position_error=float(np.linalg.norm(goal-self.d.site('right_wrist_reference').xpos))
+                position_error=float(np.linalg.norm(effective_goal-self.d.site('right_wrist_reference').xpos))
                 rotation_error=float(np.linalg.norm(Rotation.from_matrix(rotation@self.d.site('right_wrist_reference').xmat.reshape(3,3).T).as_rotvec()))
                 self.commanded_pose=dict(phase=name,target_m=target.tolist(),rotation=target_R.tolist(),
+                                         nominal_target_m=nominal_target.tolist(),centering=self.center_status,
                                          endpoint_position_error_m=position_error,endpoint_rotation_error_rad=rotation_error,
                                          estimated_wrist_m=self.d.site('right_wrist_reference').xpos.tolist())
                 reason=None
                 if max(self.last_touch.values())>15:reason='Finger normal load exceeded 15 N development limit'
                 if name=='close' and t-self.phase_started>duration+3 and not self.grasp_confirmed:reason='Opposed grip load was not established'
-                if self.lost_since is not None and t-self.lost_since>.3:reason='Opposed contact was lost during cover lift'
+                if self.lost_since is not None and t-self.lost_since>.3:reason='Opposed contact was lost during loaded cover grasp'
                 if not self.failure and reason:
                     self.recover(t,reason)
                 else:
-                    ready=(self.grasp_confirmed if name=='close' else name in {'hold','release','release_abort'} or (position_error<.006 and rotation_error<.05))
+                    ready=(self.grasp_confirmed if name=='close' else name=='hold' or (position_error<.006 and rotation_error<.05))
+                    if name=='preload':ready=position_error<.0015 and rotation_error<.03 and np.min(self.filtered_load)>=self.grip_confirm_n
                     # End closing once the measured grip is established.
                     # Continuing a timed curl can roll a narrow pad off the
                     # bar even after both contacts already carry the load.
                     if name=='close' and self.grasp_confirmed:
                         hand=dict(hand_target)
                         for phase in range(self.phase+1,len(self.plan)):
-                            if self.plan[phase][0] in {'lift','hold'}:
+                            if self.plan[phase][0] in {'preload','lift','hold'}:
                                 self.plan[phase]=(*self.plan[phase][:4],dict(hand))
+                            elif self.plan[phase][0] in {'release','withdraw'}:
+                                self.plan[phase]=(*self.plan[phase][:4],self.hand_release(hand))
                     if (u>=1 or name=='close' and self.grasp_confirmed) and ready:
                         if self.reached_since is None:self.reached_since=t
                         if t-self.reached_since>=.15:
@@ -255,12 +361,13 @@ class CoverActor(FTIRActor):
                                 self.previous_position=self.d.site('right_wrist_reference').xpos.copy()
                                 self.previous_rotation=self.d.site('right_wrist_reference').xmat.reshape(3,3).copy()
                                 withdraw=self.plan[self.phase+1]
-                                self.plan[self.phase+1]=(withdraw[0],withdraw[1],self.previous_position+self.front*.08,self.previous_rotation.copy(),withdraw[4])
+                                self.plan[self.phase+1]=(withdraw[0],withdraw[1],self.previous_position+self.front*.02,self.previous_rotation.copy(),withdraw[4])
                             self.phase+=1;self.phase_started=t;self.reached_since=None
                             if self.phase==len(self.plan):self.finished=True
                     elif t-self.phase_started>duration+5:
                         if not self.failure:self.recover(t,'Robot pose did not reach '+name)
                         else:raise RuntimeError('Recovery pose did not reach '+name)
+                    else:self.reached_since=None
             torque=self.balance.torque(targets=targets,contact_forces=forces,posture=posture,dt=dt)
             # Bounded finger motor impedance supplies grip force. No force is
             # applied to the device, base, or any unactuated state directly.
