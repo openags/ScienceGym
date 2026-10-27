@@ -57,7 +57,9 @@ export async function installCaryEpisode(ctx, episode) {
     lid_slide: '滑开仪器主盖', step_to_hood: '调整操作位置', hood_unhook: '提起舱罩脱钩',
     hood_step_back: '携舱罩退步', hood_carry_sideways: '搬至台面暂存位置',
     hood_approach_support: '靠近台面', hood_lower_onto_support: '将舱罩放稳',
-    hood_release_on_bench: '松开把手', hood_return_hand: '收回操作手'
+    hood_release_on_bench: '松开把手', hood_return_hand: '收回操作手',
+    return_to_lid: '返回主盖操作位置', extension_step_push_lid: '迈步推开主盖',
+    extension_release_pull: '松开主盖把手', extension_step_back_after_release: '退步离开主盖'
   };
   function renderAt(t) {
     const frame = poseAt(t); now = frame.t;

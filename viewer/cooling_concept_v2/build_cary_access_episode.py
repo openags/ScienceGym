@@ -5,7 +5,7 @@ not execute reference/sample exchange, acquisition or the complete paper. The
 lid is first opened 150 mm to clear the hood; that split is a reconstruction
 inference, while complete hood removal is allowed by the manufacturer manual.
 """
-import gzip,hashlib,itertools,json
+import argparse,gzip,hashlib,itertools,json
 import numpy as np
 from scipy.spatial.transform import Rotation
 from optical_choreography import HERE,canonical,load_json
@@ -13,7 +13,13 @@ from source_geometry import ROOT,fk
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--extension')
+    parser.add_argument('--return-path')
+    args=parser.parse_args()
+    if bool(args.extension)!=bool(args.return_path):raise ValueError('Extension and return path are required together')
     files={'lid':'previews/cary_lid_operation_08.json','stance':'previews/cary_lid_to_hood_steps.json','release':'previews/cary_cover_release_01.json','carry':'previews/cary_cover_carry_03.json'}
+    if args.extension:files.update(extension=args.extension,return_path=args.return_path)
     plans={k:load_json(v) for k,v in files.items()}
     assert all(d['passed_planning_geometry'] for d in plans.values())
     lid,stance,release,carry=[plans[n] for n in ['lid','stance','release','carry']]
@@ -37,7 +43,7 @@ def main():
                 assert dt>0,(identity,dt)
                 elapsed+=dt
             row['time_s']=elapsed;result.append(row);previous=(row,source,palm,cover)
-        segments.append(dict(id=identity,start=clock,end=clock+elapsed,duration_s=elapsed,cover_held=held,interpolation='linear' if fixed else 'smooth',rows=result));clock+=elapsed
+        segments.append(dict(id=identity,start=clock,end=clock+elapsed,duration_s=elapsed,cover_held=held,lid_held=identity in ['lid_slide','extension_step_push_lid'],interpolation='linear' if fixed else 'smooth',rows=result));clock+=elapsed
     def grouped(prefix,rows,root):
         for (stage,held),group in itertools.groupby(rows,key=lambda r:(r['stage'],r.get('held',False))):
             group=list(group);add(prefix+'_'+stage,group,root,held,all('time_s' in r for r in group))
@@ -49,6 +55,9 @@ def main():
     grouped('hood',release['contact'],release['root'])
     grouped('hood',carry['rows'],release['root'])
     add('hood_return_hand',carry['exit'],carry['rows'][-1]['root'])
+    if args.extension:
+        add('return_to_lid',plans['return_path']['rows'],carry['rows'][-1]['root'],fixed=True)
+        grouped('extension',plans['extension']['rows'],plans['extension']['initial_root'])
     transitions=[]
     for a,b in zip(segments,segments[1:]):
         x,y=a['rows'][-1],b['rows'][0];ca,cb=cover_pose(x,a['cover_held']),cover_pose(y,b['cover_held'])

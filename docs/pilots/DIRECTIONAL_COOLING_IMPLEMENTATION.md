@@ -62,8 +62,12 @@ guarantee of general reliability.
 On 27 October 2026 (Asia/Singapore), the owner requested an illustrated
 ScienceGym research manuscript **after completing the demo**. This is an
 additional deliverable; manuscript preparation must not displace the current
-demo repair and validation work. The current repository does not bundle a
-ScienceGym manuscript. Its README mentions an earlier manuscript outside this
+demo repair and validation work. The initial inspection found no manuscript.
+A subsequent workspace check on 27 October found an 18-page English discussion
+draft with six generated figure groups under `manuscript/sciencegym/`. Its PDF
+and editable input hashes match its build receipt. It freezes existing partial
+results and failed composition evidence; it is not a final paper reporting a
+completed demo. The README also mentions an earlier manuscript outside this
 release, whose text and figures must be located and reviewed before reuse.
 
 After the demo is complete, write a full manuscript with an editable source,
@@ -79,9 +83,10 @@ or success rates without the corresponding evidence. Venue-specific formatting
 can follow once the manuscript and results exist. The owner has authorized
 writing this paper, but has not requested journal/conference submission.
 
-The manuscript package will be maintained under `manuscript/sciencegym/` once
-writing starts, with `main.tex`, a bibliography, compiled PDF, and editable
-figure sources. The planned figure set is:
+The manuscript package is maintained under `manuscript/sciencegym/`, with
+`main.tex`, a bibliography, compiled PDF, and editable figure sources. Update
+its results after demo completion without overwriting the existing frozen
+evidence snapshot. The final planned figure set is:
 
 1. ScienceGym system overview: paper evidence, reconstructed manipulation
    steps, task/state representation, sourced assets, execution and evaluation.
@@ -183,7 +188,8 @@ sequence is not a completed optical measurement. The development timeline is
 
 Reference/specimen
 exchange, calibration, sensor installation, reflector locking and wiring
-remain unfinished; no replacement full film or manuscript has been delivered.
+remain unfinished; no replacement full film or final manuscript has been delivered.
+The later local discussion draft is recorded in the manuscript section above.
 
 The optical-specimen repair now distinguishes the selected **25 mm optical
 witness** from the paper's **50 mm apparatus emitter**. Two identified copper
@@ -368,7 +374,7 @@ at nominal hood/base bearing faces; it does not excuse arbitrary contact
 depths. Inspection captures are under
 `viewer/cooling_concept_v2/previews/cary_episode_inspection/`.
 
-The final [sampled access review](../../viewer/cooling_concept_v2/audits/cary_access_04/sampled_interaction_review.json)
+The initial [sampled access review](../../viewer/cooling_concept_v2/audits/cary_access_04/sampled_interaction_review.json)
 covers all 23 segments in 4,933 states, using 0.1-second samples plus knots
 and boundary samples. It reports zero unexpected robot/environment, self or
 moving-device intersections, and zero joint/sole, FK, ownership, grasp-clearance
@@ -416,11 +422,11 @@ slider candidates, but all 18 pairs collide. A wider search found 16 and eight
 candidates, and all 128 pairs still collide. These are close approach poses,
 not accepted force-retaining grasps or a completed bimanual operation.
 
-The next support option to evaluate is the manufacturer's ordinary sample
-mount ledge (0810169700), included in the standard holder kit and described in
-the manual's reflectance operation/figure 16. It may allow supported sequential
-unclamping and removal; its geometry, installation, stability and robot motion
-are not implemented or qualified. No robot-specific support fixture or
+The manufacturer's ordinary sample mount ledge (0810169700), included in the
+standard holder kit and described in the manual's reflectance operation/
+figure 16, remains an unimplemented support option. The subsequent candidate
+below instead keeps the reference in the robot's left hand while its right
+hand operates an ordinary long forceps. No robot-specific support fixture or
 invisible attachment has been substituted for the missing operation.
 
 Reproduce with `review_cary_exchange_access.py --trial <new-id>`,
@@ -430,6 +436,94 @@ Reproduce with `review_cary_exchange_access.py --trial <new-id>`,
 Each recorded search/review retains its source hashes and the input searches
 retain frozen source snapshots. These results do not replace the live access
 episode or qualify any paper branch.
+
+### Extended access clip and bimanual extraction candidate
+
+The current Cary access viewer is **141.35 seconds / 34 continuous segments**.
+After placing the hood on the existing bench, G1 returns through the aisle,
+regrasps the lid, steps forward to extend its opening from 150 to 200 mm,
+releases, steps back and withdraws its arm. Released-hand waypoints constrain
+position while allowing wrist orientation to change; held-handle stages retain
+the exact grasp constraint. The direct diagonal return was rejected for a
+torso/hose-barb collision and retained under `previews/cary_return_01/`.
+
+The [independent review](../../viewer/cooling_concept_v2/audits/cary_access_05/sampled_interaction_review.json)
+checks all 8,937 exported states: zero unexpected robot/environment, self,
+moving-device, grasp, support, joint or sole failures. Sampling includes
+0.1-second intervals, authored knots and boundary neighborhoods. The clean
+[Cary access MP4](../../viewer/cooling_concept_v2/media/cary_access_05.mp4)
+contains 3,393 frames at 1280 x 720 / 24 fps, with no text or watermark.
+Its [capture receipt](../../viewer/cooling_concept_v2/media/cary_access_05.json)
+pins the reviewed renderer, geometry, initial scene and video. This is an
+access-preparation clip, not the replacement whole-paper film or dynamics
+qualification. The original 9 min 39 s movie remains unchanged.
+
+The exact compressed frame export exceeds GitHub's per-file limit. Three
+binary chunks and `frames_archive.json` preserve it byte-for-byte; restore the
+ordinary audit input after a fresh checkout with:
+
+```bash
+python viewer/cooling_concept_v2/audit_frames_archive.py viewer/cooling_concept_v2/audits/cary_access_05 --restore
+```
+
+Rebuild the current access composition with:
+
+```bash
+python viewer/cooling_concept_v2/build_cary_access_episode.py --extension previews/cary_lid_stepped_04/plan.json --return-path previews/cary_return_02/plan.json
+```
+
+For the cramped spring clamp, the new ordinary tool is
+[FST 11000-20](https://finescience.com/anatomical-standard-forceps-straight/11000-20).
+Its manufacturer supplies a product photograph, tip drawing and datasheet.
+The [asset revision](../../assets/fst_11000_20_v1/revision.json) records the
+200 mm length, 50 g mass, 3.75 x 1.9 mm serrated tips and stainless material as
+source values. Body contour, opening, serration pitch and closing deformation
+are explicitly inferred; the meshes are original reconstructions, not factory
+CAD. External photographs and PDFs are referenced and hashed, not redistributed.
+`python assets/fst_11000_20_v1/fetch_references.py` retrieves the exact external
+references into the generator's cache and rejects changed source bytes. Then
+`python viewer/cooling_concept_v2/long_forceps.py` rebuilds the two mesh variants.
+The selected grip's [closure profile](../../viewer/cooling_concept_v2/previews/long_forceps_closure_03/profile.json)
+passes 51 fitted knots and 150 interpolated source-hand/tool checks, including
+the terminal wrist housing. Spring stiffness, friction and retention force
+remain unqualified.
+
+The first full-arm searches exposed a missing local-screening component:
+the terminal wrist-yaw housing is rigid relative to the palm but was absent
+from the earlier finger-only managers. `cary_distal_hand.py` now includes it;
+the earlier rejected body searches and their source snapshots remain intact.
+Rigidly turning the entire forceps with the clamp also drove the right hand
+into the instrument. The current candidate instead maintains the tool's world
+orientation while its opposed jaw contacts follow the clamp arm around the
+post. The jaws remain parallel to the arm's faces; this relative turning and
+the selected 55-degree parked angle are reconstruction inferences, not a
+manufacturer-specified trajectory or a measured friction model. Every retained
+planning knot checks both jaw gaps against the actual clamp-arm mesh.
+
+The resulting [bimanual planning candidate](../../viewer/cooling_concept_v2/previews/cary_bimanual_exchange_04/plan.json)
+has **90 states**: left-hand support, right-tool clamp retraction, 55-degree
+parking, then a 76 mm left-hand reference withdrawal. All represented source
+robot parts, tool, moving clamp and reference clear the planning laboratory
+geometry at those states. The ankles are omitted from this planning tier. Hand approach,
+forceps pickup, reference storage, interpolation review and independent
+whole-episode checks are still pending. Inspection snapshots begin with both
+grasps established; they are not an executed pickup or a continuous workflow.
+The next operation work is to add supported tool staging and pickup, connect
+the two hand approaches to this candidate, then store the reference and close
+the instrument for the required baseline procedure. No complete branch or
+campaign is qualified by these access and extraction results.
+
+The current ordinary-tool staging candidate is
+`previews/long_forceps_staging_07/staging.json`. It uses a second instance of the
+existing ordinary tray on the free left side of the Cary bench, with the tool
+tip supported by the worktop and the welded heel at a tray corner. All 51 local
+hand-closure states clear the tool, tray and worktop; the smallest signed
+tool/tray distance is positive. Earlier central-rim placements intersected the
+index finger. Trial 06 is explicitly rejected by its added review: its boolean
+collision query was clear but the signed distance was negative. The corrected
+checker requires nonnegative distance at every state. This remains a proposed
+initial layout, without live-scene installation, full-body approach, pickup,
+stability, or force qualification.
 
 ## Laboratory contact integration
 

@@ -1,10 +1,10 @@
 {
-  "updated_utc": "2026-10-27T04:36:54.977765+00:00",
+  "updated_utc": "2026-10-27T07:13:02.481461+00:00",
   "status": "development_not_accepted",
   "user_report": "Interpenetration and incorrect physical interaction in the 9m39 original concept film",
   "published_film": "viewer/cooling_concept_v1/episode.mp4",
   "published_film_replaced": false,
-  "current_work": "Integrate the Cary working clamp, protected PTFE reference handling and witness exchange into the executed access sequence; complete main-lid opening, cover restoration and acquisition controls, then connect to the paper workflow.",
+  "current_work": "Complete supported long-forceps pickup and both hand approaches for the Cary reference extraction candidate, then reference storage, witness exchange, cover restoration and measurement controls. Connect to the reviewed cross-station episode and repair the other paper operations.",
   "completed_changes": [
     "Rerouted paths and loading positions around utility cart",
     "Shared object-relative hand targets and source-joint inverse kinematics",
@@ -49,10 +49,14 @@
     "Independent optical_delivery_02 prefix review: 4364 states with zero unexpected robot/environment, self or tool/specimen/tray intersections and zero joint/sole/FK/ownership failures. Every prior exchange state was compared in the extended viewer: 4038 states match within 2.58e-13; source geometry and deformed vertices match.",
     "Built a separate actuated Cary clamp candidate preserving 101 other source parts; 138 sampled mechanism states pass geometry checks, including reference/witness backing contact and clear-aperture parking. It is not integrated into robot playback.",
     "Integrated a separate 81.09 s, 23-segment Cary access episode in the complete laboratory: main-lid grasp/150 mm slide/release, grounded stance transfer, hood grasp/unhook, backward and sideways carrying, bench seating/release and hand withdrawal.",
-    "Independent cary_access_04 review: 4933 states, zero unexpected robot/environment, self or mechanism intersections and zero joint/sole/FK/ownership/grip-clearance/support failures. Retain three earlier failed exports; refine both lid and hood interpolation instead of accepting only clear key poses."
+    "Independent cary_access_04 review: 4933 states, zero unexpected robot/environment, self or mechanism intersections and zero joint/sole/FK/ownership/grip-clearance/support failures. Retain three earlier failed exports; refine both lid and hood interpolation instead of accepting only clear key poses.",
+    "Extended Cary access to 141.35 s / 34 segments: aisle return, regrasp, two grounded lid-pushing steps to 200 mm opening, release and withdrawal. Independent cary_access_05 review passes all 8,937 sampled states.",
+    "Exported a clean 141.375 s / 3,393-frame Cary access MP4 from the exact reviewed sources. This is a separate access clip; the rejected original full movie is unchanged.",
+    "Reconstructed the ordinary FST 11000-20 long forceps from official dimensions and references, with explicit inferred body/elastic shape. The selected hand closure passes 51 knots and 150 interpolation checks including the terminal wrist housing.",
+    "Found a 90-state full-arm Cary reference extraction candidate: left-hand support, right-tool clamp retraction and 55-degree parking, then reference withdrawal. Planning includes the moving clamp; it begins with established grasps and omits ankle checks. No pickup or continuous episode qualification."
   ],
   "latest_reach_check": "audits/reference_02/sampled_interaction_review.json",
-  "latest_speed_check": "audits/cary_access_04/motion_review.json",
+  "latest_speed_check": "audits/cary_access_05/motion_review.json",
   "full_collision_pipeline": {
     "folders": [
       "audits/approach_03",
@@ -61,26 +65,32 @@
       "audits/optical_exchange_01",
       "audits/optical_delivery_02",
       "audits/optical_delivery_composed_02",
-      "audits/cary_access_04"
+      "audits/cary_access_04",
+      "audits/cary_access_05"
     ],
-    "status": "Selected apparatus/reference checks, separate optical delivery/exchange, and Cary access preparation have sampled geometric coverage on pinned revisions. Cary reference/sample exchange, scans, joined paper execution, full-film acceptance and dynamics remain open."
+    "status": "Selected apparatus/reference checks, optical delivery/exchange, and extended Cary access have sampled geometry coverage on pinned revisions. Cary reference extraction has only a 90-state planning candidate. Joined paper execution, full-film acceptance and dynamics remain open."
   },
   "remaining": [
-    "Complete Cary main-lid opening, reference/sample clamping, protected reference storage, cover restoration and actual scan controls; connect access and measurement with reviewed Cary-to-FTIR delivery/exchange and the full paper timeline.",
+    "Complete forceps pickup and hand approaches, Cary reference/sample clamping, protected reference storage, cover restoration and scan controls; connect to the reviewed Cary-to-FTIR delivery/exchange and the full paper timeline.",
     "Repair bath calibration, probe installation, reflector unlocking/support/adjustment/relocking and cable handling; old generic gestures remain in these stages",
     "Review the finished timeline at final frame spacing, including all empty-hand travel and revised optical procedures; selected interaction passes are not whole-film acceptance",
     "Resolve inferred optical mounts, alignment, detector cables and support/contamination qualification of protective-cap storage; the corrected reference-face recess remains an inferred dimension",
     "Model rolling/swiveling cart wheels and qualify board/cargo support; current geometry-only route checks do not establish stability",
     "Validate the entire finished trajectory including final 24 fps frames, then render and inspect the complete clean film; original published film remains unchanged",
     "Resume physics qualification; joined mission04 remains failed on return accuracy and worktop contact",
-    "After the requested demo delivery, write the illustrated ScienceGym manuscript using actual measured evidence"
+    "After demo delivery, update the existing 18-page illustrated manuscript discussion draft with complete execution evidence and measured results; current partial and failed results do not establish completion."
   ],
   "manuscript": {
     "request": "Write a fully illustrated ScienceGym paper after demo completion",
     "plan": "docs/pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md",
-    "existing": "README mentions an early manuscript outside this release; no editable draft found in repository/workspace",
-    "started": false,
-    "figure_plan": "Six figure groups and reproducible figure/table inputs specified in the implementation plan; writing has not started"
+    "existing": "Local 18-page English discussion draft with six generated figure groups, editable LaTeX and compiled PDF; not included in this demo-only commit.",
+    "started": true,
+    "figure_plan": "Six figure groups already generated for the frozen partial-results draft. Final results and demo sequence remain to update after delivery.",
+    "pdf": "manuscript/sciencegym/ScienceGym_manuscript_v0.1.pdf",
+    "pages": 18,
+    "figure_groups": 6,
+    "final_paper_complete": false,
+    "build_receipt_verified": true
   },
   "whole_demo_complete": false,
   "active_collision_pipeline": null,
@@ -453,6 +463,36 @@
         9.76158282317563e-07,
         9.76158282317563e-07
       ]
+    },
+    "cary_access_05": {
+      "passed": true,
+      "scope": "Sampled source geometry for instrument access preparation only. Compose continuous G1 lid opening and hood removal in the established lab.\n\nThis is access preparation for the paper's Cary measurement workflow. It does\nnot execute reference/sample exchange, acquisition or the complete paper. The\nlid is first opened 150 mm to clear the hood; that split is a reconstruction\ninference, while complete hood removal is allowed by the manufacturer manual.\n No retention-force, balance, dynamics, sensor-control, whole-film or paper-branch qualification.",
+      "episode": "cary_access",
+      "covers_entire_episode": true,
+      "duration_s": 141.35461041230153,
+      "frames": 8937,
+      "sample_step_s": 0.1,
+      "robot_environment_intersection_frames": 0,
+      "self_intersection_frames": 0,
+      "mechanism_intersection_frames": 0,
+      "kinematic_failures": 0,
+      "grip_clearance_failures": 0,
+      "support_failures": 0,
+      "joint_limit_failures": 0,
+      "joint_speed_failures": 0,
+      "sole_penetration_failures": 0,
+      "maximum_source_fk_matrix_error": 1.7763568394002505e-15,
+      "maximum_object_matrix_error": 7.105427357601002e-15,
+      "maximum_grip_gaps_m": {
+        "lid_index": 0.00010382253775791712,
+        "lid_thumb": 0.00010495942577731364,
+        "cover_index": 0.000113644009330783,
+        "cover_thumb": 0.00011710409453770788
+      },
+      "bench_seating_gap_range_m": [
+        9.76158282317563e-07,
+        9.76158282317563e-07
+      ]
     }
   },
   "latest_lid_edge_check": "previews/lid_transfer_edges.json",
@@ -470,8 +510,8 @@
     "reference_transfer.json": "7aa5e8f69becd1ef523c8be90ce9125120ad074f5ba5629a734584771c028ef9",
     "runtime_scene.json": "616fdac1813b46c6e35bc40c83618613a142d286838ea55e7591bd371264fe0c",
     "export_audit.py": "ec1479f762eaee7ac5ba40ff8e1497e3e3e51d96ee4ed24d8ed82cc639d37bdd",
-    "cary_episode.js": "63cd56cf0d7e4e90b9ebdadf453e9884b540bcb9ccf650d0645ca4afc1e85cbf",
-    "cary_access_episode.json": "2359a7d21e1c5b8bd6a5b7bc0656adae69d9aa6feab90a8728325b7db3d4cfe2"
+    "cary_episode.js": "f926de05e0b8f9fda9262d272ae091965e1821574f4704b2b3b59b046471013f",
+    "cary_access_episode.json": "c87013626d3aaa08d2d8c6abc18d9a38879238c54ece8f790afde50770ff3910"
   },
   "optical_resources": {
     "dra": "assets/cary_internal_dra_2500_v1/interfaces.json",
@@ -562,11 +602,11 @@
     "inspection_note": "The extension cover is hidden for these inspection images; this does not demonstrate cover opening or a robot exchange."
   },
   "cary_access_episode": {
-    "duration_s": 81.0900131285031,
-    "segments": 23,
+    "duration_s": 141.35461041230153,
+    "segments": 34,
     "viewer": "index.html?episode=cary_access",
     "source": "cary_access_episode.json",
-    "review": "audits/cary_access_04/sampled_interaction_review.json",
+    "review": "audits/cary_access_05/sampled_interaction_review.json",
     "geometry_override": {
       "asset": "cary",
       "path": "assets/cary_5000_v1/revisions/cover_clearance/prepared_cary_operable_cover.glb",
@@ -578,8 +618,31 @@
       "Main lid and removable hood start closed. Hood handle height and hose relief geometry are explicitly inferred operability revisions.",
       "The instrument main lid remains partially open after this episode. Reference/sample exchange, measurement, closure and the complete paper workflow are not executed."
     ],
-    "inspection": "previews/cary_episode_inspection/preview.json",
+    "inspection": "previews/cary_episode_inspection_05/",
     "replacement_full_film": false,
-    "force_or_dynamics_qualified": false
+    "force_or_dynamics_qualified": false,
+    "video": "media/cary_access_05.mp4",
+    "video_receipt": "media/cary_access_05.json"
+  },
+  "cary_exchange_candidate": {
+    "plan": "previews/cary_bimanual_exchange_04/plan.json",
+    "planning_states": 90,
+    "full_episode": false,
+    "starts_with_established_grasps": true,
+    "independent_dense_review": false,
+    "forces_or_dynamics_qualified": false,
+    "next": "Supported forceps pickup, hand approaches, reference storage and episode composition."
+  },
+  "qualified_paper_branches": 0,
+  "required_paper_branches": 11,
+  "qualified_full_campaigns": 0,
+  "cary_tool_staging": {
+    "report": "previews/long_forceps_staging_07/staging.json",
+    "local_closure_states": 51,
+    "passed_local_geometry": true,
+    "installed_in_live_scene": false,
+    "whole_body_pickup_qualified": false,
+    "force_or_stability_qualified": false,
+    "rejected_report_review": "previews/long_forceps_staging_06/review.json"
   }
 }

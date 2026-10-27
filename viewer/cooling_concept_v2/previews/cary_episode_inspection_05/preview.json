@@ -1,0 +1,158 @@
+{
+  "scope": "Capture whole-body and handle views of the actual composed Cary episode.",
+  "camera_override": "\nwindow.caryContactJpeg=({time,part})=>{\n window.renderAt(time);\n const node=nodeRest.find(n=>n.asset==='cary'&&n.node.name===part).node;\n node.geometry.computeBoundingBox();const target=node.geometry.boundingBox.getCenter(new THREE.Vector3()).applyMatrix4(node.matrixWorld);\n camera.position.copy(target).add(new THREE.Vector3(.27,-.38,.32));camera.lookAt(target);\n renderer.render(scene,camera);return renderer.domElement.toDataURL('image/jpeg',.96).split(',')[1];\n};\n",
+  "captures": [
+    {
+      "path": "lid_close_wide.jpg",
+      "time_s": 11.273326167223205,
+      "phase": "lid_close",
+      "contact_camera": false
+    },
+    {
+      "path": "lid_close_close.jpg",
+      "time_s": 11.273326167223205,
+      "phase": "lid_close",
+      "contact_camera": true
+    },
+    {
+      "path": "lid_slide_wide.jpg",
+      "time_s": 13.487607171269062,
+      "phase": "lid_slide",
+      "contact_camera": false
+    },
+    {
+      "path": "lid_slide_close.jpg",
+      "time_s": 13.487607171269062,
+      "phase": "lid_slide",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_close_wide.jpg",
+      "time_s": 42.20917508058215,
+      "phase": "hood_close",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_close_close.jpg",
+      "time_s": 42.20917508058215,
+      "phase": "hood_close",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_unhook_wide.jpg",
+      "time_s": 42.70917508058215,
+      "phase": "hood_unhook",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_unhook_close.jpg",
+      "time_s": 42.70917508058215,
+      "phase": "hood_unhook",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_step_back_wide.jpg",
+      "time_s": 49.464434121087166,
+      "phase": "hood_step_back",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_step_back_close.jpg",
+      "time_s": 49.464434121087166,
+      "phase": "hood_step_back",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_carry_sideways_wide.jpg",
+      "time_s": 58.40407747242999,
+      "phase": "hood_carry_sideways",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_carry_sideways_close.jpg",
+      "time_s": 58.40407747242999,
+      "phase": "hood_carry_sideways",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_lower_onto_support_wide.jpg",
+      "time_s": 70.80987221427804,
+      "phase": "hood_lower_onto_support",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_lower_onto_support_close.jpg",
+      "time_s": 70.80987221427804,
+      "phase": "hood_lower_onto_support",
+      "contact_camera": true
+    },
+    {
+      "path": "hood_return_hand_wide.jpg",
+      "time_s": 81.0900131285031,
+      "phase": "hood_return_hand",
+      "contact_camera": false
+    },
+    {
+      "path": "hood_return_hand_close.jpg",
+      "time_s": 81.0900131285031,
+      "phase": "hood_return_hand",
+      "contact_camera": true
+    },
+    {
+      "path": "return_to_lid_wide.jpg",
+      "time_s": 90.52495874982586,
+      "phase": "return_to_lid",
+      "contact_camera": false
+    },
+    {
+      "path": "return_to_lid_close.jpg",
+      "time_s": 90.52495874982586,
+      "phase": "return_to_lid",
+      "contact_camera": true
+    },
+    {
+      "path": "extension_step_push_lid_wide.jpg",
+      "time_s": 118.60410370302584,
+      "phase": "extension_step_push_lid",
+      "contact_camera": false
+    },
+    {
+      "path": "extension_step_push_lid_close.jpg",
+      "time_s": 118.60410370302584,
+      "phase": "extension_step_push_lid",
+      "contact_camera": true
+    },
+    {
+      "path": "extension_step_back_after_release_wide.jpg",
+      "time_s": 121.96041108108302,
+      "phase": "extension_step_back_after_release",
+      "contact_camera": false
+    },
+    {
+      "path": "extension_step_back_after_release_close.jpg",
+      "time_s": 121.96041108108302,
+      "phase": "extension_step_back_after_release",
+      "contact_camera": true
+    },
+    {
+      "path": "extension_known_return_wide.jpg",
+      "time_s": 141.35461041230153,
+      "phase": "extension_known_return",
+      "contact_camera": false
+    },
+    {
+      "path": "extension_known_return_close.jpg",
+      "time_s": 141.35461041230153,
+      "phase": "extension_known_return",
+      "contact_camera": true
+    }
+  ],
+  "errors": [],
+  "source_sha256": {
+    "main.js": "34b2828ae3b5653f7fb33591dbe510a9cdf36d94281aa5c976978eb7255a7283",
+    "cary_episode.js": "f926de05e0b8f9fda9262d272ae091965e1821574f4704b2b3b59b046471013f",
+    "cary_access_episode.json": "c87013626d3aaa08d2d8c6abc18d9a38879238c54ece8f790afde50770ff3910",
+    "runtime_scene.json": "616fdac1813b46c6e35bc40c83618613a142d286838ea55e7591bd371264fe0c",
+    "preview_cary_episode.py": "7bfd14200f07c6231dda0c5fff2360e9c0b314ea05454859ab8300a556cf4ac5"
+  }
+}

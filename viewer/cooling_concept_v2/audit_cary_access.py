@@ -78,7 +78,7 @@ def audit(folder):
             slide=np.eye(4);slide[1,3]=state['lid_m']
             object_error=max(float(np.max(abs(parts[n]-(delta if n in cover_names else slide)@rest[n]))) for n in moving_names);max_object=max(max_object,object_error)
             if fk_error>1e-7 or object_error>1e-7 or state['cover_held']!=segment['cover_held']:kinematic.append(dict(time_s=frame['time_s'],phase=frame['phase'],fk_error=fk_error,object_error=object_error))
-            if segment['cover_held'] or segment['id']=='lid_slide':
+            if segment['cover_held'] or segment.get('lid_held',segment['id']=='lid_slide'):
                 handle=(cover._objs['cary::extension_pull_bar'] if segment['cover_held'] else lid._objs['cary::sample_lid_pull'])['obj'];kind='cover' if segment['cover_held'] else 'lid';gaps={}
                 for name in fingers:finger_manager.set_transform(name,root@world[name])
                 for finger in ['index','thumb']:
