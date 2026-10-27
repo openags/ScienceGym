@@ -1,10 +1,10 @@
 {
-  "updated_utc": "2026-10-27T02:27:10.629523+00:00",
+  "updated_utc": "2026-10-27T02:57:29.770683+00:00",
   "status": "development_not_accepted",
   "user_report": "Interpenetration and incorrect physical interaction in the 9m39 original concept film",
   "published_film": "viewer/cooling_concept_v1/episode.mp4",
   "published_film_replaced": false,
-  "current_work": "Connect the reviewed Cary-to-FTIR witness delivery/exchange sequence to actual Cary reference/sample clamping and background/sample acquisition controls, then replace the remaining calibration, probe, locking and wiring placeholders in the full paper timeline.",
+  "current_work": "Integrate the separate Cary clamp candidate with both sample-access covers, protected reference handling and bimanual witness exchange; then connect acquisition controls and the reviewed delivery/exchange to the remaining paper operations.",
   "completed_changes": [
     "Rerouted paths and loading positions around utility cart",
     "Shared object-relative hand targets and source-joint inverse kinematics",
@@ -46,7 +46,8 @@
     "Independent optical_exchange_01 review: 4038 full-laboratory states, zero unexpected robot/environment, self or tool/specimen/tray-environment intersections and zero joint/sole/FK/ownership failures. The reviewer reconstructs the renderer tweezer deformation from source geometry. No dynamics or whole-film credit.",
     "Added actual Cary-side witness pickup and two forward-facing cross-station delivery trips before the existing FTIR exchange. The same tool and both witness identities persist through 136 segments over 774.92 s.",
     "Rejected the high-hand aisle-carrying posture after visual inspection; introduced lower chest-level carrying with explicit lowering/raising in the aisle and source-leg IK foot placements.",
-    "Independent optical_delivery_02 prefix review: 4364 states with zero unexpected robot/environment, self or tool/specimen/tray intersections and zero joint/sole/FK/ownership failures. Every prior exchange state was compared in the extended viewer: 4038 states match within 2.58e-13; source geometry and deformed vertices match."
+    "Independent optical_delivery_02 prefix review: 4364 states with zero unexpected robot/environment, self or tool/specimen/tray intersections and zero joint/sole/FK/ownership failures. Every prior exchange state was compared in the extended viewer: 4038 states match within 2.58e-13; source geometry and deformed vertices match.",
+    "Built a separate actuated Cary clamp candidate preserving 101 other source parts; 138 sampled mechanism states pass geometry checks, including reference/witness backing contact and clear-aperture parking. It is not integrated into robot playback."
   ],
   "latest_reach_check": "audits/reference_02/sampled_interaction_review.json",
   "latest_speed_check": "audits/optical_delivery_02/motion_review.json",
@@ -480,24 +481,24 @@
     ]
   },
   "optical_specimen_gap": {
-    "current_viewer_witness_diameter_m": 0.05,
+    "current_viewer_witness_diameter_m": 0.025,
     "selected_reconstruction_coupon_diameter_m": 0.025,
     "source": "tasks/directional_cooling_operations_v3/selected_reconstruction.json#/cards/optical_card/sample_mount",
     "dimension_origin": "inferred_selection, not a paper-specified dimension",
     "required_retention": "ordinary annular edge holder; two separately retained layers for the film specimen",
     "next_actions": [
-      "Replace the 50 mm placeholder with the selected 25 mm specimen geometry",
-      "Verify fully supported staging and ordinary-tool clearance against the actual source meshes",
-      "Bind optical witness identities to material/apparatus parents and retain them across Cary and FTIR transfers",
-      "Implement specimen/tool pickup, seating, release, scan control and return before claiming completion"
-    ]
+      "Implement Cary reference and witness clamping with both access covers and protected reference storage",
+      "Add the separately retained two-layer film specimen",
+      "Bind scan controls and integrate optical exchanges with the full paper timeline"
+    ],
+    "previous_placeholder_diameter_m": 0.05
   },
   "optical_specimen_development": {
     "manifest": "assets/cooling_optical_specimens_v1/manifest.json",
     "staging": "specimen_staging.json",
     "tool_fit": "previews/specimen_tool_fit.json",
     "port_extraction_candidate": "previews/specimen_port_refined.json",
-    "integration": "Only static witness staging is integrated. Tool pickup, sample exchanges, between-pose clearance and controls remain incomplete.",
+    "integration": "Two witnesses, ordinary-tool pickup, Cary-side collection, forward walking delivery, FTIR mounting/retrieval and tool return are integrated in the separate ftir_delivery episode. Cary measurement/clamping, controls and full-timeline integration remain incomplete.",
     "inspection": "previews/specimen_port_inspection/preview.json"
   },
   "latest_local_optical_episode": "index.html?episode=ftir_delivery",
@@ -514,5 +515,16 @@
     "source": "optical_delivery_episode.json",
     "replacement_full_film": false,
     "force_or_dynamics_qualified": false
+  },
+  "cary_clamp_candidate": {
+    "revision": "assets/cary_internal_dra_2500_v1/revisions/working_clamp/revision.json",
+    "review": "assets/cary_internal_dra_2500_v1/revisions/working_clamp/mechanism_review.json",
+    "mechanism_samples": 138,
+    "unexpected_intersection_samples": 0,
+    "preserved_other_source_parts": 101,
+    "integrated_in_scene": false,
+    "force_or_dynamics_qualified": false,
+    "inspection": "assets/cary_internal_dra_2500_v1/revisions/working_clamp/cutaway_previews/",
+    "inspection_note": "The extension cover is hidden for these inspection images; this does not demonstrate cover opening or a robot exchange."
   }
 }

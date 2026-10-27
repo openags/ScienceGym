@@ -305,6 +305,32 @@ python viewer/cooling_concept_v2/verify_delivery_suffix.py viewer/cooling_concep
 python viewer/cooling_concept_v2/review_delivery_episode.py viewer/cooling_concept_v2/audits/optical_delivery_recheck viewer/cooling_concept_v2/audits/optical_delivery_suffix_recheck viewer/cooling_concept_v2/audits/optical_delivery_composed_recheck
 ```
 
+## Cary optical mechanism
+
+The Cary reference/sample clamp now has a separate
+[working-mechanism candidate](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/revision.json).
+The existing installed clamp already reaches the 14 mm reference backing via
+a static offset; the missing pieces were guide clearance, a closing spring,
+travel for thinner samples, and rotation away from the open baseline port.
+The candidate adds a bored slider, distal spring stop and offset arm while
+preserving all 101 unrelated DRA parts exactly. Local mechanism dimensions
+and the rotational parking choice are explicit reconstruction inferences.
+
+Its [mechanism review](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/mechanism_review.json)
+checks 138 reference-release, clear-port parking and witness-closing states.
+It checks pad/backing contact, guide/coil/module clearance and the unblocked
+16 mm aperture. The
+[inspection images](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/cutaway_previews/)
+hide the extension hood as a cutaway; they do not show a robot opening it.
+The original sliding lid and the extension's lift/slide/hinge cover are
+distinct access operations. This candidate is not integrated into the
+delivery episode. Bimanual actuation, reference storage, complete compartment
+clearance, retention forces and acquisition controls remain to implement.
+
+Rebuild and review with `build_cary_clamp_candidate.py`,
+`review_cary_clamp.py`, and `preview_cary_clamp.py` under
+`viewer/cooling_concept_v2/`, using the simulation Python environment.
+
 ## Laboratory contact integration
 
 The G1 contact plant now imports the existing full laboratory instead of a
