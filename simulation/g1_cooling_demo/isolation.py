@@ -38,7 +38,7 @@ def namespace_prefix(code, model_dir):
     return command
 
 
-def prepare(out, control_model, actor_command, *, extra_modules=(), policy_files=()):
+def prepare(out, control_model, actor_command, *, extra_modules=(), policy_files=(), shape_files=()):
     """Fail closed if the namespace or its active denial probes fail.
 
     The bundle deliberately excludes world construction, source task plans,
@@ -83,6 +83,11 @@ def prepare(out, control_model, actor_command, *, extra_modules=(), policy_files
         target.parent.mkdir(exist_ok=True)
         shutil.copyfile(source, target)
         files.append(dict(path=str(target.relative_to(out)), sha256=sha(source)))
+    for source in map(Path, shape_files):
+        target=model_dir/'known_objects'/source.name
+        target.parent.mkdir(exist_ok=True)
+        shutil.copyfile(source,target)
+        files.append(dict(path=str(target.relative_to(out)),sha256=sha(source)))
     ET.indent(xml)
     ET.ElementTree(xml).write(model_dir/'world.xml', encoding='unicode')
     # This engine-side audit happens before the bundle is exposed to the actor.
@@ -149,9 +154,12 @@ def restore_inputs(folder):
     if (folder/'policy_source').is_dir():
         for source in (folder/'policy_source').rglob('*'):
             if source.is_file(): available[sha(source)] = source
+    if (folder/'object_shape_source').is_dir():
+        for source in (folder/'object_shape_source').iterdir():
+            if source.is_file():available[sha(source)]=source
     for row in receipt['input_files']:
         target = (folder/row['path']).resolve()
-        if not target.is_relative_to(model_dir) or target.parent.name not in {'meshes','textures','policy'}:
+        if not target.is_relative_to(model_dir) or target.parent.name not in {'meshes','textures','policy','known_objects'}:
             raise ValueError('Unexpected bundle target')
         target.parent.mkdir(parents=True,exist_ok=True)
         if not target.exists():

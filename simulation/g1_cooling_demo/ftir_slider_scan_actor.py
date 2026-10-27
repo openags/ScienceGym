@@ -26,7 +26,7 @@ class SliderScanActor(FTIRActor):
         self.state='observe'
 
     def update(self,obs):
-        if set(obs)!=self.fields:
+        if set(obs)!=SliderScanActor.fields:
             raise ValueError('Non-sensor field in FTIR actor input')
         t=float(obs['time_s']);detection=None
         if t+1e-8>=self.next_control:

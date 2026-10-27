@@ -31,7 +31,7 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
         # Desired wrist forces on a contacted object imply opposite external
@@ -41,6 +41,17 @@ class Balance:
         for side,force in (contact_forces or {}).items():
             site=m.site(side+'_wrist_reference').id;j,_=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))
             bias+=j[:3].T@np.asarray(force)
+        # A fingertip load also acts on the finger joints and creates a
+        # wrist moment. Applying its model reaction at the wrist omits both.
+        # Points here are robot-geometry predictions from encoder estimates,
+        # not simulator contacts. The physical plant still receives only
+        # bounded actuator torques from the inverse-dynamics solution.
+        for load in (surface_forces or []):
+            point=np.asarray(load['point'],dtype=float);force=np.asarray(load['force'],dtype=float)
+            if point.shape!=(3,) or force.shape!=(3,) or not np.isfinite(np.r_[point,force]).all():
+                raise ValueError('Invalid predicted surface load')
+            body=m.body(load['body']).id;j,_=self.jacobian(point,body)
+            bias+=j[:3].T@force
         # Public work-order mass prior, expressed as the reaction on the robot.
         # Include all DOFs in inverse dynamics so foot wrench allocation also
         # accounts for the held load. Only resulting motor torques are applied.

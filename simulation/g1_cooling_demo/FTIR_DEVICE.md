@@ -417,11 +417,104 @@ the geometric arm search qualifies walking, window manipulation or a branch.
 Attempt 02 completes 11.15 simulated seconds and passes every-state motor
 replay, unchanged contact/support thresholds, motor/joint limits and active
 isolation checks. Its actor accepts 39 key-row observations. This is one
-preparation pass after one rejected attempt, with zero physical slider pushes.
+preparation pass after one rejected attempt; neither scan pushes the slider.
 The observed posture differs from the earlier hypothetical path setup, so the
 next actor must recompute its approach from the actual preparation sensors.
 The retained two-attempt comparison is
 `analysis/nicolet_slider_push_02/preparation_comparison.json`.
+
+## Runtime sliding-window approach
+
+`run_ftir_slider.py` extends the passing observation/torso preparation with
+native depth observation of the closed window grip, online arm planning and a
+tactile push. It runs in the original complete laboratory. The isolated actor
+registers public, unposed device CAD from the observed key row, plans against
+that geometry and its public architectural map, and receives seven scalar
+touch readings alongside RGB-D, encoders and IMU. No retained RRT trajectory,
+device joint state, plant contact list or evaluator output enters the actor.
+The architecture includes the bench that rejected the earlier instrument-only
+path. The planner keeps the 2 mm free-space clearance margin.
+
+The new `slider_push_prior.json` consistently uses the raw GLB frame for both
+key centers and local hand affordances. Its key/grip coordinates differ by
+1.25 mm in local Y from the older prepared-mesh prior; mixing those frames
+would misregister the contact target. This export changes neither the device
+geometry nor its dimensions. The 70 mm push and local hand fits are inferred
+strategies, not manufacturer-measured grasp procedures.
+
+`analysis/nicolet_slider_push_03/sensor_plan.json` exercises the same planner
+on retained scan-02 sensors. It generates a fresh seven-vertex entry route.
+Independent full-room review finds no new intersections in 2,276 sampled
+states, while explicitly retaining initial source foot/floor overlaps. This
+is geometric planning evidence, not physical execution or whole-body clearance.
+The runtime actor separately generates its own plan after observing the device.
+
+The grip gate accepts eight retained closed-window depth frames. Controlled
+renders at 4, 10, 30, 70 and 104 mm opening are rejected. The first control test
+also incorrectly rejected the closed baseline because it mixed sensor and
+integrated-state times; that failed report is preserved. The corrected test
+reconstructs the recorded closed RGB and depth arrays exactly before changing
+only the window for its labeled counterfactual renders. After `mj_step`, the
+sensor/camera fields correspond to the pre-integration pose, while `qpos` and
+delivery `time_s` have advanced by the 2 ms step. These are development controls
+at one posture, not broad sensor calibration or millimetre accuracy guarantees.
+
+The initial physical push reaches 16.58 mm before losing distal-pad contact
+and executing its return sequence. Retained-state diagnosis shows contact
+shifting from the intended tactile pad to the index link near 48 seconds.
+Its failure is retained in `runs/ftir_slider_01`; return completion does not
+qualify the push or its contacts. A subsequent controller correction places
+the desired modeled load at the encoder-predicted fingertip point instead of
+the wrist. This includes the finger generalized forces and wrist moment; the
+plant still receives only source-bounded robot motor torques. The virtual-work
+regression passes, and default calls without surface loads produce identical
+torques to the retained controller. Physical efficacy requires a new attempt
+and independent replay; the algebraic regression does not establish it.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 \
+python simulation/g1_cooling_demo/run_ftir_slider.py \
+  --out simulation/g1_cooling_demo/runs/ftir_slider_new --duration 140
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_slider.py \
+  simulation/g1_cooling_demo/runs/ftir_slider_new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py \
+  simulation/g1_cooling_demo/runs/ftir_slider_new
+```
+
+The independent verifier requires 65–75 mm final travel, at least 50 mm driven
+by the intended distal pad, exact motor replay, unchanged contact tolerances,
+source motor/joint limits and supported balance. It preserves failed outcomes.
+Run 01 replays all 49,197 states with zero position/velocity error and passes
+isolation, support and source-limit checks. It fails travel, intended-pad
+displacement and unintended-contact requirements: the index link contacts the
+window, reaching 0.0332 mm penetration against the unchanged 0.020 mm bound.
+The initial report export failed on a NumPy boolean; the retained export log
+and source snapshot accompany the corrected verifier and repeated full replay.
+Run 02 includes the fingertip load correction and reaches only 8.51 mm before
+contact loss. Its 48,627 states replay exactly and isolation/support/source
+limits pass, but travel and unintended contact still fail; index/window
+penetration reaches 0.1595 mm. The completed two-attempt comparison is
+`analysis/nicolet_slider_push_03/push_attempts_01_02.json`.
+
+The current controller also projects preload perpendicular to the free slider
+axis. The earlier tilted surface normal imposed 0.518 N along that axis, while
+contact-interval replays show approximately 0.2–0.26 N axial object reaction;
+the window advances beyond the commanded stroke before pad contact is lost.
+The projection separates preload from commanded advancement without changing
+the geometry, 2 N magnitude or acceptance limits. This is a new control
+hypothesis for attempt 03, not a passing physical result.
+These attempts start from authored standing setup. Walking between stations,
+full hinged-cover opening, reference/sample exchange and branch repeatability
+remain separate requirements; qualified paper branches are still zero.
+
+The separate `ftir_slider_outcome.py` prototype recenters the same depth fit
+at a commanded position without reading the plant slider joint. It is not in
+the runtime actor. Its first labeled seven-position control rejects the true
+70 mm state because the fitted height residual is 0.823 mm, outside the
+unchanged 0.8 mm gate. Across eight retained observation poses, the unchanged
+gate accepts six true-target frames and rejects all 32 non-target controls.
+These development measurements retain both false rejections. They do not
+establish post-push visibility, online completion detection or calibration.
 
 The separate offline plane study `analysis/ftir_cover_plane_04` rejects
 views with fewer than 500 supporting depth pixels. On development runs

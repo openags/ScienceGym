@@ -1,0 +1,30 @@
+{
+  "attempt": "ftir_slider_03",
+  "change": "Project modeled fingertip preload perpendicular to the free slider axis; position control alone commands advance along that axis.",
+  "evidence_before_attempt": {
+    "second_attempt_maximum_travel_m": 0.008514451899530276,
+    "second_attempt_failure": "Distal tactile contact lost, followed by return.",
+    "previous_preload_along_slider_n": 0.5176380902050418,
+    "observed_object_force_along_slider_approximately_n": [
+      0.205,
+      0.2622
+    ],
+    "force_evidence": "ftir_slider_02_forces.json",
+    "force_checkpoint_replay_position_and_velocity_error": 0,
+    "tracking_evidence": "ftir_slider_02_tracking.json"
+  },
+  "causality": "The previous preload contains an unintended free-axis force and exceeds observed axial reaction. Removing that component is a model-based hypothesis; physical efficacy is unproven.",
+  "unchanged": [
+    "source geometry",
+    "joint and motor bounds",
+    "2 mm planning margin",
+    "2 N preload magnitude",
+    "6 N abort",
+    "70 mm requested travel",
+    "all independent acceptance thresholds"
+  ],
+  "previous_actor_path": "simulation/g1_cooling_demo/runs/ftir_slider_02/source_snapshot/ftir_slider_actor.py",
+  "previous_actor_sha256": "70956a3b2bd557579484968f846ac08efa42ce2a8c0393249956bc1fa1462940",
+  "new_actor_path": "simulation/g1_cooling_demo/ftir_slider_actor.py",
+  "new_actor_sha256": "644891bcc3349e7243cb6a1d73c86cefce698f24c6695a04db3df32aa01ade51"
+}
