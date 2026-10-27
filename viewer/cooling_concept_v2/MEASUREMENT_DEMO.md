@@ -15,6 +15,25 @@ python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1
 
 The repository server supports the byte ranges needed for video seeking.
 
+The player also includes a synchronized workstation map, a full-laboratory
+view and clickable stations. Share `measurement_demo.html#t=40.564` to start
+at the outbound walk or `#t=94.801` at the loaded return. The map follows
+3,325 samples extracted from the 12,988 published video-frame poses, including
+phase changes and the final frame. Its room and furniture footprints come
+from the same scene manifest. These navigation samples describe the authored
+video, not sensor observations or a qualified physical trajectory.
+
+To rebuild the map after restoring the publication's frame archive:
+
+```bash
+python viewer/cooling_concept_v2/build_measurement_route.py
+```
+
+The builder checks the video, capture receipt, source scene, episode and
+uncompressed frame digest against the published record. The page refuses
+to display a map associated with a different video hash. Adding this player
+navigation does not modify the clean video or its geometry review.
+
 Open `http://localhost:8769/viewer/cooling_concept_v2/measurement_demo.html`
 for the video and chapter navigation, or
 `http://localhost:8769/viewer/cooling_concept_v2/index.html?episode=ftir_measurement`
