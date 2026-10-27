@@ -343,6 +343,11 @@ assembly. Reach screen 03 onward checks native mesh-hull collisions against
 original triangles; selected wrist reports are false positives, while real
 shoulder/torso intersections and joint limits still reject the paths. A static
 triangle check does not repair a runtime hull or establish physical safety.
+The later `g1_dex3_comparison_01/reach_frame_correction.json` records a
+1.25 mm source-frame offset in those eight rejected hinge-path screens.
+The corrected builder transfers the pivot relative to the observed handle;
+adoption would require rerunning the paths. Their zero-angle bar/instrument
+screens do not use this pivot. The rejected paths are not an infeasibility proof.
 
 Manufacturer-source reinspection in `analysis/nicolet_cover_affordance_01`
 identifies a more fundamental unresolved premise. The current 8 mm cylindrical
@@ -356,6 +361,17 @@ family as a faithful commercial-device task. The generic transmission example
 uses the sliding door, but that does not establish this accessory's access
 clearance. Existing assets, movies and failed run snapshots remain evidence;
 none gains qualification from the new searches.
+
+`analysis/nicolet_slider_access_01` tests a source-supported alternative access
+direction without changing the equipment geometry: the existing sliding door
+opens fully while the hinged cover stays closed. A gold-reference-only route
+with a 35 mm front offset before descending and translating under the cover
+has zero collisions in 183 sampled states; straight descent fails 15 states.
+Adding the currently authored Inspire reference grip and terminal wrist in
+`nicolet_slider_access_02` fails 141 states on either route. The carried object
+fitting through the aperture therefore does not establish robot access. A new
+grasp/tool strategy or a source-supported cover-opening strategy is still
+required, together with full-arm, dynamic and installation checks.
 
 The official Inspire tactile-hand manual is linked with a content hash in
 `analysis/inspire_tactile_definition_01/source.json`. Its tactile arrays report

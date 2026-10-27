@@ -45,7 +45,12 @@ def run(seed,out,dx,dy,forward_arm,fold_left,fixed_wrist,roll_limit):
     rotation=basis(row,normal)@basis(np.array([1.,0,0]),known_normal).T
     handle=np.median([o['handle_fit']['handle_m'] for o in observations],axis=0)
     _,device_path,source_handle=handle_mesh();registration=np.eye(4);registration[:3,:3]=rotation;registration[:3,3]=handle-rotation@source_handle
-    source_pivot=np.array(prior['hinge_pivot_m']);source_axis=np.array(prior['hinge_axis'])
+    # The prepared mesh has an XY normalization offset; the prior is in the
+    # original manufacturer-reconstruction frame. Transfer the relative datum.
+    source_pivot=source_handle+np.array(prior['hinge_pivot_m'])-np.array(prior['closed_handle_center_m'])
+    source_axis=np.array(prior['hinge_axis'])
+    expected_pivot=handle+rotation@(np.array(prior['hinge_pivot_m'])-np.array(prior['closed_handle_center_m']))
+    assert np.linalg.norm((registration@np.r_[source_pivot,1.])[:3]-expected_pivot)<1e-12
     xml=ET.parse(HERE/'g1_29dof_with_hand_rev_1_0.xml').getroot()
     xml.find('compiler').set('meshdir',str(HERE/'meshes'))
     urdf=ET.parse(HERE/'g1_29dof_with_hand_rev_1_0.urdf').getroot();bounds=[]
@@ -145,6 +150,7 @@ def run(seed,out,dx,dy,forward_arm,fold_left,fixed_wrist,roll_limit):
         if index%25==0:print('candidate',index,'passed',len(paths),flush=True)
     report=dict(scope=__doc__,rows=rows,paths=paths,passed_candidates=len(paths),
                 sensor_time_s=float(sensors['time_s'][i]),registration_from_observations=registration.tolist(),
+                source_mesh_handle_center_m=source_handle.tolist(),source_mesh_hinge_pivot_m=source_pivot.tolist(),
                 estimated_initial_root_qpos=estimated.qpos[:7].tolist(),copied_encoder_joints=copied,
                 hypothetical_stance_offset_m=[dx,dy],authored_left_posture=left_posture,
                 initial_qpos_for_planning=initial_qpos.tolist(),
