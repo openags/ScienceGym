@@ -324,8 +324,9 @@ It checks pad/backing contact, guide/coil/module clearance and the unblocked
 hide the extension hood as a cutaway; they do not show a robot opening it.
 The original sliding lid and the extension's lift/slide/hinge cover are
 distinct access operations. This candidate is not integrated into the
-delivery episode. Bimanual actuation, reference storage, complete compartment
-clearance, retention forces and acquisition controls remain to implement.
+delivery episode. Robot actuation, reference storage, retention forces and
+acquisition controls remain to implement. The installed mechanism clearance
+probe below covers a selected access corridor, not a robot exchange.
 
 Rebuild and review with `build_cary_clamp_candidate.py`,
 `review_cary_clamp.py`, and `preview_cary_clamp.py` under
@@ -348,8 +349,9 @@ The [cover revision](../../assets/cary_5000_v1/revisions/cover_clearance/operabl
 adds open-bottom hose-barb reliefs and a selected 20 mm grip clearance while
 preserving 103 unrelated source parts. These local dimensions are explicitly
 inferred, not manufacturer CAD or measured dimensions. The manufacturer manual
-allows complete hood removal. Opening the main lid in two stages is an
-inferred operation sequence: this episode performs only the first 150 mm.
+allows complete hood removal. The selected 150 mm main-lid opening is an
+inference; the manual requires opening the lid but does not specify that the
+complete selected 305 mm stroke is necessary for every sample exchange.
 The original hood and the earlier relief-only revision remain available.
 
 The first exported access attempt retains an oversized lid-finger gap. The
@@ -389,6 +391,45 @@ python viewer/cooling_concept_v2/review_cary_episode.py viewer/cooling_concept_v
 The access variant does not install the separate working clamp candidate.
 The original 9 min 39 s movie remains unchanged; this episode does not replace
 it or grant contact-force, balance, dynamics, branch or campaign qualification.
+
+### Installed clamp and pending robot exchange
+
+`cary_clamp_scene.py` places the candidate in the complete laboratory with the
+lid at 150 mm and the hood at its actually demonstrated bench pose. It removes
+the legacy 19 mm slider offset, preserves the reference's installed pose and
+updates the slider, arm, pad and spring together. The
+[installed clearance review](../../viewer/cooling_concept_v2/previews/cary_exchange_access_01/review.json)
+checks 108 states: clamp withdrawal, rotation with the reference still in
+place, and a 60 mm reference withdrawal corridor. All sampled mechanism and
+reference clearances pass. The initial clamp matches the exported candidate
+within 7.45 nm. The reference's nominal cap seating has at most 0.216 micrometres
+of source-normal overlap; this bounded, explicitly identified seating contact
+does not waive other collisions. The reference would need real support before
+the clamp releases it; the probe does not implement that support.
+
+An attempt to extend the main lid from 150 to 305 mm is retained as
+`previews/cary_lid_operation_09_rejected.json`: body collisions reject the
+searched trajectories. Full travel is not treated as a prerequisite when the
+selected exchange can clear the current opening. Local source-hand searches
+also remain developmental: the first search found six reference and three
+slider candidates, but all 18 pairs collide. A wider search found 16 and eight
+candidates, and all 128 pairs still collide. These are close approach poses,
+not accepted force-retaining grasps or a completed bimanual operation.
+
+The next support option to evaluate is the manufacturer's ordinary sample
+mount ledge (0810169700), included in the standard holder kit and described in
+the manual's reflectance operation/figure 16. It may allow supported sequential
+unclamping and removal; its geometry, installation, stability and robot motion
+are not implemented or qualified. No robot-specific support fixture or
+invisible attachment has been substituted for the missing operation.
+
+Reproduce with `review_cary_exchange_access.py --trial <new-id>`,
+`fit_cary_exchange_hands.py --target reference|clamp --trial <new-id>`, and
+`review_cary_hand_pairs.py --trial <same-id>`. The wider search uses
+`--tilts -1.1 -.85 -.6 -.3 0 .3 .6 .85 1.1 --biases -.006 -.003 0 .003`.
+Each recorded search/review retains its source hashes and the input searches
+retain frozen source snapshots. These results do not replace the live access
+episode or qualify any paper branch.
 
 ## Laboratory contact integration
 

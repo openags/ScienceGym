@@ -11,14 +11,14 @@ from source_geometry import fk
 
 
 class ContactIK:
-    def __init__(self,scene):
+    def __init__(self,scene,include_cover=True):
         self.scene=scene
         self.names=ARM+['waist_pitch_joint','waist_yaw_joint']
         self.limits=np.array([[JOINTS[n]['limits']['lower'],JOINTS[n]['limits']['upper']] for n in self.names])
         self.limits[self.names.index('right_shoulder_roll_joint'),1]=-.025
         self.limits[-2]=[0,.4];self.limits[-1]=[-.6,.6]
         vertices=[]
-        for n in scene.cover_names+scene.interfaces['extension_base_parts']:
+        for n in (scene.cover_names if include_cover else [])+scene.interfaces['extension_base_parts']:
             node,key=scene.cary_source.graph[n]
             if n in scene.access_rest:pose=scene.access_rest[n]
             else:
