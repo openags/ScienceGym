@@ -15,6 +15,28 @@ python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1
 
 The repository server supports the byte ranges needed for video seeking.
 
+For a shorter presentation, open
+`http://localhost:8769/viewer/cooling_concept_v2/measurement_demo.html?cut=brief`.
+This **5 min 33 s** edition retains all 103 operations, including **171 s of
+original-speed movement**. Every movement frame and every frame of contact
+actions shorter than 1.25 seconds is retained. Other operations play at 2.5×
+and the two acquisition waits at 4×. No operation is removed, and no motion
+frames are synthesized. The clean MP4 has no overlays; speed information is
+shown outside the movie. The original 9 min 1 s edition remains available.
+
+In the short edition, the main outbound walk begins at **00:22**, sample
+pickup at **01:04**, and the loaded return at **01:10**. Chapter controls and
+the workstation map follow the shorter timeline. Its 7,996 output frames map
+back to specific original frames in `media/ftir_measurement_brief_01_frames.json`.
+`audits/measurement_brief_01/` records full MP4 decoding, stage coverage,
+105 sampled source/output frame comparisons, desktop/mobile playback and
+chapter/map seeking. These are presentation checks and add no physical
+qualification. Rebuild into an absent output file with:
+
+```bash
+python viewer/cooling_concept_v2/build_measurement_brief.py
+```
+
 The player also includes a synchronized workstation map, a full-laboratory
 view and clickable stations. Share `measurement_demo.html#t=40.564` to start
 at the outbound walk or `#t=94.801` at the loaded return. The map follows

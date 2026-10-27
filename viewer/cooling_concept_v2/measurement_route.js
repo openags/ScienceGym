@@ -7,7 +7,7 @@ const node = (tag, attributes = {}, text) => {
 };
 
 export async function installRoute(film, delivery, seek) {
-  const response = await fetch('measurement_route.json');
+  const response = await fetch(delivery.route || 'measurement_route.json');
   if (!response.ok) throw Error('工位路线暂不可用');
   const data = await response.json();
   if (data.video_sha256 !== delivery.video_sha256) throw Error('路线与视频版本不一致');
