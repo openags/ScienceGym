@@ -22,7 +22,7 @@ TARGETS={'tweezers_white','tray_white','optical_witness_white','optical_witness_
 
 def audit(folder):
     folder=Path(folder);receipt=json.loads((folder/'export.json').read_text());manifest=manifest_for_export(folder)
-    filename={'ftir':'optical_episode.json','ftir_delivery':'optical_delivery_episode.json'}[receipt['episode']]
+    filename={'ftir':'optical_episode.json','ftir_delivery':'optical_delivery_episode.json','ftir_measurement':'single_measurement_episode.json'}[receipt['episode']]
     config=json.loads((folder/'source'/filename).read_text())
     assert hashlib.sha256((folder/'source'/filename).read_bytes()).hexdigest()==receipt['source_sha256'][filename]
     segments={s['id']:s for s in config['segments']}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ScienceGym · 跨工位红外测量</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,"Noto Sans CJK SC",sans-serif;background:#10151c;color:#eaf0f5}*{box-sizing:border-box}body{margin:0}main{max-width:1440px;margin:auto;padding:32px 28px}header{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:24px}.brand{color:#8cb7ba;font-size:13px;letter-spacing:.18em}h1{font-size:30px;margin:10px 0}p{line-height:1.7;color:#aebac7;margin:6px 0}a{color:#9ee0d4;text-decoration:none}nav{display:flex;gap:20px;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:22px}video{width:100%;aspect-ratio:16/9;background:#080a0e;border-radius:10px;display:block}aside{background:#19212c;border:1px solid #293644;border-radius:10px;padding:16px}h2{font-size:15px;margin:0 0 12px}.chapter{display:block;width:100%;background:transparent;border:0;border-radius:6px;color:#bac9d6;cursor:pointer;text-align:left;padding:13px 8px;font:inherit;font-size:14px}.chapter:hover,.chapter.active{background:#273b43;color:#d9fff4}.time{display:inline-block;width:48px;color:#91aaa8;font-variant-numeric:tabular-nums}footer{margin-top:22px;font-size:13px;color:#97a8b8}.facts{display:flex;gap:24px;margin:15px 0;font-size:14px;color:#d7e3e9}#state{color:#b9d7cb}#evidence{display:none}@media(max-width:900px){main{padding:22px 14px}header{display:block}nav{margin-top:16px}.layout{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr}h2{grid-column:1/-1}h1{font-size:24px}}
+</style></head><body><main>
+<header><div><div class="brand">SCIENCEGYM / PAPER TO MANIPULATION</div><h1>跨工位红外测量</h1><p>同一台宇树 G1，在完整实验室中完成取样、携样、参考测量、样品测量与收尾。</p></div><nav><a href="index.html?episode=ftir_measurement">打开 3D 场景</a><a id="download" hidden download>下载视频</a></nav></header>
+<div class="layout"><section><video id="film" controls playsinline preload="metadata" poster="previews/measurement_inspection_04/white_delivery_carry_to_ftir_forward_walk.jpg"></video><div class="facts"><span id="length">连续流程 · 9 分 1 秒</span><span>G1 + Inspire 双手</span><span>1280 × 720</span></div><p id="state">正在读取交付记录。</p></section><aside id="chapters"><h2>实验流程</h2></aside></div>
+<footer><p>论文：Bhatia et al., DOI <a href="https://doi.org/10.1038/s41467-018-07293-9">10.1038/s41467-018-07293-9</a>。本片展示其中一次白色样片的 FTIR 操作流程；备料台位于 Cary 工位一侧。</p><p>仪器已安装并预先配置，采集等待经过压缩。本片提供操作流程展示；未生成实验光谱，接触动力学与传感器闭环验收继续推进。</p><p id="evidence"><a id="review">逐帧检查记录</a> · <a href="single_measurement_demo.json">流程依据</a> · <a href="measurement_delivery.json">交付记录</a></p></footer>
+</main><script>
+const film=document.getElementById('film');let chapters=[];
+fetch('measurement_delivery.json').then(r=>{if(!r.ok)throw Error('交付文件尚未就绪');return r.json()}).then(data=>{
+ if(!data.reviewed)throw Error('视频尚未通过交付检查');
+ film.src=data.video;const download=document.getElementById('download');download.href=data.video;download.hidden=false;
+ document.getElementById('state').textContent='连续录像 · '+data.frames.toLocaleString()+' 帧 · '+data.fps+' fps';
+ document.getElementById('evidence').style.display='block';document.getElementById('review').href=data.review;
+ chapters=data.chapters;for(const item of chapters){const button=document.createElement('button');button.className='chapter';
+ const seconds=Math.floor(item.time_s);const time=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+ const stamp=document.createElement('span');stamp.className='time';stamp.textContent=time;button.append(stamp,document.createTextNode(item.title));
+ button.onclick=()=>{film.currentTime=item.time_s;film.play()};document.getElementById('chapters').append(button);}
+}).catch(error=>{document.getElementById('state').textContent=error.message;});
+film.addEventListener('timeupdate',()=>{let current=-1;chapters.forEach((c,i)=>{if(film.currentTime>=c.time_s)current=i});document.querySelectorAll('.chapter').forEach((b,i)=>b.classList.toggle('active',i===current));});
+</script></body></html>

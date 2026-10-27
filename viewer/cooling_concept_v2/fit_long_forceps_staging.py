@@ -22,6 +22,8 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--trial',default='01')
     parser.add_argument('--tray-y-offset',type=float,default=0.)
     parser.add_argument('--heel-offset-m',type=float,default=0.,help='Move the tray rim along the welded heel, away from the finger contact.')
+    parser.add_argument('--tool-x',type=float,default=1.65)
+    parser.add_argument('--tool-y',type=float,default=8.22)
     parser.add_argument('--profile',default='previews/long_forceps_closure_03/profile.json');args=parser.parse_args()
     out=HERE/'previews'/('long_forceps_staging_'+args.trial);out.mkdir(exist_ok=False)
     names=['fit_long_forceps_staging.py','cary_distal_hand.py','long_forceps.py','source_geometry.py',args.profile]
@@ -36,7 +38,7 @@ def main():
     angle=brentq(lambda a:rise(a)-.050001,.05,.8)
     def pose_at(value):
         pose=np.eye(4);pose[:3,:3]=rotation(value)
-        pose[:3,3]=[1.65,8.22,.850001-(vertices@pose[2,:3]).min()];return pose
+        pose[:3,3]=[args.tool_x,args.tool_y,.850001-(vertices@pose[2,:3]).min()];return pose
     pose=pose_at(angle);heel_world=trimesh.transform_points(heel,pose)
     lowest=heel_world[heel_world[:,2]<heel_world[:,2].min()+1e-8]
     tray_position=[float(lowest[:,0].mean()+.1494+args.heel_offset_m),float(heel_world[:,1].mean()+args.tray_y_offset),.850001]
@@ -58,9 +60,9 @@ def main():
     # collision threshold. Require a positive support clearance explicitly.
     for _ in range(36):
         mid=(low+high)/2;place(mid)
-        if tool.in_collision_other(tray) or tool.min_distance_other(tray)<.5e-6:low=mid
+        if tool.in_collision_other(tray) or tool.min_distance_other(tray)<1e-6:low=mid
         else:high=mid
-    pose=place(high+1e-8);support_gap=float(tool.min_distance_other(tray))
+    pose=place(high+1e-6);support_gap=float(tool.min_distance_other(tray))
     body=robot_meshes();hand=distal_hand_manager('right',body);palm=pose@np.array(profile['palm_matrix'])
     rows=[]
     for item in profile['rows']:

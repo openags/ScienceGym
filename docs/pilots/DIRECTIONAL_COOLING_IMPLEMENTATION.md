@@ -513,7 +513,7 @@ the two hand approaches to this candidate, then store the reference and close
 the instrument for the required baseline procedure. No complete branch or
 campaign is qualified by these access and extraction results.
 
-The current ordinary-tool staging candidate is
+The earlier ordinary-tool staging candidate was
 `previews/long_forceps_staging_07/staging.json`. It uses a second instance of the
 existing ordinary tray on the free left side of the Cary bench, with the tool
 tip supported by the worktop and the welded heel at a tray corner. All 51 local
@@ -521,9 +521,103 @@ hand-closure states clear the tool, tray and worktop; the smallest signed
 tool/tray distance is positive. Earlier central-rim placements intersected the
 index finger. Trial 06 is explicitly rejected by its added review: its boolean
 collision query was clear but the signed distance was negative. The corrected
-checker requires nonnegative distance at every state. This remains a proposed
-initial layout, without live-scene installation, full-body approach, pickup,
-stability, or force qualification.
+checker requires nonnegative distance at every state. A subsequent full-scene
+review **rejects trial 07** because the tray intersects the Cary housing.
+Its local hand checks do not establish that the layout fits the laboratory.
+
+### Immediate delivery: one complete measurement across workstations
+
+The owner's latest instruction prioritizes a concise complete experiment
+demonstration with humanoid locomotion between workstations. The immediate
+deliverable is now one white-witness FTIR measurement, recorded in
+[`single_measurement_demo.json`](../../viewer/cooling_concept_v2/single_measurement_demo.json).
+It reuses the existing tool collection, walk to the Cary-side material bench,
+witness pickup, loaded return, gold-reference handling, FTIR sample exchange
+and tool return. The Cary-side bench is used for material preparation here;
+this does not claim execution of Cary spectroscopy. The broader paper and
+dynamics qualifications remain open, but they are not prerequisites for this
+requested demonstration video.
+
+The missing acquisition actions use the instrument's actual SAMPLE,
+BACKGROUND and OK/ENTER buttons. The manufacturer's user guide, printed
+pages 52–53, describes those controls and requires OMNIC to be running.
+The PIKE DLaTGS manual, printed pages 4–5, specifies gold-reference background
+and substitution with the sample, with the selector remaining in SAMPLE.
+Configuration, detector connection and controller-PC readiness are explicit
+initial conditions requiring scene review. No generated spectra will stand
+in for measured scientific results.
+
+The continuous procedure is now **541.14 seconds / 103 segments**. It includes
+full-body button approaches, two long transfers between the material bench
+and FTIR, local stance changes, gold-reference handling, cover operations,
+both acquisition controls, sample retrieval, tool return and final closure.
+The displayed waits are 12 seconds each, compressing an explicitly inferred
+instrument interval; they do not generate spectra.
+
+The separate `nicolet_6700_mechanism_v1` variant cuts inferred hinge seats,
+closure seams and key wells into four stationary parts. All 189 other meshes
+and transforms remain exact. The serialized artifact passes 521 cover-angle
+and 124 key-travel states. Source arm IK is refined during cover contact,
+with smooth transitions back to the existing free-arm paths.
+
+`audits/measurement_04/sampled_interaction_review.json` passes **6,022 states**
+covering the entire procedure: robot/environment intersections, robot
+self-contact, joint limits/speeds, sole clearance, tool/specimen ownership,
+reference support, moving mechanisms, fingertip clearance and acquisition
+order. Earlier failed traces remain available. This is a geometric check of
+an authored demonstration, without dynamics or controller qualification.
+The clean **541.167-second / 12,988-frame / 1280×720 / 24 fps** film is now
+published as `media/ftir_measurement_01.mp4`. The separate
+`audits/measurement_video_03/sampled_interaction_review.json` passes every
+encoded video frame. Robot/environment, self, tool/specimen, reference and
+mechanism checks report zero unexpected intersections; source FK/ownership,
+button/cover contact, acquisition order and joint motion checks pass. The
+maximum sampled sole-plane penetration is 1.56 micrometres, within the
+explicit 10-micrometre source-mesh plane tolerance. This is geometric evidence,
+not contact dynamics. Six frames decoded from the actual film were inspected.
+
+Open [the chaptered player](../../viewer/cooling_concept_v2/measurement_demo.html)
+or [the interactive scene](../../viewer/cooling_concept_v2/index.html?episode=ftir_measurement).
+The [delivery receipt](../../viewer/cooling_concept_v2/measurement_delivery.json)
+binds the MP4, capture, reviews and source hashes. Exact final-frame data are
+stored in five chunks; `audit_frames_archive.py --restore` reconstructs the
+original compressed trace. Failed earlier exports and aborted films remain
+in their original folders. The 141.375-second Cary access movie is a separate
+preparation clip.
+
+### Supported pickup and connected reference-removal planning
+
+The replacement staging is `previews/long_forceps_staging_08/staging.json`:
+the tool and ordinary tray move 120 mm left. All 51 local closure states have
+nonnegative support distances, and the full-scene pickup planner checks the
+new tray against the existing laboratory before using it. The original short
+tweezers and both optical witnesses retain their actual access-episode poses.
+This proposed layout is visible in the inspection snapshots but has not yet
+been installed in a continuous live episode.
+
+The following planning paths now pass their source-geometry checks:
+
+| Operation | Retained plan | Checked planning representation |
+| --- | --- | --- |
+| Access endpoint to tool station | `previews/cary_tool_transfer_to_pickup_01/plan.json` | 615 source-leg states |
+| Tool approach, finger closure and lift | `previews/cary_tool_pickup_02/plan.json` | 3 free-entry knots and 143 manipulation states |
+| Upright tool-carrying posture | `previews/cary_tool_carry_04/plan.json` | 5 path knots with checked edges |
+| Loaded return to the instrument | `previews/cary_tool_transfer_to_exchange_01/plan.json` | 615 source-leg states |
+| Tool preclosure and both free-arm approaches | `previews/cary_exchange_free_01/plan.json` | 57 knots; final joint error below 2e-9 rad |
+| Left-hand support, right-tool clamp operation and reference withdrawal | `previews/cary_exchange_entry_01/plan.json` | 254 manipulation states |
+
+The [inspection images](../../viewer/cooling_concept_v2/previews/cary_exchange_entry_01/inspection/capture.json)
+contain twelve valid views in the established laboratory. The rejected black
+export and later WebGL-context-loss attempt remain archived separately;
+neither counts as a successful capture. The successful capture records its
+process-local GPU selection and rejects lost contexts or uniform images.
+
+These paths still need composition, speed retiming and an independent dense
+review of the resulting interpolation. This planning tier omits ankle
+housings and does not establish contact forces, balance, dynamics or sensor
+control. Reference storage, tool return, sample exchange, enclosure closure
+and the required baseline/measurement controls remain unfinished. There is
+still no replacement full film or qualified complete paper branch.
 
 ## Laboratory contact integration
 

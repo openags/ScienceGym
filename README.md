@@ -35,12 +35,28 @@ The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifie
 
 ## First reconstruction pilot
 
-**Current milestone: assets and laboratory scenes first.** The owner must
-review and accept the complete asset inventory and laboratory layout before
-new manipulation-sequence development. The scene must provide evidence for
-full-humanoid transit, turning, carrying and bilateral working space, equipment
-access and safe use. See the [scene review gates](docs/contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development)
-and [pilot status](docs/pilots/DIRECTIONAL_COOLING.md#current-focus).
+**Current demonstration: continuous cross-workstation FTIR manipulation.**
+The owner [authorized parallel scene and operation development](assets/cooling_lab_v1/development_authorization.json).
+Asset acceptance, full-humanoid access review and complete physical execution
+remain open; the authorization changes the development sequence.
+
+The [new 9-minute 1-second video](viewer/cooling_concept_v2/measurement_demo.html)
+shows one G1 / Inspire robot collecting its tool, walking to the material
+bench, carrying back the same white witness, installing a gold reference,
+operating BACKGROUND / OK, exchanging the sample, operating SAMPLE / OK,
+and returning the tool before closing the instrument. It uses the established
+complete laboratory. Both acquisition waits are compressed; instrument
+installation and configuration are initial conditions.
+
+The clean [MP4](viewer/cooling_concept_v2/media/ftir_measurement_01.mp4) has no
+text overlays or watermarks. All **12,988 encoded frames** pass independent
+source-geometry and interaction checks; a separate **6,022-state** export
+includes operation boundaries. See the [delivery receipt](viewer/cooling_concept_v2/measurement_delivery.json),
+[interactive scene](viewer/cooling_concept_v2/index.html?episode=ftir_measurement)
+and [reproduction guide](viewer/cooling_concept_v2/MEASUREMENT_DEMO.md).
+This is one complete authored measurement procedure; force/balance,
+sensor-only control, scientific spectra and the remaining paper branches are
+not established by this video.
 
 The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
 contains a physical-scale scene with four zones, 81 placed asset instances,
@@ -65,15 +81,11 @@ mesh normals are recovered for visible receiver shadows. Static render batching
 preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
 `http://localhost:8769/viewer/lab_review_v1/index.html`.
 
-The [9-minute 39-second laboratory presentation](viewer/cooling_concept_v1/watch.html)
-shows one G1 / Inspire robot moving through this full laboratory and its outdoor
-area: calibration, optical handling, apparatus preparation, cart transport,
-covered baseline, lid removal, reflector adjustment and collection. The
-[clean MP4](viewer/cooling_concept_v1/episode.mp4) has no text overlays or watermark.
-This requested conceptual animation follows the
-[paper-operation mapping](viewer/cooling_concept_v1/workflow.json); its authored
-motion is separate from physical qualification. See the
-[reproduction notes](viewer/cooling_concept_v1/README.md).
+The earlier [9-minute 39-second animation](viewer/cooling_concept_v1/watch.html)
+is retained as a rejected historical presentation after reported
+interpenetration and incorrect interactions. Use the new FTIR demonstration
+above for the current continuous operation video. The rejected original does
+not establish physical execution.
 
 The [laboratory contact and walking recordings](viewer/cooling_lab_runtime_v1/index.html)
 now runs the G1 tray subtask on the original white assembly worktop, with the

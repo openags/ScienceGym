@@ -56,7 +56,7 @@ export class HandIK{
     for(const j of names)q[j.name]=best[j.name];
     this.lastRotationError=result.rotationError;return result.error;
   }
-  iterate(q,side,target,rotation,iterations=65){
+  iterate(q,side,target,rotation,iterations=65,precision={}){
     const names=this.arm[side],weight=.22;let error=Infinity;
     for(let iteration=0;iteration<iterations;iteration++){
       const fk=this.forward(q),palm=fk.world.get(side+'_palm_force_sensor'),position=new THREE.Vector3().setFromMatrixPosition(palm);
@@ -64,7 +64,7 @@ export class HandIK{
       const current=new THREE.Quaternion().setFromRotationMatrix(palm),desired=new THREE.Quaternion().setFromRotationMatrix(rotation),delta=desired.multiply(current.invert()).normalize();
       if(delta.w<0)delta.set(-delta.x,-delta.y,-delta.z,-delta.w);
       const norm=Math.hypot(delta.x,delta.y,delta.z),angle=2*Math.atan2(norm,delta.w),dr=norm>1e-9?vec([delta.x,delta.y,delta.z]).multiplyScalar(angle/norm):vec([0,0,0]);
-      if(error<.0002&&dr.length()<.004)break;
+      if(error<(precision.position??.0002)&&dr.length()<(precision.rotation??.004))break;
       const residual=[dp.x,dp.y,dp.z,weight*dr.x,weight*dr.y,weight*dr.z];
       const columns=names.map(j=>{const k=fk.joints.get(j.name),linear=k.axis.clone().cross(position.clone().sub(k.position));return [linear.x,linear.y,linear.z,weight*k.axis.x,weight*k.axis.y,weight*k.axis.z]});
       const normal=Array.from({length:6},(_,i)=>Array.from({length:6},(_,j)=>columns.reduce((s,c)=>s+c[i]*c[j],0)+(i===j?.00008:0)));

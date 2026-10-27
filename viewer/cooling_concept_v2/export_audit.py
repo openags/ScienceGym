@@ -10,8 +10,9 @@ def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     pins={n:hashlib.sha256((HERE/n).read_bytes()).hexdigest() for n in ['main.js','motion_poses.json','hand_ik.js','grasp_profile.json','optical_setup.json','optical_approach_paths.json','manipulation_motion.js','manipulation_approach_paths.json','lid_contact_paths.json','reference_motion.js','reference_transfer.json','runtime_scene.json','export_audit.py']}
     if episode:
-        config={'ftir':'optical_episode.json','ftir_delivery':'optical_delivery_episode.json','cary_access':'cary_access_episode.json'}[episode]
-        for n in [('cary_episode.js' if episode=='cary_access' else 'optical_episode.js'),config]:pins[n]=hashlib.sha256((HERE/n).read_bytes()).hexdigest()
+        config={'ftir':'optical_episode.json','ftir_delivery':'optical_delivery_episode.json','cary_access':'cary_access_episode.json','ftir_measurement':'single_measurement_episode.json'}[episode]
+        script='cary_episode.js' if episode=='cary_access' else 'measurement_episode.js' if episode=='ftir_measurement' else 'optical_episode.js'
+        for n in [script,config]+(['measurement_source_actions.js','single_measurement_demo.json'] if episode=='ftir_measurement' else []):pins[n]=hashlib.sha256((HERE/n).read_bytes()).hexdigest()
     snapshots=out/'source';snapshots.mkdir(exist_ok=True)
     for name in pins:(snapshots/name).write_bytes((HERE/name).read_bytes())
     with sync_playwright() as p:
@@ -19,8 +20,10 @@ def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
         page=browser.new_page(viewport={'width':1280,'height':720});errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.goto('http://localhost:8769/viewer/cooling_concept_v2/index.html?clean'+('&episode='+episode if episode else ''),timeout=120000)
-        page.wait_for_function('document.documentElement.dataset.ready==="true"',timeout=120000)
-        info=page.evaluate('({duration:concept.duration,phases:concept.phases,criticalTimes:concept.criticalTimes||[],sourceHashes:concept.sourceHashes,manifest:concept.manifest,extraGeometry:concept.extraGeometry||[],deformableGeometry:concept.deformableGeometry||[],opticalEpisode:concept.opticalEpisode||null,caryEpisode:concept.caryEpisode||null})')
+        field='measurementEpisode' if episode=='ftir_measurement' else 'caryEpisode' if episode=='cary_access' else 'opticalEpisode'
+        ready='document.documentElement.dataset.ready==="true"'+(' && window.concept?.'+field if episode else '')
+        page.wait_for_function(ready,timeout=120000)
+        info=page.evaluate('({duration:concept.duration,phases:concept.phases,criticalTimes:concept.criticalTimes||[],sourceHashes:concept.sourceHashes,manifest:concept.manifest,extraGeometry:concept.extraGeometry||[],deformableGeometry:concept.deformableGeometry||[],opticalEpisode:concept.opticalEpisode||null,caryEpisode:concept.caryEpisode||null,measurementEpisode:concept.measurementEpisode||null})')
         selected=[p for p in info['phases'] if (not phase_pattern or re.search(phase_pattern,p['id'])) and (not action_pattern or re.search(action_pattern,p.get('action') or p.get('mode') or ''))]
         if not selected:raise ValueError('No matching phases')
         times={min(i*step,info['duration']) for i in range(int(info['duration']/step)+2)}
@@ -45,4 +48,4 @@ def export(out,step,phase_pattern=None,action_pattern=None,episode=None):
         browser.close();print('exported',len(times),flush=True)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('out');parser.add_argument('--step',type=float,default=.5);parser.add_argument('--phases');parser.add_argument('--actions');parser.add_argument('--episode',choices=['ftir','ftir_delivery','cary_access']);args=parser.parse_args();export(args.out,args.step,args.phases,args.actions,args.episode)
+    parser=argparse.ArgumentParser();parser.add_argument('out');parser.add_argument('--step',type=float,default=.5);parser.add_argument('--phases');parser.add_argument('--actions');parser.add_argument('--episode',choices=['ftir','ftir_delivery','cary_access','ftir_measurement']);args=parser.parse_args();export(args.out,args.step,args.phases,args.actions,args.episode)
