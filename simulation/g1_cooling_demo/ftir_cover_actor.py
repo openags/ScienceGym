@@ -116,11 +116,22 @@ class CoverActor(FTIRActor):
                                 estimated_rotation=self.rotation.tolist(),accepted_frames=len(recent),
                                 preflight_max_position_error_m=worst[0],preflight_max_rotation_error_rad=worst[1],
                                 handle_depth_points=[o['handle_fit']['cylinder_points'] for o in recent],
+                                grasp_motion='cylindrical_handle_roll_limited_to_15_degrees',
                                 source='native_rgb_depth_key_row_and_observed_handle_cylinder'))
 
     def arc(self, u):
-        rot = Rotation.from_rotvec(self.axis*(-np.pi/3)*u).as_matrix()
-        return self.pivot+rot@(self.grip_position-self.pivot),rot@self.grip_rotation
+        # Move around the observed handle axis while permitting the round bar
+        # to roll between the pads. A fixed wrist hits the cover lip; the
+        # smooth 15-degree roll limit preserves source-mesh clearance through
+        # the opening. This describes a motor target, not an attachment or a
+        # claim that the passive cover has followed the requested angle.
+        angle = np.pi/3*u
+        rot = Rotation.from_rotvec(-self.axis*angle).as_matrix()
+        handle = self.pivot+rot@(self.handle-self.pivot)
+        roll_limit = np.pi/12
+        wrist_angle = angle-roll_limit*np.tanh(angle/roll_limit)
+        wrist = Rotation.from_rotvec(-self.axis*wrist_angle).as_matrix()
+        return handle+wrist@(self.grip_position-self.handle),wrist@self.grip_rotation
 
     def recover(self, t, reason):
         self.failure = reason

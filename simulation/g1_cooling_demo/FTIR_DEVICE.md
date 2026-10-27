@@ -189,7 +189,7 @@ exact triangle-mesh acceptance checks are separate from the optimization's
 surface-point approximation. Whole-body reach and physical execution are
 still required after these local geometric searches. Refinement 04 finds
 18 local candidates that pass the observed arm-path preflight; candidate 0
-is used by run 08. The preceding 12-candidate bounded search failed the
+is used by runs 08–09. The preceding 12-candidate bounded search failed the
 full path screens, and its rejected approach/stance variants are retained.
 
 Retained attempts:
@@ -204,8 +204,9 @@ Retained attempts:
 | `ftir_cover_06` | Sensor-terminated closure and wrist load compensation lift to 28.60 degrees. Pad contact is lost; whole-body support review fails and recovery reaches an arm limit. |
 | `ftir_cover_07` | Putting the wrist reaction into the full floating-base balance QP restores the support check and lifts to 37.50 degrees, then loses contact. The hand releases and withdraws, but final arm return fails. The independent prior-limit check also rejects the old grasp. |
 | `ftir_cover_08` | The refined grasp passes the source prior/joint-limit checks and lifts to 22.43 degrees. Finger self contacts and loss of pad/handle contact remain; withdrawal reaches an arm limit. This run also fails opening acceptance. |
+| `ftir_cover_09` | A smooth 15-degree rolling allowance keeps the nominal hand clear of the cover through the planned arc, but the physical grasp still slips. The lid reaches 22.99 degrees; withdrawal again reaches an arm limit. Support, source limits, isolation and exact replay pass; grasp retention, opening and release fail. |
 
-All eight attempts retain source snapshots, isolated input bundles, lossless
+All nine attempts retain source snapshots, isolated input bundles, lossless
 sensor records, every physics-step state and motor command, and independent
 replay reports. Exact motor replay and the isolation checks pass, while the
 opening checks fail. In run 04 the idle left arm clears the bench, but early
@@ -216,11 +217,40 @@ include bench contacts. The source-mesh diagnostic for run 03 identifies a
 false convex-hull self contact between index-2 and thumb-4; it does not justify
 discarding real finger/case contacts.
 
+Run 09 moves the handle center around the observed hinge while commanding
+wrist rotation `angle - delta * tanh(angle / delta)`, with `delta = 15 degrees`.
+This permits some rolling of the cylindrical handle without using an
+attachment. Holding wrist orientation completely fixed instead intersects
+the cover front lip from 24.5 degrees. The limited-roll path passes 121
+source-mesh states and observed robot-only IK, but this nominal-posture
+screen does not include force-dependent finger motion. Its physical failure
+is retained. The earlier `ftir_rolling_grasp_01` clearance calculation mixed
+raw interface coordinates with a normalized GLB and is rejected;
+`ftir_rolling_grasp_02` and `03` apply the asset normalization consistently.
+No change to the object-relative hinge/handle prior was needed.
+
+Exact triangle checks in `analysis/ftir_cover_source_contact_02` find real
+finger/pad self intersections during run 09 at 18.25–19.0 seconds. Later,
+the source index-2/thumb-4 meshes have 0.39–0.84 mm clearance while their
+compiled convex hulls still report contact. Both grasp placement/control
+and the contact representation need correction; removing false hull
+contacts alone cannot be counted as a successful grasp.
+
+The separate offline plane study `analysis/ftir_cover_plane_04` rejects
+views with fewer than 500 supporting depth pixels. On development runs
+07/08 it accepts 60/59 of 81 frames, with maximum accepted-frame angle errors
+of 0.074/0.076 degrees. The gate was selected using those runs, so these are
+development results. Applied unchanged to run 09, it accepts 60 of 81 frames
+with maximum error 0.070 degrees. This is one additional trajectory with
+the same setup, not sensor calibration or broad validation. The estimator
+is not integrated into the actor; rejected near-edge/occluded views and
+reacquisition remain unresolved.
+
 Reports are under `runs/ftir_cover_*/physical_cover_review.json` and
 `isolation_verification.json`. The diagnostic data under
 `analysis/ftir_cover_*` records
-the geometric and sensing decisions. The handle-depth predictions are saved
-separately from the held-out plant-state error review; that truth is not fed
+the geometric and sensing decisions. Sensor predictions are saved
+separately before post-prediction plant-state error review; that truth is not fed
 back to the actor. Cover opening remains unqualified. Review versions in
 runs 01–04 counted whole-finger handle loads; later versions require actual
 tactile-pad/handle contacts, so a link-shell contact cannot stand in for a

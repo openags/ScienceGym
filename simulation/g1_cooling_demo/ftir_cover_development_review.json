@@ -226,6 +226,35 @@
       "isolation_passed": true,
       "trace_sha256": "5a16ec354eb3453dbddda10cfcd09b0a7900acc0bf3b2e7786f706b8f23e0e03",
       "verifier_sha256": "2c7a883af478fc3c9f1863c8d7abab9f8a12e6d2fa2357693e1def818c96c9cc"
+    },
+    {
+      "run": "ftir_cover_09",
+      "status": "failed",
+      "failure": "Cover arm target infeasible in withdraw_abort: 0.00319 m, 0.01197 rad",
+      "duration_s": 24.3199999999974,
+      "maximum_open_angle_deg": 22.99343261519729,
+      "passed": false,
+      "checks": {
+        "attempt_finished": false,
+        "exact_motor_replay": true,
+        "no_external_forces": true,
+        "no_device_actuators": true,
+        "opposed_grasp_before_lift": true,
+        "opposed_contact_retained_during_lift": false,
+        "cover_opened": false,
+        "cover_remained_open_after_release": false,
+        "hand_released_and_withdrawn": false,
+        "hinge_stops_respected": true,
+        "source_motor_limits_respected": true,
+        "source_grasp_prior_limits_respected": true,
+        "source_robot_joint_limits_respected": true,
+        "no_unintended_or_excess_contact": false,
+        "upright_supported": true,
+        "no_numerical_warnings": true
+      },
+      "isolation_passed": true,
+      "trace_sha256": "0fd7e485347042bb18431a007c77b55dffe71e94f65e74643c07be52a4f56067",
+      "verifier_sha256": "2c7a883af478fc3c9f1863c8d7abab9f8a12e6d2fa2357693e1def818c96c9cc"
     }
   ],
   "qualified_skill": false,
@@ -234,7 +263,8 @@
   "current_prior_sha256": "6a42d0302400e5f97259ba47420cc975712e41509fc00651aaf6fbf9bdae8946",
   "review_changes": [
     "Runs 01\u201304 count whole-finger handle forces. Later reviews require actual pad/handle contacts.",
-    "Source commanded-grasp limits are checked explicitly from run 07 onward. The old 1.20 rad thumb target was invalid; run 08 uses a bounded refinement."
+    "Source commanded-grasp limits are checked explicitly from run 07 onward. The old 1.20 rad thumb target was invalid; run 08 uses a bounded refinement.",
+    "Run 09 limits relative handle rolling smoothly to 15 degrees. Coordinate-consistent nominal source-mesh and robot-only IK checks pass; physical opening still fails. Offline plane study 04 is not an actor input."
   ],
   "remaining": [
     "Stable pad contact throughout lifting and release",
