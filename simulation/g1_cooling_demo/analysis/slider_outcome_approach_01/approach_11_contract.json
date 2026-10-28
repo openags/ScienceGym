@@ -1,0 +1,144 @@
+{
+  "operation": "Continuous one-metre approach, window push and sensor-confirmed recovery after late contact loss if needed",
+  "run": "runs/ftir_approach_11",
+  "walking_controller": "quasistatic",
+  "initial_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "maximum_simulation_duration_s": 420.0,
+  "approach_timeout_s": 313.0,
+  "physical_acceptance": "Original verify_ftir_slider.py thresholds unchanged",
+  "prior": "assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json",
+  "scope": "Development attempt, not complete interstation experiment or repeated-run qualification",
+  "source_hashes": {
+    "simulation/g1_cooling_demo/balance.py": "67c04d759c844cd6478f49a67ea65fd6e5dd0826351576c17a5486decf3eb497",
+    "simulation/g1_cooling_demo/conic_balance.py": "6efb9f389dcdfe4bbf05bbd3b25e62302db915b955673c134e695cc365d5dbf1",
+    "simulation/g1_cooling_demo/quasistatic_walking.py": "a58a1d783e32abdf08bd4a48b4f1b0a322c715628499196a05da7dcc4b0625e8",
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "1822115019c0e22a6191f461a2e4951c22edddce648ee847e95fb8aba8c821dc",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "14aa145bbc293ebc13f7ae7ea8dfc579c97294768de965dea0730e688aba770d",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "c8a32052fe2c456929d4db1372f4b36c7cb561c1b3cff3c06ca268ad3bc21e56",
+    "simulation/g1_cooling_demo/ftir_slider_outcome.py": "b1c7d2db072fa2c28622f7b1feb8df8fd9d820c5685909c9265a1e5343485bd1",
+    "simulation/g1_cooling_demo/ftir_vision.py": "2b2dc10150d4b44d160797af08ce15977daaeace310b045d4186404e0131d8ab",
+    "simulation/g1_cooling_demo/sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "7cf88d5286aa462d37ba55777c8e04ac5c82b661c3b7f93d3a84047fb76c6127",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "9f0536a1479998672a76f1e3e25e65f2646cabfc12bf2162553df4c3321c1323",
+    "simulation/g1_cooling_demo/verify_ftir_slider.py": "6498d9b2f9df49809a90cf812e2ff0ba5f40b7f94bd853ba08cd790d0d4ab876",
+    "simulation/g1_cooling_demo/verify_isolation.py": "d98687aa94616f7f5ee1a809c947b836efa73a917abc42dd7b29c0a4b10d93be",
+    "simulation/g1_cooling_demo/verify_ftir_approach.py": "e02b260fc36e1c87a7b2360bd3eb74cf73d7f9804555a505a9487d3aaba935fb"
+  },
+  "recovery": {
+    "trigger": "Push contact loss only: filtered load below 0.1 N for more than 0.35 s, commanded travel at least 60 mm; no overload recovery",
+    "outcome": "Original 8 distinct fresh native RGB-D fits, 66--74 mm interior guard, stable observed position, followed by settled return; fault retained until completion",
+    "unchanged_limits": "6 N load guard; all original physical review contact, support, travel, joint and motor thresholds",
+    "retained_evidence": "Original recovery fault and its context remain in events; failed attempt 07 is unchanged",
+    "source_of_decisions": "Native tactile, RGB-D, encoders and IMU only; reviewer truth is not supplied to the actor"
+  },
+  "predecessor": "Approach10 completed walking/push/withdrawal but visual guard rejected estimated75.05mm versus actual74.7826mm; fullindependentreviewstillinprogress",
+  "observation": {
+    "target_waist_yaw_rad": -0.6,
+    "maximum_yaw_error_rad": 0.005,
+    "maximum_yaw_velocity_rad_s": 0.03,
+    "settle_dwell_s": 1.0,
+    "waist_posture_weight": 4.0,
+    "minimum_visible_grip_relief_fraction": 0.5,
+    "public_grip_height_m": 0.0030000060796737393,
+    "native_confirmation_frames": 8,
+    "observed_guard_band_m": [
+      0.066,
+      0.074
+    ],
+    "unchanged_physical_gap_m": [
+      0.065,
+      0.075
+    ],
+    "motivation": "Reject planar surface aliases and observe from a tested viewing interval; no acceptance threshold loosened",
+    "validation_scope": "Held-fit guard tests and static labeled views only; this new execution must independently pass"
+  },
+  "precheck_hashes": {
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/key_plane_refinement_candidate.py": "a1009cefae0b612aba419071f82851050c14f08ab189169586c11f24472d28c1",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/refined_key_observations_09.json": "14f2c7f065ec201fd2f858e078a447aba1c0b1e918c3d8ae54e30e6797be1213",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/refined_key_registration_09.json": "f555b9d0ff7433ecb331b104bd339ce150edca9746863c121085d7ce747d5562",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/depth_sampling_diagnosis.json": "9957d195e33ae3ec76f057b49cdcdb45972efcc422d3c4b6d0b4a1277a4997c6",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/check_contact_kinematic_gap.py": "773d7428aa7014f36ca28a3d40c0f686e1b56faaeb333154959a8272f0103489",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/contact_gap_09/review.json": "01b3dca220e2614dd084f93c1b2ae19285af68ddce8512d5d1c5587908d4eb8d",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/contact_gap_10/review.json": "bf28c3795418989f4bb63cffb000bb9e86c0aef1c05c6ea08fd28de001d420ec",
+    "simulation/g1_cooling_demo/analysis/slider_outcome_approach_01/contact_stop_recovery_rotation_checks.json": "1d3584cde6219aa45889ae3d6a895a8cb6ab2f450905313d5c0e03398f3991bf"
+  },
+  "sensor_rendering": {
+    "depth_offscreen_multisamples": 0,
+    "rgb_offscreen_multisamples": 4,
+    "projection_pixel_offset_xy": [
+      0.5,
+      0.5
+    ],
+    "hardware_calibration": false
+  },
+  "key_registration": {
+    "cap_plane_inlier_tolerance_m": 5e-05,
+    "previous_tolerance_m": 0.00025,
+    "minimum_plane_support_fraction": 0.65,
+    "minimum_plane_support_points": 16,
+    "minimum_singular_span_m": 0.006,
+    "other_actor_and_physical_thresholds_unchanged": true
+  },
+  "preflight": {
+    "tested_candidate_matches_production_ast": true,
+    "closed_frames": 42,
+    "accepted_closed_frames": 40,
+    "eight_counterfactual_outcome_frames_accepted": true,
+    "maximum_outcome_error_m": 0.00027011248158410883,
+    "out_of_range_false_acceptances": 0,
+    "scope": "Corrected-depth fixtures at retained poses only; not an executed trajectory or broad calibration"
+  },
+  "contact_stop": {
+    "target_m": 0.07,
+    "normal_axis_min_abs_projection": 0.1,
+    "minimum_tactile_trigger_n": 0.2,
+    "holding_interval_m": [
+      0.067,
+      0.073
+    ],
+    "minimum_holding_load_n": 0.1,
+    "holding_dwell_s": 0.15,
+    "recovery_outside_m": [
+      0.066,
+      0.074
+    ],
+    "nominal_stroke_upper_bound_m": 0.07,
+    "preserve_actual_wrist_pose_on_stop": true,
+    "withdraw_from_attained_pose": true,
+    "source": "Native encoders/IMU/tactile and observed CAD rest plane; no device joint, plant contact ID or evaluator input",
+    "scope": "Contact-plane position is a stop estimate; eight fresh native RGB-D confirmations and unchanged independentphysicsremainrequired"
+  },
+  "stop_preflight": {
+    "recorded_sensor_crossings": [
+      {
+        "run": "09",
+        "time_s": 182.3300000001425,
+        "raw_plane_position_m": 0.07006903065613754,
+        "closed_baseline_corrected_position_m": 0.06850099895902066,
+        "filtered_distal_load_n": 1.2562263556830338,
+        "actual_slider_position_m": 0.06830028158025193,
+        "raw_error_m": 0.0017687490758856034,
+        "corrected_error_m": 0.00020071737876872775
+      },
+      {
+        "run": "10",
+        "time_s": 182.20000000014187,
+        "raw_plane_position_m": 0.07003926778690787,
+        "closed_baseline_corrected_position_m": 0.06880779156485253,
+        "filtered_distal_load_n": 1.460447788609187,
+        "actual_slider_position_m": 0.0702358999208743,
+        "raw_error_m": -0.00019663213396642343,
+        "corrected_error_m": -0.001428108356021765
+      }
+    ],
+    "qualification": false,
+    "note": "Retained-trace predictions only; stopping dynamics not exercised"
+  }
+}

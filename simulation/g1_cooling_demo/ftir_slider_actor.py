@@ -38,6 +38,7 @@ class SliderActor(SliderScanActor):
         self.recovery_context=None
         self.reference_data=mujoco.MjData(model)
         self.last_target=None;self.last_rotation=None;self.commanded_pose=None
+        self.push_hold_position=None;self.push_hold_rotation=None;self.contact_gap_estimate=None
 
     def arm_pose(self,q):
         d=self.reference_data;d.qpos[:]=self.planner.initial;d.qpos[self.ik.qa]=q
@@ -59,6 +60,15 @@ class SliderActor(SliderScanActor):
         self.contact_rotation=np.array(self.solution['contact_palm_rotation'])
         heights=(self.hand.pad_vertices@self.contact_rotation.T)@self.normal
         self.pad_contact=self.hand.pad_vertices[heights<heights.min()+2e-5].mean(axis=0)
+        # A tilted grip converts normal preload into additional opening.
+        # Estimate its axial position from the observed rest plane and the
+        # encoder-derived pad point, rather than equating wrist stroke with
+        # device travel. The later independent RGB-D check remains required.
+        self.rest_contact_surface=(self.planner.rotation@np.asarray(self.solution['candidate']['surface_m'])
+                                   +self.planner.translation)
+        self.normal_axis_projection=float(self.normal@self.direction)
+        if abs(self.normal_axis_projection)<.1:
+            raise RuntimeError('Slider contact plane does not constrain its axial position')
         self.precontact=self.contact_position+self.normal*.02
         self.push_end=self.contact_position+self.direction*.07
         self.return_segments=[]
@@ -137,6 +147,7 @@ class SliderActor(SliderScanActor):
                     target,target_R=self.arm_pose(hint)
                 elif kind=='pose':
                     target=self.start_position+s*(np.asarray(motion['position'])-self.start_position)
+                    if motion.get('preserve_start_rotation'):target_R=self.start_rotation
                 elif kind=='seek':
                     self.contact_offset=-.0015*s
                     target=self.contact_position+self.normal*self.contact_offset
@@ -150,8 +161,23 @@ class SliderActor(SliderScanActor):
                         if t-self.touch_since>=.2:self.contact_confirmed=True
                     else:self.touch_since=None;self.contact_confirmed=False
                 elif kind=='push':
-                    self.contact_offset=float(np.clip(self.contact_offset-.0005*(2.-self.filtered_touch)*dt,-.003,.001))
-                    target=self.contact_position+s*self.direction*.07+self.normal*self.contact_offset
+                    pad=self.hand.observed_contact_point(self.d,self.pad_contact)
+                    self.contact_gap_estimate=float(self.normal@(pad-self.rest_contact_surface)/self.normal_axis_projection)
+                    if not np.isfinite(self.contact_gap_estimate):
+                        raise RuntimeError('Invalid contact-derived slider estimate')
+                    if self.push_hold_position is None and self.filtered_touch>.2 and self.contact_gap_estimate>=.070:
+                        self.push_hold_position=self.d.site('right_wrist_reference').xpos.copy()
+                        self.push_hold_rotation=self.d.site('right_wrist_reference').xmat.reshape(3,3).copy()
+                        self.events.append(dict(state='push_stop_requested',time_s=t,
+                            estimated_slider_position_m=self.contact_gap_estimate,
+                            distal_index_load_n=self.filtered_touch,
+                            source='native_encoders_IMU_observed_rest_plane_and_distal_tactile'))
+                    if self.push_hold_position is None:
+                        self.contact_offset=float(np.clip(self.contact_offset-.0005*(2.-self.filtered_touch)*dt,-.003,.001))
+                        target=self.contact_position+s*self.direction*.07+self.normal*self.contact_offset
+                    else:
+                        target=self.push_hold_position.copy()
+                        target_R=self.push_hold_rotation.copy()
                     requested_load=2.
                     # Pressure error moves the bounded contact target above.
                     # The inverse model uses the measured tactile load so an
@@ -161,11 +187,17 @@ class SliderActor(SliderScanActor):
                         if self.lost_since is None:self.lost_since=t
                     else:self.lost_since=None
                 else:raise ValueError('Unknown slider phase')
-                if kind in {'seek','push'} and (self.filtered_touch>6. or (kind=='push' and self.lost_since is not None and t-self.lost_since>.35)):
+                stop_estimate_outside=(kind=='push' and self.push_hold_position is not None
+                                       and not .066<=self.contact_gap_estimate<=.074)
+                if kind in {'seek','push'} and (self.filtered_touch>6. or stop_estimate_outside
+                        or (kind=='push' and self.lost_since is not None and t-self.lost_since>.35)):
                     overload=self.filtered_touch>6.
-                    self.recover(t,'Tactile load exceeded bound' if overload else 'Tactile contact was lost during push',
-                                 context=dict(code='tactile_overload' if overload else 'push_contact_loss',
+                    self.recover(t,'Tactile load exceeded bound' if overload else
+                                 'Contact-derived slider stop left its bounded interval' if stop_estimate_outside else
+                                 'Tactile contact was lost during push',
+                                 context=dict(code='tactile_overload' if overload else 'push_stop_estimate_outside' if stop_estimate_outside else 'push_contact_loss',
                                               filtered_distal_load_n=self.filtered_touch,
+                                              estimated_slider_position_m=self.contact_gap_estimate,
                                               commanded_push_displacement_m=float(s*.07) if kind=='push' else 0.,
                                               contact_loss_duration_s=None if self.lost_since is None else t-self.lost_since))
                     target=self.start_position;target_R=self.start_rotation;force=None
@@ -185,15 +217,29 @@ class SliderActor(SliderScanActor):
                 error=float(np.linalg.norm(target-self.d.site('right_wrist_reference').xpos))
                 rotation_error=float(np.linalg.norm(Rotation.from_matrix(target_R@self.d.site('right_wrist_reference').xmat.reshape(3,3).T).as_rotvec()))
                 ready=motion_ready(kind,u,error,rotation_error,self.contact_confirmed)
+                if kind=='push' and not recovered_now:
+                    # Hold the attained wrist pose before withdrawing. This
+                    # is a stop estimate, never visual completion or success.
+                    ready=(self.push_hold_position is not None and self.filtered_touch>.1
+                           and .067<=self.contact_gap_estimate<=.073
+                           and error<.005 and rotation_error<.035)
                 if recovered_now:
                     pass
                 elif ready:
                     if self.reached_since is None:self.reached_since=t
                     if t-self.reached_since>=.15:
-                        self.events.append(dict(state=name+'_endpoint',time_s=t,position_error_m=error,rotation_error_rad=rotation_error,distal_index_load_n=self.filtered_touch))
+                        self.events.append(dict(state=name+'_endpoint',time_s=t,position_error_m=error,rotation_error_rad=rotation_error,distal_index_load_n=self.filtered_touch,
+                                                **(dict(estimated_slider_position_m=self.contact_gap_estimate) if kind=='push' else {})))
                         self.phase+=1
                         if self.phase>=len(self.motions):self.finished=True
-                        else:self.begin_phase(t)
+                        else:
+                            if kind=='push' and self.motions[self.phase]['name']=='withdraw':
+                                # A fixed nominal end pose would finish the
+                                # unused stroke during withdrawal and undo
+                                # the sensor-based stop.
+                                self.motions[self.phase]['position']=self.d.site('right_wrist_reference').xpos.copy()+self.normal*.03
+                                self.motions[self.phase]['preserve_start_rotation']=True
+                            self.begin_phase(t)
                 elif kind=='seek' and u>=1:
                     self.recover(t,'No confirmed distal-pad contact during bounded search')
                     force=None;point_target=None;self.last_target=self.start_position.copy();self.last_rotation=self.start_rotation.copy()

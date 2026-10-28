@@ -774,11 +774,32 @@ accepts 40 of 42 closed-grip frames, then all eight outcome frames with about
 0.27 mm position error. Twelve labeled static openings include both sides of
 the allowed interval; none outside it are accepted. These are counterfactual
 observation fixtures, not a new robot execution or hardware calibration.
-The failed earlier fixtures are retained. Approach 10 was launched only after
-these checks, with a recorded contract, the corrected depth context and the
-tighter key-plane band. It is awaiting completion and independent review.
+The failed earlier fixtures are retained. Approach 10 used a recorded
+contract, the corrected depth context and the tighter key-plane band. It
+finishes at 245.990 s but fails the final range guard: all 120 outcome views
+identify the grip geometry, while the estimated opening is about 75.05 mm
+and the actual opening is 74.7826 mm. The 66–74 mm visual guard correctly
+rejects this edge-of-range result. Process isolation passes; independent
+physical and frozen-sensor replay are still running.
 The physical gap, collision, support and fresh-frame acceptance criteria are
 unchanged.
+
+The grip surface is sloped: its normal projects -0.258819 onto the slider
+axis. Normal preload can therefore add opening beyond the nominal wrist
+stroke. A new stop estimate intersects the encoder-derived fingertip contact
+point with the observed rest plane and the public slider axis. It requires
+distal tactile contact and does not read any device joint or plant contact.
+Predictions are saved before evaluator comparisons. In retained approaches
+09/10, the first loaded 70 mm estimate occurs at actual openings of
+68.300/70.236 mm; these are offline checks, not executed stopping behaviour.
+
+Approach 11 is now running with this stop estimate. On reaching 70 mm, it
+holds the attained wrist position and rotation, then withdraws from that
+pose without finishing an unused nominal stroke. A bounded stop interval,
+tactile loss and overload still trigger failure/recovery. The estimate is
+only a control stop; eight fresh camera confirmations and the unchanged
+independent physical review remain necessary. No new successful movie or
+complete paper branch is credited.
 
 To reproduce the current short development probe, install the pinned
 requirements, use the retained full lab from approach 06 and a new empty
