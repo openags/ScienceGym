@@ -669,7 +669,14 @@ approach without resetting the plant. It completes the walking/posture handoff
 but aborts after losing contact late in the window push. It is retained as a
 failed 225.380-second attempt. A post-run diagnosis finds maximum window travel
 72.168 mm; this evaluator-side measurement is not an actor observation or a
-success claim. Its independent reviews are recorded separately in the run.
+success claim. Independent physical replay passes every physical criterion;
+the completion-status check remains failed. All 112,691 native sensor packets
+also reproduce the frozen actor's motor commands, retained responses and
+events exactly. The handoff follows 1.02048 m of executed travel, with 0.0431 mm
+post-run XY estimation error. No visual confirmation was executed, so the
+continuous review still fails overall. The selected-controller isolation probe
+also passes; its supplemental report preserves the earlier probe, which used
+the default walking-controller argument.
 
 Approach 08 is a new execution with a declared contact-loss recovery policy.
 After a late push contact loss, the robot first completes its existing motor
