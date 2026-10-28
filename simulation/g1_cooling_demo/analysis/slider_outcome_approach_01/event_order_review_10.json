@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "checks": {
+    "raw_mismatch_retained": true,
+    "canonical_values_match": true,
+    "unordered_pair_orientation_and_order_equivalent": true,
+    "missing_pair_rejected": true,
+    "duplicate_pair_rejected": true,
+    "changed_geometry_rejected": true,
+    "motion_path_order_preserved": true,
+    "event_order_preserved": true,
+    "timestamp_change_rejected": true,
+    "nonfinite_value_rejected": true
+  },
+  "original_full_review_passed": false,
+  "raw_difference_examples": [
+    {
+      "path": "$/65/solution/baseline/self_intersections/0/0",
+      "actual": "'right_ankle_roll_link'",
+      "recorded": "'left_ankle_roll_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/0/1",
+      "actual": "'right_knee_link'",
+      "recorded": "'left_knee_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/1/0",
+      "actual": "'left_ankle_roll_link'",
+      "recorded": "'right_ankle_roll_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/1/1",
+      "actual": "'left_knee_link'",
+      "recorded": "'right_knee_link'"
+    }
+  ],
+  "cause": "FCL collision pairs are a set; the planner sorted pair endpoints but not the outer list. Only the two baseline pairs exchange positions.",
+  "canonical_event_difference": 0.0,
+  "qualified_paper_branch": false,
+  "original_reviews_unchanged": true,
+  "source_hashes": {
+    "simulation/g1_cooling_demo/event_canonicalization.py": "4d6f5c92dd6611d9d1a44daf352f207d073822631dae31c67c1592421ac90f3b",
+    "simulation/g1_cooling_demo/ftir_slider_planning.py": "38283d7edc71089d4c55e2e3d5924ddb9818f1d0399a8ac824de25dc33adcedb",
+    "simulation/g1_cooling_demo/verify_ftir_approach.py": "9ce32d8deac4ab7d61ad59c7b334e7180fe9376340db7c3064b3f20cb8dc44a9",
+    "simulation/g1_cooling_demo/runs/ftir_approach_10/continuous_approach_review.json": "75f689b0f9bbe6808c4bb3b6c4d5b488db356c23984f99c9d6329962fb1cabb1",
+    "simulation/g1_cooling_demo/runs/ftir_approach_10/replayed_events.json": "e41caf4732711e4a1182cd27dbb47b8ff3486dddcfb7b9ec0412ec35696b9fce",
+    "simulation/g1_cooling_demo/runs/ftir_approach_10/result.json": "5efee2f554ac47b5bbe0c4dbfc53158d54153e55d8453c53a588264ef7cb6411"
+  }
+}

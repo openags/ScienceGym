@@ -782,7 +782,20 @@ and the actual opening is 74.7826 mm. The 66–74 mm visual guard correctly
 rejects this edge-of-range result. Process isolation passes. Independent
 physical replay passes every criterion except attempt completion, including
 exact motor replay, intended-pad contact, support and unchanged collision
-bounds. Frozen-sensor replay is still running.
+bounds. Frozen-sensor replay reproduces every motor command and retained
+response exactly across 122,996 packets and 2,460 camera frames. Its original
+event comparison fails because two baseline self-collision pairs exchange
+list positions. The actual replayed events and original failed review are
+retained; the diagnostic `event_order_review_10.json` confirms that no event
+values differ after canonicalizing that specific unordered pair set.
+
+The planner now sorts the outer collision-pair list as well as each pair.
+The reviewer additionally supports historical unordered baselines, retaining
+raw differences and canonicalizing only `solution.baseline.self_intersections`
+on the planning event. Event order, path order, numeric values, pair membership
+and duplicates remain significant. Mutation checks confirm these boundaries.
+This comparison correction was recorded before approach 11 produced a result;
+it does not change any physical acceptance or erase approach 10's failure.
 The physical gap, collision, support and fresh-frame acceptance criteria are
 unchanged.
 

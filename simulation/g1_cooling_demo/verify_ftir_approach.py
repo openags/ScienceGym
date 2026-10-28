@@ -18,6 +18,7 @@ import numpy as np
 
 from isolation import namespace_prefix
 from verify_slider_outcome import difference, json_finite
+from event_canonicalization import canonical_events
 
 
 def sha(path):
@@ -155,12 +156,14 @@ def verify(folder):
                 process.wait()
     replay_events = plain(answer.get('events', []))
     recorded_events = result.get('actor_last_output', {}).get('events', [])
-    event_error = difference(replay_events, recorded_events)
+    raw_event_error = difference(replay_events, recorded_events)
+    event_error = difference(canonical_events(replay_events), canonical_events(recorded_events))
     replay_event_path = folder/'replayed_events.json'
     if replay_event_path.exists():
         raise FileExistsError(replay_event_path)
     replay_event_path.write_text(json.dumps(json_finite(replay_events), indent=2, allow_nan=False)+'\n')
-    event_examples = event_differences(replay_events, recorded_events)
+    raw_event_examples = event_differences(replay_events, recorded_events)
+    event_examples = event_differences(canonical_events(replay_events), canonical_events(recorded_events))
     handoffs = [e for e in replay_events if e['state'] == 'continuous_station_handoff']
     confirmations = [e for e in replay_events if e['state'] == 'slider_outcome_confirmed']
     selected = confirmations[0]['sensor_frames'] if len(confirmations) == 1 else []
@@ -213,6 +216,9 @@ def verify(folder):
     report = json_finite(dict(passed=all(checks.values()), checks={k:bool(v) for k,v in checks.items()},
         failure=failure, maximum_torque_replay_error_nm=max_torque, maximum_response_replay_error=max_response,
         maximum_event_replay_error=event_error, sensor_packets=len(sensors['time_s']), camera_frames=camera_frames,
+        raw_maximum_event_replay_error=raw_event_error, raw_event_difference_examples=raw_event_examples,
+        event_comparison='Ordered events and paths; only planning baseline self-intersection pairs are an unordered set',
+        event_canonicalization_sha256=sha(Path(__file__).with_name('event_canonicalization.py')),
         event_difference_examples=event_examples, replayed_events_sha256=sha(replay_event_path),
         comparison_helper_sha256=sha(Path(__file__).with_name('verify_slider_outcome.py')),
         compared_responses=compared, handoff_truth_review=handoff_truth, outcome_truth_review=truth_rows,

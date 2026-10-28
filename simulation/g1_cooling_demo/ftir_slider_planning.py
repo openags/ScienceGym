@@ -61,7 +61,7 @@ class SliderPlanner:
         self.clearance=SourceClearance(model,self.d,self.robot,self.source,self.environment,meshes,active,adjacent,check_fixed_environment=False)
         _,pairs=self.robot.in_collision_internal(return_names=True)
         _,external=self.robot.in_collision_other(self.environment,return_names=True)
-        self.baseline=dict(self_intersections=[sorted(p) for p in pairs if tuple(sorted(p)) not in adjacent],
+        self.baseline=dict(self_intersections=sorted(sorted(p) for p in pairs if tuple(sorted(p)) not in adjacent),
                            environment_intersections=sorted([list(p) for p in external]))
         # Only frozen assembly overlaps may remain in the baseline. The
         # constant-qpos guard protects this assumption during each search.
