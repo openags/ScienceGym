@@ -25,6 +25,8 @@ def difference(a, b):
     if isinstance(a, list) and isinstance(b, list):
         return max((difference(x, y) for x, y in zip(a, b)), default=0.) if len(a) == len(b) else float('inf')
     if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        if not math.isfinite(a) or not math.isfinite(b):
+            return float('inf')
         return abs(float(a)-float(b))
     return 0. if a == b else float('inf')
 

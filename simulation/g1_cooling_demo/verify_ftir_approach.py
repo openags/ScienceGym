@@ -51,6 +51,30 @@ def plain(value):
     return value
 
 
+def event_differences(actual, recorded, path='$', examples=None):
+    """Retain bounded mismatch locations, including nonfinite numeric leaves."""
+    if examples is None:
+        examples = []
+    if len(examples) >= 100 or difference(actual, recorded) == 0.:
+        return examples
+    if isinstance(actual, dict) and isinstance(recorded, dict):
+        if set(actual) != set(recorded):
+            examples.append(dict(path=path, reason='different dictionary keys',
+                                 actual=sorted(map(str, actual)), recorded=sorted(map(str, recorded))))
+        for key in actual:
+            if key in recorded:
+                event_differences(actual[key], recorded[key], path+'/'+str(key), examples)
+    elif isinstance(actual, list) and isinstance(recorded, list):
+        if len(actual) != len(recorded):
+            examples.append(dict(path=path, reason='different list lengths',
+                                 actual=len(actual), recorded=len(recorded)))
+        for i, (a, b) in enumerate(zip(actual, recorded)):
+            event_differences(a, b, path+'/'+str(i), examples)
+    else:
+        examples.append(dict(path=path, actual=repr(actual), recorded=repr(recorded)))
+    return examples
+
+
 def verify(folder):
     folder = Path(folder).resolve()
     output = folder/'continuous_approach_review.json'
@@ -130,7 +154,13 @@ def verify(folder):
                 process.kill()
                 process.wait()
     replay_events = plain(answer.get('events', []))
-    event_error = difference(replay_events, result.get('actor_last_output', {}).get('events', []))
+    recorded_events = result.get('actor_last_output', {}).get('events', [])
+    event_error = difference(replay_events, recorded_events)
+    replay_event_path = folder/'replayed_events.json'
+    if replay_event_path.exists():
+        raise FileExistsError(replay_event_path)
+    replay_event_path.write_text(json.dumps(json_finite(replay_events), indent=2, allow_nan=False)+'\n')
+    event_examples = event_differences(replay_events, recorded_events)
     handoffs = [e for e in replay_events if e['state'] == 'continuous_station_handoff']
     confirmations = [e for e in replay_events if e['state'] == 'slider_outcome_confirmed']
     selected = confirmations[0]['sensor_frames'] if len(confirmations) == 1 else []
@@ -183,6 +213,8 @@ def verify(folder):
     report = json_finite(dict(passed=all(checks.values()), checks={k:bool(v) for k,v in checks.items()},
         failure=failure, maximum_torque_replay_error_nm=max_torque, maximum_response_replay_error=max_response,
         maximum_event_replay_error=event_error, sensor_packets=len(sensors['time_s']), camera_frames=camera_frames,
+        event_difference_examples=event_examples, replayed_events_sha256=sha(replay_event_path),
+        comparison_helper_sha256=sha(Path(__file__).with_name('verify_slider_outcome.py')),
         compared_responses=compared, handoff_truth_review=handoff_truth, outcome_truth_review=truth_rows,
         verifier_sha256=sha(__file__), physical_review_sha256=sha(folder/'physical_slider_review.json'),
         isolation_review_sha256=sha(folder/'isolation_verification.json'), result_sha256=sha(folder/'result.json'),

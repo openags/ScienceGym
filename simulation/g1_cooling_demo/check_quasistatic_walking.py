@@ -24,12 +24,12 @@ def sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
-def run(source, output, seconds=24., turn_degrees=None):
+def run(source, output, seconds=24., turn_degrees=None, walk_after_turn=None):
     source, output = Path(source).resolve(),Path(output).resolve()
     output.mkdir(parents=True,exist_ok=True)
     if any(output.iterdir()):
         raise FileExistsError(output)
-    for name in ['balance.py','quasistatic_walking.py','quasistatic_turning.py','conic_balance.py','observations.py','check_quasistatic_walking.py']:
+    for name in ['balance.py','quasistatic_walking.py','quasistatic_turning.py','quasistatic_turn_walk.py','conic_balance.py','observations.py','check_quasistatic_walking.py']:
         shutil.copyfile(Path(__file__).parent/name,output/name)
     model = mujoco.MjModel.from_xml_path(str(source/'world.xml'))
     data = mujoco.MjData(model)
@@ -39,14 +39,23 @@ def run(source, output, seconds=24., turn_degrees=None):
     estimate = mujoco.MjData(predictor)
     start = data.qpos[:2].copy()
     goal = start+np.array([.12,0.]) if turn_degrees is None else start.copy()
-    if turn_degrees is None:
+    if walk_after_turn is not None:
+        if turn_degrees is None:
+            raise ValueError('Forward walking requires a preceding turn')
+        from quasistatic_turn_walk import QuasistaticTurnWalk
+        actor = QuasistaticTurnWalk(predictor, estimate, start, np.deg2rad(turn_degrees), walk_after_turn)
+        forward = data.body('pelvis').xmat.reshape(3, 3)[:, 0]
+        heading = np.arctan2(forward[1], forward[0])+np.deg2rad(turn_degrees)
+        goal = start+walk_after_turn*np.array([np.cos(heading), np.sin(heading)])
+    elif turn_degrees is None:
         actor = QuasistaticWalker(predictor,estimate,start,goal)
     else:
         from quasistatic_turning import QuasistaticTurner
         actor = QuasistaticTurner(predictor,estimate,start,np.deg2rad(turn_degrees))
     names = [model.joint(j).name for j in robot_joints(model)]
     contract = dict(initial_xy_m=start.tolist(),goal_xy_m=goal.tolist(),duration_s=seconds,
-                    operation='translation' if turn_degrees is None else 'in_place_turn',
+                    operation='turn_then_translation' if walk_after_turn is not None else ('translation' if turn_degrees is None else 'in_place_turn'),
+                    forward_distance_after_turn_m=walk_after_turn,
                     relative_yaw_rad=None if turn_degrees is None else float(np.deg2rad(turn_degrees)),
                     maximum_step_yaw_rad=None if turn_degrees is None else actor.maximum_step_yaw,
                     final_heading_tolerance_rad=None if turn_degrees is None else .02,
@@ -128,6 +137,7 @@ if __name__=='__main__':
     p.add_argument('output')
     p.add_argument('--seconds',type=float,default=24.)
     p.add_argument('--turn-degrees',type=float)
+    p.add_argument('--walk-after-turn-m',type=float)
     a=p.parse_args()
-    if run(a.source,a.output,a.seconds,a.turn_degrees)['status']=='failed':
+    if run(a.source,a.output,a.seconds,a.turn_degrees,a.walk_after_turn_m)['status']=='failed':
         raise SystemExit(1)

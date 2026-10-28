@@ -83,7 +83,7 @@ def verify(source,folder):
                 upright_supported=min_height>.65 and max_tilt<.2 and min_load>100,
                 no_numerical_warnings=not np.any(d.warning.number))
     turn_review=None
-    if contract.get('operation')=='in_place_turn':
+    if contract.get('operation') in {'in_place_turn', 'turn_then_translation'}:
         requested_yaw=float(contract['relative_yaw_rad'])
         q=trace['qpos'][:,3:7]
         headings=np.unwrap(np.arctan2(2*(q[:,0]*q[:,3]+q[:,1]*q[:,2]),1-2*(q[:,2]**2+q[:,3]**2)))
@@ -101,6 +101,16 @@ def verify(source,folder):
                          maximum_final_heading_error_rad=error,final_sole_orientation_errors_rad=foot_errors,
                          maximum_final_angular_speed_rad_s=angular_speed,
                          heading_tolerance_rad=.02)
+        if contract['operation']=='turn_then_translation':
+            handoffs = [e for e in result['events'] if e['state']=='continuous_turn_walk_handoff']
+            checks['one_continuous_turn_walk_handoff'] = len(handoffs)==1
+            checks['uninterrupted_physics_clock'] = bool(np.allclose(np.diff(trace['time']),m.opt.timestep,rtol=0,atol=1e-9))
+            checks['walk_completed_after_turn'] = len(handoffs)==1 and result['completed_steps']-handoffs[0]['completed_turn_steps']>=2
+            if len(handoffs)==1:
+                moving = trace['time']>=handoffs[0]['time_s']
+                walk_heading_error = float(np.max(abs(relative[moving]-requested_yaw)))
+                checks['new_heading_preserved_during_walk'] = walk_heading_error<.03
+                turn_review['maximum_heading_error_during_walk_rad'] = walk_heading_error
     report=dict(passed=all(checks.values()),checks=checks,maximum_replay_position_error=max_q,
                 maximum_replay_velocity_error=max_v,displacement_m=displacement.tolist(),
                 minimum_pelvis_height_m=min_height,maximum_pelvis_tilt_rad=max_tilt,

@@ -671,6 +671,14 @@ in-process development probes, not isolated navigation or reliability trials;
 they have not yet been joined to the station-operation actor. See
 `analysis/quasistatic_turn_01` and `analysis/quasistatic_turn_02`.
 
+`quasistatic_turn_walk.py` joins a 90-degree turn to a 0.24 m forward request
+using the same stance estimator, balance task and continuous simulation clock.
+The transition retains the new body heading, sole anchors and COM target;
+encoder/IMU settling gates trigger the next step. Development probe
+`analysis/quasistatic_turn_walk_01` finishes 22 foot placements in 157.210 s,
+with 0.24916 m net forward displacement. Independent physical review remains
+pending. This probe does not establish carrying or a complete interstation task.
+
 The walking arm pose places the wrists behind the pelvis, around 0.55–0.59 m
 above the floor. Earlier descriptions calling it a raised-forearm pose were
 incorrect; the joint commands have not been changed to match that wording.
@@ -707,8 +715,11 @@ failed after 245.620 seconds. Independent physics satisfies every criterion
 apart from the failed completion status, and process isolation passes. Its
 first frozen sensor replay reproduces every motor command and retained
 response exactly, but the full event-sequence comparison fails. The original
-report is retained and an additional replay captures the event differences;
-event integrity remains unresolved. The observed waist angle is
+report is retained. An additional diagnostic replay exactly reproduces the
+motor outputs, retained responses and full event tree, with no mismatch examples.
+The first replay did not retain its actual event tree, so that original mismatch
+cannot be located or declared fixed. New reviews now retain replayed events and
+bounded difference locations, and reject nonfinite numeric comparisons. The observed waist angle is
 about -0.495865 rad for a -0.5 rad target. Labeled static views also expose
 planar-surface aliases at some other angles, including an out-of-range 60 mm
 opening incorrectly estimated above 73 mm. These false acceptances remain in
@@ -720,8 +731,13 @@ to retained fit outputs removes both labeled false acceptances without losing
 the 41 previous correct acceptances in that study. This is a held-fit guard
 test, not a new inference or calibration result. New continuous attempt 09
 uses a -0.60 rad viewing target, a tighter 0.005 rad pose gate and stronger
-waist-posture tracking. It must still pass fresh native-image confirmation,
-physical replay and isolation. Its contract and the static collision screen
+waist-posture tracking. Attempt 09 still fails visual confirmation after
+245.800 s; process isolation passes and the independent physical/sensor reviews
+are pending. A native-depth diagnostic at 225.5 s finds that only 59 of the
+182 selected points lie within 0.25 mm of the actual grip mesh. This is an
+evaluator-side diagnosis of mixed surfaces, not an actor input or a proposed
+lower acceptance threshold. Camera-facing surface fits and a denser bounded
+fit search also fail the existing criteria; neither is adopted. Its contract and the static collision screen
 are retained in the same analysis directory; the latter is not executed motion.
 
 To reproduce the current short development probe, install the pinned
