@@ -779,8 +779,10 @@ contract, the corrected depth context and the tighter key-plane band. It
 finishes at 245.990 s but fails the final range guard: all 120 outcome views
 identify the grip geometry, while the estimated opening is about 75.05 mm
 and the actual opening is 74.7826 mm. The 66–74 mm visual guard correctly
-rejects this edge-of-range result. Process isolation passes; independent
-physical and frozen-sensor replay are still running.
+rejects this edge-of-range result. Process isolation passes. Independent
+physical replay passes every criterion except attempt completion, including
+exact motor replay, intended-pad contact, support and unchanged collision
+bounds. Frozen-sensor replay is still running.
 The physical gap, collision, support and fresh-frame acceptance criteria are
 unchanged.
 
