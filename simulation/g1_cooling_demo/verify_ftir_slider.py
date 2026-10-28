@@ -131,7 +131,9 @@ def verify(folder):
         contacts=[dict(parts=list(k),**v) for k,v in contact_pairs.items()],first_violations=violations,
         model_sha256=sha(folder/'world.xml'),trace_sha256=sha(folder/'trace.npz'),verifier_sha256=sha(__file__),
         qualified_skill=False,qualified_paper_branch=False,
-        scope='One 70 mm passive sliding-window push and return attempt from authored setup. No executed walking, full cover opening, sensor calibration, reliability campaign or branch qualification.')
+        scope=('One continuous local walking approach and passive-window operation; this physical review does not establish sensor replay, carrying, full experiment or reliability qualification.'
+               if result.get('actor_entry_point')=='ftir_approach_actor.py' else
+               'One 70 mm passive sliding-window push and return attempt from authored setup. No executed walking, full cover opening, sensor calibration, reliability campaign or branch qualification.'))
     (folder/'physical_slider_review.json').write_text(json.dumps(report,indent=2)+'\n')
     shutil.copyfile(__file__,folder/'verify_ftir_slider.py')
     print(json.dumps({k:report[k] for k in ['passed','checks','accepted_key_observations']}),flush=True)

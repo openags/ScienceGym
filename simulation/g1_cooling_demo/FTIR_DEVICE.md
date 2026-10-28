@@ -625,21 +625,21 @@ pass integrity checks, with zero motor, response and event differences.
 Attempt 02 executes the walking handoff but loses window contact. Attempt 05
 has hand self-contact during walking and then hits the instrument/worktop and
 catches a drawer handle; it never completes posture preparation. Attempts 03
-and 06 lose balance with held raised forearms. Attempt 04 was stopped during
+and 06 lose balance with the fixed arm hold. Attempt 04 was stopped during
 bootstrap before physics. See `analysis/nicolet_slider_push_06/approach_status.json`.
 The added official `action_manager.h` confirms that upstream action history is
 the raw network output, before target processing. Correcting that history does
-not make the raised-arm adaptation pass.
+not make the fixed-arm adaptation pass.
 
 `quasistatic_walking.py` is a separate development controller for short steps
-with raised arms. It is **not integrated into the station actor**. It estimates
+with an authored arm hold. It estimates
 support from encoders, IMU and a level-floor assumption, assigns zero model
 wrench to the swing foot, and sends only bounded motor torques to the full lab
 plant. These in-process probes do not claim process isolation. The stationary
 Balance default produces exactly the same torques at nine retained window-task
 states after adding the optional support-foot interface.
 
-All six short probes are retained under `analysis/quasistatic_walk_*`. Probes
+All short probes are retained under `analysis/quasistatic_walk_*`. Probes
 01–03 stop during the first COM transfer because their constrained solve does
 not converge. The fixed QP adaptation interval resolves that retained numerical
 case without changing tolerances. Probes 04–05 do not meet the COM transfer
@@ -649,9 +649,41 @@ replay, no excess contacts, minimum sole load 302.97 N and maximum pelvis tilt
 0.00338 rad. These partial results give no complete walking or manipulation
 credit. See `analysis/nicolet_slider_push_06/quasistatic_status.json`.
 
-To reproduce the current short development probe, use the retained full lab
-from approach 06 and a new empty output directory. The current attempt is
-expected to fail; its nonzero exit is preserved. Review it separately:
+Probe 07 also fails the next transfer despite an OSQP retry. Probe 08 uses
+Clarabel 0.11.1 to solve the same constrained quadratic program, with no
+constraint softening. It completes two foot placements in 20.282 seconds,
+travels 0.13013 m, and passes independent exact motor/contact replay. Minimum
+sole load is 302.97 N and maximum pelvis tilt is 0.00396 rad. This is one
+short, in-process development probe, not a qualified walking skill. Solver
+fixtures, infeasibility rejection, and the unchanged stationary Balance
+regression are recorded in `analysis/quasistatic_solver_01`.
+
+The walking arm pose places the wrists behind the pelvis, around 0.55–0.59 m
+above the floor. Earlier descriptions calling it a raised-forearm pose were
+incorrect; the joint commands have not been changed to match that wording.
+The correction and retained image review are in
+`analysis/quasistatic_solver_01/posture_description_correction.json`.
+
+Continuous approach 07 applies the short-step controller to the full one-metre
+approach without resetting the plant. It completes the walking/posture handoff
+but aborts after losing contact late in the window push. It is retained as a
+failed 225.380-second attempt. A post-run diagnosis finds maximum window travel
+72.168 mm; this evaluator-side measurement is not an actor observation or a
+success claim. Its independent reviews are recorded separately in the run.
+
+Approach 08 is a new execution with a declared contact-loss recovery policy.
+After a late push contact loss, the robot first completes its existing motor
+withdrawal. Only then may it inspect the window with native RGB-D. It retains
+the fault until eight distinct fresh fits satisfy the existing 66–74 mm
+interior guard and the torso completes its return. Overload, failed contact
+acquisition, early loss and rejected visual confirmation remain failures.
+All physical contact, load, support and travel criteria remain unchanged.
+See `analysis/quasistatic_solver_01/approach_08_contract.json`. Fault-injection
+checks exercise this logic but do not establish physical success.
+
+To reproduce the current short development probe, install the pinned
+requirements, use the retained full lab from approach 06 and a new empty
+output directory. Review the execution separately:
 
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
@@ -661,6 +693,23 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
 python simulation/g1_cooling_demo/verify_quasistatic_walking.py \
   simulation/g1_cooling_demo/runs/ftir_approach_06 /tmp/sciencegym-step-new
 ```
+
+For a continuous approach, run and review a new directory:
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
+python simulation/g1_cooling_demo/run_ftir_approach.py \
+  --out /tmp/ftir-approach-new --duration 420 --walking-controller quasistatic \
+  --prior assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_slider.py /tmp/ftir-approach-new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py /tmp/ftir-approach-new
+OPENBLAS_NUM_THREADS=1 MUJOCO_GL=egl python simulation/g1_cooling_demo/verify_ftir_approach.py /tmp/ftir-approach-new
+```
+
+Large continuous trajectories are versioned as byte-exact chunks. Before
+reviewing a cloned attempt with `trace_archive.json`, run its recorded
+`restore_command` from the repository root. The archive helper verifies each
+part and the complete SHA-256 before publishing the restored `trace.npz`.
 
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \

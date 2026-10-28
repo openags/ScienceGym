@@ -16,8 +16,12 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def verify(folder):
+def verify(folder, output_name='isolation_verification.json'):
     folder = Path(folder).resolve()
+    if Path(output_name).name != output_name or not output_name.endswith('.json'):
+        raise ValueError('Isolation report must be a plain JSON filename')
+    output = folder/output_name
+    if output.exists():raise FileExistsError(output)
     result = json.loads((folder/'result.json').read_text())
     receipt = json.loads((folder/'actor_isolation.json').read_text())
     checks = []
@@ -54,6 +58,8 @@ def verify(folder):
         staging=json.loads((folder/'staging.json').read_text())
         command.extend(['--initial-xy',*map(str,staging['robot_map_xy_prior_m']),
                         '--station-xy',*map(str,staging['station_map_xy_goal_m'])])
+        if staging.get('walking_controller') is not None:
+            command.extend(['--walking-controller',staging['walking_controller']])
     ftir_actor=entry_point in {'ftir_actor.py','ftir_cover_actor.py','ftir_slider_scan_actor.py','ftir_slider_actor.py','ftir_slider_observed_actor.py','ftir_approach_actor.py'}
     if ftir_actor:
         from depth_io import load as load_depth
@@ -90,14 +96,16 @@ def verify(folder):
     report = dict(passed=all(c['passed'] for c in checks), checks=checks,
                   verifier_sha256=sha(__file__), isolation_receipt_sha256=sha(folder/'actor_isolation.json'),
                   probe_command_prefix=prefix,
+                  probe_actor_arguments=command[len(prefix):],
                   tested_actor_entry_point=entry_point,
                   scope='Observed access controls and packet rejection for this actor bundle; not a security audit of the kernel/GPU or sensor calibration')
-    (folder/'isolation_verification.json').write_text(json.dumps(report,indent=2)+'\n')
+    output.write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report))
     return report
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(); parser.add_argument('folder'); args = parser.parse_args()
-    if not verify(args.folder)['passed']:
+    parser = argparse.ArgumentParser(); parser.add_argument('folder')
+    parser.add_argument('--output-name', default='isolation_verification.json'); args = parser.parse_args()
+    if not verify(args.folder, args.output_name)['passed']:
         raise SystemExit(1)
