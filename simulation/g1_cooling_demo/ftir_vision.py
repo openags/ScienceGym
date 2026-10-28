@@ -79,7 +79,10 @@ class KeyRowObservation:
             if length < 1e-9: continue
             n /= length
             if abs(n[2]) < .6: continue
-            error = abs((samples-a)@n); inliers = error < .00025
+            # The unmixed ideal-depth buffer resolves the flat cap plane.
+            # A wider band also admitted bevel points, tilting the fitted
+            # normal enough to bias the extrapolated window-grip position.
+            error = abs((samples-a)@n); inliers = error < .00005
             score = (int(inliers.sum()), -float(np.median(error)))
             if best is None or score > best[0]: best = (score, inliers)
         if best is None or best[1].sum() < 16 or best[1].mean() < .65:

@@ -736,7 +736,10 @@ test, not a new inference or calibration result. New continuous attempt 09
 uses a -0.60 rad viewing target, a tighter 0.005 rad pose gate and stronger
 waist-posture tracking. Attempt 09 still fails visual confirmation after
 245.800 s; process isolation passes. Its independent physical replay passes
-every criterion except attempt completion; full sensor replay is pending.
+every criterion except attempt completion. Frozen sensor replay now reproduces
+all motor commands, retained responses and events exactly (maximum errors zero)
+from 122,901 packets and 2,459 camera frames. The trial still fails completion;
+replay integrity does not turn a failed operation into a successful one.
 A native-depth diagnostic at 225.5 s finds that only 59 of the
 182 selected points lie within 0.25 mm of the actual grip mesh. This is an
 evaluator-side diagnosis of mixed surfaces, not an actor input or a proposed
@@ -761,7 +764,21 @@ accepted closed-grip frames out of the 42 recorded candidate frames. The
 unchanged eight-frame baseline requirement therefore fails before outcome
 testing. A separate lower-plane-removal fitter also fails that gate and is
 not adopted. These retained failures show that depth sampling alone does not
-complete the observer integration. No approach 10 has been launched.
+complete the observer integration.
+
+The remaining failure was traced to the key-cap plane used to register the
+grip: its 0.25 mm RANSAC band admitted bevel pixels. Tightening that band to
+0.05 mm preserves the support-count and spatial-span requirements and excludes
+the bevel. On corrected-depth views at retained approach-09 poses, the fitter
+accepts 40 of 42 closed-grip frames, then all eight outcome frames with about
+0.27 mm position error. Twelve labeled static openings include both sides of
+the allowed interval; none outside it are accepted. These are counterfactual
+observation fixtures, not a new robot execution or hardware calibration.
+The failed earlier fixtures are retained. Approach 10 was launched only after
+these checks, with a recorded contract, the corrected depth context and the
+tighter key-plane band. It is awaiting completion and independent review.
+The physical gap, collision, support and fresh-frame acceptance criteria are
+unchanged.
 
 To reproduce the current short development probe, install the pinned
 requirements, use the retained full lab from approach 06 and a new empty
