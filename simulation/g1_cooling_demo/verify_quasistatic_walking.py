@@ -7,6 +7,7 @@ import shutil
 
 import mujoco
 import numpy as np
+from scipy.spatial.transform import Rotation
 
 
 def sha(path):
@@ -28,6 +29,7 @@ def verify(source,folder):
     m=mujoco.MjModel.from_xml_path(str(model_path));d=mujoco.MjData(m)
     d.qpos[:]=trace['qpos'][0];d.qvel[:]=trace['qvel'][0]
     d.time=float(trace['time'][0]);mujoco.mj_forward(m,d)
+    initial_foot_rotations=[d.site(s+'_sole').xmat.reshape(3,3).copy() for s in ['left','right']]
     d.qacc_warmstart[:]=trace['qacc_warmstart'][0]
     def under(body,name):
         root=m.body(name).id
@@ -80,12 +82,32 @@ def verify(source,folder):
                 source_motor_limits=bool(np.all(trace['ctrl']>=m.actuator_ctrlrange[:,0]-1e-9) and np.all(trace['ctrl']<=m.actuator_ctrlrange[:,1]+1e-9)),
                 upright_supported=min_height>.65 and max_tilt<.2 and min_load>100,
                 no_numerical_warnings=not np.any(d.warning.number))
+    turn_review=None
+    if contract.get('operation')=='in_place_turn':
+        requested_yaw=float(contract['relative_yaw_rad'])
+        q=trace['qpos'][:,3:7]
+        headings=np.unwrap(np.arctan2(2*(q[:,0]*q[:,3]+q[:,1]*q[:,2]),1-2*(q[:,2]**2+q[:,3]**2)))
+        final=trace['time']>=trace['time'][-1]-1.
+        relative=headings-headings[0]
+        error=float(np.max(abs(relative[final]-requested_yaw)))
+        angular_speed=float(np.max(np.linalg.norm(trace['qvel'][final,3:6],axis=1)))
+        mujoco.mj_kinematics(m,d)
+        rotation=Rotation.from_rotvec([0.,0.,requested_yaw]).as_matrix()
+        foot_errors=[float(np.linalg.norm(Rotation.from_matrix(rotation@initial@d.site(side+'_sole').xmat.reshape(3,3).T).as_rotvec()))
+                     for side,initial in zip(['left','right'],initial_foot_rotations)]
+        checks.update(requested_heading=error<.02,both_soles_reached_heading=max(foot_errors)<.02,
+                      settled_final_angular_speed=angular_speed<.03)
+        turn_review=dict(requested_relative_yaw_rad=requested_yaw,final_relative_yaw_rad=float(relative[-1]),
+                         maximum_final_heading_error_rad=error,final_sole_orientation_errors_rad=foot_errors,
+                         maximum_final_angular_speed_rad_s=angular_speed,
+                         heading_tolerance_rad=.02)
     report=dict(passed=all(checks.values()),checks=checks,maximum_replay_position_error=max_q,
                 maximum_replay_velocity_error=max_v,displacement_m=displacement.tolist(),
                 minimum_pelvis_height_m=min_height,maximum_pelvis_tilt_rad=max_tilt,
                 minimum_sole_load_n=min_load,maximum_joint_limit_excess_rad=max_limit,
                 contacts=[dict(parts=list(k),**v) for k,v in contacts.items()],first_violations=violations,
                 model_sha256=sha(model_path),trace_sha256=sha(folder/'trace.npz'),verifier_sha256=sha(__file__),
+                turn_review=turn_review,
                 qualified_skill=False,qualified_paper_branch=False,
                 scope='Physical replay of a short stepping probe. No process isolation, full approach or experimental manipulation qualification.')
     output.write_text(json.dumps(report,indent=2)+'\n')

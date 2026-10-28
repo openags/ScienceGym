@@ -202,7 +202,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
             response=received;data.ctrl[:]=response['torque']
             if monitor is not None and i%camera_every==0:
                 monitor.write(json.dumps(dict(time_s=float(data.time),**{k:v for k,v in response.items()
-                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation','commanded_velocity','walking_phase'}}))+'\n');monitor.flush()
+                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation','commanded_velocity','walking_phase','outcome_observation','outcome_verified','accepted_outcome_observations'}}))+'\n');monitor.flush()
             records.append((float(data.time),data.qpos.copy(),data.qvel.copy(),data.ctrl.copy(),data.qacc_warmstart.copy()))
             sensors.append({k:v for k,v in packet.items() if k not in {'depth','rgb'}})
             if i%response_every==0:responses.append(dict(time_s=float(data.time),**{k:v for k,v in response.items() if k not in {'torque','events'}}))

@@ -178,7 +178,7 @@ class FtirApproachActor:
                                             registration_observations=recent,
                                             source='encoders_IMU_and_native_depth_registered_to_public_architecture'))
                     self.station = ObservedSliderActor(self.m, xy, self.prior, self.shape,
-                                                       initial_state=self.d, started_at=t)
+                                                       initial_state=self.d, started_at=t, outcome_yaw=-.60)
                     response = self.station.update(obs)
                     response['events'] = self.events+response['events']
                     response['mission_stage'] = 'station_operation'

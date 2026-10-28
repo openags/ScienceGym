@@ -35,7 +35,10 @@ def render(folder):
     events=result['actor_last_output']['events']
     def event_time(name):
         return float(next(e['time_s'] for e in events if e['state']==name))
-    contact=event_time('seek_contact_endpoint');withdraw=event_time('withdraw_endpoint')
+    contact=event_time('seek_contact_endpoint')
+    recovered=any(e['state']=='contact_loss_recovery_confirmed' for e in events)
+    withdraw_event='withdraw_abort_endpoint' if recovered else 'withdraw_endpoint'
+    withdraw=event_time(withdraw_event)
     handoff=event_time('continuous_station_handoff') if approach else None
     m=mujoco.MjModel.from_xml_path(str(folder/'world.xml'));d=mujoco.MjData(m)
     trace=dict(np.load(folder/'trace.npz'))
@@ -98,6 +101,7 @@ def render(folder):
         isolation_review_sha256=sha(folder/'isolation_verification.json'),renderer_sha256=sha(__file__),
         frame_to_trace_index=indices,fps=fps,frames=count,duration_s=count/fps,resolution=[1280,720],
         overlays=False,physics_interpolation=False,contact_begin_s=contact,withdraw_complete_s=withdraw,
+        withdrawal_event=withdraw_event,contact_loss_recovery=recovered,
         presentation_adjustments=['Display gamma for GLTF materials','GLTF texture origin correction',
                                   'Headlight ambient/diffuse 0.5','Continuous camera approach and retreat'],
         scope='One observed and tactile-controlled window push from authored standing setup in the original laboratory. No walking, full hinged-cover opening, experiment or reliability qualification.')

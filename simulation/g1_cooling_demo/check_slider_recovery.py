@@ -22,6 +22,9 @@ def subject():
                               commanded_push_displacement_m=.069,
                               contact_loss_duration_s=.36)
     a.pending_contact_recovery = dict(reason=a.failure, context=dict(a.recovery_context))
+    a.outcome_yaw = -.5
+    a.visual_yaw_tolerance = .005
+    a.visual_posture_weights = np.ones(1)
     a.events = []
     a.visual_phase = 'observe_window_outcome'
     a.visual_phase_started = 0.
@@ -91,6 +94,10 @@ def check():
     with patch('ftir_slider_observed_actor.SliderActor.update', return_value=response):
         returned = a.update(packet(a, 0.))
     checks['overload_stays_terminal_after_withdrawal'] = returned == response and a.visual_phase is None
+
+    a = subject(); a.joint.qpos[0] = -.48
+    for i in range(9):a.update(packet(a, i/10))
+    checks['unsettled_view_cannot_confirm_outcome'] = not a.outcome_verified and not a.outcome_window
 
     paths = [Path(__file__), Path(__file__).with_name('ftir_slider_actor.py'),
              Path(__file__).with_name('ftir_slider_observed_actor.py')]

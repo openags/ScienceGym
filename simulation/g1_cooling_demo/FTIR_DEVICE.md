@@ -658,6 +658,19 @@ short, in-process development probe, not a qualified walking skill. Solver
 fixtures, infeasibility rejection, and the unchanged stationary Balance
 regression are recorded in `analysis/quasistatic_solver_01`.
 
+`quasistatic_turning.py` adds an in-place change of heading through alternating
+foot placements. Each pair of steps rotates at most ten degrees; the torso
+tracks the midpoint of the two sole headings. Landing additionally requires
+the swing sole's orientation error to be below 0.02 rad. In the same full lab,
+the ten-degree probe completes two steps in 20.112 seconds and the ninety-degree
+probe completes eighteen steps in 125.612 seconds. Both independently pass
+exact motor replay, contact, support, source-limit, final heading and settled
+angular-velocity checks. The ninety-degree run has minimum sole load 315.36 N,
+maximum pelvis tilt 0.00727 rad and final heading error 0.0000549 rad. These are
+in-process development probes, not isolated navigation or reliability trials;
+they have not yet been joined to the station-operation actor. See
+`analysis/quasistatic_turn_01` and `analysis/quasistatic_turn_02`.
+
 The walking arm pose places the wrists behind the pelvis, around 0.55–0.59 m
 above the floor. Earlier descriptions calling it a raised-forearm pose were
 incorrect; the joint commands have not been changed to match that wording.

@@ -33,7 +33,8 @@ class SliderRangeObservation(SliderTargetObservation):
     """Development-only range check with closed-view bias and grip coverage.
 
     A cropped vertical grip edge alone cannot establish its sliding position.
-    Require observed axial extent of at least half the public CAD grip width.
+    Require observed axial extent and relief of at least half the public CAD
+    grip width and height. A planar window patch cannot identify the grip.
     The 1 mm interior guard does not alter the physical 65--75 mm requirement.
     """
     def __init__(self, model, data, prior_path, shape_path, closed_observations):
@@ -47,12 +48,14 @@ class SliderRangeObservation(SliderTargetObservation):
         super().__init__(model, data, prior_path, shape_path, .070)
         self.baseline = float(np.median(offsets))
         self.minimum_axial_span = float(.5*np.ptp(self.bounds[:, 1]))
+        self.minimum_height_span = float(.5*np.ptp(self.bounds[:, 2]))
 
     def observe(self, depth, key_observation):
         result = super().observe(depth, key_observation)
         result['original_target_gate_accepted'] = result['accepted']
         result['closed_observation_baseline_m'] = self.baseline
         result['minimum_observed_axial_span_m'] = self.minimum_axial_span
+        result['minimum_observed_height_span_m'] = self.minimum_height_span
         result['development_guard_band_m'] = [.066, .074]
         if 'estimated_slider_position_m' not in result:
             return result
@@ -63,11 +66,14 @@ class SliderRangeObservation(SliderTargetObservation):
                     and singular[-1] > .05*max(singular[0], 1e-12)
                     and abs(result['height_residual_m']) < .0008)
         coverage = result['observed_span_m'][1] >= self.minimum_axial_span
+        relief = result['observed_span_m'][2] >= self.minimum_height_span
         position = .066 <= corrected <= .074
         result['baseline_corrected_position_m'] = corrected
         result['geometry_quality_accepted'] = bool(geometry)
         result['axial_coverage_accepted'] = bool(coverage)
-        result['accepted'] = bool(geometry and coverage and position)
+        result['relief_coverage_accepted'] = bool(relief)
+        result['accepted'] = bool(geometry and coverage and relief and position)
         result['reason'] = (None if result['accepted'] else 'insufficient_grip_axial_coverage'
-                            if not coverage else 'grip_geometry_or_guard_band_rejected')
+                            if not coverage else 'insufficient_grip_relief'
+                            if not relief else 'grip_geometry_or_guard_band_rejected')
         return result

@@ -89,6 +89,12 @@ class QuasistaticWalker:
         self.phase, self.phase_started = phase, t
         self.events.append(dict(state='quasistatic_'+phase, time_s=t, completed_steps=self.steps))
 
+    def before_control(self, t):
+        """Optional robot-kinematic task updates before the constrained solve."""
+
+    def landing_orientation_ready(self):
+        return True
+
     def begin_step(self, t):
         feet = np.asarray(self.balance.foot_positions)
         center = feet[:,:2].mean(axis=0)
@@ -164,7 +170,7 @@ class QuasistaticWalker:
             j,_ = b.jacobian(d.site_xpos[site],int(self.m.site_bodyid[site]))
             speed = np.linalg.norm(j[:3]@d.qvel)
             flat = d.site_xmat[site].reshape(3,3)[2,2]>.999
-            if elapsed>=.5 and error<.003 and speed<.015 and flat:
+            if elapsed>=.5 and error<.003 and speed<.015 and flat and self.landing_orientation_ready():
                 # Measured kinematic anchor on the known level floor; this is
                 # predictor state, never a write to the physical robot pose.
                 self.estimate.anchors[self.swing] = d.site_xpos[site].copy()
@@ -178,6 +184,7 @@ class QuasistaticWalker:
         # During walking, Cartesian foot and COM tasks should determine leg
         # motion. The initial standing joint angles are only a weak posture
         # preference; keeping their full weight opposed the support transfer.
+        self.before_control(t)
         weights = self.parking_posture_weights if self.finished else self.walking_posture_weights
         self.last_torque = b.torque(dt=.01,support_feet=self.estimate.support,
                                    posture_weights=weights)

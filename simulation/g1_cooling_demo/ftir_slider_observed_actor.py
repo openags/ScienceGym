@@ -15,8 +15,14 @@ from ftir_slider_outcome import SliderRangeObservation
 
 
 class ObservedSliderActor(SliderActor):
-    def __init__(self, model, xy, prior, shape, initial_state=None, started_at=0.):
+    def __init__(self, model, xy, prior, shape, initial_state=None, started_at=0., outcome_yaw=-.5):
         super().__init__(model, xy, prior, shape, initial_state=initial_state, started_at=started_at)
+        self.outcome_yaw = float(outcome_yaw)
+        if not np.isfinite(self.outcome_yaw) or not -.65 <= self.outcome_yaw <= -.35:
+            raise ValueError('Outcome viewing angle outside the declared torso interval')
+        self.visual_yaw_tolerance = .005
+        self.visual_posture_weights = np.ones(self.m.nu)
+        self.visual_posture_weights[self.actuator_ids['waist_yaw_joint']] = 4.
         self.visual_phase = None
         self.visual_finished = False
         self.outcome_verified = False
@@ -44,7 +50,9 @@ class ObservedSliderActor(SliderActor):
         self.visual_phase_started = t
         self.visual_start_yaw = float(self.d.joint('waist_yaw_joint').qpos[0])
         self.visual_stable_since = None
-        self.events.append(dict(state=name+'_started', time_s=t))
+        self.events.append(dict(state=name+'_started', time_s=t,
+                                requested_outcome_yaw_rad=self.outcome_yaw,
+                                viewing_yaw_tolerance_rad=self.visual_yaw_tolerance))
 
     def update(self, obs):
         if set(obs) != self.fields:
@@ -77,14 +85,14 @@ class ObservedSliderActor(SliderActor):
         if t+1e-8 >= self.next_control:
             self.estimate.update({k:v for k,v in obs.items() if k not in {'rgb', 'right_touch_n'}})
             posture = self.visual_posture.copy()
-            yaw_target = -.2 if self.visual_phase in {'return_from_outcome_view', 'finished'} else -.5
+            yaw_target = -.2 if self.visual_phase in {'return_from_outcome_view', 'finished'} else self.outcome_yaw
             yaw = float(self.d.joint('waist_yaw_joint').qpos[0])
             velocity = float(self.d.joint('waist_yaw_joint').qvel[0])
             elapsed = t-self.visual_phase_started
             if self.visual_phase in {'turn_to_outcome_view', 'return_from_outcome_view'}:
                 u = float(np.clip(elapsed/3., 0., 1.))
                 posture[self.actuator_ids['waist_yaw_joint']] = self.visual_start_yaw+(yaw_target-self.visual_start_yaw)*u*u*(3-2*u)
-                settled = u >= 1. and abs(yaw-yaw_target) < .02 and abs(velocity) < .03
+                settled = u >= 1. and abs(yaw-yaw_target) < self.visual_yaw_tolerance and abs(velocity) < .03
                 if settled:
                     if self.visual_stable_since is None:
                         self.visual_stable_since = t
@@ -119,10 +127,15 @@ class ObservedSliderActor(SliderActor):
                          (self.last_outcome_sensor_time is None or t > self.last_outcome_sensor_time))
                 if fresh:
                     self.last_outcome_sensor_time = t
-                    detection = self.vision.observe(obs['rgb'], obs['depth'])
-                    if detection and detection['accepted']:
-                        self.total_accepted += 1
-                    outcome = self.outcome_vision.observe(obs['depth'], detection)
+                    pose_ready = abs(yaw-self.outcome_yaw) < self.visual_yaw_tolerance and abs(velocity) < .03
+                    if pose_ready:
+                        detection = self.vision.observe(obs['rgb'], obs['depth'])
+                        if detection and detection['accepted']:
+                            self.total_accepted += 1
+                        outcome = self.outcome_vision.observe(obs['depth'], detection)
+                    else:
+                        outcome = dict(accepted=False, reason='viewing_posture_not_settled')
+                    outcome['viewing_pose_accepted'] = bool(pose_ready)
                     self.events.append(dict(state='slider_outcome_observation', time_s=t,
                                             key_observation=detection, observation=outcome))
                     if outcome['accepted']:
@@ -146,7 +159,7 @@ class ObservedSliderActor(SliderActor):
             dt = .01 if self.last_time is None else t-self.last_time
             # No fixed world-space wrist target during a torso turn: both
             # withdrawn hands follow their retained joint posture.
-            self.last_torque = self.balance.torque(posture=posture, dt=dt)
+            self.last_torque = self.balance.torque(posture=posture, posture_weights=self.visual_posture_weights, dt=dt)
             self.last_time = t
             self.next_control = (round(t*100)+1)/100
         return dict(torque=self.last_torque, error=None, policy_state=self.visual_phase,
