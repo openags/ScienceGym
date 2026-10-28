@@ -676,8 +676,11 @@ using the same stance estimator, balance task and continuous simulation clock.
 The transition retains the new body heading, sole anchors and COM target;
 encoder/IMU settling gates trigger the next step. Development probe
 `analysis/quasistatic_turn_walk_01` finishes 22 foot placements in 157.210 s,
-with 0.24916 m net forward displacement. Independent physical review remains
-pending. This probe does not establish carrying or a complete interstation task.
+with 0.24916 m net forward displacement. Independent physical review passes:
+motor replay is exact, minimum sole load is 302.98 N, joint-limit excess is
+zero, and the maximum heading error during the forward walk is 0.00425 rad.
+Full-laboratory stills and their trace indices are in its `visual_review`
+directory. This probe does not establish carrying or a complete interstation task.
 
 The walking arm pose places the wrists behind the pelvis, around 0.55–0.59 m
 above the floor. Earlier descriptions calling it a raised-forearm pose were
@@ -732,13 +735,33 @@ the 41 previous correct acceptances in that study. This is a held-fit guard
 test, not a new inference or calibration result. New continuous attempt 09
 uses a -0.60 rad viewing target, a tighter 0.005 rad pose gate and stronger
 waist-posture tracking. Attempt 09 still fails visual confirmation after
-245.800 s; process isolation passes and the independent physical/sensor reviews
-are pending. A native-depth diagnostic at 225.5 s finds that only 59 of the
+245.800 s; process isolation passes. Its independent physical replay passes
+every criterion except attempt completion; full sensor replay is pending.
+A native-depth diagnostic at 225.5 s finds that only 59 of the
 182 selected points lie within 0.25 mm of the actual grip mesh. This is an
 evaluator-side diagnosis of mixed surfaces, not an actor input or a proposed
 lower acceptance threshold. Camera-facing surface fits and a denser bounded
 fit search also fail the existing criteria; neither is adopted. Its contract and the static collision screen
 are retained in the same analysis directory; the latter is not executed motion.
+
+The depth buffer inherited four-sample display anti-aliasing. A retained-pose
+diagnostic reproduces the original depth image exactly and then renders the
+same geometry with multisampling disabled. At 150 evaluator-labeled grip
+pixels, the median pixel-centre projection error drops from 0.231 mm to
+0.00147 mm; the 95th percentile drops from 0.658 mm to 0.00288 mm. This is a
+numerical rendering check at one pose, not hardware calibration. MuJoCo's
+[offscreen rendering documentation](https://mujoco.readthedocs.io/en/latest/programming/samples.html#record)
+identifies `visual/quality/offsamples` as the offscreen multisampling setting.
+`sensor_rendering.py` now creates an unmixed depth context and restores the
+model preference before RGB rendering; new sensor profiles record both values.
+The physical model, observer thresholds and prior recordings are unchanged.
+
+Counterfactual observations using this corrected depth still obtain only four
+accepted closed-grip frames out of the 42 recorded candidate frames. The
+unchanged eight-frame baseline requirement therefore fails before outcome
+testing. A separate lower-plane-removal fitter also fails that gate and is
+not adopted. These retained failures show that depth sampling alone does not
+complete the observer integration. No approach 10 has been launched.
 
 To reproduce the current short development probe, install the pinned
 requirements, use the retained full lab from approach 06 and a new empty

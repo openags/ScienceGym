@@ -176,10 +176,13 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
     log=open(out/'actor_stderr.log','w');process=subprocess.Popen(command,env=environment,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=log,close_fds=True)
     depth_height,depth_width=(360,640) if cover or scan or slider else (180,320)
     (out/'sensor_profile.json').write_text(json.dumps(dict(depth_resolution=[depth_width,depth_height],
+        depth_offscreen_multisamples=0,rgb_offscreen_multisamples=int(model.vis.quality.offsamples),
+        depth_projection='Pixel centres (column+0.5,row+0.5), with an unmixed depth buffer',
         rgb_resolution=[640,360],delivered_frames_per_second=10,ideal_depth=True,extrinsics_calibrated=False,
         source='https://www.realsenseai.com/wp-content/uploads/2023/10/Intel-RealSense-D400-Series-Datasheet-September-2023.pdf',
         note='Head-mounted D435i nominal optics. Cover, window and torso-scan attempts use a supported 640x360 depth image size, sampled at 10 Hz. The older press profile uses a lower-resolution numerical render.'),indent=2)+'\n')
-    depth_renderer=mujoco.Renderer(model,height=depth_height,width=depth_width,max_geom=model.ngeom+1000);depth_renderer.enable_depth_rendering()
+    from sensor_rendering import depth_renderer as make_depth_renderer
+    depth_renderer=make_depth_renderer(model,height=depth_height,width=depth_width)
     color_renderer=mujoco.Renderer(model,height=360,width=640,max_geom=model.ngeom+1000)
     option=mujoco.MjvOption();option.geomgroup[3]=0;option.sitegroup[:]=0
     names=[model.joint(j).name for j in robot_joints(model)]
