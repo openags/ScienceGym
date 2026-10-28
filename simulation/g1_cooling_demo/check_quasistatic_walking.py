@@ -29,7 +29,7 @@ def run(source, output, seconds=24.):
     output.mkdir(parents=True,exist_ok=True)
     if any(output.iterdir()):
         raise FileExistsError(output)
-    for name in ['balance.py','quasistatic_walking.py','check_quasistatic_walking.py']:
+    for name in ['balance.py','quasistatic_walking.py','conic_balance.py','observations.py','check_quasistatic_walking.py']:
         shutil.copyfile(Path(__file__).parent/name,output/name)
     model = mujoco.MjModel.from_xml_path(str(source/'world.xml'))
     data = mujoco.MjData(model)

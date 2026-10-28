@@ -115,16 +115,10 @@ class QuasistaticWalker:
         self.estimate.update(obs)
         if self.balance is None:
             self.balance = Balance(self.m,self.d)
-            # Support transfer makes this constrained solve harder. Increase
-            # iteration allowance without changing tolerances or accepting an
-            # unfinished solve; all stationary defaults remain unchanged.
-            self.balance.solver_max_iterations = 30000
-            self.balance.warm_start_dual = True
-            # Fixed adaptation interval avoids dependence on setup wall time.
-            # These settings solve the retained failed QP with the same
-            # tolerances; see analysis/nicolet_slider_push_06/step_qp_diagnosis.
-            self.balance.solver_rho = .01
-            self.balance.solver_rho_interval = 25
+            # The same constrained QP is solved with a pinned interior-point
+            # implementation. Original dynamics and physical bounds remain;
+            # default stationary Balance still uses its original solver.
+            self.balance.solver_backend = 'clarabel'
             self.balance.rotate_foot_constraints = True
             feet = np.asarray(self.balance.foot_positions)
             self.foot_offsets = feet[:,:2]-feet[:,:2].mean(axis=0)
@@ -187,5 +181,8 @@ class QuasistaticWalker:
         weights = self.parking_posture_weights if self.finished else self.walking_posture_weights
         self.last_torque = b.torque(dt=.01,support_feet=self.estimate.support,
                                    posture_weights=weights)
+        if len(b.last_solver_attempts)>1:
+            self.events.append(dict(state='quasistatic_solver_retry',time_s=t,
+                                    attempts=b.last_solver_attempts))
         self.next_control = t+.01
         return self.last_torque,np.zeros(3)

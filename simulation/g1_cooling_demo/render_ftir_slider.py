@@ -45,6 +45,12 @@ def render(folder):
         start=m.tex_adr[i];h,w,c=m.tex_height[i],m.tex_width[i],m.tex_nchannel[i]
         pixels=m.tex_data[start:start+h*w*c].reshape(h,w,c);pixels[:]=pixels[::-1].copy()
     m.vis.headlight.ambient[:]=.5;m.vis.headlight.diffuse[:]=.5
+    if approach:
+        # Presentation lighting follows the laboratory work area. The native
+        # sensor images and physical model/trace remain unchanged.
+        m.vis.headlight.ambient[:]=.3;m.vis.headlight.diffuse[:]=.3
+        m.light_pos[:]=[[5.2,-4.7,2.9],[6.5,-6.5,2.8]]
+        m.light_dir[:]=[[.1,-.15,-1.],[-.2,.2,-1.]]
     renderer=mujoco.Renderer(m,height=720,width=1280,max_geom=m.ngeom+1000)
     option=mujoco.MjvOption();option.geomgroup[3]=0;option.sitegroup[:]=0
     camera=mujoco.MjvCamera();camera.azimuth=45;camera.elevation=-22
@@ -53,6 +59,10 @@ def render(folder):
         '-s','1280x720','-r',str(fps),'-i','-','-an','-c:v','libx264','-preset','fast','-crf','22',
         '-pix_fmt','yuv420p','-movflags','+faststart',str(folder/'slider.rendering.mp4')],stdin=subprocess.PIPE)
     preview_frames={0,round((contact+3)*fps),count-1}
+    if approach:
+        swings=[float(e['time_s']) for e in events if e['state']=='quasistatic_swing']
+        if swings:preview_frames.add(round((swings[len(swings)//2]+1.5)*fps))
+        preview_frames.add(round(handoff*fps))
     try:
         for frame in range(count):
             t=duration if frame==count-1 else frame/fps
@@ -62,14 +72,17 @@ def render(folder):
             u=u*u*(3-2*u)
             camera.lookat[:]=(1-u)*np.array([6.15,-5.5,.82])+u*np.array([6.25,-5.52,1.10])
             camera.distance=3.05-1.8*u
-            if approach and t<handoff:
-                # Keep both the aisle origin and instrument in frame until
-                # the walking controller hands over at the workstation.
-                blend=float(np.clip((t-max(0.,handoff-3.))/3.,0,1))
+            if approach and t<handoff+2.:
+                # Look along the aisle from inside the room. The old front
+                # angle hid the feet behind the electrical workbench.
+                blend=float(np.clip((t-max(0.,handoff-1.))/3.,0,1))
                 blend=blend*blend*(3-2*blend)
-                center=np.r_[(trace['qpos'][0,:2]+np.array([6.15,-5.5]))/2.,.82]
+                center=np.r_[(trace['qpos'][0,:2]+np.array([5.95,-5.2]))/2.,.83]
                 camera.lookat[:]=(1-blend)*center+blend*camera.lookat
-                camera.distance=(1-blend)*4.2+blend*camera.distance
+                camera.distance=(1-blend)*3.2+blend*camera.distance
+                camera.azimuth=270.+135.*blend
+            else:
+                camera.azimuth=45.
             renderer.update_scene(d,camera=camera,scene_option=option);pixels=renderer.render().copy()
             encoder.stdin.write(pixels.tobytes())
             if frame in preview_frames:Image.fromarray(pixels).save(folder/f'slider_frame_{frame:04d}.png')
@@ -92,6 +105,11 @@ def render(folder):
         receipt['continuous_approach_review_sha256' if approach else 'visual_outcome_review_sha256']=sha(outcome_path)
     if approach:
         receipt['walking_handoff_s']=handoff
+        receipt['presentation_adjustments']=[p.replace('Headlight ambient/diffuse 0.5','Headlight ambient/diffuse 0.3')
+                                             for p in receipt['presentation_adjustments']]
+        receipt['presentation_adjustments'].extend([
+            'Aisle-side walking view at azimuth 270, then continuous rotation to the station view',
+            'Presentation spotlights above the laboratory aisle'])
         receipt['scope']='One continuous local aisle approach, observed window push and return in the original laboratory. No carrying, complete experiment or reliability qualification.'
     (folder/'slider_video.json').write_text(json.dumps(receipt,indent=2)+'\n')
     shutil.copyfile(__file__,folder/'render_ftir_slider.py')

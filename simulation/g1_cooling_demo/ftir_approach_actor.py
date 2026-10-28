@@ -24,15 +24,28 @@ from ftir_hand import rest_hand_pose, walking_arm_pose
 class FtirApproachActor:
     fields = ObservedSliderActor.fields
 
-    def __init__(self, model, policy, initial_xy, station_xy, prior, shape):
+    def __init__(self, model, policy, initial_xy, station_xy, prior, shape, walking_controller='official_policy'):
         self.m = model
         self.d = mujoco.MjData(model)
         self.goal = np.asarray(station_xy, dtype=float)
         self.odom = LegOdometry(model, self.d, initial_xy)
-        self.walker = WalkingActor(model, policy, speed=.4, gains='training', park=True,
-                                   stop_at=float('inf'), hand_pose=rest_hand_pose(), arm_pose=walking_arm_pose())
-        self.walker.minimum_stop_dwell_s = .8
-        self.walker.parking_speed_limit = .03
+        self.walking_controller = walking_controller
+        self.walking_event_cursor = 0
+        if walking_controller == 'quasistatic':
+            from quasistatic_walking import QuasistaticWalker
+            # Keep the motor controller's estimate separate from the map
+            # registration estimate, as in the official-policy adapter.
+            self.walker = QuasistaticWalker(model,mujoco.MjData(model),initial_xy,station_xy)
+            steps = 2*int(np.ceil(np.linalg.norm(self.goal-np.asarray(initial_xy))/.12))
+            self.approach_timeout = 25.+16.*steps
+        elif walking_controller == 'official_policy':
+            self.walker = WalkingActor(model, policy, speed=.4, gains='training', park=True,
+                                       stop_at=float('inf'), hand_pose=rest_hand_pose(), arm_pose=walking_arm_pose())
+            self.walker.minimum_stop_dwell_s = .8
+            self.walker.parking_speed_limit = .03
+            self.approach_timeout = 32.
+        else:
+            raise ValueError('Unknown approach walking controller')
         self.prior, self.shape = prior, shape
         self.stage = 'approach'
         self.events = []
@@ -78,13 +91,13 @@ class FtirApproachActor:
             error = self.goal-position[:2]
             speed_estimate = max(0., float(self.velocity_ema[0]))
             braking = max(.14, .35*speed_estimate+speed_estimate**2/(2*.5))
-            if t >= 2. and self.stop_time is None and error[0] < braking and abs(error[1]) < .10 and abs(yaw) < .10:
+            if self.walking_controller == 'official_policy' and t >= 2. and self.stop_time is None and error[0] < braking and abs(error[1]) < .10 and abs(yaw) < .10:
                 self.stop_time = t
                 self.walker.stop_at = t
                 self.events.append(dict(state='stop_at_ftir_approach', time_s=t,
                                         estimated_position_m=position.tolist(), braking_distance_m=float(braking)))
             command = np.zeros(3)
-            if t >= 2. and self.stop_time is None:
+            if self.walking_controller == 'official_policy' and t >= 2. and self.stop_time is None:
                 speed = float(np.clip(.25+.5*(.25-self.velocity_ema[0]), .18, .3))
                 velocity = np.array([speed if error[0] > .12 else 0., np.clip(1.8*error[1], -.15, .15), 0.])
                 command[:2] = orientation.inv().apply(velocity)[:2]
@@ -113,6 +126,9 @@ class FtirApproachActor:
                 self.walker.balance.posture = self.prepare_posture+u*u*(3-2*u)*(self.station_posture-self.prepare_posture)
             self.walker.estimated_base_speed = float(np.linalg.norm(self.velocity_ema[:2]))
             self.last_torque, _ = self.walker.torque(packet, command_override=self.command)
+            if self.walking_controller == 'quasistatic':
+                self.events.extend(self.walker.events[self.walking_event_cursor:])
+                self.walking_event_cursor = len(self.walker.events)
             if self.prepare_time is not None and t-self.prepare_time >= 7.:
                 joints = self.d.qpos[self.walker.balance.qa]
                 yaw_q = float(self.d.joint('waist_yaw_joint').qpos[0])
@@ -125,7 +141,7 @@ class FtirApproachActor:
                 if (upper_error < .05 and abs(yaw_q+.5) < .02 and abs(yaw_v) < .03
                         and speed < .03 and np.linalg.norm(obs['imu_gyro']) < .1):
                     self.begin_registration(packet)
-            if t > 32. and self.stage == 'approach':
+            if t > self.approach_timeout and self.stage == 'approach':
                 raise RuntimeError('FTIR approach or posture handoff timed out')
         if self.stage == 'register_workstation':
             self.estimate.update(packet)
@@ -173,6 +189,8 @@ class FtirApproachActor:
                     policy_complete=False, policy_failure=None, events=self.events,
                     accepted_key_observations=0, observation=None, commanded_pose=None,
                     preparation=self.preparation,
+                    walking_controller=self.walking_controller,
+                    walking_phase=getattr(self.walker,'phase',None),
                     commanded_velocity=self.command.tolist(),
                     estimated_root_position_m=self.d.qpos[:3].tolist())
 
@@ -187,11 +205,12 @@ def main():
     p.add_argument('--policy', default='/model/policy')
     p.add_argument('--initial-xy', nargs=2, type=float, default=[4.95, -5.20])
     p.add_argument('--station-xy', nargs=2, type=float, default=[5.95, -5.20])
+    p.add_argument('--walking-controller', choices=['official_policy','quasistatic'], default='official_policy')
     p.add_argument('--prior', default='/model/policy/slider_push_prior.json')
     p.add_argument('--shape', default='/model/known_objects/nicolet_passive_dynamics.glb')
     args = p.parse_args()
     model = mujoco.MjModel.from_xml_path(args.model)
-    actor = FtirApproachActor(model, args.policy, args.initial_xy, args.station_xy, args.prior, args.shape)
+    actor = FtirApproachActor(model, args.policy, args.initial_xy, args.station_xy, args.prior, args.shape, args.walking_controller)
     try:
         while True:
             try:

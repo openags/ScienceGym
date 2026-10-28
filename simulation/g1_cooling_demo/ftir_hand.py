@@ -28,7 +28,12 @@ def walking_shoulder_pose():
 
 
 def walking_arm_pose():
-    """Authored raised forearms for clearance above the bench drawer handles."""
+    """Authored arm hold with wrists behind the pelvis in the source model.
+
+    These angles do not raise the wrists above the bench handles: measured
+    wrist height during probe 08 is about 0.55–0.59 m. Clearance is checked
+    geometrically rather than inferred from the joint-angle signs.
+    """
     result = {}
     for side, sign in [('left', 1.), ('right', -1.)]:
         for joint, value in dict(shoulder_pitch=.35, shoulder_roll=sign*.3,

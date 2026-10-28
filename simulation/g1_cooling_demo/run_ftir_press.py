@@ -21,11 +21,13 @@ from observations import robot_joints
 from world import build, HERE
 
 
-def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_prior=None,observe_slider_outcome=False,approach_from=None):
+def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_prior=None,observe_slider_outcome=False,approach_from=None,walking_controller='official_policy'):
     if operation not in {'press','cover','slider_scan','slider'}:raise ValueError('Unknown FTIR operation')
     if slider_prior is not None and operation!='slider':raise ValueError('A slider prior requires the slider operation')
     if observe_slider_outcome and operation!='slider':raise ValueError('Window outcome observation requires the slider operation')
     walking=approach_from is not None
+    if walking_controller not in {'official_policy','quasistatic'}:raise ValueError('Unknown walking controller')
+    if walking_controller!='official_policy' and not walking:raise ValueError('Walking controller requires an approach')
     if walking and not observe_slider_outcome:raise ValueError('Continuous approach requires observed slider completion')
     cover=operation=='cover'
     scan=operation=='slider_scan'
@@ -88,13 +90,22 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         for name,value in walking_arm_pose().items():data.joint(name).qpos[0]=value
         (out/'walking_control_profile.json').write_text(json.dumps(dict(
             source_policy='Pinned official Unitree velocity ONNX; unmodified network weights',
-            body_control='Source network leg/waist targets with authored raised-forearm targets; sensor feedback PD',
+            body_control='Source network leg/waist targets with an authored rearward arm hold; sensor feedback PD',
             held_arm_pose_rad=walking_arm_pose(),held_hand_pose_rad=rest_hand_pose(),
             arm_action_history='Unmodified raw network output, matching upstream ActionManager.action()',
             commanded_speed_target_m_s=.25,maximum_commanded_speed_m_s=.3,
             forward_command_slew_m_s2=.5,lateral_command_slew_m_s2=.4,yaw_command_slew_rad_s2=.4,
             parking_speed_gate_m_s=.03,minimum_stop_dwell_s=.8,
             scope='Development adaptation for Inspire hand/hip clearance; requires independent physical validation.'),indent=2)+'\n')
+        if walking_controller=='quasistatic':
+            (out/'walking_control_profile.json').write_text(json.dumps(dict(
+                controller='quasistatic',source_policy=None,source_network_executed=False,
+                initial_body_pose='Pinned Unitree training default with an authored rearward arm hold and folded hands',
+                body_control='Constrained inverse dynamics; explicit alternating support and Cartesian swing-foot tasks',
+                solver='clarabel==0.11.1',maximum_step_length_m=.12,swing_clearance_m=.055,
+                held_arm_pose_rad=walking_arm_pose(),held_hand_pose_rad=rest_hand_pose(),
+                support_assumption='Encoders and IMU on a declared level floor; sole contact is not measured',
+                scope='Continuous-development attempt; unchanged contact/support/source-limit acceptance.'),indent=2)+'\n')
         mimic(model,data);mujoco.mj_forward(model,data)
         data.qpos[2]-=min(data.site(s+'_sole').xpos[2] for s in ['left','right']);mujoco.mj_forward(model,data)
     else:
@@ -127,11 +138,12 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         basis='Authored initial aisle pose before continuous execution' if walking else 'Authored initial FTIR station pose; no walking credit')]
     import_path.write_text(json.dumps(imported,indent=2)+'\n')
     (out/'staging.json').write_text(json.dumps(dict(robot_map_xy_prior_m=start_xy,station_map_xy_goal_m=initial_xy,
+        walking_controller=walking_controller if walking else None,
         initial_qpos=data.qpos.tolist(),scope='Authored initial aisle pose; the subsequent approach and preparation are executed continuously' if walking else 'Authored robot pose at the FTIR station, not executed walking/preparation',
         target_instruction='Walk to the FTIR station, prepare and localize, push its window, withdraw, confirm its position from RGB-D and return' if walking else 'Observe, push the passive sliding window by 70 mm, withdraw, turn to observe its final position from fresh RGB-D, then return' if observe_slider_outcome else 'Observe, push the passive sliding window by 70 mm, withdraw and return' if slider else 'Observe the key row and turn the torso to the approach orientation' if scan else 'Grasp, open and release the cover with the right hand' if cover else 'Press BACKGROUND with the right index finger and retract',
         cameras='Native head RGB/depth profiles, ideal rendering and uncalibrated nominal source extrinsics'),indent=2)+'\n')
     command=[sys.executable,str(HERE/actor_name),'--model',str(control),'--initial-xy',*map(str,start_xy)]
-    if walking:command.extend(['--station-xy',*map(str,initial_xy)])
+    if walking:command.extend(['--station-xy',*map(str,initial_xy),'--walking-controller',walking_controller])
     modules=['ftir_actor.py','ftir_hand.py','ftir_vision.py'];policies=[];shapes=[]
     if scan:modules.extend([actor_name,'ftir_slider_posture.py'])
     if touch:
@@ -157,6 +169,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         policies.append(prior);shapes.append(shape)
     if walking:
         modules.extend(['ftir_approach_actor.py','walking_actor.py','odometry.py','map_localization.py'])
+        if walking_controller=='quasistatic':modules.extend(['quasistatic_walking.py','conic_balance.py'])
         policy=out/'locomotion_policy_source';shutil.copytree(HERE/'locomotion_policy',policy)
         policies.extend([policy/'deploy.yaml',policy/'policy.onnx'])
     command,environment,receipt=prepare(out,control,command,extra_modules=modules,policy_files=policies,shape_files=shapes)
@@ -189,7 +202,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
             response=received;data.ctrl[:]=response['torque']
             if monitor is not None and i%camera_every==0:
                 monitor.write(json.dumps(dict(time_s=float(data.time),**{k:v for k,v in response.items()
-                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation','commanded_velocity'}}))+'\n');monitor.flush()
+                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation','commanded_velocity','walking_phase'}}))+'\n');monitor.flush()
             records.append((float(data.time),data.qpos.copy(),data.qvel.copy(),data.ctrl.copy(),data.qacc_warmstart.copy()))
             sensors.append({k:v for k,v in packet.items() if k not in {'depth','rgb'}})
             if i%response_every==0:responses.append(dict(time_s=float(data.time),**{k:v for k,v in response.items() if k not in {'torque','events'}}))

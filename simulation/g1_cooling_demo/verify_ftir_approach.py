@@ -84,6 +84,8 @@ def verify(folder):
         sys.executable, '/actor/ftir_approach_actor.py', '--model', '/model/world.xml',
         '--initial-xy', *map(str, staging['robot_map_xy_prior_m']),
         '--station-xy', *map(str, staging['station_map_xy_goal_m'])]
+    if staging.get('walking_controller') is not None:
+        command.extend(['--walking-controller',staging['walking_controller']])
     max_torque = max_response = 0.
     compared = camera_frames = 0
     failure = None

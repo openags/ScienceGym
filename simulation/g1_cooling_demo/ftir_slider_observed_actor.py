@@ -23,6 +23,21 @@ class ObservedSliderActor(SliderActor):
         self.outcome_window = []
         self.outcome_accepted_count = 0
         self.last_outcome_sensor_time = None
+        self.pending_contact_recovery = None
+
+    def recoverable_contact_loss(self):
+        """Only a late, bounded-load push may proceed to outcome inspection.
+
+        This permits observation, never success. The original fault stays
+        active until eight fresh RGB-D fits pass and the torso returns safely.
+        An overload, failed acquisition or early loss remains terminal.
+        """
+        context = self.recovery_context or {}
+        return (self.failure == 'Tactile contact was lost during push'
+                and context.get('code') == 'push_contact_loss'
+                and 0. <= context.get('filtered_distal_load_n', float('inf')) < .1
+                and .060 <= context.get('commanded_push_displacement_m', -1.) <= .070
+                and context.get('contact_loss_duration_s', 0.) > .35)
 
     def begin_visual_phase(self, name, t):
         self.visual_phase = name
@@ -37,8 +52,15 @@ class ObservedSliderActor(SliderActor):
         t = float(obs['time_s'])
         if self.visual_phase is None:
             response = super().update(obs)
-            if not response['policy_complete'] or response['policy_failure']:
+            if not response['policy_complete']:
                 return response
+            if response['policy_failure'] and not self.recoverable_contact_loss():
+                return response
+            if response['policy_failure']:
+                self.pending_contact_recovery = dict(reason=self.failure, context=dict(self.recovery_context))
+                self.events.append(dict(state='contact_loss_outcome_inspection_started', time_s=t,
+                                        fault=self.pending_contact_recovery,
+                                        source='completed_motor_withdrawal_after_native_tactile_guard'))
             self.outcome_vision = SliderRangeObservation(
                 self.m, self.d, self.prior_path, self.shape_path, self.grip_observations)
             self.visual_posture = self.d.qpos[self.balance.qa].copy()
@@ -72,6 +94,14 @@ class ObservedSliderActor(SliderActor):
                         if self.visual_phase == 'turn_to_outcome_view':
                             self.begin_visual_phase('observe_window_outcome', t)
                         else:
+                            if (self.pending_contact_recovery is not None and self.outcome_verified
+                                    and self.failure == self.pending_contact_recovery['reason']):
+                                self.events.append(dict(state='contact_loss_recovery_confirmed', time_s=t,
+                                                        fault=self.pending_contact_recovery,
+                                                        sensor_frames=[dict(time_s=s, observed_position_m=p)
+                                                                       for s,p in self.outcome_window],
+                                                        source='fresh_native_RGBD_confirmation_and_settled_motor_return'))
+                                self.failure = None
                             self.visual_phase = 'finished'
                             self.visual_finished = True
                 else:

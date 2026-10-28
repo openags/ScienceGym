@@ -35,6 +35,7 @@ class SliderActor(SliderScanActor):
         self.grip_observations=[];self.prepared=False;self.motions=[]
         self.filtered_touch=0.;self.touch_since=None;self.lost_since=None
         self.contact_offset=0.;self.contact_confirmed=False;self.recovering=False
+        self.recovery_context=None
         self.reference_data=mujoco.MjData(model)
         self.last_target=None;self.last_rotation=None;self.commanded_pose=None
 
@@ -87,16 +88,17 @@ class SliderActor(SliderScanActor):
         self.start_rotation=self.d.site('right_wrist_reference').xmat.reshape(3,3).copy()
         self.start_hand={n:float(self.d.joint(n).qpos[0]) for n in self.pointing}
 
-    def recover(self,t,reason):
+    def recover(self,t,reason,context=None):
         if self.recovering:raise RuntimeError('Recovery failed: '+reason)
         self.failure=reason;self.recovering=True
+        self.recovery_context=context
         current=self.d.site('right_wrist_reference').xpos.copy()
         self.motions=[dict(name='withdraw_abort',kind='pose',duration=3.,position=current+self.normal*.03),
                       dict(name='clear_to_entry_abort',kind='pose',duration=5.,position=self.precontact),
                       *self.return_segments,
                       dict(name='restore_hand',kind='hand',duration=3.,hand=self.folded)]
         self.phase=0;self.contact_confirmed=False;self.contact_offset=0.
-        self.events.append(dict(state='recovery_started',time_s=t,reason=reason))
+        self.events.append(dict(state='recovery_started',time_s=t,reason=reason,context=context))
         self.begin_phase(t)
 
     def update(self,obs):
@@ -160,7 +162,12 @@ class SliderActor(SliderScanActor):
                     else:self.lost_since=None
                 else:raise ValueError('Unknown slider phase')
                 if kind in {'seek','push'} and (self.filtered_touch>6. or (kind=='push' and self.lost_since is not None and t-self.lost_since>.35)):
-                    self.recover(t,'Tactile load exceeded bound or contact was lost')
+                    overload=self.filtered_touch>6.
+                    self.recover(t,'Tactile load exceeded bound' if overload else 'Tactile contact was lost during push',
+                                 context=dict(code='tactile_overload' if overload else 'push_contact_loss',
+                                              filtered_distal_load_n=self.filtered_touch,
+                                              commanded_push_displacement_m=float(s*.07) if kind=='push' else 0.,
+                                              contact_loss_duration_s=None if self.lost_since is None else t-self.lost_since))
                     target=self.start_position;target_R=self.start_rotation;force=None
                     requested_load=0.
                     recovered_now=True

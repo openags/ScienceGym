@@ -129,15 +129,32 @@ class Balance:
         settings={}
         if hasattr(self,'solver_rho'):settings['rho']=self.solver_rho
         if hasattr(self,'solver_rho_interval'):settings['adaptive_rho_interval']=self.solver_rho_interval
-        solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(np.triu(P)),q=q,A=sparse.csc_matrix(np.vstack(A)),l=np.concatenate(lo),u=np.concatenate(hi),verbose=False,eps_abs=2e-5,eps_rel=2e-5,max_iter=getattr(self,'solver_max_iterations',6000),polishing=True,**settings)
-        if self.previous is not None:
-            dual=getattr(self,'previous_dual',None)
-            if getattr(self,'warm_start_dual',False) and dual is not None and len(dual)==sum(len(v) for v in lo):
-                solver.warm_start(x=self.previous,y=dual)
-            else:solver.warm_start(x=self.previous)
-        result=solver.solve(raise_error=False)
-        self.solver_diagnostics=dict(status=result.info.status,iterations=result.info.iter,
-                                     primal_residual=result.info.prim_res,dual_residual=result.info.dual_res)
+        setup=dict(P=sparse.csc_matrix(np.triu(P)),q=q,A=sparse.csc_matrix(np.vstack(A)),l=np.concatenate(lo),u=np.concatenate(hi),verbose=False,eps_abs=2e-5,eps_rel=2e-5,max_iter=getattr(self,'solver_max_iterations',6000),polishing=True,**settings)
+        self.last_solver_attempts=[]
+        if getattr(self,'solver_backend','osqp')=='clarabel':
+            from conic_balance import solve
+            result=solve(setup['P'],q,setup['A'],setup['l'],setup['u'])
+            self.solver_diagnostics=dict(status=result.info.status,iterations=result.info.iter,
+                                         primal_residual=result.info.prim_res,dual_residual=result.info.dual_res)
+            self.last_solver_attempts.append(self.solver_diagnostics.copy())
+        else:
+            for rho in [None]+list(getattr(self,'solver_retry_rhos',())):
+                # Numerical retries solve exactly the same objective,
+                # constraints and tolerances. Failed results never actuate.
+                retry_setup=dict(setup)
+                if rho is not None:retry_setup['rho']=rho
+                solver=osqp.OSQP();solver.setup(**retry_setup)
+                if self.previous is not None:
+                    dual=getattr(self,'previous_dual',None)
+                    if getattr(self,'warm_start_dual',False) and dual is not None and len(dual)==sum(len(v) for v in lo):
+                        solver.warm_start(x=self.previous,y=dual)
+                    else:solver.warm_start(x=self.previous)
+                result=solver.solve(raise_error=False)
+                self.solver_diagnostics=dict(status=result.info.status,iterations=result.info.iter,
+                                             primal_residual=result.info.prim_res,dual_residual=result.info.dual_res,
+                                             rho=retry_setup.get('rho',.1))
+                self.last_solver_attempts.append(self.solver_diagnostics.copy())
+                if result.info.status_val in (1,2):break
         if result.info.status_val not in (1,2):raise RuntimeError('Balance QP: '+str(self.solver_diagnostics))
         self.previous=result.x;self.max_iter=max(self.max_iter,result.info.iter)
         self.previous_dual=result.y.copy()
