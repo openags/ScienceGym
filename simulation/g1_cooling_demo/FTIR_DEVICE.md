@@ -705,7 +705,10 @@ Approach 08 executes the recovery withdrawal and subsequent camera observation,
 but all 121 native outcome frames fail geometry quality; it returns and ends
 failed after 245.620 seconds. Independent physics satisfies every criterion
 apart from the failed completion status, and process isolation passes. Its
-frozen sensor replay is evaluated separately. The observed waist angle is
+first frozen sensor replay reproduces every motor command and retained
+response exactly, but the full event-sequence comparison fails. The original
+report is retained and an additional replay captures the event differences;
+event integrity remains unresolved. The observed waist angle is
 about -0.495865 rad for a -0.5 rad target. Labeled static views also expose
 planar-surface aliases at some other angles, including an out-of-range 60 mm
 opening incorrectly estimated above 73 mm. These false acceptances remain in
