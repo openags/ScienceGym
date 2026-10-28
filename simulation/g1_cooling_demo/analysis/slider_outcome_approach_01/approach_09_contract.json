@@ -1,0 +1,65 @@
+{
+  "operation": "Continuous one-metre approach, window push and sensor-confirmed recovery after late contact loss if needed",
+  "run": "runs/ftir_approach_09",
+  "walking_controller": "quasistatic",
+  "initial_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "maximum_simulation_duration_s": 420.0,
+  "approach_timeout_s": 313.0,
+  "physical_acceptance": "Original verify_ftir_slider.py thresholds unchanged",
+  "prior": "assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json",
+  "scope": "Development attempt, not complete interstation experiment or repeated-run qualification",
+  "source_hashes": {
+    "simulation/g1_cooling_demo/balance.py": "67c04d759c844cd6478f49a67ea65fd6e5dd0826351576c17a5486decf3eb497",
+    "simulation/g1_cooling_demo/conic_balance.py": "6efb9f389dcdfe4bbf05bbd3b25e62302db915b955673c134e695cc365d5dbf1",
+    "simulation/g1_cooling_demo/quasistatic_walking.py": "a58a1d783e32abdf08bd4a48b4f1b0a322c715628499196a05da7dcc4b0625e8",
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "1822115019c0e22a6191f461a2e4951c22edddce648ee847e95fb8aba8c821dc",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "dcd67261b40ead7764a7a8eeddd04897900d9ed548847e6ad328ec259f9c4e69",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "c8a32052fe2c456929d4db1372f4b36c7cb561c1b3cff3c06ca268ad3bc21e56",
+    "simulation/g1_cooling_demo/ftir_slider_outcome.py": "b1c7d2db072fa2c28622f7b1feb8df8fd9d820c5685909c9265a1e5343485bd1",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "7cf88d5286aa462d37ba55777c8e04ac5c82b661c3b7f93d3a84047fb76c6127",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "139b649e23a4cd290d673dbf50e65808dfc17caf6b90cf2d2e0455d649a26ab2",
+    "simulation/g1_cooling_demo/verify_ftir_slider.py": "6498d9b2f9df49809a90cf812e2ff0ba5f40b7f94bd853ba08cd790d0d4ab876",
+    "simulation/g1_cooling_demo/verify_isolation.py": "d98687aa94616f7f5ee1a809c947b836efa73a917abc42dd7b29c0a4b10d93be",
+    "simulation/g1_cooling_demo/verify_ftir_approach.py": "ff79563c938ae81c768158aa6d499b5628ad87044e535dcab66162119c83881d"
+  },
+  "recovery": {
+    "trigger": "Push contact loss only: filtered load below 0.1 N for more than 0.35 s, commanded travel at least 60 mm; no overload recovery",
+    "outcome": "Original 8 distinct fresh native RGB-D fits, 66--74 mm interior guard, stable observed position, followed by settled return; fault retained until completion",
+    "unchanged_limits": "6 N load guard; all original physical review contact, support, travel, joint and motor thresholds",
+    "retained_evidence": "Original recovery fault and its context remain in events; failed attempt 07 is unchanged",
+    "source_of_decisions": "Native tactile, RGB-D, encoders and IMU only; reviewer truth is not supplied to the actor"
+  },
+  "predecessor": "approach08: failed visual confirmation;121 rejected native frames; full independent review in progress",
+  "observation": {
+    "target_waist_yaw_rad": -0.6,
+    "maximum_yaw_error_rad": 0.005,
+    "maximum_yaw_velocity_rad_s": 0.03,
+    "settle_dwell_s": 1.0,
+    "waist_posture_weight": 4.0,
+    "minimum_visible_grip_relief_fraction": 0.5,
+    "public_grip_height_m": 0.0030000060796737393,
+    "native_confirmation_frames": 8,
+    "observed_guard_band_m": [
+      0.066,
+      0.074
+    ],
+    "unchanged_physical_gap_m": [
+      0.065,
+      0.075
+    ],
+    "motivation": "Reject planar surface aliases and observe from a tested viewing interval; no acceptance threshold loosened",
+    "validation_scope": "Held-fit guard tests and static labeled views only; this new execution must independently pass"
+  },
+  "precheck_hashes": {
+    "relief_guard_review.json": "6f2f46d8271093ad862a3d8dd19f6aaea6d0ff6a4e0b03601b1cfe44dff80129",
+    "recovery_view_state_checks.json": "3bade62eb0ea37c9762159ab28d4f740fa8a6ee3b5cde287e72182d9c9fa1c07",
+    "candidate_views.json": "cae438af1f68719a2df9eafa2d4cceff97c808406e906c76ee58ad6f65d784a0"
+  }
+}

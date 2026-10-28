@@ -1,14 +1,16 @@
 # From this paper to robot experimental work
 
-## Scientific obligations and starting state
+## Manipulation scope and starting state
 
 The paper demonstrates solar-white and solar-black cooling devices using a
 small reflector to block direct sunlight while retaining a view of the sky.
-Reconstructing that experiment requires fabrication, coating and assembly,
+The robot task reconstructs the physical handling needed for fabrication, coating and assembly,
 thermocouple calibration, optical characterization, outdoor environmental
 measurement, paired stagnation and cooling-power measurements, a fixed-band/LDPE
 variant, and thermal maps in three conditions. All eleven physical families are
-retained. Energy-balance models, COMSOL results and application concepts are
+retained as manipulation contexts. Instrument-internal processes and scientific
+outputs are environment context; reproducing the reported cooling performance
+is not the robot task's success criterion. Energy-balance models, COMSOL results and application concepts are
 classified separately in `coverage_matrix.json` and `nonmanual_scope.json`.
 
 Start with identified stock, instruments, tools and supported carriers. A disk,
@@ -33,12 +35,18 @@ dimensions and durations remain separate. The source's 100 mm schematic height
 and approximately 150 mm textual height are not silently reconciled: the current
 geometry chooses the textual emitter-to-reflector datum and retains the conflict.
 Tool settings, tolerances, coating cure, PID gains and targets, robot kinematics,
-weather eligibility and exact sample allocation remain qualified episode inputs.
+weather eligibility and exact sample allocation are explicit episode inputs.
+`selected_reconstruction.json` supplies 109 concrete selections across all 14
+cards, including a rationale and source/inference distinction for every field.
+`episode_inputs.py` checks and loads these simulation inputs. An inferred value
+does not have to remain null merely because the paper omitted it. A selected
+value is still distinct from a measured property or a successful execution.
 
 Inferring an action is different from inventing a historical number. For example,
 the reconstruction includes applying each of three paint coats and waiting for
 intercoat and final cure conditions, but does not claim an unreported drying time.
-An executable deployment must qualify those inputs before the affected operation.
+The selected simulation uses an explicit virtual process timing; it does not
+claim that this was the historical drying time or a qualified hardware recipe.
 
 ## Planning method
 
@@ -92,11 +100,14 @@ inspection and calibration. Optical references bind the installed accessory and
 configuration. Raw measurements must later bind actual files, timestamps, units,
 instrument settings, calibrations, sample revisions and processing parents.
 
-`solar_geometry.py` computes reflector-plane intersections from supplied qualified
+`solar_geometry.py` computes reflector-plane intersections from supplied
 solar azimuth/elevation samples and checks finite-aperture shading against a sampled
 solar disk. It catches insufficient reflector margin at low sun angles. It does not
-generate an ephemeris or certify coverage between sample timestamps. The displayed
-track is still an illustrative curve, rather than an unqualified site/date design.
+generate an ephemeris. `selected_solar_path.py` supplies NREL SPA positions for the
+explicitly selected Cambridge summer scenario, generates 241 one-minute track
+commands, and checks the held positions and fixed-band envelope at one-second
+intervals. This replaces an illustrative curve with a numerical design input;
+mount occlusion, physical carriage motion and wind remain separate checks.
 
 The symbolic replay checks selected invariants only. It does not observe the
 world or infer that a grasp worked from a command. Planned events have empty
@@ -129,3 +140,45 @@ The eight conversion gates are recorded individually in `review.json`. They
 remain partial where commercial geometry, action interfaces or physical checks
 are missing. Passing static tests does not turn this pilot into a whole-paper
 robot experiment or authorize treating the remaining papers as validated.
+
+## Manipulation-focused revision, October 17
+
+The intended product is the complete experiment task chain with its physical
+manipulation work expanded. Scientific purpose, condition selection, perception,
+waits and instrument processing remain in that chain. Numerical agreement with
+the paper is not a prerequisite for accepting a manipulation task design; actual
+scientific results require separately acquired observations.
+
+Every manual step now names its target role, contact region, tool, support
+transition, constraints, completion evidence and recovery. These are authored
+interface specifications, not measured grasp poses. `interaction_contracts.json`
+enumerates concrete geometry variants and missing parts, and
+`manipulation_coverage.json` joins source obligations, all eleven branch routes,
+operations and step definitions. The generated `MANIPULATION_REVIEW.md` is the
+complete readable dossier. Parameter cards must bind actual instance identities
+and qualify force, clearance, material/fixture and observation conditions.
+
+The calibration block has an explicit drilling/finishing/inspection producer.
+The bath is loaded and filled with displacement and drain closure checked.
+Fine-wire compatibility is not assumed: Omega's 36 AWG probe leads fall outside
+the USB-TC terminal's 16-30 AWG specification. A selected K-compatible transition
+and independently retained extension must be qualified and included in the
+calibration path. The numbered terminal map includes the reversed spatial pin
+ordering on channels 4-7; geometric pitch remains inferred.
+
+Angular incidence and polarization are set before the reference. The sample and
+reference are exchanged through retained supports; scan only reads back the
+accepted configuration. Changing either setting requires a fresh reference.
+Opening the apparatus for probe/heater work explicitly retains the reflector,
+aperture plate, shield and two-film cover before accessing the emitter. Changed
+assemblies need a new inspection. SI Figure5's two near-axis insulation points
+are treated as internal/layer-interface locations, with explicitly inferred
+probe recesses and their additional thermal-path effects. Four further points
+bind PE walls, shield and upper aperture plate. Display contact markers do not
+qualify these recesses, attachments or physical access.
+
+Source trace and design consistency, geometry fidelity, robot execution and
+scientific reproduction have separate acceptance meanings. The remaining
+fixture/tool and device-interface gaps keep this revision unaccepted as the
+reusable manipulation template. A missing controller alone is not a reason to
+hide a reconstructed physical operation behind a closed service.

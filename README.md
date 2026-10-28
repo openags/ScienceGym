@@ -2,11 +2,24 @@
 
 **Long-horizon robot research tasks derived from scientific papers.**
 
+**Execution target, updated 24 October 2026:** a complete Unitree humanoid
+uses its own arms and articulated hands for all required manipulation. The
+owner permits publicly supported hands from other manufacturers. The selected
+asset-integration candidate is **G1 29DoF rev 1.0 + Inspire FTP**; its official
+integrated URDF and all 93 referenced meshes are available for inspection.
+See the [resource selection](docs/pilots/HUMANOID_RESOURCE_SELECTION.md) and
+[new model preview](viewer/robot_resource_review_v1/index.html).
+The laboratory now displays the complete source-derived G1/Inspire model.
+Its new articulated inspection, floating-base MJCF and static access checks
+are described in the [integration record](assets/unitree_g1_inspire_v1/README.md). Historical Panda and privileged-state
+H2 recordings do not establish sensor-only humanoid manipulation. No humanoid
+manipulation branch has yet been validated.
+
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 
 The unit of design is a **paper-level task family**. Its branches, dependencies, sample histories and measurement obligations determine what the agent must accomplish. An episode can cover a complete route or a control package; paper-level completion requires the full declared scope.
 
-**Release contents: 41 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (44 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. Task execution is future work.
+**Release contents: 41 reviewed paper-level task-design drafts, including partial-source gated drafts, plus 3 bounded nonbiological subsets (44 packages total); zero validated runnable whole-paper tasks.** The repository supports reading and inspecting static specifications. The cooling pilot also provides bounded contact-driven robot simulations; complete paper-level execution remains unfinished.
 
 Publication status is established by the repository commit containing these files. Frozen package fields and historical verification receipts describe their authoring and review snapshots, not live publication, deployment or remote CI status.
 
@@ -22,11 +35,119 @@ The [conversion workflow](docs/contributing/PAPER_TO_ROBOT_WORKFLOW.md) specifie
 
 ## First reconstruction pilot
 
+**Current demonstration: continuous cross-workstation FTIR manipulation.**
+The owner [authorized parallel scene and operation development](assets/cooling_lab_v1/development_authorization.json).
+Asset acceptance, full-humanoid access review and complete physical execution
+remain open; the authorization changes the development sequence.
+
+The [new 9-minute 1-second video](viewer/cooling_concept_v2/measurement_demo.html)
+shows one G1 / Inspire robot collecting its tool, walking to the material
+bench, carrying back the same white witness, installing a gold reference,
+operating BACKGROUND / OK, exchanging the sample, operating SAMPLE / OK,
+and returning the tool before closing the instrument. It uses the established
+complete laboratory. Both acquisition waits are compressed; instrument
+installation and configuration are initial conditions.
+
+The clean [MP4](viewer/cooling_concept_v2/media/ftir_measurement_01.mp4) has no
+text overlays or watermarks. All **12,988 encoded frames** pass independent
+source-geometry and interaction checks; a separate **6,022-state** export
+includes operation boundaries. See the [delivery receipt](viewer/cooling_concept_v2/measurement_delivery.json),
+[interactive scene](viewer/cooling_concept_v2/index.html?episode=ftir_measurement)
+and [reproduction guide](viewer/cooling_concept_v2/MEASUREMENT_DEMO.md).
+This is one complete authored measurement procedure; force/balance,
+sensor-only control, scientific spectra and the remaining paper branches are
+not established by this video.
+
+The [laboratory and asset review page](viewer/lab_review_v1/index.html) now
+contains a physical-scale scene with four zones, 81 placed asset instances,
+an enclosed laboratory with windows, open double doors, a panel ceiling,
+lighting and cabinet benches, separately identified authored facilities, a dimensioned floor
+plan, source links, surface-to-surface measurement and articulated inspection
+states. Three new outdoor-instrument reconstructions use manufacturer manuals
+and dimension drawings. All assets and the whole scene remain **unaccepted**;
+missing equipment, camera installation and infrastructure stay visible in the 67-row
+resource inventory (including three superseded robot/hand references). The G1
+layout checks, restricted source-kinematic checks and 94 station access
+points provide bounded geometric evidence. The station report records static position candidates with camera-attachment clearance screening. Native G1 head RGB / ideal
+depth and candidate wrist RGB inspection views now follow the displayed pose.
+Official wrist camera mounts are available for comparison, with observed
+clamp-fit uncertainty recorded as an unaccepted installation. Per-point postures and
+remaining assembly conflicts are visible in the review; they do not qualify operation or safety. The default 1.65 m interior viewpoint supports drag-to-look and
+arrow-key/WASD movement; cutaway and plan views remain available for layout
+inspection. Viewpoint navigation is not robot motion. A detail view now exposes chamfered
+worktops, separate drawer fronts, handle mounts and leveling feet. Authored
+finishes use separate colour, normal and roughness/metalness channels; missing
+mesh normals are recovered for visible receiver shadows. Static render batching
+preserves the source triangles, dimensions and movable inspection parts. Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+`http://localhost:8769/viewer/lab_review_v1/index.html`.
+
+The earlier [9-minute 39-second animation](viewer/cooling_concept_v1/watch.html)
+is retained as a rejected historical presentation after reported
+interpenetration and incorrect interactions. Use the new FTIR demonstration
+above for the current continuous operation video. The rejected original does
+not establish physical execution.
+
+The [laboratory contact and walking recordings](viewer/cooling_lab_runtime_v1/index.html)
+now runs the G1 tray subtask on the original white assembly worktop, with the
+complete room and its equipment in the physical plant. Other equipment remains
+fixed; this is not the full paper campaign. Its
+[runtime guide](simulation/g1_cooling_demo/LABORATORY.md) includes sensor records,
+compiled-source geometry comparison and independent physical evaluation.
+A separate 12-second run advances 1.96 m in the laboratory aisle and transfers
+to stable standing. It passes independent replay and feet-only floor-contact
+checks; walking and tray manipulation have not yet been joined into one task.
+
+An optional weather-station installation reference adds detailed component
+inspection and identity-preserving tool staging. The linked
+[tape-measure review](viewer/lab_review_v1/tape_measure.html) shows the selected
+Hultafors BT5M casing, clip, hook and three static blade shapes. The complete
+composition has 33 selected physical identities and 538 named parts; these
+review counts do not establish complete initial stock, accepted assets or
+robot execution. The [engineer-hammer review](viewer/lab_review_v1/engineer_hammer.html)
+distinguishes catalogue head mass from inferred whole-tool mass and preserves
+a rejected placement over the ambient probe lead. See the
+[asset review guide](assets/cooling_lab_v1/README.md).
+
+The linked [central-support CAD review](viewer/lab_review_v1/lift.html) now
+preserves all 86 solids of a selected Thorlabs L200/M jack, with actual holes,
+slots and links. The three apparatus reference configurations now include a
+nominal base/jack/platform mounting with real holes and ordinary fasteners;
+two loose jacks and 24 mounting pieces are separately staged as starting stock.
+Thread forces, structural loads and assembly remain unqualified.
+Its pinned manufacturer files and all composites containing that CAD are generated locally;
+see the [download and verification instructions](assets/cooling_lab_v1/README.md#central-support-from-manufacturer-cad).
+
+[![Authored laboratory layout for asset and space review](viewer/lab_review_v1/evidence/overview.png)](viewer/lab_review_v1/index.html)
+
+The [Unitree humanoid workbench](simulation/humanoid_v1/index.html) shows the
+official H2 meshes, a continuous 20-second physics recording and five body
+foundation test cases. Both feet support the floating body through contact;
+recorded motor commands independently reproduce the complete trajectory.
+This historical H2 record reads privileged state. The former Dex5-S integration
+is superseded by the G1/Inspire asset selection; original H2 wrist meshes and
+previous body evidence do not represent or qualify the new hands. See the [implementation and reproduction
+instructions](simulation/cooling_v1/README.md#unitree-h2-body-foundation).
+Run `python simulation/cooling_v1/serve.py --port 8769`, then open
+`http://localhost:8769/simulation/humanoid_v1/index.html`.
+
 The [directional-cooling reconstruction pilot](docs/pilots/DIRECTIONAL_COOLING.md)
 applies this workflow to one existing paper: explicit manipulation steps and
 occurrence planning, manufacturer-backed equipment research, revised metric
-assets and recorded open acceptance gates. It is a review revision of the same
+assets and recorded open acceptance gates. The [manipulation dossier](tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)
+connects the complete experimental sequence to explicit contact, tool, support,
+observation and recovery requirements. It is a review revision of the same
 DOI, not an additional paper or a validated robot experiment.
+
+The [interactive manipulation workbench](simulation/cooling_v1/sample.html)
+contains full recorded videos, event seeking, independent verification links,
+searchable action definitions and ten manufacturer-informed device models.
+Run `python simulation/cooling_v1/serve.py` from the repository root, then open
+`http://localhost:8768/simulation/cooling_v1/sample.html`.
+The [workbench documentation](simulation/cooling_v1/README.md) distinguishes
+each accepted physical record from the unfinished complete chain: **0/11
+whole-paper branches accepted**.
+
+[![Recorded cabled-plug manipulation with a reconstructed Keithley 2425; one bounded sequence](simulation/cooling_v1/runs/connector/playback/released.png)](simulation/cooling_v1/runs/connector/playback/chapter_01.mp4?raw=true)
 
 ## Paper discovery candidates
 

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ScienceGym · 气象部件与线缆检查</title>
+<script type="importmap">{"imports":{"three":"../../simulation/cooling_v1/vendor/three.module.js","three/addons/":"../../simulation/cooling_v1/vendor/addons/"}}</script>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="lift.css"></head>
+<body><main><p><a href="index.html">← 实验室</a></p><small>WEATHER COMPONENT REVIEW</small><h1>气象探头、防辐射罩与接头。</h1>
+<p>当前为 Onset U30 气象站补充的独立部件候选。RS3 防辐射罩、S-THB-M002 温湿度探头及线缆按厂家资料重建。风传感器、三脚架、拉索与完整布线仍在补齐；这些部件尚未计入主场景库存。</p>
+<div class="lift-grid panel"><div><div id="lift-viewport" aria-label="可旋转的气象部件三维模型"></div><p id="weather-status" class="legend" role="status">正在核对模型与检查版本…</p></div><aside class="lift-controls">
+<label for="weather-select">查看部件</label><select id="weather-select" disabled></select>
+<div id="weather-views"><button data-view="oblique" disabled>整体</button><button data-view="top" disabled>俯视</button><button data-view="side" disabled>侧面</button><button data-view="end" disabled>端面</button></div>
+<label><input id="weather-section" type="checkbox" disabled>剖开查看内部</label><p id="weather-size"></p><p id="weather-detail"></p><p>拖动旋转、滚轮缩放。剖切只改变显示，没有生成填充截面。</p></aside></div>
+<section class="panel"><h2>实物依据与尺寸</h2><div class="table-scroll"><table><thead><tr><th>部件</th><th>厂家事实</th><th>当前重建中的推断</th></tr></thead><tbody>
+<tr><td>RS3 防辐射罩</td><td>直径 102 mm，高 89 mm；连支架总高 159 mm；罩内标示净高 65 mm</td><td>叶片截面、支撑杆、螺纹、抱箍和随附扎带／螺钉的局部尺寸</td></tr>
+<tr><td>S-THB-M002</td><td>探头 10 × 35 mm；总线长 2.5 m，其中网络段 0.5 m</td><td>探头内部分段、3 mm 线径、75 × 18 × 14 mm 数字适配器、收纳线形</td></tr>
+<tr><td>圆线 RJ12 插头</td><td>Cinch 32-5996UL：6 个触点，间距 1.02 mm，壳体宽 9.65 mm</td><td>按其尺寸重建的普通接头候选；Onset 原配供应商及针脚定义未知</td></tr>
+</tbody></table></div><div class="source-list">
+<a href="https://www.onsetcomp.com/sites/default/files/resources-documents/11269-E%20MAN-RS3.pdf">RS3 官方手册：照片、剖面及套件清单 ↗</a>
+<a href="https://www.onsetcomp.com/sites/default/files/resources-documents/11427-O%20S-THB%20Manual.pdf">S-THB 官方手册：探头、线长与安装方法 ↗</a>
+<a href="https://www.onsetcomp.com/sites/default/files/resources-documents/12269-M%20U30%20Station%20RC%20Manual.pdf">U30 RC 官方手册：RJ-12 接口，PDF 第 9 页 ↗</a>
+<a href="https://www.cinch.com/media/drawings/products/ethernet-usb/dr-CCS-AIM-32-5996UL.pdf">Cinch 官方插头尺寸图 ↗</a>
+<a href="../../assets/cooling_lab_v1/weather_sources.json">全部来源、资料冲突与推断记录 ↗</a></div></section>
+<section class="panel"><h2>几何检查与剩余工作</h2><p id="weather-findings">正在读取检查…</p><p class="finding">罩内示例只检查探头本体的静态净空，没有安装线缆和固定扎带。收纳线圈尚未进行重力沉降；接头尚未验证 U30 插入、锁定或电气连接。这里没有机器人操作验证或已完成气象站安装的含义。</p><div class="table-scroll"><table id="weather-cables"><thead><tr><th>连续线段</th><th>实际中心线长度</th><th>非相邻线段表面间隙下界</th></tr></thead><tbody></tbody></table></div><p>间隙下界使用沿中心线每 0.25 mm 或更密的取样，并扣除取样误差和两倍线半径；排除沿线相距小于 10 mm 的局部邻居。</p><a href="../../assets/cooling_lab_v1/weather_asset_checks.json">查看实体、线长与净空检查记录 ↗</a></section>
+<div id="lift-error" role="alert"></div></main><script type="module" src="weather.js"></script></body></html>

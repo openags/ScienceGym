@@ -1,0 +1,62 @@
+{
+  "scope": "Reinspect the manufacturer documents underlying the current cover affordance before further robot-hand substitution or physical opening trials.",
+  "sources": [
+    {
+      "id": "USER_MANUAL",
+      "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
+      "sha256": "0bd488af3213c5d68261feee2b48cc00bff740f42890a919b45450740af17e57",
+      "inspected_printed_pages": [
+        33,
+        34,
+        51,
+        91,
+        92
+      ],
+      "local_pdf_hash_matches_manifest": true
+    },
+    {
+      "id": "MANUFACTURER_BROCHURE",
+      "url": "https://mmrc.caltech.edu/FTIR/Nicolet/Nicolet%206700%20brochure.pdf",
+      "sha256": "404878f7877b7ea1147623d4a0ad2a206b234fc5e438b081a14d69dd026b5ce2",
+      "inspected_pdf_pages": [
+        1
+      ]
+    },
+    {
+      "id": "PIKE_DTGS_MANUAL",
+      "url": "https://www.piketech.com/files/user-manuals/MidIntegratIRwDTGSManual.pdf",
+      "sha256": "adff68cfe93532c32bc8bceb0f7859b0adae4869c13801c7aa2d5eff0579a7dc",
+      "inspected_printed_pages": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "observations": [
+    "The Nicolet guide distinguishes the sliding sample-access door from the hinged compartment cover. Its transmission-standard example loads and unloads through the sliding door.",
+    "The brochure photograph shows a raised grip at the sliding-window edge. The inspected photograph and open-cover drawing do not establish the current separate front cylindrical bar.",
+    "The current 8 mm diameter, 76 mm long bar and its placement are inferred reconstruction choices, not manufacturer dimensions or CAD. Existing source records already identify handle dimensions as inferred.",
+    "The available images do not prove that no hardware revision has a front handle. The finding is insufficient support for the selected affordance, not a categorical absence claim.",
+    "The PIKE manual places specimens and a gold reference on the upper sphere port, with a substitution procedure. It does not establish access through this particular reconstructed Nicolet sliding-window geometry."
+  ],
+  "affected_parts": [
+    "lid_handle_bar",
+    "lid_handle_post_-0.049",
+    "lid_handle_post_0.027"
+  ],
+  "builder": "assets/nicolet_6700_v1/build.py",
+  "builder_sha256": "35149d215e6475f141b44a23acdbb18e5309348d4779e19cb15c4191d62834e3",
+  "prior": "assets/nicolet_6700_mechanism_v1/cover_grasp_prior.json",
+  "prior_sha256_before_annotation": "340c7ad2dd65d3bb1dd73455931d9f7f205a729a20b85a6140152893c416e242",
+  "disposition": {
+    "commercial_gripping_interface_verified": false,
+    "adopt_dex3_based_on_bar_fit": false,
+    "legacy_runs_and_delivered_movie_immutable": true,
+    "qualified_skill": false,
+    "next_action": "Check source-supported cover-edge and slider-grip access with the installed IntegratIR and the full robot. Keep inferred local dimensions explicit and retain the full installation, measurement, transfer and cleanup scope.",
+    "do_not_infer": "Neither the generic transmission sliding-door procedure nor a successful static bar grasp proves that the complete IntegratIR manipulation chain is executable."
+  },
+  "search_note": "Manufacturer URL fetch through the web reader returned an expired redirect; inspection used the previously downloaded PDF with the exact recorded SHA-256. Searches also found a university mirror of the same manufacturer guide. No reseller claim was used to establish device geometry."
+}

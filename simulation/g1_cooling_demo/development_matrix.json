@@ -1,0 +1,64 @@
+{
+  "registered_utc": "2026-10-26 14:33:00 UTC",
+  "scope": "Development perturbation and feedback tests. Not qualification trials; geometry/contact/sensor assumptions remain unqualified.",
+  "initialization": "Robot starts standing, tray on a known ordinary workbench. Loaded cases start with the source-defined copper stock already inside the tray; no robot-loading credit.",
+  "cases": [
+    {
+      "id": "nominal_empty",
+      "tray_offset_m": [
+        0,
+        0
+      ],
+      "payload": false
+    },
+    {
+      "id": "near_empty",
+      "tray_offset_m": [
+        -0.008,
+        0
+      ],
+      "payload": false
+    },
+    {
+      "id": "far_empty",
+      "tray_offset_m": [
+        0.008,
+        0
+      ],
+      "payload": false
+    },
+    {
+      "id": "left_empty",
+      "tray_offset_m": [
+        0,
+        0.008
+      ],
+      "payload": false
+    },
+    {
+      "id": "right_empty",
+      "tray_offset_m": [
+        0,
+        -0.008
+      ],
+      "payload": false
+    },
+    {
+      "id": "nominal_copper",
+      "tray_offset_m": [
+        0,
+        0
+      ],
+      "payload": true
+    }
+  ],
+  "independent_evaluation": [
+    "standing and motor limits throughout",
+    "depth-gated policy transitions",
+    "continuous motor replay",
+    "outbound displacement at least 4 cm, real lift at least 7 cm",
+    "final tray return within 2 cm and hands released",
+    "no payload loss if loaded"
+  ],
+  "full_paper_branch_credit": 0
+}

@@ -77,6 +77,116 @@ Request changes or keep the relevant acceptance gate open for:
 
 A genuinely unobserved feature can remain a labeled inference; a known task-critical mismatch cannot be cleared by adding an approximation disclaimer. Record each decision and limitation in the PR. Reference fidelity, interaction readiness and full task execution remain separate decisions.
 
+## 7. Whole-laboratory asset and layout acceptance
+
+The directional-cooling pilot follows the owner's asset-first review order:
+complete and present its assets and laboratory scenes, obtain the owner's
+acceptance of that exact revision, then develop the manipulation sequences.
+Existing paper requirements identify needed objects, interfaces and access
+states during this phase. Static poses, opening sweeps and clearance probes
+may test the scene; they are not new manipulation episodes. This sequencing
+does not require completed controllers as a prerequisite for asset review.
+
+### Complete inventory and academic provenance
+
+Account for all paper-required instruments, separate accessories, custom
+apparatus, raw stock, intermediate specimens, tools, consumables, fixtures,
+storage and supporting facilities. Reconcile the inventory against every
+represented paper branch. Distinguish asset types from physical instance
+counts, and split grouped resource descriptions before declaring completeness.
+Two simultaneous apparatus or measurement channels require actual instance
+allocations; a single attractive display model does not cover both.
+
+A paper-derived experiment can use an authored robot laboratory. Identify its
+room dimensions, furniture and layout as authored design unless sources
+establish the historical arrangement. Preserve the paper's apparatus geometry,
+experimental conditions and indoor/outdoor requirements. Keep evidence for
+commercial models, photographs, CAD licenses, dimension uncertainty and source
+conflicts alongside the assets. Preserve manufacturer geometry at physical
+scale; adapt furniture and layout to the robot instead of resizing devices.
+
+### Space for the whole humanoid
+
+Review a dimensioned floor plan and the 3D scene together. Include walls,
+columns, doors and their swings, thresholds, benches, under-bench structures,
+storage, service routes and the approach to each station. Treat circulation,
+turning, carrying, working, service access and emergency access as distinct
+space requirements. Temporary carts, staged samples, open cabinets and
+extended instrument components count as obstacles in the relevant state.
+
+For each route and workstation, record:
+
+- The pinned robot body and both hand models, posture/joint ranges, carried
+  object or tool and any geometric uncertainty. A standing body silhouette
+  alone is insufficient for movement clearance.
+- A full-body swept envelope for entry, transit, turning, forward/backward
+  departure, bilateral reaching and the largest relevant carried load. Show
+  self/environment collisions and margins at elbows, fingers, torso, head,
+  feet and the carried object. Sampled poses must disclose sampling density
+  and interpolation assumptions; sparse keyframes do not prove continuous
+  clearance.
+- Clear widths/heights at bottlenecks and turns, support areas at workstations,
+  door/lid/drawer sweeps and access to instrument controls, connectors, sample
+  chambers and maintenance panels. Nominal bench spacing is not usable width.
+- For each accepted clearance, the modeled envelope, added uncertainty margin,
+  manufacturer requirement and applicable site requirement, with evidence and
+  the worst-case state. Derive the selected dimension from these constraints;
+  there is no universal aisle width for all humanoid laboratories.
+
+Geometric clearance does not establish dynamic balance, stopping distance or
+safe separation from people. Record the additional fault, falling and
+protective-space assumptions needed for the chosen robot. Where the exact
+hand, carrying geometry or stopping data is missing, conservative draft
+envelopes may support layout work, but affected final gates remain open.
+
+### Safe use and applicability
+
+Maintain a scene risk register linking each relevant hazard to a physical
+location, source, control, inspection evidence and residual limitation. Review
+equipment support/bench and floor loads, stability, sharp edges, pinch points,
+heated baths, water near electrical equipment, cable/hose routing, stored
+chemicals and coatings, required exhaust, waste storage, emergency controls
+and unobstructed access/egress. Separate fabrication/coating, wet calibration,
+dry electrical/optical measurement and outdoor measurement where the process
+requirements warrant it; do not combine all processes on a presentation table.
+Specify roof-edge protection and access if a rooftop is selected. Protective
+fixtures and warning labels must correspond to actual modeled provisions.
+
+Check manufacturer installation/safety manuals and material safety data for
+the selected configuration. Record site jurisdiction and relevant current
+requirements before claiming regulatory compliance; the Singapore timezone
+or language of a discussion does not establish the laboratory's location.
+Scene review is a review of modeled design, not authorization to operate
+physical equipment. Any necessary physical engineering or site safety review
+remains a separate recorded requirement.
+
+Reference register inspected on 23 October 2026:
+
+- [ISO 12100:2010 official abstract](https://www.iso.org/standard/51528.html):
+  machinery hazard identification, risk assessment and risk reduction provide
+  the methodological reference. The full standard has not been reviewed in
+  this update; citing its abstract does not establish conformance.
+- [ISO 10218-2:2025 official scope](https://www.iso.org/standard/73934.html):
+  concerns industrial robot applications and cells. Determine applicability
+  to the selected humanoid laboratory explicitly; do not declare compliance
+  based only on a robot model or simulation. Full text not reviewed here.
+- [Stanford laboratory design considerations](https://ehs-library.stanford.edu/manual/laboratory-standard-design-guidelines/laboratory-design-considerations):
+  a site-specific reference for unobstructed circulation, equipment service
+  access and cart storage. Its jurisdictional dimensions are not adopted as
+  universal humanoid clearance thresholds.
+
+### Review package and decision
+
+Supply the reconciled inventory, source/model comparisons for each asset,
+dimensioned floor plan, interactive 3D inspection, station close-ups, relevant
+open/closed states, robot and load envelopes, measured clearance/collision
+reports, risk register and unresolved findings. Cite exact model and scene
+hashes in the acceptance record, with reviewer, date and evidence for the
+owner's decision. Automated checks may check geometry and records; they must
+not manufacture that decision. A later asset, robot or layout change reopens
+the affected gates. Accept only the declared asset/scene scope; runtime task
+success and physical-site certification require their own evidence.
+
 ## Existing packages
 
 Historical static scenes, proxies, storyboards and frozen review receipts retain their original scope. This policy does not certify, rename or rewrite them. When revising one, create a new version with a new review record, audit its equipment against these gates and preserve the prior package's provenance. Do not count an untouched historical illustration as a device that passed the new standard. Publication and reuse rights still apply to all new references and geometry.

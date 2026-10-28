@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "executor_and_policy_completed",
+      "passed": true
+    },
+    {
+      "name": "floating_robot_without_weld",
+      "passed": true
+    },
+    {
+      "name": "motors_drive_hinges_only",
+      "passed": true
+    },
+    {
+      "name": "recorded_code_matches_snapshots",
+      "passed": true
+    },
+    {
+      "name": "motor_limits",
+      "passed": true
+    },
+    {
+      "name": "standing_throughout",
+      "passed": true
+    },
+    {
+      "name": "actual_outbound_transport",
+      "passed": true,
+      "maximum_m": 0.08633746496009172
+    },
+    {
+      "name": "actual_lift_at_least_7cm",
+      "passed": true,
+      "maximum_m": 0.09617105640329371
+    },
+    {
+      "name": "required_distinct_lifts",
+      "passed": true,
+      "intervals": [
+        {
+          "begin_s": 18.26000000000076,
+          "end_s": 25.139999999996945
+        },
+        {
+          "begin_s": 53.58000000001952,
+          "end_s": 60.320000000027754
+        }
+      ],
+      "required": 2
+    },
+    {
+      "name": "returned_to_source_within_2cm",
+      "passed": true,
+      "final_error_m": 0.0038951849391699383
+    },
+    {
+      "name": "tray_stable_after_release",
+      "passed": true
+    },
+    {
+      "name": "final_release_on_table",
+      "passed": true,
+      "support_geoms": [
+        "lab_part_214"
+      ]
+    },
+    {
+      "name": "outcome_transitions_have_fresh_depth_evidence",
+      "passed": true,
+      "transition_count": 8
+    },
+    {
+      "name": "separate_sensor_actor",
+      "passed": true
+    },
+    {
+      "name": "complete_tray_off_table_at_peak",
+      "passed": true,
+      "minimum_clearance_m": 0.05453804337330759
+    },
+    {
+      "name": "payload_retained_in_tray",
+      "passed": true,
+      "identity": "buerkle_spatula",
+      "body_mass_kg": 0.009293846214091642,
+      "maximum_local_xy_extent_m": [
+        0.07732680025085575,
+        0.07642598949452574
+      ],
+      "maximum_below_tray_origin_m": 0.0
+    },
+    {
+      "name": "continuous_motor_replay_matches",
+      "passed": true,
+      "max_qpos_error": 0.0,
+      "max_qvel_error": 0.0
+    },
+    {
+      "name": "no_external_applied_forces",
+      "passed": true
+    }
+  ],
+  "scope": "One continuous carrier transport subtask; no full-paper or acceptance-trial credit.",
+  "whole_paper_validated": false,
+  "qualified_paper_branches": 0,
+  "metrics": {
+    "duration_s": 80.5399999999937,
+    "lift_m": 0.09617105640329371,
+    "maximum_transport_m": 0.08633746496009172,
+    "final_displacement_m": 0.0038951849391699383,
+    "minimum_tray_clearance_at_peak_m": 0.05453804337330759,
+    "lift_intervals": [
+      {
+        "begin_s": 18.26000000000076,
+        "end_s": 25.139999999996945
+      },
+      {
+        "begin_s": 53.58000000001952,
+        "end_s": 60.320000000027754
+      }
+    ],
+    "payload": {
+      "identity": "buerkle_spatula",
+      "body_mass_kg": 0.009293846214091642,
+      "maximum_local_xy_extent_m": [
+        0.07732680025085575,
+        0.07642598949452574
+      ],
+      "maximum_below_tray_origin_m": 0.0
+    }
+  },
+  "verifier_sha256": "46ff84c77097e59c6ff115987b5cc7e347f56e7a6ad00f03487a8124a77b3889",
+  "limitations": [
+    "Idealized depth/IMU and fixed-foot localization.",
+    "Known empty-bench background model and single-carrier visual prior.",
+    "No sensor calibration, full laboratory dynamics, walking or complete paper branches.",
+    "A loaded case starts preloaded; it grants no loading or fabrication credit."
+  ]
+}

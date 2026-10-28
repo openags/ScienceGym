@@ -1,0 +1,19 @@
+# Keep content-addressed robot sources, recordings and verification inputs exact.
+/assets/unitree_h2_v1/** -text
+/simulation/humanoid_v1/** -text
+/assets/cooling_lab_v1/** -text
+/viewer/lab_review_v1/** -text
+/assets/g1_sensor_rig_v1/** -text
+# Preserve vendor whitespace and legacy-encoded CAD headers as source evidence.
+/assets/g1_sensor_rig_v1/vendor/** -whitespace
+/assets/g1_sensor_rig_v1/vendor/**/*.STEP -diff
+/assets/g1_sensor_rig_v1/geometry/*.step -diff -whitespace
+# Generated trajectories and frozen evidence stay byte-exact across checkouts.
+# GitHub may collapse these data files; executable reviewers remain visible.
+/viewer/cooling_concept_v2/previews/** -text linguist-generated=true
+/viewer/cooling_concept_v2/audits/** -text linguist-generated=true
+/viewer/cooling_concept_v2/single_measurement_episode.json -text linguist-generated=true
+# Preserve upstream locomotion source snapshots, including vendor whitespace.
+/simulation/g1_cooling_demo/runs/*/locomotion_policy_source/reference/** -text -whitespace
+/simulation/g1_cooling_demo/locomotion_policy/reference/action_manager.h -text -whitespace
+/simulation/g1_cooling_demo/runs/*/plant_only_sentinel binary

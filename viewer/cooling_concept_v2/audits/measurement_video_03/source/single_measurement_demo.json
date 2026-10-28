@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "status": "continuous_procedure_composed_pending_review",
+  "updated_utc": "2026-10-27T08:28:06.960642+00:00",
+  "user_request": "Deliver a concise complete long-horizon experiment demonstration with the humanoid moving between workstations in the established laboratory.",
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "experiment": "One white-painted witness: mid-infrared reflectance measurement using a gold-reference substitution sequence.",
+  "robot": "Official Unitree G1 29DoF rev1.0 with Inspire FTP hands",
+  "scene": "runtime_scene.json",
+  "specimen": "optical_witness_white",
+  "stations": [
+    {
+      "id": "ftir_tool_staging",
+      "purpose": "Collect and finally return the ordinary tweezers."
+    },
+    {
+      "id": "cary_side_material_staging",
+      "purpose": "Collect the identified witness from its existing bench support; no Cary measurement is claimed."
+    },
+    {
+      "id": "ftir_measurement",
+      "purpose": "Gold background, sample loading, closed-compartment acquisition and unloading."
+    },
+    {
+      "id": "ftir_storage",
+      "purpose": "Place the measured witness on its declared clean support and protect the gold reference."
+    }
+  ],
+  "sequence": [
+    {
+      "id": "open_prepared_compartment",
+      "kind": "mechanism",
+      "reuse": "optical_approach_paths.json:ftir_open"
+    },
+    {
+      "id": "collect_tool",
+      "kind": "manipulation",
+      "reuse": "optical_delivery_episode.json:white_delivery_*tool/free_entry"
+    },
+    {
+      "id": "walk_to_materials",
+      "kind": "grounded_walk",
+      "reuse": "optical_delivery_episode.json:white_delivery_walk_to_cary_*"
+    },
+    {
+      "id": "collect_witness",
+      "kind": "manipulation",
+      "reuse": "optical_delivery_episode.json:white_delivery_approach_witness..white_delivery_to_carry"
+    },
+    {
+      "id": "carry_to_ftir",
+      "kind": "grounded_walk",
+      "reuse": "optical_delivery_episode.json:white_delivery_carry_to_ftir_*"
+    },
+    {
+      "id": "stage_witness_and_tool",
+      "kind": "manipulation",
+      "reuse": "optical_delivery_episode.json:white_delivery_above_support..white_delivery_free_exit"
+    },
+    {
+      "id": "install_gold_reference",
+      "kind": "manipulation",
+      "reuse": "reference_transfer.json reversed",
+      "connection_pending": false
+    },
+    {
+      "id": "close_reference_compartment",
+      "kind": "mechanism",
+      "reuse": "optical_approach_paths.json:ftir_close",
+      "connection_pending": false
+    },
+    {
+      "id": "background_measurement",
+      "kind": "acquisition",
+      "buttons": [
+        "BACKGROUND",
+        "OK / ENTER"
+      ],
+      "fit": "previews/ftir_buttons_01/fit.json",
+      "whole_body_plan": "previews/ftir_button_paths_01/plan.json",
+      "initial_configuration": "OMNIC running with the installed DLaTGS accessory selected; sample/reference selector remains SAMPLE.",
+      "demonstration_wait": {
+        "displayed_s": 12,
+        "inferred_instrument_interval_s": 60,
+        "actual_spectra_generated": false
+      }
+    },
+    {
+      "id": "open_and_store_gold",
+      "kind": "manipulation",
+      "reuse": [
+        "optical_approach_paths.json:ftir_open",
+        "reference_transfer.json"
+      ],
+      "connection_pending": false
+    },
+    {
+      "id": "mount_white_witness",
+      "kind": "manipulation",
+      "reuse": "optical_episode.json:white_mount_*"
+    },
+    {
+      "id": "close_sample_compartment",
+      "kind": "mechanism",
+      "reuse": "optical_approach_paths.json:ftir_close",
+      "connection_pending": false
+    },
+    {
+      "id": "sample_measurement",
+      "kind": "acquisition",
+      "buttons": [
+        "SAMPLE",
+        "OK / ENTER"
+      ],
+      "whole_body_plan": "previews/ftir_button_paths_01/plan.json",
+      "demonstration_wait": {
+        "displayed_s": 12,
+        "inferred_instrument_interval_s": 60,
+        "actual_spectra_generated": false
+      }
+    },
+    {
+      "id": "open_and_unload",
+      "kind": "manipulation",
+      "reuse": [
+        "optical_approach_paths.json:ftir_open",
+        "optical_episode.json:white_retrieve_*"
+      ],
+      "connection_pending": false
+    },
+    {
+      "id": "close_and_finish",
+      "kind": "mechanism",
+      "reuse": "optical_approach_paths.json:ftir_close",
+      "connection_pending": false
+    }
+  ],
+  "initial_conditions": [
+    "Witness is already fabricated and coated; this demonstration starts from characterized material identities, not fabrication.",
+    "Spectrometer and accessory are installed, aligned and connected; controller software is configured before the demonstration.",
+    "Gold reference starts protected in its cap; the white witness starts at its existing Cary-side bench support.",
+    "Controller-PC representation and detector/purge connections must be checked against the complete scene before claiming readiness."
+  ],
+  "final_conditions": [
+    "White witness rests on its assigned FTIR support.",
+    "Gold reference is protected in its cap.",
+    "Tweezers are returned to their supported staging pose.",
+    "Sample compartment is closed; both acquisition actions precede their corresponding unload."
+  ],
+  "sources": [
+    {
+      "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
+      "sha256": "0bd488af3213c5d68261feee2b48cc00bff740f42890a919b45450740af17e57",
+      "sections": "Printed pages 52–53: Sample, Background, OK/Enter; OMNIC must be running."
+    },
+    {
+      "url": "https://www.piketech.com/files/user-manuals/MidIntegratIRwDTGSManual.pdf",
+      "sha256": "adff68cfe93532c32bc8bceb0f7859b0adae4869c13801c7aa2d5eff0579a7dc",
+      "sections": "Printed pages 4–5: direct sample placement, gold background, substitution method and protective cap."
+    }
+  ],
+  "presentation": {
+    "clean_video": true,
+    "same_robot_and_room": true,
+    "show_complete_walks": true,
+    "camera": "Room-wide views during transfer; unobstructed close views for contact actions.",
+    "final_duration_s": 541.1399872210889,
+    "scientific_spectra_fabricated": false
+  },
+  "qualification": {
+    "continuous_episode_built": true,
+    "independent_composed_geometry_review": false,
+    "video_exported": false,
+    "dynamics_qualified": false,
+    "current_evidence": "See development_status.json for independent review and video export status."
+  },
+  "current_verified_video": {
+    "path": "media/cary_access_05.mp4",
+    "duration_s": 141.375,
+    "scope": "Separate Cary access clip, not this complete measurement."
+  }
+}

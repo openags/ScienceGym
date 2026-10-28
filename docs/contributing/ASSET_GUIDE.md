@@ -15,7 +15,7 @@ Useful contributions include:
 - **Fixtures and consumables:** holders, clamps, carriers, calibration references, expendable films, labels and replacement parts
 - **Room and robot interfaces:** benches, clearances, docks, doors, storage/quarantine areas, tool mounts and supported grasp targets
 
-Choose one interaction, such as loading a holder or replacing a cover, and show that a reviewer can understand its input state, action interface and output state. Whole-laboratory modeling is unnecessary for an initial asset PR.
+Choose one interaction, such as loading a holder or replacing a cover, and show that a reviewer can understand its input state, action interface and output state. Whole-laboratory modeling is unnecessary for an initial asset PR. The directional-cooling pilot has an additional owner-directed milestone: all required assets and laboratory scenes must pass the [laboratory review gates](REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development) before new manipulation-sequence development resumes. Component PR acceptance alone does not complete that milestone.
 
 ## Proposed asset package contract
 

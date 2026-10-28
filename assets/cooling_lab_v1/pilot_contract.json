@@ -1,0 +1,120 @@
+{
+  "schema_version": "sciencegym.humanoid_pilot_contract.v1",
+  "revision": "2026-10-24.assets_and_adapter.5",
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "authority": "Owner implementation choices and subsequent instruction: retain Unitree body; choose publicly supported hands without a manufacturer/model lock",
+  "phase": "asset_and_scene_development",
+  "owner_scene_acceptance": null,
+  "new_manipulation_development_allowed": false,
+  "robot": {
+    "body_candidate": "Unitree G1 29DoF rev 1.0",
+    "hands": [
+      "Inspire FTP left",
+      "Inspire FTP right"
+    ],
+    "same_model_evidence_based_reconstruction_allowed": true,
+    "unverified_dimensions_and_parameters_must_be_labeled": true,
+    "critical_missing_parameters_block_qualification": true,
+    "body_hand_compatibility_qualified": false,
+    "alternate_hand_substitution_allowed": true,
+    "body_manufacturer": "Unitree",
+    "silent_model_relabeling_allowed": false,
+    "selection_record": "assets/unitree_g1_inspire_v1/selection.json",
+    "resource_ids": [
+      "robot:G1_29DOF",
+      "robot:INSPIRE_FTP_LEFT",
+      "robot:INSPIRE_FTP_RIGHT"
+    ],
+    "selection_status": "source_geometry_integrated_static_scene_review",
+    "current_scene_reference": {
+      "body": "Unitree G1 29DoF rev 1.0",
+      "hands": "Official integrated Inspire FTP left/right",
+      "qualification_transfer_allowed": false
+    }
+  },
+  "observations": {
+    "actor_mode": "robot_sensors_only",
+    "proposed_added_cameras": [
+      "left wrist RGB",
+      "right wrist RGB"
+    ],
+    "camera_configuration_status": "native_head_nominal_preview_adapted_collar_clearance_screened_liner_and_cables_pending",
+    "allowed_channels": [
+      "camera RGB",
+      "camera depth",
+      "joint encoders",
+      "IMU",
+      "qualified tactile and contact sensor outputs"
+    ],
+    "forbidden_actor_channels": [
+      "simulator object poses",
+      "ground truth segmentation",
+      "hidden device states",
+      "collision contact enumeration",
+      "reference steps",
+      "reference plan",
+      "evaluator predicates",
+      "future outcomes"
+    ],
+    "evaluator_may_read_ground_truth": true,
+    "process_isolation_required": true,
+    "runtime_enforcement_implemented": false,
+    "camera_review_record": "assets/g1_sensor_rig_v1/rig.json",
+    "native_camera": "G1 D435i head RGB-D"
+  },
+  "adaptations": {
+    "added_cameras_allowed": true,
+    "ordinary_laboratory_tools_allowed": true,
+    "robot_specific_fixtures_allowed": false,
+    "added_fiducials_allowed": false,
+    "commercial_device_geometry_may_be_rescaled": false,
+    "custom_paper_apparatus_allowed": true,
+    "ordinary_fixture_selection_requires_reference": true,
+    "unresolved_legacy_resources": [
+      "tools:film_jig",
+      "additional_reconstructed_materials:reversible_emitter_jig",
+      "tools:supported_carrier"
+    ]
+  },
+  "campaign": {
+    "required_branch_count": 11,
+    "scope": "All declared paper-derived manipulation, shared preparation, transfers, reset and cleanup",
+    "scientific_result_agreement_required": false,
+    "physical_hardware_run_required": false,
+    "manual_work_inside_process_service_allowed": false,
+    "qualified_automatic_process_model_allowed": true,
+    "object_teleport_or_invisible_grasp_allowed": false,
+    "human_takeover_counts_as_success": false
+  },
+  "qualification_targets": {
+    "required_skill": {
+      "trials": 20,
+      "minimum_successes": 19
+    },
+    "each_branch": {
+      "trials": 10,
+      "minimum_successes": 9
+    },
+    "full_campaign": {
+      "consecutive_successes": 3
+    },
+    "disturbances": "Register source-based uncertainty and allowed initial-state ranges before trials; retain every failed trial",
+    "negative_cases": [
+      "missed grasp",
+      "slip",
+      "incomplete connector seating",
+      "blocked cover",
+      "sensor failure"
+    ],
+    "scope": "Engineering acceptance targets, not a statistical guarantee",
+    "qualified_skill_count": 0,
+    "qualified_humanoid_branch_count": 0,
+    "qualified_campaign_count": 0
+  },
+  "legacy_inputs": {
+    "selected_reconstruction": "tasks/directional_cooling_operations_v3/selected_reconstruction.json",
+    "disposition": "Historical Panda inputs remain immutable evidence; must not be used as the humanoid runtime configuration",
+    "operation_definitions": "Retained as requirements; ordinary-tool and sensor-only bindings must be requalified",
+    "body_foundation": "Privileged-state historical body test, not a sensor-only manipulation qualification"
+  }
+}

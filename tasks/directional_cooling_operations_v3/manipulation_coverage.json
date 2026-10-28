@@ -1,0 +1,2234 @@
+{
+  "schema_version": "sciencegym.cooling.manipulation.v1",
+  "unit": "step definitions, not attempts or independent experiments",
+  "branches": [
+    {
+      "branch_id": "BUILD_PAIR",
+      "source_obligation_ids": [
+        "MAIN_F2",
+        "SI_F1",
+        "METHOD_SOLAR"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "STOCK",
+        "MOVE",
+        "TRACK_DESIGN",
+        "MACHINE_PARTS",
+        "FAB_LOAD",
+        "FAB_RUN",
+        "FAB_UNLOAD",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "LAYOUT",
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "ASSEMBLY_QC",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "PLAN",
+        "STOCK",
+        "TRACK_DESIGN",
+        "MOVE",
+        "MACHINE_PARTS",
+        "FAB_LOAD",
+        "FAB_RUN",
+        "FAB_UNLOAD",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "LAYOUT",
+        "BASE",
+        "EMITTER",
+        "FILM",
+        "SHIELD",
+        "REFLECTOR",
+        "ASSEMBLY_QC"
+      ],
+      "manipulation_step_ids": [
+        "STOCK.02",
+        "STOCK.03",
+        "MOVE.02",
+        "MOVE.04",
+        "FAB_LOAD.03",
+        "FAB_LOAD.04",
+        "FAB_RUN.02",
+        "FAB_UNLOAD.01",
+        "FAB_UNLOAD.02",
+        "FAB_UNLOAD.03",
+        "COAT_LOAD.02",
+        "COAT_LOAD.03",
+        "COAT_RUN.01",
+        "COAT_RUN.02",
+        "COAT_RUN.06",
+        "LAYOUT.02",
+        "BASE.01",
+        "BASE.02",
+        "BASE.03",
+        "EMITTER.02",
+        "EMITTER.03",
+        "FILM.02",
+        "FILM.03",
+        "FILM.04",
+        "FILM.05",
+        "SHIELD.01",
+        "SHIELD.02",
+        "SHIELD.03",
+        "SHIELD.04",
+        "REFLECTOR.01",
+        "REFLECTOR.02",
+        "REFLECTOR.03",
+        "COAT_UNLOAD.02",
+        "COAT_UNLOAD.03",
+        "MACHINE_PARTS.01",
+        "MACHINE_PARTS.02",
+        "MACHINE_PARTS.03",
+        "MACHINE_PARTS.04",
+        "MACHINE_PARTS.05"
+      ],
+      "context_step_ids": [
+        "PLAN.01",
+        "PLAN.02",
+        "PLAN.03",
+        "PLAN.04",
+        "STOCK.01",
+        "STOCK.04",
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "FAB_LOAD.01",
+        "FAB_LOAD.02",
+        "FAB_LOAD.05",
+        "FAB_RUN.01",
+        "FAB_RUN.03",
+        "FAB_RUN.04",
+        "FAB_UNLOAD.04",
+        "COAT_LOAD.01",
+        "COAT_LOAD.04",
+        "COAT_RUN.03",
+        "COAT_RUN.04",
+        "COAT_RUN.05",
+        "LAYOUT.01",
+        "LAYOUT.03",
+        "BASE.04",
+        "EMITTER.01",
+        "EMITTER.04",
+        "FILM.01",
+        "FILM.06",
+        "REFLECTOR.04",
+        "ASSEMBLY_QC.01",
+        "ASSEMBLY_QC.02",
+        "ASSEMBLY_QC.03",
+        "ASSEMBLY_QC.04",
+        "COAT_UNLOAD.01",
+        "COAT_UNLOAD.04",
+        "MACHINE_PARTS.06",
+        "TRACK_DESIGN.01",
+        "TRACK_DESIGN.02",
+        "TRACK_DESIGN.03",
+        "TRACK_DESIGN.04"
+      ],
+      "interface_ids": [
+        "base",
+        "carrier",
+        "coating",
+        "cutting",
+        "emitter",
+        "film",
+        "machine_ui",
+        "reflector",
+        "shield",
+        "stock"
+      ]
+    },
+    {
+      "branch_id": "CALIBRATE",
+      "source_obligation_ids": [
+        "METHOD_CAL"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "CAL_BLOCK_PREP",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_FIT",
+        "CAL_UNLOAD",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "CAL_BLOCK_PREP",
+        "CAL_MOUNT",
+        "CAL_ACQUIRE",
+        "CAL_FIT",
+        "CAL_UNLOAD",
+        "TC_ATTACH",
+        "ASSEMBLY_QC"
+      ],
+      "manipulation_step_ids": [
+        "CAL_MOUNT.02",
+        "CAL_MOUNT.03",
+        "CAL_MOUNT.04",
+        "CAL_MOUNT.05",
+        "CAL_MOUNT.06",
+        "CAL_MOUNT.07",
+        "CAL_MOUNT.09",
+        "CAL_MOUNT.10",
+        "CAL_MOUNT.11",
+        "CAL_MOUNT.12",
+        "CAL_MOUNT.13",
+        "CAL_ACQUIRE.01",
+        "TC_ATTACH.02",
+        "TC_ATTACH.03",
+        "TC_ATTACH.04",
+        "TC_ATTACH.05",
+        "TC_ATTACH.06",
+        "TC_ATTACH.07",
+        "TC_ATTACH.08",
+        "TC_ATTACH.09",
+        "TC_ATTACH.10",
+        "TC_ATTACH.12",
+        "TC_ATTACH.13",
+        "TC_ATTACH.15",
+        "TC_ATTACH.16",
+        "TC_ATTACH.17",
+        "TC_ATTACH.18",
+        "CAL_UNLOAD.01",
+        "CAL_UNLOAD.02",
+        "CAL_UNLOAD.03",
+        "CAL_UNLOAD.04",
+        "CAL_UNLOAD.05",
+        "CAL_UNLOAD.06",
+        "CAL_BLOCK_PREP.02",
+        "CAL_BLOCK_PREP.03",
+        "CAL_BLOCK_PREP.04",
+        "CAL_BLOCK_PREP.06",
+        "CAL_BLOCK_PREP.07"
+      ],
+      "context_step_ids": [
+        "ASSEMBLY_QC.01",
+        "ASSEMBLY_QC.02",
+        "ASSEMBLY_QC.03",
+        "ASSEMBLY_QC.04",
+        "CAL_MOUNT.01",
+        "CAL_MOUNT.08",
+        "CAL_MOUNT.14",
+        "CAL_MOUNT.15",
+        "CAL_ACQUIRE.02",
+        "CAL_ACQUIRE.03",
+        "CAL_ACQUIRE.04",
+        "CAL_FIT.01",
+        "CAL_FIT.02",
+        "CAL_FIT.03",
+        "TC_ATTACH.01",
+        "TC_ATTACH.11",
+        "TC_ATTACH.14",
+        "TC_ATTACH.19",
+        "CAL_BLOCK_PREP.01",
+        "CAL_BLOCK_PREP.05",
+        "CAL_BLOCK_PREP.08"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "bath_fill",
+        "bath_lid",
+        "bath_ui",
+        "cal_block",
+        "carrier",
+        "cutting",
+        "daq_terminals",
+        "emitter",
+        "film",
+        "machine_ui",
+        "probe_attachment",
+        "reflector",
+        "rtd_meter",
+        "shield"
+      ]
+    },
+    {
+      "branch_id": "OPT_HEMISPHERICAL",
+      "source_obligation_ids": [
+        "MAIN_F2"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "WITNESS_PREP",
+        "WITNESS_CUT",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "WITNESS_PREP",
+        "MOVE",
+        "WITNESS_CUT",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "OPT_REFERENCE",
+        "OPT_MOUNT",
+        "OPT_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "COAT_LOAD.02",
+        "COAT_LOAD.03",
+        "COAT_RUN.01",
+        "COAT_RUN.02",
+        "COAT_RUN.06",
+        "OPT_REFERENCE.02",
+        "OPT_REFERENCE.03",
+        "OPT_REFERENCE.04",
+        "OPT_REFERENCE.05",
+        "OPT_REFERENCE.06",
+        "OPT_REFERENCE.07",
+        "OPT_REFERENCE.08",
+        "OPT_REFERENCE.09",
+        "OPT_MOUNT.02",
+        "OPT_MOUNT.03",
+        "OPT_MOUNT.04",
+        "OPT_MOUNT.05",
+        "OPT_MOUNT.06",
+        "OPT_MOUNT.07",
+        "OPT_SCAN.01",
+        "OPT_SCAN.02",
+        "OPT_UNLOAD.01",
+        "OPT_UNLOAD.02",
+        "OPT_UNLOAD.03",
+        "OPT_UNLOAD.04",
+        "OPT_UNLOAD.05",
+        "OPT_UNLOAD.06",
+        "COAT_UNLOAD.02",
+        "COAT_UNLOAD.03",
+        "WITNESS_CUT.02",
+        "WITNESS_CUT.03",
+        "WITNESS_CUT.04",
+        "WITNESS_PREP.03"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "COAT_LOAD.01",
+        "COAT_LOAD.04",
+        "COAT_RUN.03",
+        "COAT_RUN.04",
+        "COAT_RUN.05",
+        "OPT_REFERENCE.01",
+        "OPT_REFERENCE.10",
+        "OPT_MOUNT.01",
+        "OPT_SCAN.03",
+        "OPT_SCAN.04",
+        "OPT_SCAN.05",
+        "OPT_SUMMARY.01",
+        "OPT_SUMMARY.02",
+        "OPT_SUMMARY.03",
+        "COAT_UNLOAD.01",
+        "COAT_UNLOAD.04",
+        "WITNESS_CUT.01",
+        "WITNESS_CUT.05",
+        "WITNESS_PREP.01",
+        "WITNESS_PREP.02",
+        "WITNESS_PREP.04"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "carrier",
+        "coating",
+        "cutting",
+        "ftir_connections",
+        "optical_access",
+        "optical_accessory",
+        "optical_reference",
+        "optical_sample",
+        "stock"
+      ]
+    },
+    {
+      "branch_id": "OPT_ANGULAR",
+      "source_obligation_ids": [
+        "SI_F2"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "WITNESS_PREP",
+        "WITNESS_CUT",
+        "COAT_LOAD",
+        "COAT_RUN",
+        "COAT_UNLOAD",
+        "ANGLE_MOUNT",
+        "ANGLE_REFERENCE",
+        "ANGLE_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "ANGLE_MOUNT",
+        "ANGLE_REFERENCE",
+        "ANGLE_SCAN",
+        "OPT_UNLOAD",
+        "OPT_SUMMARY"
+      ],
+      "manipulation_step_ids": [
+        "ANGLE_MOUNT.01",
+        "ANGLE_MOUNT.02",
+        "ANGLE_MOUNT.03",
+        "ANGLE_MOUNT.04",
+        "ANGLE_MOUNT.05",
+        "ANGLE_MOUNT.06",
+        "ANGLE_MOUNT.07",
+        "ANGLE_SCAN.02",
+        "OPT_UNLOAD.01",
+        "OPT_UNLOAD.02",
+        "OPT_UNLOAD.03",
+        "OPT_UNLOAD.04",
+        "OPT_UNLOAD.05",
+        "OPT_UNLOAD.06",
+        "ANGLE_REFERENCE.02",
+        "ANGLE_REFERENCE.03",
+        "ANGLE_REFERENCE.04",
+        "ANGLE_REFERENCE.05",
+        "ANGLE_REFERENCE.07",
+        "ANGLE_REFERENCE.08",
+        "ANGLE_REFERENCE.09",
+        "ANGLE_REFERENCE.10"
+      ],
+      "context_step_ids": [
+        "ANGLE_MOUNT.08",
+        "ANGLE_SCAN.01",
+        "ANGLE_SCAN.03",
+        "ANGLE_SCAN.04",
+        "OPT_SUMMARY.01",
+        "OPT_SUMMARY.02",
+        "OPT_SUMMARY.03",
+        "ANGLE_REFERENCE.01",
+        "ANGLE_REFERENCE.06"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "angle_controls",
+        "optical_access",
+        "optical_accessory",
+        "optical_reference",
+        "optical_sample"
+      ]
+    },
+    {
+      "branch_id": "ENVIRONMENT",
+      "source_obligation_ids": [
+        "MAIN_F3",
+        "SI_F3",
+        "SI_F7",
+        "METHOD_SOLAR"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG"
+      ],
+      "manipulation_step_ids": [
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02"
+      ],
+      "context_step_ids": [
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "daq_box",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "TRACKED_STAGNATION",
+      "source_obligation_ids": [
+        "MAIN_F3"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "STAG_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "MOVE",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "STAG_LOG",
+        "STOP_SAFE",
+        "UNMOUNT"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "TRACK_ADJUST.02",
+        "TRACK_ADJUST.03",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "TRACK_ADJUST.01",
+        "TRACK_ADJUST.04",
+        "STAG_LOG.01",
+        "STAG_LOG.02",
+        "STAG_LOG.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "daq_box",
+        "heater_wiring",
+        "metal_lids",
+        "reflector",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "PID_POWER",
+      "source_obligation_ids": [
+        "MAIN_F4"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "HEATER_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "POWER_CHECK",
+        "PID_CONFIG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "POWER_BASELINE",
+        "PID_STEP",
+        "STEP_SUMMARY",
+        "HEATER_OFF",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "MOVE",
+        "HEATER_ATTACH",
+        "ASSEMBLY_QC",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "POWER_CHECK",
+        "PID_CONFIG",
+        "POWER_BASELINE",
+        "PID_STEP",
+        "STEP_SUMMARY",
+        "HEATER_OFF",
+        "STOP_SAFE",
+        "UNMOUNT"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "TRACK_ADJUST.02",
+        "TRACK_ADJUST.03",
+        "HEATER_ATTACH.02",
+        "HEATER_ATTACH.03",
+        "HEATER_ATTACH.04",
+        "HEATER_ATTACH.05",
+        "HEATER_ATTACH.06",
+        "HEATER_ATTACH.08",
+        "HEATER_ATTACH.09",
+        "HEATER_ATTACH.11",
+        "HEATER_ATTACH.12",
+        "HEATER_ATTACH.13",
+        "HEATER_ATTACH.14",
+        "HEATER_ATTACH.15",
+        "HEATER_ATTACH.16",
+        "PID_CONFIG.02",
+        "PID_STEP.01",
+        "HEATER_OFF.01",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "ASSEMBLY_QC.01",
+        "ASSEMBLY_QC.02",
+        "ASSEMBLY_QC.03",
+        "ASSEMBLY_QC.04",
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "TRACK_ADJUST.01",
+        "TRACK_ADJUST.04",
+        "HEATER_ATTACH.01",
+        "HEATER_ATTACH.07",
+        "HEATER_ATTACH.10",
+        "HEATER_ATTACH.17",
+        "POWER_CHECK.01",
+        "POWER_CHECK.02",
+        "POWER_CHECK.03",
+        "PID_CONFIG.01",
+        "PID_CONFIG.03",
+        "POWER_BASELINE.01",
+        "POWER_BASELINE.02",
+        "POWER_BASELINE.03",
+        "PID_STEP.02",
+        "PID_STEP.03",
+        "STEP_SUMMARY.01",
+        "STEP_SUMMARY.02",
+        "STEP_SUMMARY.03",
+        "STEP_SUMMARY.04",
+        "HEATER_OFF.02",
+        "HEATER_OFF.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "daq_box",
+        "emitter",
+        "film",
+        "heater",
+        "heater_wiring",
+        "metal_lids",
+        "reflector",
+        "shield",
+        "smu_ui",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "FIXED_LDPE",
+      "source_obligation_ids": [
+        "SI_F6"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "FIXED_SWAP",
+        "FIXED_QC",
+        "TC_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "BAND_CHECK",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "STAG_LOG",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "MOVE",
+        "HEATER_REMOVE",
+        "FIXED_SWAP",
+        "FIXED_QC",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "BAND_CHECK",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "STAG_LOG",
+        "STOP_SAFE",
+        "UNMOUNT"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "FIXED_SWAP.02",
+        "FIXED_SWAP.03",
+        "FIXED_SWAP.04",
+        "FIXED_SWAP.05",
+        "FIXED_SWAP.06",
+        "FIXED_SWAP.07",
+        "FIXED_SWAP.08",
+        "FIXED_SWAP.09",
+        "FIXED_SWAP.11",
+        "FIXED_SWAP.12",
+        "FIXED_SWAP.13",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02",
+        "HEATER_REMOVE.02",
+        "HEATER_REMOVE.03",
+        "HEATER_REMOVE.04",
+        "HEATER_REMOVE.05",
+        "HEATER_REMOVE.06",
+        "HEATER_REMOVE.07",
+        "HEATER_REMOVE.08",
+        "HEATER_REMOVE.09",
+        "HEATER_REMOVE.10",
+        "HEATER_REMOVE.11",
+        "HEATER_REMOVE.12",
+        "HEATER_REMOVE.13"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "STAG_LOG.01",
+        "STAG_LOG.02",
+        "STAG_LOG.03",
+        "FIXED_SWAP.01",
+        "FIXED_SWAP.10",
+        "FIXED_SWAP.14",
+        "BAND_CHECK.01",
+        "BAND_CHECK.02",
+        "BAND_CHECK.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03",
+        "FIXED_QC.01",
+        "FIXED_QC.02",
+        "FIXED_QC.03",
+        "HEATER_REMOVE.01",
+        "HEATER_REMOVE.14"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "cutting",
+        "daq_box",
+        "emitter",
+        "film",
+        "heater",
+        "heater_wiring",
+        "metal_lids",
+        "reflector",
+        "shield",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "MAP_CLEAR_DAY",
+      "source_obligation_ids": [
+        "SI_F5"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "MOVE",
+        "RESTORE_TRACKED",
+        "ASSEMBLY_QC",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_CONDITION",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "STOP_SAFE",
+        "UNMOUNT"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "TRACK_ADJUST.02",
+        "TRACK_ADJUST.03",
+        "MAP_ATTACH.02",
+        "MAP_ATTACH.03",
+        "MAP_ATTACH.04",
+        "MAP_ATTACH.05",
+        "MAP_ATTACH.07",
+        "MAP_ATTACH.08",
+        "MAP_ATTACH.09",
+        "MAP_ATTACH.11",
+        "MAP_ATTACH.12",
+        "MAP_ATTACH.13",
+        "MAP_ATTACH.14",
+        "MAP_ATTACH.15",
+        "MAP_LOG.01",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02",
+        "RESTORE_TRACKED.02",
+        "RESTORE_TRACKED.03",
+        "RESTORE_TRACKED.04",
+        "RESTORE_TRACKED.05",
+        "RESTORE_TRACKED.06",
+        "RESTORE_TRACKED.08",
+        "RESTORE_TRACKED.09",
+        "RESTORE_TRACKED.10"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "ASSEMBLY_QC.01",
+        "ASSEMBLY_QC.02",
+        "ASSEMBLY_QC.03",
+        "ASSEMBLY_QC.04",
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "TRACK_ADJUST.01",
+        "TRACK_ADJUST.04",
+        "MAP_ATTACH.01",
+        "MAP_ATTACH.06",
+        "MAP_ATTACH.10",
+        "MAP_ATTACH.16",
+        "MAP_ATTACH.17",
+        "MAP_CONDITION.01",
+        "MAP_CONDITION.02",
+        "MAP_CONDITION.03",
+        "MAP_LOG.02",
+        "MAP_LOG.03",
+        "MAP_SUMMARY.01",
+        "MAP_SUMMARY.02",
+        "MAP_SUMMARY.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03",
+        "RESTORE_TRACKED.01",
+        "RESTORE_TRACKED.07",
+        "RESTORE_TRACKED.11"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "cutting",
+        "daq_box",
+        "daq_terminals",
+        "film",
+        "heater_wiring",
+        "metal_lids",
+        "probe_attachment",
+        "reflector",
+        "shield",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "MAP_CLEAR_NIGHT",
+      "source_obligation_ids": [
+        "SI_F5"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "MAP_CONDITION",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "STOP_SAFE",
+        "UNMOUNT"
+      ],
+      "manipulation_step_ids": [
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "MAP_LOG.01",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02"
+      ],
+      "context_step_ids": [
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "MAP_CONDITION.01",
+        "MAP_CONDITION.02",
+        "MAP_CONDITION.03",
+        "MAP_LOG.02",
+        "MAP_LOG.03",
+        "MAP_SUMMARY.01",
+        "MAP_SUMMARY.02",
+        "MAP_SUMMARY.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "daq_box",
+        "heater_wiring",
+        "metal_lids",
+        "reflector",
+        "solar_mount",
+        "weather_mount"
+      ]
+    },
+    {
+      "branch_id": "MAP_HAZY_NOON",
+      "source_obligation_ids": [
+        "SI_F5"
+      ],
+      "declared_operation_ids": [
+        "PLAN",
+        "MOVE",
+        "TC_ATTACH",
+        "MAP_ATTACH",
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "MAP_CONDITION",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "COMPARE",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "reference_campaign_operation_ids": [
+        "SITE_SETUP",
+        "ENV_SETUP",
+        "SYNC",
+        "ENV_LOG",
+        "LID_BASELINE",
+        "LID_REMOVE",
+        "TRACK_ADJUST",
+        "MAP_CONDITION",
+        "MAP_LOG",
+        "MAP_SUMMARY",
+        "STOP_SAFE",
+        "UNMOUNT",
+        "COMPARE",
+        "MOVE",
+        "ARCHIVE",
+        "RESET",
+        "REPORT"
+      ],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04",
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04",
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05",
+        "SYNC.02",
+        "LID_BASELINE.01",
+        "LID_BASELINE.02",
+        "LID_REMOVE.02",
+        "LID_REMOVE.03",
+        "TRACK_ADJUST.02",
+        "TRACK_ADJUST.03",
+        "MAP_LOG.01",
+        "STOP_SAFE.01",
+        "UNMOUNT.01",
+        "UNMOUNT.02",
+        "ARCHIVE.02",
+        "RESET.01",
+        "RESET.02"
+      ],
+      "context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05",
+        "SITE_SETUP.01",
+        "SITE_SETUP.05",
+        "ENV_SETUP.06",
+        "ENV_SETUP.07",
+        "SYNC.01",
+        "SYNC.03",
+        "LID_BASELINE.03",
+        "LID_REMOVE.01",
+        "LID_REMOVE.04",
+        "TRACK_ADJUST.01",
+        "TRACK_ADJUST.04",
+        "MAP_CONDITION.01",
+        "MAP_CONDITION.02",
+        "MAP_CONDITION.03",
+        "MAP_LOG.02",
+        "MAP_LOG.03",
+        "MAP_SUMMARY.01",
+        "MAP_SUMMARY.02",
+        "MAP_SUMMARY.03",
+        "COMPARE.01",
+        "COMPARE.02",
+        "COMPARE.03",
+        "STOP_SAFE.02",
+        "STOP_SAFE.03",
+        "UNMOUNT.03",
+        "ARCHIVE.01",
+        "ARCHIVE.03",
+        "RESET.03",
+        "REPORT.01",
+        "REPORT.02",
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ],
+      "interface_ids": [
+        "acquisition_ui",
+        "ambient_mount",
+        "base",
+        "carrier",
+        "daq_box",
+        "heater_wiring",
+        "metal_lids",
+        "reflector",
+        "solar_mount",
+        "storage",
+        "weather_mount"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "operation_id": "PLAN",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "PLAN.01",
+        "PLAN.02",
+        "PLAN.03",
+        "PLAN.04"
+      ]
+    },
+    {
+      "operation_id": "STOCK",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "STOCK.02",
+        "STOCK.03"
+      ],
+      "scientific_context_step_ids": [
+        "STOCK.01",
+        "STOCK.04"
+      ]
+    },
+    {
+      "operation_id": "MOVE",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "MOVE.02",
+        "MOVE.04"
+      ],
+      "scientific_context_step_ids": [
+        "MOVE.01",
+        "MOVE.03",
+        "MOVE.05"
+      ]
+    },
+    {
+      "operation_id": "FAB_LOAD",
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "manipulation_step_ids": [
+        "FAB_LOAD.03",
+        "FAB_LOAD.04"
+      ],
+      "scientific_context_step_ids": [
+        "FAB_LOAD.01",
+        "FAB_LOAD.02",
+        "FAB_LOAD.05"
+      ]
+    },
+    {
+      "operation_id": "FAB_RUN",
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_TRACK"
+      ],
+      "manipulation_step_ids": [
+        "FAB_RUN.02"
+      ],
+      "scientific_context_step_ids": [
+        "FAB_RUN.01",
+        "FAB_RUN.03",
+        "FAB_RUN.04"
+      ]
+    },
+    {
+      "operation_id": "FAB_UNLOAD",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "FAB_UNLOAD.01",
+        "FAB_UNLOAD.02",
+        "FAB_UNLOAD.03"
+      ],
+      "scientific_context_step_ids": [
+        "FAB_UNLOAD.04"
+      ]
+    },
+    {
+      "operation_id": "COAT_LOAD",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "COAT_LOAD.02",
+        "COAT_LOAD.03"
+      ],
+      "scientific_context_step_ids": [
+        "COAT_LOAD.01",
+        "COAT_LOAD.04"
+      ]
+    },
+    {
+      "operation_id": "COAT_RUN",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "COAT_RUN.01",
+        "COAT_RUN.02",
+        "COAT_RUN.06"
+      ],
+      "scientific_context_step_ids": [
+        "COAT_RUN.03",
+        "COAT_RUN.04",
+        "COAT_RUN.05"
+      ]
+    },
+    {
+      "operation_id": "LAYOUT",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "LAYOUT.02"
+      ],
+      "scientific_context_step_ids": [
+        "LAYOUT.01",
+        "LAYOUT.03"
+      ]
+    },
+    {
+      "operation_id": "BASE",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "BASE.01",
+        "BASE.02",
+        "BASE.03"
+      ],
+      "scientific_context_step_ids": [
+        "BASE.04"
+      ]
+    },
+    {
+      "operation_id": "EMITTER",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "EMITTER.02",
+        "EMITTER.03"
+      ],
+      "scientific_context_step_ids": [
+        "EMITTER.01",
+        "EMITTER.04"
+      ]
+    },
+    {
+      "operation_id": "FILM",
+      "source_evidence_ids": [
+        "E_BUILD",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [
+        "FILM.02",
+        "FILM.03",
+        "FILM.04",
+        "FILM.05"
+      ],
+      "scientific_context_step_ids": [
+        "FILM.01",
+        "FILM.06"
+      ]
+    },
+    {
+      "operation_id": "SHIELD",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "SHIELD.01",
+        "SHIELD.02",
+        "SHIELD.03",
+        "SHIELD.04"
+      ],
+      "scientific_context_step_ids": []
+    },
+    {
+      "operation_id": "REFLECTOR",
+      "source_evidence_ids": [
+        "E_TRACK",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [
+        "REFLECTOR.01",
+        "REFLECTOR.02",
+        "REFLECTOR.03"
+      ],
+      "scientific_context_step_ids": [
+        "REFLECTOR.04"
+      ]
+    },
+    {
+      "operation_id": "ASSEMBLY_QC",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "ASSEMBLY_QC.01",
+        "ASSEMBLY_QC.02",
+        "ASSEMBLY_QC.03",
+        "ASSEMBLY_QC.04"
+      ]
+    },
+    {
+      "operation_id": "CAL_MOUNT",
+      "source_evidence_ids": [
+        "E_CAL",
+        "E_DAQ_MANUAL",
+        "E_BATH_FILL",
+        "E_TC_WIRE"
+      ],
+      "manipulation_step_ids": [
+        "CAL_MOUNT.02",
+        "CAL_MOUNT.03",
+        "CAL_MOUNT.04",
+        "CAL_MOUNT.05",
+        "CAL_MOUNT.06",
+        "CAL_MOUNT.07",
+        "CAL_MOUNT.09",
+        "CAL_MOUNT.10",
+        "CAL_MOUNT.11",
+        "CAL_MOUNT.12",
+        "CAL_MOUNT.13"
+      ],
+      "scientific_context_step_ids": [
+        "CAL_MOUNT.01",
+        "CAL_MOUNT.08",
+        "CAL_MOUNT.14",
+        "CAL_MOUNT.15"
+      ]
+    },
+    {
+      "operation_id": "CAL_ACQUIRE",
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "manipulation_step_ids": [
+        "CAL_ACQUIRE.01"
+      ],
+      "scientific_context_step_ids": [
+        "CAL_ACQUIRE.02",
+        "CAL_ACQUIRE.03",
+        "CAL_ACQUIRE.04"
+      ]
+    },
+    {
+      "operation_id": "CAL_FIT",
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "CAL_FIT.01",
+        "CAL_FIT.02",
+        "CAL_FIT.03"
+      ]
+    },
+    {
+      "operation_id": "TC_ATTACH",
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "manipulation_step_ids": [
+        "TC_ATTACH.02",
+        "TC_ATTACH.03",
+        "TC_ATTACH.04",
+        "TC_ATTACH.05",
+        "TC_ATTACH.06",
+        "TC_ATTACH.07",
+        "TC_ATTACH.08",
+        "TC_ATTACH.09",
+        "TC_ATTACH.10",
+        "TC_ATTACH.12",
+        "TC_ATTACH.13",
+        "TC_ATTACH.15",
+        "TC_ATTACH.16",
+        "TC_ATTACH.17",
+        "TC_ATTACH.18"
+      ],
+      "scientific_context_step_ids": [
+        "TC_ATTACH.01",
+        "TC_ATTACH.11",
+        "TC_ATTACH.14",
+        "TC_ATTACH.19"
+      ]
+    },
+    {
+      "operation_id": "OPT_REFERENCE",
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "manipulation_step_ids": [
+        "OPT_REFERENCE.02",
+        "OPT_REFERENCE.03",
+        "OPT_REFERENCE.04",
+        "OPT_REFERENCE.05",
+        "OPT_REFERENCE.06",
+        "OPT_REFERENCE.07",
+        "OPT_REFERENCE.08",
+        "OPT_REFERENCE.09"
+      ],
+      "scientific_context_step_ids": [
+        "OPT_REFERENCE.01",
+        "OPT_REFERENCE.10"
+      ]
+    },
+    {
+      "operation_id": "OPT_MOUNT",
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "manipulation_step_ids": [
+        "OPT_MOUNT.02",
+        "OPT_MOUNT.03",
+        "OPT_MOUNT.04",
+        "OPT_MOUNT.05",
+        "OPT_MOUNT.06",
+        "OPT_MOUNT.07"
+      ],
+      "scientific_context_step_ids": [
+        "OPT_MOUNT.01"
+      ]
+    },
+    {
+      "operation_id": "OPT_SCAN",
+      "source_evidence_ids": [
+        "E_OPT"
+      ],
+      "manipulation_step_ids": [
+        "OPT_SCAN.01",
+        "OPT_SCAN.02"
+      ],
+      "scientific_context_step_ids": [
+        "OPT_SCAN.03",
+        "OPT_SCAN.04",
+        "OPT_SCAN.05"
+      ]
+    },
+    {
+      "operation_id": "ANGLE_MOUNT",
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "manipulation_step_ids": [
+        "ANGLE_MOUNT.01",
+        "ANGLE_MOUNT.02",
+        "ANGLE_MOUNT.03",
+        "ANGLE_MOUNT.04",
+        "ANGLE_MOUNT.05",
+        "ANGLE_MOUNT.06",
+        "ANGLE_MOUNT.07"
+      ],
+      "scientific_context_step_ids": [
+        "ANGLE_MOUNT.08"
+      ]
+    },
+    {
+      "operation_id": "ANGLE_SCAN",
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "manipulation_step_ids": [
+        "ANGLE_SCAN.02"
+      ],
+      "scientific_context_step_ids": [
+        "ANGLE_SCAN.01",
+        "ANGLE_SCAN.03",
+        "ANGLE_SCAN.04"
+      ]
+    },
+    {
+      "operation_id": "OPT_SUMMARY",
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_ANGLE",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "OPT_SUMMARY.01",
+        "OPT_SUMMARY.02",
+        "OPT_SUMMARY.03"
+      ]
+    },
+    {
+      "operation_id": "SITE_SETUP",
+      "source_evidence_ids": [
+        "E_STAG",
+        "E_TRACK"
+      ],
+      "manipulation_step_ids": [
+        "SITE_SETUP.02",
+        "SITE_SETUP.03",
+        "SITE_SETUP.04"
+      ],
+      "scientific_context_step_ids": [
+        "SITE_SETUP.01",
+        "SITE_SETUP.05"
+      ]
+    },
+    {
+      "operation_id": "ENV_SETUP",
+      "source_evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "manipulation_step_ids": [
+        "ENV_SETUP.01",
+        "ENV_SETUP.02",
+        "ENV_SETUP.03",
+        "ENV_SETUP.04",
+        "ENV_SETUP.05"
+      ],
+      "scientific_context_step_ids": [
+        "ENV_SETUP.06",
+        "ENV_SETUP.07"
+      ]
+    },
+    {
+      "operation_id": "SYNC",
+      "source_evidence_ids": [
+        "E_ENV"
+      ],
+      "manipulation_step_ids": [
+        "SYNC.02"
+      ],
+      "scientific_context_step_ids": [
+        "SYNC.01",
+        "SYNC.03"
+      ]
+    },
+    {
+      "operation_id": "LID_BASELINE",
+      "source_evidence_ids": [
+        "E_STAG"
+      ],
+      "manipulation_step_ids": [
+        "LID_BASELINE.01",
+        "LID_BASELINE.02"
+      ],
+      "scientific_context_step_ids": [
+        "LID_BASELINE.03"
+      ]
+    },
+    {
+      "operation_id": "LID_REMOVE",
+      "source_evidence_ids": [
+        "E_STAG"
+      ],
+      "manipulation_step_ids": [
+        "LID_REMOVE.02",
+        "LID_REMOVE.03"
+      ],
+      "scientific_context_step_ids": [
+        "LID_REMOVE.01",
+        "LID_REMOVE.04"
+      ]
+    },
+    {
+      "operation_id": "TRACK_ADJUST",
+      "source_evidence_ids": [
+        "E_TRACK",
+        "E_STAG"
+      ],
+      "manipulation_step_ids": [
+        "TRACK_ADJUST.02",
+        "TRACK_ADJUST.03"
+      ],
+      "scientific_context_step_ids": [
+        "TRACK_ADJUST.01",
+        "TRACK_ADJUST.04"
+      ]
+    },
+    {
+      "operation_id": "STAG_LOG",
+      "source_evidence_ids": [
+        "E_STAG",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "STAG_LOG.01",
+        "STAG_LOG.02",
+        "STAG_LOG.03"
+      ]
+    },
+    {
+      "operation_id": "HEATER_ATTACH",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [
+        "HEATER_ATTACH.02",
+        "HEATER_ATTACH.03",
+        "HEATER_ATTACH.04",
+        "HEATER_ATTACH.05",
+        "HEATER_ATTACH.06",
+        "HEATER_ATTACH.08",
+        "HEATER_ATTACH.09",
+        "HEATER_ATTACH.11",
+        "HEATER_ATTACH.12",
+        "HEATER_ATTACH.13",
+        "HEATER_ATTACH.14",
+        "HEATER_ATTACH.15",
+        "HEATER_ATTACH.16"
+      ],
+      "scientific_context_step_ids": [
+        "HEATER_ATTACH.01",
+        "HEATER_ATTACH.07",
+        "HEATER_ATTACH.10",
+        "HEATER_ATTACH.17"
+      ]
+    },
+    {
+      "operation_id": "POWER_CHECK",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "POWER_CHECK.01",
+        "POWER_CHECK.02",
+        "POWER_CHECK.03"
+      ]
+    },
+    {
+      "operation_id": "PID_CONFIG",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [
+        "PID_CONFIG.02"
+      ],
+      "scientific_context_step_ids": [
+        "PID_CONFIG.01",
+        "PID_CONFIG.03"
+      ]
+    },
+    {
+      "operation_id": "POWER_BASELINE",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "POWER_BASELINE.01",
+        "POWER_BASELINE.02",
+        "POWER_BASELINE.03"
+      ]
+    },
+    {
+      "operation_id": "PID_STEP",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [
+        "PID_STEP.01"
+      ],
+      "scientific_context_step_ids": [
+        "PID_STEP.02",
+        "PID_STEP.03"
+      ]
+    },
+    {
+      "operation_id": "STEP_SUMMARY",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "STEP_SUMMARY.01",
+        "STEP_SUMMARY.02",
+        "STEP_SUMMARY.03",
+        "STEP_SUMMARY.04"
+      ]
+    },
+    {
+      "operation_id": "HEATER_OFF",
+      "source_evidence_ids": [
+        "E_POWER"
+      ],
+      "manipulation_step_ids": [
+        "HEATER_OFF.01"
+      ],
+      "scientific_context_step_ids": [
+        "HEATER_OFF.02",
+        "HEATER_OFF.03"
+      ]
+    },
+    {
+      "operation_id": "FIXED_SWAP",
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [
+        "FIXED_SWAP.02",
+        "FIXED_SWAP.03",
+        "FIXED_SWAP.04",
+        "FIXED_SWAP.05",
+        "FIXED_SWAP.06",
+        "FIXED_SWAP.07",
+        "FIXED_SWAP.08",
+        "FIXED_SWAP.09",
+        "FIXED_SWAP.11",
+        "FIXED_SWAP.12",
+        "FIXED_SWAP.13"
+      ],
+      "scientific_context_step_ids": [
+        "FIXED_SWAP.01",
+        "FIXED_SWAP.10",
+        "FIXED_SWAP.14"
+      ]
+    },
+    {
+      "operation_id": "BAND_CHECK",
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "BAND_CHECK.01",
+        "BAND_CHECK.02",
+        "BAND_CHECK.03"
+      ]
+    },
+    {
+      "operation_id": "MAP_ATTACH",
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [
+        "MAP_ATTACH.02",
+        "MAP_ATTACH.03",
+        "MAP_ATTACH.04",
+        "MAP_ATTACH.05",
+        "MAP_ATTACH.07",
+        "MAP_ATTACH.08",
+        "MAP_ATTACH.09",
+        "MAP_ATTACH.11",
+        "MAP_ATTACH.12",
+        "MAP_ATTACH.13",
+        "MAP_ATTACH.14",
+        "MAP_ATTACH.15"
+      ],
+      "scientific_context_step_ids": [
+        "MAP_ATTACH.01",
+        "MAP_ATTACH.06",
+        "MAP_ATTACH.10",
+        "MAP_ATTACH.16",
+        "MAP_ATTACH.17"
+      ]
+    },
+    {
+      "operation_id": "MAP_CONDITION",
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "MAP_CONDITION.01",
+        "MAP_CONDITION.02",
+        "MAP_CONDITION.03"
+      ]
+    },
+    {
+      "operation_id": "MAP_LOG",
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [
+        "MAP_LOG.01"
+      ],
+      "scientific_context_step_ids": [
+        "MAP_LOG.02",
+        "MAP_LOG.03"
+      ]
+    },
+    {
+      "operation_id": "MAP_SUMMARY",
+      "source_evidence_ids": [
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "MAP_SUMMARY.01",
+        "MAP_SUMMARY.02",
+        "MAP_SUMMARY.03"
+      ]
+    },
+    {
+      "operation_id": "COMPARE",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "COMPARE.01",
+        "COMPARE.02",
+        "COMPARE.03"
+      ]
+    },
+    {
+      "operation_id": "STOP_SAFE",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "STOP_SAFE.01"
+      ],
+      "scientific_context_step_ids": [
+        "STOP_SAFE.02",
+        "STOP_SAFE.03"
+      ]
+    },
+    {
+      "operation_id": "UNMOUNT",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "UNMOUNT.01",
+        "UNMOUNT.02"
+      ],
+      "scientific_context_step_ids": [
+        "UNMOUNT.03"
+      ]
+    },
+    {
+      "operation_id": "ARCHIVE",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "ARCHIVE.02"
+      ],
+      "scientific_context_step_ids": [
+        "ARCHIVE.01",
+        "ARCHIVE.03"
+      ]
+    },
+    {
+      "operation_id": "RESET",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [
+        "RESET.01",
+        "RESET.02"
+      ],
+      "scientific_context_step_ids": [
+        "RESET.03"
+      ]
+    },
+    {
+      "operation_id": "REPORT",
+      "source_evidence_ids": [],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "REPORT.01",
+        "REPORT.02"
+      ]
+    },
+    {
+      "operation_id": "CAL_UNLOAD",
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "manipulation_step_ids": [
+        "CAL_UNLOAD.01",
+        "CAL_UNLOAD.02",
+        "CAL_UNLOAD.03",
+        "CAL_UNLOAD.04",
+        "CAL_UNLOAD.05",
+        "CAL_UNLOAD.06"
+      ],
+      "scientific_context_step_ids": []
+    },
+    {
+      "operation_id": "OPT_UNLOAD",
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_ANGLE"
+      ],
+      "manipulation_step_ids": [
+        "OPT_UNLOAD.01",
+        "OPT_UNLOAD.02",
+        "OPT_UNLOAD.03",
+        "OPT_UNLOAD.04",
+        "OPT_UNLOAD.05",
+        "OPT_UNLOAD.06"
+      ],
+      "scientific_context_step_ids": []
+    },
+    {
+      "operation_id": "ENV_LOG",
+      "source_evidence_ids": [
+        "E_ENV",
+        "E_SOLAR"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "ENV_LOG.01",
+        "ENV_LOG.02",
+        "ENV_LOG.03"
+      ]
+    },
+    {
+      "operation_id": "COAT_UNLOAD",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "COAT_UNLOAD.02",
+        "COAT_UNLOAD.03"
+      ],
+      "scientific_context_step_ids": [
+        "COAT_UNLOAD.01",
+        "COAT_UNLOAD.04"
+      ]
+    },
+    {
+      "operation_id": "FIXED_QC",
+      "source_evidence_ids": [
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "FIXED_QC.01",
+        "FIXED_QC.02",
+        "FIXED_QC.03"
+      ]
+    },
+    {
+      "operation_id": "CAL_BLOCK_PREP",
+      "source_evidence_ids": [
+        "E_CAL"
+      ],
+      "manipulation_step_ids": [
+        "CAL_BLOCK_PREP.02",
+        "CAL_BLOCK_PREP.03",
+        "CAL_BLOCK_PREP.04",
+        "CAL_BLOCK_PREP.06",
+        "CAL_BLOCK_PREP.07"
+      ],
+      "scientific_context_step_ids": [
+        "CAL_BLOCK_PREP.01",
+        "CAL_BLOCK_PREP.05",
+        "CAL_BLOCK_PREP.08"
+      ]
+    },
+    {
+      "operation_id": "WITNESS_CUT",
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [
+        "WITNESS_CUT.02",
+        "WITNESS_CUT.03",
+        "WITNESS_CUT.04"
+      ],
+      "scientific_context_step_ids": [
+        "WITNESS_CUT.01",
+        "WITNESS_CUT.05"
+      ]
+    },
+    {
+      "operation_id": "ANGLE_REFERENCE",
+      "source_evidence_ids": [
+        "E_ANGLE"
+      ],
+      "manipulation_step_ids": [
+        "ANGLE_REFERENCE.02",
+        "ANGLE_REFERENCE.03",
+        "ANGLE_REFERENCE.04",
+        "ANGLE_REFERENCE.05",
+        "ANGLE_REFERENCE.07",
+        "ANGLE_REFERENCE.08",
+        "ANGLE_REFERENCE.09",
+        "ANGLE_REFERENCE.10"
+      ],
+      "scientific_context_step_ids": [
+        "ANGLE_REFERENCE.01",
+        "ANGLE_REFERENCE.06"
+      ]
+    },
+    {
+      "operation_id": "HEATER_REMOVE",
+      "source_evidence_ids": [
+        "E_POWER",
+        "E_FIXED",
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [
+        "HEATER_REMOVE.02",
+        "HEATER_REMOVE.03",
+        "HEATER_REMOVE.04",
+        "HEATER_REMOVE.05",
+        "HEATER_REMOVE.06",
+        "HEATER_REMOVE.07",
+        "HEATER_REMOVE.08",
+        "HEATER_REMOVE.09",
+        "HEATER_REMOVE.10",
+        "HEATER_REMOVE.11",
+        "HEATER_REMOVE.12",
+        "HEATER_REMOVE.13"
+      ],
+      "scientific_context_step_ids": [
+        "HEATER_REMOVE.01",
+        "HEATER_REMOVE.14"
+      ]
+    },
+    {
+      "operation_id": "MACHINE_PARTS",
+      "source_evidence_ids": [
+        "E_BUILD"
+      ],
+      "manipulation_step_ids": [
+        "MACHINE_PARTS.01",
+        "MACHINE_PARTS.02",
+        "MACHINE_PARTS.03",
+        "MACHINE_PARTS.04",
+        "MACHINE_PARTS.05"
+      ],
+      "scientific_context_step_ids": [
+        "MACHINE_PARTS.06"
+      ]
+    },
+    {
+      "operation_id": "TRACK_DESIGN",
+      "source_evidence_ids": [
+        "E_TRACK",
+        "E_GEOM_AMBIG"
+      ],
+      "manipulation_step_ids": [],
+      "scientific_context_step_ids": [
+        "TRACK_DESIGN.01",
+        "TRACK_DESIGN.02",
+        "TRACK_DESIGN.03",
+        "TRACK_DESIGN.04"
+      ]
+    },
+    {
+      "operation_id": "WITNESS_PREP",
+      "source_evidence_ids": [
+        "E_OPT",
+        "E_FIXED"
+      ],
+      "manipulation_step_ids": [
+        "WITNESS_PREP.03"
+      ],
+      "scientific_context_step_ids": [
+        "WITNESS_PREP.01",
+        "WITNESS_PREP.02",
+        "WITNESS_PREP.04"
+      ]
+    },
+    {
+      "operation_id": "RESTORE_TRACKED",
+      "source_evidence_ids": [
+        "E_FIXED",
+        "E_MAP"
+      ],
+      "manipulation_step_ids": [
+        "RESTORE_TRACKED.02",
+        "RESTORE_TRACKED.03",
+        "RESTORE_TRACKED.04",
+        "RESTORE_TRACKED.05",
+        "RESTORE_TRACKED.06",
+        "RESTORE_TRACKED.08",
+        "RESTORE_TRACKED.09",
+        "RESTORE_TRACKED.10"
+      ],
+      "scientific_context_step_ids": [
+        "RESTORE_TRACKED.01",
+        "RESTORE_TRACKED.07",
+        "RESTORE_TRACKED.11"
+      ]
+    }
+  ]
+}

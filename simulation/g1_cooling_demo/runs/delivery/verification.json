@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "recorded_executor_finished",
+      "passed": true
+    },
+    {
+      "name": "floating_root_without_weld",
+      "passed": true
+    },
+    {
+      "name": "motors_drive_hinges_only",
+      "passed": true
+    },
+    {
+      "name": "source_snapshots_match",
+      "passed": true
+    },
+    {
+      "name": "torque_limits",
+      "passed": true
+    },
+    {
+      "name": "standing_throughout",
+      "passed": true
+    },
+    {
+      "name": "tray_lift_at_least_7cm",
+      "passed": true,
+      "actual_m": 0.09664831558738862,
+      "threshold_m": 0.07
+    },
+    {
+      "name": "tray_horizontal_transfer_at_least_4cm",
+      "passed": true,
+      "actual_m": 0.06502169702951945
+    },
+    {
+      "name": "tray_stable_after_release",
+      "passed": true
+    },
+    {
+      "name": "placed_on_table_height",
+      "passed": true,
+      "final_m": [
+        0.4884034871658182,
+        0.06133034907777421,
+        0.8999977501548742
+      ]
+    },
+    {
+      "name": "released_from_hands_on_table",
+      "passed": true
+    },
+    {
+      "name": "continuous_motor_replay_matches",
+      "passed": true,
+      "max_qpos_error": 0.0,
+      "max_qvel_error": 0.0
+    },
+    {
+      "name": "no_external_applied_forces",
+      "passed": true
+    },
+    {
+      "name": "separate_sensor_actor",
+      "passed": true
+    }
+  ],
+  "scope": "Single empty-tray contact development episode only.",
+  "qualified_paper_branches": 0,
+  "whole_paper_validated": false,
+  "limitations": [
+    "Idealized camera and IMU; fixed-foot state estimate.",
+    "Initial depth localization followed by timed motor targets; no grasp-success feedback policy.",
+    "No hardened process sandbox or sensor-calibration qualification.",
+    "No filled-tray, walking, assembly, cable, thin-film, recovery or campaign qualification."
+  ],
+  "metrics": {
+    "duration_s": 38.000000000000476,
+    "lift_m": 0.09664831558738862,
+    "transfer_m": 0.06502169702951945
+  },
+  "files": {
+    "world.xml": "f23a0259975c99737025ef045ea4af9d4540c1ffb225fa1ebfb69135470c4fa6",
+    "trace.npz": "f303eacac5bbbbff6cffc5ad84c9054bae53919d7444d59ba42e750344191efb",
+    "result.json": "9187c82e22cf243ae8c09ed29348405f2b7913dca379c12fd3cd815e6652f5f7"
+  }
+}

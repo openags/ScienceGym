@@ -29,10 +29,162 @@ Review of this pilot does not certify the other 43 families. Dataset totals must
 ## Reviewable implementation
 
 The [v3 task package](../../tasks/directional_cooling_operations_v3/README.md)
-contains 63 operation definitions, 248 observable reference steps, all 11 physical
-branch definitions, source/inference records and a fixture-dependent 364-occurrence
+contains 64 operation definitions, 352 observable reference steps, all 11 physical
+branch definitions, source/inference records and a fixture-dependent 365-occurrence
 symbolic walkthrough. The [v2 asset revision](../../assets/cooling_scene_assets_v2/README.md)
 contains editable metric geometry, a GLB export, named parts and inspection renders.
 The [conversion review](../../tasks/directional_cooling_operations_v3/review.json)
 and [visual review](../../assets/cooling_scene_assets_v2/VISUAL_REVIEW.md) retain open
 gates; this is an initial review revision, not an accepted gold-standard release.
+
+## Current focus
+
+The current robot candidate is **Unitree G1 29DoF + Inspire FTP**. The owner
+retains a Unitree body while allowing publicly supported hands from other
+manufacturers. The [official resource selection](HUMANOID_RESOURCE_SELECTION.md)
+and [complete model inspector](../../viewer/robot_resource_review_v1/index.html)
+replace the earlier Dex5-S-only direction. Existing H2 scene geometry and body
+evidence remain explicitly historical until the new installation is reviewed.
+
+The owner's latest instruction establishes **asset and laboratory scene
+acceptance first**. Current work is inventory reconciliation, manufacturer-
+grounded asset reconstruction, indoor/outdoor scene layout, safe-use review
+and sufficient space for the complete humanoid. New manipulation-sequence
+development resumes only after the owner accepts the concrete asset/scene
+revision. Existing operation definitions remain requirements for identifying
+assets and interfaces; geometric access checks may proceed during scene work.
+
+Use the [laboratory acceptance gates](../contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development),
+[asset inventory](../../assets/cooling_lab_v1/inventory.json) and
+[phase record](../../assets/cooling_lab_v1/acceptance_contract.json).
+The inventory captures 43 existing resource rows plus explicitly authored
+infrastructure/robot requirements; grouped rows still need decomposition and
+instance allocation. A new [interactive laboratory review](../../viewer/lab_review_v1/index.html)
+now places 35 asset instances in an authored four-zone scene. Original
+geometry supplies benches, shelves, fixtures, carriers, spill containment and
+unqualified extraction/control designs. These are not load-rated commercial
+furniture or certified engineering services. No owner acceptance is recorded.
+
+The room shell now includes six actual glazed wall openings, framed double-door
+portals with wall headers, 600 × 1200 mm ceiling infill panels at a 3.33 m
+underside, recessed lights and diffuser grilles replacing selected grid cells, wall raceways with capped service plates,
+and bench cabinet pedestals. Floor texture and signs are original generated
+assets. These are authored design details; the lights and grilles do not
+constitute an illumination or ventilation design. Door geometry and overhead
+solids stay in the checks when the viewer uses a visual cutaway. Static routes
+are checked against a 1.43 m source-derived G1 height probe; the lowest door header is
+2.20 m. The interface opens inside the room at a 1.65 m eye height. Drag to
+look, use arrows/WASD to move the observation point, or choose a room preset.
+Viewpoint collision guards only prevent browsing through registered obstacles;
+they are not a robot navigation controller or whole-body motion validation.
+
+Furniture now has 1.5 mm edge breaks (2 mm at worktops), separate cabinet
+carcass panels and drawer gaps, handle rosettes, screw heads, leveling bolts
+and rubber feet. Windows have glazing beads; door handles have standoffs and
+hinge barrels. These details preserve the declared outer furniture dimensions.
+The authored sRGB palette is converted to linear glTF colour factors. Seeded
+normal and metallic/roughness maps distinguish resin, paint, rubber and brushed
+metal appearances; they are visual design choices, not measured material or
+chemical-resistance data. See the [appearance review](../../assets/cooling_lab_v1/appearance_review.json)
+for provenance, manufacturer-photo spot checks and remaining discrepancies.
+
+The renderer recovers missing normals without changing triangle positions.
+This fixes absent received shadows on imported geometry. Approximate indoor
+reflection lighting and fixture-positioned preview lamps improve surface
+readability; they are not a photometric reproduction. Renderer-only batching
+preserves triangle counts and bounds (tolerance 1e-5 m); the current measured
+mesh counts are retained in the render verification rather than fixed here.
+Independently movable covers retain their original
+node identifiers. The [pixel regression](../../viewer/lab_review_v1/RENDER_VERIFICATION.json)
+compares shadow reception on/off under unchanged lighting and confirms the
+original view is restored. These images and checks do not establish fidelity.
+
+The main indoor area is 12 × 10 m; fabrication and coating annexes are each
+6 × 5 m; an open ground-level measurement area is 12 × 8 m. This is a proposed
+robot laboratory, not the paper's original rooftop/room reconstruction.
+Main circulation is 2 m wide; other declared routes are at least 1.6 m,
+with 2.4 m diameter turning reservations. The current G1-specific geometric
+screen uses 129 restricted source-kinematic poses, a 0.60 m body/hand radius
+plus 0.10 m margin and 1.43 m height allowance. Source wrist transforms replace
+the previous guessed adapter. Separately, 47 palm-position access points retain
+joint coordinates and external conflicts for inspection in the browser.
+These checks exclude walking, balance, grasp orientation, simultaneous two-hand
+work, target-device internals and dynamically carried loads.
+
+The EKO MS-56, unventilated MS-402 and HOBO U30 now have separate source-based
+candidate geometry. Their [source and dimension ledger](../../assets/cooling_lab_v1/outdoor_assets.json)
+records the inspected manufacturer drawings, hashes, inferred local dimensions
+and unresolved historical variants. The UI links directly to the relevant
+drawing pages. Manufacturer photographs/PDFs are not redistributed. Imported
+earlier assets retain their original physical dimensions and source hashes.
+All device models still require individual product-fidelity review.
+
+The [layout report](../../assets/cooling_lab_v1/layout_checks.json) checks
+corridors, overhead clearance, working/turning areas, supports, asset/fixture separation and sampled
+external opening sweeps. Cary, Nicolet, A25 and U30 opening states can be
+inspected in the browser; they are geometric state changes, not robot actions.
+Internal instrument contacts are not checked by these opening sweeps.
+The [risk register](../../assets/cooling_lab_v1/risk_register.json) retains
+load, utility, ventilation, service, outdoor and site-application gaps.
+Unqualified hand contact/dynamics, missing angular accessories, sensors/wiring, fabrication services,
+tools, consumables, waste and robot service provisions prevent full acceptance.
+
+To reproduce this review from the repository root, use a Python environment
+with `assets/cooling_lab_v1/requirements.txt` installed and a Chromium executable:
+
+```sh
+python assets/cooling_lab_v1/rebuild_review.py
+python simulation/cooling_v1/serve.py --port 8769
+# In a second terminal, substitute the installed Chromium path:
+python viewer/lab_review_v1/check_browser.py --browser /path/to/chromium
+python viewer/lab_review_v1/check_rendering.py --browser /path/to/chromium
+```
+
+The validator deliberately lowers a header into the standing envelope, blocks
+a route, shrinks an instrument support, overlaps a device with a carrier, and
+obstructs a cover sweep, and undersizes the selected hand envelope; all six faults
+must be rejected. Browser checks exercise visible open-state changes, views,
+measurement, inventory filters, revision-bound comment export, mobile layout
+and stale-scene rejection. GLB bytes are SHA-256 checked before display.
+These software checks do not close any of the eight laboratory acceptance gates.
+
+As of 23 October 2026 the final executor is a Unitree humanoid with its own
+arms and Unitree Dex5-S Pro hands, following the
+[embodiment requirements](../PROJECT_VISION.md#humanoid-execution-target).
+Existing Panda recordings are historical component tests. The humanoid
+body now has a [standing and unloaded bilateral wrist-motion foundation](../../simulation/humanoid_v1/index.html).
+Its official H2 meshes, physical trace, torque replay, five test cases and
+continuous video are retained in `simulation/humanoid_v1`. Exact Dex5-S Pro
+hand integration and every migrated manipulation remain unqualified; none
+of the historical Panda receipts counts as a humanoid manipulation episode.
+
+The pilot is being polished as one complete paper-derived manipulation task chain.
+The [manipulation dossier](../../tasks/directional_cooling_operations_v3/MANIPULATION_REVIEW.md)
+shows all 200 manual steps alongside the experimental conditions and checks that
+connect them. Each manual step identifies its object/interface, tool, retained
+support, observable completion and recovery. Scientific-result agreement and
+robot execution are separate validation questions.
+
+The October 17 pass corrects calibration preparation and terminal compatibility,
+angular reference ordering, apparatus disassembly/reassembly and thermal-map
+probe placement. Source-based terminal geometry now uses exact numbered pin IDs;
+the fixed-band variant has two nominal 50 micrometre LDPE layers. Remaining
+interface gaps are itemized, and the earlier review remains preserved.
+
+The October 19 contact workbench adds robot records for
+six rigid layers, a prebonded two-film cover, a full-length cabled RTD, physical
+multimeter button actuation, 241 installed-reflector adjustments and a cabled
+source-meter plug. The [visual workbench](../../simulation/cooling_v1/sample.html)
+shows the full recordings and links their evidence. Its
+[reproduction instructions](../../simulation/cooling_v1/README.md) include the
+local server and lossless trace archives. Keithley 2000/2425, Omega P-M RTD and
+KHR-2/2-P assets have separate source, part, interface and geometry records.
+
+The cover record is rejected by the added triangle/solid audit: its earlier
+force/position checks missed film penetration into the PE tube. The other
+records establish bounded physical capabilities. Subsequently, two complete
+seven-layer Panda assembly/recovery recordings passed 192 independent checks
+each. Frame and film preparation, paired apparatus, station handoffs and
+remaining instrument work are still incomplete. Humanoid execution requires
+fresh qualification of all operations. No complete branch or new paper is
+counted from these records.

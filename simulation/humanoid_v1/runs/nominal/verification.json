@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "case": "nominal",
+  "checks": [
+    {
+      "name": "input_archive_integrity",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "robot_manifest_identity",
+      "passed": true
+    },
+    {
+      "name": "original_robot_files_unchanged",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "trace_hash",
+      "passed": true
+    },
+    {
+      "name": "finite_trace",
+      "passed": true
+    },
+    {
+      "name": "continuous_clock_from_initialization",
+      "passed": true,
+      "samples": 4001,
+      "maximum_interval_s": 0.005000000000006111
+    },
+    {
+      "name": "trace_reaches_recorded_end",
+      "passed": true
+    },
+    {
+      "name": "matching_physics_engine",
+      "passed": true
+    },
+    {
+      "name": "motor_commands_reproduce_continuous_dynamics",
+      "passed": true,
+      "maximum_position_error": 0.0,
+      "maximum_velocity_error": 0.0,
+      "tolerance": 1e-07
+    },
+    {
+      "name": "floating_body_with_31_joint_motors",
+      "passed": true,
+      "nq": 38,
+      "nv": 37,
+      "actuators": 31
+    },
+    {
+      "name": "no_mocap_or_equality_support",
+      "passed": true
+    },
+    {
+      "name": "no_external_support_forces",
+      "passed": true
+    },
+    {
+      "name": "pelvis_inertia_from_official_urdf",
+      "passed": true,
+      "pelvis_mass_kg": 8.5477,
+      "total_mass_kg": 75.587457
+    },
+    {
+      "name": "commands_within_source_motor_limits",
+      "passed": true,
+      "peak_command_ratio": 0.5627366119205282
+    },
+    {
+      "name": "numerical_guards",
+      "passed": true,
+      "maximum_iterations": 6
+    },
+    {
+      "name": "hand_and_manipulation_credit_withheld",
+      "passed": true
+    },
+    {
+      "name": "continuous_root_motion",
+      "passed": true
+    },
+    {
+      "name": "unit_root_quaternions",
+      "passed": true
+    },
+    {
+      "name": "source_joint_ranges",
+      "passed": true
+    },
+    {
+      "name": "complete_stance_reach_return_chain",
+      "passed": true
+    },
+    {
+      "name": "both_feet_bear_load",
+      "passed": true,
+      "minimum_per_foot_N": 369.41607000508816
+    },
+    {
+      "name": "ground_bears_body_weight",
+      "passed": true,
+      "minimum_weight_ratio": 0.9989171793360075,
+      "maximum_weight_ratio": 1.0010316402783064
+    },
+    {
+      "name": "com_projection_inside_loaded_support",
+      "passed": true,
+      "minimum_margin_m": 0.08931575614709437
+    },
+    {
+      "name": "no_unintended_contact",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "bounded_upright_tilt",
+      "passed": true,
+      "maximum_rad": 0.017639862944019088
+    },
+    {
+      "name": "feet_do_not_slide",
+      "passed": true,
+      "maximum_horizontal_drift_m": 0.0032481979318323122
+    },
+    {
+      "name": "both_wrist_reach",
+      "passed": true,
+      "errors_m": {
+        "left": 0.0012734426747785827,
+        "right": 0.001256491184957915
+      }
+    },
+    {
+      "name": "both_wrist_return",
+      "passed": true,
+      "errors_m": {
+        "left": 0.0011308182132116294,
+        "right": 0.001125526927052077
+      }
+    },
+    {
+      "name": "both_wrists_actually_move",
+      "passed": true,
+      "displacement_m": [
+        0.1683736425194195,
+        0.16840715382096122
+      ]
+    }
+  ],
+  "result_sha256": "907ceccad8378a88f41897eed9b345f8d111c0317d944e8fbf7c1d7aabc73bb0",
+  "verifier_sha256": "503cd84371965e7bdd2305d1d49661e2f49d7f24da57688c6dde496014b1abaa",
+  "manipulation_accepted": false,
+  "whole_paper_validated": false,
+  "scope": "H2 body standing and unloaded wrist reach/return; no articulated Dex5-S hand, grasp, walking or paper-step acceptance"
+}

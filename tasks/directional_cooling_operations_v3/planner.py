@@ -135,6 +135,7 @@ def compile_reference(order):
                'session_id':session,'payload_ids':payload,'station_id':station,
                'record_kind':'planned_obligation_not_observation','attempts':[],
                'required_step_ids':[s['id'] for s in op['reference_steps']],**params}
+        event['required_iteration_contracts']=copy.deepcopy(op.get('iteration_contracts',[]))
         if oid=='MOVE':event['required_step_ids']=[s['id'] for s in ops['MOVE']['reference_steps']]
         transition(states,event);events.append(event)
         return event
@@ -146,6 +147,7 @@ def compile_reference(order):
         emit('COAT_RUN',[pid],coat_iterations=[{'coat_index':i,'apply_step':'COAT_RUN.02','wait_step':'COAT_RUN.03','record_kind':'planned_suboccurrence'} for i in (1,2,3)])
         for oid in ('COAT_UNLOAD','LAYOUT','BASE','EMITTER','FILM','SHIELD','REFLECTOR','ASSEMBLY_QC'):emit(oid,[pid])
     leaf='CALIBRATE';session='calibration'
+    emit('CAL_BLOCK_PREP',block_id='CAL_BLOCK',hole_roles=['REF_RTD','TC_W','TC_B']+['TC_MAP_%d'%i for i in range(1,7)])
     emit('CAL_MOUNT',probe_ids=['TC_W','TC_B']+['TC_MAP_%d'%i for i in range(1,7)])
     for i,value in enumerate(order['calibration_setpoints_C']):emit('CAL_ACQUIRE',setpoint_C=value,setpoint_index=i)
     emit('CAL_FIT');emit('CAL_UNLOAD')
@@ -177,7 +179,7 @@ def compile_reference(order):
                 config='Harrick12' if angle==12 else 'SpectraTechVariable'
                 config+='_%d_%s'%(angle,polarization)
                 emit('ANGLE_MOUNT',[wid],configuration_id=config,angle_deg=angle,polarization=polarization)
-                emit('ANGLE_REFERENCE',station='WS_FTIR',configuration_id=config)
+                emit('ANGLE_REFERENCE',station='WS_FTIR',configuration_id=config,angle_deg=angle,polarization=polarization)
                 for rep in range(order['optical_repeats']):emit('ANGLE_SCAN',[wid],configuration_id=config,reference_configuration_id=config,angle_deg=angle,polarization=polarization,repeat_index=rep)
                 emit('OPT_UNLOAD',[wid],station='WS_FTIR')
     emit('OPT_SUMMARY')
@@ -231,9 +233,14 @@ def compile_reference(order):
 def verify_plan(plan):
     require(plan['record_kind']=='symbolic_reference_plan_not_execution','execution claim in symbolic plan')
     states=initial_states();refs=set();ids=set();coat={};branches=set();seen=set()
+    ops={o['id']:o for o in read('operations')['operations']}
+    angular_setup={};angular_references={}
     for event in plan['occurrences']:
         require(event['id'] not in ids,'duplicate occurrence');ids.add(event['id'])
         oid=event['operation_id'];branches.add(event['branch_id']);seen.add(oid)
+        require(oid in ops,'unknown operation')
+        require(event.get('required_step_ids')==[s['id'] for s in ops[oid]['reference_steps']], 'omitted, duplicated or reordered step obligations')
+        require(event.get('required_iteration_contracts')==ops[oid].get('iteration_contracts',[]), 'missing or changed manual iteration scope')
         require(event.get('attempts')==[],'plan includes fabricated attempts')
         if oid=='WITNESS_PREP':
             for wid in event['witness_ids']:
@@ -242,7 +249,17 @@ def verify_plan(plan):
                 states[wid]=witness_state(wid,event['parent_material_lots'][wid])
         if oid=='COAT_RUN':
             require([x['coat_index'] for x in event['coat_iterations']]==[1,2,3],'three distinct coats required')
-        if oid=='ANGLE_MOUNT':refs={x for x in refs if x[1]!=event['station_id']}
+        if oid=='ANGLE_MOUNT':
+            refs={x for x in refs if x[1]!=event['station_id']}
+            angular_setup[event['station_id']]=(event.get('configuration_id'),event.get('angle_deg'),event.get('polarization'))
+            angular_references.pop(event['station_id'],None)
+        if oid=='ANGLE_REFERENCE':
+            config=(event.get('configuration_id'),event.get('angle_deg'),event.get('polarization'))
+            require(config==angular_setup.get(event['station_id']),'angular reference differs from physically set angle/polarization')
+            angular_references[event['station_id']]=config
+        if oid=='ANGLE_SCAN':
+            config=(event.get('configuration_id'),event.get('angle_deg'),event.get('polarization'))
+            require(config==angular_setup.get(event['station_id'])==angular_references.get(event['station_id']), 'angle/polarization changed after reference')
         if oid in ('OPT_REFERENCE','ANGLE_REFERENCE'):refs.add((event.get('configuration_id'),event['station_id']))
         if oid in ('OPT_SCAN','ANGLE_SCAN'):
             require(event['configuration_id']==event['reference_configuration_id'],'stale optical reference')

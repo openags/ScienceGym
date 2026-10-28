@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "scope": "Observed failed 40 mm palm approach at both flat heaters; retained best candidate from 150 finite starts per point, not proof of global infeasibility",
+  "scene_sha256": "297c000512b0ef212da55c1d59e33a71a9f76cc752614078468e80833ceda9cb",
+  "original_checker_sha256": "de4e9e913d4a057bd7113b71a0bbdbfe2dd1c17e1b7e0c1099954a8b9e2007bb",
+  "source_artifacts": [
+    {
+      "path": "assets/unitree_g1_inspire_v1/simulation/robot.xml",
+      "sha256": "6adafabf24632f86b5c4bbad8b85013addeb21cf3135b8c7718cfedeb8311f93"
+    },
+    {
+      "path": "assets/unitree_g1_inspire_v1/kinematics.py",
+      "sha256": "c9de27d078689a634fc3277c431e3be75a55eb042cd790c6ef21af2d13b31e5a"
+    },
+    {
+      "path": "assets/g1_sensor_rig_v1/rig.json",
+      "sha256": "7fa6a1e824a9632390098fae7fba168b2a003a04aa00c1f614cb24fec721898c"
+    },
+    {
+      "path": "assets/cooling_lab_v1/access_geometry.py",
+      "sha256": "d57fe86a986accf014ea234b6b194971ddd439487017190b05657dc0b308257d"
+    }
+  ],
+  "targets": [
+    {
+      "id": "heater_front",
+      "asset": "heater",
+      "station": "assembly_black",
+      "point_m": [
+        9.0,
+        2.5923985630273823,
+        0.941185528413771
+      ],
+      "front_y_m": 2.4,
+      "basis": "Authored front-envelope access point; not a measured button or grasp frame",
+      "source": null,
+      "attempts": 150,
+      "result": {
+        "hand": "left",
+        "base_position_m": [
+          9.0,
+          2.16,
+          0.792272897479
+        ],
+        "base_yaw_rad": 1.5707963267948966,
+        "joint_coordinates": {
+          "left_shoulder_pitch_joint": -0.5352593022765579,
+          "left_shoulder_roll_joint": -0.1837304913567374,
+          "left_elbow_joint": 0.4235904951315689,
+          "right_shoulder_pitch_joint": 0.1,
+          "right_shoulder_roll_joint": -0.2,
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.27132451712075895,
+          "left_wrist_roll_joint": 1.3396524866494535,
+          "left_wrist_pitch_joint": 0.2888598009489369,
+          "left_wrist_yaw_joint": -0.023086487040423716
+        },
+        "position_error_m": 1.2616050047894042e-08,
+        "external_overlaps": [
+          [
+            "left_wrist_roll_link",
+            "assembly_black"
+          ]
+        ],
+        "self_contacts_checked": true,
+        "self_penetrations_over_0_5mm": [
+          {
+            "links": [
+              "left_shoulder_yaw_link",
+              "torso_link"
+            ],
+            "penetration_m": 0.006999433648159959
+          }
+        ],
+        "candidate_rig_checked": false,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [],
+        "position_candidate": false
+      },
+      "status": "needs_layout_or_access_revision"
+    },
+    {
+      "id": "heater_white_front",
+      "asset": "heater_white",
+      "station": "assembly_white",
+      "point_m": [
+        2.0,
+        2.5923985630273823,
+        0.941185528413771
+      ],
+      "front_y_m": 2.4,
+      "basis": "Authored front-envelope access point; not a measured button or grasp frame",
+      "source": null,
+      "attempts": 150,
+      "result": {
+        "hand": "left",
+        "base_position_m": [
+          2.0,
+          2.16,
+          0.792272897479
+        ],
+        "base_yaw_rad": 1.5707963267948966,
+        "joint_coordinates": {
+          "left_shoulder_pitch_joint": -0.5352593815953672,
+          "left_shoulder_roll_joint": -0.1837304824050962,
+          "left_elbow_joint": 0.4235902212014349,
+          "right_shoulder_pitch_joint": 0.1,
+          "right_shoulder_roll_joint": -0.2,
+          "right_elbow_joint": 1.6,
+          "left_shoulder_yaw_joint": -0.2713244704602082,
+          "left_wrist_roll_joint": 1.3396501338438256,
+          "left_wrist_pitch_joint": 0.28885994543940013,
+          "left_wrist_yaw_joint": -0.023086385646744007
+        },
+        "position_error_m": 4.916224297196074e-11,
+        "external_overlaps": [
+          [
+            "left_wrist_roll_link",
+            "assembly_white"
+          ]
+        ],
+        "self_contacts_checked": true,
+        "self_penetrations_over_0_5mm": [
+          {
+            "links": [
+              "left_shoulder_yaw_link",
+              "torso_link"
+            ],
+            "penetration_m": 0.006999430267496621
+          }
+        ],
+        "candidate_rig_checked": false,
+        "candidate_rig_other_link_intersections": [],
+        "candidate_rig_parent_contacts_unqualified": [],
+        "position_candidate": false
+      },
+      "status": "needs_layout_or_access_revision"
+    }
+  ]
+}

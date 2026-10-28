@@ -1,0 +1,82 @@
+{
+  "status": "failed",
+  "failure": "ExecutionFailure: Retainer did not physically release: {'release_travel_m': 0.00010058752143363908, 'brake_lift_m': 9.997740118260884e-05, 'brake_contact_N': 0, 'position_m': [0.5599587927515076, 0.11753888602355808, 1.007]}",
+  "configuration": {
+    "source_solar_path_sha256": "e962449b155f2bd858f2eaa6cee0bb4e56f5588e8c6d6687874ea21e3ad5fc8d",
+    "emitter_origin_m": [
+      0.48,
+      0.16,
+      0.86
+    ],
+    "reflector_height_m": 0.15,
+    "reflector_diameter_m": 0.06,
+    "track_thickness_m": 0.0015,
+    "guide_reference_xy_m": [
+      0.08044008867990633,
+      -0.042355125808162974
+    ],
+    "guide_coefficients": [
+      -1.1585362962562346e-06,
+      0.21828854249001978,
+      1.181490933410126,
+      -2.1790601315486584,
+      -6.772798082572768
+    ],
+    "max_guide_fit_error_m": 1.1585362962562346e-06,
+    "brake_stiffness_N_m": 1000,
+    "brake_preload_m": 0.003,
+    "selected_cam_ratio": 1.0,
+    "robot_only_actuation": true,
+    "whole_paper_validated": false,
+    "brake_enabled": true,
+    "release_blocked": true,
+    "limitations": [
+      "Captured-guide and cam joint relations are selected ideal mechanism models",
+      "Fixture dimensions, friction, spring and grasp pedestal are inferred",
+      "Internal guide bushings and release cam use ideal joint relations; wear and elastic fixture deflection are not modeled",
+      "This world starts with track and disk mounted; it cannot qualify their installation"
+    ]
+  },
+  "input_sha256": {
+    "run_reflector.py": "c2af5c2892b6c743df3e82693044cada7e75ac455bc870cf890001eac3b1ff20",
+    "reflector_world.py": "108bc25067a3c73efdeba6d18dd83596d9da9aa1f0c2b94758ad6b011ceb51a9",
+    "hardware_control.py": "3828657a8e116d02ace37e51c66287f4cb5b9fc469159093057b994d708067e7",
+    "continuous_control.py": "3b904ca09023d8f20d44da6e5ae322abe2045ee9e60151ea8db67c3130c35e40",
+    "device_assets.py": "e7d6ba3a02ac74853d88586279acc1f21f23631f7297bc17efb5ee39398e4abd",
+    "control.py": "9fc19745120a62c5fe59a00542bb174821632a68992b227d034b29a3bb38ba7b",
+    "world.py": "dcb850941345da7a85384a1bdcde518ce82b1cb8d24667b929f743679c830db2",
+    "contact_safety.py": "24848b080f490eb8de35dff0131f0bb7790f970b510a2092d7d60aca7f1da794",
+    "workcell.xml": "b98a8cb80fe214f1469c9c3ac8964d451fad5ba0464fc9a4fc6e5ffffe5cf6cd"
+  },
+  "source_archive": "source_snapshot",
+  "observations": [
+    {
+      "label": "initial_brake_observed",
+      "time_s": 0.6000000000000004,
+      "observation": {
+        "release_travel_m": -1.6326619800861133e-05,
+        "brake_lift_m": -1.6344528345324574e-05,
+        "brake_contact_N": 3.013085471654679,
+        "position_m": [
+          0.5600681920391309,
+          0.1175627192150271,
+          1.007
+        ]
+      }
+    }
+  ],
+  "simulated_seconds": 4.689999999999901,
+  "selected_command_indices": [
+    0,
+    60,
+    120,
+    180,
+    240
+  ],
+  "whole_paper_validated": false,
+  "waiting_model": "Commands preserve order and physical state; long solar-time waits are external device-process intervals, not simulated stability tests",
+  "scope": "Physical carriage release, guided sliding and spring relock; pre-mounted disk/track, no source fabrication or campaign qualification",
+  "artifacts_sha256": {
+    "physics_trace.npz": "caa840785fc08e5f8b71c953b795d8ee7a9147f22f5882550723b90f188b9ef1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "sciencegym.asset_sources.v1",
+  "model": "Omega P-M-A-1/4-3-1/2-PS-12",
+  "source_type": "manufacturer_documentation_reconstruction",
+  "vendor_cad": false,
+  "sources": [
+    {"id": "paper", "url": "https://doi.org/10.1038/s41467-018-07293-9", "locator": "Methods: Temperature measurement", "supports": ["exact model identity", "immersion in drilled isothermal copper block", "Keithley 2000 readout"]},
+    {"id": "omega_pm", "url": "https://assets.omega.com/pdf/test-and-measurement-equipment/temperature/sensors/rtds/P-Ultra_RTD.pdf", "locator": "PDF page 1, C-83, Standard Dimensions ordering table and customization paragraph", "supports": ["part number grammar", "1/4 inch probe diameter", "3 inch probe length", "1/2 NPT mounting thread", "PS shielded PVC", "12 ft cable", "four-wire Pt100", "26 AWG stranded leads"]},
+    {"id": "thread_family", "url": "https://blog.misumiusa.com/npt-thread-fitting-chart/", "locator": "1/2 NPT table row", "supports": ["14 threads per inch", "nominal pipe OD 0.84 inch"], "limit": "This is a family thread reference, not a dimensioned drawing of this Omega fitting"}
+  ],
+  "interpretation": "The successive 3 and 1/2 fields describe probe length in inches and mounting thread. They are not a 3.5-inch probe length.",
+  "dimensions": {
+    "probe_diameter_m": {"value": 0.00635, "basis": "manufacturer ordering grammar"},
+    "immersion_length_m": {"value": 0.0762, "basis": "manufacturer ordering grammar"},
+    "cable_length_m": {"value": 3.6576, "basis": "manufacturer ordering grammar"},
+    "hex_across_flats_m": {"value": 0.0254, "basis": "inferred reconstruction; no exact fitting drawing found"},
+    "threaded_length_m": {"value": 0.015, "basis": "inferred reconstruction"},
+    "jacket_diameter_m": {"value": 0.004, "basis": "inferred reconstruction"},
+    "breakout_length_m": {"value": 0.08, "basis": "selected robot handling configuration"}
+  },
+  "limits": ["No exact vendor CAD was located", "Fitting envelope and wire colors require direct inspection for hardware use", "Thread mesh is visual and is not qualified for screwing simulation", "Cable GLB is a rest shape; cable dynamics require a separate physical model"],
+  "geometry_license": "Original reconstruction code and geometry; see repository license. Manufacturer images are not embedded."
+}

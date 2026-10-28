@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "status": "manufacturer_constrained_reconstruction",
+  "sources": [
+    {
+      "id": "BUERKLE_5386_0041",
+      "url": "https://www.buerkle.de/en/double-ended-spatula-with-an-angular-rounded-tip-made-of-stainless-steel_p5386-0041",
+      "sha256": "0487d9b68f14adb7ac7db662cbbfda61f2d93897923d1bb13017f10de524f8ec",
+      "locator": "Specifications: total 150 mm, both blades 45 by 9 mm, round handle 60 mm by diameter 3.5 mm; 304 stainless steel.",
+      "redistributed": false
+    },
+    {
+      "id": "BUERKLE_PRODUCT_PHOTO",
+      "url": "https://www.buerkle.de/products/Doppelspatel%20eckig-abgerundet%20Edelstahl/5386-0041/93545/image-thumb__93545__productDetail/5386-0041_doppelspatel_eckig_abgerundet_edelstahl_150mm_hauptbild_freigestellt.png",
+      "sha256": "e91eb23c6b0792173329c6ccf8bff9681c5ebf1cf5a4f5c7f9df85b8b7efa47d",
+      "locator": "Exact-SKU photograph; angular and rounded flat blades, continuous polished round stem.",
+      "redistributed": false
+    },
+    {
+      "id": "TEXWIPE_TX609",
+      "url": "https://www.texwipe.com/technicloth-tx609",
+      "sha256": "e2acb8c81d8885b29bcfc556752587dea5c33167a8edc5a879d95f5e7e1df90c",
+      "locator": "Dry, non-sterile, 45% polyester / 55% cellulose; 300 wipes per double-bagged pack, ten packs per case; lubricants among listed applications.",
+      "redistributed": false
+    },
+    {
+      "id": "TEXWIPE_TDS",
+      "url": "https://www.texwipe.com/images/uploaded/documents/Wipers/Texwipe-TechniCloth-TDS-ENG.pdf",
+      "sha256": "f802c7011c8c85e9802559d3f8838923b4581648ad2caf449e84ce69e6d42b5a",
+      "locator": "US-TDS-003 Rev.4/23. PDF page 2 product table; page 3 applications; page 4 typical basis weight 69 g/m2. Inspected original table, not only search extract.",
+      "redistributed": false
+    },
+    {
+      "id": "TEXWIPE_PRODUCT_PHOTO",
+      "url": "https://www.texwipe.com/images/thumbs/0000527_technicloth-tx609-nonwoven-dry-cleanroom-wipers-non-sterile.png",
+      "sha256": "3faac9a7fec7a2c6000e87dbc60f9fb095a27bbf15dd954887859e7816d695db",
+      "locator": "Transparent rectangular pouch, top tear region, white wipes and blue/black text.",
+      "redistributed": false
+    },
+    {
+      "id": "JUSTRITE_09100",
+      "url": "https://www.justrite.com/oily-waste-can-6-gallon-foot-operated-self-closing-cover",
+      "locator": "Manufacturer lists steel can, 23 L nominal capacity and oil-soaked cloth use. Existing source-linked asset reused.",
+      "redistributed": false,
+      "retrieval": "Web document inspected; no binary hash claimed."
+    }
+  ],
+  "manufacturer_facts": {
+    "spatula": {
+      "product": "Buerkle 5386-0041",
+      "length_m": 0.15,
+      "blade_length_m": 0.045,
+      "blade_width_m": 0.009,
+      "handle_length_m": 0.06,
+      "handle_diameter_m": 0.0035,
+      "material": "1.4301 / AISI 304 stainless steel",
+      "finish": "polished",
+      "blade_thickness_published": false
+    },
+    "wipes": {
+      "product": "Texwipe TX609",
+      "size_in": [
+        9,
+        9
+      ],
+      "rounded_catalogue_size_cm": [
+        23,
+        23
+      ],
+      "selected_size_m": [
+        0.2286,
+        0.2286
+      ],
+      "size_basis": "9 inches converted exactly; 23 cm is the rounded alternate catalogue notation, not a manufacturing tolerance.",
+      "material_mass_fractions": {
+        "polyester": 0.45,
+        "cellulose": 0.55
+      },
+      "basis_weight_g_m2": 69,
+      "basis_weight_scope": "Typical analysis; not an exact per-lot mass guarantee.",
+      "wipes_per_pack": 300,
+      "packs_per_case": 10,
+      "double_bagged": true,
+      "dry": true,
+      "sterile": false
+    }
+  },
+  "reconstruction": {
+    "spatula_blade_thickness_m": 0.0007,
+    "spatula_steel_density_kg_m3": 7900,
+    "spatula_transition": "Inferred smooth forged transition and edge radii; dimensions constrain the profile, no manufacturer CAD retrieved.",
+    "spatula_rest": "Round-stem neutral-roll reference on a horizontal surface; not a stable anti-roll fixture or dynamic qualification.",
+    "compressed_wipe_thickness_m": 0.00035,
+    "bag_film_thickness_m": 8e-05,
+    "package_envelope_m": [
+      0.252,
+      0.3,
+      0.116
+    ],
+    "package_shape": "Inferred lay-flat pillow pouch with separately represented inner and outer films, sealed margins and original text. Thickness, compression, wrinkles, film polymer and tear mechanics not measured.",
+    "wipe_surface": "Original procedural nonwoven appearance; no manufacturer photograph reused.",
+    "packing_count": "Select one 300-wipe pack, not one ten-pack shipping case."
+  },
+  "allocation_policy": {
+    "separate_applicators": [
+      "weather_mast_applicator",
+      "weather_silicone_applicator"
+    ],
+    "shared_wipe_pack": "weather_wipes_tx609",
+    "wipe_plan_per_fresh_assembly": {
+      "mast_preclean": 2,
+      "mast_postclean": 2,
+      "silicone_preclean": 4,
+      "silicone_postclean": 4
+    },
+    "fresh_assemblies": 3,
+    "trial_reset_budget_complete": false,
+    "spill_emergency_capacity_qualified": false,
+    "waste_candidate": "oily_waste_can",
+    "selected_grease_wipe_volume_reservation_l": 3.0,
+    "waste_loose_volume_factor": 4.0,
+    "waste_volume_basis": "Engineering planning envelope for 36 used wipes plus an upper bound of 15 g grease; not measured wet-wipe bulk density or accepted capacity.",
+    "waste_exclusions": [
+      "free liquids",
+      "sharps",
+      "coating/solvent waste",
+      "packaging films"
+    ],
+    "packaging_disposition": "Two clean packaging films retained by identity; separate clean packaging collection and opening/cutoff state remain to be assigned."
+  },
+  "provenance": {
+    "model_author": "ScienceGym original reconstruction",
+    "source_images_redistributed": false,
+    "source_documents_redistributed": false,
+    "manufacturer_cad_license": null,
+    "license_note": "No manufacturer CAD or artwork is redistributed; source documents and photographs remain manufacturer copyright. Original reconstruction follows repository licensing."
+  },
+  "owner_acceptance": null,
+  "robot_use_qualified": false
+}

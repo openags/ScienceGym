@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "case": "motors_off",
+  "checks": [
+    {
+      "name": "input_archive_integrity",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "robot_manifest_identity",
+      "passed": true
+    },
+    {
+      "name": "original_robot_files_unchanged",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "trace_hash",
+      "passed": true
+    },
+    {
+      "name": "finite_trace",
+      "passed": true
+    },
+    {
+      "name": "continuous_clock_from_initialization",
+      "passed": true,
+      "samples": 24,
+      "maximum_interval_s": 0.0050000000000000044
+    },
+    {
+      "name": "trace_reaches_recorded_end",
+      "passed": true
+    },
+    {
+      "name": "matching_physics_engine",
+      "passed": true
+    },
+    {
+      "name": "motor_commands_reproduce_continuous_dynamics",
+      "passed": true,
+      "maximum_position_error": 0.0,
+      "maximum_velocity_error": 0.0,
+      "tolerance": 1e-07
+    },
+    {
+      "name": "floating_body_with_31_joint_motors",
+      "passed": true,
+      "nq": 38,
+      "nv": 37,
+      "actuators": 31
+    },
+    {
+      "name": "no_mocap_or_equality_support",
+      "passed": true
+    },
+    {
+      "name": "no_external_support_forces",
+      "passed": true
+    },
+    {
+      "name": "pelvis_inertia_from_official_urdf",
+      "passed": true,
+      "pelvis_mass_kg": 8.5477,
+      "total_mass_kg": 75.587457
+    },
+    {
+      "name": "commands_within_source_motor_limits",
+      "passed": true,
+      "peak_command_ratio": 0.0
+    },
+    {
+      "name": "numerical_guards",
+      "passed": true,
+      "maximum_iterations": 9
+    },
+    {
+      "name": "hand_and_manipulation_credit_withheld",
+      "passed": true
+    },
+    {
+      "name": "continuous_root_motion",
+      "passed": true
+    },
+    {
+      "name": "unit_root_quaternions",
+      "passed": true
+    },
+    {
+      "name": "source_joint_ranges",
+      "passed": true
+    },
+    {
+      "name": "physical_counterexample_rejected",
+      "passed": true,
+      "failure": "RuntimeError: Missing physical foot support"
+    },
+    {
+      "name": "all_motors_physically_disabled",
+      "passed": true
+    },
+    {
+      "name": "invalid_support_not_credited",
+      "passed": true
+    }
+  ],
+  "result_sha256": "0d73be04169b2fb817234a727ed598b233cd5412749aeb5a4879d28ace6f5a16",
+  "verifier_sha256": "503cd84371965e7bdd2305d1d49661e2f49d7f24da57688c6dde496014b1abaa",
+  "manipulation_accepted": false,
+  "whole_paper_validated": false,
+  "scope": "H2 body standing and unloaded wrist reach/return; no articulated Dex5-S hand, grasp, walking or paper-step acceptance"
+}

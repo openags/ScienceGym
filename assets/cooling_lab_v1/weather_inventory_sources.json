@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "scope": "Manufacturer installation requirements and explicit stock-planning inferences; not a new robot action sequence.",
+  "sources": [
+    {
+      "id": "ONSET_TRIPOD",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/12317-B%20MAN-TRIPOD.pdf",
+      "sha256": "60ecc89d71d541b316ae193b1e6519a8693a71b73baee478a7cbbc41e6d4862e",
+      "locator": "Tool list and mast-joint preparation: fastener tools, wire cutter, tape measure, driving tool and all-purpose grease.",
+      "redistributed": false
+    },
+    {
+      "id": "ONSET_U30_NRC",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/11866-M%20U30-NRC%20Manual.pdf",
+      "sha256": "d70337d3d6d5a781671081ff8e863762afdbdeb52a6147badea8d49dc69f7ff1",
+      "locator": "Page 1 includes a cable-channel kit without a grease quantity; pages 9–10 require silicone grease on the channel and describe cleaning. The supplied-grease note occurs in the optional expander installation section.",
+      "redistributed": false
+    },
+    {
+      "id": "ONSET_EXPANDER",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/11887-A%20MAN-S-ADAPT-X5-10.pdf",
+      "locator": "Inside this package: silicone grease is listed for S-ADAPT-X5-10. This optional expander is not selected for the current two-sensor configuration.",
+      "retrieval": "Manufacturer document text retrieved through web search; direct binary download returned HTTP 403. No binary hash or redistributed copy claimed.",
+      "redistributed": false
+    }
+  ],
+  "stock_policy": {
+    "u30_base_kit_grease_quantity_g": null,
+    "u30_base_kit_grease_package_identity": null,
+    "optional_expander_selected": false,
+    "optional_expander_grease_stock_credit": 0,
+    "rx3004_packet_mass_applies_to_u30": false,
+    "mast_21030_satisfies_silicone_requirement": false,
+    "silicone_requirement": "One separate 85 g Super Lube 93003 candidate is selected in silicone_grease_assets.json for the EPDM channel. It is not identified as Onset-supplied grease or a qualified substitution. Do not infer a free packet from another kit or a 5 g amount from RX3004. Actual cable-jacket compatibility, application and reset budgets remain open.",
+    "application_tools": "Two separate Buerkle 5386-0041 candidates are selected in weather_cleanup_assets.json, one per grease family. This assignment is an engineering inference; contact, roll stability and grip remain unqualified.",
+    "cleanup": "One TX609 pack supplies 300 individually named wipes; 36 are reserved for three fresh assemblies. An inferred 3 L grease-wipe reservation uses the existing can without qualifying capacity or compatibility. Two clean packaging films remain separately identified with collection unallocated. Trial/reset budgets remain open."
+  }
+}

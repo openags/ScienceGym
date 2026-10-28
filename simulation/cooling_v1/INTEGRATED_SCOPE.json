@@ -1,0 +1,26 @@
+{
+  "whole_paper_validated": false,
+  "scope": "Seven-layer cooler assembly and return in one persistent world, including the pre-bonded two-sheet cover",
+  "robot_tool": "The same extended edge jaws are used for foam, copper, tube, shield, aperture and the bonded cover annulus",
+  "fixture_layout": "Cover parking at x=0.19,y=-0.26 m and emitter regrasp at x=0.58,y=-0.04 m leave distinct vertical-pick and horizontal-cover approach corridors",
+  "contact": "MuJoCo implicitfast, 0.5 ms step, elliptic Coulomb cone, one no-slip iteration; actual rigid and flex contacts; no hand-payload weld",
+  "sleep": {
+    "policy": "Native automatic sleeping at default tolerance; no body initialized asleep, no manual pose or velocity changes to live payloads",
+    "wake": "Engine contact/constraint wake rules",
+    "observation": "A separate all-awake model recomputes contacts, forces and support predicates from observed state; it does not advance or alter the execution world",
+    "trace": "qpos, qvel, ctrl and tree sleep indicators every 5 ms. Replay implicitly wakes islands; this is not a bitwise checkpoint of the engine's full latent sleep state",
+    "reference": "https://mujoco.readthedocs.io/en/latest/programming/simulation.html#sleeping"
+  },
+  "membrane": "Only the unsupported disk is flexible. The bonded annulus shares the rigid spacer collision surface, avoiding duplicate colliders that can trap fingers. Permanent ideal bonding and regularized 0.25 mm collision radius remain assumptions; rupture and adhesive strength are unvalidated.",
+  "selected_clearance": {
+    "shield_shim_height_m": 0.0069,
+    "reason": "Adds 0.5 mm to the earlier inferred support height to clear the upper film collision envelope. Source shield dimensions are retained; the historical support detail and PE tube height are unknown."
+  },
+  "preconditions_not_executed_here": [
+    "Frame preparation and installation",
+    "Stock machining, Mylar wrapping and painting",
+    "Manufacture and bonding of the two-sheet cover"
+  ],
+  "remaining_assembly_members": ["Reflector and track", "Sensors and leads", "Optional heater", "Paired apparatus"],
+  "paper_branch_credit": "None; a complete branch requires its actual operation occurrences, devices, conditions and checks"
+}

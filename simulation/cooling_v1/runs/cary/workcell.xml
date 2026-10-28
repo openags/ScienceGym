@@ -1,0 +1,641 @@
+<mujoco model="ScienceGym cooling contact workcell">
+  <compiler angle="radian" meshdir="" autolimits="true" />
+  <option integrator="implicitfast" timestep="0.001" iterations="200" cone="elliptic" solver="Newton" tolerance="1e-10" impratio="10" noslip_iterations="0" />
+  <default>
+    <default class="panda">
+      <material specular="0.5" shininess="0.25" />
+      <joint armature="0.1" damping="1" axis="0 0 1" range="-2.8973 2.8973" />
+      <general dyntype="none" biastype="affine" ctrlrange="-2.8973 2.8973" forcerange="-87 87" />
+      <default class="finger">
+        <joint axis="0 1 0" type="slide" range="0 0.04" />
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" />
+        <default class="fingertip_pad_collision_1">
+          <geom type="box" size="0.0085 0.004 0.0085" pos="0 0.0055 0.0445" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_2">
+          <geom type="box" size="0.003 0.002 0.003" pos="0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_3">
+          <geom type="box" size="0.003 0.002 0.003" pos="-0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_4">
+          <geom type="box" size="0.003 0.002 0.0035" pos="0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_5">
+          <geom type="box" size="0.003 0.002 0.0035" pos="-0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+      </default>
+    </default>
+    <geom solref=".004 1" solimp=".95 .99 .0005" condim="4" />
+  </default>
+  <asset>
+    <material class="panda" name="white" rgba="1 1 1 1" />
+    <material class="panda" name="off_white" rgba="0.901961 0.921569 0.929412 1" />
+    <material class="panda" name="black" rgba="0.25 0.25 0.25 1" />
+    <material class="panda" name="green" rgba="0 1 0 1" />
+    <material class="panda" name="light_blue" rgba="0.039216 0.541176 0.780392 1" />
+    <mesh name="link0_c" file="robot/link0.stl" />
+    <mesh name="link1_c" file="robot/link1.stl" />
+    <mesh name="link2_c" file="robot/link2.stl" />
+    <mesh name="link3_c" file="robot/link3.stl" />
+    <mesh name="link4_c" file="robot/link4.stl" />
+    <mesh name="link5_c0" file="robot/link5_collision_0.obj" />
+    <mesh name="link5_c1" file="robot/link5_collision_1.obj" />
+    <mesh name="link5_c2" file="robot/link5_collision_2.obj" />
+    <mesh name="link6_c" file="robot/link6.stl" />
+    <mesh name="link7_c" file="robot/link7.stl" />
+    <mesh name="hand_c" file="robot/hand.stl" />
+    <mesh file="robot/link0_0.obj" />
+    <mesh file="robot/link0_1.obj" />
+    <mesh file="robot/link0_2.obj" />
+    <mesh file="robot/link0_3.obj" />
+    <mesh file="robot/link0_4.obj" />
+    <mesh file="robot/link0_5.obj" />
+    <mesh file="robot/link0_7.obj" />
+    <mesh file="robot/link0_8.obj" />
+    <mesh file="robot/link0_9.obj" />
+    <mesh file="robot/link0_10.obj" />
+    <mesh file="robot/link0_11.obj" />
+    <mesh file="robot/link1.obj" />
+    <mesh file="robot/link2.obj" />
+    <mesh file="robot/link3_0.obj" />
+    <mesh file="robot/link3_1.obj" />
+    <mesh file="robot/link3_2.obj" />
+    <mesh file="robot/link3_3.obj" />
+    <mesh file="robot/link4_0.obj" />
+    <mesh file="robot/link4_1.obj" />
+    <mesh file="robot/link4_2.obj" />
+    <mesh file="robot/link4_3.obj" />
+    <mesh file="robot/link5_0.obj" />
+    <mesh file="robot/link5_1.obj" />
+    <mesh file="robot/link5_2.obj" />
+    <mesh file="robot/link6_0.obj" />
+    <mesh file="robot/link6_1.obj" />
+    <mesh file="robot/link6_2.obj" />
+    <mesh file="robot/link6_3.obj" />
+    <mesh file="robot/link6_4.obj" />
+    <mesh file="robot/link6_5.obj" />
+    <mesh file="robot/link6_6.obj" />
+    <mesh file="robot/link6_7.obj" />
+    <mesh file="robot/link6_8.obj" />
+    <mesh file="robot/link6_9.obj" />
+    <mesh file="robot/link6_10.obj" />
+    <mesh file="robot/link6_11.obj" />
+    <mesh file="robot/link6_12.obj" />
+    <mesh file="robot/link6_13.obj" />
+    <mesh file="robot/link6_14.obj" />
+    <mesh file="robot/link6_15.obj" />
+    <mesh file="robot/link6_16.obj" />
+    <mesh file="robot/link7_0.obj" />
+    <mesh file="robot/link7_1.obj" />
+    <mesh file="robot/link7_2.obj" />
+    <mesh file="robot/link7_3.obj" />
+    <mesh file="robot/link7_4.obj" />
+    <mesh file="robot/link7_5.obj" />
+    <mesh file="robot/link7_6.obj" />
+    <mesh file="robot/link7_7.obj" />
+    <mesh file="robot/hand_0.obj" />
+    <mesh file="robot/hand_1.obj" />
+    <mesh file="robot/hand_2.obj" />
+    <mesh file="robot/hand_3.obj" />
+    <mesh file="robot/hand_4.obj" />
+    <mesh file="robot/finger_0.obj" />
+    <mesh file="robot/finger_1.obj" />
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1=".17 .21 .26" rgb2=".2 .24 .29" width="512" height="512" />
+    <material name="floor_mat" texture="floor_tex" texrepeat="5 5" reflectance=".05" />
+    <mesh name="cary_5000_0000" file="cary_5000/0000.obj" inertia="shell" />
+    <mesh name="cary_5000_0015" file="cary_5000/0015.obj" inertia="shell" />
+    <mesh name="cary_5000_0016" file="cary_5000/0016.obj" inertia="shell" />
+    <mesh name="cary_5000_0024" file="cary_5000/0024.obj" inertia="shell" />
+    <mesh name="cary_5000_0025" file="cary_5000/0025.obj" inertia="shell" />
+    <mesh name="cary_5000_0026" file="cary_5000/0026.obj" inertia="shell" />
+    <mesh name="cary_5000_0027" file="cary_5000/0027.obj" inertia="shell" />
+    <mesh name="cary_5000_0028" file="cary_5000/0028.obj" inertia="shell" />
+    <mesh name="cary_5000_0029" file="cary_5000/0029.obj" inertia="shell" />
+    <mesh name="cary_5000_0030" file="cary_5000/0030.obj" inertia="shell" />
+    <mesh name="cary_5000_0031" file="cary_5000/0031.obj" inertia="shell" />
+    <mesh name="cary_5000_0032" file="cary_5000/0032.obj" inertia="shell" />
+    <mesh name="cary_5000_0033" file="cary_5000/0033.obj" inertia="shell" />
+    <mesh name="cary_5000_0034" file="cary_5000/0034.obj" inertia="shell" />
+    <mesh name="cary_5000_0035" file="cary_5000/0035.obj" inertia="shell" />
+    <mesh name="cary_5000_0036" file="cary_5000/0036.obj" inertia="shell" />
+    <mesh name="cary_5000_0037" file="cary_5000/0037.obj" inertia="shell" />
+    <mesh name="cary_5000_0038" file="cary_5000/0038.obj" inertia="shell" />
+    <mesh name="cary_5000_0039" file="cary_5000/0039.obj" inertia="shell" />
+    <mesh name="cary_5000_0040" file="cary_5000/0040.obj" inertia="shell" />
+    <mesh name="cary_5000_0041" file="cary_5000/0041.obj" inertia="shell" />
+    <mesh name="cary_5000_0042" file="cary_5000/0042.obj" inertia="shell" />
+    <mesh name="cary_5000_0043" file="cary_5000/0043.obj" inertia="shell" />
+    <mesh name="cary_5000_0044" file="cary_5000/0044.obj" inertia="shell" />
+    <mesh name="cary_5000_0045" file="cary_5000/0045.obj" inertia="shell" />
+    <mesh name="cary_5000_0046" file="cary_5000/0046.obj" inertia="shell" />
+    <mesh name="cary_5000_0047" file="cary_5000/0047.obj" inertia="shell" />
+    <mesh name="cary_5000_0048" file="cary_5000/0048.obj" inertia="shell" />
+    <mesh name="cary_5000_0049" file="cary_5000/0049.obj" inertia="shell" />
+    <mesh name="cary_5000_0050" file="cary_5000/0050.obj" inertia="shell" />
+    <mesh name="cary_5000_0051" file="cary_5000/0051.obj" inertia="shell" />
+    <mesh name="cary_5000_0053" file="cary_5000/0053.obj" inertia="shell" />
+    <mesh name="cary_5000_0054" file="cary_5000/0054.obj" inertia="shell" />
+    <mesh name="cary_5000_0056" file="cary_5000/0056.obj" inertia="shell" />
+    <mesh name="cary_5000_0057" file="cary_5000/0057.obj" inertia="shell" />
+    <mesh name="cary_5000_0058" file="cary_5000/0058.obj" inertia="shell" />
+    <mesh name="cary_5000_0059" file="cary_5000/0059.obj" inertia="shell" />
+    <mesh name="cary_5000_0060" file="cary_5000/0060.obj" inertia="shell" />
+    <mesh name="cary_5000_0061" file="cary_5000/0061.obj" inertia="shell" />
+    <mesh name="cary_5000_0062" file="cary_5000/0062.obj" inertia="shell" />
+    <mesh name="cary_5000_0063" file="cary_5000/0063.obj" inertia="shell" />
+    <mesh name="cary_5000_0064" file="cary_5000/0064.obj" inertia="shell" />
+    <mesh name="cary_5000_0065" file="cary_5000/0065.obj" inertia="shell" />
+    <mesh name="cary_5000_0066" file="cary_5000/0066.obj" inertia="shell" />
+    <mesh name="cary_5000_0067" file="cary_5000/0067.obj" inertia="shell" />
+    <mesh name="cary_5000_0068" file="cary_5000/0068.obj" inertia="shell" />
+    <mesh name="cary_5000_0069" file="cary_5000/0069.obj" inertia="shell" />
+    <mesh name="cary_5000_0070" file="cary_5000/0070.obj" inertia="shell" />
+    <mesh name="cary_5000_0071" file="cary_5000/0071.obj" inertia="shell" />
+    <mesh name="cary_5000_0072" file="cary_5000/0072.obj" inertia="shell" />
+    <mesh name="cary_5000_0073" file="cary_5000/0073.obj" inertia="shell" />
+    <mesh name="cary_5000_0074" file="cary_5000/0074.obj" inertia="shell" />
+    <mesh name="cary_5000_0075" file="cary_5000/0075.obj" inertia="shell" />
+    <mesh name="cary_5000_0076" file="cary_5000/0076.obj" inertia="shell" />
+    <mesh name="cary_5000_0077" file="cary_5000/0077.obj" inertia="shell" />
+    <mesh name="cary_5000_0078" file="cary_5000/0078.obj" inertia="shell" />
+    <mesh name="cary_5000_0079" file="cary_5000/0079.obj" inertia="shell" />
+    <mesh name="cary_5000_0080" file="cary_5000/0080.obj" inertia="shell" />
+    <mesh name="cary_5000_0081" file="cary_5000/0081.obj" inertia="shell" />
+    <mesh name="cary_5000_0082" file="cary_5000/0082.obj" inertia="shell" />
+    <mesh name="cary_5000_0083" file="cary_5000/0083.obj" inertia="shell" />
+    <mesh name="cary_5000_0084" file="cary_5000/0084.obj" inertia="shell" />
+    <mesh name="cary_5000_0085" file="cary_5000/0085.obj" inertia="shell" />
+    <mesh name="cary_5000_0086" file="cary_5000/0086.obj" inertia="shell" />
+    <mesh name="cary_5000_0087" file="cary_5000/0087.obj" inertia="shell" />
+    <mesh name="cary_5000_0088" file="cary_5000/0088.obj" inertia="shell" />
+    <mesh name="cary_5000_0089" file="cary_5000/0089.obj" inertia="shell" />
+    <mesh name="cary_5000_0090" file="cary_5000/0090.obj" inertia="shell" />
+    <mesh name="cary_5000_0091" file="cary_5000/0091.obj" inertia="shell" />
+    <mesh name="cary_5000_0092" file="cary_5000/0092.obj" inertia="shell" />
+    <mesh name="cary_5000_0093" file="cary_5000/0093.obj" inertia="shell" />
+    <mesh name="cary_5000_0094" file="cary_5000/0094.obj" inertia="shell" />
+    <mesh name="cary_5000_0095" file="cary_5000/0095.obj" inertia="shell" />
+    <mesh name="cary_5000_0096" file="cary_5000/0096.obj" inertia="shell" />
+    <mesh name="cary_5000_0097" file="cary_5000/0097.obj" inertia="shell" />
+    <mesh name="cary_5000_0098" file="cary_5000/0098.obj" inertia="shell" />
+    <mesh name="cary_5000_0099" file="cary_5000/0099.obj" inertia="shell" />
+    <mesh name="cary_5000_0100" file="cary_5000/0100.obj" inertia="shell" />
+    <mesh name="cary_5000_0101" file="cary_5000/0101.obj" inertia="shell" />
+    <mesh name="cary_5000_0102" file="cary_5000/0102.obj" inertia="shell" />
+    <mesh name="cary_5000_0103" file="cary_5000/0103.obj" inertia="shell" />
+    <mesh name="cary_5000_0104" file="cary_5000/0104.obj" inertia="shell" />
+    <mesh name="cary_5000_0105" file="cary_5000/0105.obj" inertia="shell" />
+    <mesh name="cary_5000_0106" file="cary_5000/0106.obj" inertia="shell" />
+    <mesh name="cary_left_optics" vertex="-0.51 -0.355 0.13 -0.51 -0.355 0.28 -0.51 -0.332 0.319 -0.51 -0.285 0.359 -0.51 -0.21 0.38 -0.51 0.325 0.38 -0.51 0.355 0.35 -0.51 0.355 0.13 0.086 -0.355 0.13 0.086 -0.355 0.28 0.086 -0.332 0.319 0.086 -0.285 0.359 0.086 -0.21 0.38 0.086 0.325 0.38 0.086 0.355 0.35 0.086 0.355 0.13" />
+    <mesh name="cary_right_optics" vertex="0.284 -0.355 0.13 0.284 -0.355 0.28 0.284 -0.332 0.319 0.284 -0.285 0.359 0.284 -0.21 0.38 0.284 0.325 0.38 0.284 0.355 0.35 0.284 0.355 0.13 0.51 -0.355 0.13 0.51 -0.355 0.28 0.51 -0.332 0.319 0.51 -0.285 0.359 0.51 -0.21 0.38 0.51 0.325 0.38 0.51 0.355 0.35 0.51 0.355 0.13" />
+    <mesh name="cary_front_wall_0" vertex="0.091 -0.355 0.035 0.091 -0.363 0.07 0.091 -0.357 0.07 0.091 -0.349 0.035 0.279 -0.355 0.035 0.279 -0.363 0.07 0.279 -0.357 0.07 0.279 -0.349 0.035" />
+    <mesh name="cary_front_wall_1" vertex="0.091 -0.363 0.07 0.091 -0.365 0.21 0.091 -0.359 0.21 0.091 -0.357 0.07 0.279 -0.363 0.07 0.279 -0.365 0.21 0.279 -0.359 0.21 0.279 -0.357 0.07" />
+    <mesh name="cary_front_wall_2" vertex="0.091 -0.365 0.21 0.091 -0.351 0.315 0.091 -0.345 0.313 0.091 -0.359 0.21 0.279 -0.365 0.21 0.279 -0.351 0.315 0.279 -0.345 0.313 0.279 -0.359 0.21" />
+    <mesh name="cary_front_wall_3" vertex="0.091 -0.351 0.315 0.091 -0.337 0.354 0.091 -0.331 0.354 0.091 -0.345 0.313 0.279 -0.351 0.315 0.279 -0.337 0.354 0.279 -0.331 0.354 0.279 -0.345 0.313" />
+    <mesh name="cary_lid_visual_0052" file="cary_5000/0052.obj" inertia="shell" />
+    <mesh name="cary_lid_visual_0055" file="cary_5000/0055.obj" inertia="shell" />
+  </asset>
+  <worldbody>
+    <light name="top" pos="0 -1 3" mode="trackcom" diffuse=".8 .8 .8" directional="true" dir="0 .2 -1" />
+    <body name="link0" childclass="panda" pos="0 0 .74">
+      <inertial mass="0.629769" pos="-0.041018 -0.00014 0.049974" fullinertia="0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6" />
+      <geom mesh="link0_0" material="off_white" class="visual" />
+      <geom mesh="link0_1" material="black" class="visual" />
+      <geom mesh="link0_2" material="off_white" class="visual" />
+      <geom mesh="link0_3" material="black" class="visual" />
+      <geom mesh="link0_4" material="off_white" class="visual" />
+      <geom mesh="link0_5" material="black" class="visual" />
+      <geom mesh="link0_7" material="white" class="visual" />
+      <geom mesh="link0_8" material="white" class="visual" />
+      <geom mesh="link0_9" material="black" class="visual" />
+      <geom mesh="link0_10" material="off_white" class="visual" />
+      <geom mesh="link0_11" material="white" class="visual" />
+      <geom mesh="link0_c" class="collision" />
+      <body name="link1" pos="0 0 0.333">
+        <inertial mass="4.970684" pos="0.003875 0.002081 -0.04762" fullinertia="0.70337 0.70661 0.0091170 -0.00013900 0.0067720 0.019169" />
+        <joint name="joint1" />
+        <geom material="white" mesh="link1" class="visual" />
+        <geom mesh="link1_c" class="collision" />
+        <body name="link2" quat="1 -1 0 0">
+          <inertial mass="0.646926" pos="-0.003141 -0.02872 0.003495" fullinertia="0.0079620 2.8110e-2 2.5995e-2 -3.925e-3 1.0254e-2 7.04e-4" />
+          <joint name="joint2" range="-1.7628 1.7628" />
+          <geom material="white" mesh="link2" class="visual" />
+          <geom mesh="link2_c" class="collision" />
+          <body name="link3" pos="0 -0.316 0" quat="1 1 0 0">
+            <joint name="joint3" />
+            <inertial mass="3.228604" pos="2.7518e-2 3.9252e-2 -6.6502e-2" fullinertia="3.7242e-2 3.6155e-2 1.083e-2 -4.761e-3 -1.1396e-2 -1.2805e-2" />
+            <geom mesh="link3_0" material="white" class="visual" />
+            <geom mesh="link3_1" material="white" class="visual" />
+            <geom mesh="link3_2" material="white" class="visual" />
+            <geom mesh="link3_3" material="black" class="visual" />
+            <geom mesh="link3_c" class="collision" />
+            <body name="link4" pos="0.0825 0 0" quat="1 1 0 0">
+              <inertial mass="3.587895" pos="-5.317e-2 1.04419e-1 2.7454e-2" fullinertia="2.5853e-2 1.9552e-2 2.8323e-2 7.796e-3 -1.332e-3 8.641e-3" />
+              <joint name="joint4" range="-3.0718 -0.0698" />
+              <geom mesh="link4_0" material="white" class="visual" />
+              <geom mesh="link4_1" material="white" class="visual" />
+              <geom mesh="link4_2" material="black" class="visual" />
+              <geom mesh="link4_3" material="white" class="visual" />
+              <geom mesh="link4_c" class="collision" />
+              <body name="link5" pos="-0.0825 0.384 0" quat="1 -1 0 0">
+                <inertial mass="1.225946" pos="-1.1953e-2 4.1065e-2 -3.8437e-2" fullinertia="3.5549e-2 2.9474e-2 8.627e-3 -2.117e-3 -4.037e-3 2.29e-4" />
+                <joint name="joint5" />
+                <geom mesh="link5_0" material="black" class="visual" />
+                <geom mesh="link5_1" material="white" class="visual" />
+                <geom mesh="link5_2" material="white" class="visual" />
+                <geom mesh="link5_c0" class="collision" />
+                <geom mesh="link5_c1" class="collision" />
+                <geom mesh="link5_c2" class="collision" />
+                <body name="link6" quat="1 1 0 0">
+                  <inertial mass="1.666555" pos="6.0149e-2 -1.4117e-2 -1.0517e-2" fullinertia="1.964e-3 4.354e-3 5.433e-3 1.09e-4 -1.158e-3 3.41e-4" />
+                  <joint name="joint6" range="-0.0175 3.7525" />
+                  <geom mesh="link6_0" material="off_white" class="visual" />
+                  <geom mesh="link6_1" material="white" class="visual" />
+                  <geom mesh="link6_2" material="black" class="visual" />
+                  <geom mesh="link6_3" material="white" class="visual" />
+                  <geom mesh="link6_4" material="white" class="visual" />
+                  <geom mesh="link6_5" material="white" class="visual" />
+                  <geom mesh="link6_6" material="white" class="visual" />
+                  <geom mesh="link6_7" material="light_blue" class="visual" />
+                  <geom mesh="link6_8" material="light_blue" class="visual" />
+                  <geom mesh="link6_9" material="black" class="visual" />
+                  <geom mesh="link6_10" material="black" class="visual" />
+                  <geom mesh="link6_11" material="white" class="visual" />
+                  <geom mesh="link6_12" material="green" class="visual" />
+                  <geom mesh="link6_13" material="white" class="visual" />
+                  <geom mesh="link6_14" material="black" class="visual" />
+                  <geom mesh="link6_15" material="black" class="visual" />
+                  <geom mesh="link6_16" material="white" class="visual" />
+                  <geom mesh="link6_c" class="collision" />
+                  <body name="link7" pos="0.088 0 0" quat="1 1 0 0">
+                    <inertial mass="7.35522e-01" pos="1.0517e-2 -4.252e-3 6.1597e-2" fullinertia="1.2516e-2 1.0027e-2 4.815e-3 -4.28e-4 -1.196e-3 -7.41e-4" />
+                    <joint name="joint7" />
+                    <geom mesh="link7_0" material="white" class="visual" />
+                    <geom mesh="link7_1" material="black" class="visual" />
+                    <geom mesh="link7_2" material="black" class="visual" />
+                    <geom mesh="link7_3" material="black" class="visual" />
+                    <geom mesh="link7_4" material="black" class="visual" />
+                    <geom mesh="link7_5" material="black" class="visual" />
+                    <geom mesh="link7_6" material="black" class="visual" />
+                    <geom mesh="link7_7" material="white" class="visual" />
+                    <geom mesh="link7_c" class="collision" />
+                    <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
+                      <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017" />
+                      <geom mesh="hand_0" material="off_white" class="visual" />
+                      <geom mesh="hand_1" material="black" class="visual" />
+                      <geom mesh="hand_2" material="black" class="visual" />
+                      <geom mesh="hand_3" material="white" class="visual" />
+                      <geom mesh="hand_4" material="off_white" class="visual" />
+                      <geom mesh="hand_c" class="collision" />
+                      <body name="left_finger" pos="0 0 0.0584">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint1" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" name="left_finger_cary_contact_2" />
+                        <geom class="fingertip_pad_collision_1" name="left_finger_cary_contact_3" />
+                        <geom class="fingertip_pad_collision_2" name="left_finger_cary_contact_4" />
+                        <geom class="fingertip_pad_collision_3" name="left_finger_cary_contact_5" />
+                        <geom class="fingertip_pad_collision_4" name="left_finger_cary_contact_6" />
+                        <geom class="fingertip_pad_collision_5" name="left_finger_cary_contact_7" />
+                      </body>
+                      <body name="right_finger" pos="0 0 0.0584" quat="0 0 0 1">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint2" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" name="right_finger_cary_contact_2" />
+                        <geom class="fingertip_pad_collision_1" name="right_finger_cary_contact_3" />
+                        <geom class="fingertip_pad_collision_2" name="right_finger_cary_contact_4" />
+                        <geom class="fingertip_pad_collision_3" name="right_finger_cary_contact_5" />
+                        <geom class="fingertip_pad_collision_4" name="right_finger_cary_contact_6" />
+                        <geom class="fingertip_pad_collision_5" name="right_finger_cary_contact_7" />
+                      </body>
+                      <site name="tcp" pos="0 0 .1034" size=".003" rgba="0 .5 1 1" />
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="floor" type="plane" size="5 5 .1" material="floor_mat" />
+    <geom name="bench" type="box" size=".85 .92 .04" pos=".50 .20 .70" rgba="0.72 0.75 0.78 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_-0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_-0.57" type="box" size="0.035 0.035 0.37" pos="1.04 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_0.57" type="box" size="0.035 0.035 0.37" pos="1.04 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <light pos="1 1 3" diffuse=".5 .5 .5" />
+    <body name="cary" pos="0.28 0.51 0.74">
+      <geom name="cary_5000_brand" type="mesh" mesh="cary_5000_0000" pos="-0.343084672 -0.356000006 0.231709671" rgba="0.0235294118 0.031372549 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_extension_keyhole_bracket_0.13" type="mesh" mesh="cary_5000_0015" pos="0.129999995 -0.354000002 0.150000006" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_extension_keyhole_bracket_0.24" type="mesh" mesh="cary_5000_0016" pos="0.239999995 -0.354000002 0.150000006" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_front_power_recess" type="mesh" mesh="cary_5000_0024" pos="-0.36500001 -0.356000006 0.0689999983" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_front_status_window" type="mesh" mesh="cary_5000_0025" pos="-0.0949999988 -0.356000006 0.0649999976" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_instrument_plinth" type="mesh" mesh="cary_5000_0026" pos="0 0 0.0149999997" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_left_optics_housing" type="mesh" mesh="cary_5000_0027" pos="-0.211999994 0 0.254999995" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_lockdown_front_lever" type="mesh" mesh="cary_5000_0028" pos="0.172999993 -0.310000002 0.151999995" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_lockdown_front_post" type="mesh" mesh="cary_5000_0029" pos="0.185000002 -0.280000001 0.144999996" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_lockdown_rear_ledge_0.133" type="mesh" mesh="cary_5000_0030" pos="0.133000001 0.104999997 0.143999994" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_lockdown_rear_ledge_0.237" type="mesh" mesh="cary_5000_0031" pos="0.237000003 0.104999997 0.143999994" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_lower_instrument_housing" type="mesh" mesh="cary_5000_0032" pos="0 0 0.0799999982" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_model" type="mesh" mesh="cary_5000_0033" pos="-0.343045358 -0.356000006 0.246300108" rgba="0.0588235294 0.188235294 0.380392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_power_key_0" type="mesh" mesh="cary_5000_0034" pos="-0.379999995 -0.360000014 0.0689999983" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_power_key_1" type="mesh" mesh="cary_5000_0035" pos="-0.351999998 -0.360000014 0.0689999983" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_power_symbol_0" type="mesh" mesh="cary_5000_0036" pos="-0.379999995 -0.363499999 0.0691080048" rgba="0.721568627 0.721568627 0.670588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_power_symbol_1" type="mesh" mesh="cary_5000_0037" pos="-0.351999998 -0.363499999 0.0691051248" rgba="0.721568627 0.721568627 0.670588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_lid_pocket_end" type="mesh" mesh="cary_5000_0038" pos="0.185000002 0.3125 0.359499991" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_lid_pocket_roof" type="mesh" mesh="cary_5000_0039" pos="0.185000002 0.252499998 0.369500011" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_lid_pocket_side_-1" type="mesh" mesh="cary_5000_0040" pos="0.0879999995 0.209999993 0.359499991" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_lid_pocket_side_1" type="mesh" mesh="cary_5000_0041" pos="0.282000005 0.209999993 0.359499991" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_power_envelope" type="mesh" mesh="cary_5000_0042" pos="0.340000004 0.356999993 0.0649999976" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_purge_barb_0.1" type="mesh" mesh="cary_5000_0043" pos="-0.200000003 0.363000005 0.104999997" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_purge_barb_0.19" type="mesh" mesh="cary_5000_0044" pos="-0.109999999 0.363000005 0.104999997" rgba="0.501960784 0.541176471 0.560784314 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_rear_sample_housing" type="mesh" mesh="cary_5000_0045" pos="0.185000002 0.252499998 0.243000001" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_removable_sample_floor" type="mesh" mesh="cary_5000_0046" pos="0.185000002 -0.100000001 0.137999997" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_right_optics_housing" type="mesh" mesh="cary_5000_0047" pos="0.397 0 0.254999995" rgba="0.780392157 0.8 0.811764706 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_bay_side_0.106" type="mesh" mesh="cary_5000_0048" pos="0.105999999 -0.100000001 0.246000007" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_bay_side_0.264" type="mesh" mesh="cary_5000_0049" pos="0.263999999 -0.100000001 0.246000007" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_beam_window_0.105" type="mesh" mesh="cary_5000_0050" pos="0.101999998 -0.075000003 0.224999994" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_beam_window_0.265" type="mesh" mesh="cary_5000_0051" pos="0.268000007 -0.075000003 0.224999994" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_lid_track_0.09" type="mesh" mesh="cary_5000_0053" pos="0.0900000036 -0.0799999982 0.352999985" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_sample_lid_track_0.28" type="mesh" mesh="cary_5000_0054" pos="0.280000001 -0.0799999982 0.352999985" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_0" type="mesh" mesh="cary_5000_0056" pos="-0.510500014 0.0250000004 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_1" type="mesh" mesh="cary_5000_0057" pos="-0.510500014 0.0359999985 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_10" type="mesh" mesh="cary_5000_0058" pos="-0.510500014 0.135000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_11" type="mesh" mesh="cary_5000_0059" pos="-0.510500014 0.145999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_12" type="mesh" mesh="cary_5000_0060" pos="-0.510500014 0.157000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_13" type="mesh" mesh="cary_5000_0061" pos="-0.510500014 0.167999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_14" type="mesh" mesh="cary_5000_0062" pos="-0.510500014 0.179000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_15" type="mesh" mesh="cary_5000_0063" pos="-0.510500014 0.189999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_16" type="mesh" mesh="cary_5000_0064" pos="-0.510500014 0.201000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_17" type="mesh" mesh="cary_5000_0065" pos="-0.510500014 0.211999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_18" type="mesh" mesh="cary_5000_0066" pos="-0.510500014 0.223000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_19" type="mesh" mesh="cary_5000_0067" pos="-0.510500014 0.233999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_2" type="mesh" mesh="cary_5000_0068" pos="-0.510500014 0.0469999984 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_20" type="mesh" mesh="cary_5000_0069" pos="-0.510500014 0.245000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_21" type="mesh" mesh="cary_5000_0070" pos="-0.510500014 0.256000012 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_22" type="mesh" mesh="cary_5000_0071" pos="-0.510500014 0.26699999 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_23" type="mesh" mesh="cary_5000_0072" pos="-0.510500014 0.277999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_3" type="mesh" mesh="cary_5000_0073" pos="-0.510500014 0.0579999983 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_4" type="mesh" mesh="cary_5000_0074" pos="-0.510500014 0.0689999983 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_5" type="mesh" mesh="cary_5000_0075" pos="-0.510500014 0.0799999982 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_6" type="mesh" mesh="cary_5000_0076" pos="-0.510500014 0.0909999982 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_7" type="mesh" mesh="cary_5000_0077" pos="-0.510500014 0.101999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_8" type="mesh" mesh="cary_5000_0078" pos="-0.510500014 0.112999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_-1_9" type="mesh" mesh="cary_5000_0079" pos="-0.510500014 0.123999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_0" type="mesh" mesh="cary_5000_0080" pos="0.510500014 0.0250000004 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_1" type="mesh" mesh="cary_5000_0081" pos="0.510500014 0.0359999985 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_10" type="mesh" mesh="cary_5000_0082" pos="0.510500014 0.135000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_11" type="mesh" mesh="cary_5000_0083" pos="0.510500014 0.145999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_12" type="mesh" mesh="cary_5000_0084" pos="0.510500014 0.157000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_13" type="mesh" mesh="cary_5000_0085" pos="0.510500014 0.167999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_14" type="mesh" mesh="cary_5000_0086" pos="0.510500014 0.179000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_15" type="mesh" mesh="cary_5000_0087" pos="0.510500014 0.189999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_16" type="mesh" mesh="cary_5000_0088" pos="0.510500014 0.201000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_17" type="mesh" mesh="cary_5000_0089" pos="0.510500014 0.211999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_18" type="mesh" mesh="cary_5000_0090" pos="0.510500014 0.223000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_19" type="mesh" mesh="cary_5000_0091" pos="0.510500014 0.233999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_2" type="mesh" mesh="cary_5000_0092" pos="0.510500014 0.0469999984 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_20" type="mesh" mesh="cary_5000_0093" pos="0.510500014 0.245000005 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_21" type="mesh" mesh="cary_5000_0094" pos="0.510500014 0.256000012 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_22" type="mesh" mesh="cary_5000_0095" pos="0.510500014 0.26699999 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_23" type="mesh" mesh="cary_5000_0096" pos="0.510500014 0.277999997 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_3" type="mesh" mesh="cary_5000_0097" pos="0.510500014 0.0579999983 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_4" type="mesh" mesh="cary_5000_0098" pos="0.510500014 0.0689999983 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_5" type="mesh" mesh="cary_5000_0099" pos="0.510500014 0.0799999982 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_6" type="mesh" mesh="cary_5000_0100" pos="0.510500014 0.0909999982 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_7" type="mesh" mesh="cary_5000_0101" pos="0.510500014 0.101999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_8" type="mesh" mesh="cary_5000_0102" pos="0.510500014 0.112999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_side_vent_1_9" type="mesh" mesh="cary_5000_0103" pos="0.510500014 0.123999998 0.159999996" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_standard_front_panel" type="mesh" mesh="cary_5000_0104" pos="0.185000006 -0.348124936 0.194500001" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_standard_front_seam_0.09" type="mesh" mesh="cary_5000_0105" pos="0.185000002 -0.365500003 0.0900000036" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_5000_standard_front_seam_0.225" type="mesh" mesh="cary_5000_0106" pos="0.185000002 -0.365500003 0.224999994" rgba="0.0235294118 0.0352941176 0.0392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="cary_plinth" type="box" size="0.51 0.355 0.015" pos="0 0 0.015" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_lower_housing" type="box" size="0.51 0.355 0.05" pos="0 0 0.08" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_left_optics" type="mesh" mesh="cary_left_optics" rgba="0 0 0 0" />
+      <geom name="cary_right_optics" type="mesh" mesh="cary_right_optics" rgba="0 0 0 0" />
+      <geom name="cary_rear_lower" type="box" size="0.099 0.1025 0.113" pos="0.185 0.2525 0.243" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_slot_roof" type="box" size="0.099 0.1025 0.0065" pos="0.185 0.2525 0.3695" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_slot_side_-1" type="box" size="0.002 0.06 0.0035" pos="0.088 0.21 0.3595" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_slot_side_1" type="box" size="0.002 0.06 0.0035" pos="0.282 0.21 0.3595" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_slot_end" type="box" size="0.099 0.0425 0.0035" pos="0.185 0.3125 0.3595" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_sample_floor" type="box" size="0.077 0.25 0.002" pos="0.185 -0.1 0.138" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_-1_front" type="box" size="0.002 0.1305 0.106" pos="0.106 -0.2195 0.246" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_-1_rear" type="box" size="0.002 0.1055 0.106" pos="0.106 0.0445 0.246" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_-1_bottom" type="box" size="0.002 0.014 0.0345" pos="0.106 -0.075 0.1745" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_-1_top" type="box" size="0.002 0.014 0.0555" pos="0.106 -0.075 0.2965" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_1_front" type="box" size="0.002 0.1305 0.106" pos="0.264 -0.2195 0.246" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_1_rear" type="box" size="0.002 0.1055 0.106" pos="0.264 0.0445 0.246" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_1_bottom" type="box" size="0.002 0.014 0.0345" pos="0.264 -0.075 0.1745" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_bay_1_top" type="box" size="0.002 0.014 0.0555" pos="0.264 -0.075 0.2965" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_lid_track_-1" type="box" size="0.002 0.27 0.003" pos="0.09 -0.08 0.353" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_lid_track_1" type="box" size="0.002 0.27 0.003" pos="0.28 -0.08 0.353" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="cary_front_wall_0" type="mesh" mesh="cary_front_wall_0" rgba="0 0 0 0" />
+      <geom name="cary_front_wall_1" type="mesh" mesh="cary_front_wall_1" rgba="0 0 0 0" />
+      <geom name="cary_front_wall_2" type="mesh" mesh="cary_front_wall_2" rgba="0 0 0 0" />
+      <geom name="cary_front_wall_3" type="mesh" mesh="cary_front_wall_3" rgba="0 0 0 0" />
+      <body name="cary_lid" pos="0.185 -0.19 0.3595">
+        <joint name="cary_lid_travel" type="slide" axis="0 1 0" range="0 .305" frictionloss="1." damping=".5" solreflimit=".004 1" solimplimit=".99 .99 .0001" solreffriction=".004 1" solimpfriction=".99999 .99999 .0001" />
+        <geom name="cary_lid_visual_sample_lid_pull" type="mesh" mesh="cary_lid_visual_0052" pos="2.38418579e-09 -0.085000006 0.0105000048" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="cary_lid_visual_sample_sliding_lid" type="mesh" mesh="cary_lid_visual_0055" pos="2.38418579e-09 2.38418579e-09 -9.05990599e-09" rgba="0.0745098039 0.0862745098 0.0901960784 1" mass="0" contype="0" conaffinity="0" group="2" />
+        <geom name="cary_lid_panel" type="box" size="0.094 0.151 0.0025" pos="0 0 0" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <geom name="cary_pull_floor" type="box" size="0.045 0.0235 0.001" pos="0 -0.085 0.0035" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <geom name="cary_pull_side_-1" type="box" size="0.006 0.0235 0.007" pos="-0.039 -0.085 0.0115" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <geom name="cary_pull_side_1" type="box" size="0.006 0.0235 0.007" pos="0.039 -0.085 0.0115" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <geom name="cary_pull_front" type="box" size="0.033 0.00725 0.007" pos="0 -0.10125 0.0115" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <geom name="cary_pull_back" type="box" size="0.033 0.00425 0.007" pos="0 -0.06575 0.0115" rgba="0 0 0 0" friction="1 .01 .006" density="1200" condim="6" solref=".004 1" solimp=".99 .99 .0001" />
+        <site name="cary_lid_grasp" pos="0 -0.10125 0.0115" size=".001" />
+      </body>
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_joint1" coef="0.5" />
+      <joint joint="finger_joint2" coef="0.5" />
+    </fixed>
+  </tendon>
+  <equality>
+    <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1" />
+  </equality>
+  <actuator>
+    <general class="panda" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" />
+    <general class="panda" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" ctrlrange="-1.7628 1.7628" />
+    <general class="panda" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" />
+    <general class="panda" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" ctrlrange="-3.0718 -0.0698" />
+    <general class="panda" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" ctrlrange="-0.0175 3.7525" />
+    <general class="panda" name="actuator7" joint="joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator8" tendon="split" forcerange="-40 40" ctrlrange="-40 40" gainprm="1 0 0" biasprm="0 0 0" />
+  </actuator>
+  <contact>
+    <exclude body1="link0" body2="link1" />
+    <pair geom1="cary_plinth" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_plinth" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_plinth" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_plinth" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_plinth" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_plinth" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lower_housing" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_left_optics" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_right_optics" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_rear_lower" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_roof" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_-1" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_side_1" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_slot_end" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_sample_floor" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_front" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_rear" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_bottom" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_-1_top" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_front" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_rear" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_bottom" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_bay_1_top" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_-1" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_lid_track_1" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_0" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_1" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_2" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_lid_panel" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_pull_floor" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_pull_side_-1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_pull_side_1" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_pull_front" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="cary_front_wall_3" geom2="cary_pull_back" condim="3" friction=".3 .3 .001 .0001 .0001" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_2" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_3" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_4" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_5" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_6" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="left_finger_cary_contact_7" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_2" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_3" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_4" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_5" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_6" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+    <pair geom1="right_finger_cary_contact_7" geom2="cary_pull_front" condim="3" friction="1.0 1.0 0 0 0" solref=".004 1" solimp=".99 .99 .0001" />
+  </contact>
+  <visual>
+    <global offwidth="1280" offheight="800" />
+  </visual>
+</mujoco>

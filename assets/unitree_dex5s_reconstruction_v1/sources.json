@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-24",
+  "identity": "Unitree Dex5-S Pro left/right pair",
+  "sources": [
+    {
+      "id": "UNITREE_DEX5S_PAGE",
+      "url": "https://www.unitree.com/Dex5-S/",
+      "sha256": "39220e022b8a6e80661a9f4d14545dc2894be79c491a188d9f2d84975a2ec709",
+      "locator": "Product Parameters, Actuation, Power",
+      "inspected": true,
+      "facts": {
+        "joint_count": 22,
+        "per_finger_dof": {
+          "thumb": 5,
+          "index": 4,
+          "middle": 4,
+          "ring": 4,
+          "pinky": 5
+        },
+        "dimensions_mm": [
+          102,
+          187,
+          26
+        ],
+        "mass_kg": 0.62,
+        "continuous_payload_kg": 1,
+        "peak_payload_kg": 2,
+        "pro_tactile": true
+      },
+      "rights": "Reference only; original product page not redistributed"
+    },
+    {
+      "id": "UNITREE_DIMENSION_IMAGE",
+      "url": "https://www.unitree.com/images/004c68d7d0054e46b1051c7fcc3166d1_1920x1004.png",
+      "sha256": "d4601ff35f32c462f58ba0f354537f604807a1c5a0889b7bd94803f66424e56d",
+      "locator": "Back and palm oblique views; printed 102 mm and 187 mm dimensions",
+      "inspected": true,
+      "observations": [
+        "Silver segmented shell with dark palm and finger pads",
+        "Four principal fingers, laterally mounted thumb, visible joint covers and shell seams",
+        "Wrist adapter visible below the hand dimension line; not evidence of H2 mounting geometry"
+      ],
+      "rights": "Reference only; third-party pixels not redistributed"
+    },
+    {
+      "id": "UNITREE_PAD_DETAIL",
+      "url": "https://www.unitree.com/images/582e980a2caf4c95b7bdb3dcc4301f83_1920x1080.png",
+      "locator": "Palm and segmented finger close-up; shell, pad and joint arrangement inspected",
+      "inspected": true,
+      "rights": "Reference only, no pixel redistribution"
+    }
+  ],
+  "resource_searches": [
+    {
+      "url": "https://github.com/unitreerobotics/unitree_ros",
+      "scope": "Prior pinned tree audit in simulation/humanoid_v1/hand_resource_audit.json plus current web search for Dex5-S URDF",
+      "result": "No exact Dex5-S model obtained; Dex5-1 is a different product"
+    }
+  ],
+  "reconstruction_assumptions": [
+    {
+      "field": "local palm and phalanx proportions",
+      "basis": "Visual comparison with official oblique views, constrained by manufacturer outer dimensions",
+      "measurement_status": "authored estimate, not calibrated photogrammetry"
+    },
+    {
+      "field": "joint axes, pivot positions and preview articulation",
+      "basis": "Per-finger manufacturer DOF count and visible segment arrangement; selected hypothetical chain",
+      "measurement_status": "unqualified kinematic hypothesis; preview angles are not mechanical limits"
+    },
+    {
+      "field": "left/right mirroring",
+      "basis": "Selected symmetric geometry where separate side-specific engineering drawings are unavailable",
+      "measurement_status": "unverified symmetry"
+    },
+    {
+      "field": "shell and rubber material roughness",
+      "basis": "Original visual shading chosen to resemble reference; not measured BRDF or friction"
+    }
+  ],
+  "dynamics_policy": "Do not assign assumed actuator limits, taxel calibration, or per-link inertias as measured facts. This package cannot qualify contact or load capability."
+}
