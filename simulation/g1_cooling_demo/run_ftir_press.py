@@ -21,16 +21,23 @@ from observations import robot_joints
 from world import build, HERE
 
 
-def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_prior=None):
+def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_prior=None,observe_slider_outcome=False,approach_from=None):
     if operation not in {'press','cover','slider_scan','slider'}:raise ValueError('Unknown FTIR operation')
     if slider_prior is not None and operation!='slider':raise ValueError('A slider prior requires the slider operation')
+    if observe_slider_outcome and operation!='slider':raise ValueError('Window outcome observation requires the slider operation')
+    walking=approach_from is not None
+    if walking and not observe_slider_outcome:raise ValueError('Continuous approach requires observed slider completion')
     cover=operation=='cover'
     scan=operation=='slider_scan'
     slider=operation=='slider'
     touch=cover or slider
     actor_name='ftir_slider_actor.py' if slider else 'ftir_slider_scan_actor.py' if scan else 'ftir_cover_actor.py' if cover else 'ftir_actor.py'
+    if observe_slider_outcome:actor_name='ftir_slider_observed_actor.py'
+    if walking:actor_name='ftir_approach_actor.py'
     initial_xy=([5.95,-5.20] if scan or slider else [5.95,-5.35] if cover else [5.95,-5.55]) if initial_xy is None else list(map(float,initial_xy))
     if len(initial_xy)!=2 or not np.isfinite(initial_xy).all():raise ValueError('Initial robot map XY must contain two finite values')
+    start_xy=list(map(float,approach_from)) if walking else initial_xy
+    if len(start_xy)!=2 or not np.isfinite(start_xy).all():raise ValueError('Walking start XY must contain two finite values')
     out=Path(out).resolve();out.mkdir(parents=True,exist_ok=True)
     if any(out.iterdir()):raise ValueError('Use a new empty FTIR attempt directory')
     snapshot=out/'source_snapshot';snapshot.mkdir();pins={}
@@ -54,7 +61,34 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
             hand_touch_available=touch,
             rationale='Robot state/IK/inverse-dynamics predictor; contact solving remains in the separate physical plant.',
             regression='simulation/g1_cooling_demo/analysis/ftir_predictor_contact_01/review.json'),indent=2)+'\n')
-    model=mujoco.MjModel.from_xml_path(str(path));data=(initialize_slider if scan or slider else initialize_cover if cover else initialize)(model,initial_xy)
+    if walking:
+        from walking_actor import SDK_JOINTS
+        import yaml
+        for model_path in [path,control]:
+            xml=ET.parse(model_path)
+            for node in xml.findall('.//joint'):
+                if node.get('name') in SDK_JOINTS:node.set('armature','.01')
+            xml.write(model_path,encoding='unicode')
+        (out/'actuator_adaptation.json').write_text(json.dumps(dict(
+            body_joint_rotor_inertia_kg_m2=.01,body_inertias_unchanged=True,hand_rotor_inertias_unchanged=True,
+            source='locomotion_policy/reference/training_models.py: UNITREE_G1_29DOF_CFG',
+            scope='The pinned official velocity policy training parameter; not a manufacturer-measured hardware identification.'),indent=2)+'\n')
+        profile_path=out/'controller_model/profile.json';profile=json.loads(profile_path.read_text())
+        profile.update(source_body_dynamics_unchanged=False,published_training_rotor_inertia_applied=True,
+                       actuator_adaptation='../actuator_adaptation.json')
+        profile_path.write_text(json.dumps(profile,indent=2)+'\n')
+    model=mujoco.MjModel.from_xml_path(str(path))
+    if walking:
+        data=mujoco.MjData(model);data.qpos[:2]=start_xy
+        cfg=yaml.safe_load((HERE/'locomotion_policy/deploy.yaml').read_text())
+        initial=np.empty(29);initial[cfg['joint_ids_map']]=cfg['default_joint_pos']
+        for name,value in zip(SDK_JOINTS,initial):data.joint(name).qpos[0]=value
+        from ftir_hand import mimic,rest_hand_pose
+        for name,value in rest_hand_pose().items():data.joint(name).qpos[0]=value
+        mimic(model,data);mujoco.mj_forward(model,data)
+        data.qpos[2]-=min(data.site(s+'_sole').xpos[2] for s in ['left','right']);mujoco.mj_forward(model,data)
+    else:
+        data=(initialize_slider if scan or slider else initialize_cover if cover else initialize)(model,initial_xy)
     robot=set()
     for body in range(model.nbody):
         parent=body
@@ -66,18 +100,28 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         if not any(body in robot for body in bodies) or contact.dist>=-1e-6:continue
         initial_contacts.append(dict(parts=[model.geom(a).name,model.geom(b).name],distance_m=float(contact.dist),
                                      self_contact=all(body in robot for body in bodies)))
-    severe=any(not c['self_contact'] or c['distance_m']<-.001 for c in initial_contacts)
+    initial_self_limit=.00002 if walking else .001
+    severe=any(not c['self_contact'] or c['distance_m'] < -initial_self_limit for c in initial_contacts)
     (out/'initial_contact_review.json').write_text(json.dumps(dict(development_start_allowed=not severe,
         contact_free=not initial_contacts,contacts=initial_contacts,
+        maximum_initial_self_penetration_m=initial_self_limit,
         scope='Reject deep self intersections and any initial environment penetration. Smaller existing hand self contacts remain physical and unqualified.'),indent=2)+'\n')
     if severe:
         result=dict(status='failed',failure='Initial robot collision preflight rejected the setup',simulated_seconds=0.)
         (out/'result.json').write_text(json.dumps(result,indent=2)+'\n');return result
-    (out/'staging.json').write_text(json.dumps(dict(robot_map_xy_prior_m=initial_xy,
-        initial_qpos=data.qpos.tolist(),scope='Authored robot pose at the FTIR station, not executed walking/preparation',
-        target_instruction='Observe, push the passive sliding window by 70 mm, withdraw and return' if slider else 'Observe the key row and turn the torso to the approach orientation' if scan else 'Grasp, open and release the cover with the right hand' if cover else 'Press BACKGROUND with the right index finger and retract',
+    import_path=out/'laboratory_import.json';imported=json.loads(import_path.read_text())
+    lab_transform=np.asarray(imported['lab_from_work']);lab_position=lab_transform@np.r_[data.qpos[:3],1.]
+    lab_rotation=lab_transform[:3,:3]@data.body('pelvis').xmat.reshape(3,3)
+    imported['initial_staging']=[dict(instance='g1',laboratory_xy_m=lab_position[:2].tolist(),
+        yaw_rad=float(np.arctan2(lab_rotation[1,0],lab_rotation[0,0])),
+        basis='Authored initial aisle pose before continuous execution' if walking else 'Authored initial FTIR station pose; no walking credit')]
+    import_path.write_text(json.dumps(imported,indent=2)+'\n')
+    (out/'staging.json').write_text(json.dumps(dict(robot_map_xy_prior_m=start_xy,station_map_xy_goal_m=initial_xy,
+        initial_qpos=data.qpos.tolist(),scope='Authored initial aisle pose; the subsequent approach and preparation are executed continuously' if walking else 'Authored robot pose at the FTIR station, not executed walking/preparation',
+        target_instruction='Walk to the FTIR station, prepare and localize, push its window, withdraw, confirm its position from RGB-D and return' if walking else 'Observe, push the passive sliding window by 70 mm, withdraw, turn to observe its final position from fresh RGB-D, then return' if observe_slider_outcome else 'Observe, push the passive sliding window by 70 mm, withdraw and return' if slider else 'Observe the key row and turn the torso to the approach orientation' if scan else 'Grasp, open and release the cover with the right hand' if cover else 'Press BACKGROUND with the right index finger and retract',
         cameras='Native head RGB/depth profiles, ideal rendering and uncalibrated nominal source extrinsics'),indent=2)+'\n')
-    command=[sys.executable,str(HERE/actor_name),'--model',str(control),'--initial-xy',*map(str,initial_xy)]
+    command=[sys.executable,str(HERE/actor_name),'--model',str(control),'--initial-xy',*map(str,start_xy)]
+    if walking:command.extend(['--station-xy',*map(str,initial_xy)])
     modules=['ftir_actor.py','ftir_hand.py','ftir_vision.py'];policies=[];shapes=[]
     if scan:modules.extend([actor_name,'ftir_slider_posture.py'])
     if touch:
@@ -92,6 +136,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         modules.extend(['ftir_slider_actor.py','ftir_slider_scan_actor.py','ftir_slider_posture.py',
                         'ftir_slider_planning.py','ftir_slider_vision.py','ftir_cover_geometry.py',
                         'robot_source_meshes.py','joint_rrt.py','source_proximity.py'])
+        if observe_slider_outcome:modules.extend(['ftir_slider_observed_actor.py','ftir_slider_outcome.py'])
         (out/'policy_source').mkdir();(out/'object_shape_source').mkdir()
         prior=out/'policy_source/slider_push_prior.json'
         shape=out/'object_shape_source/nicolet_passive_dynamics.glb'
@@ -100,6 +145,10 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         shutil.copyfile(prior_source,prior)
         shutil.copyfile(root/'assets/nicolet_6700_mechanism_v1/revisions/passive_dynamics/geometry/nicolet_passive_dynamics.glb',shape)
         policies.append(prior);shapes.append(shape)
+    if walking:
+        modules.extend(['ftir_approach_actor.py','walking_actor.py','odometry.py','map_localization.py'])
+        policy=out/'locomotion_policy_source';shutil.copytree(HERE/'locomotion_policy',policy)
+        policies.extend([policy/'deploy.yaml',policy/'policy.onnx'])
     command,environment,receipt=prepare(out,control,command,extra_modules=modules,policy_files=policies,shape_files=shapes)
     log=open(out/'actor_stderr.log','w');process=subprocess.Popen(command,env=environment,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=log,close_fds=True)
     depth_height,depth_width=(360,640) if cover or scan or slider else (180,320)
@@ -130,7 +179,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
             response=received;data.ctrl[:]=response['torque']
             if monitor is not None and i%camera_every==0:
                 monitor.write(json.dumps(dict(time_s=float(data.time),**{k:v for k,v in response.items()
-                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose'}}))+'\n');monitor.flush()
+                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation'}}))+'\n');monitor.flush()
             records.append((float(data.time),data.qpos.copy(),data.qvel.copy(),data.ctrl.copy(),data.qacc_warmstart.copy()))
             sensors.append({k:v for k,v in packet.items() if k not in {'depth','rgb'}})
             if i%response_every==0:responses.append(dict(time_s=float(data.time),**{k:v for k,v in response.items() if k not in {'torque','events'}}))
@@ -167,8 +216,10 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
                 actor_isolation_sha256=hashlib.sha256((out/'actor_isolation.json').read_bytes()).hexdigest(),
                 actor_access_isolated=receipt['passed'],actor_input_fields=list(sensors[0])+['depth','rgb'] if sensors else [],
                 actor_last_output={k:v for k,v in response.items() if k!='torque'},environment='existing_complete_laboratory',
+                requires_visual_outcome_confirmation=bool(observe_slider_outcome),
+                requires_executed_station_approach=bool(walking),
                 setup_credit=False,qualified_skill=False,qualified_paper_branch=False,
-                scope='One observed, tactile-gated sliding-window attempt from authored stationary setup' if slider else 'One RGB-D observation and torso preparation attempt; no walking, window manipulation or skill qualification' if scan else 'One tactile-gated cover opening attempt from an authored stationary initial posture' if cover else 'One observed BACKGROUND key press attempt from an authored stationary initial posture')
+                scope='One continuous aisle approach, preparation, observed window push and return attempt; no carrying, complete experiment or qualification' if walking else 'One observed, tactile-gated sliding-window attempt from authored stationary setup' if slider else 'One RGB-D observation and torso preparation attempt; no walking, window manipulation or skill qualification' if scan else 'One tactile-gated cover opening attempt from an authored stationary initial posture' if cover else 'One observed BACKGROUND key press attempt from an authored stationary initial posture')
     (out/'result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ['status','failure','simulated_seconds']}),flush=True)
     return result
 

@@ -27,7 +27,7 @@ SDK_JOINTS = ([s+'_'+j+'_joint' for s in ['left','right']
 
 
 class WalkingActor:
-    def __init__(self, model, directory, speed=.2, gains='training', hold_heading=False, stop_at=10., park=False):
+    def __init__(self, model, directory, speed=.2, gains='training', hold_heading=False, stop_at=10., park=False, hand_pose=None):
         self.m = model
         self.cfg = yaml.safe_load((Path(directory)/'deploy.yaml').read_text())
         self.order = np.asarray(self.cfg['joint_ids_map'], dtype=int)
@@ -60,20 +60,29 @@ class WalkingActor:
         self.hand_motors = np.array([i for i in range(model.nu) if i not in self.motor_index])
         self.hand_encoders = np.array([hinges.index(model.joint(model.actuator_trnid[i,0]).name)
                                        for i in self.hand_motors])
+        hand_names = [model.joint(model.actuator_trnid[i,0]).name for i in self.hand_motors]
+        hand_pose = {} if hand_pose is None else dict(hand_pose)
+        for name, value in hand_pose.items():
+            if name not in hand_names or not np.isfinite(value):
+                raise ValueError('Invalid walking hand posture')
+            joint = model.joint(name)
+            if model.jnt_limited[joint.id] and not model.jnt_range[joint.id,0] <= value <= model.jnt_range[joint.id,1]:
+                raise ValueError('Walking hand posture exceeds source joint limits')
+        self.hand_target = np.array([hand_pose.get(name, 0.) for name in hand_names])
         options = ort.SessionOptions(); options.intra_op_num_threads = 1; options.inter_op_num_threads = 1
         self.session = ort.InferenceSession(str(Path(directory)/'policy.onnx'),
                                            sess_options=options, providers=['CPUExecutionProvider'])
         self.input_name = self.session.get_inputs()[0].name
         self.policy_evaluations = 0
 
-    def torque(self, obs):
+    def torque(self, obs, command_override=None):
         if set(obs) != {'time_s','joint_position','joint_velocity','imu_quaternion','imu_gyro','depth'}:
             raise ValueError('Non-sensor field in actor input')
         t = obs['time_s']
         if self.balance is not None:
             if t+1e-8 >= self.balance_next:
                 self.estimate.update(obs)
-                self.parking_torque = self.balance.torque(dt=.01)
+                self.parking_torque = self.balance.torque(dt=.01,posture_weights=getattr(self,'parking_posture_weights',None))
                 self.balance_next += .01
             return self.parking_torque, np.zeros(3)
         q = np.asarray(obs['joint_position'])[self.encoder_index]
@@ -86,7 +95,7 @@ class WalkingActor:
         forward = rotation.apply([1.,0.,0.])
         yaw = np.arctan2(forward[1],forward[0])
         if self.heading_reference is None: self.heading_reference = yaw
-        if self.park and t >= self.stop_at+.6:
+        if self.park and t >= self.stop_at+getattr(self,'minimum_stop_dwell_s',.6) and getattr(self,'estimated_base_speed',0.)<getattr(self,'parking_speed_limit',float('inf')):
             d = self.parking_data; m = self.m
             hinges = [j for j in range(m.njnt) if m.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE]
             d.qpos[m.jnt_qposadr[hinges]] = obs['joint_position']
@@ -108,6 +117,8 @@ class WalkingActor:
         if self.hold_heading and 2 <= t < self.stop_at:
             error = np.arctan2(np.sin(self.heading_reference-yaw),np.cos(self.heading_reference-yaw))
             command[2] = np.clip(1.2*error,-.2,.2)
+        if command_override is not None:
+            command = np.asarray(command_override,dtype=np.float32)
         if t+1e-8 >= self.next_policy:
             gravity = rotation.inv().apply([0.,0.,-1.])
             terms = dict(base_ang_vel=obs['imu_gyro'], projected_gravity=gravity,
@@ -133,7 +144,7 @@ class WalkingActor:
         torque = np.zeros(self.m.nu)
         body_torque = (sdk_target-q)*self.kp-dq*self.kd
         torque[self.motor_index] = np.clip(body_torque,-self.effort,self.effort)
-        torque[self.hand_motors] = (-1.*np.asarray(obs['joint_position'])[self.hand_encoders]
+        torque[self.hand_motors] = (self.hand_target-np.asarray(obs['joint_position'])[self.hand_encoders]
                                    -.05*np.asarray(obs['joint_velocity'])[self.hand_encoders])
         return np.clip(torque, self.m.actuator_ctrlrange[:,0], self.m.actuator_ctrlrange[:,1]), command
 

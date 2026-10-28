@@ -25,10 +25,18 @@ def render(folder):
         raise ValueError('Reviewed trace or model has changed')
     if (folder/'slider.mp4').exists():raise FileExistsError('Do not overwrite a published trace movie')
     result=json.loads((folder/'result.json').read_text())
+    approach=bool(result.get('requires_executed_station_approach'))
+    outcome_path=folder/('continuous_approach_review.json' if approach else 'visual_outcome_review.json')
+    if result.get('requires_visual_outcome_confirmation'):
+        outcome=json.loads(outcome_path.read_text())
+        if (not outcome['passed'] or outcome['trace_sha256']!=physical['trace_sha256']
+                or outcome['result_sha256']!=sha(folder/'result.json')):
+            raise ValueError('Passing unchanged native-sensor outcome replay required')
     events=result['actor_last_output']['events']
     def event_time(name):
         return float(next(e['time_s'] for e in events if e['state']==name))
     contact=event_time('seek_contact_endpoint');withdraw=event_time('withdraw_endpoint')
+    handoff=event_time('continuous_station_handoff') if approach else None
     m=mujoco.MjModel.from_xml_path(str(folder/'world.xml'));d=mujoco.MjData(m)
     trace=dict(np.load(folder/'trace.npz'))
     m.mat_rgba[:,:3]=np.clip(m.mat_rgba[:,:3],0,1)**(1/2.2)
@@ -54,6 +62,14 @@ def render(folder):
             u=u*u*(3-2*u)
             camera.lookat[:]=(1-u)*np.array([6.15,-5.5,.82])+u*np.array([6.25,-5.52,1.10])
             camera.distance=3.05-1.8*u
+            if approach and t<handoff:
+                # Keep both the aisle origin and instrument in frame until
+                # the walking controller hands over at the workstation.
+                blend=float(np.clip((t-max(0.,handoff-3.))/3.,0,1))
+                blend=blend*blend*(3-2*blend)
+                center=np.r_[(trace['qpos'][0,:2]+np.array([6.15,-5.5]))/2.,.82]
+                camera.lookat[:]=(1-blend)*center+blend*camera.lookat
+                camera.distance=(1-blend)*4.2+blend*camera.distance
             renderer.update_scene(d,camera=camera,scene_option=option);pixels=renderer.render().copy()
             encoder.stdin.write(pixels.tobytes())
             if frame in preview_frames:Image.fromarray(pixels).save(folder/f'slider_frame_{frame:04d}.png')
@@ -72,6 +88,11 @@ def render(folder):
         presentation_adjustments=['Display gamma for GLTF materials','GLTF texture origin correction',
                                   'Headlight ambient/diffuse 0.5','Continuous camera approach and retreat'],
         scope='One observed and tactile-controlled window push from authored standing setup in the original laboratory. No walking, full hinged-cover opening, experiment or reliability qualification.')
+    if result.get('requires_visual_outcome_confirmation'):
+        receipt['continuous_approach_review_sha256' if approach else 'visual_outcome_review_sha256']=sha(outcome_path)
+    if approach:
+        receipt['walking_handoff_s']=handoff
+        receipt['scope']='One continuous local aisle approach, observed window push and return in the original laboratory. No carrying, complete experiment or reliability qualification.'
     (folder/'slider_video.json').write_text(json.dumps(receipt,indent=2)+'\n')
     shutil.copyfile(__file__,folder/'render_ftir_slider.py')
     print('slider_video_saved',count,flush=True)

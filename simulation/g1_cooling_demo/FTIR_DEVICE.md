@@ -562,12 +562,14 @@ The current actor fixes the
 phase-entry bug by requiring confirmed touch for this
 transition and clears confirmation when the load drops below the acquisition
 threshold. The retained-case regression passes; attempt 06 tests that guard
-with the canonical prior used in the successful attempt 04. Its physical
-result is pending.
+with the canonical prior used in the successful attempt 04. Attempt 06 passes
+independent physics and isolation checks. Its world and complete trajectory
+are byte-identical to attempt 04: the guard preserves the already-correct
+nominal sequence. This is not an independent perturbed reliability trial.
 
 The separate `ftir_slider_outcome.py` prototype recenters the same depth fit
-at a commanded position without reading the plant slider joint. It is not in
-the runtime actor. Its first labeled seven-position control rejects the true
+at a commanded position without reading the plant slider joint. Its initial
+standalone study was not part of the runtime actor. The first labeled seven-position control rejects the true
 70 mm state because the fitted height residual is 0.823 mm, outside the
 unchanged 0.8 mm gate. Across eight retained observation poses, the unchanged
 gate accepts six true-target frames and rejects all 32 non-target controls.
@@ -592,8 +594,40 @@ in `analysis/nicolet_slider_push_04/endpoint_views_02.json`. It accepts 20 of
 32 physically in-range fixtures and none of 24 out-of-range fixtures. All
 four 70 mm target fixtures pass; the conservative guard also rejects valid
 states near the physical range boundaries. Those false rejections remain in
-the report. This observer is not integrated into the actor, and executed
-post-push viewing, reacquisition and sensor calibration remain unverified.
+the report.
+
+Attempt 07 integrates that range observer in `ftir_slider_observed_actor.py`.
+After pushing and withdrawing, the floating robot turns its torso under motor
+control, waits for eight consecutive accepted RGB-D observations, and returns
+to its resting orientation. The 117.142-second execution passes physical and
+isolation reviews. An independent replay reconstructs the closed baseline and
+all eight outcome fits from retained raw camera/encoder/IMU packets; predictions
+match exactly and the largest slider-position error is 0.336 mm. The clean
+117.167-second recording is `runs/ftir_slider_07/slider.mp4`. This is one
+station operation, without calibration, carrying or paper-branch credit.
+
+`run_ftir_approach.py` is the continuous walking-to-station integration entry
+point. Its first trial walked from the aisle but failed the posture handoff;
+the failed trajectory and all review failures are retained in
+`runs/ftir_approach_01`. The current controller initializes and holds the
+folded hand posture, preserves the actual parked leg posture, and prepares
+only the upper body before native depth registration to the room architecture.
+Handoff passes the sensor-derived robot state and the current simulation time
+to the station actor. It does not reset the physical robot or device. The
+official walking policy's 0.01 kg m² body-joint rotor inertia is an explicit
+training-model adaptation, not measured hardware identification. Full
+continuous execution and independent review are still required; existing
+contact, support and joint-limit criteria remain unchanged.
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
+python simulation/g1_cooling_demo/run_ftir_slider.py \
+  --out /tmp/ftir-observed-new --duration 150 --observe-outcome
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_ftir_slider.py /tmp/ftir-observed-new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_isolation.py /tmp/ftir-observed-new
+OPENBLAS_NUM_THREADS=1 python simulation/g1_cooling_demo/verify_slider_outcome.py /tmp/ftir-observed-new
+MUJOCO_GL=egl python simulation/g1_cooling_demo/render_ftir_slider.py /tmp/ftir-observed-new
+```
 
 The separate offline plane study `analysis/ftir_cover_plane_04` rejects
 views with fewer than 500 supporting depth pixels. On development runs

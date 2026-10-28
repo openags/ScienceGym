@@ -31,7 +31,7 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None,posture_weights=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
         # Desired wrist forces on a contacted object imply opposite external
@@ -67,7 +67,13 @@ class Balance:
         jf=np.vstack(js);dynamics=np.c_[mass,-jf.T,-self.eqj.T]
         def pad(j):return np.c_[j,np.zeros((len(j),12+k))]
         posture=self.posture if posture is None else posture
-        rows=[pad(np.eye(n)[self.va])];ys=[45*(posture-d.qpos[self.qa])-13*d.qvel[self.va]]
+        posture_row=pad(np.eye(n)[self.va]);posture_rhs=45*(posture-d.qpos[self.qa])-13*d.qvel[self.va]
+        if posture_weights is not None:
+            weights=np.asarray(posture_weights,dtype=float)
+            if weights.shape!=(m.nu,) or not np.isfinite(weights).all() or np.any(weights<=0):
+                raise ValueError('Invalid joint-posture task weights')
+            posture_row*=weights[:,None];posture_rhs*=weights
+        rows=[posture_row];ys=[posture_rhs]
         cj=np.zeros((3,n));mujoco.mj_jacSubtreeCom(m,d,cj,m.body('pelvis').id)
         cd=np.zeros(3) if self.previous_comj is None else (cj-self.previous_comj)@d.qvel/dt;self.previous_comj=cj.copy()
         rows.append(12*pad(cj));ys.append(12*(70*(self.com_target-d.subtree_com[m.body('pelvis').id])-18*cj@d.qvel-cd))

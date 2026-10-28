@@ -50,7 +50,11 @@ def verify(folder):
     if entry_point not in receipt['source_modules']:
         raise ValueError('Recorded actor entry point is not in the pinned bundle')
     command = prefix + [sys.executable,'/actor/'+entry_point,'--model','/model/world.xml']
-    ftir_actor=entry_point in {'ftir_actor.py','ftir_cover_actor.py','ftir_slider_scan_actor.py','ftir_slider_actor.py'}
+    if entry_point=='ftir_approach_actor.py':
+        staging=json.loads((folder/'staging.json').read_text())
+        command.extend(['--initial-xy',*map(str,staging['robot_map_xy_prior_m']),
+                        '--station-xy',*map(str,staging['station_map_xy_goal_m'])])
+    ftir_actor=entry_point in {'ftir_actor.py','ftir_cover_actor.py','ftir_slider_scan_actor.py','ftir_slider_actor.py','ftir_slider_observed_actor.py','ftir_approach_actor.py'}
     if ftir_actor:
         from depth_io import load as load_depth
         recorded=np.load(folder/'sensor_observations.npz')

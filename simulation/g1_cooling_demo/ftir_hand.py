@@ -11,6 +11,17 @@ POINTING = dict(right_index_1_joint=0., right_middle_1_joint=1.25,
                 right_thumb_1_joint=1., right_thumb_2_joint=.2)
 
 
+def rest_hand_pose():
+    """The authored folded hand posture used by the clear stationary setup."""
+    result = {}
+    for side in ['left', 'right']:
+        for finger in ['index', 'middle', 'ring', 'little']:
+            result[side+'_'+finger+'_1_joint'] = 1.1
+        result[side+'_thumb_1_joint'] = .8
+        result[side+'_thumb_2_joint'] = .3
+    return result
+
+
 def mimic(model, data):
     for i in range(model.neq):
         data.qpos[model.jnt_qposadr[model.eq_obj1id[i]]] = (model.eq_data[i, 0]
@@ -25,11 +36,8 @@ def initialize(model, xy=(5.95, -5.55)):
                             right_elbow_joint=-.8, right_shoulder_roll_joint=-.4,
                             right_shoulder_yaw_joint=-.3).items():
         data.joint(name).qpos[0] = value
-    for side in ['left', 'right']:
-        for finger in ['index', 'middle', 'ring', 'little']:
-            data.joint(side+'_'+finger+'_1_joint').qpos[0] = 1.1
-        data.joint(side+'_thumb_1_joint').qpos[0] = .8
-        data.joint(side+'_thumb_2_joint').qpos[0] = .3
+    for name, value in rest_hand_pose().items():
+        data.joint(name).qpos[0] = value
     mimic(model, data)
     mujoco.mj_forward(model, data)
     return data

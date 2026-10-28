@@ -28,8 +28,8 @@ def motion_ready(kind, progress, position_error, rotation_error, contact_confirm
 class SliderActor(SliderScanActor):
     fields=SliderScanActor.fields|{'right_touch_n'}
 
-    def __init__(self,model,xy,prior,shape):
-        super().__init__(model,xy)
+    def __init__(self,model,xy,prior,shape,initial_state=None,started_at=0.):
+        super().__init__(model,xy,initial_state=initial_state,started_at=started_at)
         self.prior_path,self.shape_path=prior,shape
         self.grip_vision=SliderObservation(model,self.d,prior,shape)
         self.grip_observations=[];self.prepared=False;self.motions=[]

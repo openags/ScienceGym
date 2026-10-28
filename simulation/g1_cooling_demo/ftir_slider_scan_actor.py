@@ -16,8 +16,11 @@ from ftir_slider_posture import initialize_slider
 
 
 class SliderScanActor(FTIRActor):
-    def __init__(self,model,xy):
-        super().__init__(model,xy,initial_state=initialize_slider(model,xy))
+    def __init__(self,model,xy,initial_state=None,started_at=0.):
+        if not np.isfinite(started_at) or started_at<0:
+            raise ValueError('Invalid station handoff time')
+        super().__init__(model,xy,initial_state=initialize_slider(model,xy) if initial_state is None else initial_state)
+        self.scan_started_at=float(started_at)
         self.initial_com=self.d.subtree_com[model.body('pelvis').id].copy()
         self.centered_com=self.balance.com_target.copy()
         self.turn_started=None
@@ -29,13 +32,15 @@ class SliderScanActor(FTIRActor):
         if set(obs)!=SliderScanActor.fields:
             raise ValueError('Non-sensor field in FTIR actor input')
         t=float(obs['time_s']);detection=None
+        elapsed=t-self.scan_started_at
+        if elapsed < -1e-8:raise ValueError('Observation predates station handoff')
         if t+1e-8>=self.next_control:
             self.estimate.update({k:v for k,v in obs.items() if k!='rgb'})
             if obs['rgb'] is not None and obs['depth'] is not None:
                 detection=self.vision.observe(obs['rgb'],obs['depth'])
                 if detection and detection['accepted']:
                     self.observations.append(detection);self.total_accepted+=1
-            if self.turn_started is None and t>=2. and len(self.observations)>=8:
+            if self.turn_started is None and elapsed>=2. and len(self.observations)>=8:
                 recent=self.observations[-8:]
                 labels=['SAMPLE','BACKGROUND','OK / ENTER','STOP']
                 positions=np.array([[o['buttons'][key] for key in labels] for o in recent])
@@ -45,7 +50,7 @@ class SliderScanActor(FTIRActor):
                 self.turn_started=t
                 self.events.append(dict(state='observed_key_row',time_s=t,
                                         observations=recent,maximum_coordinate_std_m=spread))
-            if self.turn_started is None and t>5.:
+            if self.turn_started is None and elapsed>5.:
                 raise RuntimeError('Four FTIR controls were not observed reliably')
             posture=self.original_posture.copy()
             if self.turn_started is not None:
@@ -61,7 +66,7 @@ class SliderScanActor(FTIRActor):
                 else:self.stable_since=None
                 if t-self.turn_started>9. and not self.finished:
                     raise RuntimeError('Torso did not settle at the approach orientation')
-            settle=float(np.clip(t/2.,0,1));settle=settle*settle*(3-2*settle)
+            settle=float(np.clip(elapsed/2.,0,1));settle=settle*settle*(3-2*settle)
             self.balance.com_target=self.initial_com+settle*(self.centered_com-self.initial_com)
             self.last_torque=self.balance.torque(posture=posture,
                 dt=.01 if self.last_time is None else t-self.last_time)

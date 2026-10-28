@@ -4,8 +4,9 @@ The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
 equipment, with G1 and the white tray as dynamic bodies. A separate
 [passive FTIR device candidate](FTIR_DEVICE.md) adds contact-driven cover and
-key diagnostics in that laboratory; G1 operation of those mechanisms remains
-open. Loaded walking and the full paper campaign also remain open.
+key diagnostics in that laboratory. One G1 sliding-window operation now passes
+independent contact replay and post-operation visual confirmation; full cover
+opening, loaded walking and the full paper campaign remain open.
 The [laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html)
 shows the resulting contact subtask with enforced actor access isolation. The
 runtime guide records the namespace probes and independent packet-rejection
@@ -20,6 +21,14 @@ shows 9 minutes 1 second of tool collection, walking to the material bench,
 carrying the witness back, gold-reference/sample operations and cleanup in the
 full laboratory. Its [delivery record](../../viewer/cooling_concept_v2/measurement_delivery.json)
 distinguishes the geometric review from unfinished physical qualification.
+The [5 minute 33 second edition](../../viewer/cooling_concept_v2/measurement_demo.html?cut=brief)
+retains both walking legs and all operation stages, with a synchronized room
+map. The separate [117 second window recording](runs/ftir_slider_07/slider.mp4)
+shows a physically executed push, withdrawal, camera confirmation and return.
+Its [physical review](runs/ftir_slider_07/physical_slider_review.json) and
+[native-sensor replay](runs/ftir_slider_07/visual_outcome_review.json) pass.
+That recording starts at an authored station pose; it does not validate the
+cross-station film's carrying or complete measurement sequence.
 
 The earlier workbench presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
 
