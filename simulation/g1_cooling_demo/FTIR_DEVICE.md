@@ -701,6 +701,26 @@ All physical contact, load, support and travel criteria remain unchanged.
 See `analysis/quasistatic_solver_01/approach_08_contract.json`. Fault-injection
 checks exercise this logic but do not establish physical success.
 
+Approach 08 executes the recovery withdrawal and subsequent camera observation,
+but all 121 native outcome frames fail geometry quality; it returns and ends
+failed after 245.620 seconds. Independent physics satisfies every criterion
+apart from the failed completion status, and process isolation passes. Its
+frozen sensor replay is evaluated separately. The observed waist angle is
+about -0.495865 rad for a -0.5 rad target. Labeled static views also expose
+planar-surface aliases at some other angles, including an out-of-range 60 mm
+opening incorrectly estimated above 73 mm. These false acceptances remain in
+`analysis/slider_outcome_approach_01`.
+
+The current range observer adds visible relief of at least half the public
+CAD grip height: 1.500 mm for this 3.000 mm grip. Applying the stricter code
+to retained fit outputs removes both labeled false acceptances without losing
+the 41 previous correct acceptances in that study. This is a held-fit guard
+test, not a new inference or calibration result. New continuous attempt 09
+uses a -0.60 rad viewing target, a tighter 0.005 rad pose gate and stronger
+waist-posture tracking. It must still pass fresh native-image confirmation,
+physical replay and isolation. Its contract and the static collision screen
+are retained in the same analysis directory; the latter is not executed motion.
+
 To reproduce the current short development probe, install the pinned
 requirements, use the retained full lab from approach 06 and a new empty
 output directory. Review the execution separately:
