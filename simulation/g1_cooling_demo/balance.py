@@ -31,8 +31,11 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None,posture_weights=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None,posture_weights=None,support_feet=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
+        support=np.ones(2,dtype=bool) if support_feet is None else np.asarray(support_feet)
+        if support.shape!=(2,) or support.dtype!=bool or not support.any():
+            raise ValueError('At least one explicitly declared support foot is required')
         mass=np.zeros((n,n));mujoco.mj_fullM(m,d,mass);bias=d.qfrc_bias-d.qfrc_passive
         # Desired wrist forces on a contacted object imply opposite external
         # reactions on the robot. Include their full generalized load in the
@@ -74,6 +77,10 @@ class Balance:
                 raise ValueError('Invalid joint-posture task weights')
             posture_row*=weights[:,None];posture_rhs*=weights
         rows=[posture_row];ys=[posture_rhs]
+        # A swing foot is a Cartesian motion task, never a fictitious support
+        # wrench. Its physical motion still comes exclusively from motors.
+        for foot in np.flatnonzero(~support):
+            rows.append(60*pad(js[foot]));ys.append(60*acc[foot])
         cj=np.zeros((3,n));mujoco.mj_jacSubtreeCom(m,d,cj,m.body('pelvis').id)
         cd=np.zeros(3) if self.previous_comj is None else (cj-self.previous_comj)@d.qvel/dt;self.previous_comj=cj.copy()
         rows.append(12*pad(cj));ys.append(12*(70*(self.com_target-d.subtree_com[m.body('pelvis').id])-18*cj@d.qvel-cd))
@@ -99,12 +106,18 @@ class Balance:
         cost=np.vstack(rows);desired=np.concatenate(ys);P=cost.T@cost+np.eye(total)*1e-6;q=-cost.T@desired
         eqerr=np.array([d.qpos[a]-c*d.qpos[b]-offset for a,b,c,offset in self.eqdata])
         eqacc=-300*eqerr-35*self.eqj@d.qvel
-        A=[dynamics[self.unactuated],pad(jf),pad(self.eqj),dynamics[self.va]]
-        lo=[-bias[self.unactuated],np.concatenate(acc),eqacc,m.actuator_ctrlrange[:,0]-bias[self.va]]
-        hi=[-bias[self.unactuated],np.concatenate(acc),eqacc,m.actuator_ctrlrange[:,1]-bias[self.va]]
+        contact_rows=np.repeat(support,6)
+        A=[dynamics[self.unactuated],pad(jf[contact_rows]),pad(self.eqj),dynamics[self.va]]
+        lo=[-bias[self.unactuated],np.concatenate(acc)[contact_rows],eqacc,m.actuator_ctrlrange[:,0]-bias[self.va]]
+        hi=[-bias[self.unactuated],np.concatenate(acc)[contact_rows],eqacc,m.actuator_ctrlrange[:,1]-bias[self.va]]
         wr=[];wl=[];wh=[]
         for foot in range(2):
             off=n+foot*6
+            if not support[foot]:
+                for axis in range(6):
+                    row=np.zeros(total);row[off+axis]=1
+                    wr.append(row);wl.append(0);wh.append(0)
+                continue
             frame=self.foot_rotations[foot] if getattr(self,'rotate_foot_constraints',False) else np.eye(3)
             row=np.zeros(total);row[off:off+3]=frame[:,2];wr.append(row);wl.append(5);wh.append(800)
             for axis,mu in [(0,.6),(1,.6),(3,.025),(4,.07),(5,.012)]:
@@ -113,11 +126,21 @@ class Balance:
                     row[start:start+3]=sign*frame[:,axis%3];row[off:off+3]-=mu*frame[:,2]
                     wr.append(row);wl.append(-np.inf);wh.append(0)
         A.append(np.array(wr));lo.append(wl);hi.append(wh)
-        solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(np.triu(P)),q=q,A=sparse.csc_matrix(np.vstack(A)),l=np.concatenate(lo),u=np.concatenate(hi),verbose=False,eps_abs=2e-5,eps_rel=2e-5,max_iter=6000,polishing=True)
-        if self.previous is not None:solver.warm_start(x=self.previous)
+        settings={}
+        if hasattr(self,'solver_rho'):settings['rho']=self.solver_rho
+        if hasattr(self,'solver_rho_interval'):settings['adaptive_rho_interval']=self.solver_rho_interval
+        solver=osqp.OSQP();solver.setup(P=sparse.csc_matrix(np.triu(P)),q=q,A=sparse.csc_matrix(np.vstack(A)),l=np.concatenate(lo),u=np.concatenate(hi),verbose=False,eps_abs=2e-5,eps_rel=2e-5,max_iter=getattr(self,'solver_max_iterations',6000),polishing=True,**settings)
+        if self.previous is not None:
+            dual=getattr(self,'previous_dual',None)
+            if getattr(self,'warm_start_dual',False) and dual is not None and len(dual)==sum(len(v) for v in lo):
+                solver.warm_start(x=self.previous,y=dual)
+            else:solver.warm_start(x=self.previous)
         result=solver.solve(raise_error=False)
-        if result.info.status_val not in (1,2):raise RuntimeError('Balance QP: '+result.info.status)
+        self.solver_diagnostics=dict(status=result.info.status,iterations=result.info.iter,
+                                     primal_residual=result.info.prim_res,dual_residual=result.info.dual_res)
+        if result.info.status_val not in (1,2):raise RuntimeError('Balance QP: '+str(self.solver_diagnostics))
         self.previous=result.x;self.max_iter=max(self.max_iter,result.info.iter)
+        self.previous_dual=result.y.copy()
         torque=dynamics[self.va]@result.x+bias[self.va]
         for side,force in (forces or {}).items():
             site=m.site(side+'_wrist_reference').id;j,_=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))

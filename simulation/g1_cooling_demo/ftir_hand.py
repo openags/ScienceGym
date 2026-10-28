@@ -22,6 +22,22 @@ def rest_hand_pose():
     return result
 
 
+def walking_shoulder_pose():
+    """Initial outward shoulder angles for the walking clearance guard."""
+    return dict(left_shoulder_roll_joint=.4, right_shoulder_roll_joint=-.4)
+
+
+def walking_arm_pose():
+    """Authored raised forearms for clearance above the bench drawer handles."""
+    result = {}
+    for side, sign in [('left', 1.), ('right', -1.)]:
+        for joint, value in dict(shoulder_pitch=.35, shoulder_roll=sign*.3,
+                                 shoulder_yaw=0., elbow=1.5, wrist_roll=0.,
+                                 wrist_pitch=0., wrist_yaw=0.).items():
+            result[side+'_'+joint+'_joint'] = value
+    return result
+
+
 def mimic(model, data):
     for i in range(model.neq):
         data.qpos[model.jnt_qposadr[model.eq_obj1id[i]]] = (model.eq_data[i, 0]

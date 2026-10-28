@@ -619,6 +619,49 @@ training-model adaptation, not measured hardware identification. Full
 continuous execution and independent review are still required; existing
 contact, support and joint-limit criteria remain unchanged.
 
+The retained approach trials 02, 03, 05 and 06 all fail overall. Their
+independent process-isolation checks and complete frozen sensor-actor replays
+pass integrity checks, with zero motor, response and event differences.
+Attempt 02 executes the walking handoff but loses window contact. Attempt 05
+has hand self-contact during walking and then hits the instrument/worktop and
+catches a drawer handle; it never completes posture preparation. Attempts 03
+and 06 lose balance with held raised forearms. Attempt 04 was stopped during
+bootstrap before physics. See `analysis/nicolet_slider_push_06/approach_status.json`.
+The added official `action_manager.h` confirms that upstream action history is
+the raw network output, before target processing. Correcting that history does
+not make the raised-arm adaptation pass.
+
+`quasistatic_walking.py` is a separate development controller for short steps
+with raised arms. It is **not integrated into the station actor**. It estimates
+support from encoders, IMU and a level-floor assumption, assigns zero model
+wrench to the swing foot, and sends only bounded motor torques to the full lab
+plant. These in-process probes do not claim process isolation. The stationary
+Balance default produces exactly the same torques at nine retained window-task
+states after adding the optional support-foot interface.
+
+All six short probes are retained under `analysis/quasistatic_walk_*`. Probes
+01–03 stop during the first COM transfer because their constrained solve does
+not converge. The fixed QP adaptation interval resolves that retained numerical
+case without changing tolerances. Probes 04–05 do not meet the COM transfer
+gate. Probe 06 lands one foot but stops during the following transfer; the
+requested two-foot walk still fails. Its executed prefix has exact motor
+replay, no excess contacts, minimum sole load 302.97 N and maximum pelvis tilt
+0.00338 rad. These partial results give no complete walking or manipulation
+credit. See `analysis/nicolet_slider_push_06/quasistatic_status.json`.
+
+To reproduce the current short development probe, use the retained full lab
+from approach 06 and a new empty output directory. The current attempt is
+expected to fail; its nonzero exit is preserved. Review it separately:
+
+```sh
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
+python simulation/g1_cooling_demo/check_quasistatic_walking.py \
+  simulation/g1_cooling_demo/runs/ftir_approach_06 /tmp/sciencegym-step-new
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
+python simulation/g1_cooling_demo/verify_quasistatic_walking.py \
+  simulation/g1_cooling_demo/runs/ftir_approach_06 /tmp/sciencegym-step-new
+```
+
 ```sh
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=2 MUJOCO_GL=egl \
 python simulation/g1_cooling_demo/run_ftir_slider.py \

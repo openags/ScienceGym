@@ -1,0 +1,28 @@
+{
+  "probe": "analysis/quasistatic_walk_06",
+  "initial_plan": {
+    "distance_m": 0.12,
+    "maximum_step_length_m": 0.12,
+    "clearance_m": 0.055,
+    "initial_com_height_reduction_m": 0.02,
+    "leg_posture_cost_weight": 0.3,
+    "com_transfer_error_gate_m": 0.004,
+    "settled_speed_gate_m_s": 0.015
+  },
+  "changes_from_probe05": "Reduce initial leg-joint posture preference so the Cartesian feet and COM tasks can move the legs; keep upper-body and hand posture weight 1.0.",
+  "physics_requirements": {
+    "minimum_sole_load_n": 100,
+    "minimum_pelvis_height_m": 0.65,
+    "maximum_pelvis_tilt_rad": 0.2,
+    "sole_penetration_m": 0.001,
+    "other_penetration_m": 2e-05,
+    "maximum_joint_limit_excess_rad": 0.01
+  },
+  "scope": "Short original-laboratory walking probe. No full approach, manipulation, isolation or repeated-run qualification.",
+  "sources": {
+    "simulation/g1_cooling_demo/balance.py": "85735301a2baaa0aa6e27da23b0c71c9af8054d1a9254e2c7043fb7f6141409c",
+    "simulation/g1_cooling_demo/quasistatic_walking.py": "e092ec1725de672431d62692ffb110bbeda3bf9f52f086aec6627f47a463b17d",
+    "simulation/g1_cooling_demo/check_quasistatic_walking.py": "284c3896d44ac4f4f0ef9621d9a24288bef95ff5ffdedafcf42b62e4bb19b4a0",
+    "simulation/g1_cooling_demo/verify_quasistatic_walking.py": "1634461c43900290fccef2ebe37a4c51056d8619e1ec95a94dfba93f771235bf"
+  }
+}

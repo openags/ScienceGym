@@ -1,0 +1,56 @@
+{
+  "recorded_at_utc": "2026-10-28T01:13:30.222475+00:00",
+  "run": "ftir_approach_03",
+  "initial_map_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_map_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "continuous_plant_clock": true,
+  "no_runtime_robot_or_object_state_writes": true,
+  "required_checks": [
+    "At least 0.5 m executed horizontal approach before the station handoff",
+    "Stable motor-controlled parking and FTIR posture preparation",
+    "Native depth registration to public architecture, preserving floor-based height",
+    "At least five consecutive accepted map observations with XY information eigenvalue ratio >= 0.01 and position standard deviation < 1 mm",
+    "Station handoff uses sensor-derived state and current global time",
+    "All unchanged physical window/contact/motor/support requirements",
+    "Native RGB-D post-push confirmation and return",
+    "Active namespace isolation and independent controller/sensor replay"
+  ],
+  "development_assumptions": [
+    "Initial authored aisle pose and known level floor",
+    "Pinned official velocity-policy training rotor inertia 0.01 kg m^2",
+    "Leg odometry support selection inferred from sole height",
+    "Local straight aisle route to the FTIR workstation"
+  ],
+  "source_hashes": {
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "f54fcbbe960eaa9bb83895295d8fa2724ccf3f7e7e8e903294b5a9e796cc6905",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "6678b449b4461b296637dbfa2cc786a6897a678201124a5c15947b8c5733c450",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "4afa1f84d845fdce92697ea37de86ec3df29265d9d39549b349584432a2d0dd4",
+    "simulation/g1_cooling_demo/ftir_slider_scan_actor.py": "c0582a38c8f1908d7acfc7a879c41343c605d4953dc588b6a62258a3452f1afa",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "55e5afaaf56a041c89c82b6a17eab63b406ce486a3eecae59ee5c1a4347ff9bf",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "ce6edabe5f434ec93076917072f53c5065c9d7aa5bcd99b44aa1b40e4455c272",
+    "simulation/g1_cooling_demo/map_localization.py": "c356f16734774e181808668595e016a7985027e75e9eb29c51c8cdcbb146e5ba",
+    "simulation/g1_cooling_demo/walking_actor.py": "3fee7bc48483d6eb86853ffe213647440e3cd267fd0e139688a0f2cbbc424b56",
+    "simulation/g1_cooling_demo/odometry.py": "4e15faa638942e6000e6e8a53638e4a611a6fa61bef72ddd4551e61406915716",
+    "simulation/g1_cooling_demo/balance.py": "4cb8b090940bca0c8f4f3ff9a4064167a811b470d643dbc09d40711ad84b0966",
+    "simulation/g1_cooling_demo/ftir_hand.py": "50522b7b798663667d172e5b118b55506b875108574a180277eba400f961f1cd",
+    "assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json": "b3ce69fdd39c441439d4677d7e09e3d29d80fd351a22ffb3db0ed0924b66c300"
+  },
+  "scope": "Connect real walking to the observed station operation. This is not carrying, a complete measurement sequence, the 7.15 m interstation route, or any qualified paper branch.",
+  "changes": [
+    "Keep authored bent elbows and forward hands throughout official-policy walking; only legs/waist follow network output. Feed applied arm actions into history.",
+    "Start from same declared arm posture; no subsequent plant reset or pose writes.",
+    "Smooth command with0.5m/s\u00b2 forward slew, target0.25m/s max0.3m/s; braking-distance allowance includes deceleration. Park only after0.8s stop dwell and estimatedspeed<0.03m/s.",
+    "Rank existing object-local candidate238 before237; no candidate geometry, world pose or recorded arm trajectory added.",
+    "All physical, support, collision, joint-limit, isolation and sensor-replay criteria unchanged."
+  ],
+  "regressions": {
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/walking_arm_clearance.json": "e0b7d0b927fb15255293687403a074b73c3f1dedae977997c8e0a6dc78df98c2",
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/contact_prior_selection.json": "cf4801fa68d05c2419ea1619916f4e5c8d4656daf61a6f08654f58633608942c"
+  }
+}

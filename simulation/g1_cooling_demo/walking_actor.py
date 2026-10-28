@@ -27,7 +27,7 @@ SDK_JOINTS = ([s+'_'+j+'_joint' for s in ['left','right']
 
 
 class WalkingActor:
-    def __init__(self, model, directory, speed=.2, gains='training', hold_heading=False, stop_at=10., park=False, hand_pose=None):
+    def __init__(self, model, directory, speed=.2, gains='training', hold_heading=False, stop_at=10., park=False, hand_pose=None, minimum_shoulder_abduction=None, arm_pose=None):
         self.m = model
         self.cfg = yaml.safe_load((Path(directory)/'deploy.yaml').read_text())
         self.order = np.asarray(self.cfg['joint_ids_map'], dtype=int)
@@ -69,6 +69,27 @@ class WalkingActor:
             if model.jnt_limited[joint.id] and not model.jnt_range[joint.id,0] <= value <= model.jnt_range[joint.id,1]:
                 raise ValueError('Walking hand posture exceeds source joint limits')
         self.hand_target = np.array([hand_pose.get(name, 0.) for name in hand_names])
+        self.shoulder_guards = []
+        if minimum_shoulder_abduction is not None:
+            minimum = float(minimum_shoulder_abduction)
+            if not np.isfinite(minimum) or minimum < 0.:
+                raise ValueError('Invalid walking shoulder clearance angle')
+            for side, sign in [('left',1.),('right',-1.)]:
+                name = side+'_shoulder_roll_joint'
+                limits = model.jnt_range[model.joint(name).id]
+                if not limits[0] <= sign*minimum <= limits[1]:
+                    raise ValueError('Walking shoulder clearance exceeds source joint limits')
+                index = int(np.flatnonzero(self.order == SDK_JOINTS.index(name))[0])
+                self.shoulder_guards.append((index, sign, minimum, limits.copy()))
+        self.arm_targets = {}
+        for name, value in (arm_pose or {}).items():
+            if name not in SDK_JOINTS[15:] or not np.isfinite(value):
+                raise ValueError('Invalid walking arm posture')
+            limits = model.jnt_range[model.joint(name).id]
+            if not limits[0] <= value <= limits[1]:
+                raise ValueError('Walking arm posture exceeds source joint limits')
+            index = int(np.flatnonzero(self.order == SDK_JOINTS.index(name))[0])
+            self.arm_targets[index] = float(value)
         options = ort.SessionOptions(); options.intra_op_num_threads = 1; options.inter_op_num_threads = 1
         self.session = ort.InferenceSession(str(Path(directory)/'policy.onnx'),
                                            sess_options=options, providers=['CPUExecutionProvider'])
@@ -138,6 +159,14 @@ class WalkingActor:
             if not np.isfinite(self.action).all(): raise ValueError('Non-finite policy output')
             cfg = self.cfg['actions']['JointPositionAction']
             self.target = self.action*np.asarray(cfg['scale'])+np.asarray(cfg['offset'])
+            for index, value in self.arm_targets.items():
+                self.target[index] = value
+            # Keep source arm swing and elbow motion, bounding only inward
+            # shoulder roll. As in upstream ActionManager, last_action stays
+            # the raw network action, before target processing or clipping.
+            for index, sign, minimum, limits in self.shoulder_guards:
+                value = float(np.clip(sign*max(minimum,sign*self.target[index]),*limits))
+                self.target[index] = value
             self.next_policy += self.cfg['step_dt']
             self.policy_evaluations += 1
         sdk_target = np.empty(29); sdk_target[self.order] = self.target

@@ -18,7 +18,7 @@ from observations import StateEstimate
 from map_localization import MapLocalization
 from ftir_slider_posture import initialize_slider
 from ftir_slider_observed_actor import ObservedSliderActor
-from ftir_hand import rest_hand_pose
+from ftir_hand import rest_hand_pose, walking_arm_pose
 
 
 class FtirApproachActor:
@@ -30,7 +30,9 @@ class FtirApproachActor:
         self.goal = np.asarray(station_xy, dtype=float)
         self.odom = LegOdometry(model, self.d, initial_xy)
         self.walker = WalkingActor(model, policy, speed=.4, gains='training', park=True,
-                                   stop_at=float('inf'), hand_pose=rest_hand_pose())
+                                   stop_at=float('inf'), hand_pose=rest_hand_pose(), arm_pose=walking_arm_pose())
+        self.walker.minimum_stop_dwell_s = .8
+        self.walker.parking_speed_limit = .03
         self.prior, self.shape = prior, shape
         self.stage = 'approach'
         self.events = []
@@ -44,6 +46,8 @@ class FtirApproachActor:
         self.joint_names = [model.joint(j).name for j in model.actuator_trnid[:,0]]
         self.upper_actuators = [i for i,n in enumerate(self.joint_names) if n not in SDK_JOINTS[:12]]
         self.preparation = None
+        self.command = np.zeros(3)
+        self.command_time = None
 
     def begin_registration(self, packet):
         mujoco.mj_forward(self.m, self.d)
@@ -72,7 +76,8 @@ class FtirApproachActor:
             forward = orientation.apply([1., 0., 0.])
             yaw = float(np.arctan2(forward[1], forward[0]))
             error = self.goal-position[:2]
-            braking = max(.12, .35*max(0., self.velocity_ema[0]))
+            speed_estimate = max(0., float(self.velocity_ema[0]))
+            braking = max(.14, .35*speed_estimate+speed_estimate**2/(2*.5))
             if t >= 2. and self.stop_time is None and error[0] < braking and abs(error[1]) < .10 and abs(yaw) < .10:
                 self.stop_time = t
                 self.walker.stop_at = t
@@ -80,10 +85,14 @@ class FtirApproachActor:
                                         estimated_position_m=position.tolist(), braking_distance_m=float(braking)))
             command = np.zeros(3)
             if t >= 2. and self.stop_time is None:
-                speed = float(np.clip(.35+.8*(.35-self.velocity_ema[0]), .26, .4))
+                speed = float(np.clip(.25+.5*(.25-self.velocity_ema[0]), .18, .3))
                 velocity = np.array([speed if error[0] > .12 else 0., np.clip(1.8*error[1], -.15, .15), 0.])
                 command[:2] = orientation.inv().apply(velocity)[:2]
                 command[2] = np.clip(-1.2*yaw, -.2, .2)
+            dt = 0. if self.command_time is None else max(0., t-self.command_time)
+            self.command += np.clip(command-self.command, -np.array([.5,.4,.4])*dt,
+                                    np.array([.5,.4,.4])*dt)
+            self.command_time = t
             if self.walker.parking_time is not None and t-self.walker.parking_time >= 2.:
                 if self.prepare_time is None:
                     self.prepare_time = t
@@ -103,7 +112,7 @@ class FtirApproachActor:
                 u = float(np.clip((t-self.prepare_time)/5., 0., 1.))
                 self.walker.balance.posture = self.prepare_posture+u*u*(3-2*u)*(self.station_posture-self.prepare_posture)
             self.walker.estimated_base_speed = float(np.linalg.norm(self.velocity_ema[:2]))
-            self.last_torque, _ = self.walker.torque(packet, command_override=command)
+            self.last_torque, _ = self.walker.torque(packet, command_override=self.command)
             if self.prepare_time is not None and t-self.prepare_time >= 7.:
                 joints = self.d.qpos[self.walker.balance.qa]
                 yaw_q = float(self.d.joint('waist_yaw_joint').qpos[0])
@@ -164,6 +173,7 @@ class FtirApproachActor:
                     policy_complete=False, policy_failure=None, events=self.events,
                     accepted_key_observations=0, observation=None, commanded_pose=None,
                     preparation=self.preparation,
+                    commanded_velocity=self.command.tolist(),
                     estimated_root_position_m=self.d.qpos[:3].tolist())
 
     def close(self):

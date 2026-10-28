@@ -83,8 +83,18 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
         cfg=yaml.safe_load((HERE/'locomotion_policy/deploy.yaml').read_text())
         initial=np.empty(29);initial[cfg['joint_ids_map']]=cfg['default_joint_pos']
         for name,value in zip(SDK_JOINTS,initial):data.joint(name).qpos[0]=value
-        from ftir_hand import mimic,rest_hand_pose
+        from ftir_hand import mimic,rest_hand_pose,walking_arm_pose
         for name,value in rest_hand_pose().items():data.joint(name).qpos[0]=value
+        for name,value in walking_arm_pose().items():data.joint(name).qpos[0]=value
+        (out/'walking_control_profile.json').write_text(json.dumps(dict(
+            source_policy='Pinned official Unitree velocity ONNX; unmodified network weights',
+            body_control='Source network leg/waist targets with authored raised-forearm targets; sensor feedback PD',
+            held_arm_pose_rad=walking_arm_pose(),held_hand_pose_rad=rest_hand_pose(),
+            arm_action_history='Unmodified raw network output, matching upstream ActionManager.action()',
+            commanded_speed_target_m_s=.25,maximum_commanded_speed_m_s=.3,
+            forward_command_slew_m_s2=.5,lateral_command_slew_m_s2=.4,yaw_command_slew_rad_s2=.4,
+            parking_speed_gate_m_s=.03,minimum_stop_dwell_s=.8,
+            scope='Development adaptation for Inspire hand/hip clearance; requires independent physical validation.'),indent=2)+'\n')
         mimic(model,data);mujoco.mj_forward(model,data)
         data.qpos[2]-=min(data.site(s+'_sole').xpos[2] for s in ['left','right']);mujoco.mj_forward(model,data)
     else:
@@ -179,7 +189,7 @@ def run(out,duration=40,timestep=.002,operation='press',initial_xy=None,slider_p
             response=received;data.ctrl[:]=response['torque']
             if monitor is not None and i%camera_every==0:
                 monitor.write(json.dumps(dict(time_s=float(data.time),**{k:v for k,v in response.items()
-                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation'}}))+'\n');monitor.flush()
+                    if k in {'policy_state','policy_failure','touch','grip_control','wrist_load_compensation','grasp_contact_confirmed','commanded_pose','preparation','commanded_velocity'}}))+'\n');monitor.flush()
             records.append((float(data.time),data.qpos.copy(),data.qvel.copy(),data.ctrl.copy(),data.qacc_warmstart.copy()))
             sensors.append({k:v for k,v in packet.items() if k not in {'depth','rgb'}})
             if i%response_every==0:responses.append(dict(time_s=float(data.time),**{k:v for k,v in response.items() if k not in {'torque','events'}}))
