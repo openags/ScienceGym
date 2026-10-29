@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-27**. Candidate count: **363**.
+Last screened: **2026-10-29**. Candidate count: **364**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3715,3 +3715,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [15-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41567-026-03442-w/MediaObjects/41567_2026_3442_MOESM1_ESM.pdf) text accessible; selected synchronization, specimen-history and control-comparison disclosures screened. Preparation quantities and camera descriptions differ between main and SI and remain unresolved. Remaining text, figure pixels, peer review, code and data were not fully reviewed.
 - Scope is qualified prepared-specimen handling and measurement-record coordination only. Chemical preparation, laser alignment and optical-system operation are excluded pending qualification. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-27**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: humidity-cycling device metrology (2026-10-29)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Humidity-induced dynamic coordination drives the oscillatory migration of ions for sustainable energy harvesting](https://www.nature.com/articles/s41467-026-69206-5) | Nature Communications / 2026 | 10.1038/s41467-026-69206-5 | Prepared-device custody, environmental logging and repeated electrical comparisons suggest a future long-horizon instrument-coordination task. | OA main and scientific SI text accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 2687 (2026); published **12 February 2026**, version of record **23 March 2026**. Selected environmental-response Results, Discussion and electrical/environmental Methods screened.
+- Official [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69206-5/MediaObjects/41467_2026_69206_MOESM1_ESM.pdf) accessible; selected aging and environmental-response captions screened. Aged-device decay and chamber-precision limitations qualify broad performance claims. Remaining text, figure pixels, reporting summary, peer review and source data were not fully reviewed.
+- Scope is qualified prepared-device measurement coordination only. Chemical fabrication, iodine handling, UV/laser operation and uncontained testing are excluded; volatility containment and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-29**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
