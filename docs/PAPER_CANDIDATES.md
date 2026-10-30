@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-30**. Candidate count: **365**.
+Last screened: **2026-10-30**. Candidate count: **366**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3738,4 +3738,16 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Published **22 October 2026**. Selected workflow, limitations and Methods screened. Physical collection, image processing and downstream measurements remain distinct stages.
 - Official [Supplementary Table 1](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-026-03262-z/MediaObjects/41592_2026_3262_MOESM3_ESM.xlsx) downloaded successfully; sheet headers and selected benchmark rows inspected. These describe computational performance, not robot execution. No separate technical SI PDF is listed. The reporting-summary PDF is accessible but not substantively read; remaining result tables, figure pixels, peer review, code and raw data were not reviewed.
 - Scope is qualified prepared-specimen custody and record coordination only. Human specimen acquisition, chemical processing, laser operation and instrument qualification are excluded. Ethics, specimen provenance and appropriate laboratory oversight remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-30**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: plant cryo-EM specimen and data coordination (2026-10-30)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [In situ structures of plant photosystem supercomplexes](https://www.nature.com/articles/s41586-026-10847-3) | Nature / 2026 | 10.1038/s41586-026-10847-3 | Prepared-grid identity, acquisition-quality checks and linked microscopy/analysis records suggest a future long-horizon specimen-and-instrument coordination task. | OA main Methods and scientific SI accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature* **657**, 1094–1103 (2026); published **29 July 2026**. Selected main preparation, acquisition and processing Methods screened. Physical specimen custody and computational reconstruction remain separate stages.
+- Official [62-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10847-3/MediaObjects/41586_2026_10847_MOESM1_ESM.pdf) accessible; selected processing, validation and orientation-bias passages screened. Grid-related sampling bias and flexible structures limit reconstruction interpretation. Remaining SI sections/tables, figure pixels, videos, reporting summary, peer review, code and raw data were not reviewed.
+- Scope is qualified prepared-specimen custody and record coordination only. Plant sample preparation, cryogen handling, grid freezing and electron-microscope operation are excluded pending specialist qualification. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-30**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
