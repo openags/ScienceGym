@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-29**. Candidate count: **364**.
+Last screened: **2026-10-30**. Candidate count: **365**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3727,3 +3727,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [21-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-69206-5/MediaObjects/41467_2026_69206_MOESM1_ESM.pdf) accessible; selected aging and environmental-response captions screened. Aged-device decay and chamber-precision limitations qualify broad performance claims. Remaining text, figure pixels, reporting summary, peer review and source data were not fully reviewed.
 - Scope is qualified prepared-device measurement coordination only. Chemical fabrication, iodine handling, UV/laser operation and uncontained testing are excluded; volatility containment and instrument qualification remain prerequisites. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-29**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: image-guided spatial proteomics coordination (2026-10-30)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [OpenDVP: an experimental and computational framework for community-empowered deep visual proteomics](https://www.nature.com/articles/s41592-026-03262-z) | Nature Methods / 2026 | 10.1038/s41592-026-03262-z | Prepared-slide and collection-plate custody, image-registration checks and linked microscopy/proteomics records suggest a future multi-instrument coordination task. | OA main Methods and supplementary benchmark workbook accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** Published **22 October 2026**. Selected workflow, limitations and Methods screened. Physical collection, image processing and downstream measurements remain distinct stages.
+- Official [Supplementary Table 1](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41592-026-03262-z/MediaObjects/41592_2026_3262_MOESM3_ESM.xlsx) downloaded successfully; sheet headers and selected benchmark rows inspected. These describe computational performance, not robot execution. No separate technical SI PDF is listed. The reporting-summary PDF is accessible but not substantively read; remaining result tables, figure pixels, peer review, code and raw data were not reviewed.
+- Scope is qualified prepared-specimen custody and record coordination only. Human specimen acquisition, chemical processing, laser operation and instrument qualification are excluded. Ethics, specimen provenance and appropriate laboratory oversight remain prerequisites. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-30**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
