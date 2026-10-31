@@ -1,0 +1,72 @@
+{
+  "whole_paper_validated": false,
+  "scope": "Persistent cooler-layer assembly, disassembly and return; the full paper campaign has additional preparation, manipulation and branch obligations.",
+  "robot": {
+    "arm": "Pinned Menagerie Panda joints, geometry, inertias and actuator limits",
+    "gripper": "Original 80 mm stroke and +/-40 N actuator limit; task-authored extended edge tips with 10 g added mass per finger",
+    "control": "Joint-actuated arm; gripper position control for approach/release and bounded force control for holding; no payload weld or live pose writes",
+    "ctrl_units": [
+      "rad",
+      "rad",
+      "rad",
+      "rad",
+      "rad",
+      "rad",
+      "rad",
+      "N at gripper transmission"
+    ],
+    "state_access": "Privileged simulator object/force observations; no camera-perception validation"
+  },
+  "source_geometry": {
+    "paper": "https://doi.org/10.1038/s41467-018-07293-9",
+    "locator": "Supplementary Note 2 and Figure 1",
+    "visual_meshes": "Original cooling_scene_assets_v2 GLB parts with preserved vertices and part IDs",
+    "collisions": "Open segmented tube/ring collisions; native structural meshes; no convex hull closes a working aperture",
+    "frame": "Source reconstruction of acrylic base, rails, lift platform and hollow rods, pre-fixtured to the workbench",
+    "remaining": "Exact historical extrusion profile, fixture details, film attachment method and PE support height were not provided by the paper"
+  },
+  "authored_fixtures": [
+    "Extended gripper tips",
+    "Three-point parking stands",
+    "Raised emitter regrasp support for changing from the foam-clearing edge grasp to a centered transport grasp",
+    "Foam alignment ring and pins",
+    "Visible 6.4 mm shield-height shims and alignment pins"
+  ],
+  "shield_height_resolution": {
+    "basis": "Selected reconstruction inference",
+    "reason": "The earlier authored 57 mm PE tube plus 6.4 mm spacer was combined with a 57 mm shield whose bottom floated above the support. Explicit shims supply that missing load path. The paper does not specify PE tube height.",
+    "historical_identity_claimed": false
+  },
+  "masses_kg": {
+    "foam_with_wrap_each": 0.0014,
+    "copper_emitter_excluding_unmeasured_paint": 0.0088,
+    "pe_tube": 0.197,
+    "aluminum_shield": 0.424,
+    "aluminum_aperture": 0.0437
+  },
+  "mass_basis": {
+    "foam": "Selected 25 kg/m3 XPS core at source dimensions plus wrap allowance; not a measured historical sample. Replaces the 20 g stress-test proxy in the separate legacy assembly fixture.",
+    "metals_and_pe": "Nominal material densities and authored source-size geometry; aperture thickness and PE support height are reconstruction assumptions."
+  },
+  "foam_primary_reference": {
+    "url": "https://insulation.owenscorning.com/assets/0/428/429/431/0538f0de-3893-4e8a-a0c0-5de11b913061.pdf",
+    "sha256": "d3bc7329e2c270db24cb2ba784d4e17907b496fcdbfe4d8b2e9af996a7f7bf44",
+    "verified_property": "FOAMULAR 150 minimum compressive strength 15 psi (103 kPa), ASTM D1621",
+    "density_verified_from_this_document": false
+  },
+  "gripper_hold_transmission_force_N": {
+    "foam": 0.8,
+    "emitter": 12,
+    "pe_tube": 14,
+    "shield": 24,
+    "aperture": 18
+  },
+  "validation_limits": [
+    "Rigid foam contact does not certify damage or compression",
+    "No paint damage, coating process, thermal or optical prediction",
+    "Every part must remain in its actual pose across steps; later operations recheck retained layers",
+    "Unintended loaded arm contacts are rejected even at shallow penetration; force audit sampled every 10 physics steps",
+    "Partial component or fixture success grants no automatic whole-paper step or branch credit"
+  ],
+  "membrane_module": "membrane.py and membrane_tests.json specify separate constrained-cloth load tests; robot handling integration is still under test"
+}
