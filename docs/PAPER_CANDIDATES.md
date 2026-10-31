@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-30**. Candidate count: **366**.
+Last screened: **2026-10-31**. Candidate count: **367**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3751,3 +3751,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [62-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41586-026-10847-3/MediaObjects/41586_2026_10847_MOESM1_ESM.pdf) accessible; selected processing, validation and orientation-bias passages screened. Grid-related sampling bias and flexible structures limit reconstruction interpretation. Remaining SI sections/tables, figure pixels, videos, reporting summary, peer review, code and raw data were not reviewed.
 - Scope is qualified prepared-specimen custody and record coordination only. Plant sample preparation, cryogen handling, grid freezing and electron-microscope operation are excluded pending specialist qualification. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-30**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: superconducting-device measurement coordination (2026-10-31)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Reentrant superconductivity in a naturally occurring Josephson junction array tuned by radio-frequency power](https://www.nature.com/articles/s41467-026-71256-8) | Nature Communications / 2026 | 10.1038/s41467-026-71256-8 | Prepared-device identity, dimensional-metrology provenance and linked comparison records suggest a future long-horizon multi-instrument coordination task. | OA main and scientific SI accessible; selected sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 4734 (2026); published **1 April 2026**, version of record **28 May 2026**. Selected main Results, Discussion and fabrication/measurement Methods screened.
+- Official [16-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71256-8/MediaObjects/41467_2026_71256_MOESM1_ESM.pdf) accessible; selected extended-data, heating-limit and additional-device passages screened. Device-dependent instrument limitations and simplified-model assumptions constrain comparisons. Remaining SI, figure pixels, peer review and raw data were not fully reviewed.
+- Scope is qualified prepared-device custody and measurement-record coordination only. Fabrication, cryogen handling, magnet operation and RF/electrical instrument operation are excluded pending specialist qualification. Robot interfaces and safe handoffs remain unvalidated. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-10-31**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
