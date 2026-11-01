@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-01**. Candidate count: **368**.
+Last screened: **2026-11-01**. Candidate count: **369**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3775,3 +3775,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [25-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-026-10229-9/MediaObjects/41586_2026_10229_MOESM1_ESM.pdf) accessible; Supplementary Note 5 on phenotype collection and record processing screened. Repeated observations and independent biological replicates must remain distinct. The main extended-data caption and SI describe water-use efficiency differently; this requires reconciliation before task design.
 - Scope is non-destructive plant handling and observation-record coordination only. Genetic manipulation, chemical assays and hazardous analytical work are excluded. Remaining main/SI sections, figure pixels, reporting summary, supplementary datasets, peer review and raw data were not fully reviewed. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-11-01**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: photonic conversion measurement coordination (2026-11-01)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Experimental realization of a bidirectional quantum analog-to-digital converter between photonic wavefront and qubits](https://www.nature.com/articles/s41467-026-75903-y) | Nature Communications / 2026 | 10.1038/s41467-026-75903-y | Optical-component identity, configuration tracking and linked reference/acquisition records suggest a future long-horizon instrument-coordination task. | OA main and scientific SI accessible; selected experimental sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7585 (2026); published **27 July 2026**, version of record **29 July 2026**. Selected main experimental-implementation, measurement and limitation passages screened.
+- Official [10-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75903-y/MediaObjects/41467_2026_75903_MOESM1_ESM.pdf) accessible; selected configuration and tomography passages in Sections II and IV screened. Phase stability and optical-path consistency constrain comparisons; theoretical extensions are not experimental demonstrations.
+- Scope is qualified component custody and measurement-record coordination only. Laser operation, alignment and apparatus qualification remain specialist responsibilities. Remaining main/SI sections, figure pixels, peer review and raw data were not fully reviewed. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-11-01**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
