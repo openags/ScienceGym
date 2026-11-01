@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-10-31**. Candidate count: **367**.
+Last screened: **2026-11-01**. Candidate count: **368**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3763,3 +3763,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [16-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-71256-8/MediaObjects/41467_2026_71256_MOESM1_ESM.pdf) accessible; selected extended-data, heating-limit and additional-device passages screened. Device-dependent instrument limitations and simplified-model assumptions constrain comparisons. Remaining SI, figure pixels, peer review and raw data were not fully reviewed.
 - Scope is qualified prepared-device custody and measurement-record coordination only. Fabrication, cryogen handling, magnet operation and RF/electrical instrument operation are excluded pending specialist qualification. Robot interfaces and safe handoffs remain unvalidated. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-10-31**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+
+## Additional candidate: longitudinal crop-phenotyping coordination (2026-11-01)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A sorghum pangenome reference improves global crop trait discovery](https://www.nature.com/articles/s41586-026-10229-9) | Nature / 2026 | 10.1038/s41586-026-10229-9 | Plant identity, repeated weighing and imaging, position tracking and linked observation records suggest a future long-horizon phenotyping coordination task. | OA main and scientific SI accessible; selected phenotyping sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature* **652**, 1245–1253 (2026); published **11 March 2026**. Selected main phenotyping Methods and reproducibility statements screened.
+- Official [25-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41586-026-10229-9/MediaObjects/41586_2026_10229_MOESM1_ESM.pdf) accessible; Supplementary Note 5 on phenotype collection and record processing screened. Repeated observations and independent biological replicates must remain distinct. The main extended-data caption and SI describe water-use efficiency differently; this requires reconciliation before task design.
+- Scope is non-destructive plant handling and observation-record coordination only. Genetic manipulation, chemical assays and hazardous analytical work are excluded. Remaining main/SI sections, figure pixels, reporting summary, supplementary datasets, peer review and raw data were not fully reviewed. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-11-01**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
