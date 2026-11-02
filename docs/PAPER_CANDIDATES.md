@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-01**. Candidate count: **369**.
+Last screened: **2026-11-02**. Candidate count: **370**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3787,3 +3787,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [10-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-75903-y/MediaObjects/41467_2026_75903_MOESM1_ESM.pdf) accessible; selected configuration and tomography passages in Sections II and IV screened. Phase stability and optical-path consistency constrain comparisons; theoretical extensions are not experimental demonstrations.
 - Scope is qualified component custody and measurement-record coordination only. Laser operation, alignment and apparatus qualification remain specialist responsibilities. Remaining main/SI sections, figure pixels, peer review and raw data were not fully reviewed. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-11-01**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+## Additional candidate: hydrogel-colloid observation tracking (2026-11-02)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Nonequilibrium ordering dynamics of confined soft alginate hydrogel colloids driven by time-evolving electrostatic interactions](https://www.nature.com/articles/s41467-026-70266-w) | Nature Communications / 2026 | 10.1038/s41467-026-70266-w | Prepared-sample identity, layer-position tracking and linked time-series microscopy records suggest a future long-horizon observation-coordination task. | OA main and scientific SI accessible; selected experimental sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 3662 (2026); published **9 March 2026**, version of record **22 April 2026**. Selected main results, limitations and imaging/analysis methods screened.
+- Official [12-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70266-w/MediaObjects/41467_2026_70266_MOESM1_ESM.pdf) accessible; selected Notes 1–3 and figure captions screened. Nonequilibrium evolution limits complete reproducibility; independent electrokinetic measurements do not reproduce the confined-droplet geometry.
+- Scope is prepared-sample custody and observation-record coordination only. Chemical preparation, device fabrication and instrument qualification remain specialist responsibilities. Remaining main/SI content, figure pixels, movies, raw data, code and peer review were not fully reviewed. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-11-02**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
