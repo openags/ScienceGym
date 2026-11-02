@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-02**. Candidate count: **370**.
+Last screened: **2026-11-02**. Candidate count: **371**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3798,3 +3798,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [12-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-70266-w/MediaObjects/41467_2026_70266_MOESM1_ESM.pdf) accessible; selected Notes 1–3 and figure captions screened. Nonequilibrium evolution limits complete reproducibility; independent electrokinetic measurements do not reproduce the confined-droplet geometry.
 - Scope is prepared-sample custody and observation-record coordination only. Chemical preparation, device fabrication and instrument qualification remain specialist responsibilities. Remaining main/SI content, figure pixels, movies, raw data, code and peer review were not fully reviewed. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-11-02**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+## Additional candidate: coastal-soil analytical batch tracking (2026-11-02)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Divergent responses of soil organic and inorganic carbon driven by land use during coastal reclamation](https://www.nature.com/articles/s41467-026-74876-2) | Nature Communications / 2026 | 10.1038/s41467-026-74876-2 | Soil-sample identity across sites and depths, analytical batch scheduling and linked measurement records suggest a future long-horizon laboratory-coordination task. | OA main and scientific SI accessible; selected experimental sections screened, not fully read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 7903 (2026); published **24 June 2026**, version of record **6 August 2026**. Selected main sampling, analysis, results and limitation passages screened. This is a chronosequence comparison, not a controlled reclamation experiment; some carbon fractions are calculated differences.
+- Official [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74876-2/MediaObjects/41467_2026_74876_MOESM1_ESM.pdf) accessible; selected soil-pH and water-soluble-salt method passages screened.
+- Scope is sample custody and analytical-record coordination only. Hazardous digestion, oxidation and heated processing are excluded from the proposed scope. Instrument qualification and contamination controls remain prerequisites. Remaining main/SI content, figure pixels, raw data and peer review were not fully reviewed. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-11-02**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
