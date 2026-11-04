@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **372**.
+Last screened: **2026-11-04**. Candidate count: **373**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3820,3 +3820,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - No separate scientific SI is listed: the Supplementary information section contains only a peer-review file, not reviewed. Supporting data are available upon request and were not obtained.
 - Scope is prepared-device custody and measurement-record coordination only. Fabrication, laser operation, alignment and instrument qualification remain specialist responsibilities. Remaining main content and figure pixels were not fully reviewed. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-11-04**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+## Additional candidate: bio-based composite characterization coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [3D printed gyroid scaffolds enabling strong and thermally insulating mycelium-bound composites for greener infrastructures](https://www.nature.com/articles/s41467-025-61369-x) | Nature Communications / 2025 | 10.1038/s41467-025-61369-x | Specimen identity across fabrication-service handoffs, mechanical and thermal characterization, and repeated durability observations suggest a future long-horizon materials-testing coordination task. | OA main scholarly text read; scientific SI captions, notes and selected tables reviewed, with limited visual inspection. |
+
+- **CANDIDATE only.** Sharma and Le Ferrand, *Nature Communications* **16**, 5775 (2025); published **1 July 2025**. Main scholarly HTML through Data availability was read, including Introduction, Results, Discussion and Methods. Suitability remains preliminary; no task conversion or robot-feasibility claim is made.
+- Official [36-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-61369-x/MediaObjects/41467_2025_61369_MOESM1_ESM.pdf) accessible. Captions for Supplementary Figs. 1-15, Tables 1-2 and 4-6, and explanatory notes were read. The literature-comparison Table 3 was not checked line by line. Supplementary pages 12 and 15 received visual inspection; remaining figure pixels were not fully reviewed.
+- Scope is specimen custody, qualified-service handoffs and characterization-record coordination only. Biological cultivation, material fabrication, heated processing and instrument operation require separate specialist safety review and qualification. No experimental instructions, operating parameters, converted task or asset is supplied. Source Data workbooks and the Reporting Summary were not reviewed; no scientific reproduction is claimed.
+- Access checked **2026-11-04**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
