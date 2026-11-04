@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **374**.
+Last screened: **2026-11-04**. Candidate count: **375**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3842,3 +3842,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [221-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs44160-026-01053-0/MediaObjects/44160_2026_1053_MOESM1_ESM.pdf) accessible. Sections S1.1-S1.2 and S2.1-S2.3 were read; Supplementary Figs. S1.14 and S2.1 received visual inspection. Remaining SI sections were not read, and other figure pixels were not fully reviewed. No source code was run and no raw-data audit was performed.
 - Scope is campaign planning, specimen and record identity, qualified robotic/analytical handoffs and decision-history tracking only. Chemical preparation, reaction execution and instrument operation require separate chemistry safety review and apparatus qualification before any conversion. No detailed chemistry operations, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, code or other source assets redistributed.
+
+## Additional candidate: algal research observation coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A modular high-throughput approach for advancing synthetic biology in the chloroplast of Chlamydomonas](https://www.nature.com/articles/s41477-025-02126-2) | Nature Plants / 2025 | 10.1038/s41477-025-02126-2 | Sample identity, repeated observation scheduling, replicate records and measurement mapping suggest a future long-horizon laboratory-coordination task. | OA main scholarly text read; selected scientific SI text and captions reviewed, with limited visual inspection. |
+
+- **CANDIDATE only.** Inckemann et al., *Nature Plants* **11**, 2332-2349 (2025). Main scholarly HTML through Results, Discussion, Methods, Data availability and Code availability was read. Suitability remains preliminary; no task conversion or robot-feasibility claim is made.
+- Official [89-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41477-025-02126-2/MediaObjects/41477_2025_2126_MOESM1_ESM.pdf) accessible. The captions for Supplementary Figs. 1-14 and the text of Supplementary Texts 1-5 were read. Only the opening of Supplementary Text 6 was read; Supplementary Tables 1-7 were not read. Visual inspection was limited, and remaining figure pixels and SI content were not fully reviewed.
+- Scope is sample identity, observation and replicate-record coordination, measurement mapping and qualified-service handoffs only. Genetic manipulation, biological cultivation, material preparation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied. No scientific reproduction is claimed.
+- Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
