@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **375**.
+Last screened: **2026-11-04**. Candidate count: **376**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3852,4 +3852,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Inckemann et al., *Nature Plants* **11**, 2332-2349 (2025). Main scholarly HTML through Results, Discussion, Methods, Data availability and Code availability was read. Suitability remains preliminary; no task conversion or robot-feasibility claim is made.
 - Official [89-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41477-025-02126-2/MediaObjects/41477_2025_2126_MOESM1_ESM.pdf) accessible. The captions for Supplementary Figs. 1-14 and the text of Supplementary Texts 1-5 were read. Only the opening of Supplementary Text 6 was read; Supplementary Tables 1-7 were not read. Visual inspection was limited, and remaining figure pixels and SI content were not fully reviewed.
 - Scope is sample identity, observation and replicate-record coordination, measurement mapping and qualified-service handoffs only. Genetic manipulation, biological cultivation, material preparation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied. No scientific reproduction is claimed.
+- Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
+
+## Additional candidate: cocoa-material characterization coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Valorization of cocoa pod side streams improves nutritional and sustainability aspects of chocolate](https://www.nature.com/articles/s43016-024-00967-2) | Nature Food / 2024 | 10.1038/s43016-024-00967-2 | Sample custody across food-material batches, characterization scheduling and linked measurement records suggest a future long-horizon laboratory-coordination task. | OA main scholarly text and extracted scientific SI text read; selected SI figures visually inspected. |
+
+- **CANDIDATE only.** Mishra et al., *Nature Food* **5**, 423-432 (2024). Main scholarly HTML through Data availability, including Results and Methods, was read. Suitability remains preliminary; no task conversion or robot-feasibility claim is made.
+- Official [9-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs43016-024-00967-2/MediaObjects/43016_2024_967_MOESM1_ESM.pdf) accessible. The entire extracted SI text, including tables, methods and captions, was read; figures on SI pages 6-8 received visual inspection. Main figure pixels, the Reporting Summary and source-data archives were not audited.
+- Scope is sample custody, batch identity and characterization-record coordination only. Material preparation and instrument operation require separate safety review and qualification; sensory testing requires appropriate human-participant oversight. Scale-dependent sustainability results are modeled estimates, not directly established by the laboratory measurements. No detailed experimental procedures, operating parameters, converted task or asset is supplied. No scientific reproduction is claimed.
 - Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
