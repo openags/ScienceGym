@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **373**.
+Last screened: **2026-11-04**. Candidate count: **374**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3831,3 +3831,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [36-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-61369-x/MediaObjects/41467_2025_61369_MOESM1_ESM.pdf) accessible. Captions for Supplementary Figs. 1-15, Tables 1-2 and 4-6, and explanatory notes were read. The literature-comparison Table 3 was not checked line by line. Supplementary pages 12 and 15 received visual inspection; remaining figure pixels were not fully reviewed.
 - Scope is specimen custody, qualified-service handoffs and characterization-record coordination only. Biological cultivation, material fabrication, heated processing and instrument operation require separate specialist safety review and qualification. No experimental instructions, operating parameters, converted task or asset is supplied. Source Data workbooks and the Reporting Summary were not reviewed; no scientific reproduction is claimed.
 - Access checked **2026-11-04**; publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
+
+## Additional candidate: modular self-driving laboratory coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A flexible and affordable self-driving laboratory for automated reaction optimization](https://www.nature.com/articles/s44160-026-01053-0) | Nature Synthesis / 2026 | 10.1038/s44160-026-01053-0 | Modular robotic and analytical handoffs, linked campaign records and iterative machine-learning decisions suggest a future long-horizon laboratory-coordination task. | OA main scholarly text read; selected scientific SI sections reviewed, with limited visual inspection. |
+
+- **CANDIDATE only.** Pilon et al., *Nature Synthesis* **5**, 1552-1564 (2026); published/version of record **13 April 2026**. Main scholarly HTML through Methods, Data availability and Code availability was read. Suitability remains preliminary; no task conversion, autonomous-execution validation or scientific reproduction is claimed.
+- Official [221-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs44160-026-01053-0/MediaObjects/44160_2026_1053_MOESM1_ESM.pdf) accessible. Sections S1.1-S1.2 and S2.1-S2.3 were read; Supplementary Figs. S1.14 and S2.1 received visual inspection. Remaining SI sections were not read, and other figure pixels were not fully reviewed. No source code was run and no raw-data audit was performed.
+- Scope is campaign planning, specimen and record identity, qualified robotic/analytical handoffs and decision-history tracking only. Chemical preparation, reaction execution and instrument operation require separate chemistry safety review and apparatus qualification before any conversion. No detailed chemistry operations, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, code or other source assets redistributed.
