@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-02**. Candidate count: **371**.
+Last screened: **2026-11-04**. Candidate count: **372**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3809,3 +3809,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [14-page Supplementary Information](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-026-74876-2/MediaObjects/41467_2026_74876_MOESM1_ESM.pdf) accessible; selected soil-pH and water-soluble-salt method passages screened.
 - Scope is sample custody and analytical-record coordination only. Hazardous digestion, oxidation and heated processing are excluded from the proposed scope. Instrument qualification and contamination controls remain prerequisites. Remaining main/SI content, figure pixels, raw data and peer review were not fully reviewed. No operating procedure, converted task or asset is supplied.
 - Access checked **2026-11-02**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
+
+## Additional candidate: Fourier-pixel measurement coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Fourier pixels for bidirectional light control](https://www.nature.com/articles/s41586-026-10681-7) | Nature / 2026 | 10.1038/s41586-026-10681-7 | Prepared-device identity, sensing/generation measurement scheduling and linked image records suggest a future long-horizon instrument-coordination task. | OA main, Methods and Extended Data accessible; selected passages screened, not fully read. |
+
+- **CANDIDATE only.** *Nature* **655**, 87–92 (2026); published/version of record **24 June 2026**. Selected results, optical-measurement methods and Extended Data captions screened. Finite-size effects limit sensing readout.
+- No separate scientific SI is listed: the Supplementary information section contains only a peer-review file, not reviewed. Supporting data are available upon request and were not obtained.
+- Scope is prepared-device custody and measurement-record coordination only. Fabrication, laser operation, alignment and instrument qualification remain specialist responsibilities. Remaining main content and figure pixels were not fully reviewed. No operating procedure, converted task or asset is supplied.
+- Access checked **2026-11-04**; main reader returned a cookie-error marker while content remained readable. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher media redistributed.
