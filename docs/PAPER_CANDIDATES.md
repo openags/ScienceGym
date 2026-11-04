@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **376**.
+Last screened: **2026-11-04**. Candidate count: **378**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3864,3 +3864,25 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [9-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs43016-024-00967-2/MediaObjects/43016_2024_967_MOESM1_ESM.pdf) accessible. The entire extracted SI text, including tables, methods and captions, was read; figures on SI pages 6-8 received visual inspection. Main figure pixels, the Reporting Summary and source-data archives were not audited.
 - Scope is sample custody, batch identity and characterization-record coordination only. Material preparation and instrument operation require separate safety review and qualification; sensory testing requires appropriate human-participant oversight. Scale-dependent sustainability results are modeled estimates, not directly established by the laboratory measurements. No detailed experimental procedures, operating parameters, converted task or asset is supplied. No scientific reproduction is claimed.
 - Access checked **2026-11-04**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures or other source assets redistributed.
+
+## Additional candidate: self-driving laboratory interface coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [IvoryOS: an interoperable web interface for orchestrating Python-based self-driving laboratories](https://www.nature.com/articles/s41467-025-60514-w) | Nature Communications / 2025 | 10.1038/s41467-025-60514-w | Nonbiological vessel identity, imaging records and iterative decision history suggest a future long-horizon laboratory-coordination task. | Earlier 2026-11-04 screening read OA main scholarly text and selected scientific SI; later recheck returned a cookie redirect and did not reread the sources. |
+
+- **CANDIDATE only.** Zhang et al., *Nature Communications* **16**, 5182 (2025). The earlier screening read the full main scholarly HTML, including Methods. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Official [33-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-60514-w/MediaObjects/41467_2025_60514_MOESM1_ESM.pdf) was accessible during that screening. Sections 1-3, Tables S1-S3, the introduction to Section 4.3 and Section 4.3.2 were read; Supplementary Figs. S3-S4 received visual inspection. Remaining SI, other figure pixels, code and raw data were not fully reviewed; no code was run.
+- Scope is nonbiological vessel identity, imaging-record coordination and decision-history tracking only. The platform adds no safety checking; any physical use requires specialist safety assessment and qualified equipment. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Reading and access observations above refer to the earlier **2026-11-04** screening, not a successful retrieval during the later recheck. No access restriction was bypassed. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, code or other source assets redistributed.
+
+## Additional candidate: soil multi-factor observation coordination (2026-11-04)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Global change factors differ in effect when acting alone and in a multi-factor background](https://www.nature.com/articles/s41467-025-68155-9) | Nature Communications / 2026 | 10.1038/s41467-025-68155-9 | Soil-specimen identity, observation scheduling and linked measurement records suggest a future long-horizon laboratory-coordination task. | Earlier 2026-11-04 screening read OA main scholarly text and scientific SI, with all SI pages visually inspected; later recheck returned a cookie redirect and did not reread the sources. |
+
+- **CANDIDATE only.** Rongstock et al., *Nature Communications* **17**, 425 (2026). The earlier screening read the full main scholarly text through Methods, Data availability and Code availability. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Official [7-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-68155-9/MediaObjects/41467_2025_68155_MOESM1_ESM.pdf) was accessible during that screening. Its entire extracted text was read and all seven pages received visual inspection. The Reporting Summary, source-data workbook, code and main figure pixels were not audited.
+- Scope is soil-specimen identity, observation scheduling and measurement-record coordination only. The main Methods name two surfactants, and some main-text and SI numbers differ; those source details require reconciliation before conversion. Material preparation, biological handling and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Reading and access observations above refer to the earlier **2026-11-04** screening, not a successful retrieval during the later recheck. No access restriction was bypassed. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, code or other source assets redistributed.
