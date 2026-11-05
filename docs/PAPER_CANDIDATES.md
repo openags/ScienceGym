@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **380**.
+Last screened: **2026-11-05**. Candidate count: **381**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3908,3 +3908,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official **53-page Supplementary Information** was accessible during that screening. Reading covered the captions for Supplementary Figs. 1-7 and the opening of Supplementary Method 1; discussion text and the captions for Supplementary Figs. 13-14 on pages 25-27; and Supplementary Method 3 and the caption for Supplementary Fig. 34 on pages 45-47. Remaining SI, figure pixels, raw data and supplementary videos were not audited.
 - Scope is assembly-configuration identity, calibration records and trajectory-record coordination only. Calibration is specimen-specific and cannot be assumed transferable across devices. Fabrication, assembly, actuation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Reading and access observations above refer to the **2026-11-04** screening, not a new source retrieval during this catalog update. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: nonmedicinal tableting-material coordination (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Accelerated drug development using a digital formulator and a self-driving tableting data factory](https://www.nature.com/articles/s41467-026-71204-6) | Nature Communications / 2026 | 10.1038/s41467-026-71204-6 | Prepared nonmedicinal placebo-material custody, station transfers, inspection routing, retained-sample storage and linked records suggest a future long-horizon laboratory-coordination task. | Earlier 2026-11-05 screening read selected main scholarly text and selected scientific SI sections; neither complete paper nor complete SI was read. |
+
+- **CANDIDATE only.** *Nature Communications* **17**, 4739 (2026). Reading covered the abstract, extensive Results and Discussion passages, and experimental Methods. Suitability remains preliminary; no task conversion, robot-feasibility validation, complete automation or scientific reproduction is claimed.
+- The official [52-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-71204-6/MediaObjects/41467_2026_71204_MOESM1_ESM.pdf) was accessible during that screening. Sections 3.1.1-3.1.7 were read. Remaining SI, datasets, videos and code were not fully audited; no complete visual review is claimed.
+- Scope is custody and record coordination for prepared, qualified nonmedicinal surrogates only. Human preparation remains relevant, and mechanical and powder-handling safety require separate specialist review and qualified equipment before any conversion. No drug-development recommendations, experimental procedures, operating parameters, converted task or asset is supplied.
+- Reading and access observations above refer to the earlier **2026-11-05** screening, not a new source retrieval during this catalog update. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, data, videos, code or other source assets redistributed.
