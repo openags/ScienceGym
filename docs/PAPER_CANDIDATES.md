@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **392**.
+Last screened: **2026-11-05**. Candidate count: **393**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4041,3 +4041,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The supplementary inventory lists six videos, which were not watched. Figure pixels, raw data and code were not audited. This is not a complete visual or supplementary-media review.
 - Reported alternating arm actuation does not establish locomotion or repeated-run reliability. Candidate scope is prepared specimen identity, design/version tracking and linked characterization-record coordination only. Chemical, pressure, UV/laser and thermal work require specialist qualification and separate safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. The source remains under publisher copyright; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
+
+## Additional candidate: pneumatic-sheet configuration and shape-measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Pneumatic cells toward absolute Gaussian morphing](https://doi.org/10.1126/science.adi2997) | Science / 2023 | 10.1126/science.adi2997 | Prepared-sheet identity, configuration history and linked mechanical and imaging records suggest a future long-horizon materials-characterization coordination task. | Public author-hosted main scholarly text and captions and all written scientific SI content read; equation, image and movie review limits remain. |
+
+- **CANDIDATE only.** *Science* **381**, 862-867 (2023). All extracted main scholarly text and captions were read from the public [author-hosted main PDF](https://blog.espci.fr/benoitroman/files/2023/08/Gao23.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted written scientific content in the **44-page Supplementary Materials**, including Methods, six sections, captions for Figures S1-S20 and supplementary-video captions, was read from the public [author-hosted supplement](https://blog.espci.fr/benoitroman/files/2023/08/Gao23_Supp.pdf). Some equations extracted imperfectly and mathematics was not audited. Figure pixels, supplementary movies and raw data were not audited. This is not a complete visual or mathematical review.
+- Scope is prepared-sheet identity, configuration history and linked mechanical and imaging-record coordination only. Specimen preparation, fixture loading, pressure equipment and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public author-hosted copies. The publisher's author-access route returned **HTTP 403** and was not retried; publisher full-text access was not established. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
