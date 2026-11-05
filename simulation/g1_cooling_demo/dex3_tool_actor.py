@@ -10,6 +10,7 @@ import sys
 
 import mujoco
 import numpy as np
+from scipy.spatial.transform import Rotation
 
 from balance import Balance
 from observations import StateEstimate
@@ -36,6 +37,9 @@ class ToolActor:
         self.lower=np.maximum(self.initial-.15,ranges[:,0]);self.upper=np.minimum(self.initial+.15,ranges[:,1])
         wrist=self.d.site('right_wrist_reference');self.wrist_position=wrist.xpos.copy();self.wrist_rotation=wrist.xmat.reshape(3,3).copy()
         self.balance.palm_rotations={'right':self.wrist_rotation}
+        self.approach_velocity_feedforward=bool(prior.get('approach_velocity_feedforward',False))
+        self.previous_wrist_target=self.wrist_position.copy();self.previous_wrist_rotation=self.wrist_rotation.copy()
+        self.previous_balance_time=None
         self.weights=np.array([.5,.25,.25]);self.feature_reference=self.midpoint();self.center_offset=np.zeros(3)
         self.filtered=np.zeros(model.nu);self.previous_velocity=None;self.previous_torque=np.zeros(model.nu)
         self.body_torque=np.zeros(model.nu);self.next_balance=0.;self.last_time=None
@@ -152,7 +156,18 @@ class ToolActor:
         if t+1e-9>=self.next_balance:
             self.balance.com_target=self.com_start+smooth(t/2.)*(self.com_goal-self.com_start)
             posture=self.initial.copy();posture[self.hand]=self.command[self.hand]
-            self.body_torque=self.balance.torque(targets={'right':target},posture=posture,dt=.01)
+            motion={}
+            if self.approach_velocity_feedforward and self.phase=='approach' and self.previous_balance_time is not None:
+                # Differences of commanded reference poses, never object or
+                # simulator velocities. Average over the actual balance tick
+                # so the approach clock's pauses remain reflected in the feedforward.
+                period=t-self.previous_balance_time
+                if not .0099<=period<=.0101:raise RuntimeError('Unexpected balance reference period')
+                velocity=(target-self.previous_wrist_target)/period
+                angular=Rotation.from_matrix(self.wrist_rotation@self.previous_wrist_rotation.T).as_rotvec()/period
+                motion=dict(target_velocities={'right':velocity},palm_angular_velocities={'right':angular})
+            self.body_torque=self.balance.torque(targets={'right':target},posture=posture,dt=.01,**motion)
+            self.previous_wrist_target=target.copy();self.previous_wrist_rotation=self.wrist_rotation.copy();self.previous_balance_time=t
             self.next_balance=(round(t*100)+1)/100
         inverse_hand_mass=self.hand_selector.T@np.linalg.solve(mass,self.hand_selector)
         inertia_modes,U=np.linalg.eigh(np.linalg.inv(inverse_hand_mass))

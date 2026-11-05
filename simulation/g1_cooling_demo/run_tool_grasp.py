@@ -34,7 +34,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -42,6 +42,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
     visual = bool(contract.get('observed_approach',False))
     if visual: assert dex3
+    if approach_feedforward and not visual:raise ValueError('Approach feedforward requires a visual approach station')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -90,6 +91,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         shapes=[shape]
         prior.update(grasp_geometry=contract['grasp_geometry'],tool_shape_sha256=sha(shape),appearance_threshold_uint8=24.,
             scope='Authored initial robot posture, public architecture and unposed tool/grasp geometry; no tool placement or arm path')
+        if approach_feedforward:prior['approach_velocity_feedforward']=True
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
@@ -131,6 +133,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                 depth_multisampling=False,capture_phase='observe',renderer_sha256=sha(snapshot/'tool_cameras.py'),
                 depth_helper_sha256=sha(snapshot/'sensor_rendering.py')),
             tool_shape_sha256=sha(shapes[0]),qualified_approach=False)
+        if approach_feedforward:
+            run_contract['inferred_control']['approach_velocity_feedforward']='Mean commanded wrist translation and world rotation velocity over each 10 ms balance period; approach phase only'
     if dex3:
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
         run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
@@ -252,5 +256,6 @@ if __name__ == '__main__':
     p.add_argument('--duration', type=float, default=20.)
     p.add_argument('--close-timeout', type=float, default=6.)
     p.add_argument('--thumb-force', type=float, default=.6);p.add_argument('--lift-force',type=float,default=.5)
+    p.add_argument('--approach-feedforward',action='store_true')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward)['status'] == 'failed': raise SystemExit(1)
