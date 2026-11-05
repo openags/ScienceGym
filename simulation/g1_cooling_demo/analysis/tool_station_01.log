@@ -1,0 +1,15 @@
+QH7089 qhull precision warning: The initial hull is narrow.  Is the input lower
+dimensional (e.g., a square in 3-d instead of a cube)?  Cosine of the minimum
+angle is 0.9999999999999996.  If so, Qhull may produce a wide facet.
+Options 'Qs' (search all points), 'Qbb' (scale last coordinate), or
+'QbB' (scale to unit box) may remove this warning.
+See 'Limitations' in qh-impre.htm.  Use 'Pp' to skip this warning.
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/build_tool_station.py", line 228, in <module>
+    args = parser.parse_args(); build(args.reach, args.fit, args.output)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/build_tool_station.py", line 133, in build
+    model = mujoco.MjModel.from_xml_path(str(model_path)); data = mujoco.MjData(model)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Error: mass and inertia of moving bodies must be larger than mjMINVAL
+Element name 'tweezer', id 184, line 26949

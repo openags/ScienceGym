@@ -48,6 +48,42 @@ The earlier workbench presentation contains **80.54 seconds of one uninterrupted
 
 Serve the repository with `python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1` (including video range requests) and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. This older workbench page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. Its manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
 
+## Full-laboratory tool development
+
+`build_tool_station.py` places the free passive tweezer and ordinary free tray
+in the existing room with the complete G1. `runs/tool_station_04/review.json`
+passes initial geometry, source inertia/contact preservation, actual bench
+height, tray footprint and whole-robot collision checks. This is authored
+initial staging; there is no robot placement or grasp credit. The original
+optical attachment remains on the bench. The first proposed placement collided
+with it; the corrected staging translates the robot/tool/tray by 0.35 m and
+0.03 m in laboratory coordinates. Initial images are in that station folder.
+
+`runs/tool_station_05` preserves this geometry while splitting the static room
+architecture into smaller bodies for collision broad-phase rejection. The
+bounded `analysis/tool_collision_partition_01` comparison retained identical
+100-step zero-torque states and reduced measured runtime from 5.43 to 0.84 s.
+A broader partition attempt ran out of collision-stack memory; a spatially
+grouped variant changed the sampled trajectory. Those alternatives are retained
+and are not the selected execution model. The short comparison does not qualify
+standing, manipulation or a complete trajectory.
+
+`run_tool_grasp.py` and `tool_grasp_actor.py` execute an isolated full-body
+attempt from the declared pregrasp. Own-robot encoders and IMU feed a full-body
+load predictor; arm motion compensates the change in the source pad midpoint
+as the fingers close. Observed sustained opposing load gates a lift, hold,
+lower and release attempt. The actor has no visual tool localization or
+executed approach. `verify_tool_grasp.py` separately replays the frozen actor,
+physics and native sensors and checks actual loaded lift, contact, tool closure
+and released support. Read each attempt's result and review; no tool grasp,
+paper branch or repeated-reliability qualification has been established.
+
+The slow `runs/tool_grasp_01` baseline was explicitly interrupted after the
+first 174 recorded monitor rows matched `tool_grasp_02` exactly through 1.73 s.
+Its interruption record and partial monitor remain; its full in-memory trace
+was not saved. `tool_grasp_02` is the separate attempt on the partitioned room,
+not a continuation spliced onto that baseline.
+
 ## Reproduce
 
 Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. Current sensor runs also require Linux with bubblewrap and enabled unprivileged namespaces; see [the runtime guide](LABORATORY.md). The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:
