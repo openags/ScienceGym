@@ -57,6 +57,9 @@ class ToolActor:
         self.release_clearance_started=None;self.withdraw_start_height=0.
         self.close_timeout=float(prior.get('close_timeout_s',6.))
         self.hold_force=np.asarray(prior.get('hold_force_proxy_n',[.6,.3,.3]),dtype=float)
+        self.grip_force_deadband=float(prior.get('grip_force_deadband_n',0.))
+        if not 0.<=self.grip_force_deadband<=.1:
+            raise ValueError('Grip force observer deadband must be 0 to 0.1 N')
         self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
         assert self.hold_force.shape==self.lift_force.shape==(3,)
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
@@ -164,6 +167,11 @@ class ToolActor:
             for i,a in enumerate(self.drivers):
                 desired_force=self.hold_force[i] if self.hold_entered else .03
                 rate=np.clip(1.2*(desired_force*lever[i]-effort[i]),-speeds[i],speeds[i]) if self.hold_entered or self.flags[i] else speeds[i]
+                if self.hold_entered and abs(desired_force-proxy[i])<=self.grip_force_deadband:
+                    # Retain the current motor position reference near the
+                    # measured load target; do not dither the contact geometry.
+                    # Original physical force limits and load gates remain.
+                    rate=0.
                 self.command[a]=np.clip(self.command[a]+self.signs[i]*rate*dt,self.lower[a],self.upper[a])
             desired=self.feature_reference-self.midpoint();desired*=min(1.,.02/max(np.linalg.norm(desired),1e-12))
             delta=(1-np.exp(-dt/.05))*(desired-self.center_offset);delta*=min(1.,.006*dt/max(np.linalg.norm(delta),1e-12))

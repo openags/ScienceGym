@@ -187,6 +187,10 @@ class ToolActor(VisualPickup):
         self.distance=float(prior['carry_distance_m'])
         if not .02<=self.distance<=.30:raise ValueError('Local carrying distance outside declared development range')
         self.transported=False;self.walker=None;self.guard=None
+        self.return_base_after_release=bool(prior.get('return_base_after_release',False))
+        self.initial_base_xy=self.d.qpos[:2].copy()
+        self.base_return_target=None;self.base_return_started=None;self.base_return_dwell=None
+        self.next_base_return_clearance=0.;self.base_return_clearance=None
         self.carry_dwell=None;self.next_carry_check=0.;self.carry_clearance=None
         self.control_target=None;self.control_posture=None;self.control_motion={}
         self.carry_observation=None
@@ -252,6 +256,15 @@ class ToolActor(VisualPickup):
         super().abort(reason,t)
 
     def change(self,phase,t):
+        if phase=='rest' and self.phase=='withdraw' and self.return_base_after_release:
+            # Return the empty-handed robot to the declared initial base
+            # position. No initial-state reset or changed acceptance datum.
+            self.base_return_started=t
+            self.base_return_from=self.d.body('pelvis').xpos.copy()
+            self.base_return_goal=self.base_return_from.copy()
+            self.base_return_goal[:2]=self.initial_base_xy
+            self.base_return_target=self.base_return_from.copy()
+            phase='return_base'
         if phase=='lift' and self.phase=='close' and self.proximal_preshape:
             if t-self.phase_started<self.preshape_duration:
                 return
@@ -347,6 +360,25 @@ class ToolActor(VisualPickup):
         return False
 
     def before_target(self,t,dt):
+        if self.phase=='return_base':
+            elapsed=t-self.base_return_started
+            self.base_return_target=self.base_return_from+self.blend(elapsed/4.)*(self.base_return_goal-self.base_return_from)
+            error=float(np.linalg.norm(self.d.body('pelvis').xpos[:2]-self.initial_base_xy))
+            if t>=self.next_base_return_clearance:
+                self.base_return_clearance=self.planner.observed_arm_clearance(self.d.qpos,.001,released_hand=True)
+                self.next_base_return_clearance=t+.05
+            clear=self.base_return_clearance
+            if not clear['clear']:
+                self.failure='Empty-hand base return clearance: '+json.dumps(clear)
+                super().change('finished',t);return
+            if elapsed>=4. and error<.008 and np.linalg.norm(self.d.qvel[:2])<.01:
+                if self.base_return_dwell is None:self.base_return_dwell=t
+                if t-self.base_return_dwell>=.5:self.change('rest',t)
+            else:self.base_return_dwell=None
+            if elapsed>12. and self.phase=='return_base':
+                self.failure='Empty-hand return to initial base position did not settle'
+                super().change('finished',t)
+            return
         if self.phase=='close' and self.proximal_preshape:
             # Move the two proximal finger joints while the tool is supported.
             # The distal force servos remain active and can open as needed.
@@ -412,6 +444,10 @@ class ToolActor(VisualPickup):
                 self.abort('Loaded-arm clearance: '+json.dumps(self.carry_clearance),t)
 
     def balance_torque(self,target,posture,motion):
+        if self.base_return_target is not None:
+            self.configure_body_limits(self.balance)
+            motion=dict(motion,point_targets=[dict(body='pelvis',
+                point=self.d.body('pelvis').xpos.copy(),target=self.base_return_target.copy())])
         if self.phase in self.transport_phases:self.configure_body_limits(self.balance)
         if self.phase in self.transport_phases and self.previous_balance_time is not None:
             period=float(self.carry_observation['time_s'])-self.previous_balance_time

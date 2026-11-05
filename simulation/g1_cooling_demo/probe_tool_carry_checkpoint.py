@@ -6,6 +6,7 @@ not a continuous pickup/carry recording, independent replay, or skill result.
 The separate full run must execute its own pickup and carry without resets.
 """
 import argparse
+from collections import deque
 import hashlib
 import json
 from pathlib import Path
@@ -33,6 +34,8 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('source_recording');p.add_argument('actor_run');p.add_argument('output')
     p.add_argument('--checkpoint-phase',choices=['close','lift','carry_descend','lower'],default='lower')
+    p.add_argument('--measure-prelift-native',action='store_true',
+                   help='Record every native contact step in the final prelift window; evaluator only')
     p.add_argument('--seconds',type=float,default=18.);a=p.parse_args()
     source,run,out=map(lambda x:Path(x).resolve(),[a.source_recording,a.actor_run,a.output])
     out.mkdir(parents=True,exist_ok=False)
@@ -53,6 +56,7 @@ def main():
         source_result_sha256=sha(source/'result.json'),actor_contract_sha256=sha(run/'contract.json'),
         script_sha256=sha(__file__),checkpoint_time_s=checkpoint,requested_continuation_s=a.seconds)
     report['checkpoint_phase']=a.checkpoint_phase
+    report['native_prelift_measurement_requested']=a.measure_prelift_native
     (out/'contract.json').write_text(json.dumps(report,indent=2)+'\n')
     command=receipt['command_prefix']+[sys.executable,'/actor/carry_tool_actor.py','--model','/model/world.xml']
     failure=None;records=[];response={};started=time.monotonic()
@@ -94,6 +98,8 @@ def main():
             for b in range(m.nbody):
                 if m.body_parentid[b] in bodies:bodies.add(b)
             allowed={m.body(n).id for n in contract['allowed_tool_contact_bodies']}
+            native_window=deque();previous_phase=None
+            preload_window=contract['carry_contract'].get('minimum_native_loaded_before_lift_s',.5)
             for i in range(round(a.seconds/dt)):
                 if i%stride==0:
                     obs=dict(time_s=float(d.time),joint_position=np.array([d.sensor(n+'_encoder').data[0] for n in names]),
@@ -101,19 +107,34 @@ def main():
                         imu_quaternion=d.sensor('imu_orientation').data.copy(),imu_gyro=d.sensor('imu_angular_velocity').data.copy(),
                         head_rgb=None,head_depth=None)
                     response=ask(obs);d.ctrl[:]=response['torque']
+                    if a.measure_prelift_native and response['phase']=='lift' and previous_phase=='close':
+                        selected=[v for v in native_window if d.time-preload_window<=v[0]<d.time]
+                        loaded_s=sum(v[1] for v in selected)*dt
+                        report['prelift_native_observation']=dict(time_s=float(d.time),window_s=preload_window,
+                            sample_period_s=dt,samples=len(selected),loaded_s=loaded_s,
+                            passed_native_window=bool(len(selected)>=round(preload_window/dt)-1 and loaded_s>=preload_window-dt-1e-9),
+                            restored_state_diagnostic_only=True)
+                    previous_phase=response['phase']
                     records.append((float(d.time),d.qpos.copy(),d.qvel.copy(),d.ctrl.copy()))
                     if response.get('complete'):
                         failure=response.get('failure');break
                 mujoco.mj_step(m,d)
                 if np.any(d.warning.number) or d.qpos[2]<.6:raise RuntimeError('Physical instability in continuation')
                 if np.any(d.xfrc_applied) or np.any(d.qfrc_applied):raise RuntimeError('External force unexpectedly applied')
-                if i%(stride*10)==0:
+                monitor_due=i%(stride*10)==0
+                if monitor_due or (a.measure_prelift_native and response['phase']=='close'):
                     forces={n:0. for n in ['thumb','index','middle']}
                     for ci,c in enumerate(d.contact):
                         bs={int(m.geom_bodyid[g]) for g in c.geom}
                         if not(bs&bodies and bs&allowed):continue
                         name=m.body(next(iter(bs&allowed))).name;f=next(n for n in forces if n in name)
                         wrench=np.zeros(6);mujoco.mj_contactForce(m,d,ci,wrench);forces[f]+=max(0.,float(wrench[0]))
+                    if a.measure_prelift_native and response['phase']=='close':
+                        limits=contract['physical_acceptance']
+                        loaded=forces['thumb']>limits['minimum_thumb_load_n'] and min(forces['index'],forces['middle'])>limits['minimum_each_opposing_finger_load_n']
+                        native_window.append((float(d.time-dt),bool(loaded)))
+                        while native_window and native_window[0][0]<d.time-preload_window-.002:native_window.popleft()
+                if monitor_due:
                     monitor.write(json.dumps(dict(time_s=float(d.time-dt),phase=response['phase'],
                         base_m=d.qpos[:3].tolist(),tool_m=d.body('tweezer').xpos.tolist(),
                         actual_finger_force_n=forces,force_proxy_n=np.asarray(response['force_proxy_n']).tolist(),
@@ -126,7 +147,8 @@ def main():
                         wrist_observed_m=np.asarray(response['wrist_observed_m']).tolist(),
                         walk_phase=response.get('walk_phase')))+'\n');monitor.flush()
                 if i%round(.5/dt)==0:print('checkpoint',round(float(d.time),3),response['phase'],'wall_s',round(time.monotonic()-started,1),flush=True)
-            report.update(final_time_s=float(d.time),last_phase=response.get('phase'),physics_warnings=d.warning.number.tolist())
+            report.update(final_time_s=float(d.time),last_phase=response.get('phase'),physics_warnings=d.warning.number.tolist(),
+                final_base_xy_error_m=float(np.linalg.norm(d.qpos[:2]-np.asarray(contract['initial_qpos'])[:2])))
         except Exception as exc:failure=type(exc).__name__+': '+str(exc)
         finally:
             process.stdin.close()

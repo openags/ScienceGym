@@ -5,6 +5,8 @@ tool frame and tool-local grasp geometry enter this planner. No plant object
 state or prerecorded arm path is used. Sampled clearance is a planning check;
 independent continuous physical execution remains required.
 """
+import copy
+
 import mujoco
 import numpy as np
 import trimesh
@@ -118,18 +120,32 @@ class ToolApproachPlanner:
         self.state(q);self.last_clearance=self.clearance.check(margin)
         return self.last_clearance['clear']
 
-    def observed_arm_clearance(self,robot_qpos,margin):
+    def observed_arm_clearance(self,robot_qpos,margin,*,released_hand=False):
         """Check the instantaneous right arm against current body and map.
 
         This is a new encoder-derived state, not a claim that the other body
         joints stayed at their planning values. Other-body self-collisions and
         support are outside this arm guard and remain full-plant obligations.
         The original fixed-state guard is restored for later path queries.
+        Released-hand checks use the actual encoder-derived finger pose and
+        additionally check native source self-contact geometry. Pregrasp
+        approach checks still require their original fixed finger preshape.
         """
         q=np.asarray(robot_qpos,dtype=float)
         hand=[self.m.joint(n).qposadr[0] for n in self.grasp['pregrasp_hand_q']]
-        if np.max(abs(q[hand]-self.initial[hand]))>.002:
+        if not released_hand and np.max(abs(q[hand]-self.initial[hand]))>.002:
             return dict(clear=False,kind='preshape_tracking_error')
+        if released_hand:
+            if not hasattr(self,'released_model'):
+                self.released_model=copy.copy(self.m)
+                self.released_model.opt.disableflags &= ~int(mujoco.mjtDisableBit.mjDSBL_CONTACT)
+                self.released_data=mujoco.MjData(self.released_model)
+            m,d=self.released_model,self.released_data
+            d.qpos[:]=q;mujoco.mj_kinematics(m,d);mujoco.mj_comPos(m,d);mujoco.mj_collision(m,d)
+            contacts=[dict(parts=[m.geom(int(g)).name for g in c.geom],distance_m=float(c.dist))
+                      for c in d.contact if c.dist<0.]
+            if contacts:
+                return dict(clear=False,kind='released_hand_native_self_contact',contacts=contacts)
         saved=self.d.qpos.copy();fixed=self.clearance.fixed_state.copy()
         try:
             self.d.qpos[:]=q;mujoco.mj_kinematics(self.m,self.d);mujoco.mj_comPos(self.m,self.d)

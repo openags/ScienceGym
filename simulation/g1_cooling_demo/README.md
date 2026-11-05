@@ -90,17 +90,41 @@ The 45 mm candidate's [restored-state diagnostic](analysis/dex3_carry_clearance_
 executes lift and starts walking without failure. Return/release, preload and
 base-return acceptance still require further work and a fresh continuous run.
 
+An optional empty-hand return uses the original declared base position after
+release and withdrawal. Its [first checkpoint diagnostic](analysis/dex3_carry_return_checkpoint_01/result.json)
+fails because the approach guard incorrectly requires the original pregrasp
+finger pose after release. The revised guard checks actual encoder-derived hand
+geometry and native source self-contact; the original approach preshape gate
+and independent acceptance bounds remain. `dex3_carry_return_checkpoint_02`
+is testing this correction. A separate `--grip-force-deadband` candidate tests
+whether holding the position reference near its observed load target reduces
+contact loss. Neither candidate has established continuous carrying success.
+
 Exact reference/holder/cap surfaces pass [all six component cases](analysis/pike_reference_support_09/review.json).
 Their [full-room support test](analysis/optical_runtime_support_09/review.json)
 fails because the cap does not remain supported by the original tabletop.
 An exact tabletop surface candidate preserves the original bevels and visuals;
-its source distance and gradient audits pass, while complete-room dynamics are
-being checked separately. No component result is transferred as room acceptance.
+its source distance and gradient audits pass. The subsequent
+[complete-room support test](analysis/optical_runtime_support_10/review.json)
+passes for specimen, reference and cap, including intended bench contact and
+the unchanged penetration/load bounds. Its specimen-velocity correction replay
+is still running; this revision is not yet an accepted robot-operation station.
+No component result is transferred as room acceptance.
 The [corrected support replay](analysis/optical_support_velocity_recheck_01/review.json)
 checks the specimen's own velocity address, which the original evaluator
 accidentally replaced with the cap address. All retained states replay exactly
 and the corrected stability check passes. New station preparation requires this
 addendum for support reports from the affected evaluator.
+
+Tool execution and independent physics replay now load hash-pinned stateless
+collision plugins without exposing the loader or plant model to the actor.
+`process_tool_grasp_plugins.py` invokes the frozen renderer or motor-limit
+checker for those runs. Its legacy renderer/checker sources remain unchanged.
+The [native compatibility check](analysis/frozen_collision_plugin_runtime_01/review.json)
+reproduces all states, accelerations, contacts and forces exactly over ten steps
+in the actual five-plugin laboratory and rejects four altered-receipt cases.
+This verifies the loading path, not a robot episode; complete integration and
+scene rendering follow the corrected support review.
 
 Candidate 07 tests compensation of the four non-closing finger joints using
 their own filtered motor/inverse-dynamics residuals. Closing joints retain

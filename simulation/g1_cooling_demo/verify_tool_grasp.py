@@ -109,7 +109,12 @@ def physics(folder):
     assert sha(folder/'sensors.npz') == result['sensors_sha256']
     assert sha(folder/'world.xml') == contract['model_sha256']
     trace = dict(np.load(folder/'trace.npz')); sensor = dict(np.load(folder/'sensors.npz'))
+    plugins = contract.get('collision_plugins', [])
+    if plugins:
+        from frozen_collision_plugins import load, require_stateless
+        load(plugins, contract['source_snapshot_sha256']['frozen_collision_plugins.py'])
     m = mujoco.MjModel.from_xml_path(str(folder/'world.xml')); d = mujoco.MjData(m)
+    if plugins: require_stateless(m)
     d.qpos[:] = trace['qpos'][0]; d.qvel[:] = trace['qvel'][0]; mujoco.mj_forward(m, d)
     d.qacc_warmstart[:] = trace['qacc_warmstart'][0]
     robot = {m.body('pelvis').id}; tool = {m.body('tweezer').id}

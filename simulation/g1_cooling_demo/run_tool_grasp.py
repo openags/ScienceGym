@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0.):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -45,6 +45,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if visual: assert dex3
     if observe_optical_coupon and (not visual or not contract.get('optical_scene_binding')):
         raise ValueError('Coupon observation requires the bound visual optical station')
+    if return_base_after_release and carry_distance is None:
+        raise ValueError('Base return after release requires a carrying route')
     if register_optical_map and not observe_optical_coupon:
         raise ValueError('Static-map registration requires optical coupon observation')
     if approach_feedforward and not visual:raise ValueError('Approach feedforward requires a visual approach station')
@@ -80,6 +82,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             raise ValueError('Dex3 release requires three driver openings, each within 0 to 0.08 rad')
     if not .02<=tool_lift_height<=.06 or (tool_lift_height!=.03 and not dex3):
         raise ValueError('Requested Dex3 tool lift must be between 20 and 60 mm')
+    if not 0<=grip_force_deadband<=.1 or (grip_force_deadband and not dex3):
+        raise ValueError('Dex3 force-feedback deadband must be 0 to 0.1 N')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     if release_load_feedback and not dex3:
         raise ValueError('Release motor-load feedback is implemented only for the Dex3 actor')
@@ -104,8 +108,14 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if carry_distance is not None:extra_modules.extend(['visual_tool_actor.py','quasistatic_walking.py'])
     if observe_optical_coupon:extra_modules.append('optical_coupon_observation.py')
     if register_optical_map:extra_modules.append('map_localization.py')
-    for name in sorted(set(['run_tool_grasp.py','verify_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules])):
+    plugins = contract.get('collision_plugins', [])
+    plant_modules = ['frozen_collision_plugins.py','process_tool_grasp_plugins.py',
+                     'render_tool_grasp.py','verify_dex3_limits.py'] if plugins else []
+    for name in sorted(set(['run_tool_grasp.py','verify_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules,*plant_modules])):
         shutil.copyfile(HERE/name, snapshot/name)
+    if plugins:
+        source_urdf = HERE/'analysis/g1_dex3_comparison_01/g1_29dof_with_hand_rev_1_0.urdf'
+        shutil.copyfile(source_urdf, snapshot/source_urdf.name)
     for name in ['world.xml', 'model_inputs.json']:
         shutil.copyfile(station/name, output/name)
     solver_revision=None
@@ -123,7 +133,11 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     shutil.copyfile(HERE/'runs/ftir_approach_11/laboratory_import.json', output/'laboratory_import.json')
     (output/'controller_model').mkdir()
     shutil.copyfile(station/'robot_predictor.xml', output/'controller_model/world.xml')
+    if plugins:
+        from frozen_collision_plugins import load, require_stateless
+        load(plugins, sha(snapshot/'frozen_collision_plugins.py'))
     model = mujoco.MjModel.from_xml_path(str(output/'world.xml')); data = mujoco.MjData(model)
+    if plugins: require_stateless(model)
     data.qpos[:] = contract['initial_qpos']; data.qvel[:] = contract['initial_qvel']
     mujoco.mj_forward(model, data)
     robot = mujoco.MjModel.from_xml_path(str(output/'controller_model/world.xml'))
@@ -149,6 +163,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         if release_clearance_height:
             prior['release_clearance_height_m']=release_clearance_height
         prior['tool_lift_height_m']=tool_lift_height
+        if grip_force_deadband:prior['grip_force_deadband_n']=grip_force_deadband
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -163,6 +178,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         if observe_optical_coupon:prior['observe_optical_coupon']=True
         if register_optical_map:prior['register_optical_static_map']=True
     if carry_distance is not None:prior['carry_distance_m']=carry_distance
+    if return_base_after_release:prior['return_base_after_release']=True
     if carry_thumb_force is not None:prior['carry_hold_force_proxy_n']=[carry_thumb_force,carry_thumb_force/2,carry_thumb_force/2]
     if carry_load_abort is not None:prior['carry_motor_load_abort_nm']=carry_load_abort
     if carry_preload_before_lift:prior['carry_preload_before_lift']=True
@@ -194,7 +210,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         contact_solver_revision=solver_revision,
         inferred_control=dict(release_extra_opening_rad=release_extra_opening, closure_speed_m_s=.0005, hold_force_proxy_n=.6, close_timeout_s=close_timeout,
             first_contact_force_proxy_n=.04, contact_entry_force_proxy_n=.05,
-            lift_height_m=tool_lift_height, pinch_center_correction_limit_m=.02,
+            lift_height_m=tool_lift_height, grip_force_deadband_n=grip_force_deadband, pinch_center_correction_limit_m=.02,
             pad_geometry_is_not_measured_pressure_centroid=True, hardware_force_calibration_claimed=False),
         physical_acceptance=dict(minimum_actual_tool_lift_m=.02, minimum_lift_hold_s=.5,
             minimum_bilateral_finger_load_n=.2, minimum_bilateral_contact_s=1.,
@@ -209,12 +225,18 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         allowed_tool_contact_bodies=['right_index_force_sensor_2', 'right_index_force_sensor_3',
             'right_thumb_force_sensor_3', 'right_thumb_force_sensor_4', 'right_index_2', 'right_thumb_4'],
         qualified_grasp=False, qualified_paper_branch=False)
+    if plugins:
+        run_contract['collision_plugins'] = plugins
     if contract.get('optical_scene_binding'):
         run_contract['optical_scene_binding']=contract['optical_scene_binding']
-        for name in ['optical_scene_binding.json','optical_scene_support_review.json']:
+        optical_records=['optical_scene_binding.json','optical_scene_support_review.json']
+        if contract['optical_scene_binding'].get('support_velocity_review_sha256'):
+            assert sha(station/'optical_support_velocity_review.json') == contract['optical_scene_binding']['support_velocity_review_sha256']
+            optical_records.append('optical_support_velocity_review.json')
+        for name in optical_records:
             shutil.copyfile(station/name,output/name)
         run_contract['optical_scene_records_sha256']={name:sha(output/name) for name in
-            ['optical_scene_binding.json','optical_scene_support_review.json']}
+            optical_records}
         run_contract['observed_optical_coupon_required_before_approach']=observe_optical_coupon
     if visual:
         run_contract.update(observed_approach=True,
@@ -291,6 +313,12 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                 lift_force_proxy_threshold_n=(.85*np.asarray(run_contract['carry_contract']['hold_force_proxy_n'])).tolist(),
                 minimum_native_loaded_before_lift_s=.5,
                 prelift_native_load_thresholds='Same independently measured thumb/opposing contact thresholds as physical_acceptance')
+    if return_base_after_release:
+        run_contract['carry_contract']['empty_hand_base_return']=dict(
+            target='Original declared initial base XY; proprioceptive robot estimate',
+            commanded_transition_s=4.,observed_position_tolerance_m=.008,
+            clearance='Observed arm/source meshes plus native source self-contact at the released encoder-derived finger pose',
+            maximum_wait_s=12.,initial_pose_reset=False,physical_acceptance_unchanged=True)
     if register_optical_map:
         run_contract['static_map_registration']=dict(pixel_center=.5,depth_correspondence_gate_m=.004,
             huber_scale_m=.0002,inputs='Native depth, encoders, IMU and public static controller map',
@@ -442,5 +470,9 @@ if __name__ == '__main__':
                    help='Commanded tool lift in metres; 20 to 60 mm, unchanged physical acceptance')
     p.add_argument('--register-optical-map',action='store_true',
                    help='Register native depth to the static map before optical/tool observation')
+    p.add_argument('--return-base-after-release',action='store_true',
+                   help='Return the empty-handed robot to its original base position using motor control')
+    p.add_argument('--grip-force-deadband',type=float,default=0.,
+                   help='Stop position-reference integration within this observed force error (0 to 0.1 N)')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband)['status'] == 'failed': raise SystemExit(1)
