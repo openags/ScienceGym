@@ -1,4 +1,25 @@
-# G1 / Inspire contact runtime
+# G1 humanoid contact runtime
+
+The latest [59.09-second visual tool recording](runs/dex3_visual_grasp_04/overview.mp4)
+passes all 18 [independent physical checks](runs/dex3_visual_grasp_04/physical_review.json),
+[isolated controller replay](runs/dex3_visual_grasp_04/controller_replay.json) and
+[source motor torque/speed checks](runs/dex3_visual_grasp_04/source_limit_review.json).
+From the declared station posture, G1 observes the free tweezer in native RGB-D,
+plans and executes its approach, then grips, lifts, lowers, releases and withdraws.
+All 59,089 motor outputs and 17 camera frames replay exactly. The tool rises
+25.08 mm and remains lifted without tray support for 1.97 s. Cameras are used
+for initial localization; approach and holding use proprioception and inferred
+motor-load feedback. This single attempt does not qualify tool use on a specimen,
+carrying, randomized repeatability or a paper branch. The earlier
+[23.58-second pregrasp trial](runs/dex3_tool_grasp_06/physical_review.json)
+remains separate. The earlier walking/window run uses Inspire hands; that result
+does not transfer automatically to the three-finger model. There remain
+**0 of 11 qualified paper branches and 0 qualified complete campaigns**.
+
+The separate [99.66-second visual pickup](runs/dex3_visual_grasp_03/physical_review.json)
+also passes its 18 independent physical checks, controller replay and source
+motor limits. It uses the same authored initial scene as the shorter run;
+these two executions are not randomized repeated-reliability acceptance.
 
 The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
@@ -47,6 +68,211 @@ reliability qualification. The recording and timestamp controls are on the
 The earlier workbench presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
 
 Serve the repository with `python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1` (including video range requests) and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. This older workbench page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. Its manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
+
+## Full-laboratory tool development
+
+`carry_tool_actor.py` extends the visual pickup with a loaded arm withdrawal,
+short out-and-back stepping route and return to the observed source tray.
+The hand keeps its motor-load feedback during the motion. Support-foot
+kinematics replace the fixed-feet estimate during stepping; no physical root
+or tool pose is reassigned. The rigid grasp transform is a collision-planning
+hypothesis, not a physical attachment or measured slip pose.
+
+The first [withdrawal screen](analysis/dex3_carry_handoff_01/review.json)
+fails reach. The [revised screen](analysis/dex3_carry_handoff_02/review.json)
+uses the official elbow range and a 0.6 rad wrist rotation: 51 sampled raised
+poses and 51 withdrawal poses pass the arm/tool geometry guard. This fixed-base
+screen is not loaded walking. Before the new stage, 50,988 recorded sensor
+responses remain exact; separate regressions retain all
+[23,581 default pickup outputs](analysis/dex3_carry_hooks_baseline_01/review.json)
+and [10,141 default walking outputs](analysis/dex3_walking_hooks_baseline_01/review.json).
+
+`run_tool_grasp.py --carry-distance 0.12` selects the isolated carrying actor
+for an observed-approach station. Its distinct task contract requires actual
+loaded base travel, both feet stepping, retained grip, return and released
+support, in addition to the original continuous physical checks. Read that
+run's own result and independent review before claiming any carrying outcome.
+`probe_tool_carry_checkpoint.py` separately diagnoses the new control stage
+from an explicitly restored recorded grasp after replaying the actor's sensor
+history. Those checkpoint probes cannot count as continuous pickup/carry demos.
+
+The first [checkpoint continuation](analysis/dex3_carry_checkpoint_01/result.json)
+loses the tool during rotated withdrawal after 11.309 seconds, before stepping.
+Its [sparse wrench diagnosis](analysis/dex3_carry_checkpoint_01/contact_wrench_diagnosis.json)
+finds a late optimistic static requirement near 1.94 N peak finger force,
+above the roughly 1.13 N actual thumb load. Sparse reconstructed forces are not
+continuous replay or calibrated hardware forces. The next candidate adds an
+observed preload stage (`--carry-thumb-force 2.4`) and rejects withdrawn arm
+endpoints within 0.08 rad of the IK bounds. This changes motor commands and
+planning only; source geometry, friction, dynamics and the 4 N development
+acceptance bound remain. `--prepare-only` freezes an isolated candidate without
+executing it, for checkpoint diagnostics before a new full continuous trial.
+
+`build_tool_station.py` places the free passive tweezer and ordinary free tray
+in the existing room with the complete G1. `runs/tool_station_04/review.json`
+passes initial geometry, source inertia/contact preservation, actual bench
+height, tray footprint and whole-robot collision checks. This is authored
+initial staging; there is no robot placement or grasp credit. The original
+optical attachment remains on the bench. The first proposed placement collided
+with it; the corrected staging translates the robot/tool/tray by 0.35 m and
+0.03 m in laboratory coordinates. Initial images are in that station folder.
+
+`runs/tool_station_05` preserves this geometry while splitting the static room
+architecture into smaller bodies for collision broad-phase rejection. The
+bounded `analysis/tool_collision_partition_01` comparison retained identical
+100-step zero-torque states and reduced measured runtime from 5.43 to 0.84 s.
+A broader partition attempt ran out of collision-stack memory; a spatially
+grouped variant changed the sampled trajectory. Those alternatives are retained
+and are not the selected execution model. The short comparison does not qualify
+standing, manipulation or a complete trajectory.
+
+`run_tool_grasp.py` and `tool_grasp_actor.py` execute an isolated full-body
+attempt from the declared pregrasp. Own-robot encoders and IMU feed a full-body
+load predictor; arm motion compensates the change in the source pad midpoint
+as the fingers close. Observed sustained opposing load gates a lift, hold,
+lower and release attempt. The actor has no visual tool localization or
+executed approach. `verify_tool_grasp.py` separately replays the frozen actor,
+physics and native sensors and checks actual loaded lift, contact, tool closure
+and released support. Read each attempt's result and review; no tool grasp,
+paper branch or repeated-reliability qualification has been established.
+
+The slow `runs/tool_grasp_01` baseline was explicitly interrupted after the
+first 174 recorded monitor rows matched `tool_grasp_02` exactly through 1.73 s.
+Its interruption record and partial monitor remain; its full in-memory trace
+was not saved. `tool_grasp_02` is the separate attempt on the partitioned room,
+not a continuation spliced onto that baseline.
+
+`tool_grasp_02` ended after 13.955 simulated seconds with loss of opposing
+finger load. Frozen controller replay and continuous physics/native-sensor
+replay are exact, but the physical verdict fails: only 0.346 seconds of
+bilateral contact, no held lift, and an initial sole-contact excursion beyond
+the 1 mm bound. Recorded contacts lie on the finger housings, with an axial
+separation of about 12.7 mm; the tool rotates and falls into the tray. See its
+`final_review_summary.json`, contact diagnosis and recorded stills. An exact
+replay of that failure is not a successful grasp.
+
+### Official three-finger candidate
+
+`fit_dex3_tweezer.py` uses the already pinned official Unitree three-finger
+resource in `analysis/g1_dex3_comparison_01`. It fits original source exterior
+points and checks the actual supported tool mesh, tray and bench plane.
+`dex3_tweezer_fit_01` has no accepted placement; its palm lies below the tool.
+Reversing the tool-axis orientation yields 23 local candidates in `_02`.
+They are geometric proposals, not executed grasps.
+
+The source visual mesh has a palm/thumb-1 assembly overlap throughout the
+221 configurations in `dex3_thumb_interference_01`. It is disclosed rather
+than removed. A separate issue in the earlier static-root inspection caused
+extra native collision reports. The new `hand_self_check.xml` adds only a
+free wrist, preserving the source collision geometry and dynamic parent
+filtering. Native collision checks use the manufacturer's collision shapes;
+original visual triangles still check external tool and tray intersections.
+
+`build_dex3_tool_station.py` replaces the two official wrist/hand subtrees,
+retaining the complete room, other body inertias, free tray and passive tool.
+The model has 43 independent motors. The first three station searches fail
+reach or collision checks. Rotating the authored tray/tool arrangement by
+180 degrees produces five full-body static candidates in
+`runs/dex3_tool_station_04`. This is a different initial arrangement, with
+no executed rearrangement credit. `dex3_pregrasp_01` opens the chosen hand
+before contact and passes initial bounds with no robot/tool contact; its
+overview and contact images show the actual original laboratory.
+
+`dex3_tool_grasp_01` fails after 0.129 seconds: gains transferred from the
+previous hand cause severe finger oscillation and excessive contact. Its
+controller and physical replay reproduce that failure. The subsequent actor
+bounds proportional and damping gains using the robot-only coupled hand
+inertia and the control period, without changing the plant's mass or armature.
+Read the later attempt's own result and independent review before assigning
+any execution outcome. This pickup test does not qualify squeezing the tool
+on a specimen, perception, approach, carrying, a paper branch or reliability.
+
+`dex3_tool_grasp_02` ends after 14.005 seconds without enough sustained load
+to lift. Controller, physics and native sensor replay are exact. Contact and
+released-support bounds pass, but the physical verdict fails, including a
+3.635 mrad thumb distal-joint excursion beyond its source limit. Its separate
+torque/speed check passes; that check does not cover position limits. The
+verifier's write-time source-hash issue is documented and reconciled in
+`verifier_runtime_provenance.json`, preserving the original report and every
+physical metric. Future verifiers capture their hash at import and run from
+a frozen source copy.
+
+`dex3_tool_grasp_03` reaches the lift phase but loses the tool. The 16.993-second
+attempt and exact-byte trace chunks are retained. Sparse wrench diagnostics
+show marginal grip support during lift and infeasible static equilibrium at
+the late slipped contact configuration; they are not continuous verification.
+The full independent verdict must be read separately. A 4.730 mrad thumb
+distal-joint excursion also excludes qualification.
+
+The next setup, `dex3_tool_station_05` / `dex3_pregrasp_03`, selects a source
+grasp with the thumb distal joint farther inside its limit, and restricts
+authored elbow flexion to at least 0.15 rad inside the original source range.
+One of 125 searched poses passes the initial scene checks. The new force
+targets are explicit actor-prior inputs and pinned in each run contract;
+the physical acceptance limits remain unchanged. Initial setup and controller
+changes do not establish grasp success.
+
+`analysis/dex3_device_sleep_02` tests native sleeping only for the unattended
+instrument cover; the robot, tool, tray and instrument keys are never allowed
+to sleep. A 0.2-second replay preserves all robot/tool/tray states bit for bit
+and reduces measured wall time from 12.70 to 6.00 seconds. The separate
+`dex3_cover_wake_02` diagnostic drops a free 20 g sphere onto the actual cover:
+the sleeping cover wakes on contact, with a maximum 3.2 nm position difference
+from the unslept baseline. This added sphere exists only in diagnostic files.
+`dex3_pregrasp_04` binds the tested sleep configuration to the next authored
+initial scene. Complete execution and independent replay remain required;
+the short comparison does not qualify a grasp or a whole-device interaction.
+
+`dex3_tool_grasp_04` and `_05` both lift the tool but fail the independent
+released-support condition because a finger retains contact. The paired
+sleeping/unslept full trajectories differ; the short sleeping diagnostic is
+not a claim of identical full-run behavior. Each run's own physics replay is
+exact. `_06` adds bounded extra finger opening, an encoder-derived residual-load
+release gate and a 20 mm wrist withdrawal. All sixteen independent physical
+checks pass, including actual held lift, released support, source joint limits
+and bounded contact. Its frozen execution result remains the original
+pre-evaluation record; the separate reviews contain the subsequent verdict.
+No earlier failed trace or verdict is overwritten.
+
+### Observation and approach integration
+
+The next actor, `visual_tool_actor.py`, starts with its right arm parked clear
+of the tool. Native head RGB-D, own encoders/IMU, unposed tool CAD and a
+tool-local hand preshape supply localization and arm planning. Tool placement,
+scene contact lists and earlier arm paths are excluded from the actor bundle.
+The wrist/finger controller remains motor-driven with independent evaluation.
+
+`analysis/dex3_observed_approach_01_evaluation` rejects the first geometric
+proposal: the old source-mesh reader omitted the official hand's visual group 1.
+The planner now explicitly includes both source visual groups and requires the
+complete right hand and wrist. Further candidates retain failures caused by
+surface clearance. Native depth now disables MSAA using the existing camera
+helper, and planning uses connected depth-pixel surfaces rather than 2 mm
+voxel boxes. No physical acceptance tolerance is relaxed.
+`dex3_observed_approach_04_evaluation` passes 647 full-scene kinematic samples;
+its one-pose tool estimate differs from evaluator truth by 0.220 mm and
+0.060 degrees. These are development observations, not perception robustness
+or controlled-motion qualification.
+
+`runs/dex3_visual_grasp_01` ends at 3.2 seconds without moving toward the tool:
+after settling, the proposed raised approach cannot satisfy its IK tolerance.
+All 3,201 sensor/controller packets and 17 native RGB-D frames replay exactly;
+the physical result remains a failed pickup with no held lift. The bounded
+planner now tries several approach heights under the same source limits and
+clearance checks. `dex3_visual_plan_diagnosis_02` finds a 30 mm raised route
+from those same recorded inputs; that diagnostic does not execute the route.
+Read each new continuous attempt's own independent reviews before claiming
+visual approach, pickup or a complete experiment.
+
+`dex3_visual_grasp_02` executes part of the approach, then holds a waypoint:
+its wrist error settles to 0.056 mm while the joint-angle progress gate never
+advances for four recorded seconds. A deliberate SIGINT at 17.5125 s preserves
+the partial trajectory and the stagnation evidence. Motor limits pass; this
+interruption is not a successful approach. The next actor gates progress using
+wrist position/orientation feedback and checks the instantaneous observed right
+arm against the current robot body and sensed environment. This arm guard does
+not certify other-body self-contact or support; full-plant evaluation remains
+required. Each earlier actor and its original gate remain frozen in its run.
 
 ## Reproduce
 
