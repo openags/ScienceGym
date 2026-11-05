@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **395**.
+Last screened: **2026-11-05**. Candidate count: **396**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4074,3 +4074,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The main article refers to Supplementary Notes 5-7, but the bundled written SI contains Notes 1-6; Note 7 remains unverified. Supplementary Movies 1-4 were not watched. This is written-text screening, not a complete visual or supplementary-source review.
 - Candidate scope is synthetic-only fabrication, inspection, calibration and imaging-record coordination. Animal handling and biological-fluid work are excluded. Fabrication, pressure equipment and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: adhesive-film specimen and mechanical-measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Tearing as a test for mechanical characterization of thin adhesive films](https://www.nature.com/articles/nmat2161) | Nature Materials / 2008 | 10.1038/nmat2161 | Prepared synthetic-film specimen identity, state/history tracking and coordinated imaging and mechanical-measurement records suggest a future long-horizon materials-characterization task. | Public author-hosted main scholarly prose and captions including Methods, and written SI text read; equation, image and movie review limits remain. |
+
+- **CANDIDATE only.** Hamm et al., *Nature Materials* **7**, 386-390 (2008). All extracted scholarly prose and captions in the five-page main article, including Methods, were read from the public [author-hosted main PDF](https://blog.espci.fr/benoitroman/files/2018/04/Hamm08.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted written scientific text in the four-page [Supplementary Information](https://www.epfl.ch/labs/flexlab/wp-content/uploads/2017/12/16_2008_Hamm_NatureMater_si.pdf) was read. Figure pixels and equations were not audited, and the supplementary movie was not watched. This is written-text screening, not a complete visual, mathematical or supplementary-media review.
+- Scope is prepared synthetic-film specimen tracking and coordinated imaging and mechanical-measurement records only. Specimen preparation, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public author-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
