@@ -188,6 +188,36 @@ and bounded contact. Its frozen execution result remains the original
 pre-evaluation record; the separate reviews contain the subsequent verdict.
 No earlier failed trace or verdict is overwritten.
 
+### Observation and approach integration
+
+The next actor, `visual_tool_actor.py`, starts with its right arm parked clear
+of the tool. Native head RGB-D, own encoders/IMU, unposed tool CAD and a
+tool-local hand preshape supply localization and arm planning. Tool placement,
+scene contact lists and earlier arm paths are excluded from the actor bundle.
+The wrist/finger controller remains motor-driven with independent evaluation.
+
+`analysis/dex3_observed_approach_01_evaluation` rejects the first geometric
+proposal: the old source-mesh reader omitted the official hand's visual group 1.
+The planner now explicitly includes both source visual groups and requires the
+complete right hand and wrist. Further candidates retain failures caused by
+surface clearance. Native depth now disables MSAA using the existing camera
+helper, and planning uses connected depth-pixel surfaces rather than 2 mm
+voxel boxes. No physical acceptance tolerance is relaxed.
+`dex3_observed_approach_04_evaluation` passes 647 full-scene kinematic samples;
+its one-pose tool estimate differs from evaluator truth by 0.220 mm and
+0.060 degrees. These are development observations, not perception robustness
+or controlled-motion qualification.
+
+`runs/dex3_visual_grasp_01` ends at 3.2 seconds without moving toward the tool:
+after settling, the proposed raised approach cannot satisfy its IK tolerance.
+All 3,201 sensor/controller packets and 17 native RGB-D frames replay exactly;
+the physical result remains a failed pickup with no held lift. The bounded
+planner now tries several approach heights under the same source limits and
+clearance checks. `dex3_visual_plan_diagnosis_02` finds a 30 mm raised route
+from those same recorded inputs; that diagnostic does not execute the route.
+Read each new continuous attempt's own independent reviews before claiming
+visual approach, pickup or a complete experiment.
+
 ## Reproduce
 
 Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. Current sensor runs also require Linux with bubblewrap and enabled unprivileged namespaces; see [the runtime guide](LABORATORY.md). The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:

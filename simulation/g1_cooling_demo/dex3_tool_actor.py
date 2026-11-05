@@ -74,7 +74,7 @@ class ToolActor:
         self.failure=reason;self.abort_height=self.lift_height;self.change('abort_lower',t)
 
     def update(self, obs):
-        if set(obs)!=self.fields:raise ValueError('Unexpected observation fields')
+        if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
         if not all(np.isfinite(np.asarray(v)).all() for v in obs.values()):raise ValueError('Nonfinite sensor packet')
         t=float(obs['time_s']);dt=.001 if self.last_time is None else t-self.last_time
         if not .0009999<=dt<=.0010001:raise ValueError('Unexpected control period')
@@ -95,7 +95,7 @@ class ToolActor:
         if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
         effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
         if max(abs(proxy))>4. or max(abs(effort))>.15:self.abort('Observed motor load exceeds the development bound',t)
-        if self.phase=='settle' and t>=2.:self.change('close',t)
+        if self.phase=='settle' and t-self.phase_started>=2.:self.change('close',t)
         if self.phase=='close':
             for i in range(3):
                 if not self.flags[i] and proxy[i]>.05:self.flags[i]=True;self.release_since[i]=None

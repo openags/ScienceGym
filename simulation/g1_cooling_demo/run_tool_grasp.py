@@ -1,7 +1,8 @@
 """Run an isolated full-G1 tool pickup attempt in the existing laboratory.
 
-Starts at an explicitly authored pregrasp. This does not grant perception,
-approach, task-branch or repeated-reliability qualification.
+Starts at an explicitly authored posture. An observed-approach station enables
+native cameras and a separate visual actor. Neither execution mode grants
+task-branch or repeated-reliability qualification by itself.
 """
 import argparse
 import hashlib
@@ -39,8 +40,11 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     assert review['passed_initial_scene_checks']
     contract = json.loads((station/'contract.json').read_text())
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
+    visual = bool(contract.get('observed_approach',False))
+    if visual: assert dex3
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
+    if visual: actor_module='visual_tool_actor'
     assert sha(station/'contract.json') == review['contract_sha256']
     assert sha(station/'world.xml') == contract['plant_sha256']
     assert sha(station/'robot_predictor.xml') == contract['predictor_sha256']
@@ -49,8 +53,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     for name, digest in inputs.items(): assert sha(name) == digest
     output.mkdir(parents=True, exist_ok=False)
     snapshot = output/'source_snapshot'; snapshot.mkdir()
-    for name in ['run_tool_grasp.py', actor_module+'.py', 'balance.py', 'conic_balance.py',
-                 'observations.py', 'hand_touch.py', 'isolation.py', 'isolation_probe.py']:
+    extra_modules=[actor_module+'.py','conic_balance.py']
+    if visual:extra_modules.extend(['dex3_tool_actor.py','tool_observation.py','tool_pose.py','tool_approach_planning.py',
+        'ftir_hand.py','joint_rrt.py','robot_source_meshes.py','source_proximity.py','tool_cameras.py','sensor_rendering.py'])
+    for name in sorted(set(['run_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules])):
         shutil.copyfile(HERE/name, snapshot/name)
     for name in ['world.xml', 'model_inputs.json']:
         shutil.copyfile(station/name, output/name)
@@ -76,10 +82,18 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior['release_extra_opening_rad']=.04
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
+    shapes=[]
+    if visual:
+        shape_dir=output/'object_shape_source';shape_dir.mkdir()
+        shape=shape_dir/'tool_shape.glb'
+        shutil.copyfile(HERE.parents[1]/'assets/idealtek_aa_sa_t6_v1/revisions/passive_07/rest_geometry.glb',shape)
+        shapes=[shape]
+        prior.update(grasp_geometry=contract['grasp_geometry'],tool_shape_sha256=sha(shape),appearance_threshold_uint8=24.,
+            scope='Authored initial robot posture, public architecture and unposed tool/grasp geometry; no tool placement or arm path')
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
-        extra_modules=[actor_module+'.py', 'conic_balance.py'], policy_files=[prior_path])
+        extra_modules=extra_modules, policy_files=[prior_path],shape_files=shapes)
     dt = float(model.opt.timestep); stride = round(.001/dt)
     assert abs(stride*dt-.001) < 1e-12
     run_contract = dict(scope=__doc__, station_review_sha256=sha(station/'review.json'),
@@ -111,6 +125,12 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         allowed_tool_contact_bodies=['right_index_force_sensor_2', 'right_index_force_sensor_3',
             'right_thumb_force_sensor_3', 'right_thumb_force_sensor_4', 'right_index_2', 'right_thumb_4'],
         qualified_grasp=False, qualified_paper_branch=False)
+    if visual:
+        run_contract.update(observed_approach=True,
+            camera_contract=dict(names=['head_rgb','head_depth'],width=640,height=480,period_s=.2,
+                depth_multisampling=False,capture_phase='observe',renderer_sha256=sha(snapshot/'tool_cameras.py'),
+                depth_helper_sha256=sha(snapshot/'sensor_rendering.py')),
+            tool_shape_sha256=sha(shapes[0]),qualified_approach=False)
     if dex3:
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
         run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
@@ -126,6 +146,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     (output/'contract.json').write_text(json.dumps(run_contract, indent=2)+'\n')
     names = [model.joint(j).name for j in robot_joints(model)]
     records, sensors, responses = [], [], []
+    cameras=None;frame_index=[]
+    if visual:
+        from tool_cameras import ToolCameras
+        cameras=ToolCameras(model);(output/'camera_frames').mkdir()
     failure = None; response = {}; started = time.monotonic()
     stop = {'signal': None}
     previous_handlers = {}
@@ -149,7 +173,17 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                         imu_quaternion=data.sensor('imu_orientation').data.copy(),
                         imu_gyro=data.sensor('imu_angular_velocity').data.copy())
                     if not dex3: packet['right_touch_n']=read_touch(data)
-                    sensors.append(packet)
+                    retained=dict(packet)
+                    if visual:
+                        frame_id=-1
+                        if i % (stride*200)==0 and response.get('phase','observe')=='observe':
+                            frames=cameras.read(data);frame_id=len(frame_index)
+                            path=output/'camera_frames'/f'{frame_id:05d}.npz'
+                            np.savez_compressed(path,**frames)
+                            frame_index.append(dict(id=frame_id,time_s=float(data.time),file=str(path.relative_to(output)),sha256=sha(path)))
+                        else:frames=dict(head_rgb=None,head_depth=None)
+                        packet.update(frames);retained['camera_frame_id']=frame_id
+                    sensors.append(retained)
                     pickle.dump(packet, process.stdin, protocol=5); process.stdin.flush()
                     response = pickle.load(process.stdout)
                     responses.append({k: v for k, v in response.items() if k != 'events'})
@@ -192,6 +226,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             try: process.wait(timeout=15)
             except subprocess.TimeoutExpired: process.kill(); process.wait()
     for signum, handler in previous_handlers.items(): signal.signal(signum, handler)
+    if cameras is not None:cameras.close()
     if not records or abs(records[-1][0]-data.time) > 1e-12:
         records.append((float(data.time), data.qpos.copy(), data.qvel.copy(), data.ctrl.copy(), data.qacc_warmstart.copy()))
     np.savez_compressed(output/'trace.npz', **{k: np.asarray([r[i] for r in records])
@@ -199,12 +234,14 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if sensors: np.savez_compressed(output/'sensors.npz', **{k: np.asarray([r[k] for r in sensors]) for k in sensors[0]})
     (output/'responses.pkl').write_bytes(pickle.dumps(responses, protocol=5))
     (output/'events.json').write_text(json.dumps(response.get('events', []), indent=2)+'\n')
+    if visual:(output/'camera_index.json').write_text(json.dumps(frame_index,indent=2)+'\n')
     result = dict(scope=__doc__, status='failed' if failure else 'attempt_finished_pending_independent_verification',
         failure=failure, simulated_seconds=float(data.time), wall_seconds=time.monotonic()-started,
         environment='existing_complete_laboratory', contract_sha256=sha(output/'contract.json'),
         trace_sha256=sha(output/'trace.npz'), sensors_sha256=sha(output/'sensors.npz') if sensors else None,
         responses_sha256=sha(output/'responses.pkl'), actor_access_isolated=isolation['passed'],
         physics_warning_counts=data.warning.number.tolist(), qualified_grasp=False, qualified_paper_branch=False)
+    if visual:result.update(camera_index_sha256=sha(output/'camera_index.json'),camera_frames=len(frame_index),qualified_approach=False)
     (output/'result.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result), flush=True)
     return result

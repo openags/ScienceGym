@@ -12,7 +12,7 @@ import numpy as np
 import trimesh
 
 
-def robot_source_meshes(model):
+def robot_source_meshes(model, *, visual_groups=(2,)):
     root = model.body('pelvis').id
     parts = defaultdict(list)
     for gid in range(model.ngeom):
@@ -20,7 +20,7 @@ def robot_source_meshes(model):
         ancestor = bid
         while ancestor and ancestor != root:
             ancestor = int(model.body_parentid[ancestor])
-        if ancestor != root or model.geom_group[gid] != 2:
+        if ancestor != root or int(model.geom_group[gid]) not in visual_groups:
             continue
         if model.geom_type[gid] != mujoco.mjtGeom.mjGEOM_MESH:
             raise ValueError('Expected original robot visual triangle mesh')
