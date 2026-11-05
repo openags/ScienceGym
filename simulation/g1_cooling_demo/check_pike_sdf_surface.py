@@ -16,6 +16,7 @@ import numpy as np
 import trimesh
 
 from build_tool_station import sha
+from runtime_collision_plugins import load_collision_plugins
 
 
 class SDF(ct.Structure):
@@ -39,17 +40,18 @@ def main():
         plugin_receipt = json.loads(args.plugin_receipt.read_text())
         assert sha(world) == plugin_receipt['world_sha256']
         assert sha(plugin_receipt['library']) == plugin_receipt['library_sha256']
-        mujoco.mj_loadPluginLibrary(plugin_receipt['library'])
+        load_collision_plugins(plugin_receipt.get('parent_collision_plugins',[])+[plugin_receipt])
     model = mujoco.MjModel.from_xml_path(str(world))
     data = mujoco.MjData(model)
     mujoco.mj_kinematics(model, data)
-    gid = model.geom('source_panel_visual').id
+    geom_name = plugin_receipt.get('geom_name','source_panel_visual') if plugin_receipt else 'source_panel_visual'
+    gid = model.geom(geom_name).id
     mid = int(model.geom_dataid[gid])
     instance = int(model.geom_plugin[gid])
     if model.geom_type[gid] != int(mujoco.mjtGeom.mjGEOM_SDF) or (instance < 0 and model.mesh_octadr[mid] < 0):
         raise ValueError('Expected a compiled native mesh SDF')
     xml = ET.parse(world).getroot()
-    geom = xml.find(".//geom[@name='source_panel_visual']")
+    geom = xml.find(".//geom[@name='"+geom_name+"']")
     mesh_path = Path(xml.find(".//mesh[@name='"+geom.get('mesh')+"']").get('file'))
     if not mesh_path.is_absolute():
         mesh_path = world.parent/mesh_path
@@ -86,11 +88,16 @@ def main():
         points.extend(surface+delta*source.face_normals[faces])
         labels.extend(['surface_offset_'+str(delta)]*len(surface))
     top, bottom = source.bounds[1, 2], source.bounds[0, 2]
-    for radius in [0., .004, .0085, .0095, .011, .020, .024]:
+    center=np.asarray(plugin_receipt.get('bore_center_m',[.04,-.01]) if plugin_receipt else [.04,-.01])
+    reference_shoulder=bool(plugin_receipt and plugin_receipt.get('part') in {'reference_shoulder','reference_cap'})
+    bore_radius=plugin_receipt['bore_radius_m'] if reference_shoulder else .009
+    hole_bottom=max(bottom,plugin_receipt['bore_floor_m']) if reference_shoulder else bottom
+    radii=np.asarray([0.,.4,.85,1.05,1.2,1.5,2.])*bore_radius if reference_shoulder else [0.,.004,.0085,.0095,.011,.020,.024]
+    for radius in radii:
         for angle in np.linspace(0., 2*np.pi, 32, endpoint=False):
-            for z in [(top+bottom)/2, top-.00002, top+.00002]:
-                points.append([.04+radius*np.cos(angle), -.01+radius*np.sin(angle), z])
-                labels.append('bore' if radius <= .0085 else 'annulus')
+            for z in [(top+hole_bottom)/2, top-min(.00002,(top-hole_bottom)/4), top+.00002]:
+                points.append([center[0]+radius*np.cos(angle), center[1]+radius*np.sin(angle), z])
+                labels.append('bore' if radius <= (.85*bore_radius if reference_shoulder else .0085) else 'annulus')
     points = np.asarray(points)
     # trimesh's absolute tolerance is also applied to fourth-order dot-product
     # terms in its triangle region tests. At metre units this misclassifies
@@ -126,6 +133,7 @@ def main():
         native_distances_m=native, gradients=gradients, labels=np.asarray(labels))
     worst = np.argsort(error)[-12:][::-1]
     report = dict(scope=__doc__, passed_sampled_surface=all(checks.values()), checks=checks,
+        geom_name=geom_name,
         sample_count=len(points), maximum_distance_error_m=float(np.max(error)),
         sign_mismatch_count=int(np.sum(mismatched)), bore_sample_count=int(np.sum(bore)),
         reference_distance_method='Exhaustive point-to-triangle distance and ray occupancy in millimetre-normalized oracle coordinates; outputs converted back to metres',

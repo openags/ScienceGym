@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -79,6 +79,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if dex3: assert 0 < lift_force < thumb_force < 4.
     if release_load_feedback and not dex3:
         raise ValueError('Release motor-load feedback is implemented only for the Dex3 actor')
+    if release_preserve_posture and not dex3:
+        raise ValueError('Preserving release posture requires the Dex3 actor')
+    if not 0<=release_clearance_height<=.004 or (release_clearance_height and not dex3):
+        raise ValueError('Dex3 release clearance height must be 0 to 4 mm')
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
     if carry_distance is not None:actor_module='carry_tool_actor'
@@ -135,6 +139,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             prior['release_driver_openings_rad']=release_driver_openings.tolist()
         if release_load_feedback:
             prior['release_load_feedback']=True
+        if release_preserve_posture:
+            prior['release_preserve_posture']=True
+        if release_clearance_height:
+            prior['release_clearance_height_m']=release_clearance_height
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -227,6 +235,17 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             run_contract['inferred_control']['release_load_feedback']=dict(
                 inputs='Signed own-motor load estimates only', opening_rate_rad_s=.01,
                 opening_bounds_rad=[0.,.08], enabled_after_initial_ramp_s=2.,
+                release_gate_dwell_and_timeout_unchanged=True)
+        if release_preserve_posture:
+            run_contract['inferred_control']['release_preserve_posture']=dict(
+                inputs='Own commanded non-closing hand joint angles at release entry',
+                basis='Retain the supported grasp preshape while opening distal drivers; restoring proximal angles can push the fingertip into the tool',
+                joint_limits_and_release_acceptance_unchanged=True)
+        if release_clearance_height:
+            run_contract['inferred_control']['release_clearance_motion']=dict(
+                upward_height_m=release_clearance_height,ramp_duration_s=.5,
+                start_after_opening_ramp_s=2.,maximum_initial_force_proxy_n=.05,
+                basis='Authored small upward retreat after opening and low motor loads; actual passive support and release remain independently evaluated',
                 release_gate_dwell_and_timeout_unchanged=True)
         run_contract['physical_acceptance'].update(minimum_each_opposing_finger_load_n=.1,
             minimum_thumb_load_n=.2,minimum_three_finger_contact_s=1.,require_loaded_tool_closure=False)
@@ -404,5 +423,9 @@ if __name__ == '__main__':
                    help='Adjust release opening from signed motor loads inside the unchanged opening envelope')
     p.add_argument('--observe-optical-coupon',action='store_true',
                    help='Require four stable native RGB-D coupon observations before tool approach')
+    p.add_argument('--release-clearance-height',type=float,default=0.,
+                   help='Small upward retreat during release after low motor loads, at most 4 mm')
+    p.add_argument('--release-preserve-posture',action='store_true',
+                   help='Keep non-closing finger joint references at their release-entry posture')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture)['status'] == 'failed': raise SystemExit(1)

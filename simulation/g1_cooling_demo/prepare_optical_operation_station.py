@@ -23,6 +23,8 @@ def main():
     p.add_argument('optical_scene', type=Path)
     p.add_argument('support_review', type=Path)
     p.add_argument('output', type=Path)
+    p.add_argument('--support-velocity-review',type=Path,
+                   help='Independent velocity correction for the earlier support evaluator indexing defect')
     a = p.parse_args()
     source, scene, support, out = [v.resolve() for v in [
         a.source_station, a.optical_scene, a.support_review, a.output]]
@@ -41,6 +43,18 @@ def main():
     if not support_result['passed_asset_support']:
         raise ValueError('Complete-room passive support has not passed')
     assert sha(support.parent/'trace.npz') == support_result['trace_sha256']
+    velocity_review=None
+    affected_source='0bf415258da17e8cd3465514123f3ab963ea99ca2279d8042f583157870208db'
+    if support_result.get('source_sha256')==affected_source and a.support_velocity_review is None:
+        raise ValueError('This support evaluator requires the corrected specimen velocity replay')
+    if a.support_velocity_review is not None:
+        velocity_review=json.loads(a.support_velocity_review.read_text())
+        assert velocity_review['original_review_sha256']==sha(support)
+        assert velocity_review['world_sha256']==binding['world_sha256']
+        assert velocity_review['retained_trace_sha256']==support_result['trace_sha256']
+        assert sha(a.support_velocity_review.parent/'tail_velocities.npz')==velocity_review['tail_velocities_sha256']
+        if not velocity_review['corrected_asset_support_passed']:
+            raise ValueError('Corrected support velocity replay did not pass')
     inputs = {}
     for folder in [source, scene]:
         for path, digest in json.loads((folder/'model_inputs.json').read_text()).items():
@@ -98,6 +112,9 @@ def main():
                        (support, 'optical_scene_support_review.json')]:
         shutil.copyfile(path, out/name)
         inputs[str(path)] = sha(path)
+    if velocity_review is not None:
+        shutil.copyfile(a.support_velocity_review,out/'optical_support_velocity_review.json')
+        inputs[str(a.support_velocity_review.resolve())]=sha(a.support_velocity_review)
     (out/'model_inputs.json').write_text(json.dumps(inputs, indent=2)+'\n')
     contract.update(scope=__doc__, source_station_contract_sha256=sha(source/'contract.json'),
         source_station_review_sha256=sha(source/'review.json'), plant_sha256=sha(out/'world.xml'),
@@ -105,6 +122,7 @@ def main():
         collision_plugins=plugins, optical_scene_binding=dict(
             scene=str(scene), binding_sha256=sha(scene/'binding.json'),
             support_review_sha256=sha(support), source_passive_support_passed=True,
+            support_velocity_review_sha256=sha(a.support_velocity_review) if velocity_review is not None else None,
             source_all_component_cases_passed=binding['passive_reference_binding']['all_component_cases_passed'],
             unresolved_asset_obligations=binding['unresolved'], actor_receives_object_truth=False,
             qualified_sample_reference_cap_handling=False), qualified_paper_branch=False)

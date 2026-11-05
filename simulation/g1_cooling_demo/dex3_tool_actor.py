@@ -50,6 +50,7 @@ class ToolActor:
         self.phase='settle';self.phase_started=0.;self.hold_entered=False;self.lift_height=0.;self.abort_height=0.
         self.failure=None;self.events=[];self.release_command=None
         self.release_clear_since=None
+        self.release_clearance_started=None;self.withdraw_start_height=0.
         self.close_timeout=float(prior.get('close_timeout_s',6.))
         self.hold_force=np.asarray(prior.get('hold_force_proxy_n',[.6,.3,.3]),dtype=float)
         self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
@@ -57,6 +58,10 @@ class ToolActor:
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
         self.release_extra=float(prior.get('release_extra_opening_rad',.04))
         self.release_load_feedback=bool(prior.get('release_load_feedback',False))
+        self.release_preserve_posture=bool(prior.get('release_preserve_posture',False))
+        self.release_clearance_height=float(prior.get('release_clearance_height_m',0.))
+        if not 0<=self.release_clearance_height<=.004:
+            raise ValueError('Release clearance motion must stay within 0 to 4 mm')
         self.release_driver_openings=np.asarray(prior.get('release_driver_openings_rad',
             [self.release_extra]*3),dtype=float)
         self.withdrawal=float(prior.get('post_release_withdrawal_m',.02))
@@ -81,6 +86,14 @@ class ToolActor:
         return wrist.xmat.reshape(3,3).T@(self.weights@self.points()-wrist.xpos)
 
     def change(self, phase, t):
+        if phase=='release' and self.release_preserve_posture:
+            # Opening the distal drivers while resetting a proximal preshape
+            # can move the fingertip back into the supported tool. Retain the
+            # other four commanded joint angles until the hand is withdrawn.
+            # These are own control references, not object/contact truth.
+            posture=np.array([a for a in self.hand if a not in self.drivers])
+            self.release_target[posture]=self.command[posture]
+        if phase=='withdraw':self.withdraw_start_height=self.lift_height
         self.phase=phase;self.phase_started=t;self.events.append(dict(time_s=t,phase=phase))
 
     def abort(self, reason, t):
@@ -162,6 +175,15 @@ class ToolActor:
         elif self.phase=='release':
             self.command=self.release_command+smooth(elapsed/2.)*(self.release_target-self.release_command)
             if elapsed>=2.:
+                if self.release_clearance_height:
+                    # After opening and low own-motor loads, a small upward
+                    # retreat clears a finger resting against the supported
+                    # beam. The original unloaded gate must still pass before
+                    # full withdrawal. No object/support truth is available.
+                    if self.release_clearance_started is None and max(abs(proxy))<.05:
+                        self.release_clearance_started=t
+                    if self.release_clearance_started is not None:
+                        self.lift_height=self.release_clearance_height*smooth((t-self.release_clearance_started)/.5)
                 if self.release_load_feedback:
                     # Positive closing load asks for more opening; negative
                     # load asks to back away from an opening-side obstruction.
@@ -181,7 +203,7 @@ class ToolActor:
                     if self.failure is None:self.failure='Residual finger load after opening for release'
                     self.change('finished',t)
         elif self.phase=='withdraw':
-            self.lift_height=self.withdrawal*smooth(elapsed/2.)
+            self.lift_height=self.withdraw_start_height+(self.withdrawal-self.withdraw_start_height)*smooth(elapsed/2.)
             if elapsed>=2.:self.change('rest',t)
         elif self.phase=='rest' and elapsed>=2.:self.change('finished',t)
         self.before_target(t,dt)

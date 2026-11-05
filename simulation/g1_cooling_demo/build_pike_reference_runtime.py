@@ -79,7 +79,10 @@ def set_inertia(body, meshes, densities):
 def evaluate_support_case(world_path, out, contract, case):
     """Run one complete passive case in its own fresh model and data."""
     label, support, offset = case
-    if contract.get('collision_plugin'):
+    if contract.get('collision_plugins'):
+        from runtime_collision_plugins import load_collision_plugins
+        load_collision_plugins(contract['collision_plugins'])
+    elif contract.get('collision_plugin'):
         plugin = contract['collision_plugin']
         assert sha(plugin['library']) == plugin['library_sha256']
         mujoco.mj_loadPluginLibrary(plugin['library'])
@@ -149,7 +152,8 @@ def evaluate_support_case(world_path, out, contract, case):
             print(label, 'seconds', round(float(d.time), 4), flush=True)
     mujoco.mj_kinematics(m, d)
     required_prefix = (('source_panel_visual' if contract['panel_collision'].startswith('sdf') else 'panel_cell_')
-                       if support == 'port' else 'pike_reference_cap_cell_')
+                       if support == 'port' else ('pike_reference_cap_surface'
+                       if contract.get('cap_collision')=='sdf_exact_surface_plugin' else 'pike_reference_cap_cell_'))
     checks = dict(no_actuators=m.nu == 0, no_equalities=m.neq == 0, no_external_forces=not external,
         no_numerical_warnings=not np.any(d.warning.number), bounded_penetration=max_pen <= .00025,
         no_optical_surface_load=not optical_load,

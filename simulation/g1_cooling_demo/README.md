@@ -16,7 +16,15 @@ remains separate. The earlier walking/window run uses Inspire hands; that result
 does not transfer automatically to the three-finger model. There remain
 **0 of 11 qualified paper branches and 0 qualified complete campaigns**.
 
-The newer [78.73-second loaded attempt](runs/dex3_visual_carry_02/overview.mp4)
+The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
+contains continuous visual pickup, four outward steps, four return steps and
+lowering to the tray. Its [execution result](runs/dex3_visual_carry_03/result.json)
+fails on residual finger load during release. The route commands only 0.12 m
+outward travel; it is not cross-station work. Source motor-limit checks pass,
+while the independent physical replay is still being processed. This run and
+the separate restored-state release probes grant no carrying qualification.
+
+The earlier [78.73-second loaded attempt](runs/dex3_visual_carry_02/overview.mp4)
 starts from the same native-camera observation and reaches one walking step,
 but [fails independent acceptance](runs/dex3_visual_carry_02/physical_review.json).
 The recorded robot, sensor and camera states replay exactly. The right ankle
@@ -25,6 +33,25 @@ and the loaded out-and-back/release route is unfinished. The
 [recorded-state diagnosis](runs/dex3_visual_carry_02/carry_state_diagnosis.json)
 locates the ankle violation during stepping. Neither this failed run nor the
 separate restored-checkpoint probes qualify carrying or a paper branch.
+
+The [release posture diagnosis](analysis/dex3_release_posture_screen_02/review.json)
+finds that restoring the middle proximal joint during opening pushes its distal
+link toward the tweezer. `--release-preserve-posture` retains the four non-closing
+finger references from release entry while opening the three closing drivers.
+Candidate 05 changes this controller behavior only; its physical acceptance,
+world, observations and loaded-route contract are unchanged from candidate 02.
+It still requires a successful fresh uninterrupted run after the diagnostic.
+
+The passive optical scene is now joined to the visual tool-start contract.
+The [initial RGB-D coupon diagnostic](analysis/optical_coupon_observation_06/review.json)
+reports 0.246 mm center error on one native frame. Four stable observations can
+gate tool approach with `--observe-optical-coupon`; this does not establish
+sample pickup, coating-side recognition or optical manipulation.
+The [corrected support replay](analysis/optical_support_velocity_recheck_01/review.json)
+checks the specimen's own velocity address, which the original evaluator
+accidentally replaced with the cap address. All retained states replay exactly
+and the corrected stability check passes. New station preparation requires this
+addendum for support reports from the affected evaluator.
 
 Candidate 07 tests compensation of the four non-closing finger joints using
 their own filtered motor/inverse-dynamics residuals. Closing joints retain

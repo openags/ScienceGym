@@ -69,6 +69,7 @@ bool contains(Vec p) {
     kRotation[2][0]*p.x+kRotation[2][1]*p.y+kRotation[2][2]*p.z+kTranslation[2]};
   for (const auto& plane:kOuterPlanes)
     if (plane[0]*world.x+plane[1]*world.y+plane[2]*world.z+plane[3]>0.) return false;
+  if (world.z<=kBoreFloor) return true;
   for (const auto& plane:kBorePlanes)
     if (plane[0]*world.x+plane[1]*world.y+plane[2]>0.) return true;
   return false;

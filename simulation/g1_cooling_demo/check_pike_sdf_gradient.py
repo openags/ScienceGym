@@ -22,7 +22,7 @@ def main():
     assert review['passed_sampled_surface'] and sha(world) == review['world_sha256']
     assert sha(source/'samples.npz') == review['samples_sha256']
     xml = ET.parse(world).getroot()
-    geom = xml.find(".//geom[@name='source_panel_visual']")
+    geom = xml.find(".//geom[@name='"+review.get('geom_name','source_panel_visual')+"']")
     mesh_path = Path(xml.find(".//mesh[@name='"+geom.get('mesh')+"']").get('file'))
     assert sha(mesh_path) == review['source_mesh_sha256']
     mesh = trimesh.load(mesh_path, force='mesh', process=True)
