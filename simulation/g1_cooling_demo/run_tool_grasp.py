@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -66,6 +66,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Unknown contact cone')
     if contact_impratio is not None and (contact_cone!='elliptic' or not 1.<=contact_impratio<=10.):
         raise ValueError('Contact impedance ratio experiment requires elliptic cones and ratio 1 to 10')
+    if not 0. <= release_extra_opening <= .08:
+        raise ValueError('Release opening must remain within the existing 0 to 0.08 rad controller range')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -117,7 +119,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior.update({k: contract[k] for k in ['robot_contact_features','closing_drivers','closing_signs']})
         prior['hold_force_proxy_n']=[thumb_force,thumb_force/2,thumb_force/2]
         prior['lift_force_proxy_threshold_n']=[lift_force,lift_force/2,lift_force/2]
-        prior['release_extra_opening_rad']=.04
+        prior['release_extra_opening_rad']=release_extra_opening
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -159,7 +161,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         task='pickup_hold_replace_release' if dex3 else 'pickup_closure_replace_release',
         actuator_count=model.nu,
         contact_solver_revision=solver_revision,
-        inferred_control=dict(closure_speed_m_s=.0005, hold_force_proxy_n=.6, close_timeout_s=close_timeout,
+        inferred_control=dict(release_extra_opening_rad=release_extra_opening, closure_speed_m_s=.0005, hold_force_proxy_n=.6, close_timeout_s=close_timeout,
             first_contact_force_proxy_n=.04, contact_entry_force_proxy_n=.05,
             lift_height_m=.03, pinch_center_correction_limit_m=.02,
             pad_geometry_is_not_measured_pressure_centroid=True, hardware_force_calibration_claimed=False),
@@ -362,5 +364,7 @@ if __name__ == '__main__':
     p.add_argument('--carry-proximal-preshape',type=float,default=0.)
     p.add_argument('--contact-cone',choices=['pyramidal','elliptic'])
     p.add_argument('--contact-impratio',type=float)
+    p.add_argument('--release-extra-opening',type=float,default=.04,
+                   help='Additional driver opening at release, inside the existing 0.08 rad bound')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening)['status'] == 'failed': raise SystemExit(1)
