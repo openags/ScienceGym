@@ -1,0 +1,77 @@
+{
+  "scope": "Evaluate a public-input approach proposal before any physical execution.\n\nThe planner consumes only the explicitly copied public inputs. This producer\nuses a selected tool-local grasp candidate as a geometric prior; it never\npasses a source scene pose or previous arm trajectory to the planner.\n",
+  "planner_inputs": {
+    "tool_shape.glb": "dd37856f73e696d25c946a76b90942e7e46212769bbe10cf5859d9fac6e7360d",
+    "tool_component.npy": "1e4b53b472585a85216ce41683935a2283ecee7102980b4132ab933fe2dfd96d",
+    "tool_pose.json": "eade4e215818e34dfeca0836c838d829c3567aa909eadce75fa98ac7086eaef3",
+    "grasp_prior.json": "4f699ed993391e65bb847f5b6b945518e0358c3bd165bd948b6528143fd9dfc1",
+    "calibration.json": "456840fc95262f9f3cda19720d393bd3e0d6eccffb3edfae99e63257592f4fbd",
+    "depth.npy": "7383f0d9f5113bb3a32be363506d348328c00f67804914ee5b8e95f9291db71d",
+    "rgb.png": "e9a5641ce36ceea95e39f1e38b95e55d6b47e49e5e1d63e93a7f075b3069f683"
+  },
+  "robot_model_sha256": "5a3ae74b808831f4cdac988794dfff4ff13f4168358409d8c4e7e7955e83764a",
+  "source_model_path": "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_pregrasp_04/robot_predictor.xml",
+  "source_files": {
+    "joint_rrt.py": "8ebc34c13a43e844e99c4fdb6f79e9add2adc386aff9d6e96549d660be6de2ac",
+    "tool_approach_planning.py": "000ddbdeb628a4049bb30f96ba40855472865a78f41411dc9b95775e1faa6ce9",
+    "ftir_hand.py": "aa5b05636e0a4b798a01745b1b713a807ca651e4760cbf695bf823d5412e4434",
+    "evaluate_tool_approach.py": "70fb1749c4aa7cfa463cc8fda04afbd84c2b92b4cd4dddf529ad68628a83e925",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "source_proximity.py": "5b890513cdcf30746c12f2a44dfbd2838c5000f5aa97cb4c5436010c69978b28"
+  },
+  "result": {
+    "planned": false,
+    "attempts": [
+      {
+        "seed": 0,
+        "position_error_m": 0.0001360400216887453,
+        "rotation_error_rad": 0.00025914206430148224,
+        "failure": "grasp_clearance",
+        "detail": {
+          "clear": false,
+          "kind": "instrument_clearance",
+          "parts": [
+            "right_hand_thumb_2_link",
+            "observed_surface_voxels"
+          ],
+          "distance_m": 0.0
+        }
+      },
+      {
+        "seed": 1,
+        "position_error_m": 4.610155542239672e-06,
+        "rotation_error_rad": 9.97982887847177e-06,
+        "failure": "grasp_clearance",
+        "detail": {
+          "clear": false,
+          "kind": "instrument_clearance",
+          "parts": [
+            "right_hand_thumb_2_link",
+            "observed_surface_voxels"
+          ],
+          "distance_m": 0.0
+        }
+      },
+      {
+        "seed": 2,
+        "position_error_m": 9.998521437805539e-07,
+        "rotation_error_rad": 1.1723894551152415e-06,
+        "failure": "grasp_clearance",
+        "detail": {
+          "clear": false,
+          "kind": "instrument_clearance",
+          "parts": [
+            "right_hand_thumb_2_link",
+            "observed_surface_voxels"
+          ],
+          "distance_m": 0.0
+        }
+      }
+    ],
+    "observed_surface_voxels": 147435,
+    "qualified_approach": false
+  },
+  "plant_truth_given_to_planner": false,
+  "physical_execution": false,
+  "qualified_approach": false
+}
