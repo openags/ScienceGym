@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **383**.
+Last screened: **2026-11-05**. Candidate count: **384**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3942,3 +3942,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The [publisher correction](https://www.nature.com/articles/s41467-024-48716-0) was read; it corrects a historical Soret citation. Physical single-channel and small flow-visualization experiments remain distinct from the modeled large cascade. The reported electrical-only energy estimate excludes thermal energy, and typographical inconsistencies in SI Table 2 require review before quantitative use.
 - Scope is sample identity, measurement records, thermal-condition history and qualified instrument handoffs only. Material preparation, thermal apparatus and instrument operation require separate safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, data, code or other source assets redistributed.
+
+## Additional candidate: self-folding machine configuration and failure records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A method for building self-folding machines](https://doi.org/10.1126/science.1252610) | Science / 2014 | 10.1126/science.1252610 | Module and configuration history, inspection checkpoints and linked failure records suggest a future long-horizon robot-characterization coordination task. | Public author-reprint main scholarly text and selected scientific SI text read; publisher DOI route later returned HTTP 403. |
+
+- **CANDIDATE only.** Felton et al., *Science* **345**(6197), 644-646 (2014). Full main scholarly text was read in the lawful public [author reprint](https://erikdemaine.org/papers/PPR_Science2014/paper.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The public [author-copy Supplementary Materials](https://erikdemaine.org/papers/PPR_Science2014/supplementary.pdf) were accessible. Extracted scientific text on pages 2-19 of the 24-page file, including methods, supplementary text, captions and tables, was read. References on pages 20-24 were not audited. Equation extraction was corrupted and equations were not validated; figure pixels, videos, data and code were not audited.
+- The reported three-machine set included one autonomous assembly and two assemblies requiring assistance. These observations do not establish general autonomous assembly or repeated-run reliability. Scope is module and configuration identity, inspection checkpoints and failure-record coordination only. Fabrication, thermal actuation, electrical work and physical testing require separate safety review and qualified equipment. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through lawful public author copies. A later opening of the publisher DOI route returned **HTTP 403**; publisher-page access was not established. The author reprint carries AAAS copyright and a personal, noncommercial-use notice. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, videos, data, code or other source assets redistributed.
