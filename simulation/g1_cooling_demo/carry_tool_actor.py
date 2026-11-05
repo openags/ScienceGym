@@ -182,6 +182,9 @@ class ToolActor(VisualPickup):
             raise ValueError('Invalid loaded-transport force targets')
         self.carry_load_since=None
         self.preload_before_lift=bool(prior.get('carry_preload_before_lift',False))
+        self.carry_command_excursion=float(prior.get('carry_driver_command_excursion_rad',.15))
+        if not .15<=self.carry_command_excursion<=.30:
+            raise ValueError('Carrying command excursion outside the declared controller range')
         self.carry_motor_load_abort_nm=float(prior.get('carry_motor_load_abort_nm',.15))
         if not .15<=self.carry_motor_load_abort_nm<=.5*self.source_driver_effort_nm:
             raise ValueError('Carry load observer bound exceeds half the source motor effort rating')
@@ -203,6 +206,7 @@ class ToolActor(VisualPickup):
             self.hold_force=self.carry_force.copy()
             self.lift_force=.85*self.carry_force
             self.motor_load_abort_nm=self.carry_motor_load_abort_nm
+            self.configure_driver_commands()
             self.events.append(dict(time_s=t,kind='carrying_force_before_lift',
                 hold_force_proxy_n=self.hold_force.tolist(),
                 lift_force_proxy_threshold_n=self.lift_force.tolist(),
@@ -234,9 +238,19 @@ class ToolActor(VisualPickup):
             preload=bool(np.any(self.carry_force>self.hold_force))
             self.hold_force=self.carry_force.copy()
             self.motor_load_abort_nm=self.carry_motor_load_abort_nm
+            self.configure_driver_commands()
             phase='carry_preload' if preload else 'carry_raise'
         self.carry_dwell=None
         super().change(phase,t)
+
+    def configure_driver_commands(self):
+        # This is a PD reference envelope, not a source joint limit. The old
+        # +/-0.15 rad reference clipped thumb/index force feedback while the
+        # measured load was below target. Retain official limits and the
+        # unchanged force and motor-load stop guards for any wider envelope.
+        ranges=self.m.jnt_range[self.m.actuator_trnid[self.drivers,0]]
+        self.lower[self.drivers]=np.maximum(self.initial[self.drivers]-self.carry_command_excursion,ranges[:,0])
+        self.upper[self.drivers]=np.minimum(self.initial[self.drivers]+self.carry_command_excursion,ranges[:,1])
 
     @staticmethod
     def blend(u):
