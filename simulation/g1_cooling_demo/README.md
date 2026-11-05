@@ -218,6 +218,16 @@ from those same recorded inputs; that diagnostic does not execute the route.
 Read each new continuous attempt's own independent reviews before claiming
 visual approach, pickup or a complete experiment.
 
+`dex3_visual_grasp_02` executes part of the approach, then holds a waypoint:
+its wrist error settles to 0.056 mm while the joint-angle progress gate never
+advances for four recorded seconds. A deliberate SIGINT at 17.5125 s preserves
+the partial trajectory and the stagnation evidence. Motor limits pass; this
+interruption is not a successful approach. The next actor gates progress using
+wrist position/orientation feedback and checks the instantaneous observed right
+arm against the current robot body and sensed environment. This arm guard does
+not certify other-body self-contact or support; full-plant evaluation remains
+required. Each earlier actor and its original gate remain frozen in its run.
+
 ## Reproduce
 
 Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. Current sensor runs also require Linux with bubblewrap and enabled unprivileged namespaces; see [the runtime guide](LABORATORY.md). The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:

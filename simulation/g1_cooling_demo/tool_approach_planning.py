@@ -117,6 +117,27 @@ class ToolApproachPlanner:
         self.state(q);self.last_clearance=self.clearance.check(margin)
         return self.last_clearance['clear']
 
+    def observed_arm_clearance(self,robot_qpos,margin):
+        """Check the instantaneous right arm against current body and map.
+
+        This is a new encoder-derived state, not a claim that the other body
+        joints stayed at their planning values. Other-body self-collisions and
+        support are outside this arm guard and remain full-plant obligations.
+        The original fixed-state guard is restored for later path queries.
+        """
+        q=np.asarray(robot_qpos,dtype=float)
+        hand=[self.m.joint(n).qposadr[0] for n in self.grasp['pregrasp_hand_q']]
+        if np.max(abs(q[hand]-self.initial[hand]))>.002:
+            return dict(clear=False,kind='preshape_tracking_error')
+        saved=self.d.qpos.copy();fixed=self.clearance.fixed_state.copy()
+        try:
+            self.d.qpos[:]=q;mujoco.mj_kinematics(self.m,self.d);mujoco.mj_comPos(self.m,self.d)
+            self.clearance.fixed_state=self.d.qpos[self.clearance.fixed].copy()
+            return self.clearance.check(margin)
+        finally:
+            self.clearance.fixed_state=fixed;self.d.qpos[:]=saved
+            mujoco.mj_kinematics(self.m,self.d);mujoco.mj_comPos(self.m,self.d)
+
     def build(self):
         home=self.initial[self.ik.qa].copy();attempts=[]
         if not self.valid(home):

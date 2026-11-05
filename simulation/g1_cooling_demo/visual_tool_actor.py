@@ -35,6 +35,8 @@ class ToolActor(PickupActor):
         self.threshold=float(prior['appearance_threshold_uint8'])
         self.poses=[];self.plan=None;self.path=None;self.path_times=None;self.path_clock=0.
         self.planner=None;self.tracking_clear_since=None
+        self.next_clearance_check=0.;self.latest_clearance=None
+        self.arm_posture_error=0.;self.wrist_path_error=0.;self.wrist_rotation_error=0.
         self.vision_reports=[];self.last_frame_time=None
         self.arm_names=['right_'+n+'_joint' for n in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']]
         self.arm_qa=np.array([model.joint(n).qposadr[0] for n in self.arm_names])
@@ -91,9 +93,21 @@ class ToolActor(PickupActor):
         self.path_clock=0.;self.change('approach',t)
 
     def approach_target(self,t,dt):
-        # Pause path progress when the arm lags; motor dynamics are never
-        # replaced with position writes or an interpolated plant state.
-        if np.max(abs(self.d.qpos[self.arm_qa]-self.initial[self.arm_indices]))<.035:
+        # Whole-body balance can change the redundant arm configuration while
+        # reaching the same wrist pose. Gate on task-space tracking and check
+        # actual encoder-derived arm geometry, not equality to every IK angle.
+        w=self.d.site('right_wrist_reference')
+        self.arm_posture_error=float(np.max(abs(self.d.qpos[self.arm_qa]-self.initial[self.arm_indices])))
+        self.wrist_path_error=float(np.linalg.norm(w.xpos-self.wrist_position))
+        self.wrist_rotation_error=float(np.linalg.norm(Rotation.from_matrix(w.xmat.reshape(3,3)@self.wrist_rotation.T).as_rotvec()))
+        if t>=self.next_clearance_check:
+            lowering=self.path_clock>=self.path_times[len(self.plan['entry_path'])-1]
+            self.latest_clearance=self.planner.observed_arm_clearance(self.d.qpos,.00002 if lowering else .001)
+            self.next_clearance_check=t+.05
+            if not self.latest_clearance['clear']:
+                self.failure='Observed arm violates approach clearance: '+json.dumps(self.latest_clearance)
+                self.change('finished',t);return
+        if self.wrist_path_error<.004 and self.wrist_rotation_error<.025:
             self.path_clock=min(float(self.path_times[-1]),self.path_clock+dt)
         i=min(len(self.path)-2,int(np.searchsorted(self.path_times,self.path_clock,side='right')-1))
         u=float(np.clip((self.path_clock-self.path_times[i])/(self.path_times[i+1]-self.path_times[i]),0,1))
@@ -130,6 +144,8 @@ class ToolActor(PickupActor):
         if self.phase=='approach':self.approach_target(t,dt)
         response.update(phase=self.phase,failure=self.failure,complete=self.phase=='finished',events=list(self.events),
             accepted_tool_frames=len(self.poses),approach_clock_s=self.path_clock,
+            arm_posture_error_rad=self.arm_posture_error,wrist_path_error_m=self.wrist_path_error,
+            wrist_rotation_error_rad=self.wrist_rotation_error,observed_arm_clearance=self.latest_clearance,
             latest_vision_report=self.vision_reports[-1] if self.vision_reports else None)
         return response
 
