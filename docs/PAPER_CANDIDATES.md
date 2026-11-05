@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-04**. Candidate count: **378**.
+Last screened: **2026-11-05**. Candidate count: **380**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3886,3 +3886,25 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Official [7-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-68155-9/MediaObjects/41467_2025_68155_MOESM1_ESM.pdf) was accessible during that screening. Its entire extracted text was read and all seven pages received visual inspection. The Reporting Summary, source-data workbook, code and main figure pixels were not audited.
 - Scope is soil-specimen identity, observation scheduling and measurement-record coordination only. The main Methods name two surfactants, and some main-text and SI numbers differ; those source details require reconciliation before conversion. Material preparation, biological handling and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Reading and access observations above refer to the earlier **2026-11-04** screening, not a successful retrieval during the later recheck. No access restriction was bypassed. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, code or other source assets redistributed.
+
+## Additional candidate: adaptive soft-actuator measurement coordination (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Bio-inspired multimodal soft actuator with environmental self-adaptation](https://www.nature.com/articles/s41467-025-62328-2) | Nature Communications / 2025 | 10.1038/s41467-025-62328-2 | Specimen and configuration tracking across materials characterization, motion observations and thermal measurements suggest a future long-horizon laboratory-coordination task. | Earlier 2026-11-04 screening read OA main scholarly text and selected scientific SI text; equation extraction and visual coverage remain limited. |
+
+- **CANDIDATE only.** Chen et al., *Nature Communications* **16**, 7630 (2025). The earlier screening read the full main scholarly HTML through Methods and Data availability. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The official **29-page Supplementary Information** was accessible during that screening. Extracted prose in Sections 1.1-1.11 and Supplementary Texts 2.1-2.3, captions for Supplementary Figs. S1-S33, Tables S1-S2 and the notes for Table S3 were read. Equation extraction was imperfect; the Table S3 image and figure pixels were not validated. Raw data and supplementary movies were not audited.
+- Scope is specimen identity, configuration history and measurement-record coordination only. Some reported quantities are simulation-derived and must remain distinct from experimental measurements. Material preparation, fabrication, thermal actuation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Reading and access observations above refer to the **2026-11-04** screening, not a new source retrieval during this catalog update. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: soft-microrobot calibration and trajectory records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Untethered soft microrobot driven by a single actuator for agile navigations](https://www.nature.com/articles/s41467-025-61810-1) | Nature Communications / 2025 | 10.1038/s41467-025-61810-1 | Assembly-configuration identity, specimen-specific calibration and linked trajectory records suggest a future long-horizon robot-characterization coordination task. | Earlier 2026-11-04 screening read OA main scholarly HTML and selected scientific SI passages; remaining SI and visual evidence were not audited. |
+
+- **CANDIDATE only.** Wu et al., *Nature Communications* **16**, 6842 (2025). The earlier screening read the full main scholarly HTML. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The official **53-page Supplementary Information** was accessible during that screening. Reading covered the captions for Supplementary Figs. 1-7 and the opening of Supplementary Method 1; discussion text and the captions for Supplementary Figs. 13-14 on pages 25-27; and Supplementary Method 3 and the caption for Supplementary Fig. 34 on pages 45-47. Remaining SI, figure pixels, raw data and supplementary videos were not audited.
+- Scope is assembly-configuration identity, calibration records and trajectory-record coordination only. Calibration is specimen-specific and cannot be assumed transferable across devices. Fabrication, assembly, actuation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Reading and access observations above refer to the **2026-11-04** screening, not a new source retrieval during this catalog update. Publisher license **CC BY-NC-ND 4.0**. Citation metadata and original commentary only; no publisher text, figures, movies, data or other source assets redistributed.
