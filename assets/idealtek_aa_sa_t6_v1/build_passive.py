@@ -52,7 +52,7 @@ def segment(lo,hi,sign,scale):
     return mesh
 
 
-def build(out,segments=20):
+def build(out,segments=20,integrator='implicitfast',timestep=.0001,cone='pyramidal',contact_time=.001):
     out=Path(out).resolve()
     if out.exists() and any(out.iterdir()):raise FileExistsError(out)
     out.mkdir(parents=True,exist_ok=True);(out/'meshes').mkdir()
@@ -65,10 +65,14 @@ def build(out,segments=20):
     scale=brentq(lambda s:total_mass(s)-MASS,.5,2.)
     xml=ET.Element('mujoco',model='Ideal-tek AA.SA.T.6 passive candidate')
     ET.SubElement(xml,'compiler',angle='radian',meshdir='meshes',autolimits='true')
-    ET.SubElement(xml,'option',timestep='.0001',integrator='implicitfast',iterations='100',tolerance='1e-10')
+    if integrator not in {'implicitfast','discrete'} or not 0<timestep<=.002:
+        raise ValueError('Unsupported tool-characterization integration setting')
+    if cone not in {'pyramidal','elliptic'}:raise ValueError('Unsupported friction-cone solver')
+    if not .001<=contact_time<=.02:raise ValueError('Contact response time outside declared development range')
+    ET.SubElement(xml,'option',timestep=str(timestep),integrator=integrator,cone=cone,iterations='100',tolerance='1e-10')
     default=ET.SubElement(xml,'default')
     ET.SubElement(default,'geom',type='mesh',density=str(DENSITY),friction='.225 .002 .0001',
-                  priority='1',condim='4',solref='.001 1',solimp='.9999 .9999 .00001',rgba='.15 .17 .19 1')
+                  priority='1',condim='4',solref=f'{contact_time:.17g} 1',solimp='.9999 .9999 .00001',rgba='.15 .17 .19 1')
     asset=ET.SubElement(xml,'asset');world=ET.SubElement(xml,'worldbody')
     root=ET.SubElement(world,'body',name='tweezer',pos='0 0 .15');ET.SubElement(root,'freejoint',name='tweezer_free')
     ET.SubElement(root,'geom',name='tweezer_heel',type='box',pos='-.0015 0 0',size='.0015 .001 .003')
@@ -159,6 +163,8 @@ def build(out,segments=20):
                 one_arm_end_load_compliance_m_per_n=float(sum(r['tip_compliance_m_per_n'] for r in mode)),
                 first_mounted_heel_frequency_rad_s=first_frequency_rad_s,
                 inferred_rayleigh_stiffness_damping_s=beta,characterization_timestep_s=model.opt.timestep,
+                characterization_integrator=integrator,characterization_friction_cone=cone,
+                inferred_contact_response_time_s=contact_time,mujoco_version=mujoco.__version__,
                 mode_discretization=mode,arms=mode_rows,parts=parts,qualified_contact_dynamics=False,
                 limitations=['Segmented planar bending per arm; spatial torsion and segment convergence need validation',
                              'Interior profile chosen to match nominal mass; coating thickness and mass not measured',
@@ -174,4 +180,9 @@ def build(out,segments=20):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('out');p.add_argument('--segments',type=int,default=20);a=p.parse_args();build(a.out,a.segments)
+    p=argparse.ArgumentParser();p.add_argument('out');p.add_argument('--segments',type=int,default=20)
+    p.add_argument('--integrator',choices=['implicitfast','discrete'],default='implicitfast')
+    p.add_argument('--timestep',type=float,default=.0001)
+    p.add_argument('--cone',choices=['pyramidal','elliptic'],default='pyramidal')
+    p.add_argument('--contact-time',type=float,default=.001)
+    a=p.parse_args();build(a.out,a.segments,a.integrator,a.timestep,a.cone,a.contact_time)

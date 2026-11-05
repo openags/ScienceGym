@@ -1,0 +1,248 @@
+{
+  "schema": "sciencegym.passive_tool_candidate.v1",
+  "scope": "Manufacturer-sized tweezer candidate with passive segmented bending arms.\n\nEach hinge has its own passive rotational spring, approximating a continuous\nsteel beam. No equality attaches segments, the tool, a robot or a sample.\nContact-driven accuracy, damping and large-deformation\nbehaviour remain unqualified. No selected laboratory asset is overwritten.\n",
+  "checks": {
+    "compiles": true,
+    "no_actuators": true,
+    "no_runtime_attachment_equalities": true,
+    "nominal_mass": true,
+    "manufacturer_envelope": true,
+    "manufacturer_tip_gap": true,
+    "manufacturer_tip_section": true
+  },
+  "passed_geometry_and_compilation": true,
+  "root_in_asset_m": [
+    0.13,
+    0.0,
+    0.00575
+  ],
+  "inferred_interior_thickness_scale": 1.1296101159114862,
+  "compiled_mass_kg": 0.017999999939245986,
+  "rest_bounds_m": [
+    [
+      0.0,
+      -0.00625,
+      0.0
+    ],
+    [
+      0.13,
+      0.00625,
+      0.0115
+    ]
+  ],
+  "unloaded_inner_tip_gap_m": 0.008,
+  "body_material": "PTFE-coated 316L steel",
+  "one_arm_end_load_compliance_m_per_n": 0.0037617647527774813,
+  "first_mounted_heel_frequency_rad_s": 440.1682765812053,
+  "inferred_rayleigh_stiffness_damping_s": 0.00045437168156097825,
+  "characterization_timestep_s": 0.0001,
+  "mode_discretization": [
+    {
+      "lo_m": 0.105,
+      "hi_m": 0.127,
+      "tip_compliance_m_per_n": 0.0018914750926576156,
+      "angle_per_newton": 0.014893504666595399,
+      "hinge_stiffness_nm_rad": 8.527207184810432
+    },
+    {
+      "lo_m": 0.06,
+      "hi_m": 0.105,
+      "tip_compliance_m_per_n": 0.0011661428337042567,
+      "angle_per_newton": 0.011106122225754826,
+      "hinge_stiffness_nm_rad": 9.454244952978058
+    },
+    {
+      "lo_m": 0.016,
+      "hi_m": 0.06,
+      "tip_compliance_m_per_n": 0.0005689819980071014,
+      "angle_per_newton": 0.009483033300118357,
+      "hinge_stiffness_nm_rad": 6.327089455570206
+    },
+    {
+      "lo_m": 0.0,
+      "hi_m": 0.016,
+      "tip_compliance_m_per_n": 0.0001351648284085078,
+      "angle_per_newton": 0.008447801775531737,
+      "hinge_stiffness_nm_rad": 1.8939838345097648
+    }
+  ],
+  "arms": [
+    {
+      "arm": "negative",
+      "hinge_ratios": [
+        1.0,
+        0.7457024034554283,
+        0.6367227534690224,
+        0.5672138267414848
+      ],
+      "modal_stiffness_nm_rad": 16.958905539898243,
+      "modal_inertia_kg_m2": 7.900819551060167e-05,
+      "inferred_damping_ratio": 0.1,
+      "inferred_joint_damping_nms_rad": [
+        0.0038745214675811714,
+        0.004295741177174032,
+        0.002874850275314169,
+        0.0008605726197355114
+      ]
+    },
+    {
+      "arm": "positive",
+      "hinge_ratios": [
+        1.0,
+        0.7457024034554283,
+        0.6367227534690224,
+        0.5672138267414848
+      ],
+      "modal_stiffness_nm_rad": 16.958905539898243,
+      "modal_inertia_kg_m2": 7.900819551060167e-05,
+      "inferred_damping_ratio": 0.1,
+      "inferred_joint_damping_nms_rad": [
+        0.0038745214675811714,
+        0.004295741177174032,
+        0.002874850275314169,
+        0.0008605726197355114
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "negative_steel_arm_00",
+      "nominal_mass_kg": 0.0016024531085353003,
+      "source_profile_bounds_m": [
+        [
+          0.105,
+          -0.003064805057955743,
+          0.0002500000000000002
+        ],
+        [
+          0.127,
+          -0.0,
+          0.01125
+        ]
+      ]
+    },
+    {
+      "name": "negative_steel_arm_01",
+      "nominal_mass_kg": 0.004574920969441522,
+      "source_profile_bounds_m": [
+        [
+          0.06,
+          -0.00625,
+          0.0
+        ],
+        [
+          0.105,
+          -0.001935194942044257,
+          0.0115
+        ]
+      ]
+    },
+    {
+      "name": "negative_steel_arm_02",
+      "nominal_mass_kg": 0.002534845100105376,
+      "source_profile_bounds_m": [
+        [
+          0.016,
+          -0.00625,
+          0.0
+        ],
+        [
+          0.06,
+          -0.004104636459430979,
+          0.0115
+        ]
+      ]
+    },
+    {
+      "name": "negative_steel_arm_03",
+      "nominal_mass_kg": 0.00014378082191780818,
+      "source_profile_bounds_m": [
+        [
+          0.0,
+          -0.00489536354056902,
+          0.00425
+        ],
+        [
+          0.016,
+          -0.004,
+          0.0072499999999999995
+        ]
+      ]
+    },
+    {
+      "name": "positive_steel_arm_00",
+      "nominal_mass_kg": 0.0016024531085353003,
+      "source_profile_bounds_m": [
+        [
+          0.105,
+          0.0,
+          0.0002500000000000002
+        ],
+        [
+          0.127,
+          0.003064805057955743,
+          0.01125
+        ]
+      ]
+    },
+    {
+      "name": "positive_steel_arm_01",
+      "nominal_mass_kg": 0.004574920969441522,
+      "source_profile_bounds_m": [
+        [
+          0.06,
+          0.001935194942044257,
+          0.0
+        ],
+        [
+          0.105,
+          0.00625,
+          0.0115
+        ]
+      ]
+    },
+    {
+      "name": "positive_steel_arm_02",
+      "nominal_mass_kg": 0.002534845100105376,
+      "source_profile_bounds_m": [
+        [
+          0.016,
+          0.004104636459430979,
+          0.0
+        ],
+        [
+          0.06,
+          0.00625,
+          0.0115
+        ]
+      ]
+    },
+    {
+      "name": "positive_steel_arm_03",
+      "nominal_mass_kg": 0.00014378082191780818,
+      "source_profile_bounds_m": [
+        [
+          0.0,
+          0.004,
+          0.00425
+        ],
+        [
+          0.016,
+          0.00489536354056902,
+          0.0072499999999999995
+        ]
+      ]
+    }
+  ],
+  "qualified_contact_dynamics": false,
+  "limitations": [
+    "Segmented planar bending per arm; spatial torsion and segment convergence need validation",
+    "Interior profile chosen to match nominal mass; coating thickness and mass not measured",
+    "Damping and pairwise friction remain assumptions; no calibrated force curve",
+    "No robot grasp, specimen retention or complete paper-task credit"
+  ],
+  "source_hashes": {
+    "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/build_passive.py": "3425d08b2da8242c5f97297639fd48d8d44dd4ef26d2fb81b405ffa57f75b299",
+    "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/sources.json": "485f88c0f0223e180dc6bcfc30188ddec8d01406a2fd5afffd7e19c81eb14bcd"
+  }
+}
