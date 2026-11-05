@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **394**.
+Last screened: **2026-11-05**. Candidate count: **395**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4062,4 +4062,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - **CANDIDATE only.** Forterre et al., *Nature* **433**, 421-425 (2005). All extracted scholarly prose and captions in the five-page main article, including Methods, were read from the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2005-07.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
 - All extracted written scientific prose and captions in the six-page Supplementary Information were read in the same file. Equation extraction was imperfect and mathematics was not audited. Figures and the supplementary movie were not fully audited. This is not a complete visual or mathematical review.
 - Scope is specimen identity, state/history tracking and linked geometry, imaging and mechanical-record coordination only. Living and excised plant states, biological variability and robot feasibility require separate assessment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: synthetic-nozzle characterization and imaging records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Oscillation of the velvet worm slime jet by passive hydrodynamic instability](https://www.nature.com/articles/ncomms7292) | Nature Communications / 2015 | 10.1038/ncomms7292 | Synthetic-model identity, fabrication and inspection records, calibration-state tracking and linked imaging records suggest a future long-horizon mechanics-characterization coordination task. | Public author-hosted main scholarly text and bundled written SI read; supplementary Note 7 and movie review gaps remain. |
+
+- **CANDIDATE only.** *Nature Communications* **6**, 6292 (2015). All extracted scholarly text across the six main-article pages and all 17 bundled written Supplementary Information pages was read from the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2015-02.pdf), including the synthetic physical-model portions. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The main article refers to Supplementary Notes 5-7, but the bundled written SI contains Notes 1-6; Note 7 remains unverified. Supplementary Movies 1-4 were not watched. This is written-text screening, not a complete visual or supplementary-source review.
+- Candidate scope is synthetic-only fabrication, inspection, calibration and imaging-record coordination. Animal handling and biological-fluid work are excluded. Fabrication, pressure equipment and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
