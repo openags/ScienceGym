@@ -41,6 +41,12 @@ finger references from release entry while opening the three closing drivers.
 Candidate 05 changes this controller behavior only; its physical acceptance,
 world, observations and loaded-route contract are unchanged from candidate 02.
 It still requires a successful fresh uninterrupted run after the diagnostic.
+Its [restored-state trial](analysis/dex3_release_checkpoint_05/result.json)
+removes finger/tool contact but still fails because the thumb touches the tray.
+The [native contact diagnosis](analysis/dex3_release_load_05/review.json)
+attributes the remaining signed motor load to that contact. Candidate 06 combines
+the retained posture with the existing signed release-load feedback; acceptance
+is unchanged and no fresh carrying success has yet been established.
 
 The passive optical scene is now joined to the visual tool-start contract.
 The [initial RGB-D coupon diagnostic](analysis/optical_coupon_observation_06/review.json)
