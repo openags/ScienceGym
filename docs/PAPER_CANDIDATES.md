@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **390**.
+Last screened: **2026-11-05**. Candidate count: **391**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4019,3 +4019,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Written Supplementary Information Sections 1-3 and captions for Supplementary Figures S1-S5 were read in the same file. Equation extraction was partially garbled and equations were not validated. Figure pixels, supplementary movies and raw data were not audited. This is not a complete visual or mathematical review.
 - Measurements of 20 tendrils varied; the two illustrated extreme examples do not establish repeated-run reliability. Scope is prepared biomimetic-spring specimen identity, configuration history and linked deformation/imaging records only. Specimen preparation, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: inert physical-model morphology and imaging records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [On the growth and form of cortical convolutions](https://www.nature.com/articles/nphys3632) | Nature Physics / 2016 | 10.1038/nphys3632 | Prepared inert physical-model specimen identity, custody and linked imaging/morphology comparisons suggest a future long-horizon materials-characterization coordination task. | Public author-hosted combined PDF: extracted main scholarly text and written scientific SI text read; image and movie review limits remain. |
+
+- **CANDIDATE only.** *Nature Physics* **12**, 588-593 (2016). All extracted main scholarly text on pages 1-6 was read from the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/Brain-morph.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted scientific text in the nine numbered written Supplementary Information pages, including methods and captions, was read in the same file. Image pixels and supplementary movies were not independently reviewed; raw data and code were not audited. This is not a complete visual or computational review.
+- Physical-model experiments remain distinct from numerical simulations. Scope is prepared inert physical-model specimen identity, custody and linked imaging/morphology-record coordination only; no biomedical or clinical claim is made. Specimen preparation, handling and instrument operation require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
