@@ -136,6 +136,87 @@ The source-hand diagnostic can now import the freely resting tray while
 preserving its contact parameters. Grasping from this arrangement remains
 unqualified until a new hand-contact execution and independent review finish.
 
+The completed alignment searches 06 and 07 each reject all 48 candidates.
+`search_opposed_grasp.py` therefore derives new postures from the source
+finger kinematics rather than relying on the presentation film's hand poses.
+Its accelerated hand FK matches the existing source FK at the checked joint
+extremes and midpoint. Search 03 tests 324 intrinsic solves and finds one
+distinct opposed fingertip configuration, but its 96 placements all fail
+whole-hand/tool or support checks. Search 04 retains those rejected geometry
+seeds explicitly. Search 05 opens the acting fingers before placement and
+checks 288 placements. It retains 78 source-clear noncontact candidates;
+none meets the tighter initial pinch/alignment gates. Searches 01 and 02
+failed at startup; their frozen scripts, logs and failure records remain.
+
+An explicit `--pregrasp-index` may use such a clear, inward-moving noncontact
+start in a new physical closure experiment. It never relabels that seed as
+an accepted pinch, and it does not relax any dynamic grasp requirement.
+[Source-hand contact 06](source_hand_contact_06/review.json) exercises this
+path with the original free tray and all its contact parameters preserved.
+The 11-second run and full physical/controller replays finish exactly, but
+the tool slips 25.834 mm horizontally and falls into the tray. Sustained
+bilateral load, support penetration, retained position and released gap all
+fail. Its global minimum-gap check also counted closure caused by the fall;
+the retained report is not rewritten. The current verifier requires closure
+under simultaneous allowed index/thumb load and bounds three-dimensional
+tool translation, so a support impact cannot count as successful squeezing.
+Initial and recorded 3/3.5/4-second views and the controller diagnostic are
+retained with the failed attempt.
+
+[Laboratory reach 03](laboratory_reach_03/review.json) finds six reachable,
+statically clear full-G1 poses among 144 combinations for this new pregrasp.
+It retains the full existing room and source floor classifications. The
+proposed tool/tray placement, entering motion, balance and grasp are not
+qualified by this reach screen.
+
+The current hand controller intersects requested closure with source driver
+limits. Optional `--detect-grip-loss` detects loss of previously established
+encoder-derived opposing load and returns the fingers to their initial
+posture, retaining a failure rather than continuing to close on an absent
+tool. The thresholds are declared control assumptions, not calibrated
+hardware force registers. [Trial 07](source_hand_contact_07/review.json)
+detects lost opposing load and starts release at 4.017 s. The full physics,
+motor and abort-event replays agree exactly. The grasp still fails, and the
+new load-attributed closure check correctly rejects the fall-induced closure:
+minimum gap under bilateral load is 7.834 mm.
+Middle-finger searches 03–05 investigate an ordinary third-finger support
+instead of adding an attachment or fixture. Search 04 did not recompute
+the parent's positive tray-clearance bound for the moved middle finger;
+search 05 adds that conservative hull-distance check and is the usable
+geometry revision. It finds nine clear pregrasp candidates with the middle
+finger 0.067–0.493 mm above a tool arm. Trial 08 uses candidate 3 and the
+existing middle motor to hold its angle. Its completed review reports zero
+middle-finger load and the same slip/fall, so it provides no supporting grasp.
+Neither test grants pickup or branch qualification.
+
+Trial 09 investigates `--balanced-closure`: source pad-center Jacobians and
+measured hand encoders set equal 0.5 mm/s opposing motion and equal 0.6 N
+estimated holding-force targets. The estimate uses only the robot's own
+projected contact lever, not simulator contact forces or object coordinates;
+it is not a calibrated hardware force model. A finite-difference check of the
+motor-coupled pad Jacobians passes with maximum differences below
+0.000000134 m/rad. The frozen trial-09 contract retains legacy fixed-rate
+fields alongside the selected balanced profile; its separate clarification
+identifies those inactive fields, and the current builder removes them when
+the balanced profile is selected. [The completed trial](source_hand_contact_09/review.json)
+keeps the tool supported, with 2.104 mm maximum translation, sub-micrometre
+contact penetration and exact physical/controller replay. It still fails
+sustained bilateral load and loaded tip closure. An additional replay of all
+11,000 sensor packets reproduces the motor commands exactly and confirms zero
+packets in the gripping state: the light-contact target was below a threshold
+that had to be continuously exceeded to enter gripping. The corrected balanced
+controller latches contact with a declared lower release threshold and holds
+the light load bidirectionally while the opposite finger arrives.
+[Trial 10](source_hand_contact_10/review.json) tests this change with the same
+scene and physical acceptance thresholds. It enters the gripping phase, but
+the tool again slides off its support: maximum translation is 57.256 mm,
+and the actor begins its loss response at 5.367 s. Physical, motor, internal
+contact-state and abort-event replays all agree exactly. No pickup is
+qualified. The logged `gripping` field in this frozen trial is the latched
+phase-entry flag, not evidence of continued contact after release or loss.
+The next integration must test coordinated arm/finger motion using the full
+G1; changing this mounted diagnostic's state transition is insufficient.
+
 Additional numerical candidates are not selected automatically. The coarse
 four-span discrete model (passive 12 / contact 13), elliptic friction cone
 (passive 14 / contact 14), and longer contact response time (passive 15 /

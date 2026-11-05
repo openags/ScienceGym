@@ -1,0 +1,138 @@
+{
+  "scope": "Author source-hand grasps from finger opposition, independently of film poses.\n\nThe first search uses source tactile surfaces and source joint/mimic kinematics.\nIt fits the actual arm spacing before placing the tool-relative palm. Every\ncandidate is then checked against the complete source hand, wrist, free tray\nand support plane. This is offline geometry only, never a grasp qualification\nor an actor observation. Failed searches and all accepted alternatives remain.\n",
+  "support_review": "assets/idealtek_aa_sa_t6_v1/tray_support_12/review.json",
+  "support_review_sha256": "4349b2fd9b36423e4c2dc7f5dc0c1c11be429da40f3ae735a01715f33a6a2100",
+  "support_geometry_sha256": "e8b92d68113be08d12d7281a45ed68d1c5aca01ffe20defe955431e9ed3db75e",
+  "source_hashes": {
+    "assets/idealtek_aa_sa_t6_v1/revisions/passive_07/rest_geometry.glb": "dd37856f73e696d25c946a76b90942e7e46212769bbe10cf5859d9fac6e7360d",
+    "assets/idealtek_aa_sa_t6_v1/opposed_grasp_05/source_snapshot/search_opposed_grasp.py": "31521525b524023bad5ce16e6eae01c4b9a1722870e04b6082d9d13637a84c37",
+    "assets/idealtek_aa_sa_t6_v1/opposed_grasp_05/source_snapshot/cary_distal_hand.py": "864091108a2ee9962759f1f720af2a0ef205377d5239f9097efdab038d1747b7",
+    "assets/idealtek_aa_sa_t6_v1/opposed_grasp_05/source_snapshot/support_geometry.py": "02479f2d2ae31c95e8bcd20f0608ac0408c0526f4962ae9189ed39ed96e3bf22",
+    "assets/idealtek_aa_sa_t6_v1/opposed_grasp_05/source_snapshot/source_geometry.py": "f76c882e0faaa9e43abd0d2816c66508d8b1f17ea1f646f23598a6d0d8fd1ee9",
+    "assets/unitree_g1_inspire_v1/SOURCE.json": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+  },
+  "source_visual_geometry_sha256": "136f87a7b9f84c26bb8721cc00248793c1e194f7b63ab684024f2cc0b43e093a",
+  "kinematics_sha256": "5d3f1084e6af6af5a3afb6e91e36fc1f02821427708998421c5e251faf1bfa01",
+  "source_fk_maximum_error": 4.440892098500626e-16,
+  "driver_limits": {
+    "right_thumb_1_joint": {
+      "lower": 0.0,
+      "upper": 1.1641,
+      "effort": 10.0,
+      "velocity": 1.0
+    },
+    "right_index_1_joint": {
+      "lower": 0.0,
+      "upper": 1.4381,
+      "effort": 10.0,
+      "velocity": 1.0
+    },
+    "right_thumb_2_joint": {
+      "lower": 0.0,
+      "upper": 0.5864,
+      "effort": 10.0,
+      "velocity": 1.0
+    }
+  },
+  "surface_features": {
+    "right_index_force_sensor_2": {
+      "point": [
+        -4.388052464687764e-05,
+        -0.000494890144312421,
+        0.0003772395336293366
+      ],
+      "normal": [
+        -0.0015994818651417018,
+        -0.028180634266439096,
+        0.9996015673807761
+      ]
+    },
+    "right_index_force_sensor_3": {
+      "point": [
+        -0.000111894119964151,
+        -0.0016753656058063338,
+        0.0006054440824866947
+      ],
+      "normal": [
+        -0.017591183647490433,
+        0.102159578692707,
+        0.9946124726440992
+      ]
+    },
+    "right_thumb_force_sensor_3": {
+      "point": [
+        -3.9704278700314344e-05,
+        0.0007064068389840417,
+        0.00034559526023186793
+      ],
+      "normal": [
+        0.02390187853579512,
+        -0.09206484161473356,
+        0.9954661044661008
+      ]
+    },
+    "right_thumb_force_sensor_4": {
+      "point": [
+        0.0014960267474157817,
+        0.0008425578232334924,
+        0.0003946099990508209
+      ],
+      "normal": [
+        -0.11066840037477296,
+        -0.09759592025214962,
+        0.989053861783384
+      ]
+    }
+  },
+  "contact_pairs": [
+    [
+      "right_index_force_sensor_2",
+      "right_thumb_force_sensor_3"
+    ],
+    [
+      "right_index_force_sensor_2",
+      "right_thumb_force_sensor_4"
+    ],
+    [
+      "right_index_force_sensor_3",
+      "right_thumb_force_sensor_3"
+    ],
+    [
+      "right_index_force_sensor_3",
+      "right_thumb_force_sensor_4"
+    ]
+  ],
+  "axial_targets_m": [
+    0.055,
+    0.075,
+    0.095
+  ],
+  "target_height_m": 0.00575,
+  "joint_seed_fractions": [
+    0.15,
+    0.5,
+    0.85
+  ],
+  "palm_roll_count": 32,
+  "nonacting_finger_angles_rad": [
+    0.0,
+    0.5,
+    1.1
+  ],
+  "initial_surface_gap_m": 0.0003,
+  "initial_finger_opening_offsets_rad": [
+    0.02,
+    0.04,
+    0.06
+  ],
+  "minimum_pad_clearance_m": 2e-05,
+  "maximum_pad_clearance_m": 0.0005,
+  "minimum_inward_normal_component": 0.7,
+  "minimum_inward_closure_velocity_component": 0.8,
+  "maximum_contact_axial_offset_m": 0.002,
+  "maximum_contact_height_offset_m": 0.002,
+  "minimum_support_clearance_m": 0.001,
+  "intrinsic_width_error_limit_m": 0.00015,
+  "intrinsic_solve_maximum_evaluations": 120,
+  "full_body_or_dynamics_checked": false
+}

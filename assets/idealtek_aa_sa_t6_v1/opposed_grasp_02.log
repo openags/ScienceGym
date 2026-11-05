@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/search_opposed_grasp.py", line 251, in <module>
+    args = parser.parse_args(); run(args.source, args.support, args.output)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/search_opposed_grasp.py", line 174, in run
+    (output/'intrinsic_trials.json').write_text(json.dumps(solves, indent=2)+'\n')
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
