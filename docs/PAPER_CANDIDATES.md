@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **387**.
+Last screened: **2026-11-05**. Candidate count: **388**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3986,3 +3986,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official **25-page Supplementary Information** was accessible and all written scientific content was read. Supplementary Figures 1, 6 and 12 received visual inspection. Remaining figure pixels, supplementary movies, data and peer review were not audited.
 - Main-text and supplementary curing times conflict and remain unresolved. The [published correction](https://www.nature.com/articles/s41467-023-40295-w) addresses figure presentation. Scope is prepared-specimen identity, configuration history and repeated characterization records only. Fabrication, actuation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: biomimetic printed-specimen configuration and measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Biomimetic 4D printing](https://www.nature.com/articles/nmat4544) | Nature Materials / 2016 | 10.1038/nmat4544 | Prepared-specimen identity, geometry/version tracking, hydration-state history and linked mechanics/imaging records suggest a future long-horizon materials-characterization coordination task. | Public author-hosted main scholarly text including Methods and all extracted written scientific SI prose, captions and tabular text read; equation and visual-review limits remain. |
+
+- **CANDIDATE only.** *Nature Materials* **15**, 413-418 (2016). Complete main scholarly text, including Methods, was read from the public [author-hosted main PDF](https://lewisgroup.seas.harvard.edu/sites/g/files/omnuum11526/files/lewis-lab/files/biomimetic_4d_printing.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted scientific prose, captions and tabular text in the **20-page written Supplementary Information** within the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2016-04.pdf) were read. Equation extraction was corrupted and equations were not validated. Figure pixels, supplementary movies, raw data and code were not audited. This is not a complete visual or mathematical review.
+- Ordinary swelling examples are not reversible; thermal reversibility belongs to a separate material variant. Scope is prepared-specimen identity, geometry/version tracking, hydration-state history and linked mechanics/imaging records only. Material preparation, handling and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public author-hosted copies. The source carries publisher copyright; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, movies, code, data or other source assets redistributed.
