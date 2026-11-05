@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **381**.
+Last screened: **2026-11-05**. Candidate count: **382**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3919,3 +3919,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The official [52-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-71204-6/MediaObjects/41467_2026_71204_MOESM1_ESM.pdf) was accessible during that screening. Sections 3.1.1-3.1.7 were read. Remaining SI, datasets, videos and code were not fully audited; no complete visual review is claimed.
 - Scope is custody and record coordination for prepared, qualified nonmedicinal surrogates only. Human preparation remains relevant, and mechanical and powder-handling safety require separate specialist review and qualified equipment before any conversion. No drug-development recommendations, experimental procedures, operating parameters, converted task or asset is supplied.
 - Reading and access observations above refer to the earlier **2026-11-05** screening, not a new source retrieval during this catalog update. Publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, data, videos, code or other source assets redistributed.
+
+## Additional candidate: particle-robotics configuration and observation records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Particle robotics based on statistical mechanics of loosely coupled components](https://www.nature.com/articles/s41586-019-1022-9) | Nature / 2019 | 10.1038/s41586-019-1022-9 | Prepared-module identity, configuration history, calibration and linked observation records suggest a future long-horizon robot-characterization coordination task. | Public author-lab main PDF and scientific SI extracted text read; selected source pages visually inspected, with equation and visual-review limits. |
+
+- **CANDIDATE only.** Li et al., *Nature* **567**, 361-365 (2019). Screening read the extracted main scholarly text, Methods and availability statements in the public [author-lab main PDF](https://www.creativemachineslab.com/uploads/6/9/3/4/69340277/particlerobotics.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The public [author-lab Supplementary Information](https://www.creativemachineslab.com/uploads/6/9/3/4/69340277/particlerobotics_supplementary.pdf) was accessible. Extracted prose, tables and captions in Sections S1-S9 were read. Equation extraction was corrupted and equations were not validated. Selected source pages received visual inspection; remaining figure pixels, videos, data and code were not audited. This is not a complete visual or mathematical review.
+- Scope is prepared-module identity, configuration history, calibration and observation-record coordination only. Physical experiments remain distinct from larger-swarm simulations, and certain reported counts require reconciliation before conversion. Assembly, actuation and physical testing require separate safety review and qualified equipment. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public author-lab copies. The source carries an exclusive publisher licence; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, videos, data, code or other source assets redistributed.
