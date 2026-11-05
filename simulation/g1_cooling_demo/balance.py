@@ -23,7 +23,7 @@ class Balance:
             a,b=m.eq_obj1id[i],m.eq_obj2id[i];coef=m.eq_data[i,1]
             row=np.zeros(m.nv);row[m.jnt_dofadr[a]]=1;row[m.jnt_dofadr[b]]=-coef
             self.eqj.append(row);self.eqdata.append((m.jnt_qposadr[a],m.jnt_qposadr[b],coef,m.eq_data[i,0]))
-        self.eqj=np.array(self.eqj)
+        self.eqj=np.asarray(self.eqj,dtype=float).reshape(-1,m.nv)
         self.unactuated=np.array([i for i in range(m.nv) if i not in set(self.va)])
 
     def jacobian(self,point,body):
@@ -31,7 +31,7 @@ class Balance:
         mujoco.mj_jac(self.m,self.d,jp,jr,point,body);mujoco.mj_jacDot(self.m,self.d,dp,dr,point,body)
         return np.vstack([jp,jr]),np.vstack([dp,dr])
 
-    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None,posture_weights=None,support_feet=None):
+    def torque(self,targets=None,posture=None,dt=.01,forces=None,supported_mass=0.,contact_forces=None,surface_forces=None,point_targets=None,posture_weights=None,support_feet=None,target_velocities=None,palm_angular_velocities=None):
         m,d=self.m,self.d;n=m.nv;k=len(self.eqj);total=n+12+k
         support=np.ones(2,dtype=bool) if support_feet is None else np.asarray(support_feet)
         if support.shape!=(2,) or support.dtype!=bool or not support.any():
@@ -89,10 +89,21 @@ class Balance:
         rows.append(8*pad(pj[3:]));ys.append(8*(60*upright-16*pj[3:]@d.qvel-pdj[3:]@d.qvel))
         for side,ref in (targets or {}).items():
             site=m.site(side+'_wrist_reference').id;j,dj=self.jacobian(d.site_xpos[site],int(m.site_bodyid[site]))
-            error=np.asarray(ref)-d.site_xpos[site];rows.append(60*pad(j[:3]));ys.append(60*(100*error-22*j[:3]@d.qvel-dj[:3]@d.qvel))
+            error=np.asarray(ref)-d.site_xpos[site]
+            acceleration=100*error-22*j[:3]@d.qvel-dj[:3]@d.qvel
+            if side in (target_velocities or {}):
+                velocity=np.asarray(target_velocities[side],dtype=float)
+                if velocity.shape!=(3,) or not np.isfinite(velocity).all():raise ValueError('Invalid wrist target velocity')
+                acceleration+=22*velocity
+            rows.append(60*pad(j[:3]));ys.append(60*acceleration)
             if hasattr(self,'palm_rotations'):
                 rotation_error=Rotation.from_matrix(self.palm_rotations[side]@d.site_xmat[site].reshape(3,3).T).as_rotvec()
-                rows.append(30*pad(j[3:]));ys.append(30*(60*rotation_error-16*j[3:]@d.qvel-dj[3:]@d.qvel))
+                acceleration=60*rotation_error-16*j[3:]@d.qvel-dj[3:]@d.qvel
+                if side in (palm_angular_velocities or {}):
+                    velocity=np.asarray(palm_angular_velocities[side],dtype=float)
+                    if velocity.shape!=(3,) or not np.isfinite(velocity).all():raise ValueError('Invalid wrist target angular velocity')
+                    acceleration+=16*velocity
+                rows.append(30*pad(j[3:]));ys.append(30*acceleration)
         # Wrist tracking alone does not constrain a loaded, underactuated
         # fingertip. Track the robot's encoder-predicted surface point as an
         # additional Cartesian task; this does not attach it to an object.
