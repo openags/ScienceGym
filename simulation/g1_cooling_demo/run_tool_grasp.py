@@ -34,7 +34,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -53,6 +53,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Pre-lift carrying force requires a loaded route')
     if carry_command_excursion is not None and (carry_distance is None or not .15<=carry_command_excursion<=.30):
         raise ValueError('Carrying driver reference excursion must be 0.15 to 0.30 rad, inside source limits')
+    if (carry_finger_load_compensation or carry_body_joint_damper) and carry_distance is None:
+        raise ValueError('Carrying feedback options require a loaded route')
+    if carry_prelift_dwell is not None and (not carry_preload_before_lift or not .5<=carry_prelift_dwell<=2.):
+        raise ValueError('Carrying pre-lift proxy dwell requires preloading and 0.5 to 2 seconds')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -109,6 +113,9 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if carry_load_abort is not None:prior['carry_motor_load_abort_nm']=carry_load_abort
     if carry_preload_before_lift:prior['carry_preload_before_lift']=True
     if carry_command_excursion is not None:prior['carry_driver_command_excursion_rad']=carry_command_excursion
+    if carry_finger_load_compensation:prior['carry_finger_load_compensation']=True
+    if carry_body_joint_damper:prior['carry_body_joint_damper']=True
+    if carry_prelift_dwell is not None:prior['carry_prelift_proxy_dwell_s']=carry_prelift_dwell
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
@@ -183,6 +190,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             motor_load_observer_bound_basis='Authored controller stop bound, at most half the unchanged source driver effort; not a physical acceptance limit',
             endpoint_arm_joint_margin_rad=.08)
         run_contract['carry_contract']['driver_command_excursion_rad']=prior.get('carry_driver_command_excursion_rad',.15)
+        run_contract['carry_contract'].update(
+            finger_posture_load_compensation=carry_finger_load_compensation,
+            body_joint_boundary_damping=carry_body_joint_damper,
+            prelift_proxy_dwell_s=prior.get('carry_prelift_proxy_dwell_s',.5))
         if carry_preload_before_lift:
             run_contract['carry_contract'].update(preload_before_lift=True,
                 lift_force_proxy_threshold_n=(.85*np.asarray(run_contract['carry_contract']['hold_force_proxy_n'])).tolist(),
@@ -310,5 +321,8 @@ if __name__ == '__main__':
     p.add_argument('--carry-load-abort',type=float)
     p.add_argument('--carry-preload-before-lift',action='store_true')
     p.add_argument('--carry-command-excursion',type=float)
+    p.add_argument('--carry-finger-load-compensation',action='store_true')
+    p.add_argument('--carry-body-joint-damper',action='store_true')
+    p.add_argument('--carry-prelift-dwell',type=float)
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell)['status'] == 'failed': raise SystemExit(1)

@@ -121,6 +121,24 @@ class Balance:
         A=[dynamics[self.unactuated],pad(jf[contact_rows]),pad(self.eqj),dynamics[self.va]]
         lo=[-bias[self.unactuated],np.concatenate(acc)[contact_rows],eqacc,m.actuator_ctrlrange[:,0]-bias[self.va]]
         hi=[-bias[self.unactuated],np.concatenate(acc)[contact_rows],eqacc,m.actuator_ctrlrange[:,1]-bias[self.va]]
+        limit_indices=getattr(self,'joint_limit_indices',None)
+        if limit_indices is not None:
+            # Acceleration-level joint boundary damping in the internal QP.
+            # Only actual actuator torques reach the plant. A physical replay
+            # must still check source limits; this is not a qualification.
+            indices=np.asarray(limit_indices,dtype=int)
+            joints=m.actuator_trnid[indices,0]
+            if not len(indices) or not np.all(m.jnt_limited[joints]):
+                raise ValueError('Joint boundary damping requires limited joints')
+            margin=float(getattr(self,'joint_limit_margin_rad',.01))
+            omega=float(getattr(self,'joint_limit_frequency_rad_s',12.))
+            low=m.jnt_range[joints,0]+margin;high=m.jnt_range[joints,1]-margin
+            if margin<=0 or omega<=0 or np.any(low>=high):
+                raise ValueError('Invalid joint boundary damping parameters')
+            position=d.qpos[self.qa[indices]];velocity=d.qvel[self.va[indices]]
+            A.append(pad(np.eye(n)[self.va[indices]]))
+            lo.append(omega**2*(low-position)-2*omega*velocity)
+            hi.append(omega**2*(high-position)-2*omega*velocity)
         wr=[];wl=[];wh=[]
         for foot in range(2):
             off=n+foot*6

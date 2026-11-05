@@ -16,6 +16,26 @@ remains separate. The earlier walking/window run uses Inspire hands; that result
 does not transfer automatically to the three-finger model. There remain
 **0 of 11 qualified paper branches and 0 qualified complete campaigns**.
 
+The newer [78.73-second loaded attempt](runs/dex3_visual_carry_02/overview.mp4)
+starts from the same native-camera observation and reaches one walking step,
+but [fails independent acceptance](runs/dex3_visual_carry_02/physical_review.json).
+The recorded robot, sensor and camera states replay exactly. The right ankle
+exceeds its source range by 3.35 mrad, tool-to-wrist displacement reaches 28.95 mm,
+and the loaded out-and-back/release route is unfinished. The
+[recorded-state diagnosis](runs/dex3_visual_carry_02/carry_state_diagnosis.json)
+locates the ankle violation during stepping. Neither this failed run nor the
+separate restored-checkpoint probes qualify carrying or a paper branch.
+
+Candidate 07 tests compensation of the four non-closing finger joints using
+their own filtered motor/inverse-dynamics residuals. Closing joints retain
+their force servo. Optional body joint boundary damping adds acceleration
+constraints to the balance QP; it does not modify physical joint limits.
+The preload observer now requires 0.75 s before lift when selected; native
+contact acceptance remains 0.5 s. These are controller hypotheses under test,
+with unchanged source geometry, physics timestep, friction, actuator bounds
+and independent acceptance. See `--carry-finger-load-compensation`,
+`--carry-body-joint-damper` and `--carry-prelift-dwell` in `run_tool_grasp.py`.
+
 The separate [99.66-second visual pickup](runs/dex3_visual_grasp_03/physical_review.json)
 also passes its 18 independent physical checks, controller replay and source
 motor limits. It uses the same authored initial scene as the shorter run;

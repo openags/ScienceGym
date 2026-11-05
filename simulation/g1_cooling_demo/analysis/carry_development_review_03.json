@@ -1,0 +1,48 @@
+{
+  "created_utc": "2026-11-05T16:14:11.691900+00:00",
+  "scope": "Recorded failure diagnosis and next physical controller experiment; no carrying or branch qualification",
+  "full_continuous_trial": {
+    "path": "simulation/g1_cooling_demo/runs/dex3_visual_carry_02",
+    "result_sha256": "ee37e1644c6eccfe95d5694ef950318455c162b196f5fe620e73d3711b248994",
+    "physical_review_sha256": "d4b7809076f68d2e4e70a737f4a74f78fb79af811ebe61410a488ef298c7921f",
+    "physical_passed": false,
+    "simulated_seconds": 78.734,
+    "joint_diagnosis_sha256": "f639b567d270a7e89237d665eae56e8e56ff320db32107688559ea071478aa93"
+  },
+  "wider_command_probe": {
+    "path": "simulation/g1_cooling_demo/analysis/dex3_carry_checkpoint_06",
+    "result_sha256": "2971b64676f5774445d16ee40f9427bc664714c2e1f1cd8f53382f1980e6b01d",
+    "wrench_diagnosis_sha256": "02c26f859afa5b560fa963e7d5423627682f0c8630ac56df2219d4e657c8ded0",
+    "posture_diagnosis_sha256": "3b49fa81e1de09a54a250ff4098f15ac9dadff1bb840636780134a3fddd3bc74",
+    "outcome": "Failed during withdrawal before walking; widening the command envelope did not establish an improvement"
+  },
+  "observations": {
+    "ankle_bound_excess": "Right ankle roll exceeds the official limit by 0.00334875 rad during first swing; left reaches 0.0003867 rad excess",
+    "fixed_finger_deflection": "Thumb distal and index/middle base posture errors around 0.03 rad under load",
+    "contact_migration": "Sparse probe06 reconstruction places the middle contact at tool-local z about 5.67 mm before contact loss. It is a diagnostic, not continuous force replay or causal proof."
+  },
+  "next_candidate": {
+    "path": "simulation/g1_cooling_demo/runs/dex3_carry_candidate_07",
+    "contract_sha256": "faa87cf7a64f7f969876ea7a3b777a01b343cd9d171c54793d22796985c73843",
+    "changes": [
+      "Own-motor residual compensation only on four non-closing finger joints",
+      "Body acceleration-level joint boundary damping in balance QP",
+      "Increase pre-lift proxy dwell from 0.5 to 0.75 seconds; native loaded-contact acceptance remains 0.5 seconds",
+      "Restore 0.15 rad driver reference envelope"
+    ],
+    "physical_result_pending": true,
+    "hypothesis": "Reduce load-dependent finger posture deflection and retain source ankle limits during stepping",
+    "causal_effect_proven": false
+  },
+  "unchanged": [
+    "100 microsecond physics period",
+    "Passive free tool and ordinary tray",
+    "Source robot geometry and joint ranges",
+    "Source actuator caps",
+    "4 N finger load acceptance",
+    "Controller observation isolation",
+    "Required 11 branches and repeated acceptance"
+  ],
+  "qualified_carry": false,
+  "qualified_paper_branch": false
+}

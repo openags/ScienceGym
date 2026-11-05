@@ -156,6 +156,7 @@ class LoadedWalker(QuasistaticWalker):
 
     def control_tasks(self,t):
         a=self.actor
+        a.configure_body_limits(self.balance)
         self.initial_com_height=a.carry_com_height
         self.balance.pelvis_rotation=a.carry_pelvis_rotation
         self.balance.palm_rotations={'right':a.wrist_rotation}
@@ -188,6 +189,31 @@ class ToolActor(VisualPickup):
         self.carry_motor_load_abort_nm=float(prior.get('carry_motor_load_abort_nm',.15))
         if not .15<=self.carry_motor_load_abort_nm<=.5*self.source_driver_effort_nm:
             raise ValueError('Carry load observer bound exceeds half the source motor effort rating')
+        self.finger_load_compensation=bool(prior.get('carry_finger_load_compensation',False))
+        self.body_joint_damper=bool(prior.get('carry_body_joint_damper',False))
+        self.prelift_load_dwell=float(prior.get('carry_prelift_proxy_dwell_s',.5))
+        if not .5<=self.prelift_load_dwell<=2.:
+            raise ValueError('Pre-lift load dwell outside the development range')
+
+    def hand_load_feedforward(self):
+        result=super().hand_load_feedforward()
+        if self.finger_load_compensation and self.phase in self.loaded_phases:
+            # The four posture joints have no force servo. With only PD,
+            # their load-dependent deflection can move contact to a tool edge.
+            # Compensate the filtered own-motor inverse-dynamics residual.
+            # Closing joints retain their existing force feedback; including
+            # them here would change the force servo's plant and equilibrium.
+            for k,a in enumerate(self.hand):
+                if a in self.drivers:continue
+                bound=.5*np.max(abs(self.m.actuator_ctrlrange[a]))
+                result[k]=np.clip(self.filtered[a],-bound,bound)
+        return result
+
+    def configure_body_limits(self,balance):
+        if self.body_joint_damper:
+            balance.joint_limit_indices=[i for i,n in enumerate(self.names) if '_hand_' not in n]
+            balance.joint_limit_margin_rad=.01
+            balance.joint_limit_frequency_rad_s=12.
 
     def abort(self,reason,t):
         if self.phase in self.transport_phases:
@@ -207,10 +233,11 @@ class ToolActor(VisualPickup):
             self.lift_force=.85*self.carry_force
             self.motor_load_abort_nm=self.carry_motor_load_abort_nm
             self.configure_driver_commands()
+            self.minimum_load_dwell=self.prelift_load_dwell
             self.events.append(dict(time_s=t,kind='carrying_force_before_lift',
                 hold_force_proxy_n=self.hold_force.tolist(),
                 lift_force_proxy_threshold_n=self.lift_force.tolist(),
-                minimum_sustained_load_s=.5))
+                minimum_sustained_load_s=self.prelift_load_dwell))
         if phase=='lower' and self.phase=='hold' and not self.transported:
             self.return_wrist=self.wrist_position.copy()
             self.return_rotation=self.wrist_rotation.copy()
@@ -340,6 +367,7 @@ class ToolActor(VisualPickup):
                 self.abort('Loaded-arm clearance: '+json.dumps(self.carry_clearance),t)
 
     def balance_torque(self,target,posture,motion):
+        if self.phase in self.transport_phases:self.configure_body_limits(self.balance)
         if self.phase in self.transport_phases and self.previous_balance_time is not None:
             period=float(self.carry_observation['time_s'])-self.previous_balance_time
             if not .0099<=period<=.0101:raise RuntimeError('Unexpected carrying reference period')

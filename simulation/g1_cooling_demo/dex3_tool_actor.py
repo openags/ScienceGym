@@ -86,6 +86,10 @@ class ToolActor:
     def balance_torque(self, target, posture, motion):
         return self.balance.torque(targets={'right':target},posture=posture,dt=.01,**motion)
 
+    def hand_load_feedforward(self):
+        """Optional own-motor disturbance compensation; no plant contact input."""
+        return np.zeros(len(self.hand))
+
     def update(self, obs):
         if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
         if not all(np.isfinite(np.asarray(v)).all() for v in obs.values()):raise ValueError('Nonfinite sensor packet')
@@ -122,7 +126,7 @@ class ToolActor:
             # than mere touch. Require sustained opposed load before lifting.
             if self.hold_entered and np.all(proxy>self.lift_force):
                 if self.load_since is None:self.load_since=t
-                if t-self.load_since>=.5:self.change('lift',t)
+                if t-self.load_since>=getattr(self,'minimum_load_dwell',.5):self.change('lift',t)
             else:self.load_since=None
             if t-self.phase_started>self.close_timeout:self.abort('No sustained three-finger load before grasp timeout',t)
         if self.hold_entered and self.phase in self.loaded_phases:
@@ -187,7 +191,7 @@ class ToolActor:
         kd=np.minimum(2*np.sqrt(kp*inertia_modes),.4*inertia_modes/dt)
         error=U.T@(self.command-d.qpos[self.qa])[self.hand]
         speed=U.T@d.qvel[self.va[self.hand]]
-        torque=self.body_torque.copy();torque[self.hand]=gravity[self.hand]+U@(kp*error-kd*speed)
+        torque=self.body_torque.copy();torque[self.hand]=gravity[self.hand]+U@(kp*error-kd*speed)+self.hand_load_feedforward()
         torque=np.clip(torque,m.actuator_ctrlrange[:,0],m.actuator_ctrlrange[:,1]);self.previous_torque=torque.copy();self.last_time=t
         return dict(torque=torque,error=None,phase=self.phase,failure=self.failure,complete=self.phase=='finished',
             requested_joint_position=self.command.copy(),motor_load_nm=effort.copy(),force_proxy_n=proxy.copy(),
