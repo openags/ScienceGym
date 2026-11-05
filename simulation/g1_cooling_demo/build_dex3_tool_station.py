@@ -73,7 +73,7 @@ def replace_hands(xml):
                 contact_defaults='Official unspecified hand friction/compliance inherit MuJoCo defaults; not hardware calibrated')
 
 
-def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multistart=False, rig_yaw=0.):
+def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multistart=False, rig_yaw=0., minimum_elbow=None):
     started=time.monotonic();station=Path(station).resolve();fit=Path(fit).resolve();out=Path(output).resolve()
     out.mkdir(parents=True,exist_ok=False);snapshot=out/'source_snapshot';snapshot.mkdir()
     for p in [Path(__file__),HERE/'build_tool_station.py',HERE/'ftir_hand.py']:
@@ -110,6 +110,11 @@ def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multist
     world_from_source=pose(d.joint('tweezer_free').qpos)
     world_from_source[:3,3]-=world_from_source[:3,:3]@np.array([.13,0,.00575])
     ik=ArmIK(rm);rows=[];accepted=[]
+    if minimum_elbow is not None:
+        elbow=next(i for i,j in enumerate(ik.joints) if rm.joint(j).name=='right_elbow_joint')
+        assert ik.low[elbow] <= minimum_elbow < ik.high[elbow]
+        # An authoring preference inside the official range, not a model edit.
+        ik.low[elbow]=minimum_elbow
     for index,candidate in enumerate(fits['candidates']):
         if candidate_indices is not None and index not in candidate_indices:continue
         target=world_from_source@np.asarray(candidate['source_tool_from_wrist'])
@@ -119,7 +124,7 @@ def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multist
             d.qpos[3:7]=np.r_[orientation[3],orientation[:3]]
             for n,v in candidate['q'].items():d.joint(n).qpos[0]=v
             for j in range(rm.njnt):rd.joint(rm.joint(j).name).qpos[:]=d.joint(rm.joint(j).name).qpos
-            seeds=[rd.qpos[ik.qa].copy()]
+            seeds=[np.clip(rd.qpos[ik.qa],ik.low,ik.high)]
             if multistart:seeds += [np.clip(q,ik.low,ik.high) for q in
                 [[-.6,-.4,-1.5,1.2,1.5,0,0],[-.6,-.5,0,1.2,-1.5,0,0],[-1.,-.3,1.5,1.5,1.,0,0]]]
             solutions=[ik.solve(rd,target[:3,3],target[:3,:3],seed) for seed in seeds]
@@ -147,7 +152,7 @@ def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multist
                   model_inputs_sha256=sha(out/'model_inputs.json'),authored_original_initial_qpos=initial.tolist(),
                   tool_source_frame_world=world_from_source.tolist(),selected_initial_condition_is_not_execution=True,
                   yaw_offsets_deg=list(yaw_offsets),candidate_indices=candidate_indices,multistart=multistart,
-                  authored_tool_tray_yaw_change_deg=rig_yaw,
+                  authored_tool_tray_yaw_change_deg=rig_yaw,minimum_authored_elbow_angle_rad=minimum_elbow,
                   actuators=m.nu,robot_nq=rm.nq,robot_nv=rm.nv,source_visual_joint_overlap_disclosed_in_fit=True)
     (out/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
     (out/'review.json').write_text(json.dumps(dict(scope=__doc__,tested=len(rows),rows=rows,candidates=accepted,
@@ -166,4 +171,5 @@ if __name__=='__main__':
     p.add_argument('--yaw-offsets',type=float,nargs='+',default=[0.]);p.add_argument('--candidate-indices',type=int,nargs='+')
     p.add_argument('--multistart',action='store_true')
     p.add_argument('--rig-yaw',type=float,default=0.)
-    a=p.parse_args();run(a.station,a.fit,a.out,a.yaw_offsets,a.candidate_indices,a.multistart,a.rig_yaw)
+    p.add_argument('--minimum-elbow',type=float)
+    a=p.parse_args();run(a.station,a.fit,a.out,a.yaw_offsets,a.candidate_indices,a.multistart,a.rig_yaw,a.minimum_elbow)

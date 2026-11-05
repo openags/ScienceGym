@@ -19,6 +19,10 @@ import numpy as np
 def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+# Capture the bytes actually loaded, not a possibly edited file at report time.
+VERIFIER_SHA256 = sha(__file__)
+
+
 def difference(a, b):
     if isinstance(a, dict):
         if not isinstance(b, dict) or set(a) != set(b): return float('inf')
@@ -47,6 +51,10 @@ def controller(folder):
     # This is a locally generated, hash-pinned run artifact, not untrusted input.
     responses = pickle.loads((folder/'responses.pkl').read_bytes())
     receipt = json.loads((folder/'actor_isolation.json').read_text())
+    if 'actor_isolation_sha256' in contract:
+        assert sha(folder/'actor_isolation.json') == contract['actor_isolation_sha256']
+        assert sha(folder/'policy_source/tool_prior.json') == contract['controller_prior_sha256']
+        for name,digest in contract['source_snapshot_sha256'].items(): assert sha(folder/'source_snapshot'/name)==digest
     for name, digest in receipt['source_modules'].items(): assert sha(folder/'actor_bundle/code'/name) == digest
     assert sha(folder/'actor_bundle/model/world.xml') == receipt['bundled_model_sha256']
     actor = contract.get('actor_module', 'tool_grasp_actor')
@@ -73,7 +81,7 @@ def controller(folder):
     report = dict(passed=failure is None and compared == len(responses) == len(sensor['time_s']) and error < 1e-10,
         failure=failure, compared=compared, responses=len(responses), sensor_packets=len(sensor['time_s']),
         maximum_response_error=None if not np.isfinite(error) else error,
-        replayed_frozen_isolated_actor=True, verifier_sha256=sha(__file__), qualified_grasp=False)
+        replayed_frozen_isolated_actor=True, verifier_sha256=VERIFIER_SHA256, qualified_grasp=False)
     (folder/'controller_replay.json').write_text(json.dumps(report, indent=2)+'\n')
     return report
 
@@ -213,7 +221,7 @@ def physics(folder):
         maximum_unintended_hand_tool_load_n=unexpected_load,
         maximum_joint_limit_excess_rad=float(joint_excess), unintended_contacts=unexpected,
         source_model_sha256=sha(folder/'world.xml'), source_trace_sha256=sha(folder/'trace.npz'),
-        verifier_sha256=sha(__file__), qualified_grasp=False, qualified_paper_branch=False)
+        verifier_sha256=VERIFIER_SHA256, qualified_grasp=False, qualified_paper_branch=False)
     if dex3:
         report['three_finger_contact_s'] = report.pop('bilateral_contact_s')
         report['tool_use_closure_evaluated'] = False

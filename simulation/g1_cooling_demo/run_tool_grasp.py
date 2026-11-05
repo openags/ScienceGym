@@ -33,12 +33,13 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6.):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
     contract = json.loads((station/'contract.json').read_text())
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
+    if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     assert sha(station/'contract.json') == review['contract_sha256']
     assert sha(station/'world.xml') == contract['plant_sha256']
@@ -70,6 +71,8 @@ def run(station, output, duration, close_timeout=6.):
         vision_and_approach_qualified=False)
     if dex3:
         prior.update({k: contract[k] for k in ['robot_contact_features','closing_drivers','closing_signs']})
+        prior['hold_force_proxy_n']=[thumb_force,thumb_force/2,thumb_force/2]
+        prior['lift_force_proxy_threshold_n']=[lift_force,lift_force/2,lift_force/2]
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
@@ -84,6 +87,8 @@ def run(station, output, duration, close_timeout=6.):
         physics_period_s=dt, control_period_s=.001, balance_period_s=.01,
         initial_qpos=data.qpos.tolist(), initial_qvel=data.qvel.tolist(),
         actor_access_isolated=isolation['passed'], controller_fields=sorted(__import__(actor_module).ToolActor.fields),
+        actor_isolation_sha256=sha(output/'actor_isolation.json'), controller_prior_sha256=sha(prior_path),
+        source_snapshot_sha256={p.name: sha(p) for p in snapshot.iterdir()},
         actor_module=actor_module, hand_kind='unitree_three_finger' if dex3 else 'inspire_ftp',
         task='pickup_hold_replace_release' if dex3 else 'pickup_closure_replace_release',
         actuator_count=model.nu,
@@ -106,7 +111,9 @@ def run(station, output, duration, close_timeout=6.):
         qualified_grasp=False, qualified_paper_branch=False)
     if dex3:
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
-        run_contract['inferred_control'].update(hold_force_proxy_n=[.6,.3,.3],first_contact_force_proxy_n=.03,
+        run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
+            lift_force_proxy_threshold_n=prior['lift_force_proxy_threshold_n'],lift_load_hold_s=.5,
+            hand_feedback_rule='Inertia eigenmodes: kp=min(3,0.25*I/dt^2); kd=min(2*sqrt(kp*I),0.4*I/dt)',
             startup_com_shift='Two-second smooth movement from initial COM toward support center',
             robot_contact_features=contract['robot_contact_features'])
         run_contract['physical_acceptance'].update(minimum_each_opposing_finger_load_n=.1,
@@ -201,5 +208,7 @@ def run(station, output, duration, close_timeout=6.):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('station'); p.add_argument('output')
     p.add_argument('--duration', type=float, default=20.)
-    p.add_argument('--close-timeout', type=float, default=6.); a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout)['status'] == 'failed': raise SystemExit(1)
+    p.add_argument('--close-timeout', type=float, default=6.)
+    p.add_argument('--thumb-force', type=float, default=.6);p.add_argument('--lift-force',type=float,default=.5)
+    a = p.parse_args()
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force)['status'] == 'failed': raise SystemExit(1)

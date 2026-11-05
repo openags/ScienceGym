@@ -16,7 +16,7 @@ from partition_lab_collision import partition
 def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def run(source, output, cell):
+def run(source, output, cell, individual=False, memory_mib=None, merge_architecture=False, selected_bodies=None):
     source, output = Path(source).resolve(), Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     for name in ['check_static_partition.py', 'partition_lab_collision.py']:
@@ -26,9 +26,30 @@ def run(source, output, cell):
     excluded = {n.get(k) for n in tree.findall('contact/exclude') for k in ['body1', 'body2']}
     bodies = [before.body(b).name for b in range(1, before.nbody)
               if before.body_weldid[b] == 0 and before.body_geomnum[b] > 1 and before.body(b).name not in excluded]
+    if selected_bodies is not None:
+        assert set(selected_bodies) <= set(bodies), 'Only eligible static bodies may be partitioned'
+        bodies = list(selected_bodies)
     groups = {before.geom(g).name: '_'.join(map(str, np.floor(before.geom_pos[g]/cell).astype(int)))
               for g in range(before.ngeom) if before.body(int(before.geom_bodyid[g])).name in bodies}
-    mapping = partition(tree, bodies, groups)
+    if merge_architecture:
+        architecture = tree.find(".//body[@name='lab_architecture']")
+        mapping = []
+        for child in list(architecture):
+            if child.tag != 'body' or not child.get('name','').startswith('static_partition_lab_architecture_'):continue
+            assert set(child.attrib)=={'name'} and all(g.tag=='geom' for g in child)
+            for geom in list(child):
+                architecture.append(geom)
+                mapping.append(dict(geom=geom.get('name'),original_body=child.get('name'),body='lab_architecture'))
+            architecture.remove(child)
+        assert mapping
+    else:
+        mapping = partition(tree, bodies, None if individual else groups)
+    if memory_mib is not None:
+        if not 64 <= memory_mib <= 4096: raise ValueError('Invalid collision workspace allocation')
+        size = tree.find('size')
+        if size is None: size = ET.SubElement(tree, 'size')
+        size.attrib.pop('nstack', None)
+        size.set('memory', str(memory_mib)+'M')
     ET.indent(tree); ET.ElementTree(tree).write(output/'world.xml', encoding='unicode')
     after = mujoco.MjModel.from_xml_path(str(output/'world.xml'))
     contract = json.loads((source/'contract.json').read_text())
@@ -58,10 +79,21 @@ def run(source, output, cell):
         same_source_mesh_bindings=bool(meshes), same_initial_geom_transforms=max(geom_errors) < 1e-12,
         unchanged_contact_history=contacts[0] == contacts[1],
         unchanged_sampled_trajectory=np.array_equal(states[0], states[1]))
+    dynamic_inertias = True
+    for b in range(1,before.nbody):
+        if before.body_weldid[b] == 0: continue
+        a = after.body(before.body(b).name).id
+        for attr in ['body_mass','body_inertia','body_ipos','body_iquat']:
+            dynamic_inertias &= np.array_equal(getattr(before,attr)[b],getattr(after,attr)[a])
+    checks['dynamic_body_inertias_preserved'] = bool(dynamic_inertias)
     result = dict(scope='Compiled geometry correspondence and 100 zero-torque steps; no grasp or general dynamics qualification',
         source_model_sha256=sha(source/'world.xml'), source_contract_sha256=sha(source/'contract.json'),
         model_sha256=sha(output/'world.xml'), checks=checks, passed=all(checks.values()),
-        cell_size_m=cell, body_counts=[m.nbody for m in models], mapping=mapping,
+        cell_size_m=None if individual else cell, individual_static_geoms=individual,memory_mib=memory_mib,
+        merged_architecture=merge_architecture,selected_static_bodies=selected_bodies,
+        geometry_correspondence_passed=all(checks[k] for k in ['geom_parameters_and_weld_groups_preserved',
+            'same_source_mesh_bindings','same_initial_geom_transforms','dynamic_body_inertias_preserved']),
+        body_counts=[m.nbody for m in models], mapping=mapping,
         seconds_original_partitioned=times, maximum_state_difference=float(np.max(abs(states[0]-states[1]))),
         maximum_initial_geom_transform_error=max(geom_errors), source_scripts={n: sha(output/n) for n in ['check_static_partition.py', 'partition_lab_collision.py']})
     np.savez_compressed(output/'comparison.npz', original=states[0], partitioned=states[1])
@@ -71,4 +103,8 @@ def run(source, output, cell):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('source'); p.add_argument('output')
-    p.add_argument('--cell', type=float, default=.2); a = p.parse_args(); run(a.source, a.output, a.cell)
+    p.add_argument('--cell', type=float, default=.2);p.add_argument('--individual',action='store_true')
+    p.add_argument('--memory-mib',type=int)
+    p.add_argument('--merge-architecture',action='store_true')
+    p.add_argument('--bodies',nargs='+')
+    a=p.parse_args();run(a.source,a.output,a.cell,a.individual,a.memory_mib,a.merge_architecture,a.bodies)

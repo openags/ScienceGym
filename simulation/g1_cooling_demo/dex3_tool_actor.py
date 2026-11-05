@@ -43,6 +43,10 @@ class ToolActor:
         self.phase='settle';self.phase_started=0.;self.hold_entered=False;self.lift_height=0.;self.abort_height=0.
         self.failure=None;self.events=[];self.release_command=None
         self.close_timeout=float(prior.get('close_timeout_s',6.))
+        self.hold_force=np.asarray(prior.get('hold_force_proxy_n',[.6,.3,.3]),dtype=float)
+        self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
+        assert self.hold_force.shape==self.lift_force.shape==(3,)
+        assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
         # Hand inertias are much smaller than the previous hand's reflected
         # inertia. Bound sampled PD gains in the coupled hand inertia modes.
         # These change motor commands only; no model mass/armature is changed.
@@ -93,7 +97,9 @@ class ToolActor:
                     if t-self.release_since[i]>=.05:self.flags[i]=False
                 else:self.release_since[i]=None
             self.hold_entered=self.hold_entered or bool(all(self.flags))
-            if self.hold_entered and min(proxy)>.15:
+            # The inferred 18 g tool and 0.225 sliding friction require more
+            # than mere touch. Require sustained opposed load before lifting.
+            if self.hold_entered and np.all(proxy>self.lift_force):
                 if self.load_since is None:self.load_since=t
                 if t-self.load_since>=.5:self.change('lift',t)
             else:self.load_since=None
@@ -106,7 +112,7 @@ class ToolActor:
         if self.phase in {'close','lift','hold','lower'}:
             speeds=np.clip(.0005/lever,.001,.015)
             for i,a in enumerate(self.drivers):
-                desired_force=[.6,.3,.3][i] if self.hold_entered else .03
+                desired_force=self.hold_force[i] if self.hold_entered else .03
                 rate=np.clip(1.2*(desired_force*lever[i]-effort[i]),-speeds[i],speeds[i]) if self.hold_entered or self.flags[i] else speeds[i]
                 self.command[a]=np.clip(self.command[a]+self.signs[i]*rate*dt,self.lower[a],self.upper[a])
             desired=self.feature_reference-self.midpoint();desired*=min(1.,.02/max(np.linalg.norm(desired),1e-12))
@@ -134,7 +140,7 @@ class ToolActor:
         inverse_hand_mass=self.hand_selector.T@np.linalg.solve(mass,self.hand_selector)
         inertia_modes,U=np.linalg.eigh(np.linalg.inv(inverse_hand_mass))
         if min(inertia_modes)<=0:raise RuntimeError('Nonpositive hand inertia')
-        kp=np.minimum(.5,.25*inertia_modes/dt**2)
+        kp=np.minimum(3.,.25*inertia_modes/dt**2)
         kd=np.minimum(2*np.sqrt(kp*inertia_modes),.4*inertia_modes/dt)
         error=U.T@(self.command-d.qpos[self.qa])[self.hand]
         speed=U.T@d.qvel[self.va[self.hand]]

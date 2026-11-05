@@ -1,4 +1,4 @@
-# G1 / Inspire contact runtime
+# G1 humanoid contact runtime
 
 The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
@@ -128,6 +128,42 @@ inertia and the control period, without changing the plant's mass or armature.
 Read the later attempt's own result and independent review before assigning
 any execution outcome. This pickup test does not qualify squeezing the tool
 on a specimen, perception, approach, carrying, a paper branch or reliability.
+
+`dex3_tool_grasp_02` ends after 14.005 seconds without enough sustained load
+to lift. Controller, physics and native sensor replay are exact. Contact and
+released-support bounds pass, but the physical verdict fails, including a
+3.635 mrad thumb distal-joint excursion beyond its source limit. Its separate
+torque/speed check passes; that check does not cover position limits. The
+verifier's write-time source-hash issue is documented and reconciled in
+`verifier_runtime_provenance.json`, preserving the original report and every
+physical metric. Future verifiers capture their hash at import and run from
+a frozen source copy.
+
+`dex3_tool_grasp_03` reaches the lift phase but loses the tool. The 16.993-second
+attempt and exact-byte trace chunks are retained. Sparse wrench diagnostics
+show marginal grip support during lift and infeasible static equilibrium at
+the late slipped contact configuration; they are not continuous verification.
+The full independent verdict must be read separately. A 4.730 mrad thumb
+distal-joint excursion also excludes qualification.
+
+The next setup, `dex3_tool_station_05` / `dex3_pregrasp_03`, selects a source
+grasp with the thumb distal joint farther inside its limit, and restricts
+authored elbow flexion to at least 0.15 rad inside the original source range.
+One of 125 searched poses passes the initial scene checks. The new force
+targets are explicit actor-prior inputs and pinned in each run contract;
+the physical acceptance limits remain unchanged. Initial setup and controller
+changes do not establish grasp success.
+
+`analysis/dex3_device_sleep_02` tests native sleeping only for the unattended
+instrument cover; the robot, tool, tray and instrument keys are never allowed
+to sleep. A 0.2-second replay preserves all robot/tool/tray states bit for bit
+and reduces measured wall time from 12.70 to 6.00 seconds. The separate
+`dex3_cover_wake_02` diagnostic drops a free 20 g sphere onto the actual cover:
+the sleeping cover wakes on contact, with a maximum 3.2 nm position difference
+from the unslept baseline. This added sphere exists only in diagnostic files.
+`dex3_pregrasp_04` binds the tested sleep configuration to the next authored
+initial scene. Complete execution and independent replay remain required;
+the short comparison does not qualify a grasp or a whole-device interaction.
 
 ## Reproduce
 
