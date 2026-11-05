@@ -60,6 +60,9 @@ class ToolActor:
         self.grip_force_deadband=float(prior.get('grip_force_deadband_n',0.))
         if not 0.<=self.grip_force_deadband<=.1:
             raise ValueError('Grip force observer deadband must be 0 to 0.1 N')
+        self.loaded_hand_damping_scale=float(prior.get('loaded_hand_damping_scale',1.))
+        if not 1.<=self.loaded_hand_damping_scale<=2.:
+            raise ValueError('Loaded hand damping scale must be between 1 and 2')
         self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
         assert self.hold_force.shape==self.lift_force.shape==(3,)
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
@@ -241,7 +244,8 @@ class ToolActor:
         inertia_modes,U=np.linalg.eigh(np.linalg.inv(inverse_hand_mass))
         if min(inertia_modes)<=0:raise RuntimeError('Nonpositive hand inertia')
         kp=np.minimum(3.,.25*inertia_modes/dt**2)
-        kd=np.minimum(2*np.sqrt(kp*inertia_modes),.4*inertia_modes/dt)
+        damping_scale=self.loaded_hand_damping_scale if self.hold_entered and self.phase in self.loaded_phases else 1.
+        kd=np.minimum(2*np.sqrt(kp*inertia_modes),.4*damping_scale*inertia_modes/dt)
         error=U.T@(self.command-d.qpos[self.qa])[self.hand]
         speed=U.T@d.qvel[self.va[self.hand]]
         torque=self.body_torque.copy();torque[self.hand]=gravity[self.hand]+U@(kp*error-kd*speed)+self.hand_load_feedforward()

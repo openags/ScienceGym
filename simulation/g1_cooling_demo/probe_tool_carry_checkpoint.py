@@ -110,8 +110,14 @@ def main():
                     if a.measure_prelift_native and response['phase']=='lift' and previous_phase=='close':
                         selected=[v for v in native_window if d.time-preload_window<=v[0]<d.time]
                         loaded_s=sum(v[1] for v in selected)*dt
+                        native_path=out/'prelift_native_window.npz'
+                        np.savez_compressed(native_path,time_s=np.asarray([v[0] for v in selected]),
+                            loaded=np.asarray([v[1] for v in selected],dtype=bool),
+                            force_n=np.asarray([v[2] for v in selected]).reshape(-1,3),
+                            finger_names=np.asarray(['thumb','index','middle']))
                         report['prelift_native_observation']=dict(time_s=float(d.time),window_s=preload_window,
                             sample_period_s=dt,samples=len(selected),loaded_s=loaded_s,
+                            native_window_sha256=sha(native_path),
                             passed_native_window=bool(len(selected)>=round(preload_window/dt)-1 and loaded_s>=preload_window-dt-1e-9),
                             restored_state_diagnostic_only=True)
                     previous_phase=response['phase']
@@ -132,7 +138,8 @@ def main():
                     if a.measure_prelift_native and response['phase']=='close':
                         limits=contract['physical_acceptance']
                         loaded=forces['thumb']>limits['minimum_thumb_load_n'] and min(forces['index'],forces['middle'])>limits['minimum_each_opposing_finger_load_n']
-                        native_window.append((float(d.time-dt),bool(loaded)))
+                        native_window.append((float(d.time-dt),bool(loaded),
+                                              [forces[n] for n in ['thumb','index','middle']]))
                         while native_window and native_window[0][0]<d.time-preload_window-.002:native_window.popleft()
                 if monitor_due:
                     monitor.write(json.dumps(dict(time_s=float(d.time-dt),phase=response['phase'],

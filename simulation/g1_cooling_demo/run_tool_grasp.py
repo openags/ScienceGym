@@ -35,12 +35,14 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0.):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
     contract = json.loads((station/'contract.json').read_text())
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
+    if hand_contact_impedance is not None and (not dex3 or not .95<=hand_contact_impedance<=.9999):
+        raise ValueError('Fingertip/tool compliance trial requires Dex3 and impedance 0.95 to 0.9999')
     visual = bool(contract.get('observed_approach',False))
     if visual: assert dex3
     if observe_optical_coupon and (not visual or not contract.get('optical_scene_binding')):
@@ -84,6 +86,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Requested Dex3 tool lift must be between 20 and 60 mm')
     if not 0<=grip_force_deadband<=.1 or (grip_force_deadband and not dex3):
         raise ValueError('Dex3 force-feedback deadband must be 0 to 0.1 N')
+    if not 1<=loaded_hand_damping_scale<=2 or (loaded_hand_damping_scale!=1. and not dex3):
+        raise ValueError('Loaded Dex3 hand damping scale must be 1 to 2')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     if release_load_feedback and not dex3:
         raise ValueError('Release motor-load feedback is implemented only for the Dex3 actor')
@@ -111,6 +115,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     plugins = contract.get('collision_plugins', [])
     plant_modules = ['frozen_collision_plugins.py','process_tool_grasp_plugins.py',
                      'render_tool_grasp.py','verify_dex3_limits.py'] if plugins else []
+    if hand_contact_impedance is not None:plant_modules.append('hand_tool_contact_compliance.py')
     for name in sorted(set(['run_tool_grasp.py','verify_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules,*plant_modules])):
         shutil.copyfile(HERE/name, snapshot/name)
     if plugins:
@@ -136,6 +141,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if plugins:
         from frozen_collision_plugins import load, require_stateless
         load(plugins, sha(snapshot/'frozen_collision_plugins.py'))
+    compliance_revision=None
+    if hand_contact_impedance is not None:
+        from hand_tool_contact_compliance import bind
+        compliance_revision=bind(output/'world.xml',[r['body'] for r in contract['robot_contact_features']],hand_contact_impedance)
     model = mujoco.MjModel.from_xml_path(str(output/'world.xml')); data = mujoco.MjData(model)
     if plugins: require_stateless(model)
     data.qpos[:] = contract['initial_qpos']; data.qvel[:] = contract['initial_qvel']
@@ -164,6 +173,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             prior['release_clearance_height_m']=release_clearance_height
         prior['tool_lift_height_m']=tool_lift_height
         if grip_force_deadband:prior['grip_force_deadband_n']=grip_force_deadband
+        if loaded_hand_damping_scale!=1.:prior['loaded_hand_damping_scale']=loaded_hand_damping_scale
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -208,6 +218,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         task='pickup_hold_replace_release' if dex3 else 'pickup_closure_replace_release',
         actuator_count=model.nu,
         contact_solver_revision=solver_revision,
+        hand_tool_compliance_revision=compliance_revision,
         inferred_control=dict(release_extra_opening_rad=release_extra_opening, closure_speed_m_s=.0005, hold_force_proxy_n=.6, close_timeout_s=close_timeout,
             first_contact_force_proxy_n=.04, contact_entry_force_proxy_n=.05,
             lift_height_m=tool_lift_height, grip_force_deadband_n=grip_force_deadband, pinch_center_correction_limit_m=.02,
@@ -254,7 +265,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             release_extra_opening_rad=prior['release_extra_opening_rad'],
             post_release_withdrawal_m=prior['post_release_withdrawal_m'],
             release_motor_load_gate_n=.015,release_clear_dwell_s=.1,
-            hand_feedback_rule='Inertia eigenmodes: kp=min(3,0.25*I/dt^2); kd=min(2*sqrt(kp*I),0.4*I/dt)',
+            hand_feedback_rule='Inertia eigenmodes: kp=min(3,0.25*I/dt^2); kd=min(2*sqrt(kp*I),0.4*scale*I/dt); scale applies only after load entry in loaded phases',
+            loaded_hand_damping_scale=loaded_hand_damping_scale,
             startup_com_shift='Two-second smooth movement from initial COM toward support center',
             robot_contact_features=contract['robot_contact_features'])
         if release_driver_openings is not None:
@@ -453,6 +465,8 @@ if __name__ == '__main__':
     p.add_argument('--carry-proximal-preshape',type=float,default=0.)
     p.add_argument('--contact-cone',choices=['pyramidal','elliptic'])
     p.add_argument('--contact-impratio',type=float)
+    p.add_argument('--hand-contact-impedance',type=float,
+        help='Uncalibrated fingertip/tool compliance sensitivity trial; physical bounds remain unchanged')
     p.add_argument('--release-extra-opening',type=float,default=.04,
                    help='Additional driver opening at release, inside the existing 0.08 rad bound')
     p.add_argument('--release-driver-openings',type=float,nargs=3,
@@ -474,5 +488,7 @@ if __name__ == '__main__':
                    help='Return the empty-handed robot to its original base position using motor control')
     p.add_argument('--grip-force-deadband',type=float,default=0.,
                    help='Stop position-reference integration within this observed force error (0 to 0.1 N)')
+    p.add_argument('--loaded-hand-damping-scale',type=float,default=1.,
+                   help='Increase own-velocity feedback during loaded phases (1 to 2); unchanged physical limits')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance)['status'] == 'failed': raise SystemExit(1)

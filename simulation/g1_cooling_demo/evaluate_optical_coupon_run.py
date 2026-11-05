@@ -14,8 +14,7 @@ import shutil
 import mujoco
 import numpy as np
 
-from build_tool_station import sha
-from runtime_collision_plugins import load_collision_plugins
+from frozen_collision_plugins import load as load_collision_plugins, require_stateless, sha
 
 
 def main():
@@ -45,10 +44,13 @@ def main():
         assert abs(record['time_s']-float(times[i]))<1e-9
         assert sha(run/record['file'])==record['sha256']
     out.mkdir(parents=True,exist_ok=False)
-    for name in [Path(__file__).name,'build_tool_station.py','runtime_collision_plugins.py']:
+    loader = Path(__file__).with_name('frozen_collision_plugins.py')
+    loader_digest = sha(loader)
+    for name in [Path(__file__).name,loader.name]:
         shutil.copyfile(Path(__file__).with_name(name),out/name)
-    load_collision_plugins(contract.get('collision_plugins',[]))
+    load_collision_plugins(contract.get('collision_plugins',[]),loader_digest)
     m=mujoco.MjModel.from_xml_path(str(run/'world.xml'));d=mujoco.MjData(m)
+    require_stateless(m)
     gid=m.geom('optical_copper_witness').id;mid=m.geom_dataid[gid]
     vertices=m.mesh_vert[m.mesh_vertadr[mid]:m.mesh_vertadr[mid]+m.mesh_vertnum[mid]].copy()
     body=m.body('optical_witness_white').id;camera=m.camera('head_depth').id
@@ -92,6 +94,7 @@ def main():
         trace_sha256=result['trace_sha256'],responses_sha256=result['responses_sha256'],
         camera_index_sha256=result['camera_index_sha256'],
         source_sha256={p.name:sha(p) for p in out.glob('*.py')},
+        collision_loader_sha256=loader_digest,
         full_controller_and_physics_replay_required=True,qualified_robot_handling=False,
         qualified_paper_branch=False)
     (out/'review.json').write_text(json.dumps(report,indent=2)+'\n')

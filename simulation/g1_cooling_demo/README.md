@@ -53,8 +53,10 @@ attributes the remaining signed motor load to that contact. Candidate 06 combine
 the retained posture with the existing signed release-load feedback; acceptance
 is unchanged. Its [restored-state release trial](analysis/dex3_release_checkpoint_06/result.json)
 finishes without an execution failure. A fresh continuous run,
-`dex3_visual_carry_04`, is now testing that release change from the original
-initial state. Its pre-release controller is unchanged, so it does not address
+[`dex3_visual_carry_04`](runs/dex3_visual_carry_04/result.json), has finished
+143.789 s from the original initial state without a controller-reported failure;
+its independent physics review is still processing. Its pre-release controller
+is unchanged, so it does not address
 the additional carry-03 acceptance failures above. No fresh carrying success
 has been established.
 
@@ -64,7 +66,10 @@ reports 0.246 mm center error on one native frame. Four stable observations can
 gate tool approach with `--observe-optical-coupon`; this does not establish
 sample pickup, coating-side recognition or optical manipulation. Both optical
 tool trials have finished 59.09 s of execution and passed isolated controller
-replay; independent physical reviews are pending. The actual four-frame
+replay. Their independent physical reviews now both fail `contact_bounds`:
+the sample/tray startup contact exceeds the unchanged 20 micrometre limit
+used by the operation evaluator. Passing the separate 250 micrometre asset
+support limit does not qualify either operation run. The actual four-frame
 [runtime coupon evaluation](analysis/optical_coupon_runtime_observation_01/review.json)
 fails the 1 mm position requirement with 1.069 mm error. The static single-frame
 result therefore does not qualify runtime localization. An offline camera-frame
@@ -79,7 +84,16 @@ A new five-second [isolated observation run](runs/dex3_optical_registered_observ
 then passes [actual runtime localization](analysis/optical_coupon_runtime_observation_02/review.json)
 at 0.249 mm and exact controller replay. That bounded run intentionally stops
 before completing the tool operation; its duration failure is retained. A fresh
-full tool trial, `dex3_optical_visual_grasp_03`, is now testing integration.
+full tool trial, [`dex3_optical_visual_grasp_03`](runs/dex3_optical_visual_grasp_03/result.json),
+has finished 59.610 s without a controller-reported failure; independent physics
+review is still processing. Its first offline localization evaluator failed to
+import a missing scene-builder dependency, before producing an assessment.
+The evaluator now uses the self-contained, pinned collision loader; the failed
+invocation remains recorded separately from the
+[new evaluation](analysis/optical_coupon_runtime_observation_04/review.json).
+All five initial-localization checks pass on the full 59.610-second recording,
+with 0.249 mm accepted centre error. This evaluates the initial accepted pose,
+not later tracking or sample handling.
 These results do not qualify later pose tracking or specimen manipulation.
 
 The [carry failure attribution](analysis/dex3_carry_acceptance_03/review.json)
@@ -95,10 +109,37 @@ release and withdrawal. Its [first checkpoint diagnostic](analysis/dex3_carry_re
 fails because the approach guard incorrectly requires the original pregrasp
 finger pose after release. The revised guard checks actual encoder-derived hand
 geometry and native source self-contact; the original approach preshape gate
-and independent acceptance bounds remain. `dex3_carry_return_checkpoint_02`
-is testing this correction. A separate `--grip-force-deadband` candidate tests
-whether holding the position reference near its observed load target reduces
-contact loss. Neither candidate has established continuous carrying success.
+and independent acceptance bounds remain. The
+[second checkpoint diagnostic](analysis/dex3_carry_return_checkpoint_02/result.json)
+finishes without an execution failure and returns the actual base to 0.822 mm
+of its original XY position. Its 135,101-packet pre-change sensor prefix remains
+exact. This restored-state diagnostic still requires fresh uninterrupted
+pickup/carry/release verification. The separate
+[`--grip-force-deadband` diagnostic](analysis/dex3_carry_grip_checkpoint_01/result.json)
+does not resolve the prelift contact failure: native loaded contact totals
+0.498 s in the final 0.5 s window. It is not adopted as a successful fix.
+The [`--loaded-hand-damping-scale 2` diagnostic](analysis/dex3_carry_damping_checkpoint_01/result.json)
+also fails the unchanged prelift criterion: native loaded contact totals 0.497 s
+in the final 0.5 s window. Its native force window is retained for failure
+analysis. The conditional integrated carry-05 run was therefore not launched.
+Neither candidate has established continuous carrying success.
+
+The [native-state collision comparison](analysis/dex3_native_grip_collision_02/review.json)
+reproduces the original carry-03 prelift states and its 25 lost-load samples.
+Tighter native CCD and single-contact CCD retain the same 25 samples; the legacy
+collider has 56. Independent [source-triangle distances](analysis/dex3_grip_gap_geometry_01/review.json)
+confirm positive gaps of about 0.7 to 27 nanometres at the three inspected
+missing-contact states, with contact immediately before and after. The earlier
+unmatched-state comparison is explicitly invalidated and retained.
+The steel tool's 0.9999 contact impedance overrides the finger material in those
+interfaces. A new [prepared sensitivity candidate](runs/dex3_carry_compliant_candidate_01/contract.json)
+uses 0.99 only on 141 explicit fingertip/tool pairs. Source geometry, masses,
+joint dynamics, friction, zero contact margin/gap and all pre-existing pairs are
+unchanged, as are the physical acceptance bounds. This is an uncalibrated
+simulation compliance choice, not a measured hardware material claim.
+`dex3_visual_carry_06` is testing it from the original initial state together with
+the separately diagnosed 45 mm lift, release and empty-hand-return corrections.
+The withheld carry-05 attempt has not been relabelled as an execution.
 
 Exact reference/holder/cap surfaces pass [all six component cases](analysis/pike_reference_support_09/review.json).
 Their [full-room support test](analysis/optical_runtime_support_09/review.json)
@@ -107,8 +148,28 @@ An exact tabletop surface candidate preserves the original bevels and visuals;
 its source distance and gradient audits pass. The subsequent
 [complete-room support test](analysis/optical_runtime_support_10/review.json)
 passes for specimen, reference and cap, including intended bench contact and
-the unchanged penetration/load bounds. Its specimen-velocity correction replay
-is still running; this revision is not yet an accepted robot-operation station.
+the unchanged penetration/load bounds. Its
+[specimen-velocity correction replay](analysis/optical_support_velocity_recheck_10/review.json)
+also passes, with exact retained states. The resulting
+[operation station](runs/dex3_optical_observe_start_02/review.json) preserves the
+robot/tray/tool initial states and all source actuation. Its
+[prepared isolated controller](runs/dex3_exact_optical_preparation_01/preparation.json)
+and [initial rendering](runs/dex3_exact_optical_preparation_01/render_receipt.json)
+are available; this preparation grants no robot handling qualification.
+The subsequent [20 micrometre initial-gap proposal](analysis/optical_supported_staging_01/review.json)
+was rejected before writing a replacement scene because native contact already
+reported penetration at that pose. Resolving sample/tray startup contact remains
+required before executing the new optical station under the operation bounds.
+The [source-triangle diagnosis](analysis/optical_tray_clearance_01/review.json)
+finds that the original centre-point height ignores the tray's sloped surface
+under the specimen rim. The [new initial pose](analysis/optical_runtime_binding_11/binding.json)
+aligns the copper back to the actual support triangle (1.343 degrees) and retains
+a 20 micrometre clearance. Only this declared initial specimen pose changes;
+the robot, tool, tray, other objects, contact settings and meshes remain exact.
+Its [0.15-second startup check](analysis/optical_startup_screen_02/review.json)
+passes the unchanged 20 micrometre operation bound with a 14.317 micrometre peak,
+no optical-face contact and no external force. Full three-second support and
+corrected-velocity verification are still required and are running separately.
 No component result is transferred as room acceptance.
 The [corrected support replay](analysis/optical_support_velocity_recheck_01/review.json)
 checks the specimen's own velocity address, which the original evaluator
@@ -123,8 +184,9 @@ checker for those runs. Its legacy renderer/checker sources remain unchanged.
 The [native compatibility check](analysis/frozen_collision_plugin_runtime_01/review.json)
 reproduces all states, accelerations, contacts and forces exactly over ten steps
 in the actual five-plugin laboratory and rejects four altered-receipt cases.
-This verifies the loading path, not a robot episode; complete integration and
-scene rendering follow the corrected support review.
+This verifies the loading path, not a robot episode. Scene preparation and
+rendering now use the frozen plugin wrapper and retain the corrected support
+review in the run contract.
 
 Candidate 07 tests compensation of the four non-closing finger joints using
 their own filtered motor/inverse-dynamics residuals. Closing joints retain

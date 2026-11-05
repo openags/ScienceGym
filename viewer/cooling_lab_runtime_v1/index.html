@@ -33,7 +33,10 @@ fetch('../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/physical_revie
 <p id="optical-tool-status">正在读取这次运行的独立评估。</p>
 <div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/contact.mp4">手部与样片近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/result.json">连续运行记录</a><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/render_receipt.json">录像与轨迹对应</a><a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_observation_06/review.json">单独的样片视觉定位检查</a><a href="../../simulation/g1_cooling_demo/analysis/optical_support_velocity_recheck_01/review.json">修正后的场景支撑重放</a></div>
 <p class="note">这次录像尚未操作样片、参考件或保护帽。另一轮运行已完成四帧样片观测，但位置误差为 1.069 毫米，未通过 1 毫米要求；单帧定位检查不能替代运行中的定位验收。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_01/review.json">查看运行定位评估</a></p>
-<p>后续加入静态地图校准的 5 秒观测试验，样片位置误差降至 0.249 毫米，并通过控制器回放。该试验仅验证初始定位，完整取放正在单独运行。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_02/review.json">新运行的定位评估</a> · <a href="../../simulation/g1_cooling_demo/runs/dex3_optical_registered_observation_01/controller_replay.json">控制器回放</a></p>
+<p>后续加入静态地图校准的 5 秒观测试验，样片位置误差降至 0.249 毫米，并通过控制器回放。该试验仅验证初始定位；新的镊子取放运行已完成 59.610 秒，独立物理评估仍在处理。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_02/review.json">5 秒运行的定位评估</a> · <a href="../../simulation/g1_cooling_demo/runs/dex3_optical_registered_observation_01/controller_replay.json">控制器回放</a></p>
+<p class="note">前两轮光学场景取放均未通过接触检查：样片落到托盘时的穿透超过操作运行的上限。设备支撑测试通过不能替代操作验收。首次降低初始高度的方案也因相交被拒绝，失败记录已保留。</p>
+<p>现已按托盘实际坡面修正样片初始姿态，短时检查的最大穿透为 14.3 微米，低于原定 20 微米上限。完整支撑与速度重放仍在验证；该初始摆放不计为机器人操作。<a href="../../simulation/g1_cooling_demo/analysis/optical_startup_screen_02/review.json">短时接触结果</a> · <a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_11/binding.json">姿态修正依据</a></p>
+<p>59.610 秒运行的初始样片定位已通过 5 项检查，误差为 0.249 毫米。该评估未验证后续跟踪或样片操作。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_04/review.json">查看这次运行的定位结果</a></p>
 <script>
 fetch('../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physical_review.json',{cache:'no-store'})
  .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})
@@ -41,7 +44,7 @@ fetch('../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physic
    ? '本次单次镊子取放通过独立物理检查；完整实验分支和重复运行尚未验收。'
    : '本次独立物理检查未通过，详见评估记录。';
    const link=document.createElement('a');link.href='../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physical_review.json';link.textContent='查看评估';node.appendChild(link);})
- .catch(()=>{document.getElementById('optical-tool-status').textContent='运行已结束，独立物理重放仍在处理；尚无通过结论。';});
+ .catch(()=>{document.getElementById('optical-tool-status').textContent='暂时无法读取评估；本次已记录的独立物理检查结果为未通过。';});
 </script>
 <h2>FTIR 样片与工位绑定</h2>
 <p>沿用原完整房间和 G1 / 宇树三指手。积分球采用已记录的仪器内初始安装配置；铜片与三层涂层组成独立自由刚体，涂层面朝上、铜背面接触原有普通托盘。</p>
@@ -56,7 +59,9 @@ fetch('../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physic
 <h2>金参考件与保护盖</h2>
 <p>参考件与保护盖已接入同一完整实验室，作为独立自由刚体参与接触计算。参考件补出了露出金色光学面的凹槽；保护盖保留开口和内腔。</p>
 <p>组件的六种放置配置中五种通过。向一侧偏移 0.5 毫米的配置仍有过大接触力；零角度网格重合也有数值问题。当前采用绕光轴转过 1.875° 的初始配置，尚未完成全部放置姿态与机器人取放验收。</p>
-<p>新的源表面碰撞实现已通过几何与法向核查，并通过全部六种组件配置。保留原桌面倒角的新版场景已通过三秒完整房间支撑检查；样品速度的独立复核仍在进行。下方图片保留早期版本，尚未代表新版场景或机器人取放验收。</p>
+<p>新的源表面碰撞实现已通过几何与法向核查，并通过全部六种组件配置。保留原桌面倒角的新版场景已通过三秒完整房间支撑检查及独立速度复核。执行环境已完成隔离加载与初始画面渲染；参考件和样片取放仍需机器人执行验证。</p>
+<details><summary>新版完整实验室与当前初始工位</summary><img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="保留原实验室、G1 Dex3、托盘和完整光学工位的当前初始场景" src="../../simulation/g1_cooling_demo/runs/dex3_exact_optical_preparation_01/overview_initial.png"><p class="note">这是已准备的初始状态。物体安装与摆放尚未获得机器人操作完成记录。</p></details>
+<div class="links"><a href="../../simulation/g1_cooling_demo/analysis/optical_support_velocity_recheck_10/review.json">新版独立速度复核</a><a href="../../simulation/g1_cooling_demo/runs/dex3_exact_optical_preparation_01/preparation.json">执行环境准备记录</a><a href="../../simulation/g1_cooling_demo/runs/dex3_exact_optical_preparation_01/actor_isolation.json">新版控制器隔离</a><a href="../../simulation/g1_cooling_demo/runs/dex3_exact_optical_preparation_01/render_receipt.json">初始画面来源</a></div>
 <div class="links"><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_support_09/review.json">新版六种组件配置</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_10/review.json">新版完整房间支撑检查</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_10/binding.json">新版场景与精确桌面绑定</a><a href="../../simulation/g1_cooling_demo/analysis/frozen_collision_plugin_runtime_01/review.json">碰撞插件运行兼容检查</a></div>
 <div class="links"><a href="../../simulation/g1_cooling_demo/analysis/pike_panel_exact_surface_03/review.json">源表面距离核查</a><a href="../../simulation/g1_cooling_demo/analysis/pike_panel_exact_gradient_01/review.json">接触法向核查</a><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_design_decision_06.json">修复依据与保留的失败对照</a></div>
 <p id="reference-support-status">完整房间初始支撑：正在读取评估记录。</p>

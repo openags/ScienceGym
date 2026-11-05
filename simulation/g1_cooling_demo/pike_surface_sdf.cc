@@ -5,6 +5,7 @@
 // inspect or control the robot. MuJoCo performs all contact dynamics.
 #include <algorithm>
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <mujoco/mjplugin.h>
 #include <mujoco/mujoco.h>
@@ -75,16 +76,29 @@ bool contains(Vec p) {
   return false;
 }
 
+// Distance and gradient callbacks often query the same exact material point.
+// Cache only pure geometry calculations, per thread and per immutable library.
+// There is no quantization, force cache, physical state or cross-shape reuse.
+struct Query { bool valid=false; Vec point{}; Nearest closest{}; double length=0.; bool inside=false; };
+const Query& query(Vec p) {
+  static_assert(sizeof(Vec)==3*sizeof(double));
+  thread_local Query cache;
+  if (!cache.valid || std::memcmp(&p,&cache.point,sizeof(Vec))!=0) {
+    Nearest best; nearest(p,0,best);
+    cache={true,p,best,std::sqrt(best.squared),contains(p)};
+  }
+  return cache;
+}
+
 double distance(const mjtNum* point) {
-  Vec p{point[0],point[1],point[2]}; Nearest best; nearest(p,0,best);
-  return std::sqrt(best.squared)*(contains(p) ? -1. : 1.);
+  const Query& q=query({point[0],point[1],point[2]});
+  return q.length*(q.inside ? -1. : 1.);
 }
 
 void gradient(mjtNum* result, const mjtNum* point) {
-  Vec p{point[0],point[1],point[2]}; Nearest best; nearest(p,0,best);
-  double length=std::sqrt(best.squared);
-  Vec normal=length>1e-14 ? (p-best.point)*((contains(p) ? -1. : 1.)/length)
-                         : kFaceNormals[best.face];
+  Vec p{point[0],point[1],point[2]}; const Query& q=query(p);
+  Vec normal=q.length>1e-14 ? (p-q.closest.point)*((q.inside ? -1. : 1.)/q.length)
+                           : kFaceNormals[q.closest.face];
   result[0]=normal.x; result[1]=normal.y; result[2]=normal.z;
 }
 }  // namespace
