@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **382**.
+Last screened: **2026-11-05**. Candidate count: **383**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3930,3 +3930,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The public [author-lab Supplementary Information](https://www.creativemachineslab.com/uploads/6/9/3/4/69340277/particlerobotics_supplementary.pdf) was accessible. Extracted prose, tables and captions in Sections S1-S9 were read. Equation extraction was corrupted and equations were not validated. Selected source pages received visual inspection; remaining figure pixels, videos, data and code were not audited. This is not a complete visual or mathematical review.
 - Scope is prepared-module identity, configuration history, calibration and observation-record coordination only. Physical experiments remain distinct from larger-swarm simulations, and certain reported counts require reconciliation before conversion. Assembly, actuation and physical testing require separate safety review and qualified equipment. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public author-lab copies. The source carries an exclusive publisher licence; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, videos, data, code or other source assets redistributed.
+
+## Additional candidate: thermodiffusive-desalination measurement coordination (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Thermodiffusive desalination](https://www.nature.com/articles/s41467-024-47313-5) | Nature Communications / 2024 | 10.1038/s41467-024-47313-5 | Sample identity, repeated measurements, thermal-condition records and qualified instrument handoffs suggest a future long-horizon laboratory-coordination task. | OA main scholarly HTML and all extracted scientific SI text read; selected SI pages visually inspected. |
+
+- **CANDIDATE only.** Xu et al., *Nature Communications* **15**, 2996 (2024). Full main scholarly HTML, including Methods, was read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Official [37-page Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-024-47313-5/MediaObjects/41467_2024_47313_MOESM1_ESM.pdf) accessible. All extracted SI text, including captions, tables and methods, was read; SI pages 2, 7, 11 and 14 received visual inspection. Remaining figure pixels were not comprehensively inspected, and source data, code and mathematics were not audited.
+- The [publisher correction](https://www.nature.com/articles/s41467-024-48716-0) was read; it corrects a historical Soret citation. Physical single-channel and small flow-visualization experiments remain distinct from the modeled large cascade. The reported electrical-only energy estimate excludes thermal energy, and typographical inconsistencies in SI Table 2 require review before quantitative use.
+- Scope is sample identity, measurement records, thermal-condition history and qualified instrument handoffs only. Material preparation, thermal apparatus and instrument operation require separate safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, data, code or other source assets redistributed.
