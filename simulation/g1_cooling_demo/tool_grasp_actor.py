@@ -21,6 +21,8 @@ class ToolActor:
 
     def __init__(self, model, prior):
         self.m = model; self.d = mujoco.MjData(model)
+        self.close_timeout = float(prior.get('close_timeout_s', 6.))
+        if not 1. <= self.close_timeout <= 30.: raise ValueError('Invalid bounded grasp timeout')
         self.d.qpos[:] = prior['initial_robot_qpos']; mujoco.mj_forward(model, self.d)
         self.estimate = StateEstimate(model, self.d)
         self.balance = Balance(model, self.d); self.balance.rotate_foot_constraints = True
@@ -112,7 +114,7 @@ class ToolActor:
                 if self.load_since is None: self.load_since = t
                 if t-self.load_since >= .5: self.change('lift', t)
             else: self.load_since = None
-            if t-self.phase_started > 6.: self.abort('No sustained opposing load before grasp timeout', t)
+            if t-self.phase_started > self.close_timeout: self.abort('No sustained opposing load before grasp timeout', t)
         if self.hold_entered and self.phase in {'close', 'lift', 'hold', 'lower'}:
             if min(effort) < .003:
                 if self.lost_since is None: self.lost_since = t

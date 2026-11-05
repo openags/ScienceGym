@@ -15,7 +15,7 @@ from PIL import Image
 def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def render(folder, movie=False):
+def render(folder, movie=False, sample_times=()):
     folder = Path(folder).resolve()
     model = mujoco.MjModel.from_xml_path(str(folder/'world.xml')); data = mujoco.MjData(model)
     contract = json.loads((folder/'contract.json').read_text())
@@ -50,6 +50,10 @@ def render(folder, movie=False):
         name = view+'_initial.png'; Image.fromarray(frame(0., view)).save(folder/name); outputs.append(name)
         if trace is not None:
             name = view+'_last.png'; Image.fromarray(frame(float(trace['time'][-1]), view)).save(folder/name); outputs.append(name)
+    if sample_times and trace is None: raise ValueError('Timed frames require an actual recorded trajectory')
+    for t in sample_times:
+        if not 0. <= t <= float(trace['time'][-1]): raise ValueError('Requested frame is outside the trace')
+        name = f'contact_{t:.3f}s.png'; Image.fromarray(frame(t, 'contact')).save(folder/name); outputs.append(name)
     if movie:
         times = np.arange(int(np.ceil(float(trace['time'][-1])*24)))/24
         for view in cameras:
@@ -67,7 +71,7 @@ def render(folder, movie=False):
     renderer.close()
     receipt = dict(scope='Authored initial setup only' if trace is None else 'Recorded attempted execution; consult independent verdict',
         world_sha256=sha(folder/'world.xml'), trace_sha256=None if trace is None else sha(folder/'trace.npz'),
-        renderer_sha256=sha(__file__), cameras=cameras, movie=movie, fps=24,
+        renderer_sha256=sha(__file__), cameras=cameras, movie=movie, fps=24, sample_times_s=list(sample_times),
         sample_rule='First recorded state at or after the frame time; no invented states',
         presentation_adjustments=['Material gamma and texture origin correction', 'Headlight ambient/diffuse 0.5'],
         outputs={name: sha(folder/name) for name in outputs}, qualified_grasp=False, qualified_paper_branch=False)
@@ -77,4 +81,5 @@ def render(folder, movie=False):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('folder'); p.add_argument('--movie', action='store_true')
-    a = p.parse_args(); render(a.folder, a.movie)
+    p.add_argument('--sample-times', type=float, nargs='*', default=[])
+    a = p.parse_args(); render(a.folder, a.movie, a.sample_times)

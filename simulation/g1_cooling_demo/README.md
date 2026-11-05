@@ -84,6 +84,51 @@ Its interruption record and partial monitor remain; its full in-memory trace
 was not saved. `tool_grasp_02` is the separate attempt on the partitioned room,
 not a continuation spliced onto that baseline.
 
+`tool_grasp_02` ended after 13.955 simulated seconds with loss of opposing
+finger load. Frozen controller replay and continuous physics/native-sensor
+replay are exact, but the physical verdict fails: only 0.346 seconds of
+bilateral contact, no held lift, and an initial sole-contact excursion beyond
+the 1 mm bound. Recorded contacts lie on the finger housings, with an axial
+separation of about 12.7 mm; the tool rotates and falls into the tray. See its
+`final_review_summary.json`, contact diagnosis and recorded stills. An exact
+replay of that failure is not a successful grasp.
+
+### Official three-finger candidate
+
+`fit_dex3_tweezer.py` uses the already pinned official Unitree three-finger
+resource in `analysis/g1_dex3_comparison_01`. It fits original source exterior
+points and checks the actual supported tool mesh, tray and bench plane.
+`dex3_tweezer_fit_01` has no accepted placement; its palm lies below the tool.
+Reversing the tool-axis orientation yields 23 local candidates in `_02`.
+They are geometric proposals, not executed grasps.
+
+The source visual mesh has a palm/thumb-1 assembly overlap throughout the
+221 configurations in `dex3_thumb_interference_01`. It is disclosed rather
+than removed. A separate issue in the earlier static-root inspection caused
+extra native collision reports. The new `hand_self_check.xml` adds only a
+free wrist, preserving the source collision geometry and dynamic parent
+filtering. Native collision checks use the manufacturer's collision shapes;
+original visual triangles still check external tool and tray intersections.
+
+`build_dex3_tool_station.py` replaces the two official wrist/hand subtrees,
+retaining the complete room, other body inertias, free tray and passive tool.
+The model has 43 independent motors. The first three station searches fail
+reach or collision checks. Rotating the authored tray/tool arrangement by
+180 degrees produces five full-body static candidates in
+`runs/dex3_tool_station_04`. This is a different initial arrangement, with
+no executed rearrangement credit. `dex3_pregrasp_01` opens the chosen hand
+before contact and passes initial bounds with no robot/tool contact; its
+overview and contact images show the actual original laboratory.
+
+`dex3_tool_grasp_01` fails after 0.129 seconds: gains transferred from the
+previous hand cause severe finger oscillation and excessive contact. Its
+controller and physical replay reproduce that failure. The subsequent actor
+bounds proportional and damping gains using the robot-only coupled hand
+inertia and the control period, without changing the plant's mass or armature.
+Read the later attempt's own result and independent review before assigning
+any execution outcome. This pickup test does not qualify squeezing the tool
+on a specimen, perception, approach, carrying, a paper branch or reliability.
+
 ## Reproduce
 
 Use Python 3.11+, EGL-capable OpenGL and `requirements.txt`. Current sensor runs also require Linux with bubblewrap and enabled unprivileged namespaces; see [the runtime guide](LABORATORY.md). The workstation environment is `/tmp/sciencegym-sim-venv/bin/python`. Run from the repository root, choosing a new directory so evidence is not overwritten:

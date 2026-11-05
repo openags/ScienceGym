@@ -23,7 +23,7 @@ class Balance:
             a,b=m.eq_obj1id[i],m.eq_obj2id[i];coef=m.eq_data[i,1]
             row=np.zeros(m.nv);row[m.jnt_dofadr[a]]=1;row[m.jnt_dofadr[b]]=-coef
             self.eqj.append(row);self.eqdata.append((m.jnt_qposadr[a],m.jnt_qposadr[b],coef,m.eq_data[i,0]))
-        self.eqj=np.array(self.eqj)
+        self.eqj=np.asarray(self.eqj,dtype=float).reshape(-1,m.nv)
         self.unactuated=np.array([i for i in range(m.nv) if i not in set(self.va)])
 
     def jacobian(self,point,body):
