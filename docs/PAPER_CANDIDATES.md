@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **391**.
+Last screened: **2026-11-05**. Candidate count: **392**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4030,3 +4030,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted scientific text in the nine numbered written Supplementary Information pages, including methods and captions, was read in the same file. Image pixels and supplementary movies were not independently reviewed; raw data and code were not audited. This is not a complete visual or computational review.
 - Physical-model experiments remain distinct from numerical simulations. Scope is prepared inert physical-model specimen identity, custody and linked imaging/morphology-record coordination only; no biomedical or clinical claim is made. Specimen preparation, handling and instrument operation require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
+
+## Additional candidate: soft-robot specimen and characterization records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [An integrated design and fabrication strategy for entirely soft, autonomous robots](https://www.nature.com/articles/nature19100) | Nature / 2016 | 10.1038/nature19100 | Prepared soft-robot specimen identity, design/version tracking and linked characterization records suggest a future long-horizon materials-characterization coordination task. | Public author-hosted main scientific text, Methods, Extended Data captions and table read; supplementary videos and visual/data review remain outstanding. |
+
+- **CANDIDATE only.** Wehner et al., *Nature* **536**, 451-455 (2016). All extracted main scientific prose, Methods, captions for Extended Data Figures 1-8 and Extended Data Table 1 were read from the public [Harvard author-hosted PDF](https://www.gmwgroup.harvard.edu/sites/g/files/omnuum10006/files/gmwgroup/files/1282_0.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The supplementary inventory lists six videos, which were not watched. Figure pixels, raw data and code were not audited. This is not a complete visual or supplementary-media review.
+- Reported alternating arm actuation does not establish locomotion or repeated-run reliability. Candidate scope is prepared specimen identity, design/version tracking and linked characterization-record coordination only. Chemical, pressure, UV/laser and thermal work require specialist qualification and separate safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. The source remains under publisher copyright; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
