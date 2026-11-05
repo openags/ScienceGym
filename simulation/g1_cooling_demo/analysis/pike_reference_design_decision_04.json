@@ -1,0 +1,52 @@
+{
+  "scope": "Inferred reference reconstruction and conditioned initial-state diagnostic; not full asset or manipulation qualification",
+  "optical_recess": "The earlier 0.55 mm optical-face datum correction buried it inside a solid shoulder. Remove only the corresponding shoulder pocket and retain the 0.05 mm face recess; the effective material densities remain explicit assumptions.",
+  "geometry": "The cap adopts the separately versioned inferred open-cup model. Reference, shoulder and cap collision cells preserve their selected outer solids and open cavities.",
+  "prior_failures": [
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_support_01/port_center.json",
+      "sha256": "ae524f3b3e6a58691e8a6c0062d3be8d954996dfa2ce607e689d5a3819216bfe"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_support_02/review.json",
+      "sha256": "0f682d55b270565e1f32b3feb595b0123249e6e2b663e8be6b63850778fc8815"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_support_03/review.json",
+      "sha256": "adc1d31f09795e9db9bfaf7e29de37af34112bb297ccf4a8af205be004d0903d"
+    }
+  ],
+  "numerical_comparisons": [
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_ccd_01/comparison.json",
+      "sha256": "120cc755dee7214353d892e28f0092ecc165ce40d286ad505951e75a9e8aac7e"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_margin_01/comparison.json",
+      "sha256": "92c375d2f6fb0d8139a464f8afaf10c76a170e030bed0a89677e649b9e2485d6"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_yaw_01/comparison.json",
+      "sha256": "3cc7de11fd664d74498fa5305d02b4c702b843168eed98adf34a5cd5e3f5bf69"
+    }
+  ],
+  "known_limits": [
+    "The retained 2 mm release damages the optical-face contact condition and generates excessive forces.",
+    "Exact concentric zero-yaw convex-cell alignment generates spurious opposing normal loads; changing collision algorithms or adding margins did not fix it.",
+    "A 0.1 s yaw sensitivity diagnostic supports testing the unprescribed 1.875 degree initial optical-axis orientation; it does not qualify arbitrary rotations.",
+    "The current component cases start 20 micrometres above support. Robot placement must separately demonstrate supported release; this is not evidence that the robot can position to 20 micrometres.",
+    "Complete-room testing and every manipulation remain separate requirements."
+  ],
+  "selected_component": "analysis/pike_reference_support_04",
+  "selected_changes": {
+    "reference_yaw_degrees": 1.875,
+    "reference_release_gap_m": 2e-05,
+    "cap_release_gap_m": 2e-05,
+    "shoulder_partition_offset_m": [
+      0.0011,
+      0.0017
+    ]
+  },
+  "physical_acceptance_limits_relaxed": false,
+  "qualified_paper_branch": false
+}

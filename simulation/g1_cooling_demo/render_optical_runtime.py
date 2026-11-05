@@ -41,6 +41,9 @@ def main():
     views=dict(room=dict(lookat=(pelvis+[.12,0.,.15]).tolist(),distance=2.5,azimuth=135.,elevation=-18.),
         specimen=dict(lookat=specimen.tolist(),distance=.38,azimuth=135.,elevation=-55.),
         instrument=dict(lookat=port.tolist(),distance=.55,azimuth=135.,elevation=-88.))
+    if binding.get('passive_reference_binding'):
+        cap=d.body('pike_reference_cap').xpos.copy()
+        views['reference_storage']=dict(lookat=(cap+[0.,0.,.02]).tolist(),distance=.24,azimuth=135.,elevation=-50.)
     renderer=mujoco.Renderer(m,height=720,width=1280,max_geom=m.ngeom+1000)
     option=mujoco.MjvOption();option.geomgroup[3]=0;option.sitegroup[:]=0
     camera=mujoco.MjvCamera();outputs={}

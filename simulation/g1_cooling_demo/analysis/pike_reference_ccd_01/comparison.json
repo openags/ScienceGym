@@ -1,0 +1,159 @@
+{
+  "scope": "Compare native collision pipelines on a preserved failed reference placement.\n\nShort component diagnostics only. Keep geometry, friction, compliance, mass and\ninitial states fixed; report spurious lateral loads at coplanar cell boundaries.\nThis does not qualify support, manipulation or the full laboratory.\n",
+  "source_model_sha256": "111c7a44994bb416c5dfb86fabea8c58a692aa4493f10c5ecf2c241ea88c02e5",
+  "source_contract_sha256": "d985b4ef8c0fbfd901fecfd8c7290f6160461d876f53e467cd0df5f77a779a8b",
+  "script_sha256": "677cb82c716b06ed55a59efd1df70cb4c6e48800690e8551ef76afbe972fc7ff",
+  "documentation": "https://mujoco.readthedocs.io/en/stable/computation.html#convex-collisions",
+  "variants": [
+    {
+      "name": "native_multi",
+      "disableflags": 0,
+      "duration_s": 0.10000000000000184,
+      "maximum_normal_load_n": 4029.184423938929,
+      "maximum_lateral_normal_load_n": 3096.7074542714618,
+      "maximum_optical_face_load_n": 0.0,
+      "maximum_penetration_m": 1.3602298080728294e-05,
+      "final_speed": 1.8028159907823407e-10,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0039999999999999975,
+        "normal_force_n": 14.49570373971104,
+        "geoms": [
+          "panel_cell_66",
+          "pike_reference_shoulder_cell_31"
+        ],
+        "normal": [
+          0.9238789298372145,
+          -0.38268488733156475,
+          -3.297132777847257e-06
+        ],
+        "position_m": [
+          0.0488027580814073,
+          0.011248821997057169,
+          0.1019864455193828
+        ]
+      }
+    },
+    {
+      "name": "native_single",
+      "disableflags": 524288,
+      "duration_s": 0.10000000000000184,
+      "maximum_normal_load_n": 1570.5143658264992,
+      "maximum_lateral_normal_load_n": 1207.1482486787745,
+      "maximum_optical_face_load_n": 0.0,
+      "maximum_penetration_m": 1.3636044472224329e-05,
+      "final_speed": 8.026175125037504e-06,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0029999999999999988,
+        "normal_force_n": 13.96103831181262,
+        "geoms": [
+          "panel_cell_5",
+          "pike_reference_shoulder_cell_92"
+        ],
+        "normal": [
+          -0.321437486640756,
+          0.9469308011572839,
+          1.303273954793063e-06
+        ],
+        "position_m": [
+          0.0182672289036791,
+          -0.017377233040286884,
+          0.10198904044745326
+        ]
+      }
+    },
+    {
+      "name": "libccd_single",
+      "disableflags": 655360,
+      "duration_s": 0.10000000000000184,
+      "maximum_normal_load_n": 1625.631246632378,
+      "maximum_lateral_normal_load_n": 1249.5787569593513,
+      "maximum_optical_face_load_n": 0.0,
+      "maximum_penetration_m": 1.3620700811903416e-05,
+      "final_speed": 9.268229737981164e-07,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0029999999999999988,
+        "normal_force_n": 14.73580990359124,
+        "geoms": [
+          "panel_cell_87",
+          "pike_reference_shoulder_cell_10"
+        ],
+        "normal": [
+          0.5555703886850224,
+          0.8314695082902157,
+          -1.9185673800898155e-08
+        ],
+        "position_m": [
+          0.02091715695217471,
+          0.0027507481716599756,
+          0.10199140598103232
+        ]
+      }
+    },
+    {
+      "name": "libccd_multi",
+      "disableflags": 131072,
+      "duration_s": 0.10000000000000184,
+      "maximum_normal_load_n": 3627.886946596038,
+      "maximum_lateral_normal_load_n": 2790.66858885789,
+      "maximum_optical_face_load_n": 0.0,
+      "maximum_penetration_m": 1.3503657567995708e-05,
+      "final_speed": 1.6676954669136523e-05,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0029999999999999988,
+        "normal_force_n": 13.771026248461,
+        "geoms": [
+          "panel_cell_87",
+          "pike_reference_shoulder_cell_10"
+        ],
+        "normal": [
+          0.5555703889912983,
+          0.8314695080855674,
+          -4.574064232128205e-08
+        ],
+        "position_m": [
+          0.02091715644281155,
+          0.002750749248234664,
+          0.10199143505263357
+        ]
+      }
+    }
+  ],
+  "qualified_support": false,
+  "qualified_paper_branch": false
+}

@@ -36,11 +36,30 @@ def main():
     mass=float(m.body_mass[cid]);initial_xy=d.body(cid).xpos[:2].copy()
     peak_pen=0.;peak_force=0.;tail_speed=0.;tail_omega=0.;tail_support=[];contacts=set();samples=[]
     specimen_contact_geoms=set()
+    reference_checks={}
+    if binding.get('passive_reference_binding'):
+        for name in ['pike_reference','pike_reference_cap']:
+            body=m.body(name);joint=m.joint(name+'_free')
+            reference_checks[name]=dict(body=int(body.id),address=int(joint.dofadr[0]),
+                mass_kg=float(m.body_mass[body.id]),initial_xy=d.body(name).xpos[:2].copy(),
+                peak_pen=0.,peak_force=0.,tail_speed=0.,tail_omega=0.,tail_support=[],
+                contacts=set(),own_geoms=set())
     external=False
     for i,control in enumerate(controls):
         d.ctrl[:]=control;mujoco.mj_step(m,d);force_z=0.;normal_load=0.
+        reference_loads={name:[0.,0.] for name in reference_checks}
         for ci,c in enumerate(d.contact):
             bodies=m.geom_bodyid[c.geom]
+            for name,stats in reference_checks.items():
+                if sum(b==stats['body'] for b in bodies)!=1:continue
+                f=np.zeros(6);mujoco.mj_contactForce(m,d,ci,f)
+                own=1 if bodies[1]==stats['body'] else 0
+                reference_loads[name][0]+=float((1. if own==1 else -1.)*(c.frame.reshape(3,3).T@f[:3])[2])
+                reference_loads[name][1]+=float(f[0])
+                stats['peak_pen']=max(stats['peak_pen'],max(0.,-float(c.dist)))
+                if f[0]>1e-8:
+                    stats['contacts'].add(m.geom(int(c.geom[1-own])).name)
+                    stats['own_geoms'].add(m.geom(int(c.geom[own])).name)
             if sum(b==cid for b in bodies)!=1:continue
             f=np.zeros(6);mujoco.mj_contactForce(m,d,ci,f)
             sign=1. if bodies[1]==cid else -1.
@@ -50,6 +69,12 @@ def main():
                 contacts.add(m.body(next(b for b in bodies if b!=cid)).name)
                 specimen_contact_geoms.add(m.geom(int(c.geom[1 if bodies[1]==cid else 0])).name)
         peak_force=max(peak_force,normal_load)
+        for name,stats in reference_checks.items():
+            stats['peak_force']=max(stats['peak_force'],reference_loads[name][1])
+            if i>=25000:
+                stats['tail_support'].append(reference_loads[name][0]);address=stats['address']
+                stats['tail_speed']=max(stats['tail_speed'],float(np.linalg.norm(d.qvel[address:address+3])))
+                stats['tail_omega']=max(stats['tail_omega'],float(np.linalg.norm(d.qvel[address+3:address+6])))
         external=external or bool(np.any(d.xfrc_applied) or np.any(d.qfrc_applied))
         if i>=25000:
             tail_support.append(force_z)
@@ -66,6 +91,25 @@ def main():
         bounded_contact_load=peak_force<=1.,stable_last_half_second=tail_speed<.005 and tail_omega<.02,
         support_balances_weight=abs(float(np.mean(tail_support))-mass*9.81)<=.05*mass*9.81,
         placement_retained=np.linalg.norm(d.body(cid).xpos[:2]-initial_xy)<.0001)
+    reference_reports={}
+    for name,stats in reference_checks.items():
+        reference_contacts=stats['contacts']
+        intended=(bool(reference_contacts) and all(n.startswith('optical_panel_cell_') for n in reference_contacts)
+                  if name=='pike_reference' else
+                  reference_contacts=={binding['passive_reference_binding']['cap_initial_support']['geom']})
+        own_checks=dict(intended_support_only=intended,
+            no_optical_face_load='pike_reference_optical_face' not in stats['own_geoms'],
+            bounded_penetration=stats['peak_pen']<=.00025,bounded_contact_load=stats['peak_force']<=20.,
+            stable_last_half_second=stats['tail_speed']<.005 and stats['tail_omega']<.02,
+            support_balances_weight=abs(float(np.mean(stats['tail_support']))-stats['mass_kg']*9.81)<=.05*stats['mass_kg']*9.81,
+            placement_retained=np.linalg.norm(d.body(name).xpos[:2]-stats['initial_xy'])<.0001)
+        checks[name+'_support']=all(own_checks.values())
+        reference_reports[name]=dict(checks={k:bool(v) for k,v in own_checks.items()},
+            maximum_penetration_m=stats['peak_pen'],maximum_normal_load_n=stats['peak_force'],
+            last_half_second_peak_speed_m_s=stats['tail_speed'],
+            last_half_second_peak_angular_speed_rad_s=stats['tail_omega'],
+            last_half_second_mean_support_n=float(np.mean(stats['tail_support'])),mass_kg=stats['mass_kg'],
+            contact_geoms=sorted(reference_contacts),object_contact_geoms=sorted(stats['own_geoms']))
     np.savez_compressed(out/'trace.npz',time=np.array([s[0] for s in samples]),
         qpos=np.array([s[1] for s in samples]),qvel=np.array([s[2] for s in samples]),ctrl=np.array([s[3] for s in samples]))
     report=dict(scope=__doc__,binding_sha256=sha(scene/'binding.json'),world_sha256=sha(scene/'world.xml'),
@@ -76,6 +120,7 @@ def main():
         last_half_second_peak_speed_m_s=tail_speed,last_half_second_peak_angular_speed_rad_s=tail_omega,
         last_half_second_mean_support_n=float(np.mean(tail_support)),mass_kg=mass,
         contact_bodies=sorted(contacts),specimen_contact_geoms=sorted(specimen_contact_geoms),
+        reference_and_cap=reference_reports,
         qualified_robot_handling=False,qualified_paper_branch=False)
     (out/'review.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
     if not report['passed_asset_support']:raise SystemExit(1)

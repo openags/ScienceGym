@@ -21,6 +21,24 @@
 <p>样片在积分球原始面板上的五种放置位置均通过支撑检查。完整房间内另完成一次 3 秒托盘支撑检查：2 毫米释放高度，最大瞬时穿透 0.154 毫米，低于 0.25 毫米上限。该场景检查使用既有站立电机指令回放。</p>
 <div class="links"><a href="../../simulation/g1_cooling_demo/analysis/bare_optical_coupon_support_08/review.json">五种位置的支撑记录</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_03/review.json">完整场景支撑检查</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_01/review.json">保留的首次失败</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/binding.json">初始配置与接口绑定</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/review.json">图像来源与检查姿态</a></div>
 <p class="note">以上为资产与初始场景检查。安装尺寸、材料参数仍含明确记录的推断；参考件取放、样片翻面与装卸、设备接线和完整实验分支尚未完成验证。</p>
+<h2>金参考件与保护盖</h2>
+<p>参考件与保护盖已接入同一完整实验室，作为独立自由刚体参与接触计算。参考件补出了露出金色光学面的凹槽；保护盖保留开口和内腔。</p>
+<p>组件的六种放置配置中五种通过。向一侧偏移 0.5 毫米的配置仍有过大接触力；零角度网格重合也有数值问题。当前采用绕光轴转过 1.875° 的初始配置，尚未完成全部放置姿态与机器人取放验收。</p>
+<p id="reference-support-status">完整房间初始支撑：正在读取评估记录。</p>
+<details><summary>查看参考件工位、保护盖与完整房间</summary>
+<p>以下是初始配置与单独开盖检查图，不代表机器人已执行这些操作。</p>
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="接入自由参考件与保护盖的完整实验室" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/inspection/initial_room.png">
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="仪器端口上的独立金参考件，光学面朝下" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/inspection/inspection_open_instrument.png">
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="原 FTIR 台面上的独立空心保护盖" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/inspection/initial_reference_storage.png"></details>
+<div class="links"><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_support_04/review.json">全部六种组件配置与失败记录</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_06/review.json">完整房间初始支撑评估</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/binding.json">自由物体与场景绑定</a><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_design_decision_04.json">尺寸推断与已知限制</a></div>
+<script>
+fetch('../../simulation/g1_cooling_demo/analysis/optical_runtime_support_06/review.json',{cache:'no-store'})
+  .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})
+  .then(r=>{document.getElementById('reference-support-status').textContent=r.passed_asset_support
+    ? '完整房间内的 3 秒初始支撑检查通过。机器人取放、偏移放置与完整实验流程仍未通过验收。'
+    : '完整房间初始支撑检查尚有未通过项目，详见评估记录。'})
+  .catch(()=>{document.getElementById('reference-support-status').textContent='完整房间初始支撑：尚无已完成的评估记录。'});
+</script>
 <h2>连续行走接近与滑窗操作</h2><p>G1 / Inspire 双手 · 沿通道接近 FTIR 工位、推动滑窗、撤手并用视觉确认开口</p>
 <video id="approach" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/ftir_approach_11/slider_frame_1599.png" src="../../simulation/g1_cooling_demo/runs/ftir_approach_11/slider.mp4"></video>
 <p id="approach-status">正在读取连续接近记录…</p><div class="chapters" id="approach-chapters"></div>

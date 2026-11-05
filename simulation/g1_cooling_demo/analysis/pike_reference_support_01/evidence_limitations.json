@@ -1,0 +1,15 @@
+{
+  "scope": "Evidence limitation of this terminated development diagnostic",
+  "preserved": [
+    "world.xml",
+    "contract.json",
+    "model_inputs.json",
+    "source_snapshot/",
+    "port_center.json",
+    "termination.json"
+  ],
+  "raw_trace_available": false,
+  "reason": "The initial builder saved the combined trace only after all six cases. This run was deliberately stopped after the first failed case; its original sample buffer was not persisted. The recorded force metrics remain available, but exact trajectory replay is not claimed.",
+  "followup": "The builder now writes a separate trace before publishing each case result. Later completed component runs retain their full combined traces.",
+  "termination_sha256": "9d6808df71822ae7b14f9ae808edf23e6ca6eaba007a03b30c9c10bc5fa295aa"
+}
