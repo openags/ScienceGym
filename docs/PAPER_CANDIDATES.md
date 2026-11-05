@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **388**.
+Last screened: **2026-11-05**. Candidate count: **389**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3997,3 +3997,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted scientific prose, captions and tabular text in the **20-page written Supplementary Information** within the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2016-04.pdf) were read. Equation extraction was corrupted and equations were not validated. Figure pixels, supplementary movies, raw data and code were not audited. This is not a complete visual or mathematical review.
 - Ordinary swelling examples are not reversible; thermal reversibility belongs to a separate material variant. Scope is prepared-specimen identity, geometry/version tracking, hydration-state history and linked mechanics/imaging records only. Material preparation, handling and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public author-hosted copies. The source carries publisher copyright; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, movies, code, data or other source assets redistributed.
+
+## Additional candidate: kirigami sheet configuration and deployment records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Programming shape using kirigami tessellations](https://www.nature.com/articles/s41563-019-0452-y) | Nature Materials / 2019 | 10.1038/s41563-019-0452-y | Prepared-sheet identity, geometry/version tracking, fixture configuration and linked deployment-image records suggest a future long-horizon materials-characterization coordination task. | Public author-hosted main scholarly prose including Methods and extracted written scientific SI content read; equation and visual-review limits remain. |
+
+- **CANDIDATE only.** Choi, Dudte and Mahadevan, *Nature Materials* **18**, 999-1004 (2019). All extracted main scholarly prose, including Methods, was read from the lawful public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2019-13.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Extracted written scientific content in all **20 numbered Supplementary Information pages**, including Sections 1-7 and captions, was read in the same file. Equation extraction was imperfect and mathematics was not audited. Figure pixels were not audited; this is not a complete visual or mathematical review.
+- Reported physical demonstrations used manual manipulation, not autonomous robotic tests. Scope is prepared-sheet identity, geometry/version tracking, fixture configuration and deployment-image record coordination only. Material preparation, cutting, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. The official publisher page offered a subscription preview; full publisher access was not established. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, data, code or other source assets redistributed.
