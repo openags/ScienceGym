@@ -43,6 +43,10 @@ def main():
         if model.body_parentid[b] in bodies:bodies.add(b)
     geoms=np.flatnonzero(np.isin(model.geom_bodyid,list(bodies)))
     camera=ToolCameras(model);rows=[]
+    previous_samples=int(model.vis.quality.offsamples);model.vis.quality.offsamples=0
+    try:segmenter=mujoco.Renderer(model,height=480,width=640,max_geom=model.ngeom+1000)
+    finally:model.vis.quality.offsamples=previous_samples
+    segmenter.enable_segmentation_rendering()
     source=out/'source';source.mkdir()
     for name in ['evaluate_held_tool_visibility.py','tool_cameras.py','tool_observation.py','sensor_rendering.py']:
         shutil.copyfile(Path(__file__).parent/name,source/name)
@@ -57,7 +61,7 @@ def main():
             D,df=calibration['head_depth'];C,cf=calibration['head_rgb']
             proposal,points=detect(frame['head_rgb'],frame['head_depth'],D,C,df,cf,[lo,hi],24.)
             # The diagnostic mask is generated after detector inference.
-            camera.rgb.enable_segmentation_rendering();seg=camera.rgb.render().copy();camera.rgb.disable_segmentation_rendering()
+            segmenter.update_scene(data,camera='head_rgb',scene_option=camera.option);seg=segmenter.render().copy()
             mask=np.isin(seg[:,:,0],geoms)&(seg[:,:,1]==int(mujoco.mjtObj.mjOBJ_GEOM))
             prefix=f'{requested:06.3f}s'
             Image.fromarray(frame['head_rgb']).save(out/(prefix+'_rgb.png'))
@@ -69,9 +73,9 @@ def main():
                      detector_used_evaluator_mask=False,files={name:sha(out/name) for name in
                          [prefix+'_rgb.png',prefix+'_evaluator_tool_mask.png',prefix+'_sensor_inputs.npz']})
             rows.append(row);print(json.dumps(dict(time_s=requested,visible_tool_pixels=row['evaluator_visible_tool_pixels'],candidate_found=proposal['candidate_found'])),flush=True)
-    finally:camera.close()
+    finally:camera.close();segmenter.close()
     report=dict(scope=__doc__,source_result_sha256=sha(run/'result.json'),source_trace_sha256=result['trace_sha256'],
-                source_sha256={f.name:sha(f) for f in source.iterdir()},rows=rows,online_tool_tracking_qualified=False)
+                source_sha256={f.name:sha(f) for f in source.iterdir()},rows=rows,segmentation_multisampling=False,online_tool_tracking_qualified=False)
     (out/'review.json').write_text(json.dumps(report,indent=2)+'\n')
 
 
