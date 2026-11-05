@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **393**.
+Last screened: **2026-11-05**. Candidate count: **394**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4052,3 +4052,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted written scientific content in the **44-page Supplementary Materials**, including Methods, six sections, captions for Figures S1-S20 and supplementary-video captions, was read from the public [author-hosted supplement](https://blog.espci.fr/benoitroman/files/2023/08/Gao23_Supp.pdf). Some equations extracted imperfectly and mathematics was not audited. Figure pixels, supplementary movies and raw data were not audited. This is not a complete visual or mathematical review.
 - Scope is prepared-sheet identity, configuration history and linked mechanical and imaging-record coordination only. Specimen preparation, fixture loading, pressure equipment and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public author-hosted copies. The publisher's author-access route returned **HTTP 403** and was not retried; publisher full-text access was not established. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: plant-biomechanics specimen and measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [How the Venus flytrap snaps](https://www.nature.com/articles/nature03185) | Nature / 2005 | 10.1038/nature03185 | Specimen identity, state/history tracking and linked geometry, imaging and mechanical records suggest a future long-horizon plant-biomechanics characterization task. | Public author-hosted main scholarly text including Methods and written scientific SI text read; equation, image and movie review limits remain. |
+
+- **CANDIDATE only.** Forterre et al., *Nature* **433**, 421-425 (2005). All extracted scholarly prose and captions in the five-page main article, including Methods, were read from the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2005-07.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted written scientific prose and captions in the six-page Supplementary Information were read in the same file. Equation extraction was imperfect and mathematics was not audited. Figures and the supplementary movie were not fully audited. This is not a complete visual or mathematical review.
+- Scope is specimen identity, state/history tracking and linked geometry, imaging and mechanical-record coordination only. Living and excised plant states, biological variability and robot feasibility require separate assessment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
