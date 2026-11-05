@@ -6,6 +6,7 @@ native camera and proprioceptive inputs as the visual pickup. A rigid grasp
 hypothesis is used for collision planning only; the plant tool stays passive.
 """
 import argparse
+import copy
 import itertools
 import json
 import pickle
@@ -36,7 +37,12 @@ class CarryClearance:
     arm guard. The independent full-plant evaluator retains those obligations.
     """
     def __init__(self, actor):
-        p=actor.planner;self.m=p.m;self.d=mujoco.MjData(self.m)
+        p=actor.planner
+        # The state predictor disables native contacts. Use an independent
+        # copy to screen the actual source collision shapes as well as meshes.
+        self.m=copy.copy(p.m)
+        self.m.opt.disableflags &= ~int(mujoco.mjtDisableBit.mjDSBL_CONTACT)
+        self.d=mujoco.MjData(self.m)
         # The pickup planner's positive-elbow search family is not a source
         # limit. Loaded withdrawal may use the complete official joint range,
         # retaining ArmIK's 5 mrad source-limit margin and geometric checks.
@@ -56,6 +62,11 @@ class CarryClearance:
 
     def check(self,q):
         self.d.qpos[:]=q;mujoco.mj_kinematics(self.m,self.d);mujoco.mj_comPos(self.m,self.d)
+        mujoco.mj_collision(self.m,self.d)
+        penetrations=[dict(parts=[self.m.geom(g).name for g in c.geom],distance_m=float(c.dist))
+            for c in self.d.contact if c.dist<0.]
+        if penetrations:
+            return dict(clear=False,kind='native_source_self_contact',contacts=penetrations)
         self.clearance.fixed_state=self.d.qpos[self.clearance.fixed].copy()
         arm=self.clearance.check(.001)
         if not arm['clear']:return arm
