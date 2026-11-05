@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **389**.
+Last screened: **2026-11-05**. Candidate count: **390**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4008,3 +4008,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Extracted written scientific content in all **20 numbered Supplementary Information pages**, including Sections 1-7 and captions, was read in the same file. Equation extraction was imperfect and mathematics was not audited. Figure pixels were not audited; this is not a complete visual or mathematical review.
 - Reported physical demonstrations used manual manipulation, not autonomous robotic tests. Scope is prepared-sheet identity, geometry/version tracking, fixture configuration and deployment-image record coordination only. Material preparation, cutting, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the public author-hosted copy. The official publisher page offered a subscription preview; full publisher access was not established. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, data, code or other source assets redistributed.
+
+## Additional candidate: biomimetic spring configuration and deformation records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [How the Cucumber Tendril Coils and Overwinds](https://doi.org/10.1126/science.1223304) | Science / 2012 | 10.1126/science.1223304 | Prepared biomimetic-spring specimen identity, configuration history and linked deformation/imaging records suggest a future long-horizon mechanics-characterization coordination task. | Public author-hosted main scholarly prose and written scientific SI prose/captions read; equation and visual-review limits remain. |
+
+- **CANDIDATE only.** *Science* **337**, 1087-1091 (2012). All main scholarly prose was read from the lawful public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2012-18.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Written Supplementary Information Sections 1-3 and captions for Supplementary Figures S1-S5 were read in the same file. Equation extraction was partially garbled and equations were not validated. Figure pixels, supplementary movies and raw data were not audited. This is not a complete visual or mathematical review.
+- Measurements of 20 tendrils varied; the two illustrated extreme examples do not establish repeated-run reliability. Scope is prepared biomimetic-spring specimen identity, configuration history and linked deformation/imaging records only. Specimen preparation, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
