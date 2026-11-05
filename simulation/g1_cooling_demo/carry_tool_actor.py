@@ -123,6 +123,7 @@ def plan_carry_arm(actor):
     for r in itertools.product([-.4,-.2,0.,.2,.4],[-.8,-.6,-.4,-.2,0.,.2,.4,.6,.8],[-.4,-.2,0.,.2,.4]):
         if np.linalg.norm(r)<=.8+1e-12:candidates.add(r)
     candidates=[np.asarray(r) for r in sorted(candidates,key=lambda r:(np.linalg.norm(r),r))]
+    if actor.body_withdrawal:candidates=[np.zeros(3)]
     for r in candidates:
         guard.d.qpos[:]=q;mujoco.mj_kinematics(actor.m,guard.d)
         goal,pe,re=ik.solve(guard.d,end,R@Rotation.from_rotvec(r).as_matrix(),q[ik.qa])
@@ -153,6 +154,18 @@ class LoadedWalker(QuasistaticWalker):
         # estimator from a physical base pose or assume the feet did not move.
         self.estimate.anchors=actor.estimate.anchors.copy()
         self.estimate.last_time=actor.last_time
+
+    def begin_step(self,t):
+        super().begin_step(t)
+        if self.phase=='shift' and self.actor.support_inset_m:
+            feet=np.asarray(self.balance.foot_positions)
+            direction=feet[self.swing,:2]-feet[1-self.swing,:2]
+            direction/=np.linalg.norm(direction)
+            # Keep COM inside the stance sole, with 15 mm remaining to the
+            # balance controller's conservative 25 mm lateral COP boundary.
+            # Reaching the sole center required ankle angles outside the
+            # 10 mrad source margin in the zero-rotation carrying trial.
+            self.shift_to[:2]+=self.actor.support_inset_m*direction
 
     def control_tasks(self,t):
         a=self.actor
@@ -191,6 +204,19 @@ class ToolActor(VisualPickup):
             raise ValueError('Carry load observer bound exceeds half the source motor effort rating')
         self.finger_load_compensation=bool(prior.get('carry_finger_load_compensation',False))
         self.body_joint_damper=bool(prior.get('carry_body_joint_damper',False))
+        self.body_withdrawal=bool(prior.get('carry_body_withdrawal',False))
+        self.support_inset_m=float(prior.get('carry_support_inset_m',0.))
+        if not 0.<=self.support_inset_m<=.01:
+            raise ValueError('Carrying support target inset must be 0 to 10 mm')
+        self.proximal_preshape=float(prior.get('carry_proximal_preshape_rad',0.))
+        if not 0.<=self.proximal_preshape<=.08:
+            raise ValueError('Supported proximal preshape must be 0 to 0.08 rad')
+        self.preshape_indices=np.array([self.names.index('right_hand_'+f+'_0_joint')
+                                       for f in ['index','middle']])
+        self.preshape_duration=12.
+        if np.any(self.initial[self.preshape_indices]+self.proximal_preshape>
+                  self.m.jnt_range[self.m.actuator_trnid[self.preshape_indices,0],1]-.01):
+            raise ValueError('Preshape violates the unchanged source joint margin')
         self.prelift_load_dwell=float(prior.get('carry_prelift_proxy_dwell_s',.5))
         if not .5<=self.prelift_load_dwell<=2.:
             raise ValueError('Pre-lift load dwell outside the development range')
@@ -225,6 +251,9 @@ class ToolActor(VisualPickup):
         super().abort(reason,t)
 
     def change(self,phase,t):
+        if phase=='lift' and self.phase=='close' and self.proximal_preshape:
+            if t-self.phase_started<self.preshape_duration:
+                return
         if phase=='close' and self.phase=='settle' and self.preload_before_lift:
             # Establish the carrying grasp while the tool is still supported.
             # Increasing force after pickup made the slender tool migrate out
@@ -243,7 +272,7 @@ class ToolActor(VisualPickup):
             self.return_rotation=self.wrist_rotation.copy()
             self.carry_pelvis_rotation=self.d.body('pelvis').xmat.reshape(3,3).copy()
             forward=self.carry_pelvis_rotation[:,0].copy();forward[2]=0.;forward/=np.linalg.norm(forward)
-            self.withdraw_delta=-.10*forward
+            self.withdraw_delta=-(0. if self.body_withdrawal else .10)*forward
             self.raised_wrist=self.return_wrist+np.array([0.,0.,.05])
             self.retracted_wrist=self.raised_wrist+self.withdraw_delta
             self.origin_feet=np.mean(self.estimate.anchors,axis=0)[:2].copy()
@@ -261,7 +290,8 @@ class ToolActor(VisualPickup):
             self.retracted_wrist+=(self.return_rotation-final_rotation)@self.carry_center_offset
             self.events.append(dict(time_s=t,kind='carry_goal',distance_m=self.distance,
                 source='Authored local out-and-back task relative to sensor-derived stance',
-                inferred_payload_transform=True))
+                inferred_payload_transform=True,
+                withdrawal_mode='body_translation' if self.body_withdrawal else 'arm_then_body'))
             preload=bool(np.any(self.carry_force>self.hold_force))
             self.hold_force=self.carry_force.copy()
             self.motor_load_abort_nm=self.carry_motor_load_abort_nm
@@ -316,6 +346,14 @@ class ToolActor(VisualPickup):
         return False
 
     def before_target(self,t,dt):
+        if self.phase=='close' and self.proximal_preshape:
+            # Move the two proximal finger joints while the tool is supported.
+            # The distal force servos remain active and can open as needed.
+            # The 12 s ramp keeps the compensating distal reference speed
+            # within the existing 0.015 rad/s cap. This is an authored grasp
+            # hypothesis based on source kinematics, not a measured slip pose.
+            u=self.blend((t-self.phase_started)/self.preshape_duration)
+            self.command[self.preshape_indices]=self.initial[self.preshape_indices]+u*self.proximal_preshape
         if self.phase not in self.transport_phases:return
         elapsed=t-self.phase_started
         if self.phase=='carry_preload':
@@ -329,7 +367,13 @@ class ToolActor(VisualPickup):
         elif self.phase=='carry_raise':
             u=self.blend(elapsed/3.);self.arm_reference('raise',u)
             self.wrist_position=self.return_wrist+u*(self.raised_wrist-self.return_wrist)
-            if self.settled(t,3.):self.change('carry_retract',t)
+            if self.settled(t,3.):
+                if self.body_withdrawal:
+                    # Keep the raised grasp orientation; actual foot-driven
+                    # body translation performs withdrawal from the bench.
+                    # No empty arm-retraction stage is recorded as executed.
+                    self.start_walk(self.out_feet,t);self.change('carry_walk_out',t)
+                else:self.change('carry_retract',t)
         elif self.phase=='carry_retract':
             u=self.blend(elapsed/6.);self.arm_reference('retract',u)
             self.wrist_position=self.raised_wrist+u*self.withdraw_delta
@@ -348,7 +392,7 @@ class ToolActor(VisualPickup):
             elif elapsed>100.:self.abort('Loaded stepping exceeded development timeout',t)
         elif self.phase=='carry_align':
             self.wrist_position=self.align_from+self.blend(elapsed/2.)*(self.retracted_wrist-self.align_from)
-            if self.settled(t,2.):self.change('carry_extend',t)
+            if self.settled(t,2.):self.change('carry_descend' if self.body_withdrawal else 'carry_extend',t)
         elif self.phase=='carry_extend':
             u=self.blend(elapsed/6.);self.arm_reference('retract',1-u)
             self.wrist_rotation=self.return_rotation@Rotation.from_rotvec((1-u)*self.carry_rotation_delta).as_matrix()

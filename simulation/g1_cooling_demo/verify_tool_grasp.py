@@ -168,6 +168,7 @@ def physics(folder):
         sole_floor=rest.site_xpos[sole_ids,2].copy();sole_lifts=np.zeros(2)
         base_excursion=0.;lost_load=0.;maximum_lost_load=0.;held_carry_s=0.
         wrist_tool_initial=None;wrist_tool_drift=0.
+        wrist_rotation_initial=None;wrist_rotation_change=0.
         prelift_loaded_s=0.
         first_lift=carry_phases.get('lift',float('inf'))
     started = time.monotonic(); compared_sensors = 0
@@ -239,6 +240,10 @@ def physics(folder):
             relative=wrist.xmat.reshape(3,3).T@(d.body('tweezer').xpos-wrist.xpos)
             if wrist_tool_initial is None:wrist_tool_initial=relative.copy()
             wrist_tool_drift=max(wrist_tool_drift,float(np.linalg.norm(relative-wrist_tool_initial)))
+            rotation=wrist.xmat.reshape(3,3)
+            if wrist_rotation_initial is None:wrist_rotation_initial=rotation.copy()
+            angle=float(np.arccos(np.clip((np.trace(rotation@wrist_rotation_initial.T)-1.)/2.,-1.,1.)))
+            wrist_rotation_change=max(wrist_rotation_change,angle)
         points = {label: d.xpos[b]+d.xmat[b].reshape(3, 3)@point for label, (b, point) in endpoints.items()}
         gap = float(np.linalg.norm(points['positive']-points['negative']))
         if loaded: min_gap = min(min_gap, gap)
@@ -291,6 +296,11 @@ def physics(folder):
     if carrying:
         expected=['carry_raise','carry_retract','carry_walk_out','carry_pause','carry_walk_back',
                   'carry_align','carry_extend','carry_descend','lower','release','withdraw','rest','finished']
+        if carry_limits.get('withdrawal_mode')=='body_translation':
+            assert carry_limits['arm_withdrawal_m']==0.
+            expected=[p for p in expected if p not in {'carry_retract','carry_extend'}]
+            checks['held_wrist_orientation_stable']=(wrist_rotation_initial is not None and
+                wrist_rotation_change<=carry_limits['maximum_wrist_rotation_change_rad'])
         times=[carry_phases.get(p,float('nan')) for p in expected]
         checks.update(loaded_route_order=bool(np.isfinite(times).all() and np.all(np.diff(times)>0.)),
             base_moved_while_tool_held=base_excursion>=carry_limits['minimum_actual_base_excursion_m'],
@@ -325,6 +335,8 @@ def physics(folder):
             maximum_sole_lifts_while_held_m=sole_lifts.tolist(),held_carry_s=held_carry_s,
             maximum_contiguous_lost_load_s=maximum_lost_load,maximum_tool_wrist_position_drift_m=wrist_tool_drift))
         if carry_limits.get('preload_before_lift'):report['carry_metrics']['native_prelift_loaded_s']=prelift_loaded_s
+        if carry_limits.get('withdrawal_mode')=='body_translation':
+            report['carry_metrics']['maximum_wrist_rotation_change_rad']=wrist_rotation_change
     np.savez_compressed(folder/'physical_samples.npz', samples=np.asarray(samples))
     (folder/'physical_review.json').write_text(json.dumps(report, indent=2)+'\n')
     return report

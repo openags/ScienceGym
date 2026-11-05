@@ -50,15 +50,27 @@ def main():
     for t in args.times:
         if not times[0]<=t<=times[-1]:raise ValueError('Sample outside trace')
         i=int(np.argmin(abs(times-t)));d.qpos[:]=positions[i];mujoco.mj_kinematics(m,d)
+        mujoco.mj_comPos(m,d)
         wrist=d.site('right_wrist_reference');tool=d.body('tweezer')
         R=wrist.xmat.reshape(3,3)
+        com=d.subtree_com[m.body('pelvis').id].copy()
+        soles={side:d.site(side+'_sole').xpos.copy() for side in ['left','right']}
+        ankles={}
+        for side in ['left','right']:
+            joint=m.joint(side+'_ankle_roll_joint');value=float(d.qpos[joint.qposadr[0]])
+            ankles[side]=dict(position_rad=value,source_bounds_rad=joint.range.tolist(),
+                margin_to_source_limit_rad=float(min(value-joint.range[0],joint.range[1]-value)))
         rows.append(dict(time_s=float(times[i]),
             tool_in_wrist_m=(R.T@(tool.xpos-wrist.xpos)).tolist(),
+            robot_com_world_m=com.tolist(),sole_centers_world_m={k:v.tolist() for k,v in soles.items()},
+            com_relative_to_each_sole_xy_m={k:(com[:2]-v[:2]).tolist() for k,v in soles.items()},
+            ankle_roll=ankles,
             fixed_hand_posture_error_rad={n:float(d.joint(n).qpos[0]-v) for n,v in fixed.items()}))
     report=dict(scope=__doc__,trace_sha256=trace_hash,model_sha256=model_hash,
         script_sha256=sha(__file__),prior_sha256=sha(prior_file),
         source_joint_bound_exceedances=violations,rows=rows,
         fixed_posture_basis='Public pregrasp target for non-closing hand joints; these commands remain constant in these trials',
+        balance_scope='Kinematics of recorded plant states only; sole-center offsets do not certify support forces, estimator accuracy or stable walking',
         physical_replay=False,qualified_carry=False,qualified_paper_branch=False)
     wrench=folder/'contact_wrench_diagnosis.json'
     if wrench.exists():

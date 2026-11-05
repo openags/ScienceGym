@@ -11,6 +11,16 @@
 <video id="tool-carry" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview.mp4"></video>
 <p>控制器及物理轨迹可精确回放，独立任务检查未通过：出现踝关节越界、工具相对手腕偏移，以及未完成的携物往返和放回。一次脚步不能计为完成跨工位转移。</p>
 <div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/contact.mp4">查看携物手部近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview.mp4" download="ScienceGym_G1_携物失败试验.mp4">下载本次录像</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/physical_review.json">未通过的独立评估</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/controller_replay.json">控制器回放</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/carry_state_diagnosis.json">关节与抓持姿态诊断</a></div>
+<h2>FTIR 样片与工位绑定</h2>
+<p>沿用原完整房间和 G1 / 宇树三指手。积分球采用已记录的仪器内初始安装配置；铜片与三层涂层组成独立自由刚体，涂层面朝上、铜背面接触原有普通托盘。</p>
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="原完整实验室中的 G1、托盘样片与 FTIR 工位初始配置" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/initial_room.png">
+<details><summary>查看仪器内部与样片近景</summary>
+<p>开盖图是单独设置的几何检查姿态，不是机器人开盖记录。</p>
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="Nicolet 内积分球的开盖几何检查视图" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/inspection_open_instrument.png">
+<img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="普通托盘中的独立光学样片" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/initial_specimen.png"></details>
+<p>样片在积分球原始面板上的五种放置位置均通过支撑检查。完整房间内另完成一次 3 秒托盘支撑检查：2 毫米释放高度，最大瞬时穿透 0.154 毫米，低于 0.25 毫米上限。该场景检查使用既有站立电机指令回放。</p>
+<div class="links"><a href="../../simulation/g1_cooling_demo/analysis/bare_optical_coupon_support_08/review.json">五种位置的支撑记录</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_03/review.json">完整场景支撑检查</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_01/review.json">保留的首次失败</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/binding.json">初始配置与接口绑定</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/review.json">图像来源与检查姿态</a></div>
+<p class="note">以上为资产与初始场景检查。安装尺寸、材料参数仍含明确记录的推断；参考件取放、样片翻面与装卸、设备接线和完整实验分支尚未完成验证。</p>
 <h2>连续行走接近与滑窗操作</h2><p>G1 / Inspire 双手 · 沿通道接近 FTIR 工位、推动滑窗、撤手并用视觉确认开口</p>
 <video id="approach" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/ftir_approach_11/slider_frame_1599.png" src="../../simulation/g1_cooling_demo/runs/ftir_approach_11/slider.mp4"></video>
 <p id="approach-status">正在读取连续接近记录…</p><div class="chapters" id="approach-chapters"></div>
