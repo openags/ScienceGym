@@ -92,6 +92,10 @@ class QuasistaticWalker:
     def before_control(self, t):
         """Optional robot-kinematic task updates before the constrained solve."""
 
+    def control_tasks(self, t):
+        """Optional motor-control objectives, for example a carried wrist pose."""
+        return {}
+
     def landing_orientation_ready(self):
         return True
 
@@ -187,7 +191,7 @@ class QuasistaticWalker:
         self.before_control(t)
         weights = self.parking_posture_weights if self.finished else self.walking_posture_weights
         self.last_torque = b.torque(dt=.01,support_feet=self.estimate.support,
-                                   posture_weights=weights)
+                                   posture_weights=weights,**self.control_tasks(t))
         if len(b.last_solver_attempts)>1:
             self.events.append(dict(state='quasistatic_solver_retry',time_s=t,
                                     attempts=b.last_solver_attempts))

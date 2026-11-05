@@ -34,7 +34,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -43,9 +43,12 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     visual = bool(contract.get('observed_approach',False))
     if visual: assert dex3
     if approach_feedforward and not visual:raise ValueError('Approach feedforward requires a visual approach station')
+    if carry_distance is not None and (not visual or not .02<=carry_distance<=.30):
+        raise ValueError('Loaded stepping requires a visual station and 0.02 to 0.30 m distance')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
+    if carry_distance is not None:actor_module='carry_tool_actor'
     assert sha(station/'contract.json') == review['contract_sha256']
     assert sha(station/'world.xml') == contract['plant_sha256']
     assert sha(station/'robot_predictor.xml') == contract['predictor_sha256']
@@ -57,7 +60,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     extra_modules=[actor_module+'.py','conic_balance.py']
     if visual:extra_modules.extend(['dex3_tool_actor.py','tool_observation.py','tool_pose.py','tool_approach_planning.py',
         'ftir_hand.py','joint_rrt.py','robot_source_meshes.py','source_proximity.py','tool_cameras.py','sensor_rendering.py'])
-    for name in sorted(set(['run_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules])):
+    if carry_distance is not None:extra_modules.extend(['visual_tool_actor.py','quasistatic_walking.py'])
+    for name in sorted(set(['run_tool_grasp.py','verify_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules])):
         shutil.copyfile(HERE/name, snapshot/name)
     for name in ['world.xml', 'model_inputs.json']:
         shutil.copyfile(station/name, output/name)
@@ -92,6 +96,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior.update(grasp_geometry=contract['grasp_geometry'],tool_shape_sha256=sha(shape),appearance_threshold_uint8=24.,
             scope='Authored initial robot posture, public architecture and unposed tool/grasp geometry; no tool placement or arm path')
         if approach_feedforward:prior['approach_velocity_feedforward']=True
+    if carry_distance is not None:prior['carry_distance_m']=carry_distance
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
@@ -147,6 +152,17 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             robot_contact_features=contract['robot_contact_features'])
         run_contract['physical_acceptance'].update(minimum_each_opposing_finger_load_n=.1,
             minimum_thumb_load_n=.2,minimum_three_finger_contact_s=1.,require_loaded_tool_closure=False)
+    if carry_distance is not None:
+        run_contract.update(task='visual_pickup_loaded_out_and_back_release',qualified_carry=False,
+            carry_contract=dict(commanded_local_distance_m=carry_distance,
+                minimum_actual_base_excursion_m=carry_distance*.75,
+                minimum_each_sole_lift_m=.025,maximum_final_base_xy_error_m=.02,
+                maximum_final_tool_position_error_m=.01,maximum_contiguous_lost_load_s=.20,
+                maximum_tool_wrist_position_drift_m=.015,
+                additional_raise_m=.05,arm_withdrawal_m=.10,
+                scope='Local loaded stepping and return to observed source; no cross-station or paper-branch qualification',
+                collision_guard_scope='Right arm and rigid grasp hypothesis versus public map and observed surfaces; full plant assessed independently',
+                online_slip_pose_observed=False))
     (output/'contract.json').write_text(json.dumps(run_contract, indent=2)+'\n')
     names = [model.joint(j).name for j in robot_joints(model)]
     records, sensors, responses = [], [], []
@@ -246,6 +262,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         responses_sha256=sha(output/'responses.pkl'), actor_access_isolated=isolation['passed'],
         physics_warning_counts=data.warning.number.tolist(), qualified_grasp=False, qualified_paper_branch=False)
     if visual:result.update(camera_index_sha256=sha(output/'camera_index.json'),camera_frames=len(frame_index),qualified_approach=False)
+    if carry_distance is not None:result['qualified_carry']=False
     (output/'result.json').write_text(json.dumps(result, indent=2)+'\n')
     print(json.dumps(result), flush=True)
     return result
@@ -257,5 +274,6 @@ if __name__ == '__main__':
     p.add_argument('--close-timeout', type=float, default=6.)
     p.add_argument('--thumb-force', type=float, default=.6);p.add_argument('--lift-force',type=float,default=.5)
     p.add_argument('--approach-feedforward',action='store_true')
+    p.add_argument('--carry-distance',type=float)
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance)['status'] == 'failed': raise SystemExit(1)

@@ -66,6 +66,31 @@ Serve the repository with `python simulation/cooling_v1/serve.py --port 8769 --b
 
 ## Full-laboratory tool development
 
+`carry_tool_actor.py` extends the visual pickup with a loaded arm withdrawal,
+short out-and-back stepping route and return to the observed source tray.
+The hand keeps its motor-load feedback during the motion. Support-foot
+kinematics replace the fixed-feet estimate during stepping; no physical root
+or tool pose is reassigned. The rigid grasp transform is a collision-planning
+hypothesis, not a physical attachment or measured slip pose.
+
+The first [withdrawal screen](analysis/dex3_carry_handoff_01/review.json)
+fails reach. The [revised screen](analysis/dex3_carry_handoff_02/review.json)
+uses the official elbow range and a 0.6 rad wrist rotation: 51 sampled raised
+poses and 51 withdrawal poses pass the arm/tool geometry guard. This fixed-base
+screen is not loaded walking. Before the new stage, 50,988 recorded sensor
+responses remain exact; separate regressions retain all
+[23,581 default pickup outputs](analysis/dex3_carry_hooks_baseline_01/review.json)
+and [10,141 default walking outputs](analysis/dex3_walking_hooks_baseline_01/review.json).
+
+`run_tool_grasp.py --carry-distance 0.12` selects the isolated carrying actor
+for an observed-approach station. Its distinct task contract requires actual
+loaded base travel, both feet stepping, retained grip, return and released
+support, in addition to the original continuous physical checks. Read that
+run's own result and independent review before claiming any carrying outcome.
+`probe_tool_carry_checkpoint.py` separately diagnoses the new control stage
+from an explicitly restored recorded grasp after replaying the actor's sensor
+history. Those checkpoint probes cannot count as continuous pickup/carry demos.
+
 `build_tool_station.py` places the free passive tweezer and ordinary free tray
 in the existing room with the complete G1. `runs/tool_station_04/review.json`
 passes initial geometry, source inertia/contact preservation, actual bench

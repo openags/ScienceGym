@@ -100,6 +100,7 @@ class ToolApproachPlanner:
             mesh.remove_unreferenced_vertices()
             meshes['observed_depth_surface']=mesh;self.environment.add_object('observed_depth_surface',mesh)
         self.observed_faces=len(faces)
+        self.environment_meshes=meshes
         # Finger coordinates are fixed during this arm path. Original palm
         # assembly overlap is not changed or removed; native contact checking
         # and the execution evaluator still use official collision geometry.

@@ -58,7 +58,7 @@ def controller(folder):
     for name, digest in receipt['source_modules'].items(): assert sha(folder/'actor_bundle/code'/name) == digest
     assert sha(folder/'actor_bundle/model/world.xml') == receipt['bundled_model_sha256']
     actor = contract.get('actor_module', 'tool_grasp_actor')
-    assert actor in {'tool_grasp_actor', 'dex3_tool_actor','visual_tool_actor'}
+    assert actor in {'tool_grasp_actor', 'dex3_tool_actor','visual_tool_actor','carry_tool_actor'}
     visual=bool(contract.get('observed_approach',False));camera_index=[]
     if visual:
         assert sha(folder/'camera_index.json')==result['camera_index_sha256']
@@ -156,6 +156,18 @@ def physics(folder):
     qerr = verr = sensor_error = max_pen = support_pen = max_force = joint_excess = 0.
     bilateral = held_lift = final_support = 0.; min_gap = float('inf'); peak_height = 0.; unexpected_load = 0.
     unexpected = []; samples = []; released = []; minimum_height = float('inf'); minimum_upright = 1.
+    carrying=contract.get('task')=='visual_pickup_loaded_out_and_back_release'
+    if carrying:
+        carry_limits=contract['carry_contract']
+        carry_events=json.loads((folder/'events.json').read_text())
+        carry_phases={e['phase']:e['time_s'] for e in carry_events if 'phase' in e}
+        carry_start=carry_phases.get('carry_raise',float('inf'))
+        carry_end=carry_phases.get('lower',float(trace['time'][-1]))
+        forward=rest.body('pelvis').xmat.reshape(3,3)[:2,0].copy();forward/=np.linalg.norm(forward)
+        sole_ids=[m.site(s+'_sole').id for s in ['left','right']]
+        sole_floor=rest.site_xpos[sole_ids,2].copy();sole_lifts=np.zeros(2)
+        base_excursion=0.;lost_load=0.;maximum_lost_load=0.;held_carry_s=0.
+        wrist_tool_initial=None;wrist_tool_drift=0.
     started = time.monotonic(); compared_sensors = 0
     def observe():
         packet = dict(time_s=float(d.time), joint_position=np.array([d.sensor(n+'_encoder').data[0] for n in encoder_names]),
@@ -210,6 +222,18 @@ def physics(folder):
         max_force = max(max_force, max(forces.values()))
         height = float(trace['qpos'][i, qtool+2]-initial_z); peak_height = max(peak_height, height)
         if loaded and height >= limits['minimum_actual_tool_lift_m'] and support_force < .01: held_lift += dt
+        if carrying and carry_start<=trace['time'][i]<carry_end:
+            held=loaded and height>=limits['minimum_actual_tool_lift_m'] and support_force<.01
+            lost_load=0. if held else lost_load+dt
+            maximum_lost_load=max(maximum_lost_load,lost_load)
+            if held:
+                held_carry_s+=dt
+                base_excursion=max(base_excursion,float(-forward@(trace['qpos'][i,:2]-trace['qpos'][0,:2])))
+                sole_lifts=np.maximum(sole_lifts,d.site_xpos[sole_ids,2]-sole_floor)
+            wrist=d.site('right_wrist_reference')
+            relative=wrist.xmat.reshape(3,3).T@(d.body('tweezer').xpos-wrist.xpos)
+            if wrist_tool_initial is None:wrist_tool_initial=relative.copy()
+            wrist_tool_drift=max(wrist_tool_drift,float(np.linalg.norm(relative-wrist_tool_initial)))
         points = {label: d.xpos[b]+d.xmat[b].reshape(3, 3)@point for label, (b, point) in endpoints.items()}
         gap = float(np.linalg.norm(points['positive']-points['negative']))
         if loaded: min_gap = min(min_gap, gap)
@@ -247,7 +271,7 @@ def physics(folder):
         bounded_finger_load=max_force <= limits['maximum_normal_force_n'])
     checks['no_unintended_hand_tool_load'] = unexpected_load <= limits.get('maximum_unintended_hand_tool_load_n', .05)
     if dex3:
-        assert contract['task'] == 'pickup_hold_replace_release' and limits['require_loaded_tool_closure'] is False
+        assert contract['task'] in {'pickup_hold_replace_release','visual_pickup_loaded_out_and_back_release'} and limits['require_loaded_tool_closure'] is False
         del checks['loaded_tool_closure']
         del checks['bilateral_contact']
         checks['three_finger_contact'] = bilateral >= limits['minimum_three_finger_contact_s']
@@ -259,6 +283,17 @@ def physics(folder):
         checks['observed_approach_before_grasp']=bool(len(plans)==1 and
             phases.get('approach',float('inf'))<phases.get('settle',-1)<phases.get('close',-1) and
             sum(e['time_s']<=phases.get('approach',-1) for e in camera_index)>=4)
+    if carrying:
+        expected=['carry_raise','carry_retract','carry_walk_out','carry_pause','carry_walk_back',
+                  'carry_align','carry_extend','carry_descend','lower','release','withdraw','rest','finished']
+        times=[carry_phases.get(p,float('nan')) for p in expected]
+        checks.update(loaded_route_order=bool(np.isfinite(times).all() and np.all(np.diff(times)>0.)),
+            base_moved_while_tool_held=base_excursion>=carry_limits['minimum_actual_base_excursion_m'],
+            both_feet_stepped_while_tool_held=bool(np.all(sole_lifts>=carry_limits['minimum_each_sole_lift_m'])),
+            carry_load_continuity=held_carry_s>0. and maximum_lost_load<=carry_limits['maximum_contiguous_lost_load_s'],
+            carried_tool_wrist_drift=wrist_tool_initial is not None and wrist_tool_drift<=carry_limits['maximum_tool_wrist_position_drift_m'],
+            returned_base=bool(np.linalg.norm(trace['qpos'][-1,:2]-trace['qpos'][0,:2])<=carry_limits['maximum_final_base_xy_error_m']),
+            returned_tool=bool(np.linalg.norm(trace['qpos'][-1,qtool:qtool+3]-trace['qpos'][0,qtool:qtool+3])<=carry_limits['maximum_final_tool_position_error_m']))
     report = dict(scope=__doc__, passed=bool(all(checks.values())), checks={k: bool(v) for k, v in checks.items()},
         max_q_replay_error=qerr, max_v_replay_error=verr, max_sensor_replay_error=sensor_error,
         compared_sensor_packets=compared_sensors, bilateral_contact_s=bilateral, held_lift_s=held_lift,
@@ -273,6 +308,10 @@ def physics(folder):
         report['tool_use_closure_evaluated'] = False
     if visual:report.update(compared_camera_frames=compared_camera_frames,maximum_rgb_error_uint8=camera_rgb_error,
         maximum_depth_error_m=camera_depth_error,qualified_approach=False)
+    if carrying:
+        report.update(qualified_carry=False,carry_metrics=dict(base_excursion_while_held_m=base_excursion,
+            maximum_sole_lifts_while_held_m=sole_lifts.tolist(),held_carry_s=held_carry_s,
+            maximum_contiguous_lost_load_s=maximum_lost_load,maximum_tool_wrist_position_drift_m=wrist_tool_drift))
     np.savez_compressed(folder/'physical_samples.npz', samples=np.asarray(samples))
     (folder/'physical_review.json').write_text(json.dumps(report, indent=2)+'\n')
     return report

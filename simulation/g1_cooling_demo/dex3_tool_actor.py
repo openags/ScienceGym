@@ -18,6 +18,7 @@ from observations import StateEstimate
 
 class ToolActor:
     fields={'time_s','joint_position','joint_velocity','imu_quaternion','imu_gyro'}
+    loaded_phases=frozenset({'close','lift','hold','lower'})
 
     def __init__(self, model, prior):
         self.m=model;self.d=mujoco.MjData(model);self.d.qpos[:]=prior['initial_robot_qpos']
@@ -77,6 +78,12 @@ class ToolActor:
         if self.failure is not None:return
         self.failure=reason;self.abort_height=self.lift_height;self.change('abort_lower',t)
 
+    def before_target(self, t, dt):
+        """Optional sensor-state motion extension; the plant is never exposed."""
+
+    def balance_torque(self, target, posture, motion):
+        return self.balance.torque(targets={'right':target},posture=posture,dt=.01,**motion)
+
     def update(self, obs):
         if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
         if not all(np.isfinite(np.asarray(v)).all() for v in obs.values()):raise ValueError('Nonfinite sensor packet')
@@ -115,12 +122,12 @@ class ToolActor:
                 if t-self.load_since>=.5:self.change('lift',t)
             else:self.load_since=None
             if t-self.phase_started>self.close_timeout:self.abort('No sustained three-finger load before grasp timeout',t)
-        if self.hold_entered and self.phase in {'close','lift','hold','lower'}:
+        if self.hold_entered and self.phase in self.loaded_phases:
             if min(proxy)<.02:
                 if self.lost_since is None:self.lost_since=t
                 if t-self.lost_since>=.2:self.abort('Observed loss of three-finger load',t)
             else:self.lost_since=None
-        if self.phase in {'close','lift','hold','lower'}:
+        if self.phase in self.loaded_phases:
             speeds=np.clip(.0005/lever,.001,.015)
             for i,a in enumerate(self.drivers):
                 desired_force=self.hold_force[i] if self.hold_entered else .03
@@ -152,6 +159,7 @@ class ToolActor:
             self.lift_height=self.withdrawal*smooth(elapsed/2.)
             if elapsed>=2.:self.change('rest',t)
         elif self.phase=='rest' and elapsed>=2.:self.change('finished',t)
+        self.before_target(t,dt)
         target=self.wrist_position+self.wrist_rotation@self.center_offset+[0.,0.,self.lift_height]
         if t+1e-9>=self.next_balance:
             self.balance.com_target=self.com_start+smooth(t/2.)*(self.com_goal-self.com_start)
@@ -166,7 +174,7 @@ class ToolActor:
                 velocity=(target-self.previous_wrist_target)/period
                 angular=Rotation.from_matrix(self.wrist_rotation@self.previous_wrist_rotation.T).as_rotvec()/period
                 motion=dict(target_velocities={'right':velocity},palm_angular_velocities={'right':angular})
-            self.body_torque=self.balance.torque(targets={'right':target},posture=posture,dt=.01,**motion)
+            self.body_torque=self.balance_torque(target,posture,motion)
             self.previous_wrist_target=target.copy();self.previous_wrist_rotation=self.wrist_rotation.copy();self.previous_balance_time=t
             self.next_balance=(round(t*100)+1)/100
         inverse_hand_mass=self.hand_selector.T@np.linalg.solve(mass,self.hand_selector)
