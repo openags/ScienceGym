@@ -209,13 +209,14 @@ class ToolActor(VisualPickup):
         if not 0.<=self.support_inset_m<=.01:
             raise ValueError('Carrying support target inset must be 0 to 10 mm')
         self.proximal_preshape=float(prior.get('carry_proximal_preshape_rad',0.))
-        if not 0.<=self.proximal_preshape<=.08:
-            raise ValueError('Supported proximal preshape must be 0 to 0.08 rad')
+        if not abs(self.proximal_preshape)<=.08:
+            raise ValueError('Supported proximal preshape magnitude must be at most 0.08 rad')
         self.preshape_indices=np.array([self.names.index('right_hand_'+f+'_0_joint')
                                        for f in ['index','middle']])
         self.preshape_duration=12.
-        if np.any(self.initial[self.preshape_indices]+self.proximal_preshape>
-                  self.m.jnt_range[self.m.actuator_trnid[self.preshape_indices,0],1]-.01):
+        proposed=self.initial[self.preshape_indices]+self.proximal_preshape
+        limits=self.m.jnt_range[self.m.actuator_trnid[self.preshape_indices,0]]
+        if np.any(proposed>limits[:,1]-.01) or np.any(proposed<limits[:,0]+.01):
             raise ValueError('Preshape violates the unchanged source joint margin')
         self.prelift_load_dwell=float(prior.get('carry_prelift_proxy_dwell_s',.5))
         if not .5<=self.prelift_load_dwell<=2.:

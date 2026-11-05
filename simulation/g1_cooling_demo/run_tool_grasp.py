@@ -59,8 +59,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Carrying pre-lift proxy dwell requires preloading and 0.5 to 2 seconds')
     if not 0.<=carry_support_inset<=.01 or (carry_support_inset and carry_distance is None):
         raise ValueError('Support inset requires a carrying route and 0 to 10 mm')
-    if not 0.<=carry_proximal_preshape<=.08 or (carry_proximal_preshape and not carry_preload_before_lift):
-        raise ValueError('Finger preshape requires supported preload and 0 to 0.08 rad')
+    if not abs(carry_proximal_preshape)<=.08 or (carry_proximal_preshape and not carry_preload_before_lift):
+        raise ValueError('Finger preshape requires supported preload and magnitude at most 0.08 rad')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -204,7 +204,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         run_contract['carry_contract']['stance_target_inset_m']=carry_support_inset
         run_contract['carry_contract'].update(proximal_preshape_rad=carry_proximal_preshape,
             proximal_preshape_duration_s=12. if carry_proximal_preshape else 0.,
-            proximal_preshape_basis='Authored index/middle proximal flexion while supported; existing distal force feedback, material friction and physical acceptance bounds retained')
+            proximal_preshape_basis='Authored signed index/middle proximal offset while supported; existing distal force feedback, material friction and physical acceptance bounds retained')
         if carry_body_withdrawal:
             run_contract['carry_contract'].update(withdrawal_mode='body_translation',
                 maximum_wrist_rotation_change_rad=.04,
