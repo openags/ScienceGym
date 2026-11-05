@@ -73,6 +73,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior.update({k: contract[k] for k in ['robot_contact_features','closing_drivers','closing_signs']})
         prior['hold_force_proxy_n']=[thumb_force,thumb_force/2,thumb_force/2]
         prior['lift_force_proxy_threshold_n']=[lift_force,lift_force/2,lift_force/2]
+        prior['release_extra_opening_rad']=.04
+        prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
@@ -113,6 +115,9 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
         run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
             lift_force_proxy_threshold_n=prior['lift_force_proxy_threshold_n'],lift_load_hold_s=.5,
+            release_extra_opening_rad=prior['release_extra_opening_rad'],
+            post_release_withdrawal_m=prior['post_release_withdrawal_m'],
+            release_motor_load_gate_n=.015,release_clear_dwell_s=.1,
             hand_feedback_rule='Inertia eigenmodes: kp=min(3,0.25*I/dt^2); kd=min(2*sqrt(kp*I),0.4*I/dt)',
             startup_com_shift='Two-second smooth movement from initial COM toward support center',
             robot_contact_features=contract['robot_contact_features'])

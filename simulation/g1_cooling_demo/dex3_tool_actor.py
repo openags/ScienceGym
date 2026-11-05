@@ -42,11 +42,18 @@ class ToolActor:
         self.flags=np.zeros(3,dtype=bool);self.release_since=[None]*3;self.load_since=None;self.lost_since=None
         self.phase='settle';self.phase_started=0.;self.hold_entered=False;self.lift_height=0.;self.abort_height=0.
         self.failure=None;self.events=[];self.release_command=None
+        self.release_clear_since=None
         self.close_timeout=float(prior.get('close_timeout_s',6.))
         self.hold_force=np.asarray(prior.get('hold_force_proxy_n',[.6,.3,.3]),dtype=float)
         self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
         assert self.hold_force.shape==self.lift_force.shape==(3,)
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
+        self.release_extra=float(prior.get('release_extra_opening_rad',.04))
+        self.withdrawal=float(prior.get('post_release_withdrawal_m',.02))
+        assert 0<=self.release_extra<=.08 and 0<=self.withdrawal<=.04
+        self.release_target=self.initial.copy()
+        self.release_target[self.drivers]=np.clip(self.initial[self.drivers]-self.signs*self.release_extra,
+            self.lower[self.drivers],self.upper[self.drivers])
         # Hand inertias are much smaller than the previous hand's reflected
         # inertia. Bound sampled PD gains in the coupled hand inertia modes.
         # These change motor commands only; no model mass/armature is changed.
@@ -128,7 +135,17 @@ class ToolActor:
             self.lift_height=(.03 if self.phase=='lower' else self.abort_height)*(1-smooth(elapsed/2.))
             if elapsed>=2.:self.release_command=self.command.copy();self.change('release',t)
         elif self.phase=='release':
-            self.command=self.release_command+smooth(elapsed/2.)*(self.initial-self.release_command)
+            self.command=self.release_command+smooth(elapsed/2.)*(self.release_target-self.release_command)
+            if elapsed>=2.:
+                if max(abs(proxy))<.015:
+                    if self.release_clear_since is None:self.release_clear_since=t
+                    if t-self.release_clear_since>=.1:self.change('withdraw',t)
+                else:self.release_clear_since=None
+                if self.phase=='release' and elapsed>=3.:
+                    if self.failure is None:self.failure='Residual finger load after opening for release'
+                    self.change('finished',t)
+        elif self.phase=='withdraw':
+            self.lift_height=self.withdrawal*smooth(elapsed/2.)
             if elapsed>=2.:self.change('rest',t)
         elif self.phase=='rest' and elapsed>=2.:self.change('finished',t)
         target=self.wrist_position+self.wrist_rotation@self.center_offset+[0.,0.,self.lift_height]

@@ -1,5 +1,17 @@
 # G1 humanoid contact runtime
 
+The latest [23.58-second three-finger tool recording](runs/dex3_tool_grasp_06/overview.mp4)
+passes its [independent physical evaluation](runs/dex3_tool_grasp_06/physical_review.json),
+[isolated controller replay](runs/dex3_tool_grasp_06/controller_replay.json) and
+[source motor torque/speed checks](runs/dex3_tool_grasp_06/source_limit_review.json).
+The free tweezer rises 24.98 mm, remains lifted without tray support for 1.95 s,
+and is lowered, released and left supported while the hand withdraws.
+This single attempt starts at an authored pregrasp. It does not qualify visual
+localization, approach, tool use on a specimen, carrying, repeatability or a
+paper branch. The earlier walking/window run uses Inspire hands; that result
+does not transfer automatically to the three-finger model. There remain
+**0 of 11 qualified paper branches and 0 qualified complete campaigns**.
+
 The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
 equipment, with G1 and the white tray as dynamic bodies. A separate
@@ -164,6 +176,17 @@ from the unslept baseline. This added sphere exists only in diagnostic files.
 `dex3_pregrasp_04` binds the tested sleep configuration to the next authored
 initial scene. Complete execution and independent replay remain required;
 the short comparison does not qualify a grasp or a whole-device interaction.
+
+`dex3_tool_grasp_04` and `_05` both lift the tool but fail the independent
+released-support condition because a finger retains contact. The paired
+sleeping/unslept full trajectories differ; the short sleeping diagnostic is
+not a claim of identical full-run behavior. Each run's own physics replay is
+exact. `_06` adds bounded extra finger opening, an encoder-derived residual-load
+release gate and a 20 mm wrist withdrawal. All sixteen independent physical
+checks pass, including actual held lift, released support, source joint limits
+and bounded contact. Its frozen execution result remains the original
+pre-evaluation record; the separate reviews contain the subsequent verdict.
+No earlier failed trace or verdict is overwritten.
 
 ## Reproduce
 
