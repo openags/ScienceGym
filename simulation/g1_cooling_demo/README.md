@@ -1,14 +1,18 @@
 # G1 humanoid contact runtime
 
-The latest [23.58-second three-finger tool recording](runs/dex3_tool_grasp_06/overview.mp4)
-passes its [independent physical evaluation](runs/dex3_tool_grasp_06/physical_review.json),
-[isolated controller replay](runs/dex3_tool_grasp_06/controller_replay.json) and
-[source motor torque/speed checks](runs/dex3_tool_grasp_06/source_limit_review.json).
-The free tweezer rises 24.98 mm, remains lifted without tray support for 1.95 s,
-and is lowered, released and left supported while the hand withdraws.
-This single attempt starts at an authored pregrasp. It does not qualify visual
-localization, approach, tool use on a specimen, carrying, repeatability or a
-paper branch. The earlier walking/window run uses Inspire hands; that result
+The latest [59.09-second visual tool recording](runs/dex3_visual_grasp_04/overview.mp4)
+passes all 18 [independent physical checks](runs/dex3_visual_grasp_04/physical_review.json),
+[isolated controller replay](runs/dex3_visual_grasp_04/controller_replay.json) and
+[source motor torque/speed checks](runs/dex3_visual_grasp_04/source_limit_review.json).
+From the declared station posture, G1 observes the free tweezer in native RGB-D,
+plans and executes its approach, then grips, lifts, lowers, releases and withdraws.
+All 59,089 motor outputs and 17 camera frames replay exactly. The tool rises
+25.08 mm and remains lifted without tray support for 1.97 s. Cameras are used
+for initial localization; approach and holding use proprioception and inferred
+motor-load feedback. This single attempt does not qualify tool use on a specimen,
+carrying, randomized repeatability or a paper branch. The earlier
+[23.58-second pregrasp trial](runs/dex3_tool_grasp_06/physical_review.json)
+remains separate. The earlier walking/window run uses Inspire hands; that result
 does not transfer automatically to the three-finger model. There remain
 **0 of 11 qualified paper branches and 0 qualified complete campaigns**.
 
