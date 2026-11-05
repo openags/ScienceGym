@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **397**.
+Last screened: **2026-11-05**. Candidate count: **398**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4096,3 +4096,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted written text and captions in the eleven-page [Supplementary Information](https://www.epfl.ch/labs/flexlab/wp-content/uploads/2017/12/48_2015_Stoop_NatureMater_si.pdf) were read. Equation extraction was imperfect; equations, figure pixels, code and raw data were not audited. This is written-text screening, not a complete visual, mathematical or computational review.
 - Experimental evidence concerns spherical surfaces. Toroidal patterns and the full hysteresis loop are predictions, not reported experimental validations. Scope is prepared-specimen identity, geometry/state tracking and linked surface-imaging records only. Specimen preparation and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public author-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, code, data or other source assets redistributed.
+
+## Additional candidate: soft-substrate droplet-impact measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Scaling crossover in droplet impact force on elastic substrates](https://www.nature.com/articles/s41467-025-67790-6) | Nature Communications / 2026 | 10.1038/s41467-025-67790-6 | Prepared soft-substrate specimen identity, repeated droplet-impact characterization and coordinated imaging and measurement comparisons suggest a future long-horizon mechanics-characterization task. | Publisher main scholarly text, Methods and captions and all 13 written SI pages read; selected SI pages visually inspected; analysis code inspected but not executed. |
+
+- **CANDIDATE only.** Yokoyama et al., *Nature Communications* **17**, 607 (2026). The publisher's main scholarly text, Methods and captions were read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All 13 pages of the published [Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-67790-6/MediaObjects/41467_2025_67790_MOESM1_ESM.pdf) were read, and SI pages 5-8 were visually inspected. The [analysis-code TXT](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-67790-6/MediaObjects/41467_2025_67790_MOESM2_ESM.txt) was inspected but not executed. Other figure pixels, the source-data XLSX and the peer-review file were not audited. Raw high-speed polarization datasets require an author request and were not obtained. This is written-source screening with limited visual review, not a complete visual, data or computational audit.
+- The ultra-soft condition has only one reported replicate per height. The SI wetting-ridge estimate calls the 17.9-kPa substrate the softest despite a 2.7-kPa condition elsewhere in the sources; this inconsistency remains unresolved. Reported results are source claims, not independently reproduced measurements or acceptance thresholds.
+- Scope is prepared-specimen identity, condition/history tracking and coordinated imaging and measurement-record comparisons only. Specialized high-speed polarimetry is required, and specimen preparation, instrument setup and physical testing need separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public publisher sources. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, data, code or other source assets redistributed.
