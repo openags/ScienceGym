@@ -52,6 +52,22 @@ def plain(value):
     return value
 
 
+def motor_difference(actual, expected):
+    """Reject malformed/nonfinite output instead of hiding NaN in max()."""
+    actual, expected = np.asarray(actual), np.asarray(expected)
+    if actual.shape != expected.shape or actual.ndim != 1 or not actual.size:
+        raise ValueError('Motor output shape differs from the recorded command')
+    if not np.isfinite(actual).all() or not np.isfinite(expected).all():
+        raise ValueError('Nonfinite motor output or recorded command')
+    return float(np.max(abs(actual-expected)))
+
+
+def all_motor_outputs_reproduced(compared, available, maximum_error):
+    """A stopped prefix with zero error does not reproduce the whole record."""
+    return (available > 0 and compared == available and
+            np.isfinite(maximum_error) and maximum_error < 1e-8)
+
+
 def event_differences(actual, recorded, path='$', examples=None):
     """Retain bounded mismatch locations, including nonfinite numeric leaves."""
     if examples is None:
@@ -113,6 +129,7 @@ def verify(folder):
         command.extend(['--walking-controller',staging['walking_controller']])
     max_torque = max_response = 0.
     compared = camera_frames = 0
+    compared_motors = replayed_camera_frames = 0
     failure = None
     answer = {}
     with open(folder/'continuous_replay_stderr.log', 'w') as stderr:
@@ -135,7 +152,9 @@ def verify(folder):
                 answer = pickle.load(process.stdout)
                 if answer.get('error'):
                     raise RuntimeError(answer['error'])
-                max_torque = max(max_torque, float(np.max(abs(answer['torque']-trace['ctrl'][i]))))
+                max_torque = max(max_torque, motor_difference(answer['torque'], trace['ctrl'][i]))
+                compared_motors += 1
+                replayed_camera_frames += int(packet['rgb'] is not None)
                 key = round(float(t), 8)
                 if key in recorded:
                     comparable = dict(time_s=float(t), **{
@@ -169,11 +188,11 @@ def verify(folder):
     selected = confirmations[0]['sensor_frames'] if len(confirmations) == 1 else []
     times = [r['time_s'] for r in selected]
     checks = dict(
-        frozen_sensor_actor_replayed=failure is None and process.returncode == 0,
-        every_motor_output_reproduced=max_torque < 1e-8,
+        frozen_sensor_actor_replayed=failure is None and process.returncode == 0 and compared_motors == len(sensors['time_s']),
+        every_motor_output_reproduced=all_motor_outputs_reproduced(compared_motors, len(sensors['time_s']), max_torque),
         every_retained_response_reproduced=compared == len(responses) and max_response < 1e-9,
         full_event_sequence_reproduced=event_error < 1e-9,
-        every_camera_frame_consumed=color is None and depth is None,
+        every_camera_frame_consumed=color is None and depth is None and replayed_camera_frames == camera_frames,
         independent_physics_passed=physics['passed'] and physics['trace_sha256'] == sha(folder/'trace.npz')
                                    and physics['model_sha256'] == sha(folder/'world.xml'),
         isolation_passed=isolation['passed'] and isolation['isolation_receipt_sha256'] == sha(folder/'actor_isolation.json'),
@@ -216,6 +235,7 @@ def verify(folder):
     report = json_finite(dict(passed=all(checks.values()), checks={k:bool(v) for k,v in checks.items()},
         failure=failure, maximum_torque_replay_error_nm=max_torque, maximum_response_replay_error=max_response,
         maximum_event_replay_error=event_error, sensor_packets=len(sensors['time_s']), camera_frames=camera_frames,
+        motor_outputs_compared=compared_motors, camera_frames_replayed=replayed_camera_frames,
         raw_maximum_event_replay_error=raw_event_error, raw_event_difference_examples=raw_event_examples,
         event_comparison='Ordered events and paths; only planning baseline self-intersection pairs are an unordered set',
         event_canonicalization_sha256=sha(Path(__file__).with_name('event_canonicalization.py')),

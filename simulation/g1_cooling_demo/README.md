@@ -30,6 +30,20 @@ Its [physical review](runs/ftir_slider_07/physical_slider_review.json) and
 That recording starts at an authored station pose; it does not validate the
 cross-station film's carrying or complete measurement sequence.
 
+The newer [233.6-second continuous approach recording](runs/ftir_approach_11/slider.mp4)
+executes a 1.020 m local aisle approach, sensor-derived station handoff, tactile
+window push, withdrawal and native RGB-D outcome confirmation in the original
+laboratory. Its [independent physical review](runs/ftir_approach_11/physical_slider_review.json)
+and [complete sensor/controller replay](runs/ftir_approach_11/continuous_approach_review.json)
+pass: all 116,801 motor outputs and 2,337 retained camera frames were replayed;
+the final physical opening is 70.999 mm. The earlier replay stopped on a missing
+`rtree` dependency; its failed report is retained under
+`replay_attempts/missing_rtree_01/`. The restored environment and corrected
+full-output coverage check do not alter the frozen actor or physical trajectory.
+This is one local approach and operation, with no carrying, complete branch or
+reliability qualification. The recording and timestamp controls are on the
+[laboratory recording page](../../viewer/cooling_lab_runtime_v1/index.html).
+
 The earlier workbench presentation contains **80.54 seconds of one uninterrupted simulation**: a standing G1 picks up a tray containing a preloaded laboratory spatula, transports it across the bench, places and releases it, observes it again, picks it up again, returns it to the source and retracts its hands. The same floating robot and objects remain in the scene throughout. This is **one carrier transport subtask**, not the complete directional-cooling paper demo. There are still **0 of 11 qualified paper branches, 0 qualified skills and 0 qualified campaigns**. Parallel scene/controller development is authorized; asset acceptance remains pending.
 
 Serve the repository with `python simulation/cooling_v1/serve.py --port 8769 --bind 127.0.0.1` (including video range requests) and open <http://localhost:8769/viewer/cooling_demo_v1/index.html>. This older workbench page presents the recording, contact close-up, synchronized native head depth, event timeline, measured trajectory and independent verification. Its manipulation world is a **local test bench**, not the complete laboratory collision scene. The room and equipment review is linked separately.
