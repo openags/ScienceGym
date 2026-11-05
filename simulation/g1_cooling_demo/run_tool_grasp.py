@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -43,6 +43,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
     visual = bool(contract.get('observed_approach',False))
     if visual: assert dex3
+    if observe_optical_coupon and (not visual or not contract.get('optical_scene_binding')):
+        raise ValueError('Coupon observation requires the bound visual optical station')
     if approach_feedforward and not visual:raise ValueError('Approach feedforward requires a visual approach station')
     if carry_distance is not None and (not visual or not .02<=carry_distance<=.30):
         raise ValueError('Loaded stepping requires a visual station and 0.02 to 0.30 m distance')
@@ -68,7 +70,15 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Contact impedance ratio experiment requires elliptic cones and ratio 1 to 10')
     if not 0. <= release_extra_opening <= .08:
         raise ValueError('Release opening must remain within the existing 0 to 0.08 rad controller range')
+    if release_driver_openings is not None:
+        release_driver_openings=np.asarray(release_driver_openings,dtype=float)
+        if (not dex3 or release_driver_openings.shape!=(3,) or
+                not np.isfinite(release_driver_openings).all() or
+                np.any(release_driver_openings<0) or np.any(release_driver_openings>.08)):
+            raise ValueError('Dex3 release requires three driver openings, each within 0 to 0.08 rad')
     if dex3: assert 0 < lift_force < thumb_force < 4.
+    if release_load_feedback and not dex3:
+        raise ValueError('Release motor-load feedback is implemented only for the Dex3 actor')
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
     if carry_distance is not None:actor_module='carry_tool_actor'
@@ -84,6 +94,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if visual:extra_modules.extend(['dex3_tool_actor.py','tool_observation.py','tool_pose.py','tool_approach_planning.py',
         'ftir_hand.py','joint_rrt.py','robot_source_meshes.py','source_proximity.py','tool_cameras.py','sensor_rendering.py'])
     if carry_distance is not None:extra_modules.extend(['visual_tool_actor.py','quasistatic_walking.py'])
+    if observe_optical_coupon:extra_modules.append('optical_coupon_observation.py')
     for name in sorted(set(['run_tool_grasp.py','verify_tool_grasp.py','balance.py','observations.py','hand_touch.py','isolation.py','isolation_probe.py',*extra_modules])):
         shutil.copyfile(HERE/name, snapshot/name)
     for name in ['world.xml', 'model_inputs.json']:
@@ -120,6 +131,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior['hold_force_proxy_n']=[thumb_force,thumb_force/2,thumb_force/2]
         prior['lift_force_proxy_threshold_n']=[lift_force,lift_force/2,lift_force/2]
         prior['release_extra_opening_rad']=release_extra_opening
+        if release_driver_openings is not None:
+            prior['release_driver_openings_rad']=release_driver_openings.tolist()
+        if release_load_feedback:
+            prior['release_load_feedback']=True
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -131,6 +146,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         prior.update(grasp_geometry=contract['grasp_geometry'],tool_shape_sha256=sha(shape),appearance_threshold_uint8=24.,
             scope='Authored initial robot posture, public architecture and unposed tool/grasp geometry; no tool placement or arm path')
         if approach_feedforward:prior['approach_velocity_feedforward']=True
+        if observe_optical_coupon:prior['observe_optical_coupon']=True
     if carry_distance is not None:prior['carry_distance_m']=carry_distance
     if carry_thumb_force is not None:prior['carry_hold_force_proxy_n']=[carry_thumb_force,carry_thumb_force/2,carry_thumb_force/2]
     if carry_load_abort is not None:prior['carry_motor_load_abort_nm']=carry_load_abort
@@ -178,6 +194,13 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         allowed_tool_contact_bodies=['right_index_force_sensor_2', 'right_index_force_sensor_3',
             'right_thumb_force_sensor_3', 'right_thumb_force_sensor_4', 'right_index_2', 'right_thumb_4'],
         qualified_grasp=False, qualified_paper_branch=False)
+    if contract.get('optical_scene_binding'):
+        run_contract['optical_scene_binding']=contract['optical_scene_binding']
+        for name in ['optical_scene_binding.json','optical_scene_support_review.json']:
+            shutil.copyfile(station/name,output/name)
+        run_contract['optical_scene_records_sha256']={name:sha(output/name) for name in
+            ['optical_scene_binding.json','optical_scene_support_review.json']}
+        run_contract['observed_optical_coupon_required_before_approach']=observe_optical_coupon
     if visual:
         run_contract.update(observed_approach=True,
             camera_contract=dict(names=['head_rgb','head_depth'],width=640,height=480,period_s=.2,
@@ -197,6 +220,14 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             hand_feedback_rule='Inertia eigenmodes: kp=min(3,0.25*I/dt^2); kd=min(2*sqrt(kp*I),0.4*I/dt)',
             startup_com_shift='Two-second smooth movement from initial COM toward support center',
             robot_contact_features=contract['robot_contact_features'])
+        if release_driver_openings is not None:
+            run_contract['inferred_control']['release_driver_openings_rad']=dict(
+                zip(prior['closing_drivers'],prior['release_driver_openings_rad']))
+        if release_load_feedback:
+            run_contract['inferred_control']['release_load_feedback']=dict(
+                inputs='Signed own-motor load estimates only', opening_rate_rad_s=.01,
+                opening_bounds_rad=[0.,.08], enabled_after_initial_ramp_s=2.,
+                release_gate_dwell_and_timeout_unchanged=True)
         run_contract['physical_acceptance'].update(minimum_each_opposing_finger_load_n=.1,
             minimum_thumb_load_n=.2,minimum_three_finger_contact_s=1.,require_loaded_tool_closure=False)
     if carry_distance is not None:
@@ -366,5 +397,12 @@ if __name__ == '__main__':
     p.add_argument('--contact-impratio',type=float)
     p.add_argument('--release-extra-opening',type=float,default=.04,
                    help='Additional driver opening at release, inside the existing 0.08 rad bound')
+    p.add_argument('--release-driver-openings',type=float,nargs=3,
+                   metavar=('THUMB','INDEX','MIDDLE'),
+                   help='Optional per-driver release opening in rad; same 0.08 rad bound and release-load gate')
+    p.add_argument('--release-load-feedback',action='store_true',
+                   help='Adjust release opening from signed motor loads inside the unchanged opening envelope')
+    p.add_argument('--observe-optical-coupon',action='store_true',
+                   help='Require four stable native RGB-D coupon observations before tool approach')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon)['status'] == 'failed': raise SystemExit(1)

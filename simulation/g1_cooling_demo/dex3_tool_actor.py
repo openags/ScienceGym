@@ -56,10 +56,17 @@ class ToolActor:
         assert self.hold_force.shape==self.lift_force.shape==(3,)
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
         self.release_extra=float(prior.get('release_extra_opening_rad',.04))
+        self.release_load_feedback=bool(prior.get('release_load_feedback',False))
+        self.release_driver_openings=np.asarray(prior.get('release_driver_openings_rad',
+            [self.release_extra]*3),dtype=float)
         self.withdrawal=float(prior.get('post_release_withdrawal_m',.02))
         assert 0<=self.release_extra<=.08 and 0<=self.withdrawal<=.04
+        if (self.release_driver_openings.shape!=(3,) or
+                not np.isfinite(self.release_driver_openings).all() or
+                np.any(self.release_driver_openings<0) or np.any(self.release_driver_openings>.08)):
+            raise ValueError('Three driver release openings must each lie within 0 to 0.08 rad')
         self.release_target=self.initial.copy()
-        self.release_target[self.drivers]=np.clip(self.initial[self.drivers]-self.signs*self.release_extra,
+        self.release_target[self.drivers]=np.clip(self.initial[self.drivers]-self.signs*self.release_driver_openings,
             self.lower[self.drivers],self.upper[self.drivers])
         # Hand inertias are much smaller than the previous hand's reflected
         # inertia. Bound sampled PD gains in the coupled hand inertia modes.
@@ -155,6 +162,17 @@ class ToolActor:
         elif self.phase=='release':
             self.command=self.release_command+smooth(elapsed/2.)*(self.release_target-self.release_command)
             if elapsed>=2.:
+                if self.release_load_feedback:
+                    # Positive closing load asks for more opening; negative
+                    # load asks to back away from an opening-side obstruction.
+                    # Only own-motor residuals are used. Keep the original
+                    # opening envelope, load gate, dwell and timeout unchanged.
+                    rate=np.where(abs(proxy)>.015,np.sign(proxy)*.01,0.)
+                    self.release_driver_openings=np.clip(self.release_driver_openings+rate*dt,0.,.08)
+                    self.release_target[self.drivers]=np.clip(
+                        self.initial[self.drivers]-self.signs*self.release_driver_openings,
+                        self.lower[self.drivers],self.upper[self.drivers])
+                    self.command[self.drivers]=self.release_target[self.drivers]
                 if max(abs(proxy))<.015:
                     if self.release_clear_since is None:self.release_clear_since=t
                     if t-self.release_clear_since>=.1:self.change('withdraw',t)

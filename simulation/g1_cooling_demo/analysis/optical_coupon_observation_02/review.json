@@ -1,0 +1,101 @@
+{
+  "scope": "Evaluate one initial native camera observation, keeping truth outside detection.\n\nOnly frame zero is accepted: later frames require their actual robot sensor\nstate. This is a perception diagnostic, not runtime handling qualification.\n",
+  "observation": {
+    "scope": "Locate a circular coated copper witness using native RGB-D observations.\n\nThe exposed copper rim, source diameter and public work-surface bounds are\nappearance/shape priors. No instance pose, segmentation ID or evaluator state\nis accepted. The circular specimen's in-plane yaw is unobservable.\n",
+    "candidate_found": false,
+    "ambiguous": false,
+    "candidate": null,
+    "components": [
+      {
+        "component": 1,
+        "observed_rim_pixels": 260,
+        "center_m": [
+          6.58886217595942,
+          -6.5950001381110495,
+          0.8520023802378252
+        ],
+        "normal_toward_camera": [
+          4.796787654639266e-06,
+          1.864238478763169e-05,
+          0.9999999998147261
+        ],
+        "fitted_radius_m": 0.02100395151814384,
+        "rim_plane_error_p95_m": 1.456888386467142e-06,
+        "circle_error_p95_m": 0.013482989879058188,
+        "observed_arc_rad": 6.0985897683965735,
+        "checks": {
+          "source_radius": false,
+          "rim_planarity": true,
+          "circular_rim": false,
+          "visible_arc": true
+        },
+        "passed": false
+      },
+      {
+        "component": 4,
+        "observed_rim_pixels": 20,
+        "center_m": [
+          6.24528008951698,
+          -6.479497793541314,
+          0.855269026302162
+        ],
+        "normal_toward_camera": [
+          -0.031505597077019235,
+          -0.008195198297976571,
+          0.9994699775769541
+        ],
+        "fitted_radius_m": 0.011162638447612897,
+        "rim_plane_error_p95_m": 0.0003107066015574732,
+        "circle_error_p95_m": 0.0009225555152526174,
+        "observed_arc_rad": 2.527386536251666,
+        "checks": {
+          "source_radius": true,
+          "rim_planarity": true,
+          "circular_rim": true,
+          "visible_arc": false
+        },
+        "passed": false
+      }
+    ],
+    "source_radius_m": 0.0125,
+    "yaw_observable": false,
+    "observed_rim_pixels": 287,
+    "component_sizes": [
+      260,
+      3,
+      4,
+      20
+    ],
+    "estimated_surface": "Observed copper rim plane; not an assumed grasp or hidden coated-face datum",
+    "runtime_manipulation_qualified": false
+  },
+  "checks": {
+    "unique_observed_candidate": false,
+    "center_within_one_millimetre": false,
+    "normal_within_five_degrees": false
+  },
+  "passed_initial_observation": false,
+  "center_error_m": null,
+  "normal_error_rad": null,
+  "evaluator_source_center_m": [
+    6.245857864133187,
+    -6.47928932213974,
+    0.8547971259005267
+  ],
+  "evaluator_source_normal": [
+    5.418024479541772e-08,
+    5.435732170907906e-08,
+    -0.999999999999997
+  ],
+  "frame_sha256": "9b7e3cfa4cf0a15e93c2b96d0dca6cbff589c141c8d5909ba278019ab957718e",
+  "model_sha256": "a8c1c44aee635742ebc1d8c34c7149722b422f67deb3986479a26abd1c20611e",
+  "contract_sha256": "14c787258a7e1cdd55e35f6c0a695ed895f5eb03ea8bafdade5933ba0f1c3cb3",
+  "predictor_sha256": "5a3ae74b808831f4cdac988794dfff4ff13f4168358409d8c4e7e7955e83764a",
+  "prior_sha256": "6cbbf507a6c9da3a4dc41534690aa5b203e0474b174bea1206a3a19fa2d28700",
+  "source_sha256": {
+    "evaluate_optical_coupon_observation.py": "91e4c2d747f06da3d2422ed1ae22e03d53954d17bc15966e6127a6cef0b525f9",
+    "optical_coupon_observation.py": "ea3faab69d245b5f1ad7c7a3a542834f44e83352a64d235cc965e69d605ad49c"
+  },
+  "actor_receives_truth": false,
+  "runtime_manipulation_qualified": false
+}

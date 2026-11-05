@@ -49,6 +49,28 @@ class ToolActor(PickupActor):
         vertices=vertices@self.d.geom_xmat[g].reshape(3,3).T+self.d.geom_xpos[g]
         lo,hi=vertices.min(0),vertices.max(0);lo[2]=hi[2]+.002;hi[2]+=.18
         self.bounds=[lo,hi]
+        self.observe_coupon=bool(prior.get('observe_optical_coupon',False))
+        self.coupon_poses=[];self.coupon_pose=None;self.coupon_report=None
+        if self.observe_coupon:
+            from optical_coupon_observation import detect as detect_coupon
+            self.coupon_detector=detect_coupon
+
+    def observe_optical_coupon(self,obs,D,C,df,cf):
+        report=self.coupon_detector(obs['head_rgb'],obs['head_depth'],D,C,df,cf,self.bounds)
+        self.coupon_report=report
+        if not report['candidate_found']:
+            self.coupon_poses=[];self.coupon_pose=None;return
+        self.coupon_poses.append(report['candidate']);self.coupon_poses=self.coupon_poses[-4:]
+        if len(self.coupon_poses)<4:return
+        centers=np.asarray([p['center_m'] for p in self.coupon_poses])
+        normals=np.asarray([p['normal_toward_camera'] for p in self.coupon_poses])
+        center=np.median(centers,axis=0);normal=normals.mean(axis=0)
+        normal/=max(np.linalg.norm(normal),1e-12)
+        if np.max(np.linalg.norm(centers-center,axis=1))>.001 or np.min(normals@normal)<np.cos(.03):
+            self.coupon_pose=None;return
+        self.coupon_pose=dict(center_m=center.tolist(),normal_toward_camera=normal.tolist(),
+            observed_frames=len(self.coupon_poses),yaw_observable=False,coating_side_observed=False,
+            source='Native RGB-D circular copper rim; own-robot camera calibration and source radius')
 
     def camera(self,name):
         k=self.m.camera(name).id;T=np.eye(4)
@@ -58,6 +80,7 @@ class ToolActor(PickupActor):
     def observe_tool(self,obs):
         t=float(obs['time_s'])
         D,df=self.camera('head_depth');C,cf=self.camera('head_rgb')
+        if self.observe_coupon:self.observe_optical_coupon(obs,D,C,df,cf)
         proposal,component=detect(obs['head_rgb'],obs['head_depth'],D,C,df,cf,self.bounds,self.threshold)
         report=dict(time_s=t,component_found=proposal['candidate_found'])
         if not proposal['candidate_found']:
@@ -70,6 +93,7 @@ class ToolActor(PickupActor):
             self.poses=[];self.vision_reports.append(report);return
         self.poses.append(best);self.poses=self.poses[-4:];self.vision_reports.append(report)
         if len(self.poses)<4:return
+        if self.observe_coupon and self.coupon_pose is None:return
         centers=np.array([p['position_m'] for p in self.poses]);rotations=Rotation.from_matrix(np.array([p['rotation_matrix'] for p in self.poses]))
         mean=rotations.mean()
         if np.max(np.linalg.norm(centers-np.median(centers,axis=0),axis=1))>.001 or np.max((rotations*mean.inv()).magnitude())>.015:
@@ -147,6 +171,9 @@ class ToolActor(PickupActor):
             arm_posture_error_rad=self.arm_posture_error,wrist_path_error_m=self.wrist_path_error,
             wrist_rotation_error_rad=self.wrist_rotation_error,observed_arm_clearance=self.latest_clearance,
             latest_vision_report=self.vision_reports[-1] if self.vision_reports else None)
+        if self.observe_coupon:
+            response.update(observed_optical_coupon=self.coupon_pose,
+                latest_optical_coupon_report=self.coupon_report)
         return response
 
 
