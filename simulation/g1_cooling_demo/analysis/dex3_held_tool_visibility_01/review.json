@@ -1,0 +1,1718 @@
+{
+  "scope": "Inspect native head observations at retained states of a completed pickup.\n\nThis uses recorded plant states to render an offline visibility diagnostic.\nSegmentation is evaluator-only and is not passed to the appearance detector.\nNo new physical execution, online tracking, or grasp qualification is claimed.\n",
+  "source_result_sha256": "7a1e69448849da45bd124ab56bf8b640ef7a23771ceb66bb22ebdcec680e61e8",
+  "source_trace_sha256": "7878ce28d9b82992a18ab3da6427042dbac4a28e064407f1e9bfc97fae843437",
+  "source_sha256": {
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "tool_cameras.py": "35e25d8434f115cbc70fd8941565f9f2ae2b572b49357cd66baad594acc29e8f",
+    "evaluate_held_tool_visibility.py": "1d07b19f8d50faa525a902f4477b3bacb0d76f74d796543c189a117f60a3a429"
+  },
+  "rows": [
+    {
+      "requested_time_s": 0.0,
+      "recorded_time_s": 0.0,
+      "evaluator_visible_tool_pixels": 8,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 1,
+            "points": 307,
+            "center_m": [
+              6.585116898614627,
+              -5.8344938758132185,
+              1.000331335512166
+            ],
+            "principal_axes": [
+              [
+                0.30815379268208815,
+                -0.9513301981141374,
+                0.003477673325806328
+              ],
+              [
+                -0.005238324345702303,
+                0.001958740960353426,
+                0.9999843615236691
+              ],
+              [
+                0.9513221326205411,
+                0.3081671908071439,
+                0.004379782681768059
+              ]
+            ],
+            "observed_spans_m": [
+              0.04908586612922143,
+              0.04840174412206903,
+              0.001175873751442477
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": true
+            }
+          },
+          {
+            "component": 3,
+            "points": 96,
+            "center_m": [
+              6.777813324954675,
+              -5.755523736187997,
+              0.9450360344388214
+            ],
+            "principal_axes": [
+              [
+                -0.5274524000857714,
+                -0.166466719246508,
+                -0.8331163166251538
+              ],
+              [
+                -0.8443984611649328,
+                0.21090292257708323,
+                0.492454257805472
+              ],
+              [
+                0.0937294213470486,
+                0.9632283159416304,
+                -0.25180549426531246
+              ]
+            ],
+            "observed_spans_m": [
+              0.03248059157362734,
+              0.029726110826823155,
+              0.020463078342178007
+            ],
+            "checks": {
+              "length": false,
+              "width": true,
+              "thickness": false
+            }
+          },
+          {
+            "component": 4,
+            "points": 2206,
+            "center_m": [
+              6.5467392104887265,
+              -6.414362275031975,
+              0.9978992773190519
+            ],
+            "principal_axes": [
+              [
+                0.6664803170429905,
+                0.5188462985177762,
+                0.5353526926323219
+              ],
+              [
+                -0.6824107491676962,
+                0.7137240294766022,
+                0.15784035975651284
+              ],
+              [
+                0.30019919456030886,
+                0.47052792506086677,
+                -0.8297493087211684
+              ]
+            ],
+            "observed_spans_m": [
+              0.1232867714104646,
+              0.11611547888525323,
+              0.06788133249707155
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 11,
+            "points": 235,
+            "center_m": [
+              6.716351452233006,
+              -5.682279320724935,
+              0.9043573779670745
+            ],
+            "principal_axes": [
+              [
+                -0.7266476256583214,
+                -0.6843700888304146,
+                0.060173163780666415
+              ],
+              [
+                -0.6597986171403613,
+                0.719590520340562,
+                0.2164607767140889
+              ],
+              [
+                0.1914393192235891,
+                -0.1175885391960046,
+                0.9744351812742389
+              ]
+            ],
+            "observed_spans_m": [
+              0.32949592292885743,
+              0.0643507662244222,
+              0.02227485790460318
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 14,
+            "points": 660,
+            "center_m": [
+              6.707436177045433,
+              -5.826120335764172,
+              0.8932203565348231
+            ],
+            "principal_axes": [
+              [
+                -0.9710931998954258,
+                0.22956534843616125,
+                0.065404494602791
+              ],
+              [
+                0.2036159950794308,
+                0.9396546382839343,
+                -0.27493578759285114
+              ],
+              [
+                0.1245733665944524,
+                0.25367087248809633,
+                0.9592354063453102
+              ]
+            ],
+            "observed_spans_m": [
+              0.14330163695063852,
+              0.07854365434320255,
+              0.03232395135654352
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 26,
+            "points": 7979,
+            "center_m": [
+              6.283422366739359,
+              -6.091799870629962,
+              0.9371486157250258
+            ],
+            "principal_axes": [
+              [
+                0.09860791061880261,
+                0.3522328898563643,
+                0.9307032133106818
+              ],
+              [
+                -0.29925620983995577,
+                0.9024659762423114,
+                -0.30984009197848617
+              ],
+              [
+                0.9490638549832244,
+                0.2479660320052864,
+                -0.19439816392120246
+              ]
+            ],
+            "observed_spans_m": [
+              0.20859406854313312,
+              0.208866335012129,
+              0.13044516873079337
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 40,
+            "points": 4408,
+            "center_m": [
+              6.443833904576168,
+              -6.4504840212369325,
+              0.910008626860396
+            ],
+            "principal_axes": [
+              [
+                0.0646474888832784,
+                -0.0393211074290901,
+                0.997133166980036
+              ],
+              [
+                -0.9966474994478297,
+                -0.05275464206041063,
+                0.06253566650692774
+              ],
+              [
+                -0.050144431649726824,
+                0.9978330512924631,
+                0.04259973853086388
+              ]
+            ],
+            "observed_spans_m": [
+              0.17946875277975952,
+              0.10068184927109768,
+              0.10490058734756114
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 51,
+            "points": 394,
+            "center_m": [
+              6.471574298952888,
+              -6.589589383116317,
+              0.8885719434744004
+            ],
+            "principal_axes": [
+              [
+                0.05836328381897496,
+                0.9866367877300789,
+                0.1521235557023864
+              ],
+              [
+                0.9982951379026923,
+                -0.05779433169563357,
+                -0.008162895546304184
+              ],
+              [
+                0.0007380661966008511,
+                0.15234061940771526,
+                -0.9883277750507485
+              ]
+            ],
+            "observed_spans_m": [
+              0.05035494466260848,
+              0.04464429767859174,
+              0.021064222353278258
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 52,
+            "points": 736,
+            "center_m": [
+              6.4781146559070795,
+              -6.655487236227525,
+              0.872581286352242
+            ],
+            "principal_axes": [
+              [
+                -0.9948326332773793,
+                0.10019304159547114,
+                0.016412988217979343
+              ],
+              [
+                0.09953680825706522,
+                0.9943516702024525,
+                -0.036839920841252184
+              ],
+              [
+                0.020011385968782387,
+                0.03501585899905474,
+                0.9991863860412462
+              ]
+            ],
+            "observed_spans_m": [
+              0.054442507701415815,
+              0.05393829495133735,
+              0.023537339385557736
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "00.000s_rgb.png": "33ac857d1322be76c020fbe6c4aaeca6a3c8db3e6e2dcb42a5526a5e17d66de8",
+        "00.000s_evaluator_tool_mask.png": "5dcbb0c5639f69d2c54e9993f8296bd422c5f4a853e98b24471cbdb4a5d64442",
+        "00.000s_sensor_inputs.npz": "339cf18448ee122dbeec10cf5c3cb291041ad6ffcebd6f49fabff475d6df8d08"
+      }
+    },
+    {
+      "requested_time_s": 10.0,
+      "recorded_time_s": 10.000099999990033,
+      "evaluator_visible_tool_pixels": 0,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 2,
+            "points": 108,
+            "center_m": [
+              6.778748773322296,
+              -5.754984487795017,
+              0.945401428247597
+            ],
+            "principal_axes": [
+              [
+                1.0291848935177378e-05,
+                2.880205995408825e-05,
+                0.9999999995322596
+              ],
+              [
+                0.9962897988762491,
+                0.08606181785791006,
+                -1.2732421749349428e-05
+              ],
+              [
+                0.08606181818437543,
+                -0.9962897985412843,
+                2.7809463290399897e-05
+              ]
+            ],
+            "observed_spans_m": [
+              0.031323336247004986,
+              0.027993689945329782,
+              1.6333779582729858e-06
+            ],
+            "checks": {
+              "length": false,
+              "width": true,
+              "thickness": true
+            }
+          },
+          {
+            "component": 3,
+            "points": 2201,
+            "center_m": [
+              6.546783205091048,
+              -6.414493579475315,
+              0.9973643805582554
+            ],
+            "principal_axes": [
+              [
+                0.6444880708097694,
+                0.5495228942269679,
+                0.5316575169263744
+              ],
+              [
+                -0.7207142074186227,
+                0.6688106766858417,
+                0.18238231815604555
+              ],
+              [
+                0.25535496433170907,
+                0.5007163543079484,
+                -0.8270894599254113
+              ]
+            ],
+            "observed_spans_m": [
+              0.12246264840864693,
+              0.11776096366597877,
+              0.07076443699746751
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 12,
+            "points": 319,
+            "center_m": [
+              6.72095268125702,
+              -5.845413243147084,
+              0.8853905359731454
+            ],
+            "principal_axes": [
+              [
+                -0.9910746701459827,
+                0.1333074823119436,
+                0.000336681871059316
+              ],
+              [
+                0.006419748663775831,
+                0.0502499916556051,
+                -0.9987160383040345
+              ],
+              [
+                0.13315323887208075,
+                0.9898000068186817,
+                0.050657294436360675
+              ]
+            ],
+            "observed_spans_m": [
+              0.12224860836395568,
+              0.03626651959313,
+              0.003825090491591542
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": true
+            }
+          },
+          {
+            "component": 19,
+            "points": 7464,
+            "center_m": [
+              6.283154686207517,
+              -6.1407085876720355,
+              0.933319883557876
+            ],
+            "principal_axes": [
+              [
+                0.17546042587641483,
+                0.2374447473403072,
+                0.9554232731683715
+              ],
+              [
+                -0.12104362975351099,
+                0.9683186582722361,
+                -0.21842027318440926
+              ],
+              [
+                0.9770169285367382,
+                0.07732378678230074,
+                -0.19864277824850127
+              ]
+            ],
+            "observed_spans_m": [
+              0.18378438539272812,
+              0.14181566743532148,
+              0.08745962822009345
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 23,
+            "points": 4514,
+            "center_m": [
+              6.444956686943423,
+              -6.450971131195916,
+              0.9097956708074927
+            ],
+            "principal_axes": [
+              [
+                -0.1043302064472318,
+                0.006286218730242061,
+                0.9945228461311252
+              ],
+              [
+                0.9940599310004613,
+                0.03181338078192504,
+                0.10408055717848025
+              ],
+              [
+                0.03098486085230391,
+                -0.9994740578210621,
+                0.009567974742000867
+              ]
+            ],
+            "observed_spans_m": [
+              0.1850702285172519,
+              0.09942560359998458,
+              0.13146748220192545
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 37,
+            "points": 388,
+            "center_m": [
+              6.471308385700933,
+              -6.589489408959171,
+              0.8884909961099761
+            ],
+            "principal_axes": [
+              [
+                -0.0853171972460933,
+                0.9928333260119308,
+                -0.08368370578648252
+              ],
+              [
+                -0.9963508557236546,
+                -0.0852210742485316,
+                0.004726605829559335
+              ],
+              [
+                -0.002438883517713145,
+                0.08378159263235344,
+                0.9964811571641351
+              ]
+            ],
+            "observed_spans_m": [
+              0.05022754850375451,
+              0.04550854936803069,
+              0.022804960697888572
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 38,
+            "points": 708,
+            "center_m": [
+              6.477871861636211,
+              -6.655375351378169,
+              0.8725028296469143
+            ],
+            "principal_axes": [
+              [
+                -0.9946665108757488,
+                0.10117745738084787,
+                0.020041313834446597
+              ],
+              [
+                0.10019162346938258,
+                0.9939385476432562,
+                -0.04525264738537165
+              ],
+              [
+                0.024498382167676525,
+                0.04300332111316577,
+                0.9987745209227179
+              ]
+            ],
+            "observed_spans_m": [
+              0.05449525412960596,
+              0.05345977594343361,
+              0.023712230224807514
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "10.000s_rgb.png": "002dc6e72b0ff514d5c8c3fb5d35ab37c6351f8dd0088d9335e07ab1caa32a99",
+        "10.000s_evaluator_tool_mask.png": "e080abea7df0849c3668574fb8e7538f5153f6c2ab12e873bce7be80dc6020a9",
+        "10.000s_sensor_inputs.npz": "f31d99b5fb06ee8cfa78ec8cb4971998564ad64f69946ad2afa10a309addf09c"
+      }
+    },
+    {
+      "requested_time_s": 15.0,
+      "recorded_time_s": 15.00009999997838,
+      "evaluator_visible_tool_pixels": 26,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 4,
+            "points": 2083,
+            "center_m": [
+              6.546264221306778,
+              -6.4141912867215805,
+              0.9969300538179362
+            ],
+            "principal_axes": [
+              [
+                0.6408560170553054,
+                0.5345162973130065,
+                0.5509953659612787
+              ],
+              [
+                -0.7121829381195476,
+                0.6818779988809738,
+                0.16684680786124428
+              ],
+              [
+                0.2865292795778795,
+                0.49933427936490765,
+                -0.8176590055736617
+              ]
+            ],
+            "observed_spans_m": [
+              0.12210469225642506,
+              0.1169319574867374,
+              0.07203170762831929
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 8,
+            "points": 515,
+            "center_m": [
+              6.721649558014885,
+              -5.826435750084676,
+              0.8938820920074066
+            ],
+            "principal_axes": [
+              [
+                -0.9738327374376742,
+                0.20419088583411799,
+                0.09977916434268355
+              ],
+              [
+                0.17218825970817653,
+                0.9494563549436268,
+                -0.2624572980045159
+              ],
+              [
+                0.14832734984929666,
+                0.2384087083129303,
+                0.9597709544923958
+              ]
+            ],
+            "observed_spans_m": [
+              0.11633196808972764,
+              0.07678507968286047,
+              0.0313894061306018
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 9,
+            "points": 7137,
+            "center_m": [
+              6.283830941646976,
+              -6.142183663200749,
+              0.9345805391695257
+            ],
+            "principal_axes": [
+              [
+                0.18186459201174354,
+                0.2463436021073707,
+                0.9519664384174306
+              ],
+              [
+                -0.06485998311070126,
+                0.9690079775536126,
+                -0.23836258521071835
+              ],
+              [
+                0.9811821710382236,
+                0.018394812807497492,
+                -0.19220608236602588
+              ]
+            ],
+            "observed_spans_m": [
+              0.1831509486693894,
+              0.13593968834070538,
+              0.08666068590671192
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 15,
+            "points": 3305,
+            "center_m": [
+              6.444692172194818,
+              -6.44291110800432,
+              0.9210321476363192
+            ],
+            "principal_axes": [
+              [
+                0.09639188703800003,
+                -0.4000263252434102,
+                0.911420618170067
+              ],
+              [
+                -0.9912602076341273,
+                0.04427670751101506,
+                0.12426895804315437
+              ],
+              [
+                0.09006555875805511,
+                0.9154335105753106,
+                0.39226226283108334
+              ]
+            ],
+            "observed_spans_m": [
+              0.18614761541639635,
+              0.09856818227323305,
+              0.1246959061695463
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 32,
+            "points": 365,
+            "center_m": [
+              6.472799980752793,
+              -6.589505859717417,
+              0.8885491942742334
+            ],
+            "principal_axes": [
+              [
+                0.9991814212003137,
+                -0.008443170120976262,
+                -0.03956261374618142
+              ],
+              [
+                -0.008470765042267086,
+                -0.9999639820133033,
+                -0.0005299204631347745
+              ],
+              [
+                -0.03955671457186501,
+                0.0008646122869798303,
+                -0.9992169528074841
+              ]
+            ],
+            "observed_spans_m": [
+              0.06919843958161843,
+              0.05017142878731768,
+              0.024765490278137542
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 33,
+            "points": 664,
+            "center_m": [
+              6.4781444902561685,
+              -6.655702080159669,
+              0.8727029526510851
+            ],
+            "principal_axes": [
+              [
+                -0.9955092320347328,
+                0.09332623129185942,
+                0.015861383498133763
+              ],
+              [
+                0.09231350805572713,
+                0.994171425387276,
+                -0.05569015329371385
+              ],
+              [
+                0.020966286367922114,
+                0.053975841783991695,
+                0.9983221040023345
+              ]
+            ],
+            "observed_spans_m": [
+              0.05444852989749023,
+              0.0535952314063412,
+              0.024465586109910717
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "15.000s_rgb.png": "1ad0415fe3d31a5281f6d564579785ee264e93bd1d725dc811718c24ffe9c4ed",
+        "15.000s_evaluator_tool_mask.png": "a80fa78812934594ca34276bc12effbaf126d01aea797c01c2a502df547a3304",
+        "15.000s_sensor_inputs.npz": "6f8c737e35bb4682c5a4144c65895b2cbe9426f383d59a0bb5fafa39c8e4535e"
+      }
+    },
+    {
+      "requested_time_s": 17.0,
+      "recorded_time_s": 17.00009999997372,
+      "evaluator_visible_tool_pixels": 6,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 1,
+            "points": 72,
+            "center_m": [
+              6.778749492116756,
+              -5.753186368112195,
+              0.9463700947685825
+            ],
+            "principal_axes": [
+              [
+                1.9014626543314803e-05,
+                -7.089251223170438e-07,
+                0.9999999998189707
+              ],
+              [
+                0.8980644731611104,
+                -0.4398638445513662,
+                -1.7388191101926466e-05
+              ],
+              [
+                -0.43986384448406496,
+                -0.8980644733291643,
+                7.727186267566572e-06
+              ]
+            ],
+            "observed_spans_m": [
+              0.03486911967468828,
+              0.023016560165169037,
+              8.36575695760219e-07
+            ],
+            "checks": {
+              "length": false,
+              "width": true,
+              "thickness": true
+            }
+          },
+          {
+            "component": 3,
+            "points": 2157,
+            "center_m": [
+              6.546704774094869,
+              -6.414367983047522,
+              0.9973037077842744
+            ],
+            "principal_axes": [
+              [
+                0.6663380777733026,
+                0.5181348927880992,
+                0.5362180517148278
+              ],
+              [
+                -0.6874249445487114,
+                0.7054539531693929,
+                0.17257365259470417
+              ],
+              [
+                0.2888607133578075,
+                0.4836020604103565,
+                -0.8262496810560815
+              ]
+            ],
+            "observed_spans_m": [
+              0.12527529743522703,
+              0.11719111729373283,
+              0.06980485189066418
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 9,
+            "points": 194,
+            "center_m": [
+              6.7178327901106485,
+              -5.79992350269192,
+              0.9001674874796123
+            ],
+            "principal_axes": [
+              [
+                -0.9996211533184943,
+                -0.026276508749146776,
+                0.008191149257547275
+              ],
+              [
+                -0.025769572194681747,
+                0.9980513019304253,
+                0.056828935093726246
+              ],
+              [
+                0.009668453190996485,
+                -0.05659632322810272,
+                0.9983503278959514
+              ]
+            ],
+            "observed_spans_m": [
+              0.12009222835490493,
+              0.04665297597937648,
+              0.0026976954209890613
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": true
+            }
+          },
+          {
+            "component": 10,
+            "points": 288,
+            "center_m": [
+              6.723024171315084,
+              -5.845331734632065,
+              0.8859471152264632
+            ],
+            "principal_axes": [
+              [
+                -0.9888287822968309,
+                0.14885912518233163,
+                -0.007655073567080865
+              ],
+              [
+                0.016401667095836108,
+                0.057619015090229084,
+                -0.9982039042282439
+              ],
+              [
+                0.14815068213762592,
+                0.9871783070701984,
+                0.059416878344231906
+              ]
+            ],
+            "observed_spans_m": [
+              0.12765937696364343,
+              0.034710252605059874,
+              0.004858500472818022
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": true
+            }
+          },
+          {
+            "component": 11,
+            "points": 7352,
+            "center_m": [
+              6.283375687024446,
+              -6.141348360760239,
+              0.9336335920801563
+            ],
+            "principal_axes": [
+              [
+                0.17851858198735027,
+                0.24047224408192167,
+                0.9540986404515158
+              ],
+              [
+                -0.10043150197557388,
+                0.9690637863778986,
+                -0.22545263658219086
+              ],
+              [
+                0.978797542547056,
+                0.05557407450543701,
+                -0.1971468816560592
+              ]
+            ],
+            "observed_spans_m": [
+              0.1832695953816704,
+              0.13954444587488174,
+              0.08695472610602832
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 18,
+            "points": 4455,
+            "center_m": [
+              6.4446826096104335,
+              -6.450625463511224,
+              0.9101183414870873
+            ],
+            "principal_axes": [
+              [
+                -0.09504058714915992,
+                -0.009702379833461276,
+                0.9954261150984085
+              ],
+              [
+                0.9948199626802333,
+                0.03529940184695348,
+                0.09532677526354318
+              ],
+              [
+                0.03606284302771641,
+                -0.9993296833652118,
+                -0.006297245266284786
+              ]
+            ],
+            "observed_spans_m": [
+              0.18330163640009317,
+              0.09970486222548382,
+              0.12916389989487484
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 32,
+            "points": 385,
+            "center_m": [
+              6.473562165544427,
+              -6.589640352455082,
+              0.8879864497580084
+            ],
+            "principal_axes": [
+              [
+                -0.9897702010847726,
+                -0.04582688344985066,
+                0.13511049477328624
+              ],
+              [
+                0.04671227659855112,
+                -0.9989026384725019,
+                0.0033885199800062346
+              ],
+              [
+                0.1348069444041696,
+                0.009665174905207002,
+                0.9908247434003973
+              ]
+            ],
+            "observed_spans_m": [
+              0.11163129271393464,
+              0.05059184428570395,
+              0.022730516479116572
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 33,
+            "points": 696,
+            "center_m": [
+              6.477837548816599,
+              -6.655449526114673,
+              0.8725723885809022
+            ],
+            "principal_axes": [
+              [
+                -0.9943029077473673,
+                0.10547592672761784,
+                0.01538039421082218
+              ],
+              [
+                0.1046497636842336,
+                0.9933906566307087,
+                -0.04715326372208095
+              ],
+              [
+                0.02025227409364604,
+                0.04527507260911069,
+                0.9987692492234008
+              ]
+            ],
+            "observed_spans_m": [
+              0.054442030698376526,
+              0.05380960061467043,
+              0.023939175131635005
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 34,
+            "points": 61,
+            "center_m": [
+              6.163203512541504,
+              -6.47523635841793,
+              1.0121716746142433
+            ],
+            "principal_axes": [
+              [
+                -0.40688487571597876,
+                0.839315780389276,
+                0.36054641684966665
+              ],
+              [
+                0.9130721414740699,
+                0.3854692286430118,
+                0.13308921155870393
+              ],
+              [
+                0.027275673732255732,
+                -0.3833568762379286,
+                0.9231974561617622
+              ]
+            ],
+            "observed_spans_m": [
+              0.04911744928898065,
+              0.014136649529619513,
+              0.004568514139515192
+            ],
+            "checks": {
+              "length": false,
+              "width": true,
+              "thickness": true
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "17.000s_rgb.png": "c4a13af59379a8de71df97ba841d9c911c0cd6d2d424037c8e3ba50ef950e4d5",
+        "17.000s_evaluator_tool_mask.png": "8a9bd7490898ca462c71ceb164d76d13dc2e9f83db0408655c27ec52b98544cd",
+        "17.000s_sensor_inputs.npz": "0a0bbb92c477d935852a0c8b038388afadf1d0a7980c3ece08c8c008b10c07fd"
+      }
+    },
+    {
+      "requested_time_s": 20.0,
+      "recorded_time_s": 20.00009999996673,
+      "evaluator_visible_tool_pixels": 0,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 4,
+            "points": 2191,
+            "center_m": [
+              6.546643974031816,
+              -6.4143038687317375,
+              0.9973103076700202
+            ],
+            "principal_axes": [
+              [
+                0.6409329444335807,
+                0.5456646273524619,
+                0.5398657936895053
+              ],
+              [
+                -0.7170267861363796,
+                0.6766638752086812,
+                0.16732778594873168
+              ],
+              [
+                0.2740028260851234,
+                0.4943441255278245,
+                -0.8249523239881782
+              ]
+            ],
+            "observed_spans_m": [
+              0.12245980089611441,
+              0.11698708146717532,
+              0.07100879622063805
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 11,
+            "points": 312,
+            "center_m": [
+              6.721818471395964,
+              -5.845418385743924,
+              0.8854242419513358
+            ],
+            "principal_axes": [
+              [
+                -0.9898453806009417,
+                0.14214771218192396,
+                0.000387845873630833
+              ],
+              [
+                0.006406024416787608,
+                0.04733369785821868,
+                -0.9988585905413431
+              ],
+              [
+                0.1420038216181111,
+                0.9887130771707795,
+                0.04776364388674623
+              ]
+            ],
+            "observed_spans_m": [
+              0.11951998956811563,
+              0.035883890627512044,
+              0.0034603757839743736
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": true
+            }
+          },
+          {
+            "component": 16,
+            "points": 7367,
+            "center_m": [
+              6.283254039819449,
+              -6.141437530015987,
+              0.9333524303187831
+            ],
+            "principal_axes": [
+              [
+                0.17710840285587026,
+                0.2426031296816074,
+                0.9538219619543954
+              ],
+              [
+                -0.11570262636853913,
+                0.9675548165819448,
+                -0.22461206370206785
+              ],
+              [
+                0.9773666230689818,
+                0.07057902222168222,
+                -0.19943190750972203
+              ]
+            ],
+            "observed_spans_m": [
+              0.18356674979012066,
+              0.140432764569002,
+              0.08738993992133776
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 24,
+            "points": 4485,
+            "center_m": [
+              6.444493775693219,
+              -6.450782614765017,
+              0.9098402027696015
+            ],
+            "principal_axes": [
+              [
+                0.08827590174467179,
+                -0.030825548501980955,
+                0.9956189786915057
+              ],
+              [
+                -0.9953122318066092,
+                -0.042374075744014146,
+                0.08693675241799101
+              ],
+              [
+                -0.03950856093698639,
+                0.9986261679249111,
+                0.03442165522306942
+              ]
+            ],
+            "observed_spans_m": [
+              0.18255763302821765,
+              0.09990608829217221,
+              0.12799215276284062
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 37,
+            "points": 380,
+            "center_m": [
+              6.4714892892200675,
+              -6.589812872307075,
+              0.8884429444511491
+            ],
+            "principal_axes": [
+              [
+                -0.1080804757543769,
+                0.9912766957069004,
+                -0.07542627731180035
+              ],
+              [
+                -0.9940952318586341,
+                -0.10850095756718393,
+                -0.0014873476166685445
+              ],
+              [
+                -0.009658196344877079,
+                0.0748201493944861,
+                0.9971502717684786
+              ]
+            ],
+            "observed_spans_m": [
+              0.05043012938324146,
+              0.0447832060566608,
+              0.023035158152654677
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 38,
+            "points": 706,
+            "center_m": [
+              6.47789053034925,
+              -6.6553749058479585,
+              0.8725450173534622
+            ],
+            "principal_axes": [
+              [
+                -0.9946577081785417,
+                0.1014969729804316,
+                0.01882572805551252
+              ],
+              [
+                0.10067266219147383,
+                0.9940943326169568,
+                -0.040515095287175625
+              ],
+              [
+                0.022826709099035117,
+                0.03840341566393628,
+                0.9990015610683753
+              ]
+            ],
+            "observed_spans_m": [
+              0.054459486094893664,
+              0.053624699153781125,
+              0.02373042665357132
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "20.000s_rgb.png": "c1cdbe5df328053ab6ed7e2740e1922a51e21545c8c88cd234b64c4c65edf4ed",
+        "20.000s_evaluator_tool_mask.png": "e080abea7df0849c3668574fb8e7538f5153f6c2ab12e873bce7be80dc6020a9",
+        "20.000s_sensor_inputs.npz": "cb82b2d3364c3c02510754a45074d1ad69e10afe3966f7a5c04f92e19bafe7db"
+      }
+    },
+    {
+      "requested_time_s": 23.0,
+      "recorded_time_s": 23.000099999959737,
+      "evaluator_visible_tool_pixels": 17,
+      "appearance_proposal": {
+        "scope": "Find a tweezer-shaped RGB-D component without simulator object state.\n\nInputs are camera pixels, robot-derived camera calibration, a fixed bench map\nand declared object dimensions. The dark-material threshold is a provisional\nappearance prior; this module does not establish grasp-pose accuracy.\n",
+        "candidate_found": false,
+        "components": [
+          {
+            "component": 2,
+            "points": 92,
+            "center_m": [
+              6.7787493370522744,
+              -5.75413966307531,
+              0.9461786615774769
+            ],
+            "principal_axes": [
+              [
+                6.294588981327795e-05,
+                -2.9297089967630413e-05,
+                0.9999999975897477
+              ],
+              [
+                0.9382515717348182,
+                -0.3459537300698786,
+                -6.919451777282551e-05
+              ],
+              [
+                -0.3459537312632408,
+                -0.9382515738289057,
+                -5.711675335914523e-06
+              ]
+            ],
+            "observed_spans_m": [
+              0.032931025249357454,
+              0.02834513541868415,
+              8.855304530379442e-07
+            ],
+            "checks": {
+              "length": false,
+              "width": true,
+              "thickness": true
+            }
+          },
+          {
+            "component": 6,
+            "points": 2101,
+            "center_m": [
+              6.546218754763061,
+              -6.414404580754658,
+              0.997085296451562
+            ],
+            "principal_axes": [
+              [
+                0.6392904621877519,
+                0.5346420190409927,
+                0.5526894394065632
+              ],
+              [
+                -0.7134154626320279,
+                0.6805917964102797,
+                0.16683280353862767
+              ],
+              [
+                0.28696007149654235,
+                0.500951812188357,
+                -0.8165177274449712
+              ]
+            ],
+            "observed_spans_m": [
+              0.12419668363998364,
+              0.11730693645437816,
+              0.06967531306554928
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 12,
+            "points": 551,
+            "center_m": [
+              6.7193290176270875,
+              -5.827142313719718,
+              0.8934348036339026
+            ],
+            "principal_axes": [
+              [
+                -0.9811315427047235,
+                0.16792162361891405,
+                0.0958291408238494
+              ],
+              [
+                0.13570783674644166,
+                0.9511546586370511,
+                -0.27728721282928814
+              ],
+              [
+                0.13771085271484781,
+                0.25905046549701766,
+                0.9559961178636279
+              ]
+            ],
+            "observed_spans_m": [
+              0.12220606286686862,
+              0.0748498092333078,
+              0.03173298240901297
+            ],
+            "checks": {
+              "length": true,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 13,
+            "points": 7142,
+            "center_m": [
+              6.283709262967165,
+              -6.142649670407595,
+              0.9341032937295379
+            ],
+            "principal_axes": [
+              [
+                0.18089973703191004,
+                0.24862963780071243,
+                0.9515558776807973
+              ],
+              [
+                -0.07848337793364041,
+                0.9680822989544436,
+                -0.23802735523297516
+              ],
+              [
+                0.9803650567670755,
+                0.031622233604953046,
+                -0.19463912713512319
+              ]
+            ],
+            "observed_spans_m": [
+              0.1830055335467198,
+              0.13618329500580517,
+              0.08651136927001281
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 21,
+            "points": 3831,
+            "center_m": [
+              6.441724192225738,
+              -6.447459029859151,
+              0.9182275127300994
+            ],
+            "principal_axes": [
+              [
+                0.07004406293465039,
+                0.8882207832681471,
+                0.45404588911048
+              ],
+              [
+                -0.9964640574192786,
+                0.04112742354366345,
+                0.07326607198539126
+              ],
+              [
+                0.046402710256138804,
+                -0.4575722622746923,
+                0.8879608174225397
+              ]
+            ],
+            "observed_spans_m": [
+              0.18123658561152617,
+              0.40027509765001523,
+              0.09281861642482671
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 38,
+            "points": 377,
+            "center_m": [
+              6.471808836543631,
+              -6.589509048400729,
+              0.8885759913286447
+            ],
+            "principal_axes": [
+              [
+                -0.01962855456343997,
+                0.9995492691826209,
+                -0.022715156223073914
+              ],
+              [
+                -0.9998036545772053,
+                -0.01956171639442692,
+                0.0031609406461096815
+              ],
+              [
+                0.0027151684688576584,
+                0.02277274090206541,
+                0.9997369804763616
+              ]
+            ],
+            "observed_spans_m": [
+              0.05031935769582466,
+              0.046555647752941826,
+              0.022815381841545516
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          },
+          {
+            "component": 39,
+            "points": 677,
+            "center_m": [
+              6.477774636255563,
+              -6.655455218903807,
+              0.87273734395833
+            ],
+            "principal_axes": [
+              [
+                -0.9942197602627211,
+                0.10540345471210508,
+                0.02042498562768614
+              ],
+              [
+                0.10402068937323208,
+                0.9927731383160778,
+                -0.05984306158915987
+              ],
+              [
+                0.02658504251370548,
+                0.05737253326113171,
+                0.997998811593353
+              ]
+            ],
+            "observed_spans_m": [
+              0.05454033596310405,
+              0.05310699586695793,
+              0.0243951975584974
+            ],
+            "checks": {
+              "length": false,
+              "width": false,
+              "thickness": false
+            }
+          }
+        ],
+        "source": "Native RGB intensity registered onto native depth; own-robot camera frames and fixed bench bounds",
+        "appearance_threshold_uint8": 24.0,
+        "qualified_grasp_pose": false
+      },
+      "detector_used_evaluator_mask": false,
+      "files": {
+        "23.000s_rgb.png": "488d423377b1e74f0518e6df4af9e006e4dd136643e2ba8dac9d172664b452aa",
+        "23.000s_evaluator_tool_mask.png": "c5287505bc0033363b239eae79d1ddb10d97ab1d858b02120c719d012dc08ecd",
+        "23.000s_sensor_inputs.npz": "815426eb7d4a35d28c87309246be88d75fa8f2cc6831e253d119163a71ec62f1"
+      }
+    }
+  ],
+  "online_tool_tracking_qualified": false
+}
