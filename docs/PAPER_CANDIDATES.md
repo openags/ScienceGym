@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **385**.
+Last screened: **2026-11-05**. Candidate count: **387**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3964,3 +3964,25 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The six-page written Supplementary Information in the same file was read. Supplementary movies were not viewed, code was not executed and raw data were not audited. The [published corrigendum](https://www.nature.com/articles/nmat4275) changes equal-contribution credit rather than scientific findings.
 - Scope is prepared-paper sheet identity, geometry verification, fixture mounting and linked measurement records only. Material preparation, hydrogel fabrication, fixture loading and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through the lawful public author copy. Reuse rights were not reviewed; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, movies, code, data or other source assets redistributed.
+
+## Additional candidate: semiconductor imaging and measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Using scalable computer vision to automate high-throughput semiconductor characterization](https://www.nature.com/articles/s41467-024-48768-2) | Nature Communications / 2024 | 10.1038/s41467-024-48768-2 | Specimen identity and linked baseline/follow-up imaging and measurement records suggest a future long-horizon materials-characterization coordination task. | OA main scholarly text including Methods and all written scientific SI content read; two SI pages visually inspected. |
+
+- **CANDIDATE only.** *Nature Communications* **15**, 4654 (2024). Complete main scholarly text, including Methods, was read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The official **23-page Supplementary Information** was accessible. All written scientific content, including Table S1, was read, and two SI pages received visual inspection. The main algorithm graphic, remaining graphics, Reporting Summary, data and code were not audited.
+- The study's 201 specimens represent 120 unique compositions. Reported throughput excludes transfers and reloading; it does not establish fully unattended operation. Scope is specimen identity and baseline/follow-up imaging and measurement-record coordination only. Material preparation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, data, code or other source assets redistributed.
+
+## Additional candidate: soft-valve configuration and characterization records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [A soft, self-sensing tensile valve for perceptive soft robots](https://www.nature.com/articles/s41467-023-39691-z) | Nature Communications / 2023 | 10.1038/s41467-023-39691-z | Prepared-specimen identity, configuration history and repeated characterization records suggest a future long-horizon soft-device measurement-coordination task. | OA main scholarly text including Methods and all written scientific SI content read; selected SI figures visually inspected. |
+
+- **CANDIDATE only.** *Nature Communications* **14**, 3942 (2023). Complete main scholarly text, including Methods, was read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The official **25-page Supplementary Information** was accessible and all written scientific content was read. Supplementary Figures 1, 6 and 12 received visual inspection. Remaining figure pixels, supplementary movies, data and peer review were not audited.
+- Main-text and supplementary curing times conflict and remain unresolved. The [published correction](https://www.nature.com/articles/s41467-023-40295-w) addresses figure presentation. Scope is prepared-specimen identity, configuration history and repeated characterization records only. Fabrication, actuation and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05**; publisher license **CC BY 4.0**. Citation metadata and original commentary only; no publisher text, figures, movies, data or other source assets redistributed.
