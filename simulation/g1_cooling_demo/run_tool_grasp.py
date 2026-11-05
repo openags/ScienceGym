@@ -34,7 +34,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -47,6 +47,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Loaded stepping requires a visual station and 0.02 to 0.30 m distance')
     if carry_thumb_force is not None and (carry_distance is None or not thumb_force<=carry_thumb_force<4.):
         raise ValueError('Carrying force must be at least the pickup force and below the unchanged 4 N bound')
+    if carry_load_abort is not None and (carry_distance is None or not .15<=carry_load_abort<=.7):
+        raise ValueError('Carrying load observer bound must be 0.15 to 0.7 Nm; source motor bounds remain unchanged')
+    if carry_preload_before_lift and carry_distance is None:
+        raise ValueError('Pre-lift carrying force requires a loaded route')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -100,6 +104,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         if approach_feedforward:prior['approach_velocity_feedforward']=True
     if carry_distance is not None:prior['carry_distance_m']=carry_distance
     if carry_thumb_force is not None:prior['carry_hold_force_proxy_n']=[carry_thumb_force,carry_thumb_force/2,carry_thumb_force/2]
+    if carry_load_abort is not None:prior['carry_motor_load_abort_nm']=carry_load_abort
+    if carry_preload_before_lift:prior['carry_preload_before_lift']=True
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
@@ -146,6 +152,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if dex3:
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
         run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
+            pickup_motor_load_observer_abort_nm=.15,
             lift_force_proxy_threshold_n=prior['lift_force_proxy_threshold_n'],lift_load_hold_s=.5,
             release_extra_opening_rad=prior['release_extra_opening_rad'],
             post_release_withdrawal_m=prior['post_release_withdrawal_m'],
@@ -169,7 +176,14 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         run_contract['carry_contract'].update(
             hold_force_proxy_n=prior.get('carry_hold_force_proxy_n',prior['hold_force_proxy_n']),
             preload_force_increase=bool(carry_thumb_force is not None and carry_thumb_force>thumb_force),
+            motor_load_observer_abort_nm=prior.get('carry_motor_load_abort_nm',.15),
+            motor_load_observer_bound_basis='Authored controller stop bound, at most half the unchanged source driver effort; not a physical acceptance limit',
             endpoint_arm_joint_margin_rad=.08)
+        if carry_preload_before_lift:
+            run_contract['carry_contract'].update(preload_before_lift=True,
+                lift_force_proxy_threshold_n=(.85*np.asarray(run_contract['carry_contract']['hold_force_proxy_n'])).tolist(),
+                minimum_native_loaded_before_lift_s=.5,
+                prelift_native_load_thresholds='Same independently measured thumb/opposing contact thresholds as physical_acceptance')
     (output/'contract.json').write_text(json.dumps(run_contract, indent=2)+'\n')
     if prepare_only:
         prepared=dict(status='prepared_not_executed',contract_sha256=sha(output/'contract.json'),
@@ -289,5 +303,7 @@ if __name__ == '__main__':
     p.add_argument('--carry-distance',type=float)
     p.add_argument('--carry-thumb-force',type=float)
     p.add_argument('--prepare-only',action='store_true')
+    p.add_argument('--carry-load-abort',type=float)
+    p.add_argument('--carry-preload-before-lift',action='store_true')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift)['status'] == 'failed': raise SystemExit(1)

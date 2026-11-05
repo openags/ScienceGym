@@ -10,6 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 import pickle
+import shutil
 import subprocess
 import sys
 import time
@@ -31,9 +32,11 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('source_recording');p.add_argument('actor_run');p.add_argument('output')
+    p.add_argument('--checkpoint-phase',choices=['close','lower'],default='lower')
     p.add_argument('--seconds',type=float,default=18.);a=p.parse_args()
     source,run,out=map(lambda x:Path(x).resolve(),[a.source_recording,a.actor_run,a.output])
     out.mkdir(parents=True,exist_ok=False)
+    shutil.copyfile(__file__,out/Path(__file__).name)
     contract=json.loads((run/'contract.json').read_text());receipt=json.loads((run/'actor_isolation.json').read_text())
     original=json.loads((source/'result.json').read_text())
     assert contract['task']=='visual_pickup_loaded_out_and_back_release' and receipt['passed']
@@ -42,13 +45,14 @@ def main():
         assert sha(source/f)==original[key]
     for n,h in receipt['source_modules'].items():assert sha(run/'actor_bundle/code'/n)==h
     source_events=json.loads((source/'events.json').read_text())
-    checkpoint=next(e['time_s'] for e in source_events if e.get('phase')=='lower')
+    checkpoint=next(e['time_s'] for e in source_events if e.get('phase')==a.checkpoint_phase)
     sensors=dict(np.load(source/'sensors.npz'));index=json.loads((source/'camera_index.json').read_text())
     responses=pickle.loads((source/'responses.pkl').read_bytes())
     row=int(np.argmin(abs(sensors['time_s']-checkpoint)))
     report=dict(scope=__doc__,physical_execution=True,continuous_pickup_carry=False,qualified_carry=False,
         source_result_sha256=sha(source/'result.json'),actor_contract_sha256=sha(run/'contract.json'),
         script_sha256=sha(__file__),checkpoint_time_s=checkpoint,requested_continuation_s=a.seconds)
+    report['checkpoint_phase']=a.checkpoint_phase
     (out/'contract.json').write_text(json.dumps(report,indent=2)+'\n')
     command=receipt['command_prefix']+[sys.executable,'/actor/carry_tool_actor.py','--model','/model/world.xml']
     failure=None;records=[];response={};started=time.monotonic()
@@ -71,6 +75,7 @@ def main():
                 error=difference(responses[i],{k:response[k] for k in responses[i]})
                 prefix_error=max(prefix_error,error)
                 if error>1e-10:raise RuntimeError('Frozen pickup prefix differs at packet '+str(i))
+                if i%10000==0:print('prefix_sensor_packets',i,'of',row,flush=True)
             report.update(prefix_packets_replayed=row,maximum_prefix_response_error=prefix_error)
             trace=np.load(source/'trace.npz');times=trace['time'];k=int(np.argmin(abs(times-checkpoint)))
             m=mujoco.MjModel.from_xml_path(str(run/'world.xml'));d=mujoco.MjData(m)
@@ -112,6 +117,13 @@ def main():
                     monitor.write(json.dumps(dict(time_s=float(d.time-dt),phase=response['phase'],
                         base_m=d.qpos[:3].tolist(),tool_m=d.body('tweezer').xpos.tolist(),
                         actual_finger_force_n=forces,force_proxy_n=np.asarray(response['force_proxy_n']).tolist(),
+                        motor_load_nm=np.asarray(response['motor_load_nm']).tolist(),
+                        motor_load_abort_nm=response.get('motor_load_abort_nm'),
+                        hand_commands_rad={m.joint(m.actuator_trnid[a,0]).name:float(value)
+                            for a,value in enumerate(response['requested_joint_position'])
+                            if m.joint(m.actuator_trnid[a,0]).name.startswith('right_hand_')},
+                        wrist_target_m=np.asarray(response['wrist_target_m']).tolist(),
+                        wrist_observed_m=np.asarray(response['wrist_observed_m']).tolist(),
                         walk_phase=response.get('walk_phase')))+'\n');monitor.flush()
                 if i%round(.5/dt)==0:print('checkpoint',round(float(d.time),3),response['phase'],'wall_s',round(time.monotonic()-started,1),flush=True)
             report.update(final_time_s=float(d.time),last_phase=response.get('phase'),physics_warnings=d.warning.number.tolist())

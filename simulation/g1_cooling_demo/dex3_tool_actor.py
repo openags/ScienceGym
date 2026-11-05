@@ -31,6 +31,8 @@ class ToolActor:
         self.hand=np.array([i for i,n in enumerate(self.names) if n.startswith('right_hand_')])
         assert len(self.hand)==7 and model.nu==43 and model.neq==0
         self.drivers=np.array([self.names.index(n) for n in prior['closing_drivers']]);self.signs=np.asarray(prior['closing_signs'])
+        self.motor_load_abort_nm=.15
+        self.source_driver_effort_nm=np.min(np.max(abs(model.actuator_ctrlrange[self.drivers]),axis=1))
         self.features=[(model.body(r['body']).id,np.asarray(r['point_local_m'])) for r in prior['robot_contact_features']]
         assert len(self.features)==len(self.drivers)==3
         self.initial=self.d.qpos[self.qa].copy();self.command=self.initial.copy()
@@ -106,7 +108,7 @@ class ToolActor:
         if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
         effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
         self.latest_force_proxy=proxy.copy()
-        if max(abs(proxy))>4. or max(abs(effort))>.15:self.abort('Observed motor load exceeds the development bound',t)
+        if max(abs(proxy))>4. or max(abs(effort))>self.motor_load_abort_nm:self.abort('Observed motor load exceeds the development bound',t)
         if self.phase=='settle' and t-self.phase_started>=2.:self.change('close',t)
         if self.phase=='close':
             for i in range(3):

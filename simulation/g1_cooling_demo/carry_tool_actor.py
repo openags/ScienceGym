@@ -6,6 +6,7 @@ native camera and proprioceptive inputs as the visual pickup. A rigid grasp
 hypothesis is used for collision planning only; the plant tool stays passive.
 """
 import argparse
+import itertools
 import json
 import pickle
 from pathlib import Path
@@ -99,11 +100,18 @@ def plan_carry_arm(actor):
 
     q,raise_path=segment(initial,start,raised,np.zeros(3))
     if q is None:return dict(planned=False,reason='raised_path',detail=raise_path)
-    candidates=[np.zeros(3)]
+    candidates={(0.,0.,0.)}
     for angle in [.2,.4,.6,.8]:
         for axis in range(3):
             for sign in [-1.,1.]:
-                r=np.zeros(3);r[axis]=sign*angle;candidates.append(r)
+                r=np.zeros(3);r[axis]=sign*angle;candidates.add(tuple(r))
+    # A single-axis rotation unnecessarily forced the previous carrying pose
+    # to turn 0.8 rad. Search combined rotations before accepting that large
+    # change in payload orientation; every candidate keeps the same retreat,
+    # official joint limits, endpoint margin and source-geometry checks.
+    for r in itertools.product([-.4,-.2,0.,.2,.4],[-.8,-.6,-.4,-.2,0.,.2,.4,.6,.8],[-.4,-.2,0.,.2,.4]):
+        if np.linalg.norm(r)<=.8+1e-12:candidates.add(r)
+    candidates=[np.asarray(r) for r in sorted(candidates,key=lambda r:(np.linalg.norm(r),r))]
     for r in candidates:
         guard.d.qpos[:]=q;mujoco.mj_kinematics(actor.m,guard.d)
         goal,pe,re=ik.solve(guard.d,end,R@Rotation.from_rotvec(r).as_matrix(),q[ik.qa])
@@ -115,8 +123,12 @@ def plan_carry_arm(actor):
         if margin<.08:row['failure']='endpoint_joint_margin';continue
         final,path=segment(q,raised,end,r)
         if final is None:row.update(failure='withdrawal_path',detail=path[-1]);continue
+        path_margin=float(np.min(np.minimum(final[ik.qa]-ik.low,ik.high-final[ik.qa])))
+        row['path_endpoint_joint_margin_rad']=path_margin
+        if path_margin<.08:row['failure']='path_endpoint_joint_margin';continue
         return dict(planned=True,rotation_vector_rad=r.tolist(),raise_path=raise_path,
                     retract_path=path,attempts=attempts,
+                    candidate_order='Increasing wrist rotation magnitude; single and combined source-frame axes',
                     source_joint_range='Official source bounds minus 5 mrad margin',
                     physical_execution=False)
     return dict(planned=False,reason='no_loaded_withdrawal_path',attempts=attempts)
@@ -158,6 +170,10 @@ class ToolActor(VisualPickup):
         if self.carry_force.shape!=(3,) or not np.isfinite(self.carry_force).all() or np.any(self.carry_force<self.hold_force) or max(self.carry_force)>=4.:
             raise ValueError('Invalid loaded-transport force targets')
         self.carry_load_since=None
+        self.preload_before_lift=bool(prior.get('carry_preload_before_lift',False))
+        self.carry_motor_load_abort_nm=float(prior.get('carry_motor_load_abort_nm',.15))
+        if not .15<=self.carry_motor_load_abort_nm<=.5*self.source_driver_effort_nm:
+            raise ValueError('Carry load observer bound exceeds half the source motor effort rating')
 
     def abort(self,reason,t):
         if self.phase in self.transport_phases:
@@ -169,6 +185,17 @@ class ToolActor(VisualPickup):
         super().abort(reason,t)
 
     def change(self,phase,t):
+        if phase=='close' and self.phase=='settle' and self.preload_before_lift:
+            # Establish the carrying grasp while the tool is still supported.
+            # Increasing force after pickup made the slender tool migrate out
+            # of the fingers during the long load-settling interval.
+            self.hold_force=self.carry_force.copy()
+            self.lift_force=.85*self.carry_force
+            self.motor_load_abort_nm=self.carry_motor_load_abort_nm
+            self.events.append(dict(time_s=t,kind='carrying_force_before_lift',
+                hold_force_proxy_n=self.hold_force.tolist(),
+                lift_force_proxy_threshold_n=self.lift_force.tolist(),
+                minimum_sustained_load_s=.5))
         if phase=='lower' and self.phase=='hold' and not self.transported:
             self.return_wrist=self.wrist_position.copy()
             self.return_rotation=self.wrist_rotation.copy()
@@ -195,6 +222,7 @@ class ToolActor(VisualPickup):
                 inferred_payload_transform=True))
             preload=bool(np.any(self.carry_force>self.hold_force))
             self.hold_force=self.carry_force.copy()
+            self.motor_load_abort_nm=self.carry_motor_load_abort_nm
             phase='carry_preload' if preload else 'carry_raise'
         self.carry_dwell=None
         super().change(phase,t)
@@ -302,6 +330,7 @@ class ToolActor(VisualPickup):
         self.carry_observation={k:obs[k] for k in Pickup.fields}
         result=super().update(obs)
         result.update(carry_completed=self.transported,carry_clearance=self.carry_clearance,
+            motor_load_abort_nm=self.motor_load_abort_nm,
             stance_estimated_m=self.d.qpos[:3].copy(),
             walk_phase=None if self.walker is None else self.walker.phase,
             walk_steps=0 if self.walker is None else self.walker.steps)

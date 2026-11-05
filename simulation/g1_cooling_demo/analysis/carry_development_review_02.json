@@ -1,0 +1,75 @@
+{
+  "created_utc": "2026-11-05T13:44:00.132780+00:00",
+  "scope": "Development evidence and next controlled experiment; no branch or reliability qualification",
+  "failed_checkpoint_probes": [
+    {
+      "path": "simulation/g1_cooling_demo/analysis/dex3_carry_checkpoint_02/result.json",
+      "sha256": "4f1da132c1d4b0bcd7f565cbc553360c9f40c0006c517f37011bac6dc4645bee",
+      "failure": "Observed motor load exceeds the development bound",
+      "start_s": 50.988000000569095,
+      "end_s": 55.98500000073498,
+      "sensor_prefix_error": 0.0,
+      "qualified_carry": false
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/dex3_carry_checkpoint_03/result.json",
+      "sha256": "7a42b786d881ccd8816a936c189f41f5c33fe4f3c0f689753c85bce34b94d1e3",
+      "failure": "Observed motor load exceeds the development bound",
+      "start_s": 50.988000000569095,
+      "end_s": 68.57100000115278,
+      "sensor_prefix_error": 0.0,
+      "qualified_carry": false
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/dex3_carry_checkpoint_04/result.json",
+      "sha256": "bc2c09b8c6800b9bbd9527e8d0162e42b98efc23bd71de6d85dec7af9cba16fb",
+      "failure": "Observed motor load exceeds the development bound",
+      "start_s": 50.988000000569095,
+      "end_s": 65.21300000104131,
+      "sensor_prefix_error": 0.0,
+      "qualified_carry": false
+    }
+  ],
+  "wrench_diagnostic": {
+    "path": "simulation/g1_cooling_demo/analysis/dex3_carry_checkpoint_03/contact_wrench_diagnosis.json",
+    "sha256": "0419f89b7f8b47a81d23c72ed9a9ad320d38868eb4dde9f09d6d169de59e48c2",
+    "continuous_replay": false,
+    "critical_time_s": 67.00000000110063,
+    "optimistic_static_peak_finger_force_n": 2.858496799693429,
+    "limitation": "Sparse mj_forward states without recorded warmstart; optimistic rigid friction-cone feasibility only"
+  },
+  "sensor_handoff_screen": {
+    "path": "simulation/g1_cooling_demo/analysis/dex3_carry_handoff_03/review.json",
+    "sha256": "e1635ab670bd11e0c1f5c2e308323892e627e443aec18dc57198c903e9217a69",
+    "passed": true,
+    "compared_prefix_packets": 50988,
+    "maximum_prefix_response_error": 0.0,
+    "selected_rotation_vector_rad": [
+      -0.2,
+      -0.6,
+      0.0
+    ],
+    "physical_execution": false
+  },
+  "design_change": {
+    "force_established": "During close while the source tray supports the tool, before the lift load gate",
+    "force_targets_n": [
+      2.4,
+      1.2,
+      1.2
+    ],
+    "motor_observer_abort_nm": 0.3,
+    "source_motor_caps_changed": false,
+    "physical_acceptance_relaxed": false,
+    "path_search": "Single and combined wrist rotations ranked by magnitude; source geometry guard and 80 mrad final joint margin retained",
+    "candidate": "runs/dex3_carry_candidate_05",
+    "execution_status": "Prepared; separate restored close-phase diagnostic launched"
+  },
+  "timestep_screen": {
+    "path": "analysis/dex3_timestep_screen_01/review.json",
+    "decision": "Keep 100 microsecond physics period. Coarser open-loop contact segments changed forces and trajectories; speed alone is insufficient."
+  },
+  "conservative_screen_note": "level_withdrawal_01 and combined_withdrawal_01 apply an extra 80 mrad margin along the entire path. Their failures are not an infeasibility proof. combined_withdrawal_02/03 apply the active endpoint-margin rule; full source geometry is screened separately in carry_handoff_03.",
+  "qualified_carry": false,
+  "qualified_paper_branch": false
+}

@@ -168,6 +168,8 @@ def physics(folder):
         sole_floor=rest.site_xpos[sole_ids,2].copy();sole_lifts=np.zeros(2)
         base_excursion=0.;lost_load=0.;maximum_lost_load=0.;held_carry_s=0.
         wrist_tool_initial=None;wrist_tool_drift=0.
+        prelift_loaded_s=0.
+        first_lift=carry_phases.get('lift',float('inf'))
     started = time.monotonic(); compared_sensors = 0
     def observe():
         packet = dict(time_s=float(d.time), joint_position=np.array([d.sensor(n+'_encoder').data[0] for n in encoder_names]),
@@ -219,6 +221,9 @@ def physics(folder):
         loaded = (forces['thumb'] > limits['minimum_thumb_load_n'] and
                   min(forces['index'],forces['middle']) > limits['minimum_each_opposing_finger_load_n']) if dex3 else min(forces.values()) > limits['minimum_bilateral_finger_load_n']
         if loaded: bilateral += dt
+        if carrying and carry_limits.get('preload_before_lift'):
+            window=carry_limits['minimum_native_loaded_before_lift_s']
+            if first_lift-window<=trace['time'][i]<first_lift and loaded:prelift_loaded_s+=dt
         max_force = max(max_force, max(forces.values()))
         height = float(trace['qpos'][i, qtool+2]-initial_z); peak_height = max(peak_height, height)
         if loaded and height >= limits['minimum_actual_tool_lift_m'] and support_force < .01: held_lift += dt
@@ -294,7 +299,12 @@ def physics(folder):
             carried_tool_wrist_drift=wrist_tool_initial is not None and wrist_tool_drift<=carry_limits['maximum_tool_wrist_position_drift_m'],
             returned_base=bool(np.linalg.norm(trace['qpos'][-1,:2]-trace['qpos'][0,:2])<=carry_limits['maximum_final_base_xy_error_m']),
             returned_tool=bool(np.linalg.norm(trace['qpos'][-1,qtool:qtool+3]-trace['qpos'][0,qtool:qtool+3])<=carry_limits['maximum_final_tool_position_error_m']))
-        if carry_limits.get('preload_force_increase'):
+        if carry_limits.get('preload_before_lift'):
+            configs=[e for e in carry_events if e.get('kind')=='carrying_force_before_lift']
+            checks['carry_preload_before_lift']=bool(len(configs)==1 and
+                carry_phases.get('close',float('inf'))<=configs[0]['time_s']<first_lift and
+                prelift_loaded_s>=carry_limits['minimum_native_loaded_before_lift_s']-dt-1e-9)
+        elif carry_limits.get('preload_force_increase'):
             checks['carry_preload_before_motion']=carry_phases.get('carry_preload',float('inf'))<carry_phases.get('carry_raise',-1.)
     report = dict(scope=__doc__, passed=bool(all(checks.values())), checks={k: bool(v) for k, v in checks.items()},
         max_q_replay_error=qerr, max_v_replay_error=verr, max_sensor_replay_error=sensor_error,
@@ -314,6 +324,7 @@ def physics(folder):
         report.update(qualified_carry=False,carry_metrics=dict(base_excursion_while_held_m=base_excursion,
             maximum_sole_lifts_while_held_m=sole_lifts.tolist(),held_carry_s=held_carry_s,
             maximum_contiguous_lost_load_s=maximum_lost_load,maximum_tool_wrist_position_drift_m=wrist_tool_drift))
+        if carry_limits.get('preload_before_lift'):report['carry_metrics']['native_prelift_loaded_s']=prelift_loaded_s
     np.savez_compressed(folder/'physical_samples.npz', samples=np.asarray(samples))
     (folder/'physical_review.json').write_text(json.dumps(report, indent=2)+'\n')
     return report
