@@ -16,6 +16,11 @@ remains separate. The earlier walking/window run uses Inspire hands; that result
 does not transfer automatically to the three-finger model. There remain
 **0 of 11 qualified paper branches and 0 qualified complete campaigns**.
 
+The separate [99.66-second visual pickup](runs/dex3_visual_grasp_03/physical_review.json)
+also passes its 18 independent physical checks, controller replay and source
+motor limits. It uses the same authored initial scene as the shorter run;
+these two executions are not randomized repeated-reliability acceptance.
+
 The contact plant now also runs in the existing complete laboratory. The
 [laboratory runtime](LABORATORY.md) imports the original room, furniture and
 equipment, with G1 and the white tray as dynamic bodies. A separate
@@ -90,6 +95,18 @@ run's own result and independent review before claiming any carrying outcome.
 `probe_tool_carry_checkpoint.py` separately diagnoses the new control stage
 from an explicitly restored recorded grasp after replaying the actor's sensor
 history. Those checkpoint probes cannot count as continuous pickup/carry demos.
+
+The first [checkpoint continuation](analysis/dex3_carry_checkpoint_01/result.json)
+loses the tool during rotated withdrawal after 11.309 seconds, before stepping.
+Its [sparse wrench diagnosis](analysis/dex3_carry_checkpoint_01/contact_wrench_diagnosis.json)
+finds a late optimistic static requirement near 1.94 N peak finger force,
+above the roughly 1.13 N actual thumb load. Sparse reconstructed forces are not
+continuous replay or calibrated hardware forces. The next candidate adds an
+observed preload stage (`--carry-thumb-force 2.4`) and rejects withdrawn arm
+endpoints within 0.08 rad of the IK bounds. This changes motor commands and
+planning only; source geometry, friction, dynamics and the 4 N development
+acceptance bound remain. `--prepare-only` freezes an isolated candidate without
+executing it, for checkpoint diagnostics before a new full continuous trial.
 
 `build_tool_station.py` places the free passive tweezer and ordinary free tray
 in the existing room with the complete G1. `runs/tool_station_04/review.json`

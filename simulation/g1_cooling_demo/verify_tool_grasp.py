@@ -161,7 +161,7 @@ def physics(folder):
         carry_limits=contract['carry_contract']
         carry_events=json.loads((folder/'events.json').read_text())
         carry_phases={e['phase']:e['time_s'] for e in carry_events if 'phase' in e}
-        carry_start=carry_phases.get('carry_raise',float('inf'))
+        carry_start=carry_phases.get('carry_preload',carry_phases.get('carry_raise',float('inf')))
         carry_end=carry_phases.get('lower',float(trace['time'][-1]))
         forward=rest.body('pelvis').xmat.reshape(3,3)[:2,0].copy();forward/=np.linalg.norm(forward)
         sole_ids=[m.site(s+'_sole').id for s in ['left','right']]
@@ -294,6 +294,8 @@ def physics(folder):
             carried_tool_wrist_drift=wrist_tool_initial is not None and wrist_tool_drift<=carry_limits['maximum_tool_wrist_position_drift_m'],
             returned_base=bool(np.linalg.norm(trace['qpos'][-1,:2]-trace['qpos'][0,:2])<=carry_limits['maximum_final_base_xy_error_m']),
             returned_tool=bool(np.linalg.norm(trace['qpos'][-1,qtool:qtool+3]-trace['qpos'][0,qtool:qtool+3])<=carry_limits['maximum_final_tool_position_error_m']))
+        if carry_limits.get('preload_force_increase'):
+            checks['carry_preload_before_motion']=carry_phases.get('carry_preload',float('inf'))<carry_phases.get('carry_raise',-1.)
     report = dict(scope=__doc__, passed=bool(all(checks.values())), checks={k: bool(v) for k, v in checks.items()},
         max_q_replay_error=qerr, max_v_replay_error=verr, max_sensor_replay_error=sensor_error,
         compared_sensor_packets=compared_sensors, bilateral_contact_s=bilateral, held_lift_s=held_lift,

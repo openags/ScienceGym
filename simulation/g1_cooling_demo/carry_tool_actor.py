@@ -110,6 +110,9 @@ def plan_carry_arm(actor):
         row=dict(rotation_vector_rad=r.tolist(),endpoint_position_error_m=pe,endpoint_rotation_error_rad=re)
         attempts.append(row)
         if pe>.001 or re>.025:row['failure']='endpoint_ik';continue
+        margin=float(np.min(np.minimum(goal-ik.low,ik.high-goal)))
+        row['endpoint_joint_margin_rad']=margin
+        if margin<.08:row['failure']='endpoint_joint_margin';continue
         final,path=segment(q,raised,end,r)
         if final is None:row.update(failure='withdrawal_path',detail=path[-1]);continue
         return dict(planned=True,rotation_vector_rad=r.tolist(),raise_path=raise_path,
@@ -138,7 +141,7 @@ class LoadedWalker(QuasistaticWalker):
 
 
 class ToolActor(VisualPickup):
-    transport_phases=frozenset({'carry_raise','carry_retract','carry_walk_out',
+    transport_phases=frozenset({'carry_preload','carry_raise','carry_retract','carry_walk_out',
         'carry_pause','carry_walk_back','carry_align','carry_extend','carry_descend'})
     loaded_phases=VisualPickup.loaded_phases|transport_phases
 
@@ -151,6 +154,10 @@ class ToolActor(VisualPickup):
         self.control_target=None;self.control_posture=None;self.control_motion={}
         self.carry_observation=None
         self.carry_plan=None
+        self.carry_force=np.asarray(prior.get('carry_hold_force_proxy_n',self.hold_force),dtype=float)
+        if self.carry_force.shape!=(3,) or not np.isfinite(self.carry_force).all() or np.any(self.carry_force<self.hold_force) or max(self.carry_force)>=4.:
+            raise ValueError('Invalid loaded-transport force targets')
+        self.carry_load_since=None
 
     def abort(self,reason,t):
         if self.phase in self.transport_phases:
@@ -186,7 +193,9 @@ class ToolActor(VisualPickup):
             self.events.append(dict(time_s=t,kind='carry_goal',distance_m=self.distance,
                 source='Authored local out-and-back task relative to sensor-derived stance',
                 inferred_payload_transform=True))
-            phase='carry_raise'
+            preload=bool(np.any(self.carry_force>self.hold_force))
+            self.hold_force=self.carry_force.copy()
+            phase='carry_preload' if preload else 'carry_raise'
         self.carry_dwell=None
         super().change(phase,t)
 
@@ -229,7 +238,15 @@ class ToolActor(VisualPickup):
     def before_target(self,t,dt):
         if self.phase not in self.transport_phases:return
         elapsed=t-self.phase_started
-        if self.phase=='carry_raise':
+        if self.phase=='carry_preload':
+            # A fresh sustained load observation is required before starting
+            # the rotated transport pose; elapsed time alone cannot pass.
+            if np.all(self.latest_force_proxy>.85*self.carry_force):
+                if self.carry_load_since is None:self.carry_load_since=t
+                if t-self.carry_load_since>=.5:self.change('carry_raise',t)
+            else:self.carry_load_since=None
+            if elapsed>15.:self.abort('Carrying preload did not reach sustained force targets',t)
+        elif self.phase=='carry_raise':
             u=self.blend(elapsed/3.);self.arm_reference('raise',u)
             self.wrist_position=self.return_wrist+u*(self.raised_wrist-self.return_wrist)
             if self.settled(t,3.):self.change('carry_retract',t)

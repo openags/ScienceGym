@@ -105,6 +105,7 @@ class ToolActor:
         lever=np.asarray(lever)
         if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
         effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
+        self.latest_force_proxy=proxy.copy()
         if max(abs(proxy))>4. or max(abs(effort))>.15:self.abort('Observed motor load exceeds the development bound',t)
         if self.phase=='settle' and t-self.phase_started>=2.:self.change('close',t)
         if self.phase=='close':

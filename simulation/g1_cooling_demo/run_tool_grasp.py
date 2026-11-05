@@ -34,7 +34,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -45,6 +45,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if approach_feedforward and not visual:raise ValueError('Approach feedforward requires a visual approach station')
     if carry_distance is not None and (not visual or not .02<=carry_distance<=.30):
         raise ValueError('Loaded stepping requires a visual station and 0.02 to 0.30 m distance')
+    if carry_thumb_force is not None and (carry_distance is None or not thumb_force<=carry_thumb_force<4.):
+        raise ValueError('Carrying force must be at least the pickup force and below the unchanged 4 N bound')
     if dex3: assert 0 < lift_force < thumb_force < 4.
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
@@ -97,6 +99,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             scope='Authored initial robot posture, public architecture and unposed tool/grasp geometry; no tool placement or arm path')
         if approach_feedforward:prior['approach_velocity_feedforward']=True
     if carry_distance is not None:prior['carry_distance_m']=carry_distance
+    if carry_thumb_force is not None:prior['carry_hold_force_proxy_n']=[carry_thumb_force,carry_thumb_force/2,carry_thumb_force/2]
     prior_path.write_text(json.dumps(prior, indent=2)+'\n')
     command = [sys.executable, str(HERE/(actor_module+'.py')), '--model', str(output/'controller_model/world.xml')]
     command, environment, isolation = prepare(output, output/'controller_model/world.xml', command,
@@ -163,7 +166,16 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                 scope='Local loaded stepping and return to observed source; no cross-station or paper-branch qualification',
                 collision_guard_scope='Right arm and rigid grasp hypothesis versus public map and observed surfaces; full plant assessed independently',
                 online_slip_pose_observed=False))
+        run_contract['carry_contract'].update(
+            hold_force_proxy_n=prior.get('carry_hold_force_proxy_n',prior['hold_force_proxy_n']),
+            preload_force_increase=bool(carry_thumb_force is not None and carry_thumb_force>thumb_force),
+            endpoint_arm_joint_margin_rad=.08)
     (output/'contract.json').write_text(json.dumps(run_contract, indent=2)+'\n')
+    if prepare_only:
+        prepared=dict(status='prepared_not_executed',contract_sha256=sha(output/'contract.json'),
+            actor_access_isolated=isolation['passed'],qualified_grasp=False,qualified_paper_branch=False)
+        (output/'preparation.json').write_text(json.dumps(prepared,indent=2)+'\n')
+        print(json.dumps(prepared),flush=True);return prepared
     names = [model.joint(j).name for j in robot_joints(model)]
     records, sensors, responses = [], [], []
     cameras=None;frame_index=[]
@@ -275,5 +287,7 @@ if __name__ == '__main__':
     p.add_argument('--thumb-force', type=float, default=.6);p.add_argument('--lift-force',type=float,default=.5)
     p.add_argument('--approach-feedforward',action='store_true')
     p.add_argument('--carry-distance',type=float)
+    p.add_argument('--carry-thumb-force',type=float)
+    p.add_argument('--prepare-only',action='store_true')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only)['status'] == 'failed': raise SystemExit(1)

@@ -18,10 +18,11 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def run(folder, times):
+def run(folder, times, model_run=None):
     folder = Path(folder).resolve()
     trace = dict(np.load(folder / 'trace.npz'))
-    model = mujoco.MjModel.from_xml_path(str(folder / 'world.xml'))
+    model_folder=folder if model_run is None else Path(model_run).resolve()
+    model = mujoco.MjModel.from_xml_path(str(model_folder / 'world.xml'))
     data = mujoco.MjData(model)
     root = model.body('tweezer').id
     bodies = {root}
@@ -30,6 +31,9 @@ def run(folder, times):
             bodies.add(b)
     mass = float(sum(model.body_mass[b] for b in bodies))
     result = json.loads((folder / 'result.json').read_text())
+    if model_run is not None:
+        assert result['actor_contract_sha256']==sha(model_folder/'contract.json')
+        assert json.loads((model_folder/'contract.json').read_text())['model_sha256']==sha(model_folder/'world.xml')
     assert sha(folder / 'trace.npz') == result['trace_sha256']
     rows = []
     for requested in times:
@@ -37,7 +41,7 @@ def run(folder, times):
         data.qpos[:] = trace['qpos'][i]
         data.qvel[:] = trace['qvel'][i]
         data.ctrl[:] = trace['ctrl'][i]
-        data.qacc_warmstart[:] = trace['qacc_warmstart'][i]
+        data.qacc_warmstart[:] = trace['qacc_warmstart'][i] if 'qacc_warmstart' in trace else 0.
         mujoco.mj_forward(model, data)
         com = data.subtree_com[root].copy()
         contacts = []
@@ -106,10 +110,13 @@ def run(folder, times):
             hand_force_n=force.tolist(), hand_torque_about_com_nm=torque.tolist(),
             force_plus_gravity_n=(force+mass*model.opt.gravity).tolist(),
             fingers=summary, optimistic_rigid_equilibrium=lp_result, contacts=contacts))
-    report = dict(scope=__doc__, model_sha256=sha(folder/'world.xml'), trace_sha256=sha(folder/'trace.npz'),
+    report = dict(scope=__doc__, model_sha256=sha(model_folder/'world.xml'), trace_sha256=sha(folder/'trace.npz'),
         script_sha256=sha(__file__), tool_mass_kg=mass, rows=rows,
+        recorded_warmstart_available='qacc_warmstart' in trace,
         continuous_replay=False, qualified_grasp=False)
-    (folder/'contact_wrench_diagnosis.json').write_text(json.dumps(report, indent=2)+'\n')
+    target=folder/'contact_wrench_diagnosis.json'
+    if target.exists():raise FileExistsError('Preserve the existing diagnostic: '+str(target))
+    target.write_text(json.dumps(report, indent=2)+'\n')
     for r in rows:
         print(json.dumps({k:r[k] for k in ['time_s','hand_force_n','hand_torque_about_com_nm','fingers','optimistic_rigid_equilibrium']}), flush=True)
 
@@ -118,5 +125,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('folder')
     parser.add_argument('--times', type=float, nargs='+', required=True)
+    parser.add_argument('--model-run')
     args = parser.parse_args()
-    run(args.folder, args.times)
+    run(args.folder, args.times,args.model_run)
