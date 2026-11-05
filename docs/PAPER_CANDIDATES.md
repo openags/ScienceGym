@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **396**.
+Last screened: **2026-11-05**. Candidate count: **397**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4085,3 +4085,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted written scientific text in the four-page [Supplementary Information](https://www.epfl.ch/labs/flexlab/wp-content/uploads/2017/12/16_2008_Hamm_NatureMater_si.pdf) was read. Figure pixels and equations were not audited, and the supplementary movie was not watched. This is written-text screening, not a complete visual, mathematical or supplementary-media review.
 - Scope is prepared synthetic-film specimen tracking and coordinated imaging and mechanical-measurement records only. Specimen preparation, fixture loading and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public author-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data or other source assets redistributed.
+
+## Additional candidate: curved-surface specimen and pattern-imaging records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Curvature-induced symmetry breaking determines elastic surface patterns](https://www.nature.com/articles/nmat4202) | Nature Materials / 2015 | 10.1038/nmat4202 | Prepared spherical-specimen identity, geometry/state history and coordinated surface-imaging records suggest a future long-horizon mechanics-characterization task. | Public author-hosted main scholarly prose and captions, and written SI text read; equation, figure, code and data review limits remain. |
+
+- **CANDIDATE only.** Stoop et al., *Nature Materials* **14**, 337-342 (2015). All extracted written scholarly text and captions in the six-page [main article](https://www.epfl.ch/labs/flexlab/wp-content/uploads/2017/12/48_2015_Stoop_NatureMater_Curvature-inducedSymmetryBreakingElasticSurfacePatterns.pdf) were read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted written text and captions in the eleven-page [Supplementary Information](https://www.epfl.ch/labs/flexlab/wp-content/uploads/2017/12/48_2015_Stoop_NatureMater_si.pdf) were read. Equation extraction was imperfect; equations, figure pixels, code and raw data were not audited. This is written-text screening, not a complete visual, mathematical or computational review.
+- Experimental evidence concerns spherical surfaces. Toroidal patterns and the full hysteresis loop are predictions, not reported experimental validations. Scope is prepared-specimen identity, geometry/state tracking and linked surface-imaging records only. Specimen preparation and physical testing require separate safety review and qualified equipment before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through public author-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, code, data or other source assets redistributed.
