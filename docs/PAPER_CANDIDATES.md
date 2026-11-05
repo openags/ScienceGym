@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **384**.
+Last screened: **2026-11-05**. Candidate count: **385**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -3953,3 +3953,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The public [author-copy Supplementary Materials](https://erikdemaine.org/papers/PPR_Science2014/supplementary.pdf) were accessible. Extracted scientific text on pages 2-19 of the 24-page file, including methods, supplementary text, captions and tables, was read. References on pages 20-24 were not audited. Equation extraction was corrupted and equations were not validated; figure pixels, videos, data and code were not audited.
 - The reported three-machine set included one autonomous assembly and two assemblies requiring assistance. These observations do not establish general autonomous assembly or repeated-run reliability. Scope is module and configuration identity, inspection checkpoints and failure-record coordination only. Fabrication, thermal actuation, electrical work and physical testing require separate safety review and qualified equipment. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through lawful public author copies. A later opening of the publisher DOI route returned **HTTP 403**; publisher-page access was not established. The author reprint carries AAAS copyright and a personal, noncommercial-use notice. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, videos, data, code or other source assets redistributed.
+
+## Additional candidate: paper-origami configuration and measurement records (2026-11-05)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Origami structures with a critical transition to bistability arising from hidden degrees of freedom](https://www.nature.com/articles/nmat4232) | Nature Materials / 2015 | 10.1038/nmat4232 | Prepared-paper sheet identity, geometry verification, fixture mounting and linked mechanical and imaging records suggest a future long-horizon materials-testing coordination task. | Main scholarly text including Methods and written scientific SI read in a lawful public author-hosted combined PDF. |
+
+- **CANDIDATE only.** Silverberg et al., *Nature Materials* **14**, 389-393 (2015). The five-page main scholarly text, including Methods, was read in the lawful public [Cornell author-hosted combined PDF](https://cohengroup.ccmr.cornell.edu/userfiles/pubs/Silverberg-OrigamiSquareTwist.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The six-page written Supplementary Information in the same file was read. Supplementary movies were not viewed, code was not executed and raw data were not audited. The [published corrigendum](https://www.nature.com/articles/nmat4275) changes equal-contribution credit rather than scientific findings.
+- Scope is prepared-paper sheet identity, geometry verification, fixture mounting and linked measurement records only. Material preparation, hydrogel fabrication, fixture loading and instrument operation require separate specialist safety review and qualification. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-05** through the lawful public author copy. Reuse rights were not reviewed; public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no publisher text, figures, movies, code, data or other source assets redistributed.
