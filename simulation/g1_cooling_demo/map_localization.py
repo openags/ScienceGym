@@ -17,8 +17,16 @@ class MapLocalization:
         self.translation_axes=tuple(translation_axes)
         if not self.translation_axes or len(set(self.translation_axes))!=len(self.translation_axes) or any(a not in (0,1,2) for a in self.translation_axes):
             raise ValueError('Invalid registration translation axes')
-        self.renderer=mujoco.Renderer(model,height=self.height,width=self.width,max_geom=max(10000,model.ngeom+1000))
-        self.renderer.enable_depth_rendering();self.option=mujoco.MjvOption();self.option.sitegroup[:]=0
+        if pixel_center==.5:
+            # Match the native RGB-D sensor's pixel-centre sampling. MSAA
+            # resolves a subpixel depth sample and otherwise biases planar
+            # correspondences even when both camera poses are identical.
+            from sensor_rendering import depth_renderer
+            self.renderer=depth_renderer(model,height=self.height,width=self.width)
+        else:
+            self.renderer=mujoco.Renderer(model,height=self.height,width=self.width,max_geom=max(10000,model.ngeom+1000))
+            self.renderer.enable_depth_rendering()
+        self.option=mujoco.MjvOption();self.option.sitegroup[:]=0
         self.groups=model.geom_group.copy();self.layer=self.groups.copy()
         robot=set()
         for i in range(1,model.nbody):
@@ -40,7 +48,9 @@ class MapLocalization:
             return self.renderer.render().copy()
         finally:self.m.geom_group[:]=self.groups
 
-    def register(self,depth,iterations=8):
+    def register(self,depth,iterations=8,max_depth_difference_m=.12,huber_scale_m=.008):
+        if not 0<huber_scale_m<=max_depth_difference_m<=.12:
+            raise ValueError('Invalid static-map correspondence uncertainty')
         depth=np.asarray(depth);assert depth.shape==(self.height,self.width)
         m,d=self.m,self.d;initial=d.qpos[:3].copy();history=[]
         robot_depth=self.render(4)
@@ -51,7 +61,7 @@ class MapLocalization:
             dy=(np.roll(camera_points,-1,axis=0)-np.roll(camera_points,1,axis=0))*.5
             normal=np.cross(dx,dy);length=np.linalg.norm(normal,axis=-1)
             normal/=np.maximum(length,1e-12)[:,:,None]
-            valid=np.isfinite(depth)&(depth>.15)&(depth<4)&(expected>.15)&(expected<4)&(abs(depth-expected)<.12)&(length>1e-8)
+            valid=np.isfinite(depth)&(depth>.15)&(depth<4)&(expected>.15)&(expected<4)&(abs(depth-expected)<max_depth_difference_m)&(length>1e-8)
             valid&=~((robot_depth<4)&(robot_depth<expected+.03))
             # Reject depth edges instead of treating silhouette gradients as planes.
             for axis in [0,1]:
@@ -62,7 +72,7 @@ class MapLocalization:
             normals=normal[valid]@rotation.T
             difference=(self.rays*(depth-expected)[:,:,None])[valid]@rotation.T
             residual=np.einsum('ij,ij->i',normals,difference)
-            weight=np.minimum(1.,.008/np.maximum(abs(residual),1e-9))
+            weight=np.minimum(1.,huber_scale_m/np.maximum(abs(residual),1e-9))
             fit_normals=normals[:,self.translation_axes]
             lhs=(fit_normals*weight[:,None]).T@fit_normals;rhs=-(fit_normals*weight[:,None]).T@residual
             eigen=np.linalg.eigvalsh(lhs)

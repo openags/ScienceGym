@@ -1,0 +1,17 @@
+<mujoco model="source_support_geometry">
+  <compiler angle="radian" />
+  <option timestep=".0001" gravity="0 0 -9.81" />
+  <asset>
+    <mesh name="lab_mesh_1513" file="/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/pike_bench_source_component_02/source_geometry.stl" inertia="shell" />
+  </asset>
+  <worldbody>
+    <geom name="source_support_surface" type="sdf" mesh="lab_mesh_1513" contype="1" conaffinity="1" pos="0 0 0" quat="1 0 0 0">
+      <plugin instance="source_convex_support_exact_surface" />
+    </geom>
+  </worldbody>
+  <extension>
+    <plugin plugin="sciencegym.sdf.pike_convex_support_adc17ad21530_11f23f47">
+      <instance name="source_convex_support_exact_surface" />
+    </plugin>
+  </extension>
+</mujoco>

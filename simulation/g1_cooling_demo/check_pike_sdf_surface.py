@@ -89,15 +89,17 @@ def main():
         labels.extend(['surface_offset_'+str(delta)]*len(surface))
     top, bottom = source.bounds[1, 2], source.bounds[0, 2]
     center=np.asarray(plugin_receipt.get('bore_center_m',[.04,-.01]) if plugin_receipt else [.04,-.01])
-    reference_shoulder=bool(plugin_receipt and plugin_receipt.get('part') in {'reference_shoulder','reference_cap'})
+    solid_holder=bool(plugin_receipt and plugin_receipt.get('part') in {'reference_holder','convex_support'})
+    reference_shoulder=bool(plugin_receipt and plugin_receipt.get('part') in {'reference_shoulder','reference_cap','reference_holder','convex_support'})
     bore_radius=plugin_receipt['bore_radius_m'] if reference_shoulder else .009
-    hole_bottom=max(bottom,plugin_receipt['bore_floor_m']) if reference_shoulder else bottom
+    hole_bottom=max(bottom,plugin_receipt['bore_floor_m']) if reference_shoulder and not solid_holder else bottom
     radii=np.asarray([0.,.4,.85,1.05,1.2,1.5,2.])*bore_radius if reference_shoulder else [0.,.004,.0085,.0095,.011,.020,.024]
     for radius in radii:
         for angle in np.linspace(0., 2*np.pi, 32, endpoint=False):
             for z in [(top+hole_bottom)/2, top-min(.00002,(top-hole_bottom)/4), top+.00002]:
                 points.append([center[0]+radius*np.cos(angle), center[1]+radius*np.sin(angle), z])
-                labels.append('bore' if radius <= (.85*bore_radius if reference_shoulder else .0085) else 'annulus')
+                labels.append(('solid_axis' if radius==0. and z<top else 'solid_probe') if solid_holder else
+                    ('bore' if radius <= (.85*bore_radius if reference_shoulder else .0085) else 'annulus'))
     points = np.asarray(points)
     # trimesh's absolute tolerance is also applied to fourth-order dot-product
     # terms in its triangle region tests. At metre units this misclassifies
@@ -128,7 +130,10 @@ def main():
     checks = dict(finite=bool(np.isfinite(native).all() and np.isfinite(gradients).all()),
         source_surface_error_below_five_micrometres=bool(np.max(error) <= .000005),
         signs_match_away_from_boundary=not bool(np.any(mismatched)),
-        source_aperture_remains_open=bool(np.all(native[bore] > 0)))
+        source_aperture_remains_open=bool(np.all(native[bore] > 0)) if not solid_holder else None)
+    if solid_holder:
+        del checks['source_aperture_remains_open']
+        checks['source_holder_has_solid_axis']=bool(np.all(native[np.asarray(labels)=='solid_axis']<0))
     np.savez_compressed(out/'samples.npz', world_points=points, exact_distances_m=exact,
         native_distances_m=native, gradients=gradients, labels=np.asarray(labels))
     worst = np.argsort(error)[-12:][::-1]
@@ -138,7 +143,7 @@ def main():
         sign_mismatch_count=int(np.sum(mismatched)), bore_sample_count=int(np.sum(bore)),
         reference_distance_method='Exhaustive point-to-triangle distance and ray occupancy in millimetre-normalized oracle coordinates; outputs converted back to metres',
         maximum_accelerated_oracle_disagreement_m=float(np.max(abs(accelerated-exact))),
-        minimum_bore_clearance_m=float(np.min(native[bore])),
+        minimum_bore_clearance_m=float(np.min(native[bore])) if np.any(bore) else None,
         worst_samples=[dict(point_m=points[i].tolist(), label=labels[i],
             source_distance_m=float(exact[i]), native_distance_m=float(native[i]),
             absolute_error_m=float(error[i])) for i in worst],

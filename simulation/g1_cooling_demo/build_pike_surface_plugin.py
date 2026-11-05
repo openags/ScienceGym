@@ -1,7 +1,7 @@
 """Build a source-surface SDF plugin with exact triangle distances.
 
-The occupancy test is justified only for the pinned convex outer panel with
-one polygonal through-bore. Geometry tests must pass before runtime adoption.
+The occupancy test covers the pinned convex exterior, with an optional
+polygonal through-bore or recess. Geometry tests must pass before adoption.
 """
 import argparse
 from copy import deepcopy
@@ -31,7 +31,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('source', type=Path)
     p.add_argument('output', type=Path)
-    p.add_argument('--part',choices=['panel','reference_shoulder','reference_cap'],default='panel')
+    p.add_argument('--part',choices=['panel','reference_shoulder','reference_cap','reference_holder','convex_support'],default='panel')
     a = p.parse_args()
     source, out = a.source.resolve(), a.output.resolve()
     out.mkdir(parents=True, exist_ok=False)
@@ -51,7 +51,8 @@ def main():
         parent_plugins=parent_receipt.get('parent_collision_plugins',[])+[parent_receipt]
     load_collision_plugins(parent_plugins)
     source_name = {'panel':'source_panel_visual','reference_shoulder':'pike_reference_shoulder_visual',
-                   'reference_cap':'pike_reference_cap_visual'}[a.part]
+                   'reference_cap':'pike_reference_cap_visual','reference_holder':'pike_reference_holder',
+                   'convex_support':'source_support_surface'}[a.part]
     geom = xml.find(".//geom[@name='"+source_name+"']")
     mesh_path = Path(xml.find(".//mesh[@name='"+geom.get('mesh')+"']").get('file'))
     mesh = trimesh.load(mesh_path, force='mesh', process=True)
@@ -71,6 +72,12 @@ def main():
         bore_points = np.unique(face.vertices[:,:2],axis=0)
         center = (bore_points.min(axis=0)+bore_points.max(axis=0))/2
         floor = float(face.bounds[0,2])
+    elif a.part in {'reference_holder','convex_support'}:
+        # This source holder is a convex solid. A floor at its top leaves no
+        # removed cavity; the volume check below rejects any hidden concavity.
+        bore_points=np.unique(mesh.vertices[:,:2],axis=0)
+        center=(mesh.bounds[0,:2]+mesh.bounds[1,:2])/2
+        floor=float(mesh.bounds[1,2])
     else:
         center=(mesh.bounds[0,:2]+mesh.bounds[1,:2])/2
         ring=mesh.vertices[(abs(mesh.vertices[:,2]-mesh.bounds[1,2])<1e-7)&
@@ -144,7 +151,9 @@ def main():
     instance_name = 'source_'+a.part+'_exact_surface'
     ET.SubElement(plugin, 'instance', name=instance_name)
     removed=[]
-    if a.part!='panel':
+    if a.part in {'reference_holder','convex_support'}:
+        geom.set('type','sdf')
+    elif a.part!='panel':
         body=xml.find(".//body[@name='"+('pike_reference' if a.part=='reference_shoulder' else 'pike_reference_cap')+"']")
         prefix='pike_'+a.part+'_cell_'
         cells=[g for g in body.findall('geom') if g.get('name','').startswith(prefix)]

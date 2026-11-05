@@ -35,19 +35,25 @@ def main():
     p.add_argument('--shoulder-gradient', type=Path, required=True)
     p.add_argument('--cap-surface', type=Path)
     p.add_argument('--cap-gradient', type=Path)
+    p.add_argument('--holder-surface', type=Path)
+    p.add_argument('--holder-gradient', type=Path)
     a = p.parse_args()
     source, plugin_folder, out = [v.resolve() for v in [a.source_component, a.assembly_plugin, a.output]]
     contract = json.loads((source/'contract.json').read_text())
     receipt = json.loads((plugin_folder/'plugin.json').read_text())
     plugins = receipt['parent_collision_plugins']+[receipt]
-    exact_cap=receipt['part']=='reference_cap'
-    if receipt['part'] not in ['reference_shoulder','reference_cap'] or len(plugins)!=(3 if exact_cap else 2):
+    exact_holder=receipt['part']=='reference_holder'
+    exact_cap=receipt['part'] in ['reference_cap','reference_holder']
+    if receipt['part'] not in ['reference_shoulder','reference_cap','reference_holder'] or len(plugins)!=(4 if exact_holder else 3 if exact_cap else 2):
         raise ValueError('Expected exact panel/shoulder, optionally followed by cap')
     if exact_cap != bool(a.cap_surface and a.cap_gradient):
         raise ValueError('Exact cap requires both independent surface reviews')
+    if exact_holder != bool(a.holder_surface and a.holder_gradient):
+        raise ValueError('Exact holder requires both independent surface reviews')
     shoulder = next(v for v in plugins if v.get('part')=='reference_shoulder')
     assert shoulder['source_world_sha256']==sha(source/'world.xml')==contract['world_sha256']
-    if exact_cap:assert receipt['source_world_sha256']==shoulder['world_sha256']
+    for previous,current in zip(plugins[1:],plugins[2:]):
+        assert current['source_world_sha256']==previous['world_sha256']
     assert sha(plugin_folder/'world.xml')==receipt['world_sha256']
     panel = json.loads((source/'surface_review.json').read_text())
     assert sha(source/'surface_review.json')==contract['sampled_surface_review_sha256']
@@ -55,7 +61,8 @@ def main():
     assert panel['plugin_library_sha256']==plugins[0]['library_sha256']
     reviews = {}
     surface_inputs=[('shoulder',shoulder,a.shoulder_surface,a.shoulder_gradient)]
-    if exact_cap:surface_inputs.append(('cap',receipt,a.cap_surface,a.cap_gradient))
+    if exact_cap:surface_inputs.append(('cap',next(v for v in plugins if v.get('part')=='reference_cap'),a.cap_surface,a.cap_gradient))
+    if exact_holder:surface_inputs.append(('holder',receipt,a.holder_surface,a.holder_gradient))
     for part, plugin, surface_path, gradient_path in surface_inputs:
         surface = json.loads(surface_path.read_text())
         gradient = json.loads(gradient_path.read_text())
@@ -82,9 +89,11 @@ def main():
         model_inputs_sha256=sha(out/'model_inputs.json'),collision_plugins=plugins,
         shoulder_collision='sdf_exact_surface_plugin',
         cap_collision='sdf_exact_surface_plugin' if exact_cap else 'original_convex_cells',
+        holder_collision='sdf_exact_surface_plugin' if exact_holder else 'original_convex_mesh',
         source_component_contract_sha256=sha(source/'contract.json'),new_surface_reviews=reviews,
         source_snapshot_sha256={v.name:sha(v) for v in snapshot.iterdir()},
         replacement_scope=('97 shoulder cells'+(' and 97 cap cells' if exact_cap else '')+
+            (' and the solid holder collider' if exact_holder else '')+
             ' replaced by their exact existing source surfaces; exterior vertices, inertia and contact settings preserved'),
         robot_handling_qualified=False)
     (out/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')

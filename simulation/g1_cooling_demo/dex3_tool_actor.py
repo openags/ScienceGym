@@ -48,6 +48,10 @@ class ToolActor:
         self.body_torque=np.zeros(model.nu);self.next_balance=0.;self.last_time=None
         self.flags=np.zeros(3,dtype=bool);self.release_since=[None]*3;self.load_since=None;self.lost_since=None
         self.phase='settle';self.phase_started=0.;self.hold_entered=False;self.lift_height=0.;self.abort_height=0.
+        self.requested_lift_height=float(prior.get('tool_lift_height_m',.03))
+        if not .02<=self.requested_lift_height<=.06:
+            raise ValueError('Requested tool lift must be between 20 and 60 mm')
+        self.lower_start_height=0.
         self.failure=None;self.events=[];self.release_command=None
         self.release_clear_since=None
         self.release_clearance_started=None;self.withdraw_start_height=0.
@@ -86,6 +90,7 @@ class ToolActor:
         return wrist.xmat.reshape(3,3).T@(self.weights@self.points()-wrist.xpos)
 
     def change(self, phase, t):
+        if phase=='lower':self.lower_start_height=self.lift_height
         if phase=='release' and self.release_preserve_posture:
             # Opening the distal drivers while resetting a proximal preshape
             # can move the fingertip back into the supported tool. Retain the
@@ -166,11 +171,11 @@ class ToolActor:
         smooth=lambda x:(lambda u:u*u*(3-2*u))(float(np.clip(x,0,1)))
         elapsed=t-self.phase_started
         if self.phase=='lift':
-            self.lift_height=.03*smooth(elapsed/2.)
+            self.lift_height=self.requested_lift_height*smooth(elapsed/2.)
             if elapsed>=2.:self.change('hold',t)
         elif self.phase=='hold' and elapsed>=1.:self.change('lower',t)
         elif self.phase in {'lower','abort_lower'}:
-            self.lift_height=(.03 if self.phase=='lower' else self.abort_height)*(1-smooth(elapsed/2.))
+            self.lift_height=(self.lower_start_height if self.phase=='lower' else self.abort_height)*(1-smooth(elapsed/2.))
             if elapsed>=2.:self.release_command=self.command.copy();self.change('release',t)
         elif self.phase=='release':
             self.command=self.release_command+smooth(elapsed/2.)*(self.release_target-self.release_command)

@@ -20,9 +20,14 @@ The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.m
 contains continuous visual pickup, four outward steps, four return steps and
 lowering to the tray. Its [execution result](runs/dex3_visual_carry_03/result.json)
 fails on residual finger load during release. The route commands only 0.12 m
-outward travel; it is not cross-station work. Source motor-limit checks pass,
-while the independent physical replay is still being processed. This run and
-the separate restored-state release probes grant no carrying qualification.
+outward travel; it is not cross-station work. Source motor-limit checks and
+isolated controller replay pass. The completed [independent physical review](runs/dex3_visual_carry_03/physical_review.json)
+fails six checks: attempt completion, stable released support, route completion,
+continuous loaded carry, base return and preload before lift. Its loaded-state
+predicate is interrupted for 1.0067 s and native prelift loading lasts 0.4974 s,
+below the required 0.5 s. Exact trajectory replay establishes reproducibility,
+not task success. This run and the separate restored-state release probes grant
+no carrying qualification.
 
 The earlier [78.73-second loaded attempt](runs/dex3_visual_carry_02/overview.mp4)
 starts from the same native-camera observation and reaches one walking step,
@@ -46,13 +51,51 @@ removes finger/tool contact but still fails because the thumb touches the tray.
 The [native contact diagnosis](analysis/dex3_release_load_05/review.json)
 attributes the remaining signed motor load to that contact. Candidate 06 combines
 the retained posture with the existing signed release-load feedback; acceptance
-is unchanged and no fresh carrying success has yet been established.
+is unchanged. Its [restored-state release trial](analysis/dex3_release_checkpoint_06/result.json)
+finishes without an execution failure. A fresh continuous run,
+`dex3_visual_carry_04`, is now testing that release change from the original
+initial state. Its pre-release controller is unchanged, so it does not address
+the additional carry-03 acceptance failures above. No fresh carrying success
+has been established.
 
 The passive optical scene is now joined to the visual tool-start contract.
 The [initial RGB-D coupon diagnostic](analysis/optical_coupon_observation_06/review.json)
 reports 0.246 mm center error on one native frame. Four stable observations can
 gate tool approach with `--observe-optical-coupon`; this does not establish
-sample pickup, coating-side recognition or optical manipulation.
+sample pickup, coating-side recognition or optical manipulation. Both optical
+tool trials have finished 59.09 s of execution and passed isolated controller
+replay; independent physical reviews are pending. The actual four-frame
+[runtime coupon evaluation](analysis/optical_coupon_runtime_observation_01/review.json)
+fails the 1 mm position requirement with 1.069 mm error. The static single-frame
+result therefore does not qualify runtime localization. An offline camera-frame
+diagnosis attributes much of the error to localization of the robot camera;
+using evaluator truth for attribution is not an actor correction or a pass.
+
+The subsequent static-map registration uses the same pixel-centre depth
+sampling as the native camera and rejects distant correspondences from loose
+objects. The [recorded-frame test](analysis/optical_coupon_map_observation_04/review.json)
+passes with 0.300 mm coupon-centre error; its earlier failed variants are retained.
+A new five-second [isolated observation run](runs/dex3_optical_registered_observation_01/result.json)
+then passes [actual runtime localization](analysis/optical_coupon_runtime_observation_02/review.json)
+at 0.249 mm and exact controller replay. That bounded run intentionally stops
+before completing the tool operation; its duration failure is retained. A fresh
+full tool trial, `dex3_optical_visual_grasp_03`, is now testing integration.
+These results do not qualify later pose tracking or specimen manipulation.
+
+The [carry failure attribution](analysis/dex3_carry_acceptance_03/review.json)
+separates inadequate return clearance from native contact losses and initial
+standing drift. `--tool-lift-height` makes the commanded lift explicit while
+retaining physical thresholds; lowering starts from the actual commanded lift.
+The 45 mm candidate's [restored-state diagnostic](analysis/dex3_carry_clearance_checkpoint_01/result.json)
+executes lift and starts walking without failure. Return/release, preload and
+base-return acceptance still require further work and a fresh continuous run.
+
+Exact reference/holder/cap surfaces pass [all six component cases](analysis/pike_reference_support_09/review.json).
+Their [full-room support test](analysis/optical_runtime_support_09/review.json)
+fails because the cap does not remain supported by the original tabletop.
+An exact tabletop surface candidate preserves the original bevels and visuals;
+its source distance and gradient audits pass, while complete-room dynamics are
+being checked separately. No component result is transferred as room acceptance.
 The [corrected support replay](analysis/optical_support_velocity_recheck_01/review.json)
 checks the specimen's own velocity address, which the original evaluator
 accidentally replaced with the cap address. All retained states replay exactly

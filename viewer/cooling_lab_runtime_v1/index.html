@@ -7,10 +7,42 @@
 <p>本次单次试验通过 18 项独立物理检查、隔离控制器回放和电机限值检查。59,089 次控制输出和 17 帧头部 RGB-D 记录回放一致；工具实际抬高 25.08 毫米，无托盘支撑的夹持抬升持续 1.97 秒，随后放回、松手并撤离。</p>
 <div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/contact.mp4">查看手部近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/overview.mp4" download="ScienceGym_G1_视觉镊子拾取试验.mp4">下载录像</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/physical_review.json">独立物理评估</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/controller_replay.json">控制器回放</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/source_limit_review.json">电机限值检查</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_grasp_04/render_receipt.json">录像与轨迹对应</a></div>
 <p class="note">从声明的工位初始姿态开始。视觉用于初始定位，接近和夹持使用关节、IMU 与电机载荷估计反馈。尚未包含携物行走、使用镊子处理试样、完整实验分支和重复运行验收。当前完整论文分支通过数为 0/11。</p>
-<h2>抓取后携物迈步：未通过</h2><p>G1 / 宇树官方三指手 · 78.73 秒连续物理试验，从视觉定位开始，经过抓取、抬升、撤臂和一次迈步，随后因载荷估计超出开发边界而停止。</p>
-<video id="tool-carry" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview.mp4"></video>
-<p>控制器及物理轨迹可精确回放，独立任务检查未通过：出现踝关节越界、工具相对手腕偏移，以及未完成的携物往返和放回。一次脚步不能计为完成跨工位转移。</p>
-<div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/contact.mp4">查看携物手部近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview.mp4" download="ScienceGym_G1_携物失败试验.mp4">下载本次录像</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/physical_review.json">未通过的独立评估</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/controller_replay.json">控制器回放</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/carry_state_diagnosis.json">关节与抓持姿态诊断</a></div>
+<h2>携镊子往返与放回尝试：独立验收未通过</h2>
+<p>G1 / 宇树官方三指手 · 2 分 20 秒连续仿真记录，从视觉定位、抓取和抬升开始，经过携物去程、返程，再回到原托盘放回工具。</p>
+<video id="tool-carry" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/overview.mp4"></video>
+<div class="chapters" id="carry-chapters"></div>
+<p>本次在松手阶段因残余手指载荷而停止。电机限值与控制器回放通过；独立物理验收有六项未通过：尝试完成、释放后的稳定支撑、路线完成、连续持物、机器人回位、抬升前预加载。控制器可重放不代表任务成功。携物技能和完整论文分支均未验收。</p>
+<p id="carry-review-status">独立物理评估：正在读取处理结果。</p>
+<div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/contact.mp4">查看手部近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/overview.mp4" download="ScienceGym_G1_携物往返释放未通过.mp4">下载 2 分 20 秒录像</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/result.json">执行结果与停止原因</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/source_limit_review.json">电机限值检查</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/render_receipt.json">录像与轨迹对应</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/carry_state_diagnosis.json">记录姿态检查</a></div>
+<details><summary>保留的前一次 78.73 秒携物失败</summary><p>前一次在一次迈步后停止，独立任务检查未通过。该失败记录保留，未被本次尝试覆盖。</p><div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/overview.mp4">前次录像</a><a href="../../simulation/g1_cooling_demo/runs/dex3_visual_carry_02/physical_review.json">前次独立评估</a></div></details>
+<script>
+for(const [label,time] of [['视觉定位',0],['抓取',37.46],['抬升',59.69],['携物去程',65.99],['携物返程',98.23],['放回',135.10],['松手',137.10]]){
+  const button=document.createElement('button');button.textContent=label;
+  button.addEventListener('click',()=>{document.getElementById('tool-carry').currentTime=time;});
+  document.getElementById('carry-chapters').appendChild(button);
+}
+fetch('../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/physical_review.json',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})
+ .then(r=>{const node=document.getElementById('carry-review-status');const failed=Object.entries(r.checks||{}).filter(([,passed])=>passed===false).length;node.textContent=r.passed ? '本次单次运行通过独立物理检查；重复运行尚未验收。' : `独立物理验收未通过：${failed} 项检查失败。`;
+ const link=document.createElement('a');link.href='../../simulation/g1_cooling_demo/runs/dex3_visual_carry_03/physical_review.json';link.textContent='查看独立评估';node.appendChild(link);})
+ .catch(()=>{document.getElementById('carry-review-status').textContent='暂时无法读取独立物理评估；已记录的本次验收结果为未通过。';});
+</script>
+<h2>加入光学样片后的镊子取放</h2>
+<p>同一完整实验室中，样片、金参考件和保护帽已作为自由物体接入。新一轮镊子取放运行完成 59.09 秒，录像由该次连续物理轨迹生成。</p>
+<video id="optical-tool" controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/overview.mp4"></video>
+<p id="optical-tool-status">正在读取这次运行的独立评估。</p>
+<div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/contact.mp4">手部与样片近景</a><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/result.json">连续运行记录</a><a href="../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/render_receipt.json">录像与轨迹对应</a><a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_observation_06/review.json">单独的样片视觉定位检查</a><a href="../../simulation/g1_cooling_demo/analysis/optical_support_velocity_recheck_01/review.json">修正后的场景支撑重放</a></div>
+<p class="note">这次录像尚未操作样片、参考件或保护帽。另一轮运行已完成四帧样片观测，但位置误差为 1.069 毫米，未通过 1 毫米要求；单帧定位检查不能替代运行中的定位验收。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_01/review.json">查看运行定位评估</a></p>
+<p>后续加入静态地图校准的 5 秒观测试验，样片位置误差降至 0.249 毫米，并通过控制器回放。该试验仅验证初始定位，完整取放正在单独运行。<a href="../../simulation/g1_cooling_demo/analysis/optical_coupon_runtime_observation_02/review.json">新运行的定位评估</a> · <a href="../../simulation/g1_cooling_demo/runs/dex3_optical_registered_observation_01/controller_replay.json">控制器回放</a></p>
+<script>
+fetch('../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physical_review.json',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})
+ .then(r=>{const node=document.getElementById('optical-tool-status');node.textContent=r.passed
+   ? '本次单次镊子取放通过独立物理检查；完整实验分支和重复运行尚未验收。'
+   : '本次独立物理检查未通过，详见评估记录。';
+   const link=document.createElement('a');link.href='../../simulation/g1_cooling_demo/runs/dex3_optical_visual_grasp_01/physical_review.json';link.textContent='查看评估';node.appendChild(link);})
+ .catch(()=>{document.getElementById('optical-tool-status').textContent='运行已结束，独立物理重放仍在处理；尚无通过结论。';});
+</script>
 <h2>FTIR 样片与工位绑定</h2>
 <p>沿用原完整房间和 G1 / 宇树三指手。积分球采用已记录的仪器内初始安装配置；铜片与三层涂层组成独立自由刚体，涂层面朝上、铜背面接触原有普通托盘。</p>
 <img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="原完整实验室中的 G1、托盘样片与 FTIR 工位初始配置" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_03/inspection/initial_room.png">
@@ -24,6 +56,8 @@
 <h2>金参考件与保护盖</h2>
 <p>参考件与保护盖已接入同一完整实验室，作为独立自由刚体参与接触计算。参考件补出了露出金色光学面的凹槽；保护盖保留开口和内腔。</p>
 <p>组件的六种放置配置中五种通过。向一侧偏移 0.5 毫米的配置仍有过大接触力；零角度网格重合也有数值问题。当前采用绕光轴转过 1.875° 的初始配置，尚未完成全部放置姿态与机器人取放验收。</p>
+<p>新的源表面碰撞实现已通过 3,744 个几何采样点和 96 个法向采样点核查，正在重新测试完整支撑情况，尚未替换下方展示的场景。</p>
+<div class="links"><a href="../../simulation/g1_cooling_demo/analysis/pike_panel_exact_surface_03/review.json">源表面距离核查</a><a href="../../simulation/g1_cooling_demo/analysis/pike_panel_exact_gradient_01/review.json">接触法向核查</a><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_design_decision_06.json">修复依据与保留的失败对照</a></div>
 <p id="reference-support-status">完整房间初始支撑：正在读取评估记录。</p>
 <details><summary>查看参考件工位、保护盖与完整房间</summary>
 <p>以下是初始配置与单独开盖检查图，不代表机器人已执行这些操作。</p>
@@ -32,10 +66,11 @@
 <img style="display:block;width:100%;border-radius:10px" loading="lazy" alt="原 FTIR 台面上的独立空心保护盖" src="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/inspection/initial_reference_storage.png"></details>
 <div class="links"><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_support_04/review.json">全部六种组件配置与失败记录</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_support_06/review.json">完整房间初始支撑评估</a><a href="../../simulation/g1_cooling_demo/analysis/optical_runtime_binding_06/binding.json">自由物体与场景绑定</a><a href="../../simulation/g1_cooling_demo/analysis/pike_reference_design_decision_04.json">尺寸推断与已知限制</a></div>
 <script>
-fetch('../../simulation/g1_cooling_demo/analysis/optical_runtime_support_06/review.json',{cache:'no-store'})
-  .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})
-  .then(r=>{document.getElementById('reference-support-status').textContent=r.passed_asset_support
-    ? '完整房间内的 3 秒初始支撑检查通过。机器人取放、偏移放置与完整实验流程仍未通过验收。'
+Promise.all(['optical_runtime_support_06','optical_support_velocity_recheck_01'].map(name=>
+  fetch('../../simulation/g1_cooling_demo/analysis/'+name+'/review.json',{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error('pending');return r.json()})))
+  .then(([r,v])=>{document.getElementById('reference-support-status').textContent=r.passed_asset_support&&v.corrected_asset_support_passed
+    ? '完整房间内的 3 秒初始支撑与修正后的样片速度重放均通过。机器人取放、偏移放置与完整实验流程仍未通过验收。'
     : '完整房间初始支撑检查尚有未通过项目，详见评估记录。'})
   .catch(()=>{document.getElementById('reference-support-status').textContent='完整房间初始支撑：尚无已完成的评估记录。'});
 </script>

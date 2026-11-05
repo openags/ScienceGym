@@ -1,0 +1,35 @@
+{
+  "scope": "Separate camera-frame drift from coupon fitting error in a recorded run.\n\nThe truth-camera substitution is an offline attribution diagnostic only. It\ncannot be used by the actor or counted as corrected perception performance.\n",
+  "source_review_sha256": "5892b2a18d77d043c90fc1b93a3e0b05ae27f238509886453fa5b01c762a0386",
+  "source_result_sha256": "9956c2cb642bf7f44b7f65a5bb4b3eb18bb43d5164758e9c69bb423811ab96b2",
+  "source_trace_sha256": "51e1354563d01c1865480fd0ca5f8ef74d09a411a2febb01878ec21f54da0868",
+  "source_sensor_sha256": "0924912959a706427503200e7948cd7d69ae05e09cca987f72a6b3b3d76a1dae",
+  "time_s": 2.8000000000014844,
+  "estimated_camera_position_m": [
+    5.808019608045624,
+    -6.520025843612455,
+    1.2629320739888548
+  ],
+  "actual_camera_position_m": [
+    5.808654100689709,
+    -6.519866164843137,
+    1.2625307369416536
+  ],
+  "camera_translation_error_m": [
+    -0.000634492644084439,
+    -0.00015967876931810565,
+    0.0004013370472011335
+  ],
+  "original_accepted_center_error_m": 0.0010689859545765473,
+  "diagnostic_truth_camera_center_error_m": 0.000312883035661107,
+  "interpretation": "A substantial part of the world-coordinate error comes from fixed-foot camera translation estimation; the aggregate four-frame pose is transformed at its acceptance time only",
+  "proposed_actor_input": "Use observed static laboratory geometry to check camera/map alignment; no evaluator pose or measured error may enter the actor",
+  "actor_modified": false,
+  "perception_qualified": false,
+  "qualified_paper_branch": false,
+  "source_sha256": {
+    "diagnose_optical_camera_frame.py": "3b9aea492ae75a1fd9dfff3ba31383796d8ba2b2771f075cc2fd97a57c7ba208",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3",
+    "build_tool_station.py": "c1fd14edb11671d8c2f180900ccb590c278a6d3074874a66c8c81cdd396870f7"
+  }
+}

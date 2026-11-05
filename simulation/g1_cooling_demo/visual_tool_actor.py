@@ -50,6 +50,10 @@ class ToolActor(PickupActor):
         lo,hi=vertices.min(0),vertices.max(0);lo[2]=hi[2]+.002;hi[2]+=.18
         self.bounds=[lo,hi]
         self.observe_coupon=bool(prior.get('observe_optical_coupon',False))
+        self.register_map=bool(prior.get('register_optical_static_map',False))
+        if self.register_map and not self.observe_coupon:
+            raise ValueError('Fine static-map registration requires the optical observation contract')
+        self.map_localizer=None;self.map_registration=None
         self.coupon_poses=[];self.coupon_pose=None;self.coupon_report=None
         if self.observe_coupon:
             from optical_coupon_observation import detect as detect_coupon
@@ -79,6 +83,21 @@ class ToolActor(PickupActor):
 
     def observe_tool(self,obs):
         t=float(obs['time_s'])
+        if self.register_map:
+            if self.map_localizer is None:
+                from map_localization import MapLocalization
+                h,w=np.asarray(obs['head_depth']).shape
+                self.map_localizer=MapLocalization(self.m,self.d,width=w,height=h,pixel_center=.5)
+            registration=self.map_localizer.register(obs['head_depth'],
+                max_depth_difference_m=.004,huber_scale_m=.0002)
+            self.map_registration=dict(time_s=t,**registration)
+            if not registration['accepted']:
+                self.poses=[];self.coupon_poses=[];self.coupon_pose=None
+                return
+            # Correct only the robot's estimated frame. The static map and
+            # native depth do not contain handled-object pose observations.
+            self.estimate.anchors+=np.asarray(registration['correction_m'])
+            mujoco.mj_forward(self.m,self.d)
         D,df=self.camera('head_depth');C,cf=self.camera('head_rgb')
         if self.observe_coupon:self.observe_optical_coupon(obs,D,C,df,cf)
         proposal,component=detect(obs['head_rgb'],obs['head_depth'],D,C,df,cf,self.bounds,self.threshold)
@@ -115,6 +134,8 @@ class ToolActor(PickupActor):
         durations.extend([5./(len(lower)-1)]*(len(lower)-1))
         self.path_times=np.r_[0.,np.cumsum(durations)]
         self.path_clock=0.;self.change('approach',t)
+        if self.map_localizer is not None:
+            self.map_localizer.close();self.map_localizer=None
 
     def approach_target(self,t,dt):
         # Whole-body balance can change the redundant arm configuration while
@@ -174,6 +195,7 @@ class ToolActor(PickupActor):
         if self.observe_coupon:
             response.update(observed_optical_coupon=self.coupon_pose,
                 latest_optical_coupon_report=self.coupon_report)
+        if self.register_map:response['static_map_registration']=self.map_registration
         return response
 
 

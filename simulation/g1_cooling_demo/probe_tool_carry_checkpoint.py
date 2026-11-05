@@ -32,7 +32,7 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('source_recording');p.add_argument('actor_run');p.add_argument('output')
-    p.add_argument('--checkpoint-phase',choices=['close','lower'],default='lower')
+    p.add_argument('--checkpoint-phase',choices=['close','lift','carry_descend','lower'],default='lower')
     p.add_argument('--seconds',type=float,default=18.);a=p.parse_args()
     source,run,out=map(lambda x:Path(x).resolve(),[a.source_recording,a.actor_run,a.output])
     out.mkdir(parents=True,exist_ok=False)
