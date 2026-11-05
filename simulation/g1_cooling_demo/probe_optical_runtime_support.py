@@ -13,6 +13,7 @@ import mujoco
 import numpy as np
 
 from diagnose_carry_state import sha
+from runtime_collision_plugins import load_collision_plugins
 
 
 def main():
@@ -26,6 +27,8 @@ def main():
     assert sha(baseline/'contract.json')==binding['base_contract_sha256']
     for file,digest in json.loads((scene/'model_inputs.json').read_text()).items():assert sha(file)==digest
     out.mkdir(parents=True,exist_ok=False);shutil.copyfile(__file__,out/Path(__file__).name)
+    load_collision_plugins(binding.get('collision_plugins', []))
+    shutil.copyfile(Path(__file__).with_name('runtime_collision_plugins.py'), out/'runtime_collision_plugins.py')
     m=mujoco.MjModel.from_xml_path(str(scene/'world.xml'));d=mujoco.MjData(m)
     initial=json.loads((scene/'initial_state.json').read_text());d.qpos[:]=initial['qpos'];d.qvel[:]=initial['qvel']
     mujoco.mj_forward(m,d)
@@ -94,7 +97,8 @@ def main():
     reference_reports={}
     for name,stats in reference_checks.items():
         reference_contacts=stats['contacts']
-        intended=(bool(reference_contacts) and all(n.startswith('optical_panel_cell_') for n in reference_contacts)
+        expected_panel = (binding.get('panel_surface_binding') or {}).get('geom')
+        intended=(bool(reference_contacts) and (reference_contacts == {expected_panel} if expected_panel else all(n.startswith('optical_panel_cell_') for n in reference_contacts))
                   if name=='pike_reference' else
                   reference_contacts=={binding['passive_reference_binding']['cap_initial_support']['geom']})
         own_checks=dict(intended_support_only=intended,

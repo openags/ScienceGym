@@ -5,6 +5,8 @@ parameters. These are component diagnostics, not robot placement, calibrated
 device dynamics, optical acquisition, or a completed paper branch.
 """
 import argparse
+from concurrent.futures import ProcessPoolExecutor
+import multiprocessing
 import json
 from pathlib import Path
 import shutil
@@ -74,6 +76,109 @@ def set_inertia(body, meshes, densities):
     return float(mass)
 
 
+def evaluate_support_case(world_path, out, contract, case):
+    """Run one complete passive case in its own fresh model and data."""
+    label, support, offset = case
+    if contract.get('collision_plugin'):
+        plugin = contract['collision_plugin']
+        assert sha(plugin['library']) == plugin['library_sha256']
+        mujoco.mj_loadPluginLibrary(plugin['library'])
+    m = mujoco.MjModel.from_xml_path(str(world_path))
+    if m.opt.timestep != .0001:
+        raise ValueError('Support evaluation requires the frozen 100 microsecond timestep')
+    a = argparse.Namespace(release_gap=contract['initial_reference_release_gap_m'],
+        cap_release_gap=contract['initial_cap_release_gap_m'],
+        reference_yaw_degrees=contract['initial_reference_yaw_degrees'])
+    panel_review = {'actual_support_plane_m': contract['panel_support_plane_m']}
+    ref_mass = contract['masses_kg']['pike_reference']
+    d = mujoco.MjData(m)
+    d.joint('pike_reference_cap_free').qpos[:] = [.15, -.01, a.cap_release_gap, 1., 0., 0., 0.]
+    ref_xy = np.array([.04, -.01] if support == 'port' else [.15, -.01])+offset
+    z = (panel_review['actual_support_plane_m']+contract['reference_port_support_height_m']+a.release_gap
+         if support == 'port' else a.cap_release_gap+contract['cap_height_m']+contract['reference_cap_support_height_m']+a.release_gap)
+    yaw = np.deg2rad(a.reference_yaw_degrees)
+    d.joint('pike_reference_free').qpos[:] = [*ref_xy, z, 0., np.cos(yaw/2), np.sin(yaw/2), 0.]
+    mujoco.mj_forward(m, d)
+    rid, cid = m.body('pike_reference').id, m.body('pike_reference_cap').id
+    aid = int(m.joint('pike_reference_free').dofadr[0])
+    max_pen = max_force = tail_speed = tail_omega = 0.
+    optical_load = external = False
+    native_force_error = 0.
+    native_force_comparisons = 0
+    supports, tail_support, samples = set(), [], []
+    for i in range(30000):
+        mujoco.mj_step(m, d)
+        force_z = load = 0.
+        # Elliptic, three-dimensional contacts store the native contact
+        # wrench directly at efc_address. Vectorize the read, and compare
+        # against mj_contactForce periodically; physics is unchanged.
+        geoms = np.asarray(d.contact.geom)
+        bs = m.geom_bodyid[geoms]
+        relevant = np.flatnonzero(np.any(bs == rid, axis=1))
+        if len(relevant):
+            max_pen = max(max_pen, max(0., -float(np.min(d.contact.dist[relevant]))))
+        active = relevant[np.asarray(d.contact.efc_address)[relevant] >= 0]
+        if len(active):
+            if int(m.opt.cone) != int(mujoco.mjtCone.mjCONE_ELLIPTIC) or np.any(d.contact.dim[active] != 3):
+                raise ValueError('Vector contact read requires elliptic 3D contacts')
+            addresses = np.asarray(d.contact.efc_address)[active]
+            forces = d.efc_force[addresses[:, None]+np.arange(3)]
+            frames = np.asarray(d.contact.frame)[active].reshape(-1, 3, 3)
+            signs = np.where(bs[active, 1] == rid, 1., -1.)
+            force_z = float(np.sum(signs*np.einsum('nij,ni->nj', frames, forces)[:, 2]))
+            load = float(np.sum(forces[:, 0]))
+            loaded = active[forces[:, 0] > 1e-8]
+            own = np.where(bs[loaded, 1] == rid, 1, 0)
+            supports.update(m.geom(int(g)).name for g in np.unique(geoms[loaded, 1-own]))
+            optical_load |= bool(np.any(geoms[loaded, own] == m.geom('pike_reference_optical_face').id))
+            if i % 5000 == 0:
+                for j, ci in enumerate(active):
+                    native = np.zeros(6)
+                    mujoco.mj_contactForce(m, d, int(ci), native)
+                    native_force_error = max(native_force_error, float(np.max(abs(native[:3]-forces[j]))))
+                    native_force_comparisons += 1
+        max_force = max(max_force, load)
+        external |= bool(np.any(d.xfrc_applied) or np.any(d.qfrc_applied))
+        if i >= 25000:
+            tail_support.append(force_z)
+            tail_speed = max(tail_speed, float(np.linalg.norm(d.qvel[aid:aid+3])))
+            tail_omega = max(tail_omega, float(np.linalg.norm(d.qvel[aid+3:aid+6])))
+        if i % 10 == 0:
+            samples.append(np.r_[d.time, d.qpos, d.qvel])
+        if i % 5000 == 0:
+            print(label, 'seconds', round(float(d.time), 4), flush=True)
+    mujoco.mj_kinematics(m, d)
+    required_prefix = (('source_panel_visual' if contract['panel_collision'].startswith('sdf') else 'panel_cell_')
+                       if support == 'port' else 'pike_reference_cap_cell_')
+    checks = dict(no_actuators=m.nu == 0, no_equalities=m.neq == 0, no_external_forces=not external,
+        no_numerical_warnings=not np.any(d.warning.number), bounded_penetration=max_pen <= .00025,
+        no_optical_surface_load=not optical_load,
+        intended_support_only=bool(supports) and all(n.startswith(required_prefix) for n in supports),
+        stable_last_half_second=tail_speed < .005 and tail_omega < .02,
+        support_balances_weight=abs(float(np.mean(tail_support))-ref_mass*9.81) <= .05*ref_mass*9.81,
+        bounded_contact_load=max_force <= 20.,
+        vector_force_read_matches_native=native_force_comparisons > 0 and native_force_error < 1e-10,
+        placement_retained=np.linalg.norm(d.body(rid).xpos[:2]-ref_xy) < .0001,
+        cap_remains_on_bench=abs(float(d.body(cid).xpos[2])) < .00025)
+    report = dict(case=label, support=support, offset_m=offset,
+        initial_reference_release_gap_m=a.release_gap, passed=bool(all(checks.values())),
+        initial_cap_release_gap_m=a.cap_release_gap,
+        initial_reference_yaw_degrees=a.reference_yaw_degrees,
+        checks={k: bool(v) for k, v in checks.items()}, maximum_penetration_m=max_pen,
+        maximum_normal_load_n=max_force, last_half_second_peak_speed_m_s=tail_speed,
+        last_half_second_peak_angular_speed_rad_s=tail_omega,
+        last_half_second_mean_support_n=float(np.mean(tail_support)),
+        native_force_comparisons=native_force_comparisons,
+        maximum_native_force_read_error_n=native_force_error,
+        contacted_support_geoms=sorted(supports), final_qpos=d.qpos.tolist())
+    trace = np.asarray(samples)
+    np.savez_compressed(out/(label+'_trace.npz'), samples=trace)
+    report['case_trace_sha256'] = sha(out/(label+'_trace.npz'))
+    (out/(label+'.json')).write_text(json.dumps(report, indent=2)+'\n')
+    print(json.dumps(dict(case=label, passed=report['passed'], failed_checks=[k for k, v in checks.items() if not v])), flush=True)
+    return report
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('panel_component', type=Path)
@@ -85,7 +190,12 @@ def main():
                    help='Offset the internal partition rays inside the bore; preserve the external solid')
     p.add_argument('--reference-yaw-degrees', type=float, default=0.,
                    help='Authored rotation around the reference optical axis; manufacturer orientation is unprescribed')
+    p.add_argument('--panel-collision', choices=['convex', 'sdf'], default='convex',
+                   help='Use the source nonconvex panel surface instead of internal convex seams')
+    p.add_argument('--workers', type=int, default=1, help='Independent complete cases, each in its own process')
     a = p.parse_args()
+    if not 1 <= a.workers <= 6:
+        p.error('Workers must be between 1 and 6')
     if not 0 <= a.release_gap <= .002:
         p.error('Release gap must be between zero and the retained 2 mm drop diagnostic')
     if not 0 <= a.cap_release_gap <= .002:
@@ -145,6 +255,19 @@ def main():
     xml = ET.parse(component/'world.xml').getroot()
     absolve_assets(xml, component/'world.xml')
     world, asset = xml.find('worldbody'), xml.find('asset')
+    if a.panel_collision == 'sdf':
+        cells = [g for g in world.findall('geom') if g.get('name', '').startswith('panel_cell_')]
+        if len(cells) != 96:
+            raise ValueError('Unexpected source panel partition')
+        surface = world.find("geom[@name='source_panel_visual']")
+        if surface is None:
+            raise ValueError('Original closed source surface is missing')
+        for key in ['friction', 'solref', 'solimp']:
+            assert len({g.get(key) for g in cells}) == 1
+            surface.set(key, cells[0].get(key))
+        surface.attrib.update(type='sdf', contype='1', conaffinity='1')
+        for geom in cells:
+            world.remove(geom)
     world.remove(world.find("body[@name='optical_witness_white']"))
     ET.SubElement(world, 'geom', name='component_bench', type='plane', size='.5 .3 .02',
                   rgba='.15 .18 .19 1', friction='.3 .002 .0001', solref='.002 1', solimp='.99 .99 .0001')
@@ -216,6 +339,9 @@ def main():
         effective_densities_kg_m3=dict(holder_and_shoulder=1400., gold_face_effective_substrate=2700., cap=1400.),
         dynamics_basis='Unmeasured development inputs; material composition, friction, compliance and inertial parameters require qualification',
         friction=[.3, .002, .0001], solref=[.002, 1.], solimp=[.99, .99, .0001],
+        panel_collision=a.panel_collision,
+        panel_support_plane_m=panel_review['actual_support_plane_m'],
+        sdf_surface_accuracy_qualified=False,
         reference_port_support_height_m=float(shoulder.bounds[1, 2]),
         reference_cap_support_height_m=float(ref['gold_reference_holder'].bounds[1, 2]),
         cap_height_m=float(cap.bounds[1, 2]), cap_floor_thickness_m=.003,
@@ -226,7 +352,7 @@ def main():
         initial_cap_release_gap_m=a.cap_release_gap,
         initial_reference_yaw_degrees=a.reference_yaw_degrees,
         support_scope='Only the declared seating gap and offsets; no larger drop, robot transfer or placement reliability qualification',
-        numeric_limitations='Exact concentric zero-yaw convex-cell boundaries produced spurious opposing loads in retained diagnostics; a passing authored orientation does not qualify untested orientations or rotation paths',
+        numeric_limitations='Earlier convex-cell boundaries produced spurious opposing loads. The selected panel collider requires independent shape/offset/rotation checks; a passing support case does not qualify untested orientations or robot handling',
         world_sha256=sha(out/'world.xml'), model_inputs_sha256=sha(out/'model_inputs.json'),
         source_snapshot_sha256={p.name: sha(p) for p in snapshot.iterdir()},
         qualified_robot_handling=False, qualified_paper_branch=False)
@@ -235,92 +361,14 @@ def main():
     cases = [('port_center', 'port', [0., 0.]), ('port_x', 'port', [.0005, 0.]),
              ('port_y', 'port', [0., -.0005]), ('cap_center', 'cap', [0., 0.]),
              ('cap_x', 'cap', [.0005, 0.]), ('cap_y', 'cap', [0., -.0005])]
-    for label, support, offset in cases:
-        d = mujoco.MjData(m)
-        d.joint('pike_reference_cap_free').qpos[:] = [.15, -.01, a.cap_release_gap, 1., 0., 0., 0.]
-        ref_xy = np.array([.04, -.01] if support == 'port' else [.15, -.01])+offset
-        z = (panel_review['actual_support_plane_m']+contract['reference_port_support_height_m']+a.release_gap
-             if support == 'port' else a.cap_release_gap+contract['cap_height_m']+contract['reference_cap_support_height_m']+a.release_gap)
-        yaw = np.deg2rad(a.reference_yaw_degrees)
-        d.joint('pike_reference_free').qpos[:] = [*ref_xy, z, 0., np.cos(yaw/2), np.sin(yaw/2), 0.]
-        mujoco.mj_forward(m, d)
-        rid, cid = m.body('pike_reference').id, m.body('pike_reference_cap').id
-        aid = int(m.joint('pike_reference_free').dofadr[0])
-        max_pen = max_force = tail_speed = tail_omega = 0.
-        optical_load = external = False
-        native_force_error = 0.
-        native_force_comparisons = 0
-        supports, tail_support, samples = set(), [], []
-        for i in range(30000):
-            mujoco.mj_step(m, d)
-            force_z = load = 0.
-            # Elliptic, three-dimensional contacts store the native contact
-            # wrench directly at efc_address. Vectorize the read, and compare
-            # against mj_contactForce periodically; physics is unchanged.
-            geoms = np.asarray(d.contact.geom)
-            bs = m.geom_bodyid[geoms]
-            relevant = np.flatnonzero(np.any(bs == rid, axis=1))
-            if len(relevant):
-                max_pen = max(max_pen, max(0., -float(np.min(d.contact.dist[relevant]))))
-            active = relevant[np.asarray(d.contact.efc_address)[relevant] >= 0]
-            if len(active):
-                if int(m.opt.cone) != int(mujoco.mjtCone.mjCONE_ELLIPTIC) or np.any(d.contact.dim[active] != 3):
-                    raise ValueError('Vector contact read requires elliptic 3D contacts')
-                addresses = np.asarray(d.contact.efc_address)[active]
-                forces = d.efc_force[addresses[:, None]+np.arange(3)]
-                frames = np.asarray(d.contact.frame)[active].reshape(-1, 3, 3)
-                signs = np.where(bs[active, 1] == rid, 1., -1.)
-                force_z = float(np.sum(signs*np.einsum('nij,ni->nj', frames, forces)[:, 2]))
-                load = float(np.sum(forces[:, 0]))
-                loaded = active[forces[:, 0] > 1e-8]
-                own = np.where(bs[loaded, 1] == rid, 1, 0)
-                supports.update(m.geom(int(g)).name for g in np.unique(geoms[loaded, 1-own]))
-                optical_load |= bool(np.any(geoms[loaded, own] == m.geom('pike_reference_optical_face').id))
-                if i % 5000 == 0:
-                    for j, ci in enumerate(active):
-                        native = np.zeros(6)
-                        mujoco.mj_contactForce(m, d, int(ci), native)
-                        native_force_error = max(native_force_error, float(np.max(abs(native[:3]-forces[j]))))
-                        native_force_comparisons += 1
-            max_force = max(max_force, load)
-            external |= bool(np.any(d.xfrc_applied) or np.any(d.qfrc_applied))
-            if i >= 25000:
-                tail_support.append(force_z)
-                tail_speed = max(tail_speed, float(np.linalg.norm(d.qvel[aid:aid+3])))
-                tail_omega = max(tail_omega, float(np.linalg.norm(d.qvel[aid+3:aid+6])))
-            if i % 10 == 0:
-                samples.append(np.r_[d.time, d.qpos, d.qvel])
-            if i % 5000 == 0:
-                print(label, 'seconds', round(float(d.time), 4), flush=True)
-        mujoco.mj_kinematics(m, d)
-        required_prefix = 'panel_cell_' if support == 'port' else 'pike_reference_cap_cell_'
-        checks = dict(no_actuators=m.nu == 0, no_equalities=m.neq == 0, no_external_forces=not external,
-            no_numerical_warnings=not np.any(d.warning.number), bounded_penetration=max_pen <= .00025,
-            no_optical_surface_load=not optical_load,
-            intended_support_only=bool(supports) and all(n.startswith(required_prefix) for n in supports),
-            stable_last_half_second=tail_speed < .005 and tail_omega < .02,
-            support_balances_weight=abs(float(np.mean(tail_support))-ref_mass*9.81) <= .05*ref_mass*9.81,
-            bounded_contact_load=max_force <= 20.,
-            vector_force_read_matches_native=native_force_comparisons > 0 and native_force_error < 1e-10,
-            placement_retained=np.linalg.norm(d.body(rid).xpos[:2]-ref_xy) < .0001,
-            cap_remains_on_bench=abs(float(d.body(cid).xpos[2])) < .00025)
-        report = dict(case=label, support=support, offset_m=offset,
-            initial_reference_release_gap_m=a.release_gap, passed=bool(all(checks.values())),
-            initial_cap_release_gap_m=a.cap_release_gap,
-            initial_reference_yaw_degrees=a.reference_yaw_degrees,
-            checks={k: bool(v) for k, v in checks.items()}, maximum_penetration_m=max_pen,
-            maximum_normal_load_n=max_force, last_half_second_peak_speed_m_s=tail_speed,
-            last_half_second_peak_angular_speed_rad_s=tail_omega,
-            last_half_second_mean_support_n=float(np.mean(tail_support)),
-            native_force_comparisons=native_force_comparisons,
-            maximum_native_force_read_error_n=native_force_error,
-            contacted_support_geoms=sorted(supports), final_qpos=d.qpos.tolist())
-        trials.append(report)
-        traces[label] = np.asarray(samples)
-        np.savez_compressed(out/(label+'_trace.npz'), samples=traces[label])
-        report['case_trace_sha256'] = sha(out/(label+'_trace.npz'))
-        (out/(label+'.json')).write_text(json.dumps(report, indent=2)+'\n')
-        print(json.dumps(dict(case=label, passed=report['passed'], failed_checks=[k for k, v in checks.items() if not v])), flush=True)
+    if a.workers == 1:
+        trials = [evaluate_support_case(out/'world.xml', out, contract, case) for case in cases]
+    else:
+        with ProcessPoolExecutor(max_workers=a.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
+            futures = [pool.submit(evaluate_support_case, out/'world.xml', out, contract, case) for case in cases]
+            trials = [future.result() for future in futures]
+    for report in trials:
+        traces[report['case']] = np.load(out/(report['case']+'_trace.npz'))['samples']
     np.savez_compressed(out/'support_traces.npz', **traces)
     review = dict(scope=__doc__, contract_sha256=sha(out/'contract.json'),
                   world_sha256=contract['world_sha256'], trace_sha256=sha(out/'support_traces.npz'),

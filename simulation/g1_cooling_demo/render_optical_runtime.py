@@ -15,6 +15,7 @@ import numpy as np
 from PIL import Image
 
 from build_tool_station import sha
+from runtime_collision_plugins import load_collision_plugins
 
 
 def main():
@@ -27,6 +28,8 @@ def main():
     assert sha(folder/'world.xml')==binding['world_sha256']
     assert sha(folder/'initial_state.json')==binding['initial_state_sha256']
     for file,digest in json.loads((folder/'model_inputs.json').read_text()).items():assert sha(file)==digest
+    load_collision_plugins(binding.get('collision_plugins', []))
+    shutil.copyfile(Path(__file__).with_name('runtime_collision_plugins.py'), out/'runtime_collision_plugins.py')
     m=mujoco.MjModel.from_xml_path(str(folder/'world.xml'));d=mujoco.MjData(m)
     initial=json.loads((folder/'initial_state.json').read_text());d.qpos[:]=initial['qpos'];d.qvel[:]=initial['qvel']
     mujoco.mj_forward(m,d)

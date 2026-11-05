@@ -1,0 +1,80 @@
+{
+  "scope": "Exact source-surface collision development; no robot, installation or branch qualification",
+  "findings": [
+    "Current MuJoCo 3.16.0 produces incorrect compiled polygon normals on some source convex cells. Correcting complete-loop normals alone did not remove excessive contact forces, so that diagnostic patch is not adopted.",
+    "Using the complete source panel with native interpolated mesh SDF removes the initial lateral spikes and passes six support cases, but independently sampled distances differ by up to 3.3526 mm with 85 sign mismatches. This collider is rejected for runtime binding.",
+    "The exact-source collision plugin supplies closest-triangle distance via a BVH and tests occupancy against the verified convex outer shell minus the polygonal through bore. It changes no triangle, opening, material, mass, friction or force threshold.",
+    "3744 independently sampled distances and signs pass the unchanged five micrometre geometry requirement. A separate 96-point finite-difference check passes the contact-normal requirement.",
+    "Six complete passive support cases are running for this new plugin. Full-room binding is gated on all six passing, then needs new full-room support evidence."
+  ],
+  "oracle_correction": {
+    "retained_early_reports": [
+      "pike_panel_exact_surface_01/review.json",
+      "pike_panel_exact_surface_02/review.json"
+    ],
+    "reason": "trimesh absolute tolerances on second/fourth order terms misclassify sub-mm triangle interiors when the oracle uses metre coordinates; accelerated search also missed nearer source faces.",
+    "correction": "Exhaustive triangle queries and independent ray occupancy in millimetre-normalized oracle coordinates; all returned distances converted back to metres. Simulator geometry, native queries and the 5 micrometre acceptance limit are unchanged.",
+    "analytic_counterexamples": [
+      {
+        "point_m": [
+          0.0517935602000093,
+          -0.01787691526829721,
+          0.1019
+        ],
+        "source_top_plane_m": 0.102,
+        "known_distance_m": 0.0001,
+        "accelerated_distance_m": 0.00014002359613210958
+      },
+      {
+        "point_m": [
+          0.033889873150527536,
+          -0.003391447797918794,
+          0.10089976400425564
+        ],
+        "projected_source_triangle_barycentric": [
+          0.40153282,
+          0.550118,
+          0.04834919
+        ],
+        "normal_distance_m": 5e-06,
+        "unscaled_exhaustive_distance_m": 2.776922247550248e-05
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_compiler_normals_01/comparison.json",
+      "sha256": "059790b2d233216ba7b8be683cfbd19506e9e04d82d9e9e89f21beb9dd55539d"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_surface_collision_01/comparison.json",
+      "sha256": "8d54c656bae8937e3d5c47ae99a4310e0cf26ea6101c543b5f3def42ded56527"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_reference_support_05/review.json",
+      "sha256": "d6700571bacfa74d17256089168d647ab224b3d13e975bff0e755e9be95972f8"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_panel_sdf_surface_03/review.json",
+      "sha256": "7f61b8712ba43c86b8b40448a1f47abe10fe469106069abbb6504b88207695b8"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_exact_surface_plugin_01/plugin.json",
+      "sha256": "6f5ec2f29f47bfaad101defeb1d1110c7bab42bf90da1233dba04d25d6b2df1b"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_panel_exact_surface_03/review.json",
+      "sha256": "49843f8b58453c3c7b521a8244a251aee3bb019550d07235b16a1f902b4a41bf"
+    },
+    {
+      "path": "simulation/g1_cooling_demo/analysis/pike_panel_exact_gradient_01/review.json",
+      "sha256": "52fa1233b5d56519854a4f88f6a1e8db451a169dd4ae6b5cfeadaa1802500058"
+    }
+  ],
+  "candidate_component": "analysis/pike_reference_support_06",
+  "candidate_full_room": "analysis/optical_runtime_binding_07",
+  "geometry_and_dynamics_parameters_still_inferred": true,
+  "physical_acceptance_limits_relaxed": false,
+  "qualified_robot_handling": false,
+  "qualified_paper_branch": false
+}
