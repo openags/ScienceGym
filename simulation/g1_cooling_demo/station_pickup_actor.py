@@ -213,6 +213,17 @@ class StationPickupActor:
         if self.pickup is not None and self.pickup.map_localizer is not None:
             self.pickup.map_localizer.close()
 
+    def error_response(self, error):
+        # A nested carrying failure must not replace the already executed
+        # pickup/transport history with only the three navigation events.
+        # Keep the same continuous clock used by successful responses.
+        history = list(self.events)
+        if self.pickup is not None:
+            history += [dict(e, time_s=float(e['time_s'])+self.pickup_started)
+                        for e in self.pickup.events]
+        return dict(torque=np.zeros(self.m.nu), error=type(error).__name__+': '+str(error),
+                    events=history, phase=self.phase)
+
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
@@ -232,8 +243,7 @@ def main():
             try:
                 response = actor.update(observation)
             except Exception as error:
-                response = dict(torque=np.zeros(actor.m.nu), error=type(error).__name__+': '+str(error),
-                                events=list(actor.events), phase=actor.phase)
+                response = actor.error_response(error)
             pickle.dump(response, sys.stdout.buffer, protocol=5)
             sys.stdout.buffer.flush()
             if response['error']:

@@ -1,5 +1,51 @@
 # G1 humanoid contact runtime
 
+Current FTIR integration (6 November 2026): a fresh **G1/Dex3** native RGB-D
+key attempt reaches the press stage in the original laboratory, then fails at
+24.270 s because the wrist does not reach its requested pose. All 24,271
+isolated controller responses replay exactly and source speed/torque checks
+pass. Full native physics review has finished and fails: the key is not
+depressed, and source joint, contact and support bounds are violated. The
+[recorded 24-second attempt](runs/dex3_ftir_press_01/press.mp4) is a failure,
+not a completed key press. The [terminal sensor diagnosis](analysis/dex3_ftir_tracking_01/review.json)
+finds approximately 5 mm fingertip error and the left knee at its extension
+boundary, while the finger-joint posture remains accurate.
+Fresh `dex3_ftir_press_02` tests a 20 mm COM lowering, weaker leg posture
+preference and source joint-boundary damping, but stops at 10.810 s in the
+first approach segment. Its [native review](runs/dex3_ftir_press_02/physical_press_review.json)
+also fails: no button press, torso/worktop contact, excessive sole penetration
+and joint-limit violations. All 10,811 controller responses replay exactly;
+reproducibility does not make either attempt successful. Model, initial state
+and key travel/contact/dwell acceptance remain identical.
+
+The new Dex3 pointing affordance uses its actual source index surface, with no
+added contact pad. An [observed approach planner](analysis/dex3_ftir_observed_plan_01/review.json)
+uses only native depth, own robot geometry and the public room map; the
+independent [full-scene geometric screen](analysis/dex3_ftir_observed_plan_geometry_01/review.json)
+passes 521 samples through approach to the observed key surface. This is
+planning evidence only. The fresh actor is filesystem/process/network isolated,
+and separate frozen tools check native switch travel, all recorded sensors and
+camera frames, source limits, and complete controller/event replay.
+
+The continuous station carry now reaches loaded support transfer, but
+`dex3_station_carry_02` stops at 99.930 s before completing its first step.
+The [sensor-only failure replay](analysis/dex3_station_balance_diagnosis_01/review.json)
+matches all 99,931 responses exactly: COM remains 15.93 mm from its support
+target with almost zero velocity. Extending a timeout would not resolve that
+stationary error. Its frozen error wrapper also truncates child events; the
+diagnostic recovers 14 events separately from the original three-event record.
+The revised wrapper preserves child timestamps on the continuous clock;
+three failure-history regression cases pass. Old recordings remain unchanged.
+
+Fresh tool stroke11 retains its grasp and physically reopens, but does not
+close the tips to the original 0.5 mm requirement and times out while returning
+to its force target. It fails. Fresh `dex3_tool_stroke_12` changes only the
+controller squeeze target (2.45 to 2.65 N at the thumb) and normal admittance
+gain (0.0006 to 0.0009 m/N/s). Its
+[comparison](analysis/dex3_tool_stroke_12_controller_revision_01/review.json)
+confirms unchanged plant, initial state, speed bounds and physical acceptance.
+No component, branch or campaign qualification is inferred from these trials.
+
 Latest station integration (6 November 2026): the [20-second approach to the
 existing tool bench](runs/dex3_groot_station_approach_01/station_view/overview.mp4)
 passes its [native walking review](runs/dex3_groot_station_approach_01/walking_review.json)
@@ -56,9 +102,10 @@ permitted; six regression cases retain rejection of deeper contact, floor-side
 contact, finger/floor contact, sole/bench contact and self-contact. The frozen
 [sensor-prefix diagnostic](analysis/dex3_station_loaded_plan_02/review.json)
 reproduces all 86,622 earlier responses exactly and finds a clear raise/retract
-plan at the previous failure point. Fresh `dex3_station_carry_02` is running
-from the original aisle; its physical model and acceptance are exactly unchanged.
-Full physical review of the failed attempt continues; no qualification transfers.
+plan at the previous failure point. Fresh `dex3_station_carry_02` then runs
+from the original aisle with unchanged physical model and acceptance, and fails
+at loaded support transfer as described above. Full native review of carry01
+has finished and fails; no qualification transfers.
 
 The latest tool-force diagnostic reaches a closed tip gap for 1.711 s but loses
 its grasp while reopening: relative drift grows from 9.756 mm at 72 s to
@@ -69,7 +116,8 @@ checks 30 invariants between that controller candidate and fresh
 friction, motor limits and physical acceptance remain identical. The new run
 uses the explicit elliptic/10 impedance-ratio/0.99 hand-tool contact model
 already exercised by carry08; this is an uncalibrated simulation model choice.
-It starts from the original scene and requires its own full physical review.
+It starts from the original scene and fails its independent tool-actuation
+review: retention and reopening pass, but the tips do not close enough.
 
 Failed-controller replay now retains the last event list, matching the recorder
 when a terminal error response omits events. The [separate revised review](runs/dex3_tool_stroke_10/controller_replay_revision_03.json)
