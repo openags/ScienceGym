@@ -32,10 +32,13 @@ original 60 mm default. Fresh `dex3_station_pickup_03` uses 5 mm, with the same
 laboratory, physical acceptance and source limits. It finishes at 82.369 s
 without a controller failure. All 82,370 isolated controller responses and
 18 camera frames replay exactly, and source motor limits pass. Full native
-physics and joined outcome reviews are still pending. Its
+physics reproduces the trajectory exactly but rejects finger/tray contact
+during replacement, first exceeding the unchanged 20 micrometre bound at
+75.8752 s. The joined review therefore fails despite successful arrival and
+preparation. Its
 [continuous station video](runs/dex3_station_pickup_03/station_view/overview.mp4)
 shows walking, preparation, visual pickup, lift, replacement and withdrawal.
-This is not yet a physically accepted component or a complete paper branch.
+This failed attempt is not a physically accepted component or a paper branch.
 
 `--station-carry` now composes the same sensor-based arrival with the carrying
 actor. The [handoff diagnostic](analysis/dex3_station_carry_handoff_01/review.json)
@@ -43,9 +46,37 @@ matches 24,801 recorded commands, including the first carrying-actor response.
 Its return reference is the sensed pickup stance. The independent evaluator
 measures carrying displacement from that handoff, excluding preceding unloaded
 travel; six reference-selection regression tests pass. Fresh
-`dex3_station_carry_01` starts in the original aisle and is running with carry08's
-contact model and the separately declared 2 ms sole response. Neither earlier
-component result transfers physical acceptance to this combined attempt.
+`dex3_station_carry_01` starts in the original aisle with carry08's contact
+model and the separately declared 2 ms sole response. It reaches pickup and
+lift, then stops at 86.622 s: the loaded-arm guard mistakes eight shallow
+sole/floor support contacts (12.8–13.0 micrometres) for prohibited collisions.
+The revised guard binds source-labelled architectural floors and official sole
+geometries. Only upward sole support within the unchanged 1 mm bound is
+permitted; six regression cases retain rejection of deeper contact, floor-side
+contact, finger/floor contact, sole/bench contact and self-contact. The frozen
+[sensor-prefix diagnostic](analysis/dex3_station_loaded_plan_02/review.json)
+reproduces all 86,622 earlier responses exactly and finds a clear raise/retract
+plan at the previous failure point. Fresh `dex3_station_carry_02` is running
+from the original aisle; its physical model and acceptance are exactly unchanged.
+Full physical review of the failed attempt continues; no qualification transfers.
+
+The latest tool-force diagnostic reaches a closed tip gap for 1.711 s but loses
+its grasp while reopening: relative drift grows from 9.756 mm at 72 s to
+40.704 mm at 76 s. It fails, and its restored checkpoint cannot qualify a skill.
+The [contact comparison](analysis/dex3_tool_contact_revision_01/review.json)
+checks 30 invariants between that controller candidate and fresh
+`dex3_tool_stroke_11`: initial state, controller prior, source geometry, masses,
+friction, motor limits and physical acceptance remain identical. The new run
+uses the explicit elliptic/10 impedance-ratio/0.99 hand-tool contact model
+already exercised by carry08; this is an uncalibrated simulation model choice.
+It starts from the original scene and requires its own full physical review.
+
+Failed-controller replay now retains the last event list, matching the recorder
+when a terminal error response omits events. The [separate revised review](runs/dex3_tool_stroke_10/controller_replay_revision_03.json)
+reproduces all 71,573 responses and the complete event history with zero error;
+the original failed review is preserved and the physical task still fails.
+Legacy recordings explicitly report that their original result omitted an event
+file digest. Future tool recordings pin it at recording time.
 
 The [preparation geometry screen](analysis/dex3_station_handoff_screen_01/review.json)
 rejects arm-only preparation because the hand intersects the hip; coordinated

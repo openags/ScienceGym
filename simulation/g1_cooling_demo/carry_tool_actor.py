@@ -30,6 +30,57 @@ def pose(site):
     return T
 
 
+def declared_sole_support(model, contact, support):
+    """Permit only declared sole/floor contacts within the public support bound.
+
+    This classifies contacts in the robot's geometric predictor. It does not
+    observe plant support or waive the independent whole-body contact review.
+    """
+    if not support:
+        return False
+    names = {model.geom(int(g)).name for g in contact.geom}
+    normal = np.asarray(contact.frame).reshape(3, 3)[0]
+    if model.geom(int(contact.geom[0])).name not in support['floor_geoms']:
+        normal = -normal
+    return (bool(names & set(support['floor_geoms']))
+            and bool(names & set(support['sole_geoms']))
+            and normal[2] > .95
+            and float(contact.dist) >= -support['maximum_penetration_m'])
+
+
+def validate_support_prior(model, support):
+    if support is None:
+        return None
+    support = copy.deepcopy(support)
+    bound = float(support['maximum_penetration_m'])
+    if not np.isfinite(bound) or not 0. < bound <= .001:
+        raise ValueError('Declared sole support must retain the 1 mm maximum bound')
+    if not support['floor_geoms'] or not support['sole_geoms']:
+        raise ValueError('Support prior requires explicit floor and sole geometry')
+    for name in support['floor_geoms']:
+        geom = model.geom(name)
+        if model.body(int(model.geom_bodyid[geom.id])).name != 'lab_architecture':
+            raise ValueError('A support floor must belong to the public static architecture')
+    for name in support['sole_geoms']:
+        geom = model.geom(name)
+        body = model.body(int(model.geom_bodyid[geom.id])).name
+        if body not in {'left_ankle_roll_link', 'right_ankle_roll_link'} or 'ankle_roll_link_collision_' not in name:
+            raise ValueError('Declared sole support cannot exempt another robot part')
+    return support
+
+
+def public_support_prior(model, imported, maximum_penetration):
+    """Bind only source-labelled architectural floors and official sole geoms."""
+    floors = [part['geom'] for part in imported['parts']
+              if part['instance'] == 'architecture' and part['source_part'] in
+              {'indoor_floor', 'annex_floor', 'outdoor_floor', 'outdoor_access_path'}]
+    soles = [model.geom(g).name for g in range(model.ngeom)
+             if 'ankle_roll_link_collision_' in (model.geom(g).name or '')]
+    return validate_support_prior(model, dict(floor_geoms=sorted(floors),
+        sole_geoms=sorted(soles), maximum_penetration_m=float(maximum_penetration),
+        scope='Public architectural support geometry; only upward sole support is permitted; independent physical checks remain required'))
+
+
 class CarryClearance:
     """Arm and hypothesized tool versus observed surfaces and public map.
 
@@ -59,14 +110,15 @@ class CarryClearance:
         self.wrist_from_tool=np.linalg.inv(np.asarray(actor.geometry['source_tool_from_wrist']))
         self.allowed={r['body'] for r in actor.geometry['robot_contact_features']}
         self.robot=p.robot
+        self.support = validate_support_prior(self.m, actor.carry_support_contacts)
 
     def check(self,q):
         self.d.qpos[:]=q;mujoco.mj_kinematics(self.m,self.d);mujoco.mj_comPos(self.m,self.d)
         mujoco.mj_collision(self.m,self.d)
         penetrations=[dict(parts=[self.m.geom(g).name for g in c.geom],distance_m=float(c.dist))
-            for c in self.d.contact if c.dist<0.]
+            for c in self.d.contact if c.dist<0. and not declared_sole_support(self.m,c,self.support)]
         if penetrations:
-            return dict(clear=False,kind='native_source_self_contact',contacts=penetrations)
+            return dict(clear=False,kind='native_source_contact',contacts=penetrations)
         self.clearance.fixed_state=self.d.qpos[self.clearance.fixed].copy()
         arm=self.clearance.check(.001)
         if not arm['clear']:return arm
@@ -187,6 +239,7 @@ class ToolActor(VisualPickup):
         self.distance=float(prior['carry_distance_m'])
         if not .02<=self.distance<=.30:raise ValueError('Local carrying distance outside declared development range')
         self.transported=False;self.walker=None;self.guard=None
+        self.carry_support_contacts=validate_support_prior(model,prior.get('carry_support_contacts'))
         self.return_base_after_release=bool(prior.get('return_base_after_release',False))
         self.initial_base_xy=self.d.qpos[:2].copy()
         self.base_return_target=None;self.base_return_started=None;self.base_return_dwell=None

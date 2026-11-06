@@ -1,0 +1,154 @@
+{
+  "scope": "Recorded tool reopening failure and explicit contact-model comparison; no new execution verdict",
+  "source_result_sha256": "c3dccb6331b753aad6f72f1c0174f71adcc0add90c44d1ac476afd5a910ec9ce",
+  "native_evidence_sha256": "b80186ccf647881c491a257e2c5f5370cf599cc2d89bdfccf6677c96e6fa3e2e",
+  "failure": "Observed loss of three-finger load",
+  "recorded_samples": [
+    {
+      "time_s": 54.00000000066908,
+      "phase": "hold",
+      "tip_gap_m": 0.0045266420030325,
+      "finger_loads_n": [
+        1.1253914067299973,
+        0.5262607304169474,
+        0.6193183940149928
+      ],
+      "tool_wrist_translation_drift_m": 0.0005276035029950423
+    },
+    {
+      "time_s": 60.00000000086826,
+      "phase": "tool_squeeze",
+      "tip_gap_m": 0.0021208210075846137,
+      "finger_loads_n": [
+        2.090817594487434,
+        0.848028168408316,
+        1.0860658743436096
+      ],
+      "tool_wrist_translation_drift_m": 0.006671051419525952
+    },
+    {
+      "time_s": 65.00000000103424,
+      "phase": "tool_squeeze",
+      "tip_gap_m": 0.0009266639752367109,
+      "finger_loads_n": [
+        2.260365168676909,
+        1.0181704312628537,
+        1.2614919820035224
+      ],
+      "tool_wrist_translation_drift_m": 0.009480513538312675
+    },
+    {
+      "time_s": 72.00000000126661,
+      "phase": "tool_squeeze",
+      "tip_gap_m": 0.0004319786475935164,
+      "finger_loads_n": [
+        2.412636107056012,
+        1.0893019659418053,
+        1.3450363783893997
+      ],
+      "tool_wrist_translation_drift_m": 0.009755945356242213
+    },
+    {
+      "time_s": 74.000000001333,
+      "phase": "tool_reopen",
+      "tip_gap_m": 0.0007690351427570378,
+      "finger_loads_n": [
+        2.2831377478741803,
+        1.058484977094698,
+        1.2534856862834778
+      ],
+      "tool_wrist_translation_drift_m": 0.009723552080533463
+    },
+    {
+      "time_s": 75.0000000013662,
+      "phase": "tool_reopen",
+      "tip_gap_m": 0.001343252613527111,
+      "finger_loads_n": [
+        2.1163344889838305,
+        0.9595435022208474,
+        1.1887815071079126
+      ],
+      "tool_wrist_translation_drift_m": 0.010248587116550873
+    },
+    {
+      "time_s": 75.90000000139608,
+      "phase": "tool_reopen",
+      "tip_gap_m": 0.0019345296198141524,
+      "finger_loads_n": [
+        1.8831974233633157,
+        0.8847817303141017,
+        1.0251657282655806
+      ],
+      "tool_wrist_translation_drift_m": 0.011651400730163535
+    },
+    {
+      "time_s": 76.0000000013994,
+      "phase": "tool_reopen",
+      "tip_gap_m": 0.008379135252042876,
+      "finger_loads_n": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tool_wrist_translation_drift_m": 0.040704019821268436
+    }
+  ],
+  "old_model_sha256": "47e144448b874640669d393309dde5d0432db423c9ad5550939c6dd1e2b3a089",
+  "new_model_sha256": "da96566cb02a1d4afcb40c8de1a73b1465c28ad6fefa513ecef17d7fb1465281",
+  "old_contract_sha256": "4964a3b0279f1f6e2030731ae17cc4109991aaedf5d0a854b0614b08897236b3",
+  "new_contract_sha256": "7097321cc2e46185961d6245025b554726cd4d620f8eeb3b99501f2876f978f8",
+  "checks": {
+    "body_mass": true,
+    "body_inertia": true,
+    "body_ipos": true,
+    "body_iquat": true,
+    "jnt_type": true,
+    "jnt_pos": true,
+    "jnt_axis": true,
+    "jnt_range": true,
+    "jnt_stiffness": true,
+    "dof_damping": true,
+    "dof_armature": true,
+    "geom_type": true,
+    "geom_pos": true,
+    "geom_quat": true,
+    "geom_size": true,
+    "geom_contype": true,
+    "geom_conaffinity": true,
+    "geom_friction": true,
+    "geom_solref": true,
+    "geom_solimp": true,
+    "mesh_vert": true,
+    "mesh_face": true,
+    "actuator_ctrlrange": true,
+    "actuator_forcerange": true,
+    "qpos0": true,
+    "same_actor_prior": true,
+    "same_initial_qpos": true,
+    "same_initial_qvel": true,
+    "same_physical_acceptance": true,
+    "same_tool_task_limits": true
+  },
+  "changed_contact_parameters": {
+    "cone": [
+      0,
+      1
+    ],
+    "impratio": [
+      1.0,
+      10.0
+    ],
+    "explicit_pairs_added": 141,
+    "declared_hand_tool_impedance": [
+      0.9999,
+      0.99
+    ]
+  },
+  "hypothesis": "Upward tangential support and contact conditioning differ between the previous pyramidal model and the explicit elliptic/compliance model used by carry08. A fresh uninterrupted tool trial must test retention, reopening and release with the same controller and physical limits.",
+  "documentation": "https://mujoco.readthedocs.io/en/stable/modeling.html#preventing-slip",
+  "hardware_material_calibration_claimed": false,
+  "physical_acceptance_changed": false,
+  "new_trial": "dex3_tool_stroke_11",
+  "qualified_tool_actuation": false,
+  "qualified_paper_branch": false
+}

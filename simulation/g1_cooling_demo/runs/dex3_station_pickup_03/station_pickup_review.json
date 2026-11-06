@@ -1,0 +1,41 @@
+{
+  "scope": "Join independent walking, station handoff and actual pickup evidence.\n\nRun the frozen attempt's controller and continuous-physics replay first. This\nreview checks that those results belong to one uninterrupted trace and that\narrival, posture preparation and sensor-based manipulation occur in order.\nIt cannot qualify a paper branch, tool actuation, or repeated reliability.\n",
+  "passed": false,
+  "checks": {
+    "controller_replay": true,
+    "continuous_physics_and_tool_outcome": false,
+    "source_motor_limits": true,
+    "uninterrupted_stage_order": true,
+    "actual_station_arrival": true,
+    "actual_preparation_posture": true,
+    "both_feet_lift_before_arrival": true,
+    "controller_attempt_completed": true,
+    "no_return_to_walking": true
+  },
+  "metrics": {
+    "arrival_position_error_m": 0.06053617336410688,
+    "arrival_heading_error_rad": 0.01873342968916616,
+    "maximum_last_second_arrival_speed_m_s": 0.02248234252972929,
+    "prepared_joint_error_rad": 0.022687511199522503,
+    "prepared_joint_speed_rad_s": 1.658449025421905e-05,
+    "maximum_each_sole_lift_before_arrival_m": [
+      0.038103943937168094,
+      0.041224564816199565
+    ],
+    "stage_times_s": [
+      13.72599999998135,
+      24.72799999995571,
+      25.399999999954144,
+      28.199999999947618
+    ]
+  },
+  "trace_sha256": "57690ebae002c4774ba568b215530f19a87c69939d15a69f43dc5de0e79c8cfb",
+  "contract_sha256": "0a7ff92ce4ed846d88b0348d94e4b2ecc7ebfe4125ab9ceb061a128753643b73",
+  "physical_review_sha256": "e6e22c9070baa311d3cfbe11779cf467448ae8ff4852f2ec2066be8eb8baf79a",
+  "controller_review_sha256": "9c7e7f667a1587f666693b55a7cdf47e19024a12d6ff8134704cbad412385c84",
+  "source_limits_review_sha256": "82705878624dbcadc5edc163624a1785574ceaf079ddd84e185606a26197ba4b",
+  "verifier_sha256": "fead54fdd3894484ed644dafd3b4962f289c207aea2e4e3b2e91e817a51e45a1",
+  "qualified_repeated_navigation": false,
+  "qualified_repeated_grasp": false,
+  "qualified_paper_branch": false
+}

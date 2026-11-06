@@ -62,7 +62,9 @@ def difference(a, b):
     return 0. if a == b else float('inf')
 
 
-def controller(folder):
+def controller(folder, report_name='controller_replay.json'):
+    if Path(report_name).name != report_name or not report_name.endswith('.json'):
+        raise ValueError('Controller report must be a JSON filename within the recording')
     result = json.loads((folder/'result.json').read_text())
     contract = json.loads((folder/'contract.json').read_text())
     assert sha(folder/'contract.json') == result['contract_sha256']
@@ -89,7 +91,8 @@ def controller(folder):
         for row in camera_index:assert sha(folder/row['file'])==row['sha256']
     command = receipt['command_prefix']+[sys.executable, '/actor/'+actor+'.py', '--model', '/model/world.xml']
     error = 0.; compared = 0; failure = None;camera_frames_replayed=0
-    with (folder/'controller_replay_stderr.log').open('wb') as log:
+    retained_events = []; response = {}; event_error = None
+    with (folder/(Path(report_name).stem+'_stderr.log')).open('wb') as log:
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=log, env=receipt['environment'])
         try:
             for i, expected in enumerate(responses):
@@ -104,11 +107,21 @@ def controller(folder):
                     else:packet.update(head_rgb=None,head_depth=None)
                 pickle.dump(packet, process.stdin, protocol=5); process.stdin.flush()
                 response = pickle.load(process.stdout)
+                # Match the recorder: terminal exception replies may omit
+                # events, while its event file retains the last actual list.
+                if 'events' in response:
+                    retained_events = response['events']
                 actual = {k: v for k, v in response.items() if k != 'events'}
                 error = max(error, difference(expected, actual)); compared += 1
                 if response['error']: break
             expected_events = json.loads((folder/'events.json').read_text())
-            error = max(error, difference(expected_events, response.get('events', [])))
+            # Older tool recordings predate the result-level event digest.
+            # Still compare their full history against the replayed actor;
+            # report the missing historical pin instead of inventing one.
+            if result.get('events_sha256') is not None:
+                assert sha(folder/'events.json') == result['events_sha256']
+            event_error = difference(expected_events, retained_events)
+            error = max(error, event_error)
         except Exception as exc: failure = str(exc)
         finally:
             process.stdin.close()
@@ -117,11 +130,15 @@ def controller(folder):
     report = dict(passed=failure is None and compared == len(responses) == len(sensor['time_s']) and error < 1e-10,
         failure=failure, compared=compared, responses=len(responses), sensor_packets=len(sensor['time_s']),
         maximum_response_error=None if not np.isfinite(error) else error,
+        final_event_history_error=None if event_error is None or not np.isfinite(event_error) else event_error,
+        event_history_sha256=sha(folder/'events.json'),
+        event_history_pinned_by_recording=result.get('events_sha256') is not None,
+        recorded_actor_error=response.get('error'), recorded_execution_failure=result['failure'],
         replayed_frozen_isolated_actor=True, verifier_sha256=VERIFIER_SHA256, qualified_grasp=False)
     if visual:
         report.update(camera_frames_replayed=camera_frames_replayed,camera_frames_recorded=len(camera_index))
         report['passed']=bool(report['passed'] and camera_frames_replayed==len(camera_index)>0)
-    (folder/'controller_replay.json').write_text(json.dumps(report, indent=2)+'\n')
+    (folder/report_name).write_text(json.dumps(report, indent=2)+'\n')
     return report
 
 
@@ -385,6 +402,9 @@ def physics(folder):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('folder'); p.add_argument('--controller-only', action='store_true')
-    p.add_argument('--physics-only', action='store_true'); a = p.parse_args(); folder = Path(a.folder).resolve()
-    if not a.physics_only: print(json.dumps(controller(folder)), flush=True)
+    p.add_argument('--physics-only', action='store_true')
+    p.add_argument('--controller-report', default='controller_replay.json',
+                   help='Separate report filename for an explicitly revised controller review')
+    a = p.parse_args(); folder = Path(a.folder).resolve()
+    if not a.physics_only: print(json.dumps(controller(folder, a.controller_report)), flush=True)
     if not a.controller_only: print(json.dumps(physics(folder)), flush=True)

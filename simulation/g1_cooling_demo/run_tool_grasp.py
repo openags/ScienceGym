@@ -556,7 +556,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         failure=failure, simulated_seconds=float(data.time), wall_seconds=time.monotonic()-started,
         environment='existing_complete_laboratory', contract_sha256=sha(output/'contract.json'),
         trace_sha256=sha(output/'trace.npz'), sensors_sha256=sha(output/'sensors.npz') if sensors else None,
-        responses_sha256=sha(output/'responses.pkl'), actor_access_isolated=isolation['passed'],
+        responses_sha256=sha(output/'responses.pkl'), events_sha256=sha(output/'events.json'),
+        actor_access_isolated=isolation['passed'],
         physics_warning_counts=data.warning.number.tolist(), qualified_grasp=False, qualified_paper_branch=False)
     if visual:result.update(camera_index_sha256=sha(output/'camera_index.json'),camera_frames=len(frame_index),qualified_approach=False)
     if carry_distance is not None:result['qualified_carry']=False

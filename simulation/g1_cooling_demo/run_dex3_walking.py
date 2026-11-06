@@ -235,6 +235,10 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             extra_modules += ['carry_tool_actor.py', 'quasistatic_walking.py']
         authored_pose = np.asarray(tool_prior.pop('initial_robot_qpos'))
         predictor = mujoco.MjModel.from_xml_path(str(folder / 'controller_model/world.xml'))
+        if station_carry:
+            from carry_tool_actor import public_support_prior
+            tool_prior['carry_support_contacts'] = public_support_prior(predictor, imported,
+                source_contract['physical_acceptance']['maximum_sole_penetration_m'])
         selected_names = SDK_JOINTS[12:] + [predictor.joint(j).name for j in predictor.actuator_trnid[:, 0]
                                           if '_hand_' in predictor.joint(j).name]
         preparation_targets = {name: float(authored_pose[predictor.joint(name).qposadr[0]]) for name in selected_names}
