@@ -48,9 +48,17 @@ the original 1 m requirement; its failed review is preserved. Encoder/IMU
 odometry on that record has 29.91 mm maximum XY error. Separate sensor-based
 waypoint and existing-tool-station approach trials have passed their single-run reviews.
 
-Fresh carry08 finishes its 146.731-second sequence without an actor failure
-and passes source motor limits. Its full native physical review is still
-processing. The earlier restored release diagnostic does not qualify it.
+Fresh carry08 now passes all 27 [native physical checks](runs/dex3_visual_carry_08/physical_review.json),
+[isolated sensor/controller replay](runs/dex3_visual_carry_08/controller_replay.json)
+and [source motor limits](runs/dex3_visual_carry_08/source_limit_review.json).
+Its 146.731-second visual pickup, loaded out-and-back, release and empty-hand
+return contains 72.401 s of held carrying, 98.91 mm maximum loaded base excursion,
+both feet stepping, no contiguous loss of three-finger load and 5.727 mm maximum
+tool/wrist translation drift. The authored out-and-back goal is only 120 mm;
+this is one complete component attempt, not cross-station or repeated carrying
+qualification. Its [publication boundary](runs/dex3_visual_carry_08/publication_status.json)
+distinguishes available reports from raw replay files. Earlier failed carry07
+and restored-state diagnostics remain separate evidence.
 For tool use, a new optional two-joint-per-finger controller regulates
 inferred inward load while retaining the own fingertip material point's
 tangent position. Nine analytic Jacobians match independent finite

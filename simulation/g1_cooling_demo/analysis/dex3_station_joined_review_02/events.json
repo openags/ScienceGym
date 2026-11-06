@@ -1,0 +1,205 @@
+[
+  {
+    "time_s": 13.159999999982668,
+    "kind": "station_arrived",
+    "estimated_position_m": [
+      5.769998437221648,
+      -6.583283172010201,
+      0.7502130683273612
+    ],
+    "source": "Leg odometry from encoders/IMU and declared initial map pose"
+  },
+  {
+    "time_s": 24.16199999995703,
+    "kind": "station_posture_ready",
+    "maximum_target_error_rad": 0.022657158093162738,
+    "maximum_selected_joint_speed_rad_s": 1.6607300847335415e-05
+  },
+  {
+    "time_s": 24.799999999955542,
+    "kind": "sensor_based_pickup_handoff",
+    "consecutive_registered_frames": 3,
+    "registration": {
+      "time_s": 24.799999999955542,
+      "coarse": {
+        "accepted": true,
+        "position_m": [
+          5.761984788698357,
+          -6.587015880785266,
+          0.7517868859361427
+        ],
+        "correction_m": [
+          -1.6584874772185287e-05,
+          -6.186185504297725e-05,
+          -0.0010181918575449256
+        ],
+        "iterations": [
+          {
+            "points": 66391,
+            "median_residual_m": 4.4294845145254874e-06,
+            "step_m": [
+              -1.3540818905202108e-05,
+              -1.0004167963866564e-05,
+              -0.0009839768357935374
+            ],
+            "eigenvalues": [
+              379.6879016930532,
+              21108.78436577572,
+              41994.498744098964
+            ]
+          },
+          {
+            "points": 66422,
+            "median_residual_m": 0.0009916793172522046,
+            "step_m": [
+              -3.044055866978018e-06,
+              -5.1857687078501124e-05,
+              -3.421502175136545e-05
+            ],
+            "eigenvalues": [
+              379.7838962763133,
+              21139.853742830066,
+              42051.50007825587
+            ]
+          }
+        ],
+        "source": "native_depth_static_map_projective_registration"
+      },
+      "fine": {
+        "accepted": true,
+        "position_m": [
+          5.7620007612458775,
+          -6.5869545309324655,
+          0.7528029414837052
+        ],
+        "correction_m": [
+          1.5972547520171076e-05,
+          6.134985280059624e-05,
+          0.0010160555475624555
+        ],
+        "iterations": [
+          {
+            "points": 60708,
+            "median_residual_m": 0.0010208592776239436,
+            "step_m": [
+              1.477984886929626e-05,
+              4.965791739390574e-05,
+              0.0007751902882932602
+            ],
+            "eigenvalues": [
+              351.4503328567398,
+              9213.931339361523,
+              20815.54641215959
+            ]
+          },
+          {
+            "points": 61340,
+            "median_residual_m": 0.0002476140874697696,
+            "step_m": [
+              4.2129919905879256e-07,
+              5.381894733763494e-06,
+              0.0002343494178437231
+            ],
+            "eigenvalues": [
+              373.016588112457,
+              21102.793659579675,
+              30760.74571813471
+            ]
+          },
+          {
+            "points": 61335,
+            "median_residual_m": 1.4844357776765314e-05,
+            "step_m": [
+              7.713994515240815e-07,
+              6.310040672749172e-06,
+              6.51584142537269e-06
+            ],
+            "eigenvalues": [
+              380.22796824903725,
+              21107.252319541883,
+              38318.297924862505
+            ]
+          }
+        ],
+        "source": "native_depth_static_map_projective_registration"
+      }
+    },
+    "robot_pose_source": "Own encoders/IMU, leg odometry and native-depth static-map registration"
+  },
+  {
+    "time_s": 27.599999999949016,
+    "kind": "observed_tool_plan",
+    "pose": {
+      "position_m": [
+        6.131720090576145,
+        -6.444785291183562,
+        0.8958709500211146
+      ],
+      "rotation_matrix": [
+        [
+          0.06599797356491272,
+          0.9949910336317549,
+          0.07508069310906673
+        ],
+        [
+          -0.9977257872980934,
+          0.06477203811112814,
+          0.018650373704866764
+        ],
+        [
+          0.013693825094753496,
+          -0.07614083051387964,
+          0.9970030356437898
+        ]
+      ]
+    },
+    "plan": {
+      "planned": false,
+      "attempts": [
+        {
+          "seed": 0,
+          "position_error_m": 0.03180473518707459,
+          "rotation_error_rad": 0.02978354174313723,
+          "failure": "grasp_ik"
+        },
+        {
+          "seed": 1,
+          "position_error_m": 0.03111662683118175,
+          "rotation_error_rad": 0.03918155186219218,
+          "failure": "grasp_ik"
+        },
+        {
+          "seed": 2,
+          "position_error_m": 0.03093585599442264,
+          "rotation_error_rad": 0.039819374015458764,
+          "failure": "grasp_ik"
+        },
+        {
+          "seed": 3,
+          "position_error_m": 0.03397493843748009,
+          "rotation_error_rad": 0.9495940030550237,
+          "failure": "grasp_ik"
+        },
+        {
+          "seed": 4,
+          "position_error_m": 0.02984527392765535,
+          "rotation_error_rad": 0.2937966903115274,
+          "failure": "grasp_ik"
+        },
+        {
+          "seed": 5,
+          "position_error_m": 0.03042232833328026,
+          "rotation_error_rad": 0.027932017525746058,
+          "failure": "grasp_ik"
+        }
+      ],
+      "observed_surface_faces": 255216,
+      "qualified_approach": false
+    },
+    "source": "Four accepted native RGB-D frames and own-robot state"
+  },
+  {
+    "time_s": 27.599999999949016,
+    "phase": "finished"
+  }
+]

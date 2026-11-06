@@ -61,7 +61,10 @@ def verify(folder):
         quat = trace['qpos'][indices[0], 3:7]
         facing = Rotation.from_quat(quat[[1, 2, 3, 0]]).apply([1., 0., 0.])[:2]
         reference = np.asarray(contract['evaluation_forward_world_xy'])
-        heading_error = float(abs(np.arctan2(np.cross(reference, facing), reference@facing)))
+        # Explicit 2-D determinant avoids NumPy versions that only accept
+        # three-dimensional inputs to cross(); the heading metric is unchanged.
+        signed_area = reference[0]*facing[1] - reference[1]*facing[0]
+        heading_error = float(abs(np.arctan2(signed_area, reference@facing)))
         settled = (trace['time'] >= times[0]-1.) & (trace['time'] <= times[0])
         arrival_speed = float(np.max(np.linalg.norm(trace['qvel'][settled, :2], axis=1)))
         arrival_ok = (position_error <= waypoint['maximum_final_position_error_m']

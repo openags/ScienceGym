@@ -6,7 +6,9 @@
 29DoF + two Dex3 hands** operates in the original laboratory, with 43 motor
 actuators. The [runtime guide](simulation/g1_cooling_demo/README.md) records a
 59-second visual tool pickup and a 20-second sensor-based approach to the
-existing tool station, each with passing single-attempt checks. The
+existing tool station, each with passing single-attempt checks. A 146.731-second
+visual pickup, short loaded out-and-back, release and empty-hand return also
+passes its full single-attempt review. The
 [official NVIDIA Decoupled WBC resources](simulation/g1_cooling_demo/locomotion_groot_policy/SOURCE.json)
 provide the walking policy. Continuous station-to-manipulation integration,
 tool actuation, complete branches and repeatability remain unfinished;
