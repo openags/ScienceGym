@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **399**.
+Last screened: **2026-11-06**. Candidate count: **400**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4119,3 +4119,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All six pages of the written [Supplementary Information](https://jfi.uchicago.edu/~jaeger/group/JaegerGroupPapers/suspensions/Brown_nmat2627-s1.pdf), including captions, were read. Only selected figure pages were visually reviewed. External fabrication references, raw data and code were not inspected. This is written-source screening with limited visual review, not a complete visual, data or computational audit.
 - Scope is preprepared lower-hazard specimen identity, sample-history tracking and repeated rheometry and imaging-record coordination only. Synthesis and electrical or chemical operating protocols are excluded. Specimen suitability, instrument setup and physical testing require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through public author-hosted copies. The source carries an all-rights-reserved notice; public availability does not imply permission to reproduce its content. Citation metadata and original commentary only; no source text, figures, data, code or other source assets redistributed.
+
+## Additional candidate: reprogrammable-origami configuration and mechanical-response records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Using origami design principles to fold reprogrammable mechanical metamaterials](https://doi.org/10.1126/science.1252876) | Science / 2014 | 10.1126/science.1252876 | Prepared inert origami specimen identity, reversible configuration changes and linked mechanical-response comparisons suggest a future long-horizon manipulation-and-characterization task. | Author-hosted main text, references and captions and extracted written text of a 21-page coauthor-hosted supplement read; final-supplement identity and visual/movie review gaps remain. |
+
+- **CANDIDATE only.** Silverberg et al., *Science* **345**, 647-650 (2014). All article text, references and captions were read from the public [author-hosted publication PDF](https://cohengroup.ccmr.cornell.edu/userfiles/pubs/Silverberg-Origami.pdf). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All extracted written text of the [21-page coauthor-hosted supplement](https://artioevans.wordpress.com/wp-content/uploads/2015/03/mosiv2.pdf) was read, including Materials and Methods, supplementary analysis, Figures S1-S6 captions and Movies S1-S4 captions. The supplement retains an unresolved "Fig. ??" cross-reference, and its identity with the final publisher supplement is unverified. Figure pixels were not visually inspected, and the movies were not watched. This is written-source screening, not a publisher-complete or visually complete review.
+- Scope is prepared inert specimen configuration tracking, reversible manipulations and mechanical-response record comparisons only. Fabrication and material-processing protocols are excluded. Specimen suitability, physical handling and mechanical testing require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through public author- and coauthor-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
