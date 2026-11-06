@@ -316,6 +316,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             load_observer='Two own-motor residuals per finger resolved into inward and tangent components; uncalibrated',
             normal_force_gain_m_per_n_s=.0003,maximum_cartesian_speed_m_s=.0005,
             tangent_position_gain_per_s=2.,maximum_joint_reference_speed_rad_s=.03,
+            maximum_jacobian_condition_number=100.,minimum_jacobian_singular_value_m_per_rad=.001,
+            closure_guard='Active coordinated Jacobian; scalar lever guard applies only to single-joint control',
             tangent_reference='Own fingertip material points at squeeze entry',
             active_through_lowering=True,physical_acceptance_changed=False)
     if plugins:

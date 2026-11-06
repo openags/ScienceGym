@@ -212,7 +212,8 @@ class ToolActor:
             mujoco.mj_jac(self.m,self.d,jp,jr,points[i],body)
             jac=axes@jp[:,self.va[pair]]
             matrix=np.vstack(((1. if i==0 else -1.)*jac[1],jac[2]))
-            if np.linalg.cond(matrix)>100.:
+            singular_values=np.linalg.svd(matrix,compute_uv=False)
+            if singular_values[0]/singular_values[-1]>100. or singular_values[-1]<.001:
                 raise RuntimeError('Coordinated finger Jacobian is ill-conditioned')
             matrices.append(matrix)
             loads.append(np.linalg.solve(matrix.T,self.filtered[pair]))
@@ -237,12 +238,18 @@ class ToolActor:
             inward=direction if i==0 else -direction
             lever.append(float(sign*inward@jp[:,self.va[a]]))
         lever=np.asarray(lever)
-        if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
-        effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
+        effort=self.signs*self.filtered[self.drivers]
         coordinated=(self.tool_cartesian_reference is not None and self.phase in self.loaded_phases)
         if coordinated:
+            # The fixed unposed grasp axes and a bounded two-joint Jacobian
+            # define this controller. The old one-joint direction can collapse
+            # as material points pass each other during tool closure, even
+            # while the actual coordinated Jacobian remains well conditioned.
             finger_positions,finger_matrices,finger_loads=self.coordinated_finger_state(points)
             proxy=finger_loads[:,0]
+        else:
+            if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
+            proxy=effort/lever
         self.latest_force_proxy=proxy.copy()
         if self.tool_force_ramp and self.tool_force_ramp_started is not None:
             u=float(np.clip((t-self.tool_force_ramp_started)/self.tool_force_ramp,0.,1.))
@@ -280,7 +287,7 @@ class ToolActor:
                 if t-self.lost_since>=.2:self.abort('Observed loss of three-finger load',t)
             else:self.lost_since=None
         if self.phase in self.loaded_phases:
-            speeds=np.clip(.0005/lever,.001,.015)
+            speeds=None if coordinated else np.clip(.0005/lever,.001,.015)
             for i,a in enumerate(self.drivers):
                 desired_force=self.hold_force[i] if self.hold_entered else .03
                 if coordinated:

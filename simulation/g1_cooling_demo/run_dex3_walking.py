@@ -38,7 +38,11 @@ def sha(p):
 
 def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open', minimum_shoulder_abduction=None,
         policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False,
-        station_pickup=False):
+        station_pickup=False, waypoint_stop_distance=.06):
+    if not .005 <= waypoint_stop_distance <= .06:
+        raise ValueError('Waypoint stopping distance must be between 5 and 60 mm')
+    if waypoint_forward is None and waypoint_stop_distance != .06:
+        raise ValueError('A revised stopping distance requires sensor-based waypoint mode')
     if station_pickup and not station_approach:
         raise ValueError('Continuous station pickup requires the existing-station approach')
     if station_approach and waypoint_forward is None:
@@ -204,7 +208,8 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                  policy_family=policy_family)
     if waypoint_forward is not None:
         prior.update(initial_map_xy_m=d.qpos[:2].tolist(),
-                     waypoint_goal_xy_m=(station_goal if station_approach else d.qpos[:2]+[0.,-waypoint_forward]).tolist())
+                     waypoint_goal_xy_m=(station_goal if station_approach else d.qpos[:2]+[0.,-waypoint_forward]).tolist(),
+                     waypoint_stop_distance_m=waypoint_stop_distance)
     (folder / 'walking_prior.json').write_text(json.dumps(prior, indent=2) + '\n')
     actor_module = 'dex3_walking_actor' if policy_family == 'unitree' else 'groot_walking_actor'
     extra_modules = ['walking_actor.py', 'odometry.py', actor_module + '.py']
@@ -253,6 +258,7 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             initial_map_xy_m=prior['initial_map_xy_m'],goal_xy_m=prior['waypoint_goal_xy_m'],
             maximum_final_position_error_m=.15,maximum_odometry_error_m=.10,
             maximum_final_heading_error_rad=.10,
+            estimated_forward_stop_distance_m=waypoint_stop_distance,
             maximum_settled_speed_m_s=.05,settling_delay_after_stop_s=2.,
             minimum_settled_duration_s=1.,equipment_arrival_qualified=False)
     if station_approach:
@@ -271,6 +277,7 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             preparation_targets_sha256=sha(folder / 'policy_source/preparation_targets.json'),
             qualified_grasp=False, qualified_approach=False,
             station_handoff=dict(balance_blend_duration_s=2., preparation_duration_s=8.,
+                waist_pitch_posture_weight=3., other_posture_weights=1.,
                 preparation_settle_dwell_s=1., maximum_preparation_error_rad=.04,
                 maximum_preparation_joint_speed_rad_s=.08, maximum_preparation_root_speed_m_s=.03,
                 preparation_timeout_s=22., registration_timeout_s=34.,
@@ -398,7 +405,9 @@ if __name__ == '__main__':
     p.add_argument('--waypoint-forward', type=float)
     p.add_argument('--station-approach', action='store_true')
     p.add_argument('--station-pickup', action='store_true')
+    p.add_argument('--waypoint-stop-distance', type=float, default=.06,
+                   help='Authored forward stopping distance in the odometry frame; 5 to 60 mm')
     a = p.parse_args()
     if run(a.source, a.folder, a.duration, a.speed, a.stop_at, a.hand_posture,
-           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup)['failure']:
+           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup,a.waypoint_stop_distance)['failure']:
         raise SystemExit(1)

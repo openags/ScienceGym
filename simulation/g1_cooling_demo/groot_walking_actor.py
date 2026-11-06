@@ -112,6 +112,9 @@ class GrootWalkingActor:
         self.next_policy = 0.
         self.heading_reference = None
         self.navigation_goal = prior.get('waypoint_goal_xy_m')
+        self.navigation_stop_distance = float(prior.get('waypoint_stop_distance_m', .06))
+        if not .005 <= self.navigation_stop_distance <= .06:
+            raise ValueError('Waypoint stopping distance must be between 5 and 60 mm')
         self.navigation_stop_at = None
         self.navigation_stable_since = None
         self.navigation_stage = 'disabled'
@@ -150,7 +153,7 @@ class GrootWalkingActor:
             command[:] = 0.
             if t >= 2. and self.navigation_stop_at is None:
                 self.navigation_stage = 'approach'
-                if local_error[0] <= .06 and abs(local_error[1]) <= .06 and abs(heading_error) <= .08:
+                if local_error[0] <= self.navigation_stop_distance and abs(local_error[1]) <= .06 and abs(heading_error) <= .08:
                     self.navigation_stop_at = t
                     self.navigation_stage = 'stopping'
                 else:

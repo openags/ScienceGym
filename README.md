@@ -2,18 +2,21 @@
 
 **Long-horizon robot research tasks derived from scientific papers.**
 
-**Execution target, updated 24 October 2026:** a complete Unitree humanoid
-uses its own arms and articulated hands for all required manipulation. The
-owner permits publicly supported hands from other manufacturers. The selected
-asset-integration candidate is **G1 29DoF rev 1.0 + Inspire FTP**; its official
-integrated URDF and all 93 referenced meshes are available for inspection.
-See the [resource selection](docs/pilots/HUMANOID_RESOURCE_SELECTION.md) and
-[new model preview](viewer/robot_resource_review_v1/index.html).
-The laboratory now displays the complete source-derived G1/Inspire model.
-Its new articulated inspection, floating-base MJCF and static access checks
-are described in the [integration record](assets/unitree_g1_inspire_v1/README.md). Historical Panda and privileged-state
-H2 recordings do not establish sensor-only humanoid manipulation. No humanoid
-manipulation branch has yet been validated.
+**Current execution prototype, 6 November 2026:** the official **Unitree G1
+29DoF + two Dex3 hands** operates in the original laboratory, with 43 motor
+actuators. The [runtime guide](simulation/g1_cooling_demo/README.md) records a
+59-second visual tool pickup and a 20-second sensor-based approach to the
+existing tool station, each with passing single-attempt checks. The
+[official NVIDIA Decoupled WBC resources](simulation/g1_cooling_demo/locomotion_groot_policy/SOURCE.json)
+provide the walking policy. Continuous station-to-manipulation integration,
+tool actuation, complete branches and repeatability remain unfinished;
+**qualified whole-paper branches are still 0/11**.
+
+The [G1/Inspire asset inspection](viewer/robot_resource_review_v1/index.html)
+and [integration record](assets/unitree_g1_inspire_v1/README.md) preserve the
+earlier hand configuration and its evidence. The owner permits publicly
+supported alternative hands. Qualification remains specific to the robot,
+hand, scene and controller revision actually evaluated.
 
 ScienceGym studies how to translate a paper's reported experimental program into tasks for an embodied research agent: preparing materials, moving samples between instruments, assembling apparatus, running controls and repeated measurements, preserving records, recovering from failures, and leaving the laboratory in a defined final state.
 

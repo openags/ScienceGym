@@ -46,6 +46,11 @@ class StationPreparation:
         self.target = self.start.copy()
         self.selected = np.array([names.index(n) for n in targets])
         self.target[self.selected] = [targets[n] for n in targets]
+        # The first native handoff settled 45 mrad away from the waist target
+        # under equal posture weights. Prioritize that preparation coordinate
+        # within the same constrained balance problem and source limits.
+        self.posture_weights = np.ones(model.nu)
+        self.posture_weights[names.index('waist_pitch_joint')] = 3.
         limits = model.jnt_range[joints]
         if np.any(self.target < limits[:, 0]) or np.any(self.target > limits[:, 1]):
             raise ValueError('Preparation target violates a source joint limit')
@@ -73,7 +78,8 @@ class StationPreparation:
         posture = self.start + fraction * (self.target - self.start)
         if elapsed + 1e-8 >= self.next_balance:
             self.balance.com_target = self.com_start + smooth(elapsed / 2.) * (self.com_goal - self.com_start)
-            self.body_torque = self.balance.torque(posture=posture, dt=.01)
+            self.body_torque = self.balance.torque(posture=posture, dt=.01,
+                                                  posture_weights=self.posture_weights)
             self.next_balance = (round(elapsed * 100) + 1) / 100
         # The source finger inertias require a sampled-inertia bound, just as
         # in the walking/pickup actors. The model's masses remain unchanged.

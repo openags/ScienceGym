@@ -14,7 +14,22 @@ native-depth map registration and the visual tool-pickup actor. Its estimate is
 initialized from encoders/IMU and odometry; physical state is never reset at a
 handoff. All 13,161 recorded walking-prefix outputs match exactly, and the first
 stationary torque solve is finite and within source limits. A fresh uninterrupted
-`dex3_station_pickup_01` run is in progress, without execution qualification yet.
+`dex3_station_pickup_01` run stops at the preparation timeout before visual pickup.
+Its [recorded encoder diagnosis](analysis/dex3_station_preparation_diagnosis_01/review.json)
+finds only waist pitch outside the original 40 mrad target bound: 45.011 mrad,
+with negligible remaining velocity. The constrained preparation controller now
+weights waist-pitch tracking by three, preserving the same targets, physical
+model and acceptance. Fresh `dex3_station_pickup_02` passes preparation and
+native-depth registration, then stops at 27.600 s because the observed grasp
+has no collision-screened arm path from the arrival stance. Its complete
+sensor/controller and native physics replay match exactly, and contact bounds
+pass, but the attempt fails because no pickup was executed.
+The [sensor-prefix planning diagnosis](analysis/dex3_station_tool_planning_02/review.json)
+reproduces all 27,601 motor outputs exactly. Three observation-supported pose
+alternatives fail at that stance; a 60 mm forward stance screen yields a path.
+The walker now accepts an explicit forward stopping distance, preserving the
+original 60 mm default. Fresh `dex3_station_pickup_03` uses 5 mm, with the same
+laboratory, physical acceptance and source limits. It has not yet completed.
 The [preparation geometry screen](analysis/dex3_station_handoff_screen_01/review.json)
 rejects arm-only preparation because the hand intersects the hip; coordinated
 waist/arm preparation clears all 41 static samples. Dynamic clearance remains
@@ -44,8 +59,14 @@ retention is lost before a qualified reopening. A [source-grasp workspace
 screen](analysis/dex3_tool_stroke_workspace_01/review.json) finds only 1.3 mm of
 coordinated inward travel for the old grasp, versus at least 3 mm for candidate 9
 under the same joint margins and command excursion. Candidate 9 passes the new
-initial-scene check, and a fresh visual pickup/stroke run is in progress. These
-kinematic findings do not establish force control or successful tool actuation.
+initial-scene check. Its fresh visual pickup/stroke run stops at 71.272 s at
+the legacy single-joint closure-direction guard. At the terminal encoder
+state the two-joint Jacobians remain nonsingular. The guard now checks the active
+control mode, including a 1 mm/rad minimum singular value and condition number
+below 100 for coordinated control. The [sensor-prefix comparison](analysis/dex3_tool_coordinated_guard_02/review.json)
+matches all 71,272 preceding commands exactly and produces a finite, source-bounded
+command at the former stop. Fresh `dex3_tool_stroke_10` is running from time zero;
+no physical outcome or successful tool actuation is inferred from the replay.
 
 Current execution update (6 November 2026): carry07's complete native replay
 has finished. Its carrying, load continuity, return and release-support checks
