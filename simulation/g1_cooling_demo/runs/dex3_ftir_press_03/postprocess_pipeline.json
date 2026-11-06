@@ -1,6 +1,6 @@
 {
   "scope": "Finish independent evidence for one identified Dex3 FTIR recording.\n\nProcessing completion is separate from the physical and controller verdicts.\nThe frozen review tools never change the recorded actor or plant trajectory.\n",
-  "status": "processing",
+  "status": "processed",
   "process_pid": 38912,
   "runner_pid": 37713,
   "runner_start_ticks": "78341019",
@@ -31,13 +31,14 @@
     },
     "physics": {
       "pid": 69253,
-      "status": "running",
+      "status": "terminal",
       "command": [
         "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
         "-B",
         "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_03/review_tools/verify_dex3_ftir_press.py",
         "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_03"
-      ]
+      ],
+      "exit_code": 1
     },
     "limits": {
       "pid": 69254,
@@ -60,6 +61,24 @@
         "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_03"
       ],
       "exit_code": 0
+    }
+  },
+  "verdicts": {
+    "physical_press_review.json": {
+      "sha256": "e236e5fc4c7db369a647ea2204b579a24b2006ecff836af80e7652d9bb80380e",
+      "passed": false
+    },
+    "controller_replay.json": {
+      "sha256": "0cce1ff662dcda46c2111e589367e758a5859c21c5add20e5e52a231b7fb3499",
+      "passed": true
+    },
+    "source_limit_review.json": {
+      "sha256": "2f6e19b91d3cec6b071140c9c0ec4e0788b4e669c44d04672882bf85d4566aa0",
+      "passed": true
+    },
+    "press_video.json": {
+      "sha256": "9894f425f4a1988f5f1e75b5de83ac151119aa7553092b13f2f2165aa2bf52e5",
+      "passed": null
     }
   }
 }

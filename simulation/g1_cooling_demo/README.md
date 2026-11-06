@@ -9,10 +9,19 @@ supports retaining the original COM under unchanged wrench and motor bounds.
 Fresh `dex3_ftir_press_03` changes only this target. It reaches pressing and
 fails at 22.330 s; the [sensor diagnosis](analysis/dex3_ftir_tracking_03/review.json)
 finds no body joint within 30 mrad of its source limit, but approximately
-45 mrad wrist rotation error. Its controller replay passes; native contact
-review is pending. Fresh `dex3_ftir_press_04` removes only the 0.45 N wrist
+45 mrad wrist rotation error. Its controller replay passes. The completed
+[native review](runs/dex3_ftir_press_03/physical_press_review.json) passes 13 of
+15 checks: there are no excess contacts or joint-limit violations, and support
+remains above 335.96 N. Attempt completion and actual key depression fail.
+Fresh `dex3_ftir_press_04` removes only the 0.45 N wrist
 force feedforward to test whether it causes the press-stage tracking error.
 Switch travel, dwell and physical acceptance are unchanged.
+It completes the commanded approach, press, withdrawal and return in 34.840 s
+without a controller error. Complete isolated-controller replay and source
+motor-limit checks pass. The [recorded video](runs/dex3_ftir_press_04/press.mp4)
+is available; independent native key-travel/contact verification is pending.
+The actor's inferred contact depth is not evidence that the physical switch
+was actuated.
 
 Loaded support transfer is geometrically possible at the recorded station
 stance. The [own-robot screen](analysis/dex3_station_support_geometry_01/review.json)
@@ -28,11 +37,14 @@ diagnosis uses an explicit EGL context for native depth registration.
 
 Fresh `dex3_tool_stroke_12` finishes its 94.895 s commanded sequence without
 a controller failure; source motor limits and complete controller replay pass.
-The [recorded-pose geometry samples](analysis/dex3_tool_stroke_12_geometry_01/review.json)
-show 0.171 mm tip separation during closure and 4.251 mm after reopening, with
-2.224 mm tool/wrist drift at the last sampled point. Complete native contact,
-retention and dwell evaluation is pending; sampled geometry does not qualify
-tool actuation. Repeated-qualified skills, paper branches and campaigns remain zero.
+The [independent native stroke review](analysis/dex3_tool_stroke_12_evaluation_01/review.json)
+passes all 12 checks after replaying from the original initial state. The tool
+closes below the declared gap threshold for 3.965 s and reopens above its
+declared threshold for 13.365 s while all three fingers retain load. Maximum
+finger force is 2.615 N, tool/wrist drift is 2.229 mm and external tool support
+is zero during this window. The full-run contact review remains pending; this
+specific stroke pass does not establish specimen handling or repeated skill
+qualification. Repeated-qualified skills, paper branches and campaigns remain zero.
 
 Current FTIR integration (6 November 2026): a fresh **G1/Dex3** native RGB-D
 key attempt reaches the press stage in the original laboratory, then fails at
