@@ -35,8 +35,11 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0., inspect_held_tool=False, grasp_driver_excursion=.15, resolve_tool_pose_ambiguity=False, release_compensation_decay=0., lower_clearance_height=0., tool_force_ramp=0., lower_xy_offset=None, tool_cartesian_fingers=False, tool_force_band=.15, tool_normal_gain=.0003, tool_index_fraction=.5):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0., inspect_held_tool=False, grasp_driver_excursion=.15, resolve_tool_pose_ambiguity=False, release_compensation_decay=0., lower_clearance_height=0., tool_force_ramp=0., lower_xy_offset=None, tool_cartesian_fingers=False, tool_force_band=.15, tool_normal_gain=.0003, tool_index_fraction=.5, physics_timestep=None, physics_threads=0):
     station, output = Path(station).resolve(), Path(output).resolve()
+    if physics_timestep is not None and physics_timestep not in {.0001,.0002,.00025,.0005,.001}:
+        raise ValueError('Physics step must divide the unchanged 1 ms control period')
+    if physics_threads not in {0,2,4,8}:raise ValueError('Use zero, two, four or eight physics worker threads')
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
     contract = json.loads((station/'contract.json').read_text())
@@ -151,16 +154,17 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     for name in ['world.xml', 'model_inputs.json']:
         shutil.copyfile(station/name, output/name)
     solver_revision=None
-    if contact_cone is not None:
+    if contact_cone is not None or physics_timestep is not None:
         xml=ET.parse(output/'world.xml');option=xml.getroot().find('option')
         before=dict(option.attrib)
-        option.set('cone',contact_cone)
+        if contact_cone is not None:option.set('cone',contact_cone)
+        if physics_timestep is not None:option.set('timestep',str(physics_timestep))
         if contact_impratio is not None:option.set('impratio',str(contact_impratio))
         xml.write(output/'world.xml',encoding='unicode')
         solver_revision=dict(source_model_sha256=contract['plant_sha256'],
             source_option_attributes=before,selected_option_attributes=dict(option.attrib),
             documentation='https://mujoco.readthedocs.io/en/stable/modeling.html#preventing-slip',
-            purpose='Closed-loop contact-model sensitivity trial; friction, geometry, mass, controller and acceptance limits are retained',
+            purpose='Closed-loop physics sensitivity trial; friction, geometry, mass, controller period and acceptance limits are retained',
             qualification_transfer_allowed=False)
     shutil.copyfile(HERE/'runs/ftir_approach_11/laboratory_import.json', output/'laboratory_import.json')
     (output/'controller_model').mkdir()
@@ -173,6 +177,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         from hand_tool_contact_compliance import bind
         compliance_revision=bind(output/'world.xml',[r['body'] for r in contract['robot_contact_features']],hand_contact_impedance)
     model = mujoco.MjModel.from_xml_path(str(output/'world.xml')); data = mujoco.MjData(model)
+    if physics_threads:mujoco.mju_threadpool(data,physics_threads)
     if plugins: require_stateless(model)
     data.qpos[:] = contract['initial_qpos']; data.qvel[:] = contract['initial_qvel']
     mujoco.mj_forward(model, data)
@@ -256,6 +261,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         model_inputs_sha256=sha(output/'model_inputs.json'), duration_limit_s=duration,
         laboratory_import_sha256=sha(output/'laboratory_import.json'),
         physics_period_s=dt, control_period_s=.001, balance_period_s=.01,
+        physics_worker_threads=physics_threads,
         initial_qpos=data.qpos.tolist(), initial_qvel=data.qvel.tolist(),
         actor_access_isolated=isolation['passed'], controller_fields=sorted(__import__(actor_module).ToolActor.fields),
         actor_isolation_sha256=sha(output/'actor_isolation.json'), controller_prior_sha256=sha(prior_path),
@@ -586,6 +592,10 @@ if __name__ == '__main__':
     p.add_argument('--carry-support-inset',type=float,default=0.)
     p.add_argument('--carry-proximal-preshape',type=float,default=0.)
     p.add_argument('--contact-cone',choices=['pyramidal','elliptic'])
+    p.add_argument('--physics-timestep',type=float,
+        help='Explicit step-size trial, at most 1 ms; controller rate and physical acceptance stay unchanged')
+    p.add_argument('--physics-threads',type=int,choices=[0,2,4,8],default=0,
+        help='Native MuJoCo worker threads; replay equivalence is independently checked')
     p.add_argument('--contact-impratio',type=float)
     p.add_argument('--hand-contact-impedance',type=float,
         help='Uncalibrated fingertip/tool compliance sensitivity trial; physical bounds remain unchanged')
@@ -637,4 +647,4 @@ if __name__ == '__main__':
     p.add_argument('--tool-index-fraction',type=float,default=.5,
                    help='Index share of opposing squeeze load; middle receives remainder, 0.4 to 0.6')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape,a.inspect_held_tool,a.grasp_driver_excursion,a.resolve_tool_pose_ambiguity,a.release_compensation_decay,a.lower_clearance_height,a.tool_force_ramp,a.lower_xy_offset,a.tool_cartesian_fingers,a.tool_force_band,a.tool_normal_gain,a.tool_index_fraction)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape,a.inspect_held_tool,a.grasp_driver_excursion,a.resolve_tool_pose_ambiguity,a.release_compensation_decay,a.lower_clearance_height,a.tool_force_ramp,a.lower_xy_offset,a.tool_cartesian_fingers,a.tool_force_band,a.tool_normal_gain,a.tool_index_fraction,physics_timestep=a.physics_timestep,physics_threads=a.physics_threads)['status'] == 'failed': raise SystemExit(1)

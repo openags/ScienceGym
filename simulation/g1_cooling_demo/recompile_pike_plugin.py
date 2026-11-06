@@ -29,7 +29,7 @@ def main():
     load([*parents,prior],sha(here/'frozen_collision_plugins.py'))
     assert sha(original/'world.xml')==prior['world_sha256']
     implementation=here/'pike_surface_sdf.cc'
-    name=prior['plugin_name'].rsplit('_',1)[0]+'_'+sha(implementation)[:8]
+    name=prior['plugin_name']+'_'+sha(implementation)[:8]
     assert name!=prior['plugin_name']
     out.mkdir(parents=True,exist_ok=False)
     for path in [Path(__file__),implementation,here/'frozen_collision_plugins.py']:
@@ -47,6 +47,12 @@ def main():
     command=['g++','-std=c++17','-O3','-shared','-fPIC','-Wall','-Wextra',
         '-I'+str(package/'include'),str(out/implementation.name),str(engines[0]),
         '-Wl,-rpath,'+str(package),'-o',str(library)]
+    # Older through-bore headers have no floor. Preserve their original
+    # occupancy function exactly rather than inventing a recess floor.
+    through_bore = 'kBoreFloor' not in old_header
+    if through_bore:
+        assert 'kBoreFloor' not in (original/'pike_surface_sdf.cc').read_text()
+        command.insert(1, '-DSCIENCEGYM_THROUGH_BORE')
     compiled=subprocess.run(command,capture_output=True,text=True)
     (out/'build.log').write_text(compiled.stdout+compiled.stderr);compiled.check_returncode()
     mujoco.mj_loadPluginLibrary(str(library))
@@ -64,6 +70,7 @@ def main():
     receipt.update(scope=__doc__,plugin_name=name,library=str(library),library_sha256=sha(library),
         world_sha256=sha(out/'world.xml'),source_world_sha256=prior['world_sha256'],
         original_receipt_sha256=sha(original/'plugin.json'),geometry_header_arrays_unchanged=True,
+        original_through_bore_occupancy_preserved=through_bore,
         unchanged_compiled_fields=fields,build_command=command,
         source_sha256={p.name:sha(p) for p in [out/implementation.name,out/'pike_surface_geometry.h',
             out/Path(__file__).name,out/'frozen_collision_plugins.py']},

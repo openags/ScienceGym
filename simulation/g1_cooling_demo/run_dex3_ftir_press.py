@@ -41,8 +41,12 @@ def plain(value):
 
 
 def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1., body_joint_damper=False,
-        com_target_mode='sole_center', press_force=.45, press_depth=.001):
+        com_target_mode='sole_center', press_force=.45, press_depth=.001,
+        physics_timestep=None, physics_threads=0):
     source, frame, out = map(lambda p:Path(p).resolve(), [source, frame, output])
+    if physics_timestep is not None and physics_timestep not in {.0001,.0002,.00025,.0005,.001}:
+        raise ValueError('Physics step must divide the unchanged 1 ms control period')
+    if physics_threads not in {0,2,4,8}:raise ValueError('Use zero, two, four or eight physics workers')
     source_contract = json.loads((source/'contract.json').read_text())
     assert sha(source/'world.xml') == source_contract['model_sha256']
     assert not source_contract.get('collision_plugins')
@@ -57,10 +61,15 @@ def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1.,
         shutil.copyfile(HERE/name, snapshot/name)
     for name in ['world.xml', 'laboratory_import.json', 'model_inputs.json']:
         shutil.copyfile(source/name, out/name)
+    if physics_timestep is not None:
+        import xml.etree.ElementTree as ET
+        xml=ET.parse(out/'world.xml');xml.getroot().find('option').set('timestep',str(physics_timestep))
+        xml.write(out/'world.xml',encoding='unicode')
     shutil.copytree(source/'controller_model', out/'controller_model')
     m = mujoco.MjModel.from_xml_path(str(out/'world.xml'))
     d = mujoco.MjData(m)
-    assert m.nu == 43 and m.neq == 0 and abs(m.opt.timestep-.0001) < 1e-12
+    assert m.nu == 43 and m.neq == 0 and abs(round(.001/m.opt.timestep)*m.opt.timestep-.001)<1e-12
+    if physics_threads:mujoco.mju_threadpool(d,physics_threads)
     with np.load(frame) as f:
         d.qpos[:] = f['authored_qpos']
     mujoco.mj_forward(m, d)
@@ -107,6 +116,7 @@ def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1.,
         authored_frame_sha256=sha(frame), setup_sha256=sha(setup_path),
         initial_qpos=d.qpos.tolist(), initial_qvel=d.qvel.tolist(),
         physical_timestep_s=float(m.opt.timestep), controller_period_s=.001,
+        physics_worker_threads=physics_threads,
         camera_period_s=.1, camera_resolution=[640, 360],
         intended_finger_body='right_hand_index_1_link', intended_key_body='nicolet_key_1',
         intended_key_joint='nicolet_key_slide_1', physical_acceptance=thresholds,
@@ -229,7 +239,11 @@ if __name__ == '__main__':
                    help='Normal wrist force feedforward; zero tests pure position control with unchanged switch acceptance')
     p.add_argument('--press-depth', type=float, default=.001,
                    help='Commanded travel beyond the observed key surface in metres; physical key and contact bounds are unchanged')
+    p.add_argument('--physics-timestep',type=float,
+                   help='Explicit step-size trial; source geometry, controller period and acceptance remain unchanged')
+    p.add_argument('--physics-threads',type=int,choices=[0,2,4,8],default=0)
     a = p.parse_args()
     if run(a.source_run, a.authored_frame, a.output, a.duration,
-           a.com_lowering, a.leg_posture_weight, a.body_joint_damper, a.com_target_mode, a.press_force, a.press_depth)['failure']:
+           a.com_lowering, a.leg_posture_weight, a.body_joint_damper, a.com_target_mode, a.press_force, a.press_depth,
+           a.physics_timestep,a.physics_threads)['failure']:
         raise SystemExit(1)

@@ -26,11 +26,14 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('recording');p.add_argument('output')
     p.add_argument('--times',type=float,nargs='+',default=[8.,15.,22.]);p.add_argument('--duration',type=float,default=.2)
+    p.add_argument('--timesteps',type=float,nargs='+',default=[.0001,.0002,.00025,.0005])
     a=p.parse_args();run=Path(a.recording).resolve();out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=False)
     result=json.loads((run/'result.json').read_text());contract=json.loads((run/'contract.json').read_text())
     assert sha(run/'trace.npz')==result['trace_sha256'] and sha(run/'world.xml')==contract['model_sha256']
     trace=dict(np.load(run/'trace.npz'));m=mujoco.MjModel.from_xml_path(str(run/'world.xml'))
     source_step=float(m.opt.timestep);assert abs(source_step-.0001)<1e-12
+    if a.timesteps[0]!=source_step or any(s<source_step or s>.001 or abs(round(.001/s)*s-.001)>1e-12 for s in a.timesteps):
+        raise ValueError('Start with the original step and use exact divisors of the 1 ms control period')
     shutil.copyfile(__file__,out/'screen_tool_timestep.py')
     tool={m.body('tweezer').id};robot={m.body('pelvis').id}
     for b in range(m.nbody):
@@ -45,7 +48,7 @@ def main():
         if first%source_stride or first+round(a.duration/source_step)>=len(trace['time']):
             raise ValueError('Segment must start on a recorded control boundary and remain inside the trace')
         reference=None
-        for step in [source_step,.0002,.00025,.0005]:
+        for step in a.timesteps:
             m.opt.timestep=step;count=round(a.duration/step);stride=round(.001/step)
             assert abs(stride*step-.001)<1e-12 and count%stride==0
             d=mujoco.MjData(m);d.time=float(trace['time'][first]);d.qpos[:]=trace['qpos'][first];d.qvel[:]=trace['qvel'][first]
