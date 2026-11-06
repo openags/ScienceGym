@@ -4,6 +4,7 @@ Run beside a frozen copy of the recorded actor modules. No physical state,
 contact force or simulator object pose enters the replayed controller.
 """
 import argparse
+import copy
 import json
 from pathlib import Path
 import pickle
@@ -15,10 +16,50 @@ from station_pickup_actor import StationPickupActor
 from verify_dex3_ftir_controller import difference, sha
 
 
+def screen_posture_weights(actor):
+    """Re-solve the exact terminal robot estimate; never step a physical plant."""
+    pickup = actor.pickup
+    walker = pickup.walker
+    model, data = actor.m, walker.d
+    names = [model.joint(j).name for j in model.actuator_trnid[:, 0]]
+    body = [i for i, name in enumerate(names) if '_hand_' not in name]
+    torso_and_empty_arm = [i for i, name in enumerate(names)
+                          if name.startswith('waist_') or name.startswith('left_')
+                          and any(x in name for x in ['shoulder', 'elbow', 'wrist'])]
+    variants = [('recorded', walker.walking_posture_weights.copy())]
+    for weight in [.3, .1, .03]:
+        values = walker.walking_posture_weights.copy()
+        values[body] = weight
+        variants.append(('all_body_'+str(weight), values))
+    values = walker.walking_posture_weights.copy()
+    values[torso_and_empty_arm] = .1
+    variants.append(('torso_and_empty_arm_0.1', values))
+    cj = np.zeros((3, model.nv))
+    mujoco.mj_jacSubtreeCom(model, data, cj, model.body('pelvis').id)
+    target = walker.balance.com_target.copy()
+    error = target-data.subtree_com[model.body('pelvis').id]
+    rows = []
+    for label, weights in variants:
+        balance = copy.copy(walker.balance)
+        balance.previous_comj = walker.balance.previous_comj.copy()
+        torque = balance.torque(targets={'right':pickup.control_target},
+            posture=pickup.control_posture, posture_weights=weights,
+            dt=.01, support_feet=walker.estimate.support, **pickup.control_motion)
+        acceleration = cj@balance.previous[:model.nv]
+        rows.append(dict(variant=label, posture_weights=weights.tolist(),
+            com_error_m=error.tolist(), projected_com_acceleration_m_s2=acceleration.tolist(),
+            acceleration_toward_goal_m_s2=float(acceleration@error/np.linalg.norm(error)),
+            maximum_motor_effort_fraction=float(np.max(abs(torque)/model.actuator_ctrlrange[:, 1])),
+            solver=balance.solver_diagnostics))
+    return dict(scope='Exact terminal actor estimate and objectives; only posture weights vary. No physical or kinematic continuation.',
+                variants=rows, physical_execution=False, qualified_carry=False)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('run', type=Path)
     p.add_argument('output', type=Path)
+    p.add_argument('--weight-screen', action='store_true')
     a = p.parse_args()
     a.output.mkdir(parents=True, exist_ok=False)
     read = lambda name:json.loads((a.run/name).read_text())
@@ -92,15 +133,22 @@ def main():
         recovered += [dict(e, time_s=float(e['time_s'])+actor.pickup_started) for e in actor.pickup.events]
     (a.output/'reconstructed_actor_events.json').write_text(json.dumps(recovered, indent=2)+'\n')
     (a.output/'balance_samples.json').write_text(json.dumps(samples, indent=2)+'\n')
+    weight_screen = None
+    if a.weight_screen and count == len(responses) and maximum <= 1e-10 and terminal_error:
+        weight_screen = screen_posture_weights(actor)
+        (a.output/'posture_weight_screen.json').write_text(json.dumps(weight_screen, indent=2)+'\n')
     report = dict(scope=__doc__, reproduced_recorded_failure=bool(count==len(responses) and maximum<=1e-10 and terminal_error),
         responses_compared=count, expected_responses=len(responses), terminal_error=terminal_error,
         maximum_response_error=maximum if np.isfinite(maximum) else None, first_changed_time_s=failed_at,
         final_balance_sample=samples[-1] if samples else None,
         source_result_sha256=sha(a.run/'result.json'), source_sensors_sha256=result['sensors_sha256'],
         source_responses_sha256=result['responses_sha256'], recovered_events=len(recovered),
-        recorded_events=len(read('events.json')), physical_continuation_executed=False, qualified_carry=False)
+        recorded_events=len(read('events.json')), physical_continuation_executed=False, qualified_carry=False,
+        posture_weight_screen=weight_screen)
     (a.output/'review.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(report), flush=True)
+    if not report['reproduced_recorded_failure']:
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

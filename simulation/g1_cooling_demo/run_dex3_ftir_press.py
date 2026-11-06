@@ -40,7 +40,8 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1., body_joint_damper=False):
+def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1., body_joint_damper=False,
+        com_target_mode='sole_center', press_force=.45):
     source, frame, out = map(lambda p:Path(p).resolve(), [source, frame, output])
     source_contract = json.loads((source/'contract.json').read_text())
     assert sha(source/'world.xml') == source_contract['model_sha256']
@@ -85,6 +86,8 @@ def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1.,
         joints={m.joint(j).name:float(d.qpos[m.jnt_qposadr[j]]) for j in joints},
         com_lowering_m=com_lowering, leg_posture_weight=leg_posture_weight,
         body_joint_damper=body_joint_damper,
+        com_target_mode=com_target_mode,
+        press_force_n=press_force,
         scope='Authored component starting pose; no executed navigation or preparation')
     setup_path = policy/'robot_setup.json'
     setup_path.write_text(json.dumps(setup, indent=2)+'\n')
@@ -107,7 +110,8 @@ def run(source, frame, output, duration, com_lowering=0., leg_posture_weight=1.,
         intended_finger_body='right_hand_index_1_link', intended_key_body='nicolet_key_1',
         intended_key_joint='nicolet_key_slide_1', physical_acceptance=thresholds,
         balance_development=dict(com_lowering_m=com_lowering, leg_posture_weight=leg_posture_weight,
-                                body_joint_damper=body_joint_damper),
+                                body_joint_damper=body_joint_damper, com_target_mode=com_target_mode),
+        press_force_feedforward_n=press_force,
         acceptance_basis='Unchanged key travel, dwell, return, contact and support bounds from verify_ftir_press.py; source embodiment rebound to Dex3 index',
         source_sha256={p.name:sha(p) for p in snapshot.iterdir()},
         actor_isolation_sha256=sha(out/'actor_isolation.json'), qualified_ftir_press=False)
@@ -218,7 +222,10 @@ if __name__ == '__main__':
     p.add_argument('--com-lowering', type=float, default=0.)
     p.add_argument('--leg-posture-weight', type=float, default=1.)
     p.add_argument('--body-joint-damper', action='store_true')
+    p.add_argument('--com-target-mode', choices=['sole_center', 'initial'], default='sole_center')
+    p.add_argument('--press-force', type=float, default=.45,
+                   help='Normal wrist force feedforward; zero tests pure position control with unchanged switch acceptance')
     a = p.parse_args()
     if run(a.source_run, a.authored_frame, a.output, a.duration,
-           a.com_lowering, a.leg_posture_weight, a.body_joint_damper)['failure']:
+           a.com_lowering, a.leg_posture_weight, a.body_joint_damper, a.com_target_mode, a.press_force)['failure']:
         raise SystemExit(1)

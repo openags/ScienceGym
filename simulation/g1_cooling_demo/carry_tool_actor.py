@@ -202,6 +202,13 @@ class LoadedWalker(QuasistaticWalker):
     def __init__(self, actor, goal):
         super().__init__(actor.m,actor.d,actor.d.qpos[:2],goal,step_length=.06)
         self.actor=actor
+        if actor.walk_body_posture_weight is not None:
+            # Torso and empty-arm posture are preferences during support
+            # transfer too. Feet, COM, loaded wrist and source constraints
+            # remain the same tasks; finger force control is unchanged.
+            for i, name in enumerate(actor.names):
+                if '_hand_' not in name:
+                    self.walking_posture_weights[i] = actor.walk_body_posture_weight
         # Preserve the current sensor-derived anchors; never reinitialize the
         # estimator from a physical base pose or assume the feet did not move.
         self.estimate.anchors=actor.estimate.anchors.copy()
@@ -261,6 +268,11 @@ class ToolActor(VisualPickup):
             raise ValueError('Carry load observer bound exceeds half the source motor effort rating')
         self.finger_load_compensation=bool(prior.get('carry_finger_load_compensation',False))
         self.body_joint_damper=bool(prior.get('carry_body_joint_damper',False))
+        self.walk_body_posture_weight=prior.get('carry_walk_body_posture_weight')
+        if self.walk_body_posture_weight is not None:
+            self.walk_body_posture_weight=float(self.walk_body_posture_weight)
+            if not np.isfinite(self.walk_body_posture_weight) or not .03<=self.walk_body_posture_weight<=1.:
+                raise ValueError('Loaded body posture weight must be between 0.03 and 1')
         self.body_withdrawal=bool(prior.get('carry_body_withdrawal',False))
         self.support_inset_m=float(prior.get('carry_support_inset_m',0.))
         if not 0.<=self.support_inset_m<=.01:

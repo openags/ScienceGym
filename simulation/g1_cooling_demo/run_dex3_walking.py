@@ -38,7 +38,7 @@ def sha(p):
 
 def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open', minimum_shoulder_abduction=None,
         policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False,
-        station_pickup=False, waypoint_stop_distance=.06, station_carry=False):
+        station_pickup=False, waypoint_stop_distance=.06, station_carry=False, carry_body_posture_weight=None):
     if not .005 <= waypoint_stop_distance <= .06:
         raise ValueError('Waypoint stopping distance must be between 5 and 60 mm')
     if waypoint_forward is None and waypoint_stop_distance != .06:
@@ -47,6 +47,9 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
         raise ValueError('Continuous station pickup requires the existing-station approach')
     if station_carry and not station_pickup:
         raise ValueError('Continuous station carrying requires --station-pickup')
+    if carry_body_posture_weight is not None and (not station_carry
+            or not np.isfinite(carry_body_posture_weight) or not .03<=carry_body_posture_weight<=1.):
+        raise ValueError('Body posture weighting requires station carrying and a weight from 0.03 to 1')
     if station_approach and waypoint_forward is None:
         raise ValueError('An authored station approach requires the sensor-based waypoint mode')
     if waypoint_forward is not None and (policy_family != 'groot' or not 1. <= waypoint_forward <= 3.):
@@ -239,6 +242,8 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             from carry_tool_actor import public_support_prior
             tool_prior['carry_support_contacts'] = public_support_prior(predictor, imported,
                 source_contract['physical_acceptance']['maximum_sole_penetration_m'])
+            if carry_body_posture_weight is not None:
+                tool_prior['carry_walk_body_posture_weight'] = carry_body_posture_weight
         selected_names = SDK_JOINTS[12:] + [predictor.joint(j).name for j in predictor.actuator_trnid[:, 0]
                                           if '_hand_' in predictor.joint(j).name]
         preparation_targets = {name: float(authored_pose[predictor.joint(name).qposadr[0]]) for name in selected_names}
@@ -435,9 +440,11 @@ if __name__ == '__main__':
     p.add_argument('--station-pickup', action='store_true')
     p.add_argument('--station-carry', action='store_true',
                    help='Use the carrying source contract after sensor-based station arrival')
+    p.add_argument('--carry-body-posture-weight', type=float,
+                   help='Weight of body posture preferences during loaded stepping; other objectives and bounds unchanged')
     p.add_argument('--waypoint-stop-distance', type=float, default=.06,
                    help='Authored forward stopping distance in the odometry frame; 5 to 60 mm')
     a = p.parse_args()
     if run(a.source, a.folder, a.duration, a.speed, a.stop_at, a.hand_posture,
-           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup,a.waypoint_stop_distance,a.station_carry)['failure']:
+           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup,a.waypoint_stop_distance,a.station_carry,a.carry_body_posture_weight)['failure']:
         raise SystemExit(1)

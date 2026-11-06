@@ -1,0 +1,128 @@
+{
+  "scope": "Compare stationary COM targets in the own-robot inverse-dynamics model.\n\nOnly declared initial pose and robot parameters enter the candidate solve.\nCompleted native reports provide a separate diagnosis of previous collisions.\nThis is an equilibrium calculation, not physical execution or qualification.\n",
+  "candidates": [
+    {
+      "mode": "sole_center",
+      "requested_com_shift_m": [
+        0.04081223250224131,
+        -0.013218197150639988,
+        0.0
+      ],
+      "predicted_acceleration_norm": 8.789167004744133,
+      "feet": [
+        {
+          "side": "left",
+          "local_wrench": [
+            9.650650471325516,
+            -0.5304413208734853,
+            165.0691829838057,
+            -0.5665678068860931,
+            11.554842808833001,
+            -0.11434450881834456
+          ],
+          "cop_xy_m": [
+            -0.06999999999979768,
+            -0.0034323051501483283
+          ],
+          "within_original_bounds": true
+        },
+        {
+          "side": "right",
+          "local_wrench": [
+            9.636147532951663,
+            -0.5304073700501205,
+            165.21551654569112,
+            -0.5668245403437054,
+            11.565086158164368,
+            -0.11038499683968063
+          ],
+          "cop_xy_m": [
+            -0.06999999999979414,
+            -0.0034308190428769293
+          ],
+          "within_original_bounds": true
+        }
+      ],
+      "maximum_motor_effort_fraction": 0.22807241480382962,
+      "solver": {
+        "status": "clarabel:Solved",
+        "iterations": 12,
+        "primal_residual": 2.4868995751603507e-14,
+        "dual_residual": 7.824960400639033e-09
+      }
+    },
+    {
+      "mode": "initial",
+      "requested_com_shift_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "predicted_acceleration_norm": 0.0002007347956028187,
+      "feet": [
+        {
+          "side": "left",
+          "local_wrench": [
+            -3.3203007105557035e-05,
+            4.634723917574051e-07,
+            168.7147889923006,
+            0.09431794445016482,
+            7.236573672488715,
+            -6.906070704949342e-06
+          ],
+          "cop_xy_m": [
+            -0.04289234936493303,
+            0.0005590377999078022
+          ],
+          "within_original_bounds": true
+        },
+        {
+          "side": "right",
+          "local_wrench": [
+            -2.8868030629843157e-05,
+            4.7407935456504023e-07,
+            168.69243597378062,
+            0.09431819380413244,
+            7.236548397707205,
+            -9.947011697293243e-06
+          ],
+          "cop_xy_m": [
+            -0.042897883096738025,
+            0.0005591133547848704
+          ],
+          "within_original_bounds": true
+        }
+      ],
+      "maximum_motor_effort_fraction": 0.24270569873632247,
+      "solver": {
+        "status": "clarabel:Solved",
+        "iterations": 12,
+        "primal_residual": 5.684341886080802e-14,
+        "dual_residual": 9.977645227434296e-12
+      }
+    }
+  ],
+  "initial_com_equilibrium_supported": true,
+  "earlier_torso_contacts": [
+    {
+      "parts": [
+        "lab_part_1514",
+        "torso_link_collision_0"
+      ],
+      "minimum_distance_m": -0.0006685052930650342,
+      "maximum_normal_force_n": 499.09329580171465,
+      "first_time_s": 1.2604999999998776
+    }
+  ],
+  "source_model_sha256": "5a3ae74b808831f4cdac988794dfff4ff13f4168358409d8c4e7e7955e83764a",
+  "source_setup_sha256": "49be38d6ce5fc5bf46e28301c79c0aa6722a8443aabba1f7b3d379fe93230830",
+  "prior_native_review_sha256": "a06410a9b669ef8b9a6203e2deca50ea5fa9265e34f6be6ec7a7c5bef6ef373e",
+  "physical_execution": false,
+  "qualified_ftir_press": false,
+  "source_sha256": {
+    "check_dex3_station_balance_target.py": "4627470db0b205c645608398c381acf44ae1e7af1f3bf1f41eb00740abaab56e",
+    "dex3_ftir_actor.py": "62ec4760e3aebe7aa12d39658d4ffc5230fbbba6c0f2bf222b52ff6463131d22",
+    "balance.py": "71d2d5612765529b89cf6ad30725e12baa91657af41d2eca4420ee84a5eee691",
+    "conic_balance.py": "0a2bdfed5f479ec0a249199d5c0865d0ded86e56805775a297b3c107be81b2bc"
+  }
+}

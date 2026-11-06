@@ -43,6 +43,17 @@ class Dex3FTIRActor:
         self.balance.pelvis_rotation = self.d.body('pelvis').xmat.reshape(3, 3).copy()
         self.com_start = self.d.subtree_com[model.body('pelvis').id].copy()
         self.com_goal = self.balance.com_target.copy()
+        com_mode = setup.get('com_target_mode', 'sole_center')
+        if com_mode not in {'sole_center', 'initial'}:
+            raise ValueError('Unknown stationary COM target mode')
+        if com_mode == 'initial':
+            # A stationary reaching task need not translate the body to the
+            # midpoint of the feet. Preserve the own-model starting COM;
+            # the unchanged contact-wrench constraints must support it.
+            self.com_goal = self.com_start.copy()
+        self.press_force = float(setup.get('press_force_n', .45))
+        if not np.isfinite(self.press_force) or not 0. <= self.press_force <= .45:
+            raise ValueError('Press feedforward must be between zero and 0.45 N')
         lowering = float(setup.get('com_lowering_m', 0.))
         leg_weight = float(setup.get('leg_posture_weight', 1.))
         if not 0. <= lowering <= .04 or not .1 <= leg_weight <= 1.:
@@ -157,7 +168,7 @@ class Dex3FTIRActor:
                 self.balance.palm_rotations = {'right':rotation}
                 targets = {'right':target}
                 if name in ['press', 'hold']:
-                    force = .45*(float(np.clip((u-.65)/.35, 0., 1.)) if name == 'press' else 1.)
+                    force = self.press_force*(float(np.clip((u-.65)/.35, 0., 1.)) if name == 'press' else 1.)
                     forces = {'right':-self.normal*force}
                     point = self.hand.observed_contact_point(d, self.material)
                     delta = point-self.surface

@@ -1,5 +1,39 @@
 # G1 humanoid contact runtime
 
+Latest control revisions (6 November 2026): a stationary FTIR stance need not
+move its COM to the midpoint of the soles. The previous controller requested
+a 42.9 mm horizontal shift, and both first trials contacted the worktop with
+the torso around 1.23–1.26 s, before the button approach. The
+[own-model equilibrium comparison](analysis/dex3_ftir_balance_target_01/review.json)
+supports retaining the original COM under unchanged wrench and motor bounds.
+Fresh `dex3_ftir_press_03` changes only this target. It reaches pressing and
+fails at 22.330 s; the [sensor diagnosis](analysis/dex3_ftir_tracking_03/review.json)
+finds no body joint within 30 mrad of its source limit, but approximately
+45 mrad wrist rotation error. Its controller replay passes; native contact
+review is pending. Fresh `dex3_ftir_press_04` removes only the 0.45 N wrist
+force feedforward to test whether it causes the press-stage tracking error.
+Switch travel, dwell and physical acceptance are unchanged.
+
+Loaded support transfer is geometrically possible at the recorded station
+stance. The [own-robot screen](analysis/dex3_station_support_geometry_01/review.json)
+finds candidate poses within the original joint margin, including unchanged
+pelvis orientation and COM height; these poses are not executed or collision
+qualified. The [exact sensor replay and weight comparison](analysis/dex3_station_balance_diagnosis_03/review.json)
+reproduces all 99,931 failed commands and shows that the original body posture
+preferences oppose COM transfer. Fresh `dex3_station_carry_03` uses body posture
+weight 0.1 only during loaded stepping, preserving the physical model, initial
+state, grasp, route, wrist/foot tasks and acceptance. The earlier headless replay
+failure is retained in `analysis/dex3_station_balance_diagnosis_02`; the successful
+diagnosis uses an explicit EGL context for native depth registration.
+
+Fresh `dex3_tool_stroke_12` finishes its 94.895 s commanded sequence without
+a controller failure; source motor limits and complete controller replay pass.
+The [recorded-pose geometry samples](analysis/dex3_tool_stroke_12_geometry_01/review.json)
+show 0.171 mm tip separation during closure and 4.251 mm after reopening, with
+2.224 mm tool/wrist drift at the last sampled point. Complete native contact,
+retention and dwell evaluation is pending; sampled geometry does not qualify
+tool actuation. Repeated-qualified skills, paper branches and campaigns remain zero.
+
 Current FTIR integration (6 November 2026): a fresh **G1/Dex3** native RGB-D
 key attempt reaches the press stage in the original laboratory, then fails at
 24.270 s because the wrist does not reach its requested pose. All 24,271
