@@ -16,7 +16,7 @@ import numpy as np
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
 
-def run(source,output,opening=.02):
+def run(source,output,opening=.02,base_offset=(0.,0.)):
     source,output=map(lambda p:Path(p).resolve(),[source,output])
     parent=json.loads((source/'contract.json').read_text());review=json.loads((source/'review.json').read_text())
     assert review['passed_initial_scene_checks'] and review['contract_sha256']==sha(source/'contract.json')
@@ -25,10 +25,16 @@ def run(source,output,opening=.02):
     for n in ['world.xml','robot_predictor.xml','model_inputs.json']:shutil.copyfile(source/n,output/n)
     m=mujoco.MjModel.from_xml_path(str(output/'world.xml'));d=mujoco.MjData(m)
     d.qpos[:]=parent['initial_qpos'];d.qvel[:]=parent['initial_qvel']
+    base_offset=np.asarray(base_offset,dtype=float)
+    if base_offset.shape!=(2,) or not np.isfinite(base_offset).all() or np.linalg.norm(base_offset)>.1:
+        raise ValueError('Authored initial stance offset must be finite and at most 0.1 m')
+    d.qpos[:2]+=base_offset
     names=['right_'+n+'_joint' for n in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']]
     for n,v in zip(names,[.2,-.25,0.,1.,0.,0.,0.]):d.joint(n).qpos[0]=v
-    fit_path=Path(__file__).parent/'analysis/dex3_tweezer_fit_02/review.json'
-    fit=json.loads(fit_path.read_text())['candidates'][7];hand=fit['q'].copy()
+    fit_path=Path(parent['source_grasp_review']) if 'source_grasp_review' in parent else Path(__file__).parent/'analysis/dex3_tweezer_fit_02/review.json'
+    candidate_index=parent.get('source_grasp_candidate',7)
+    if 'source_grasp_sha256' in parent:assert sha(fit_path)==parent['source_grasp_sha256']
+    fit=json.loads(fit_path.read_text())['candidates'][candidate_index];hand=fit['q'].copy()
     for n,sign in zip(parent['closing_drivers'],parent['closing_signs']):hand[n]-=sign*opening
     for n,v in hand.items():d.joint(n).qpos[0]=v
     for j in range(m.njnt):
@@ -43,10 +49,11 @@ def run(source,output,opening=.02):
         if c.dist < -bound:bad.append(dict(parts=parts,penetration_m=-float(c.dist),bound_m=bound))
     geometry=dict(scope='Unposed tool-local grasp and own-hand geometry; no tool placement or arm path',
         source_tool_from_wrist=fit['source_tool_from_wrist'],pregrasp_hand_q=hand,grasp_hand_q=fit['q'],opening_rad=opening,
-        robot_contact_features=parent['robot_contact_features'],source_grasp_sha256=sha(fit_path),source_candidate=7,
+        robot_contact_features=parent['robot_contact_features'],source_grasp_sha256=sha(fit_path),source_candidate=candidate_index,
         qualified_grasp_prior=False)
     contract=dict(parent,scope=__doc__,source_contract_sha256=sha(source/'contract.json'),
         source_review_sha256=sha(source/'review.json'),initial_qpos=d.qpos.tolist(),initial_qvel=d.qvel.tolist(),
+        authored_initial_base_offset_m=base_offset.tolist(),initial_stance_offset_is_not_robot_motion=True,
         observed_approach=True,grasp_geometry=geometry,qualified_approach=False)
     (output/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
     result=dict(scope=__doc__,passed_initial_scene_checks=not bad,excessive_contacts=bad,
@@ -59,4 +66,5 @@ def run(source,output,opening=.02):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('source');p.add_argument('output');p.add_argument('--opening',type=float,default=.02)
-    a=p.parse_args();run(a.source,a.output,a.opening)
+    p.add_argument('--base-offset',type=float,nargs=2,default=[0.,0.],metavar=('X','Y'))
+    a=p.parse_args();run(a.source,a.output,a.opening,a.base_offset)

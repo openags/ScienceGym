@@ -73,11 +73,64 @@ def replace_hands(xml):
                 contact_defaults='Official unspecified hand friction/compliance inherit MuJoCo defaults; not hardware calibrated')
 
 
-def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multistart=False, rig_yaw=0., minimum_elbow=None):
+def bind_support_state(model, data, review_path, fit_path):
+    """Map a checked support state to the existing tray, without changing assets."""
+    from fit_dex3_tweezer import load_support
+    review_path = Path(review_path).resolve()
+    load_support(review_path, ROOT)
+    reviewed = json.loads(review_path.read_text())
+    fit_contract = json.loads((fit_path.parent/'contract.json').read_text())
+    assert fit_contract['support_review'] == str(review_path.relative_to(ROOT))
+    assert fit_contract['source_hashes'][str(review_path.relative_to(ROOT))] == sha(review_path)
+    source = mujoco.MjModel.from_xml_path(str(review_path.parent/'support.xml'))
+    state = mujoco.MjData(source); state.qpos[:] = reviewed['full_final_qpos']
+    transform = pose(data.joint('tray_free').qpos) @ np.linalg.inv(pose(state.joint('tray_free').qpos))
+    bodies = set(range(1,source.nbody))
+    checks = {}
+    for b in bodies:
+        name = source.body(b).name; target = model.body(name).id
+        checks['body:'+name] = all(np.allclose(getattr(source,a)[b],getattr(model,a)[target],atol=1e-12,rtol=0.)
+            for a in ['body_mass','body_inertia','body_ipos','body_iquat'])
+    for g in range(source.ngeom):
+        if int(source.geom_bodyid[g]) not in bodies: continue
+        name = source.geom(g).name; target = model.geom(name).id
+        checks['geom:'+name] = all(np.allclose(getattr(source,a)[g],getattr(model,a)[target],atol=1e-12,rtol=0.)
+            for a in ['geom_type','geom_size','geom_pos','geom_quat','geom_friction','geom_solref','geom_solimp',
+                      'geom_priority','geom_condim','geom_margin','geom_gap','geom_contype','geom_conaffinity'])
+        if source.geom_type[g] == mujoco.mjtGeom.mjGEOM_MESH:
+            s,t = int(source.geom_dataid[g]),int(model.geom_dataid[target])
+            for attr,adr,num in [('mesh_vert','mesh_vertadr','mesh_vertnum'),('mesh_face','mesh_faceadr','mesh_facenum')]:
+                before = getattr(source,attr)[getattr(source,adr)[s]:getattr(source,adr)[s]+getattr(source,num)[s]]
+                after = getattr(model,attr)[getattr(model,adr)[t]:getattr(model,adr)[t]+getattr(model,num)[t]]
+                checks['mesh:'+name+':'+attr] = before.shape == after.shape and np.array_equal(before,after)
+    assert all(checks.values()), 'Support asset properties differ: '+str([k for k,v in checks.items() if not v])
+    for j in range(source.njnt):
+        name = source.joint(j).name; q = state.joint(name).qpos.copy()
+        target = model.joint(name).id
+        joint_same = all(np.allclose(getattr(source,a)[j],getattr(model,a)[target],atol=1e-12,rtol=0.)
+            for a in ['jnt_type','jnt_axis','jnt_pos','jnt_stiffness','jnt_range','jnt_limited'])
+        width = 6 if source.jnt_type[j] == mujoco.mjtJoint.mjJNT_FREE else 1
+        sdof,tdof = int(source.jnt_dofadr[j]),int(model.jnt_dofadr[target])
+        joint_same &= all(np.allclose(getattr(source,a)[sdof:sdof+width],getattr(model,a)[tdof:tdof+width],atol=1e-12,rtol=0.)
+            for a in ['dof_damping','dof_armature','dof_frictionloss'])
+        checks['joint:'+name] = bool(joint_same)
+        assert joint_same, 'Support joint properties differ: '+name
+        if source.jnt_type[j] == mujoco.mjtJoint.mjJNT_FREE: q = free_pose(transform@pose(q))
+        data.joint(name).qpos[:] = q
+    return dict(review=str(review_path.relative_to(ROOT)),review_sha256=sha(review_path),
+                contract_sha256=sha(review_path.parent/'contract.json'),
+                source_to_station=transform.tolist(),unchanged_asset_checks=checks,
+                initial_state_only=True,full_room_dynamic_support_qualified=False)
+
+
+def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multistart=False, rig_yaw=0., minimum_elbow=None, support_review=None):
     started=time.monotonic();station=Path(station).resolve();fit=Path(fit).resolve();out=Path(output).resolve()
     out.mkdir(parents=True,exist_ok=False);snapshot=out/'source_snapshot';snapshot.mkdir()
     for p in [Path(__file__),HERE/'build_tool_station.py',HERE/'ftir_hand.py']:
         shutil.copyfile(p,snapshot/p.name)
+    if support_review:
+        for p in [HERE/'fit_dex3_tweezer.py',ROOT/'assets/idealtek_aa_sa_t6_v1/support_geometry.py']:
+            shutil.copyfile(p,snapshot/p.name)
     original=json.loads((station/'contract.json').read_text());review=json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks'] and sha(station/'contract.json')==review['contract_sha256']
     assert sha(station/'world.xml')==original['plant_sha256']
@@ -100,6 +153,7 @@ def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multist
     for n,v in dict(left_hand_thumb_0_joint=0.,left_hand_thumb_1_joint=.3,left_hand_thumb_2_joint=1.,
                     left_hand_index_0_joint=-1.,left_hand_index_1_joint=-1.2,
                     left_hand_middle_0_joint=-1.,left_hand_middle_1_joint=-1.2).items(): d.joint(n).qpos[0]=v
+    support_binding = bind_support_state(m,d,support_review,fit) if support_review else None
     if rig_yaw:
         center=d.joint('tray_free').qpos[:3].copy()
         turn=np.eye(4);turn[:3,:3]=Rotation.from_euler('z',rig_yaw,degrees=True).as_matrix()
@@ -153,6 +207,7 @@ def run(station, fit, output, yaw_offsets=(0.,), candidate_indices=None, multist
                   tool_source_frame_world=world_from_source.tolist(),selected_initial_condition_is_not_execution=True,
                   yaw_offsets_deg=list(yaw_offsets),candidate_indices=candidate_indices,multistart=multistart,
                   authored_tool_tray_yaw_change_deg=rig_yaw,minimum_authored_elbow_angle_rad=minimum_elbow,
+                  authored_support_binding=support_binding,
                   actuators=m.nu,robot_nq=rm.nq,robot_nv=rm.nv,source_visual_joint_overlap_disclosed_in_fit=True)
     (out/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
     (out/'review.json').write_text(json.dumps(dict(scope=__doc__,tested=len(rows),rows=rows,candidates=accepted,
@@ -172,4 +227,5 @@ if __name__=='__main__':
     p.add_argument('--multistart',action='store_true')
     p.add_argument('--rig-yaw',type=float,default=0.)
     p.add_argument('--minimum-elbow',type=float)
-    a=p.parse_args();run(a.station,a.fit,a.out,a.yaw_offsets,a.candidate_indices,a.multistart,a.rig_yaw,a.minimum_elbow)
+    p.add_argument('--support-review',help='Checked initial support state matching the supplied grasp fit')
+    a=p.parse_args();run(a.station,a.fit,a.out,a.yaw_offsets,a.candidate_indices,a.multistart,a.rig_yaw,a.minimum_elbow,a.support_review)

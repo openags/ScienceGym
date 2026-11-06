@@ -10,12 +10,14 @@ import numpy as np
 from build_tool_station import sha
 
 
-def run(station, output, candidate=0, opening=.02, grouping_review=None, sleep_review=None, wake_review=None):
+def run(station, output, candidate=0, opening=.02, grouping_review=None, sleep_review=None, wake_review=None, fit_path=None):
     station=Path(station).resolve();out=Path(output).resolve();out.mkdir(parents=True,exist_ok=False)
     review=json.loads((station/'review.json').read_text());parent=json.loads((station/'contract.json').read_text())
     assert sha(station/'contract.json')==review['contract_sha256']
-    fit=json.loads((Path(__file__).parent/'analysis/dex3_tweezer_fit_02/review.json').read_text())
-    assert parent['fit_sha256']==sha(Path(__file__).parent/'analysis/dex3_tweezer_fit_02/review.json')
+    fit_path=Path(fit_path).resolve() if fit_path else Path(__file__).parent/'analysis/dex3_tweezer_fit_02/review.json'
+    fit=json.loads(fit_path.read_text())
+    assert parent['fit_sha256']==sha(fit_path)
+    assert fit['contract_sha256']==sha(fit_path.parent/'contract.json')
     selected=review['candidates'][candidate];grasp=fit['candidates'][selected['candidate_index']]
     for n in ['world.xml','robot_predictor.xml','model_inputs.json']:shutil.copyfile(station/n,out/n)
     grouping = None
@@ -59,6 +61,7 @@ def run(station, output, candidate=0, opening=.02, grouping_review=None, sleep_r
         if c.dist < -bound:bad.append(record)
     contract=dict(scope=__doc__,hand_kind='unitree_three_finger',source_station_review_sha256=sha(station/'review.json'),
         candidate_index=candidate,opening_rad=opening,plant_sha256=sha(out/'world.xml'),predictor_sha256=sha(out/'robot_predictor.xml'),
+        source_grasp_review=str(fit_path),source_grasp_sha256=sha(fit_path),source_grasp_candidate=selected['candidate_index'],
         inputs_sha256=sha(out/'model_inputs.json'),initial_qpos=d.qpos.tolist(),initial_qvel=d.qvel.tolist(),
         robot_contact_features=[dict(body=c['part'],point_local_m=c['point_hand_local_m']) for c in grasp['contacts']],
         closing_drivers=drivers,closing_signs=signs,task='pickup_hold_replace_release',
@@ -78,5 +81,5 @@ def run(station, output, candidate=0, opening=.02, grouping_review=None, sleep_r
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('station');p.add_argument('output');p.add_argument('--candidate',type=int,default=0)
     p.add_argument('--opening',type=float,default=.02);p.add_argument('--grouping-review')
-    p.add_argument('--sleep-review');p.add_argument('--wake-review')
-    a=p.parse_args();run(a.station,a.output,a.candidate,a.opening,a.grouping_review,a.sleep_review,a.wake_review)
+    p.add_argument('--sleep-review');p.add_argument('--wake-review');p.add_argument('--fit')
+    a=p.parse_args();run(a.station,a.output,a.candidate,a.opening,a.grouping_review,a.sleep_review,a.wake_review,a.fit)

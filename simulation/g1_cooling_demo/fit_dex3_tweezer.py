@@ -28,7 +28,7 @@ from support_geometry import load_support
 from build_passive import profile
 
 
-def run(output, seeds_per_pair=10, axis_sign=1):
+def run(output, seeds_per_pair=10, axis_sign=1, heel_support=False, support_review=None, contact_height_offset=0., thumb_side=-1):
     started = time.monotonic()
     out = Path(output).resolve(); out.mkdir(parents=True, exist_ok=False)
     snapshots = out / 'source_snapshot'; snapshots.mkdir()
@@ -43,7 +43,7 @@ def run(output, seeds_per_pair=10, axis_sign=1):
     model_text = ET.tostring(xml, encoding='unicode')
     (out / 'hand_self_check.xml').write_text(model_text)
     sm = mujoco.MjModel.from_xml_string(model_text); sd = mujoco.MjData(sm)
-    support_path = TOOL / 'tray_support_12/review.json'
+    support_path = Path(support_review).resolve() if support_review else TOOL / 'tray_support_12/review.json'
     _, world_from_source, obstacles, support_receipt = load_support(support_path, ROOT)
     (out / 'support_geometry.json').write_text(json.dumps(support_receipt, indent=2) + '\n')
     supported = json.loads(support_path.read_text())
@@ -70,6 +70,14 @@ def run(output, seeds_per_pair=10, axis_sign=1):
         name = tm.geom(g).name
         groups['negative' if name.startswith('negative') else 'positive' if name.startswith('positive') else 'heel'].append(mesh)
     tool_meshes = {n: trimesh.util.concatenate(parts) for n, parts in groups.items()}
+    heel_bounds = tool_meshes['heel'].bounds
+    if thumb_side not in (-1,1): raise ValueError('Choose a physical tool side for the thumb')
+    contact_signs = [thumb_side,-thumb_side,-thumb_side]
+    if not np.isfinite(contact_height_offset) or abs(contact_height_offset) > .0025:
+        raise ValueError('Contact height offset must stay within 2.5 mm of the original contact plane')
+    if heel_support:
+        selected_height = float(heel_bounds[:,2].mean()) + contact_height_offset
+        assert heel_bounds[0,2]+.0005 <= selected_height <= heel_bounds[1,2]-.0005
     tool = trimesh.collision.CollisionManager()
     for n, mesh in tool_meshes.items(): tool.add_object(n, mesh)
     scale = json.loads((TOOL / 'revisions/passive_07/model_review.json').read_text())['inferred_interior_thickness_scale']
@@ -83,6 +91,11 @@ def run(output, seeds_per_pair=10, axis_sign=1):
         minimum_gap_m=.00002, maximum_gap_m=.0006, minimum_normal_opposition=.75,
         maximum_compiled_self_penetration_m=.00002, minimum_support_clearance_m=.001,
         seeds_per_pair=seeds_per_pair, seed=61105, tool_x_along_wrist_z_sign=axis_sign, full_body_checked=False,
+        middle_finger_rigid_heel_support=heel_support,
+        authored_contact_height_offset_m=contact_height_offset,
+        thumb_source_tool_y_side=thumb_side,
+        support_review=str(support_path.relative_to(ROOT)),
+        heel_bounds_source_m=heel_bounds.tolist(),
         visual_joint_overlap='Report original source mesh assembly overlaps separately; never delete source triangles')
     (out / 'contract.json').write_text(json.dumps(contract, indent=2) + '\n')
     old = json.loads((ROOT / 'simulation/g1_cooling_demo/analysis/dex3_cover_grasp_02/grasps.json').read_text())
@@ -92,6 +105,10 @@ def run(output, seeds_per_pair=10, axis_sign=1):
     # independent; index and middle can accommodate the tapered tool.
     lower = np.r_[[hand.limits[n]['intersection'][0]+.001 for n in NAMES[1:]], [.07,-.02,-np.pi,.045]]
     upper = np.r_[[hand.limits[n]['intersection'][1]-.001 for n in NAMES[1:]], [.20,.14,np.pi,.085]]
+    if heel_support:
+        # Keep the same original hand/tool surfaces. Only the authored grasp
+        # family changes: middle on the rigid heel, thumb/index on the beams.
+        lower[-1], upper[-1] = .09, .13
     rows = []; accepted = []
     for thumb_idx in range(3):
         for finger_idx in range(3):
@@ -105,22 +122,32 @@ def run(output, seeds_per_pair=10, axis_sign=1):
                 axis = np.array([0.,0.,float(axis_sign)])
                 R = np.column_stack([axis, normal, np.cross(axis, normal)])
                 center = np.array([x[6], x[7], 0.])
-                S = np.eye(4); S[:3,:3] = R.T; S[:3,3] = np.array([x[9],0.,.00575])-R.T@center
+                S = np.eye(4); S[:3,:3] = R.T; S[:3,3] = np.array([x[9],0.,.00575+contact_height_offset])-R.T@center
                 transforms = {n: S@T for n,T in poses.items()}
                 return q, S, transforms
             def residual(x):
                 _, _, transforms = state(x); values = []
-                for n, p, normal, sign in zip(PARTS, points, normals, [-1,1,1]):
+                for n, p, normal, sign in zip(PARTS, points, normals, contact_signs):
                     T = transforms[n]; a = T[:3,:3]@p+T[:3,3]
-                    _, thick, center = profile(a[0], scale)
-                    outer = center+thick/2
-                    values.extend([(a[1]-sign*(outer+.0003))/.001, (a[2]-.00575)/.001])
+                    if heel_support and n == PARTS[2]:
+                        outer = float(sign*heel_bounds[1 if sign>0 else 0,1])
+                        height = float(heel_bounds[:,2].mean()) + contact_height_offset
+                    else:
+                        _, thick, center = profile(a[0], scale)
+                        outer = center+thick/2
+                        height = .00575 + contact_height_offset
+                    values.extend([(a[1]-sign*(outer+.0003))/.001, (a[2]-height)/.001])
                     values.extend(2*(T[:3,:3]@normal-np.array([0.,-sign,0.])))
-                    values.extend([min(0.,a[0]-.025)/.001, max(0.,a[0]-.115)/.001])
+                    if heel_support and n == PARTS[2]:
+                        values.extend([(a[0]-heel_bounds[:,0].mean())/.001,0.])
+                    else:
+                        values.extend([min(0.,a[0]-.025)/.001, max(0.,a[0]-.115)/.001])
                 return np.r_[values, .0001*x[:6]]
             for seed_index in range(seeds_per_pair):
                 r = old[(seed_index*43) % len(old)]
                 x = np.r_[[r['q'][n] for n in NAMES[1:]], r['bar_center_wrist_m'][:2], -.5, .065]
+                if thumb_side == 1: x[8] += np.pi
+                if heel_support: x[-1] = .10
                 if seed_index: x[:6] += rng.normal(0,.14,6); x[8] += rng.normal(0,.3)
                 result = least_squares(residual, np.clip(x,lower,upper), bounds=(lower,upper),
                                        max_nfev=160, ftol=1e-8, xtol=1e-8, gtol=1e-8)
@@ -134,7 +161,9 @@ def run(output, seeds_per_pair=10, axis_sign=1):
                 self_contacts = [dict(parts=[sm.body(sm.geom_bodyid[g]).name for g in c.geom], distance_m=float(c.dist))
                                  for c in sd.contact if c.dist < -.00002]
                 contacts = []
-                for n,side,sign in zip(PARTS,['negative','positive','positive'],[-1,1,1]):
+                sides = ['negative' if s<0 else 'positive' for s in contact_signs]
+                if heel_support: sides[2] = 'heel'
+                for n,side,sign in zip(PARTS,sides,contact_signs):
                     d=fcl.DistanceResult(); fcl.distance(hand.manager._objs[n]['obj'],tool._objs[side]['obj'],
                         fcl.DistanceRequest(enable_nearest_points=True),d)
                     a,b=map(np.asarray,d.nearest_points); gap=float(d.min_distance)
@@ -173,4 +202,9 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--out',required=True)
     parser.add_argument('--seeds',type=int,default=10)
     parser.add_argument('--axis-sign',type=int,choices=[-1,1],default=1)
-    args=parser.parse_args();run(args.out,args.seeds,args.axis_sign)
+    parser.add_argument('--heel-support',action='store_true',
+                        help='Fit the middle finger to the original rigid heel while thumb/index contact the beams')
+    parser.add_argument('--support-review',help='Passed unactuated support review; defaults to the original tray placement')
+    parser.add_argument('--contact-height-offset',type=float,default=0.,help='Authored side-contact height offset in metres, at most 2.5 mm')
+    parser.add_argument('--thumb-side',type=int,choices=[-1,1],default=-1)
+    args=parser.parse_args();run(args.out,args.seeds,args.axis_sign,args.heel_support,args.support_review,args.contact_height_offset,args.thumb_side)

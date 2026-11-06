@@ -66,9 +66,57 @@ meshes, then fits remaining native depth points to tool CAD. All three inspected
 frames produce candidates whose retained pixels associate with the tool; all
 three robot-only negative frames reject detection. This is an offline test with
 reconstructed proprioception, not exact sensor replay or a qualified full/tip
-pose. `dex3_tool_inspection_checkpoint_02` is now testing the detector inside the
-isolated actor and adding own-motor compensation on nonclosing finger joints.
-Its physical result and independent replay remain pending.
+pose. The [second physical continuation](analysis/dex3_tool_inspection_checkpoint_02/result.json)
+reports ten detections in ten native inspection observations, but still loses
+the grasp during its return motion and finishes at 65.290 s with a failure.
+The completed [independent review](analysis/dex3_tool_inspection_evaluation_02/review.json)
+reproduces all 46 native camera frames and the ten detections. It nevertheless
+fails attempt completion, the inspection/return sequence and contact bounds:
+after slipping on return, the tool contacts the tray at 60.0087 s with 0.2587 mm
+penetration, above the unchanged 0.25 mm bound. This validates bounded observation
+within a failed continuation, not successful tool retention or a qualified skill.
+Nonclosing-joint compensation
+alone did not fix retention. A new supported-grasp candidate establishes the
+carrying controller's 2.4/1.2/1.2 N inferred load targets before lifting, with
+a -0.04 rad proximal preshape and explicit 0.25 rad driver reference envelope.
+Original source joint margins and 4 N physical load bounds remain unchanged.
+The [third continuation](analysis/dex3_tool_inspection_checkpoint_03/result.json)
+replays 37,462 prior sensor responses exactly, reaches the inspection hold and
+records ten detected observations. It triggers the original motor-load protection
+on return at 71.043 s and finishes its abort sequence at 79.143 s. Its completed
+[independent review](analysis/dex3_tool_inspection_evaluation_03/review.json)
+reproduces the trajectory, all 36 native camera frames and ten detector results,
+but fails completion, the return sequence and original contact bounds. The heel
+contacts the bench beyond the bound at 71.101 s. Peak actual finger load is
+2.604 N; the motor-load protection event must not be described as a measured
+4 N contact-force violation. This is not a fresh continuous pickup or a successful
+observation/return skill. Its complete trace is retained in three verified
+32 MiB-or-smaller chunks, with restoration instructions in
+[trace_archive.json](analysis/dex3_tool_inspection_checkpoint_03/trace_archive.json).
+
+A new rigid-heel grasp keeps the middle finger on the original heel and uses
+thumb/index contacts on the original spring arms. The first planar candidates
+collide with the tray; a 6 mm inward placement also [fails natural support](analysis/dex3_heel_tool_support_01/review.json)
+and is not adopted. The selected outward placement [passes a three-second
+unactuated support run and exact replay](analysis/dex3_heel_yaw_support_01/review.json),
+with both original tray rims supporting the tool and 0.108 mm maximum penetration.
+The [settled-state fit](analysis/dex3_heel_grasp_fit_05/review.json) accepts 24 of
+54 hand candidates, and [full-room authoring](runs/dex3_heel_tool_station_01/review.json)
+finds three clear whole-body poses out of 100. The complete room and all compiled
+tool/tray geometry and material properties are retained. The [opened initial
+posture](runs/dex3_heel_pregrasp_01/review.json) is only a declared starting setup.
+The first [fresh native-camera trial](runs/dex3_heel_visual_actuation_01/result.json)
+stops at 2.8 s because the selected observed pose has no feasible grasp IK.
+It performs no pickup. An optional planner now retains separately fitted
+pose hypotheses consistent across four native frames, with the original
+surface-quality and clearance limits. Two [isolated sensor replays](analysis/dex3_heel_ambiguity_replay_02/result.json)
+reproduce all 2,800 earlier responses exactly, but neither recovers a feasible
+approach at that stance. A [sensor-derived stance screen](analysis/dex3_heel_stance_screen_01/review.json)
+finds alternatives; the [selected initial stance](runs/dex3_heel_observe_start_02/stance_selection.json)
+changes X/Y by -40/-20 mm and retains elbow margin. This is an authored initial
+condition, not executed locomotion. A second fresh pickup/squeeze/reopen/release
+trial, `dex3_heel_visual_actuation_02`, is running with the observed-pose fallback.
+No grasp, tool-use or paper-branch qualification transfers from preparation.
 
 The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
 contains continuous visual pickup, four outward steps, four return steps and

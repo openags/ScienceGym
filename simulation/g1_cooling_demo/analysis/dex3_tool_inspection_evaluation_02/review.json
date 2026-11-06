@@ -1,0 +1,741 @@
+{
+  "scope": "Replay physical motion and native camera observations of an inspection probe.\n\nThis is a restored-state diagnostic, not a continuous pickup qualification.\nThe evaluator reconstructs camera calibration from robot sensors, reruns the\nactor's appearance detector, and uses segmentation only to reject false tool\nassociations after inference. No evaluator data enters the controller.\n",
+  "source_result_sha256": "6ecb325bccff655ab94d13d16939e465ebad6f15025eaf94068dc707d6459315",
+  "actor_contract_sha256": "073465aa6a182b55d8565fae1044d0cf85efe0caf9d06b6430ad5191a6abee82",
+  "trace_sha256": "593c9d603dbc9c083180a1059ee1675b965c58516c88511c91c1db2b7f8e085d",
+  "source_sha256": {
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "tool_pose.py": "67de6054658aa84b3298497e5912c793c4de8403bbedbe3aa837b1b53f49bf81",
+    "held_tool_observation.py": "325dce5dd9f528cb2817430a942e89159043e7044654a3c9a5c49babd73b3c66",
+    "evaluate_inspection_checkpoint.py": "a69fc3818564a4518950aacedcd8e55b6906649d735253a366a7f2a05a0c9a1e",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "tool_cameras.py": "35e25d8434f115cbc70fd8941565f9f2ae2b572b49357cd66baad594acc29e8f",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3"
+  },
+  "checks": {
+    "attempt_completed_without_error": false,
+    "inspection_and_return_sequence": false,
+    "exact_continuation_replay": true,
+    "exact_native_camera_replay": true,
+    "independent_detector_replay": true,
+    "sufficient_observation_frames": true,
+    "sufficient_true_tool_detections": true,
+    "retained_loaded_inspection": true,
+    "original_contact_bounds": false,
+    "bounded_finger_load": true,
+    "no_unintended_hand_tool_load": true,
+    "original_source_joint_ranges": true,
+    "no_external_forces": true,
+    "no_numerical_warnings": true
+  },
+  "passed_inspection_diagnostic": false,
+  "maximum_q_replay_error": 0.0,
+  "maximum_v_replay_error": 0.0,
+  "maximum_rgb_error": 0.0,
+  "maximum_depth_error_m": 0.0,
+  "maximum_finger_force_n": 1.852091334836366,
+  "maximum_unintended_hand_tool_load_n": 0.0,
+  "maximum_source_joint_range_excess_rad": 0.0,
+  "three_finger_loaded_s": 9.760099999990592,
+  "loaded_inspection_s": 1.9300999999998039,
+  "contact_failures": [
+    {
+      "time_s": 60.00870000086855,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0002587005451208109,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.008800000868554,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0002834858202514651,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00890000086856,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.00030115169882553985,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00900000086856,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.00031271028327873495,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.009100000868564,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.00031905505403474716,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00920000086857,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0003209775241141683,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00930000086857,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0003191803132064872,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.009400000868574,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.00031428648875411026,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00950000086858,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0003068470997480878,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00960000086858,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0002973765321018423,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.009700000868584,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.000286332010277354,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00980000086859,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.0002740854220018383,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.00990000086859,
+      "parts": [
+        "positive_steel_arm_00",
+        "tray_contact_15"
+      ],
+      "penetration_m": 0.00026094586639932826,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06710000087049,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00025799352321877173,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06720000087049,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00027257599721539506,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.067300000870496,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.0002822951069823292,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.0674000008705,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00028793737407378084,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.0675000008705,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00029017996683786834,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.067600000870506,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.0002896044311608328,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06770000087051,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00028670951690918376,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06780000087051,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00028192092928803185,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.067900000870516,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.0002756012183405315,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06800000087052,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.00026805996494071323,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.06810000087052,
+      "parts": [
+        "positive_steel_arm_17",
+        "tray_contact_8"
+      ],
+      "penetration_m": 0.0002595566071659986,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.14030000087292,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.00028341377170010897,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.14040000087292,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.00031672066609491576,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.140500000872926,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.0003405294230594651,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.14060000087293,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.0003562279404382201,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.14070000087293,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.00036505826267530395,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 60.140800000872936,
+      "parts": [
+        "tweezer_heel",
+        "tray_contact_9"
+      ],
+      "penetration_m": 0.0003681237732452662,
+      "bound_m": 0.00025
+    }
+  ],
+  "frames": [
+    {
+      "time_s": 51.188000000575734,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 2,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 51.38800000058237,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 51.58800000058901,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 3,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 51.78800000059565,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 3,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 51.98800000060229,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 6,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 52.18800000060893,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 16,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 52.38800000061557,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 27,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 52.58800000062221,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 39,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 52.78800000062885,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 147,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 52.98800000063549,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 521,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 53.18800000064213,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1033,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 53.388000000648766,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1105,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 53.588000000655406,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1128,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 53.788000000662045,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1148,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 53.988000000668684,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1168,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 54.18800000067532,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1184,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 54.38800000068196,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1194,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 54.5880000006886,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1202,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 54.78800000069524,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1204,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 54.98800000070188,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1206,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 55.18800000070852,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1205,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 55.38800000071516,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1209,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1179,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 55.5880000007218,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1208,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1179,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 55.78800000072844,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1211,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1181,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 55.98800000073508,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1212,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1180,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 56.18800000074172,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1217,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1185,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 56.388000000748356,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1209,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1179,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 56.588000000754995,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1212,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1181,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 56.788000000761635,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1216,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1184,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 56.988000000768274,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1215,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1183,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 57.18800000077491,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1217,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1187,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 57.38800000078155,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1220,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 57.58800000078819,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1219,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 57.78800000079483,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1217,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 57.98800000080147,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1209,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 58.18800000080811,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1208,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 58.38800000081475,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1190,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 58.58800000082139,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1170,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 58.78800000082803,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1146,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 58.98800000083467,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1114,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 59.188000000841306,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 988,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 59.388000000847946,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 357,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 59.588000000854585,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 81,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 59.788000000861224,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 15,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 59.98800000086786,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 60.1880000008745,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 7,
+      "actor_inspected": false
+    }
+  ],
+  "minimum_true_tool_association_fraction": 0.9,
+  "association_evaluator_only": true,
+  "continuous_pickup_qualification": false,
+  "controller_continuation_replay_verified": false,
+  "qualified_held_tool_inspection": false,
+  "qualified_paper_branch": false,
+  "qualified_tip_pose": false
+}

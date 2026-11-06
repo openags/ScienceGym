@@ -38,6 +38,8 @@ class ToolActor(PickupActor):
         self.next_clearance_check=0.;self.latest_clearance=None
         self.arm_posture_error=0.;self.wrist_path_error=0.;self.wrist_rotation_error=0.
         self.vision_reports=[];self.last_frame_time=None
+        self.resolve_pose_ambiguity=bool(prior.get('resolve_tool_pose_ambiguity',False))
+        self.hypothesis_history=[]
         self.arm_names=['right_'+n+'_joint' for n in ['shoulder_pitch','shoulder_roll','shoulder_yaw','elbow','wrist_roll','wrist_pitch','wrist_yaw']]
         self.arm_qa=np.array([model.joint(n).qposadr[0] for n in self.arm_names])
         self.arm_indices=np.array([self.names.index(n) for n in self.arm_names])
@@ -103,13 +105,23 @@ class ToolActor(PickupActor):
         proposal,component=detect(obs['head_rgb'],obs['head_depth'],D,C,df,cf,self.bounds,self.threshold)
         report=dict(time_s=t,component_found=proposal['candidate_found'])
         if not proposal['candidate_found']:
+            self.hypothesis_history=[]
             self.poses=[];self.vision_reports.append(report);return
         fit=self.localizer.estimate(component)
         if not fit['candidate_found']:
+            self.hypothesis_history=[]
             self.poses=[];self.vision_reports.append(report);return
         best=fit['best'];report.update(surface_median_m=best['median_surface_distance_m'],inlier_fraction=best['inlier_fraction'])
         if best['median_surface_distance_m']>.0007 or best['inlier_fraction']<.90:
+            self.hypothesis_history=[]
             self.poses=[];self.vision_reports.append(report);return
+        if self.resolve_pose_ambiguity:
+            # Preserve genuinely observed alternatives. No pose is reflected
+            # or replaced by a nominal grasp or simulator placement.
+            admissible=[p for p in fit['hypotheses'] if p['median_surface_distance_m']<=.0007
+                and p['inlier_fraction']>=.90 and p['score_m2']<=best['score_m2']+4e-8]
+            self.hypothesis_history.append(admissible)
+            self.hypothesis_history=self.hypothesis_history[-4:]
         self.poses.append(best);self.poses=self.poses[-4:];self.vision_reports.append(report)
         if len(self.poses)<4:return
         if self.observe_coupon and self.coupon_pose is None:return
@@ -121,6 +133,24 @@ class ToolActor(PickupActor):
         surface=depth_surface(obs['head_depth'],D,df)
         self.planner=ToolApproachPlanner(self.m,self.d.qpos.copy(),pose,self.geometry,self.mesh,surface,component)
         self.plan=self.planner.build()
+        ambiguity_attempts=[]
+        if self.resolve_pose_ambiguity and not self.plan['planned']:
+            ambiguity_attempts.append(dict(pose=pose,plan=self.plan,primary=True))
+            used=[pose]
+            for alternative in self.stable_pose_alternatives():
+                R=np.asarray(alternative['rotation_matrix']);t0=np.asarray(alternative['position_m'])
+                if any(np.linalg.norm(t0-np.asarray(p['position_m']))<.001 and
+                    Rotation.from_matrix(R@np.asarray(p['rotation_matrix']).T).magnitude()<.015 for p in used):continue
+                used.append(alternative)
+                planner=ToolApproachPlanner(self.m,self.d.qpos.copy(),alternative,self.geometry,self.mesh,surface,component)
+                plan=planner.build()
+                ambiguity_attempts.append(dict(pose=alternative,plan=plan,primary=False))
+                if plan['planned']:
+                    pose=alternative;self.planner=planner;self.plan=plan;break
+            self.events.append(dict(time_s=t,kind='observed_tool_pose_ambiguity',
+                source='Four native RGB-D fits; same original geometry and clearance checks',
+                attempts=ambiguity_attempts,selected_observation_pose=pose,
+                reference_tool_pose_used=False,qualified_tool_pose=False))
         self.events.append(dict(time_s=t,kind='observed_tool_plan',pose=pose,plan=self.plan,
             source='Four accepted native RGB-D frames and own-robot state'))
         if not self.plan['planned']:
@@ -136,6 +166,28 @@ class ToolActor(PickupActor):
         self.path_clock=0.;self.change('approach',t)
         if self.map_localizer is not None:
             self.map_localizer.close();self.map_localizer=None
+
+    def stable_pose_alternatives(self):
+        """Return only separately fitted hypotheses consistent across four frames."""
+        if len(self.hypothesis_history)!=4:return []
+        output=[]
+        for anchor in self.hypothesis_history[-1]:
+            a=np.asarray(anchor['position_m']);R=np.asarray(anchor['rotation_matrix']);matched=[]
+            for frame in self.hypothesis_history:
+                group=[p for p in frame if np.linalg.norm(np.asarray(p['position_m'])-a)<=.001 and
+                    Rotation.from_matrix(np.asarray(p['rotation_matrix'])@R.T).magnitude()<=.015]
+                if not group:break
+                matched.append(min(group,key=lambda p:p['score_m2']))
+            if len(matched)!=4:continue
+            centers=np.asarray([p['position_m'] for p in matched]);center=np.median(centers,axis=0)
+            rotations=Rotation.from_matrix(np.asarray([p['rotation_matrix'] for p in matched]));mean=rotations.mean()
+            if np.max(np.linalg.norm(centers-center,axis=1))>.001 or np.max((rotations*mean.inv()).magnitude())>.015:continue
+            output.append(dict(position_m=center.tolist(),rotation_matrix=mean.as_matrix().tolist(),
+                observed_frames=4,maximum_surface_score_m2=max(p['score_m2'] for p in matched),
+                maximum_surface_median_m=max(p['median_surface_distance_m'] for p in matched),
+                minimum_inlier_fraction=min(p['inlier_fraction'] for p in matched),
+                source='Independent native RGB-D registration hypotheses consistent across four frames'))
+        return sorted(output,key=lambda p:p['maximum_surface_score_m2'])
 
     def approach_target(self,t,dt):
         # Whole-body balance can change the redundant arm configuration while

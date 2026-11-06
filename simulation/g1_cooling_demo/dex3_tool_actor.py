@@ -38,6 +38,14 @@ class ToolActor:
         self.initial=self.d.qpos[self.qa].copy();self.command=self.initial.copy()
         ranges=model.jnt_range[model.actuator_trnid[:,0]]
         self.lower=np.maximum(self.initial-.15,ranges[:,0]);self.upper=np.minimum(self.initial+.15,ranges[:,1])
+        self.grasp_driver_excursion=float(prior.get('grasp_driver_command_excursion_rad',.15))
+        if not .15<=self.grasp_driver_excursion<=.30:
+            raise ValueError('Grasp driver reference excursion must be 0.15 to 0.30 rad')
+        if self.grasp_driver_excursion!=.15:
+            if not prior.get('grasp_proximal_preshape_rad'):
+                raise ValueError('Extended grasp command envelope requires a declared supported preshape')
+            self.lower[self.drivers]=np.maximum(self.initial[self.drivers]-self.grasp_driver_excursion,ranges[self.drivers,0]+.01)
+            self.upper[self.drivers]=np.minimum(self.initial[self.drivers]+self.grasp_driver_excursion,ranges[self.drivers,1]-.01)
         wrist=self.d.site('right_wrist_reference');self.wrist_position=wrist.xpos.copy();self.wrist_rotation=wrist.xmat.reshape(3,3).copy()
         self.balance.palm_rotations={'right':self.wrist_rotation}
         self.approach_velocity_feedforward=bool(prior.get('approach_velocity_feedforward',False))

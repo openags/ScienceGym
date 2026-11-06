@@ -161,7 +161,10 @@ class ToolApproachPlanner:
             return dict(planned=False,reason='initial_clearance',detail=self.last_clearance)
         # IK proposals come from current encoders and generic elbow seeds,
         # not from an earlier authored full-body grasp pose.
-        seeds=[home,np.array([-.8,-.3,.5,.7,0.,.8,.3]),np.array([-.8,-.5,0.,1.4,0.,0.,0.])]
+        seeds=[home,np.array([-.8,-.3,.5,.7,0.,.8,.3]),np.array([-.8,-.5,0.,1.4,0.,0.,0.]),
+            np.array([-.6,-.4,-1.5,1.2,1.5,0.,0.]),
+            np.array([-.6,-.5,0.,1.2,-1.5,0.,0.]),
+            np.array([-1.,-.3,1.5,1.5,1.,0.,0.])]
         for index,seed in enumerate(seeds):
             self.state(home)
             final,pe,re=self.ik.solve(self.d,self.target[:3,3],self.target[:3,:3],np.clip(seed,self.ik.low,self.ik.high))
