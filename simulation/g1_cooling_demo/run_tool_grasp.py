@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0., inspect_held_tool=False, grasp_driver_excursion=.15, resolve_tool_pose_ambiguity=False, release_compensation_decay=0., lower_clearance_height=0., tool_force_ramp=0., lower_xy_offset=None, tool_cartesian_fingers=False):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0., inspect_held_tool=False, grasp_driver_excursion=.15, resolve_tool_pose_ambiguity=False, release_compensation_decay=0., lower_clearance_height=0., tool_force_ramp=0., lower_xy_offset=None, tool_cartesian_fingers=False, tool_force_band=.15, tool_normal_gain=.0003, tool_index_fraction=.5):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -49,6 +49,10 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Extended grasp command envelope requires supported preshape and 0.15 to 0.30 rad')
     if tool_cartesian_fingers and tool_squeeze_force is None:
         raise ValueError('Coordinated fingers require a tool-stroke task')
+    if not .03<=tool_force_band<=.15 or not .00015<=tool_normal_gain<=.0009 or not .4<=tool_index_fraction<=.6:
+        raise ValueError('Tool-force band, gain or load distribution outside development bounds')
+    if (tool_force_band!=.15 or tool_normal_gain!=.0003 or tool_index_fraction!=.5) and not tool_cartesian_fingers:
+        raise ValueError('Revised tool-force tracking requires coordinated fingers')
     if tool_squeeze_force is not None and (not dex3 or carry_distance is not None or not thumb_force<tool_squeeze_force<4.):
         raise ValueError('Free-tool stroke requires Dex3, no carrying, and a larger force target below 4 N')
     visual = bool(contract.get('observed_approach',False))
@@ -204,7 +208,11 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         if tool_force_ramp:prior['tool_force_ramp_s']=tool_force_ramp
         if tool_cartesian_fingers:prior['tool_cartesian_fingers']=True
         if tool_squeeze_force is not None:
-            prior['tool_squeeze_force_proxy_n']=[tool_squeeze_force,tool_squeeze_force/2,tool_squeeze_force/2]
+            prior['tool_squeeze_force_proxy_n']=[tool_squeeze_force,tool_squeeze_force*tool_index_fraction,
+                                               tool_squeeze_force*(1-tool_index_fraction)]
+        if tool_cartesian_fingers:
+            prior['tool_force_relative_band']=tool_force_band
+            prior['tool_cartesian_normal_gain_m_per_n_s']=tool_normal_gain
         if grasp_proximal_preshape:
             prior['grasp_proximal_preshape_rad']=grasp_proximal_preshape
             prior['grasp_driver_command_excursion_rad']=grasp_driver_excursion
@@ -307,19 +315,20 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             actor_inputs='Own encoders, IMU and inferred motor loads; no simulator tool pose or tip gap',
             minimum_open_tip_gap_m=.003,maximum_squeezed_tip_gap_m=.0005,
             maximum_tool_wrist_translation_drift_m=.01,
-            force_target_relative_band=.15,force_target_dwell_s=.75,phase_timeout_s=20.,
+            force_target_relative_band=tool_force_band,force_target_dwell_s=.75,phase_timeout_s=20.,
             driver_command_excursion_rad=.25,source_joint_margin_rad=.01,
             physical_contact_and_motor_limits_unchanged=True,qualified_tool_actuation=False)
     if tool_cartesian_fingers:
         run_contract['tool_actuation_contract']['coordinated_fingers']=dict(
             frame='Unposed grasp axes transformed using own wrist encoders',
             load_observer='Two own-motor residuals per finger resolved into inward and tangent components; uncalibrated',
-            normal_force_gain_m_per_n_s=.0003,maximum_cartesian_speed_m_s=.0005,
+            normal_force_gain_m_per_n_s=tool_normal_gain,maximum_cartesian_speed_m_s=.0005,
             tangent_position_gain_per_s=2.,maximum_joint_reference_speed_rad_s=.03,
             maximum_jacobian_condition_number=100.,minimum_jacobian_singular_value_m_per_rad=.001,
             closure_guard='Active coordinated Jacobian; scalar lever guard applies only to single-joint control',
             tangent_reference='Own fingertip material points at squeeze entry',
-            active_through_lowering=True,physical_acceptance_changed=False)
+            active_through_lowering=True,load_coordinates_retained_during_abort_and_release=True,
+            opposing_index_load_fraction=tool_index_fraction,physical_acceptance_changed=False)
     if plugins:
         run_contract['collision_plugins'] = plugins
     if contract.get('optical_scene_binding'):
@@ -620,5 +629,11 @@ if __name__ == '__main__':
                    help='Supported grasp PD reference envelope (0.15 to 0.30 rad); source joint limits unchanged')
     p.add_argument('--inspect-held-tool',action='store_true',
                    help='Plan and execute a held-tool observation pose, acquire native RGB-D and return')
+    p.add_argument('--tool-force-band',type=float,default=.15,
+                   help='Relative observed-force tracking band; 0.03 to 0.15, tip-gap checks unchanged')
+    p.add_argument('--tool-normal-gain',type=float,default=.0003,
+                   help='Coordinated normal admittance gain in m/(N s); speed bounds unchanged')
+    p.add_argument('--tool-index-fraction',type=float,default=.5,
+                   help='Index share of opposing squeeze load; middle receives remainder, 0.4 to 0.6')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape,a.inspect_held_tool,a.grasp_driver_excursion,a.resolve_tool_pose_ambiguity,a.release_compensation_decay,a.lower_clearance_height,a.tool_force_ramp,a.lower_xy_offset,a.tool_cartesian_fingers)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape,a.inspect_held_tool,a.grasp_driver_excursion,a.resolve_tool_pose_ambiguity,a.release_compensation_decay,a.lower_clearance_height,a.tool_force_ramp,a.lower_xy_offset,a.tool_cartesian_fingers,a.tool_force_band,a.tool_normal_gain,a.tool_index_fraction)['status'] == 'failed': raise SystemExit(1)

@@ -113,6 +113,10 @@ class StationPickupActor:
         self.tool_prior = deepcopy(tool_prior)
         if 'initial_robot_qpos' in self.tool_prior:
             raise ValueError('A station handoff must derive its robot pose from sensors')
+        self.pickup_type = ToolActor
+        if 'carry_distance_m' in self.tool_prior:
+            from carry_tool_actor import ToolActor as CarryActor
+            self.pickup_type = CarryActor
         self.targets = preparation_targets
         self.phase = 'walk'
         self.started = None
@@ -178,7 +182,7 @@ class StationPickupActor:
                     self.localizer = None
                     prior = deepcopy(self.tool_prior)
                     prior['initial_robot_qpos'] = self.preparation.d.qpos.tolist()
-                    self.pickup = ToolActor(self.m, prior)
+                    self.pickup = self.pickup_type(self.m, prior)
                     self.pickup_started = t
                     self.phase = 'pickup'
                     self.events.append(dict(time_s=t, kind='sensor_based_pickup_handoff',

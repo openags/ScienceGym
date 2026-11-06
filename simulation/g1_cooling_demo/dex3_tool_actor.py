@@ -90,6 +90,10 @@ class ToolActor:
         self.tool_open_force=self.hold_force.copy();self.tool_stroke_active=False
         self.tool_stroke_done=False;self.tool_force_since=None
         self.tool_cartesian_fingers=bool(prior.get('tool_cartesian_fingers',False))
+        self.tool_force_band=float(prior.get('tool_force_relative_band',.15))
+        self.tool_normal_gain=float(prior.get('tool_cartesian_normal_gain_m_per_n_s',.0003))
+        if not .03<=self.tool_force_band<=.15 or not .00015<=self.tool_normal_gain<=.0009:
+            raise ValueError('Tool force tracking parameters outside declared development bounds')
         self.tool_cartesian_reference=None
         if self.tool_cartesian_fingers:
             if self.tool_squeeze_force is None:
@@ -239,7 +243,9 @@ class ToolActor:
             lever.append(float(sign*inward@jp[:,self.va[a]]))
         lever=np.asarray(lever)
         effort=self.signs*self.filtered[self.drivers]
-        coordinated=(self.tool_cartesian_reference is not None and self.phase in self.loaded_phases)
+        # Retain load-estimation coordinates during abort/release. Switching
+        # back to a collapsed scalar lever masked an already detected slip.
+        coordinated=self.tool_cartesian_reference is not None
         if coordinated:
             # The fixed unposed grasp axes and a bounded two-joint Jacobian
             # define this controller. The old one-joint direction can collapse
@@ -294,7 +300,7 @@ class ToolActor:
                     # Normal motion regulates inferred load; tangent motion
                     # retains the own-hand material point's initial height.
                     # Both joint references move, avoiding the old one-joint arc.
-                    normal_speed=float(np.clip(.0003*(desired_force-proxy[i]),-.0005,.0005))
+                    normal_speed=float(np.clip(self.tool_normal_gain*(desired_force-proxy[i]),-.0005,.0005))
                     tangent_error=finger_positions[i,2]-self.tool_cartesian_reference[i,2]
                     tangent_speed=float(np.clip(-2.*tangent_error,-.0005,.0005))
                     joint_speed=np.linalg.solve(finger_matrices[i],[normal_speed,tangent_speed])
@@ -330,7 +336,7 @@ class ToolActor:
         elif self.phase in {'tool_squeeze','tool_reopen'}:
             stroke_phase=self.phase
             ramp_finished=not self.tool_force_ramp or t-self.tool_force_ramp_started>=self.tool_force_ramp
-            if ramp_finished and np.all(abs(proxy-self.hold_force)<=.15*self.hold_force):
+            if ramp_finished and np.all(abs(proxy-self.hold_force)<=self.tool_force_band*self.hold_force):
                 if self.tool_force_since is None:self.tool_force_since=t
                 if t-self.tool_force_since>=.75:
                     self.events.append(dict(time_s=t,kind='tool_force_target_reached',

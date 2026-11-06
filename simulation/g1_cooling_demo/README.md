@@ -29,7 +29,24 @@ reproduces all 27,601 motor outputs exactly. Three observation-supported pose
 alternatives fail at that stance; a 60 mm forward stance screen yields a path.
 The walker now accepts an explicit forward stopping distance, preserving the
 original 60 mm default. Fresh `dex3_station_pickup_03` uses 5 mm, with the same
-laboratory, physical acceptance and source limits. It has not yet completed.
+laboratory, physical acceptance and source limits. It finishes at 82.369 s
+without a controller failure. All 82,370 isolated controller responses and
+18 camera frames replay exactly, and source motor limits pass. Full native
+physics and joined outcome reviews are still pending. Its
+[continuous station video](runs/dex3_station_pickup_03/station_view/overview.mp4)
+shows walking, preparation, visual pickup, lift, replacement and withdrawal.
+This is not yet a physically accepted component or a complete paper branch.
+
+`--station-carry` now composes the same sensor-based arrival with the carrying
+actor. The [handoff diagnostic](analysis/dex3_station_carry_handoff_01/review.json)
+matches 24,801 recorded commands, including the first carrying-actor response.
+Its return reference is the sensed pickup stance. The independent evaluator
+measures carrying displacement from that handoff, excluding preceding unloaded
+travel; six reference-selection regression tests pass. Fresh
+`dex3_station_carry_01` starts in the original aisle and is running with carry08's
+contact model and the separately declared 2 ms sole response. Neither earlier
+component result transfers physical acceptance to this combined attempt.
+
 The [preparation geometry screen](analysis/dex3_station_handoff_screen_01/review.json)
 rejects arm-only preparation because the hand intersects the hip; coordinated
 waist/arm preparation clears all 41 static samples. Dynamic clearance remains
@@ -73,15 +90,24 @@ state the two-joint Jacobians remain nonsingular. The guard now checks the activ
 control mode, including a 1 mm/rad minimum singular value and condition number
 below 100 for coordinated control. The [sensor-prefix comparison](analysis/dex3_tool_coordinated_guard_02/review.json)
 matches all 71,272 preceding commands exactly and produces a finite, source-bounded
-command at the former stop. Fresh `dex3_tool_stroke_10` is running from time zero;
-no physical outcome or successful tool actuation is inferred from the replay.
+command at the former stop. Fresh `dex3_tool_stroke_10` detects loss of
+three-finger load at 71.571 s, then its abort encounters the legacy scalar
+lever guard. It fails at 71.572 s. The load estimator now retains coordinated
+coordinates through abort and release. An explicitly restored-state diagnostic
+tests lower squeeze targets of [2.45, 1.1025, 1.3475] N, a doubled normal
+admittance gain and a stricter 3% tracking band. The earlier native recording
+closes the tips before reaching the 3 N target, then exceeds drift and
+tip-contact limits. Physical gap, drift, contact, speed and dwell acceptance
+remain unchanged. No successful tool use or fresh continuous recording is
+inferred from that diagnostic.
 
 Current execution update (6 November 2026): carry07's complete native replay
 has finished. Its carrying, load continuity, return and release-support checks
 pass, but hand/tray penetration and the separately checked thumb speed fail.
 The [corrected lowering continuation](analysis/dex3_release_inset_checkpoint_01/result.json)
 finishes without hand/tray contact and stays within hand limits. It is a
-restored-state diagnostic; fresh uninterrupted carry08 has finished and is being reviewed separately.
+restored-state diagnostic; fresh uninterrupted carry08 now passes its separate
+single-attempt review as recorded above.
 The [supported ramped tool stroke](analysis/dex3_tool_supported_ramp_evaluation_01/review.json)
 still loses retention during reopening and is not qualified.
 

@@ -23,6 +23,27 @@ def sha(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 VERIFIER_SHA256 = sha(__file__)
 
 
+def carry_reference_index(contract, events, times):
+    """Select a recorded stance, excluding preceding unloaded travel.
+
+    The handoff event is checked against frozen isolated-controller replay.
+    Missing, duplicate or off-grid handoffs cannot establish a carry origin.
+    Historical standalone carrying contracts retain their initial stance.
+    """
+    reference = contract['carry_contract'].get('reference_state', 'initial_state')
+    if reference == 'initial_state':
+        return 0
+    if reference != 'sensor_based_pickup_handoff' or contract.get('actor_module') != 'station_pickup_actor':
+        raise ValueError('Unsupported carrying reference state')
+    marks = [e for e in events if e.get('kind') == reference]
+    if len(marks) != 1 or not np.isfinite(marks[0]['time_s']):
+        return None
+    index = int(np.argmin(abs(times-marks[0]['time_s'])))
+    if abs(float(times[index])-marks[0]['time_s']) > 1e-8:
+        return None
+    return index
+
+
 def difference(a, b):
     if isinstance(a, dict):
         if not isinstance(b, dict) or set(a) != set(b): return float('inf')
@@ -167,12 +188,20 @@ def physics(folder):
     if carrying:
         carry_limits=contract['carry_contract']
         carry_events=json.loads((folder/'events.json').read_text())
+        assert sha(folder/'events.json') == result['events_sha256']
+        carry_origin_index=carry_reference_index(contract,carry_events,trace['time'])
+        carry_reference_valid=carry_origin_index is not None
+        carry_origin_index=0 if carry_origin_index is None else carry_origin_index
+        carry_reference=mujoco.MjData(m)
+        carry_reference.qpos[:]=trace['qpos'][carry_origin_index]
+        mujoco.mj_kinematics(m,carry_reference)
+        carry_origin_xy=trace['qpos'][carry_origin_index,:2].copy()
         carry_phases={e['phase']:e['time_s'] for e in carry_events if 'phase' in e}
         carry_start=carry_phases.get('carry_preload',carry_phases.get('carry_raise',float('inf')))
         carry_end=carry_phases.get('lower',float(trace['time'][-1]))
-        forward=rest.body('pelvis').xmat.reshape(3,3)[:2,0].copy();forward/=np.linalg.norm(forward)
+        forward=carry_reference.body('pelvis').xmat.reshape(3,3)[:2,0].copy();forward/=np.linalg.norm(forward)
         sole_ids=[m.site(s+'_sole').id for s in ['left','right']]
-        sole_floor=rest.site_xpos[sole_ids,2].copy();sole_lifts=np.zeros(2)
+        sole_floor=carry_reference.site_xpos[sole_ids,2].copy();sole_lifts=np.zeros(2)
         base_excursion=0.;lost_load=0.;maximum_lost_load=0.;held_carry_s=0.
         wrist_tool_initial=None;wrist_tool_drift=0.
         wrist_rotation_initial=None;wrist_rotation_change=0.
@@ -241,7 +270,7 @@ def physics(folder):
             maximum_lost_load=max(maximum_lost_load,lost_load)
             if held:
                 held_carry_s+=dt
-                base_excursion=max(base_excursion,float(-forward@(trace['qpos'][i,:2]-trace['qpos'][0,:2])))
+                base_excursion=max(base_excursion,float(-forward@(trace['qpos'][i,:2]-carry_origin_xy)))
                 sole_lifts=np.maximum(sole_lifts,d.site_xpos[sole_ids,2]-sole_floor)
             wrist=d.site('right_wrist_reference')
             relative=wrist.xmat.reshape(3,3).T@(d.body('tweezer').xpos-wrist.xpos)
@@ -309,12 +338,13 @@ def physics(folder):
             checks['held_wrist_orientation_stable']=(wrist_rotation_initial is not None and
                 wrist_rotation_change<=carry_limits['maximum_wrist_rotation_change_rad'])
         times=[carry_phases.get(p,float('nan')) for p in expected]
-        checks.update(loaded_route_order=bool(np.isfinite(times).all() and np.all(np.diff(times)>0.)),
+        checks.update(carry_reference_established=carry_reference_valid,
+            loaded_route_order=bool(np.isfinite(times).all() and np.all(np.diff(times)>0.)),
             base_moved_while_tool_held=base_excursion>=carry_limits['minimum_actual_base_excursion_m'],
             both_feet_stepped_while_tool_held=bool(np.all(sole_lifts>=carry_limits['minimum_each_sole_lift_m'])),
             carry_load_continuity=held_carry_s>0. and maximum_lost_load<=carry_limits['maximum_contiguous_lost_load_s'],
             carried_tool_wrist_drift=wrist_tool_initial is not None and wrist_tool_drift<=carry_limits['maximum_tool_wrist_position_drift_m'],
-            returned_base=bool(np.linalg.norm(trace['qpos'][-1,:2]-trace['qpos'][0,:2])<=carry_limits['maximum_final_base_xy_error_m']),
+            returned_base=bool(carry_reference_valid and np.linalg.norm(trace['qpos'][-1,:2]-carry_origin_xy)<=carry_limits['maximum_final_base_xy_error_m']),
             returned_tool=bool(np.linalg.norm(trace['qpos'][-1,qtool:qtool+3]-trace['qpos'][0,qtool:qtool+3])<=carry_limits['maximum_final_tool_position_error_m']))
         if carry_limits.get('preload_before_lift'):
             configs=[e for e in carry_events if e.get('kind')=='carrying_force_before_lift']
@@ -341,6 +371,10 @@ def physics(folder):
         report.update(qualified_carry=False,carry_metrics=dict(base_excursion_while_held_m=base_excursion,
             maximum_sole_lifts_while_held_m=sole_lifts.tolist(),held_carry_s=held_carry_s,
             maximum_contiguous_lost_load_s=maximum_lost_load,maximum_tool_wrist_position_drift_m=wrist_tool_drift))
+        report['carry_metrics'].update(reference_state=carry_limits.get('reference_state','initial_state'),
+            reference_established=carry_reference_valid,
+            reference_time_s=float(trace['time'][carry_origin_index]) if carry_reference_valid else None,
+            reference_base_xy_m=carry_origin_xy.tolist() if carry_reference_valid else None)
         if carry_limits.get('preload_before_lift'):report['carry_metrics']['native_prelift_loaded_s']=prelift_loaded_s
         if carry_limits.get('withdrawal_mode')=='body_translation':
             report['carry_metrics']['maximum_wrist_rotation_change_rad']=wrist_rotation_change

@@ -38,13 +38,15 @@ def sha(p):
 
 def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open', minimum_shoulder_abduction=None,
         policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False,
-        station_pickup=False, waypoint_stop_distance=.06):
+        station_pickup=False, waypoint_stop_distance=.06, station_carry=False):
     if not .005 <= waypoint_stop_distance <= .06:
         raise ValueError('Waypoint stopping distance must be between 5 and 60 mm')
     if waypoint_forward is None and waypoint_stop_distance != .06:
         raise ValueError('A revised stopping distance requires sensor-based waypoint mode')
     if station_pickup and not station_approach:
         raise ValueError('Continuous station pickup requires the existing-station approach')
+    if station_carry and not station_pickup:
+        raise ValueError('Continuous station carrying requires --station-pickup')
     if station_approach and waypoint_forward is None:
         raise ValueError('An authored station approach requires the sensor-based waypoint mode')
     if waypoint_forward is not None and (policy_family != 'groot' or not 1. <= waypoint_forward <= 3.):
@@ -56,6 +58,10 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
     source_contract = json.loads((source / 'contract.json').read_text())
     assert sha(source / 'world.xml') == source_contract['model_sha256']
     assert source_contract['hand_kind'] == 'unitree_three_finger'
+    if station_pickup:
+        has_carry = source_contract.get('task') == 'visual_pickup_loaded_out_and_back_release'
+        if has_carry != station_carry:
+            raise ValueError('Select --station-carry exactly when using a carrying source contract')
     policy = HERE / ('locomotion_policy' if policy_family == 'unitree' else 'locomotion_groot_policy')
     provenance = json.loads((policy / 'SOURCE.json').read_text())
     for item in provenance['files']:
@@ -222,6 +228,11 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             'ftir_hand.py', 'joint_rrt.py', 'robot_source_meshes.py', 'source_proximity.py',
             'tool_cameras.py', 'sensor_rendering.py', 'map_localization.py']
         tool_prior = json.loads((source / 'policy_source/tool_prior.json').read_text())
+        assert sha(source / 'policy_source/tool_prior.json') == source_contract['controller_prior_sha256']
+        if ('carry_distance_m' in tool_prior) != station_carry:
+            raise ValueError('Source carrying prior and requested station mode disagree')
+        if station_carry:
+            extra_modules += ['carry_tool_actor.py', 'quasistatic_walking.py']
         authored_pose = np.asarray(tool_prior.pop('initial_robot_qpos'))
         predictor = mujoco.MjModel.from_xml_path(str(folder / 'controller_model/world.xml'))
         selected_names = SDK_JOINTS[12:] + [predictor.joint(j).name for j in predictor.actuator_trnid[:, 0]
@@ -285,6 +296,19 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                 robot_or_object_pose_writes_after_initialization=False))
         contract['camera_contract'] = dict(contract['camera_contract'], capture_phase=['localize', 'observe'])
         contract['waypoint']['scope'] = 'Sensor-based arrival before continuous preparation and pickup; evaluated separately from grasp success'
+        if station_carry:
+            contract['scope'] = 'Uninterrupted station arrival, visual pickup, local loaded out-and-back, release and return to the pickup stance in the original laboratory'
+            contract['carry_contract'] = dict(source_contract['carry_contract'],
+                reference_state='sensor_based_pickup_handoff',
+                reference_scope='Actual robot state at the sensor-based pickup handoff; the preceding unloaded approach never earns carrying displacement')
+            if 'empty_hand_base_return' in contract['carry_contract']:
+                contract['carry_contract']['empty_hand_base_return'] = dict(
+                    contract['carry_contract']['empty_hand_base_return'],
+                    target='Pickup-station base XY estimated from own sensors at the continuous handoff')
+            for key in ['contact_solver_revision', 'hand_tool_compliance_revision']:
+                if key in source_contract:
+                    contract[key] = source_contract[key]
+            contract['station_handoff']['pickup_actor_module'] = 'carry_tool_actor'
     (folder / 'contract.json').write_text(json.dumps(contract, indent=2) + '\n')
     log = (folder / 'actor_stderr.log').open('w')
     actor = subprocess.Popen(command, env=environment, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -405,9 +429,11 @@ if __name__ == '__main__':
     p.add_argument('--waypoint-forward', type=float)
     p.add_argument('--station-approach', action='store_true')
     p.add_argument('--station-pickup', action='store_true')
+    p.add_argument('--station-carry', action='store_true',
+                   help='Use the carrying source contract after sensor-based station arrival')
     p.add_argument('--waypoint-stop-distance', type=float, default=.06,
                    help='Authored forward stopping distance in the odometry frame; 5 to 60 mm')
     a = p.parse_args()
     if run(a.source, a.folder, a.duration, a.speed, a.stop_at, a.hand_posture,
-           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup,a.waypoint_stop_distance)['failure']:
+           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup,a.waypoint_stop_distance,a.station_carry)['failure']:
         raise SystemExit(1)
