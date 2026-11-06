@@ -89,6 +89,16 @@ class ToolActor:
                 raise ValueError('Tool stroke needs three larger force targets below the original 4 N bound')
         self.tool_open_force=self.hold_force.copy();self.tool_stroke_active=False
         self.tool_stroke_done=False;self.tool_force_since=None
+        self.tool_cartesian_fingers=bool(prior.get('tool_cartesian_fingers',False))
+        self.tool_cartesian_reference=None
+        if self.tool_cartesian_fingers:
+            if self.tool_squeeze_force is None:
+                raise ValueError('Coordinated fingers require the explicit tool-stroke task')
+            self.tool_axes_from_wrist=np.asarray(prior['grasp_geometry']['source_tool_from_wrist'])[:3,:3]
+            if not np.allclose(self.tool_axes_from_wrist@self.tool_axes_from_wrist.T,np.eye(3),atol=1e-8):
+                raise ValueError('The unposed grasp axes must be an orthogonal frame')
+            companion_names=['right_hand_thumb_2_joint','right_hand_index_0_joint','right_hand_middle_0_joint']
+            self.finger_pairs=[np.array([a,self.names.index(name)]) for a,name in zip(self.drivers,companion_names)]
         self.tool_force_ramp=float(prior.get('tool_force_ramp_s',0.))
         if not (self.tool_force_ramp==0. or .25<=self.tool_force_ramp<=3.):
             raise ValueError('Tool force ramp must be disabled or 0.25 to 3 seconds')
@@ -139,6 +149,14 @@ class ToolActor:
         return wrist.xmat.reshape(3,3).T@(self.weights@self.points()-wrist.xpos)
 
     def change(self, phase, t):
+        if phase=='tool_squeeze' and self.tool_cartesian_fingers:
+            wrist=self.d.site('right_wrist_reference')
+            self.tool_cartesian_reference=(self.tool_axes_from_wrist@wrist.xmat.reshape(3,3).T@
+                (self.points()-wrist.xpos).T).T
+            for pair in self.finger_pairs:
+                limits=self.m.jnt_range[self.m.actuator_trnid[pair,0]]
+                self.lower[pair]=np.maximum(self.lower[pair],limits[:,0]+.01)
+                self.upper[pair]=np.minimum(self.upper[pair],limits[:,1]-.01)
         if phase=='lower':self.lower_start_height=self.lift_height
         if phase=='release':
             # Capture the previous own compensation command, not plant
@@ -179,6 +197,27 @@ class ToolActor:
         self.tool_force_goal=np.asarray(target).copy();self.tool_force_ramp_started=t
         if not self.tool_force_ramp:self.hold_force=self.tool_force_goal.copy()
 
+    def coordinated_finger_state(self, points):
+        """Own-encoder kinematics and motor residuals in unposed grasp axes.
+
+        Each pair resolves inferred inward and tangent loads. No tool pose,
+        contact force or success state is available to this controller.
+        """
+        wrist=self.d.site('right_wrist_reference')
+        axes=self.tool_axes_from_wrist@wrist.xmat.reshape(3,3).T
+        positions=(axes@(points-wrist.xpos).T).T
+        matrices=[];loads=[]
+        for i,((body,_),pair) in enumerate(zip(self.features,self.finger_pairs)):
+            jp,jr=np.zeros((3,self.m.nv)),np.zeros((3,self.m.nv))
+            mujoco.mj_jac(self.m,self.d,jp,jr,points[i],body)
+            jac=axes@jp[:,self.va[pair]]
+            matrix=np.vstack(((1. if i==0 else -1.)*jac[1],jac[2]))
+            if np.linalg.cond(matrix)>100.:
+                raise RuntimeError('Coordinated finger Jacobian is ill-conditioned')
+            matrices.append(matrix)
+            loads.append(np.linalg.solve(matrix.T,self.filtered[pair]))
+        return positions,matrices,np.asarray(loads)
+
     def update(self, obs):
         if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
         if not all(np.isfinite(np.asarray(v)).all() for v in obs.values()):raise ValueError('Nonfinite sensor packet')
@@ -200,6 +239,10 @@ class ToolActor:
         lever=np.asarray(lever)
         if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
         effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
+        coordinated=(self.tool_cartesian_reference is not None and self.phase in self.loaded_phases)
+        if coordinated:
+            finger_positions,finger_matrices,finger_loads=self.coordinated_finger_state(points)
+            proxy=finger_loads[:,0]
         self.latest_force_proxy=proxy.copy()
         if self.tool_force_ramp and self.tool_force_ramp_started is not None:
             u=float(np.clip((t-self.tool_force_ramp_started)/self.tool_force_ramp,0.,1.))
@@ -240,6 +283,18 @@ class ToolActor:
             speeds=np.clip(.0005/lever,.001,.015)
             for i,a in enumerate(self.drivers):
                 desired_force=self.hold_force[i] if self.hold_entered else .03
+                if coordinated:
+                    # Normal motion regulates inferred load; tangent motion
+                    # retains the own-hand material point's initial height.
+                    # Both joint references move, avoiding the old one-joint arc.
+                    normal_speed=float(np.clip(.0003*(desired_force-proxy[i]),-.0005,.0005))
+                    tangent_error=finger_positions[i,2]-self.tool_cartesian_reference[i,2]
+                    tangent_speed=float(np.clip(-2.*tangent_error,-.0005,.0005))
+                    joint_speed=np.linalg.solve(finger_matrices[i],[normal_speed,tangent_speed])
+                    joint_speed*=min(1.,.03/max(np.max(abs(joint_speed)),1e-12))
+                    pair=self.finger_pairs[i]
+                    self.command[pair]=np.clip(self.command[pair]+joint_speed*dt,self.lower[pair],self.upper[pair])
+                    continue
                 rate=np.clip(1.2*(desired_force*lever[i]-effort[i]),-speeds[i],speeds[i]) if self.hold_entered or self.flags[i] else speeds[i]
                 if self.hold_entered and abs(desired_force-proxy[i])<=self.grip_force_deadband:
                     # Retain the current motor position reference near the

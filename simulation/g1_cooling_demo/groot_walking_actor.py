@@ -23,6 +23,7 @@ from scipy.spatial.transform import Rotation
 import yaml
 
 from observations import robot_joints
+from odometry import LegOdometry
 from walking_actor import SDK_JOINTS
 
 
@@ -110,6 +111,18 @@ class GrootWalkingActor:
         self.lower_target = np.asarray(self.policy.cfg['default_angles'], dtype=np.float32)
         self.next_policy = 0.
         self.heading_reference = None
+        self.navigation_goal = prior.get('waypoint_goal_xy_m')
+        self.navigation_stop_at = None
+        self.navigation_stable_since = None
+        self.navigation_stage = 'disabled'
+        self.navigation_position = None
+        self.navigation_velocity = np.zeros(3)
+        if self.navigation_goal is not None:
+            self.navigation_goal = np.asarray(self.navigation_goal, dtype=float)
+            if self.navigation_goal.shape != (2,) or not np.isfinite(self.navigation_goal).all():
+                raise ValueError('Invalid authored waypoint')
+            self.odometry = LegOdometry(model, mujoco.MjData(model), prior['initial_map_xy_m'])
+            self.navigation_stage = 'settle'
 
     def torque(self, obs):
         if set(obs) != {'time_s', 'joint_position', 'joint_velocity', 'imu_quaternion', 'imu_gyro', 'depth'}:
@@ -126,6 +139,36 @@ class GrootWalkingActor:
             command[0] = self.prior['speed_m_s']
             error = np.arctan2(np.sin(self.heading_reference - yaw), np.cos(self.heading_reference - yaw))
             command[2] = np.clip(1.2 * error, -.2, .2)
+        if self.navigation_goal is not None:
+            self.navigation_position = self.odometry.update(obs)
+            blend = 1. - np.exp(-self.dt / .15)
+            self.navigation_velocity += blend * (self.odometry.d.qvel[:3] - self.navigation_velocity)
+            error_xy = self.navigation_goal - self.navigation_position[:2]
+            heading_error = np.arctan2(np.sin(self.heading_reference-yaw), np.cos(self.heading_reference-yaw))
+            rotation = np.array([[np.cos(yaw), -np.sin(yaw)], [np.sin(yaw), np.cos(yaw)]])
+            local_error = rotation.T @ error_xy
+            command[:] = 0.
+            if t >= 2. and self.navigation_stop_at is None:
+                self.navigation_stage = 'approach'
+                if local_error[0] <= .06 and abs(local_error[1]) <= .06 and abs(heading_error) <= .08:
+                    self.navigation_stop_at = t
+                    self.navigation_stage = 'stopping'
+                else:
+                    command[0] = np.clip(.8 * local_error[0], .08, self.prior['speed_m_s'])
+                    command[1] = np.clip(.8 * local_error[1], -.1, .1)
+                    command[2] = np.clip(1.2 * heading_error, -.2, .2)
+            if self.navigation_stop_at is not None and t-self.navigation_stop_at >= 2.:
+                settled = np.linalg.norm(self.navigation_velocity[:2]) < .05 and np.linalg.norm(error_xy) <= .15
+                if settled:
+                    if self.navigation_stable_since is None:
+                        self.navigation_stable_since = t
+                    if t-self.navigation_stable_since >= 1.:
+                        self.navigation_stage = 'arrived'
+                else:
+                    self.navigation_stable_since = None
+                    self.navigation_stage = 'stopping'
+            if t >= self.prior['stop_at_s'] and self.navigation_stop_at is None:
+                raise RuntimeError('Sensor-based waypoint approach timed out')
         if t + 1e-8 >= self.next_policy:
             self.lower_target = self.policy.infer(q[self.body_encoders], dq[self.body_encoders],
                 quaternion, np.asarray(obs['imu_gyro']), command)
@@ -174,6 +217,11 @@ def main():
             torque, command = actor.torque(packet)
             response = dict(torque=torque, commanded_velocity=command, error=None,
                             policy_evaluations=actor.policy.evaluations, policy_mode=actor.policy.last_mode)
+            if actor.navigation_goal is not None:
+                response.update(navigation_stage=actor.navigation_stage,
+                    navigation_position_m=actor.navigation_position.copy(),
+                    navigation_velocity_m_s=actor.navigation_velocity.copy(),
+                    navigation_stop_at_s=actor.navigation_stop_at)
         except Exception as error:
             response = dict(torque=np.zeros(actor.m.nu), error=type(error).__name__ + ': ' + str(error))
         pickle.dump(response, sys.stdout.buffer, protocol=5)

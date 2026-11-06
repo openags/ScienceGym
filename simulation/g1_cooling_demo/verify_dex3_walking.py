@@ -149,8 +149,13 @@ def verify(folder):
     source_limits = json.loads((folder / 'source_limit_review.json').read_text())
     assert source_limits['trace_sha256'] == result['trace_sha256']
     delta = d.qpos[:2] - np.asarray(contract['initial_qpos'])[:2]
-    # The preregistered staging points along world -Y, i.e. laboratory +X.
-    forward, lateral = float(-delta[1]), float(abs(delta[0]))
+    # Legacy aisle attempts point along world -Y. New station approaches
+    # explicitly declare their evaluation heading before any execution.
+    heading = np.asarray(contract.get('evaluation_forward_world_xy', [0., -1.]), dtype=float)
+    assert heading.shape == (2,) and np.isfinite(heading).all()
+    assert abs(np.linalg.norm(heading)-1.) < 1e-10
+    forward = float(delta@heading)
+    lateral = float(abs(delta@np.array([-heading[1],heading[0]])))
     checks = dict(attempt_completed=result['failure'] is None and abs(d.time - contract['duration_limit_s']) < 1e-8,
         controller_replay_exact=controller_error == 0. and actor.returncode == 0,
         continuous_physics_replay=max(qerror, verror) <= limits['maximum_replay_error'],
@@ -177,6 +182,7 @@ def verify(folder):
         maximum_other_robot_penetration_m=maximum_other_robot_penetration,
         steps=steps.tolist(), maximum_sole_lift_m=sole_lift.tolist(),
         forward_m=forward, lateral_m=lateral, maximum_settled_speed_m_s=max_settled_speed,
+        evaluation_forward_world_xy=heading.tolist(),
         qualified_walking=False, qualified_carry=False, qualified_paper_branch=False)
     shutil.copyfile(__file__, folder / 'walking_verifier.py')
     (folder / 'walking_review.json').write_text(json.dumps(report, indent=2) + '\n')

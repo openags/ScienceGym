@@ -27,11 +27,17 @@ fetch('../../simulation/g1_cooling_demo/runs/dex3_visual_carry_07/physical_revie
  const link=document.createElement('a');link.href='../../simulation/g1_cooling_demo/runs/dex3_visual_carry_07/physical_review.json';link.textContent='查看独立评估';node.appendChild(link);})
  .catch(()=>{document.getElementById('carry-review-status').textContent='独立全程接触评估仍在处理；电机速度检查已确认未通过。';});
 </script>
-<h2>G1＋Dex3 在原实验室行走：已完成前进与停步，接触检查未通过</h2>
+<h2>G1＋Dex3 在原实验室行走：单次试验通过</h2>
+<p>13 秒连续仿真，前进 1.102 米并停步。18 项独立检查全部通过，包括原定接触上限、关节位置、电机限值，以及控制器、传感器和物理回放。最大足底穿透为 0.658 毫米，低于原定 1 毫米上限。</p>
+<video controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/overview.mp4"></video>
+<div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/walking_review.json">18 项独立检查</a><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/source_limit_review.json">电机限值</a><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/contact_response_revision.json">实际使用的接触参数</a><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_05/render_receipt.json">录像与原始轨迹对应</a></div>
+<p class="note">这是单次空手、定时行走试验。当前尚未完成重复运行、携物跨工位或完整实验分支验收。模型采用明确记录的 2 毫秒足底接触响应；该参数并非实测鞋底性质。</p>
+<details><summary>此前行走与足底接触修正的失败记录</summary>
 <p>NVIDIA 官方 Decoupled WBC 行走／站立策略已接入当前模型。12 秒连续仿真中，机器人前进 1.0065 米并停步；关节位置、电机限值、站立稳定性及控制器／传感器／物理回放检查通过。落脚时足底穿透超过原定 1 毫米上限，本次仍未通过行走验收。</p>
 <video controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_01/visual_review_02/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_01/visual_review_02/overview.mp4"></video>
 <div class="links"><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_01/walking_review.json">全程独立评估</a><a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_01/source_limit_review.json">电机限值检查</a><a href="../../simulation/g1_cooling_demo/locomotion_groot_policy/SOURCE.json">NVIDIA 官方资源、版本与许可证</a><a href="../../simulation/g1_cooling_demo/analysis/groot_policy_adapter_01/review.json">600 个传感器包的官方接口对照</a></div>
 <p class="note">这是空手行走试验，尚未串联跨工位实验操作。第二次全程检查仍未通过，最大足底穿透为 1.495 毫米；原修改被显式接触对参数覆盖，实际轨迹与第一次完全相同。已定位原因，新一轮改动实际生效的接触对参数，并保留原验收上限。这是待验证的仿真参数选择，并非实测鞋底参数。<a href="../../simulation/g1_cooling_demo/runs/dex3_groot_walking_02/walking_review.json">第二次独立评估</a> · <a href="../../simulation/g1_cooling_demo/analysis/dex3_sole_response_diagnosis_01/review.json">参数生效诊断</a></p>
+</details>
 <details><summary>此前两次 Unitree 策略适配失败的记录</summary>
 <p>第二次从完整房间的现有通道起步，初始姿态通过碰撞检查；12 秒运行及独立传感器、控制器和物理回放已完成。但后续出现手部与髋部接触、手指速度超限、后退漂移和停步失败，因此不能计为跨工位行走。</p>
 <video controls playsinline preload="metadata" poster="../../simulation/g1_cooling_demo/runs/dex3_official_walking_02/overview_initial.png" src="../../simulation/g1_cooling_demo/runs/dex3_official_walking_02/overview.mp4"></video>

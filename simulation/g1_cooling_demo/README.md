@@ -1,5 +1,27 @@
 # G1 humanoid contact runtime
 
+Latest native walking result (6 November 2026): the
+[13-second G1/Dex3 attempt](runs/dex3_groot_walking_05/overview.mp4)
+passes all 18 [independent checks](runs/dex3_groot_walking_05/walking_review.json),
+including source motor limits and exact sensor/controller/physics replay.
+It travels 1.1022 m and stops; maximum sole penetration is 0.6584 mm under
+the unchanged 1 mm bound. The plant uses the explicitly authored 2 ms
+sole/floor pair response. This is one unloaded timed attempt, not repeated
+walking qualification, carrying, navigation or a paper branch.
+The fourth attempt passes contact checks but travels only 0.9971 m, below
+the original 1 m requirement; its failed review is preserved. Encoder/IMU
+odometry on that record has 29.91 mm maximum XY error. Separate sensor-based
+waypoint and existing-tool-station approach trials are now running.
+
+Fresh carry08 finishes its 146.731-second sequence without an actor failure
+and passes source motor limits. Its full native physical review is still
+processing. The earlier restored release diagnostic does not qualify it.
+For tool use, a new optional two-joint-per-finger controller regulates
+inferred inward load while retaining the own fingertip material point's
+tangent position. Nine analytic Jacobians match independent finite
+differences within 3.35e-10 m/rad. Its native continuation is running;
+neither kinematic agreement nor an inferred force target establishes tool use.
+
 Current execution update (6 November 2026): carry07's complete native replay
 has finished. Its carrying, load continuity, return and release-support checks
 pass, but hand/tray penetration and the separately checked thumb speed fail.

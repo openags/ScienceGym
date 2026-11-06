@@ -37,7 +37,13 @@ def sha(p):
 
 
 def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open', minimum_shoulder_abduction=None,
-        policy_family='unitree', sole_time_constant=None):
+        policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False):
+    if station_approach and waypoint_forward is None:
+        raise ValueError('An authored station approach requires the sensor-based waypoint mode')
+    if waypoint_forward is not None and (policy_family != 'groot' or not 1. <= waypoint_forward <= 3.):
+        raise ValueError('This unloaded aisle waypoint trial requires Groot and a 1 to 3 m declared goal')
+    if waypoint_forward is not None and duration < stop_at + 3.5:
+        raise ValueError('Reserve at least 3.5 seconds after the approach timeout for stopping checks')
     source, folder = Path(source).resolve(), Path(folder).resolve()
     folder.mkdir(parents=True, exist_ok=False)
     source_contract = json.loads((source / 'contract.json').read_text())
@@ -112,8 +118,17 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
     if minimum_shoulder_abduction is not None:
         for side, sign in [('left', 1.), ('right', -1.)]:
             d.joint(side + '_shoulder_roll_joint').qpos[0] = sign * max(.25, minimum_shoulder_abduction)
-    d.qpos[:2] = [-.52, .7]  # lab (3.0, 1.5), same existing front aisle
-    d.qpos[3:7] = [2**-.5, 0., 0., -2**-.5]
+    station_goal = np.asarray(source_contract['initial_qpos'])[:2].copy()
+    station_quaternion = np.asarray(source_contract['initial_qpos'])[3:7].copy()
+    if station_approach:
+        facing = np.zeros(3)
+        mujoco.mju_rotVecQuat(facing,np.array([1.,0.,0.]),station_quaternion)
+        facing = facing[:2]/np.linalg.norm(facing[:2])
+        d.qpos[:2] = station_goal-waypoint_forward*facing
+        d.qpos[3:7] = station_quaternion
+    else:
+        d.qpos[:2] = [-.52, .7]  # lab (3.0, 1.5), same existing front aisle
+        d.qpos[3:7] = [2**-.5, 0., 0., -2**-.5]
     mujoco.mj_forward(m, d)
     d.qpos[2] -= min(d.site(s + '_sole').xpos[2] for s in ['left', 'right'])
     mujoco.mj_forward(m, d)
@@ -184,11 +199,14 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                  minimum_shoulder_abduction_rad=minimum_shoulder_abduction, hand_posture=hand_posture,
                  target_body_pose_rad=[float(d.joint(name).qpos[0]) for name in SDK_JOINTS],
                  policy_family=policy_family)
+    if waypoint_forward is not None:
+        prior.update(initial_map_xy_m=d.qpos[:2].tolist(),
+                     waypoint_goal_xy_m=(station_goal if station_approach else d.qpos[:2]+[0.,-waypoint_forward]).tolist())
     (folder / 'walking_prior.json').write_text(json.dumps(prior, indent=2) + '\n')
     actor_module = 'dex3_walking_actor' if policy_family == 'unitree' else 'groot_walking_actor'
     command = [sys.executable, str(HERE / (actor_module + '.py')), '--model', str(folder / 'controller_model/world.xml')]
     command, environment, isolation = prepare(folder, folder / 'controller_model/world.xml', command,
-        extra_modules=['walking_actor.py', actor_module + '.py'],
+        extra_modules=['walking_actor.py', 'odometry.py', actor_module + '.py'],
         policy_files=sorted(p for p in policy.iterdir() if p.suffix in {'.onnx', '.yaml'}) + [folder / 'walking_prior.json'])
     contract = dict(scope=__doc__, hand_kind='unitree_three_finger', model_sha256=sha(folder / 'world.xml'),
         source_contract_sha256=sha(source / 'contract.json'), initial_qpos=d.qpos.tolist(), initial_qvel=d.qvel.tolist(),
@@ -203,6 +221,18 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
         physical_acceptance=source_contract['physical_acceptance'],
         required_forward_m=1., maximum_lateral_m=.3, maximum_settled_speed_m_s=.05,
         qualified_walking=False, qualified_carry=False, qualified_paper_branch=False)
+    if waypoint_forward is not None:
+        contract['waypoint']=dict(scope='Unloaded aisle arrival using encoders/IMU and a declared initial map pose',
+            initial_map_xy_m=prior['initial_map_xy_m'],goal_xy_m=prior['waypoint_goal_xy_m'],
+            maximum_final_position_error_m=.15,maximum_odometry_error_m=.10,
+            maximum_final_heading_error_rad=.10,
+            maximum_settled_speed_m_s=.05,settling_delay_after_stop_s=2.,
+            minimum_settled_duration_s=1.,equipment_arrival_qualified=False)
+    if station_approach:
+        contract['authored_initial_staging']=dict(world_xy_m=d.qpos[:2].tolist(),
+            quaternion_wxyz=d.qpos[3:7].tolist(),scope='Authored start behind the existing tool-station pose; no object state changed')
+        contract['evaluation_forward_world_xy']=facing.tolist()
+        contract['waypoint']['scope']='Sensor-based approach to the existing tool-station pose; manipulation is not yet included'
     (folder / 'contract.json').write_text(json.dumps(contract, indent=2) + '\n')
     log = (folder / 'actor_stderr.log').open('w')
     actor = subprocess.Popen(command, env=environment, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -277,7 +307,9 @@ if __name__ == '__main__':
     p.add_argument('--minimum-shoulder-abduction', type=float)
     p.add_argument('--policy-family', choices=['unitree', 'groot'], default='unitree')
     p.add_argument('--sole-contact-time-constant', type=float)
+    p.add_argument('--waypoint-forward', type=float)
+    p.add_argument('--station-approach', action='store_true')
     a = p.parse_args()
     if run(a.source, a.folder, a.duration, a.speed, a.stop_at, a.hand_posture,
-           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant)['failure']:
+           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach)['failure']:
         raise SystemExit(1)
