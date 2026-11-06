@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0.):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -43,6 +43,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     dex3 = contract.get('hand_kind') == 'unitree_three_finger'
     if hand_contact_impedance is not None and (not dex3 or not .95<=hand_contact_impedance<=.9999):
         raise ValueError('Fingertip/tool compliance trial requires Dex3 and impedance 0.95 to 0.9999')
+    if not abs(grasp_proximal_preshape)<=.08 or (grasp_proximal_preshape and (not dex3 or carry_distance is not None)):
+        raise ValueError('Supported grasp preshape requires a non-carry Dex3 task and at most 0.08 rad')
     if tool_squeeze_force is not None and (not dex3 or carry_distance is not None or not thumb_force<tool_squeeze_force<4.):
         raise ValueError('Free-tool stroke requires Dex3, no carrying, and a larger force target below 4 N')
     visual = bool(contract.get('observed_approach',False))
@@ -178,6 +180,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         if loaded_hand_damping_scale!=1.:prior['loaded_hand_damping_scale']=loaded_hand_damping_scale
         if tool_squeeze_force is not None:
             prior['tool_squeeze_force_proxy_n']=[tool_squeeze_force,tool_squeeze_force/2,tool_squeeze_force/2]
+        if grasp_proximal_preshape:
+            prior['grasp_proximal_preshape_rad']=grasp_proximal_preshape
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -240,6 +244,13 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         allowed_tool_contact_bodies=['right_index_force_sensor_2', 'right_index_force_sensor_3',
             'right_thumb_force_sensor_3', 'right_thumb_force_sensor_4', 'right_index_2', 'right_thumb_4'],
         qualified_grasp=False, qualified_paper_branch=False)
+    if grasp_proximal_preshape:
+        run_contract['supported_grasp_preshape']=dict(
+            index_and_middle_proximal_offset_rad=grasp_proximal_preshape,
+            ramp_duration_s=12.,source_joint_margin_rad=.01,
+            lift_requires_preshape_finished_and_fresh_load_dwell=True,
+            nonclosing_joint_motor_residual_compensation=True,
+            scope='Authored supported grasp adjustment; no grasp or tool-use qualification')
     if tool_squeeze_force is not None:
         run_contract['tool_actuation_contract']=dict(
             scope='Operate the free passive tweezer while maintaining the robot grasp; no specimen pickup credit',
@@ -507,5 +518,7 @@ if __name__ == '__main__':
                    help='Stop position-reference integration within this observed force error (0 to 0.1 N)')
     p.add_argument('--loaded-hand-damping-scale',type=float,default=1.,
                    help='Increase own-velocity feedback during loaded phases (1 to 2); unchanged physical limits')
+    p.add_argument('--grasp-proximal-preshape',type=float,default=0.,
+                   help='Ramp index/middle proximal references while the tool is supported; at most 0.08 rad')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape)['status'] == 'failed': raise SystemExit(1)

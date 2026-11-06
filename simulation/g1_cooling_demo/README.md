@@ -27,13 +27,28 @@ The [numerical comparison](analysis/dex3_tool_actuation_balance_comparison_01/re
 finds a full-accuracy solution with finer KKT regularization/refinement, without
 changing the objective, constraints or tolerances. `conic_balance.py` tries that
 setting only after the original solve is rejected; infeasible results remain
-rejected. The new continuation is `analysis/dex3_tool_actuation_checkpoint_02`.
+rejected. The [second continuation](analysis/dex3_tool_actuation_checkpoint_02/result.json)
+passes the old numerical stop but [fails tool actuation](analysis/dex3_tool_actuation_evaluation_02/review.json):
+minimum squeezed gap is 1.402 mm versus the unchanged 0.5 mm bound, and the tool
+migrates out of the grasp during reopening. Its own-force target event does
+not establish tip closure. The next [prepared candidate](runs/dex3_tool_actuation_candidate_03/contract.json)
+ramps the index/middle proximal references by -0.04 rad over 12 seconds while
+the tool is still tray-supported, then requires a fresh load dwell before
+lifting. Nonclosing joints retain own-motor load compensation, following the
+carrying grasp design. `analysis/dex3_tool_actuation_checkpoint_03` tests that
+change from an explicitly restored pre-grasp state; no result is yet claimed.
 `evaluate_tool_actuation_checkpoint.py` checks actual native tip separation,
 tool retention, finger loads and closure/reopening dwell independently of the
 actor's inferred loads. No successful tool stroke or specimen pickup is claimed.
 The [held-tool camera inspection](analysis/dex3_held_tool_visibility_03/review.json)
 also finds substantial head-camera occlusion after grasp; initial localization
-is not evidence of visible tool tips during use.
+is not evidence of visible tool tips during use. A separate
+[kinematic inspection-pose screen](analysis/dex3_tool_inspection_pose_01/review.json)
+finds 14 of 35 sampled paths within the original contact bounds. A 60 mm raise
+and 0.5 rad wrist rotation increases visible tool pixels from 52 to 2,531.
+That screen uses a retained state and a rigid-grasp hypothesis; it is neither
+an executed motion nor online tool tracking. Sensor-based planning and physical
+retention tests remain required before adopting the inspection motion.
 
 The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
 contains continuous visual pickup, four outward steps, four return steps and

@@ -74,6 +74,16 @@ class ToolActor:
                 raise ValueError('Tool stroke needs three larger force targets below the original 4 N bound')
         self.tool_open_force=self.hold_force.copy();self.tool_stroke_active=False
         self.tool_stroke_done=False;self.tool_force_since=None
+        self.grasp_proximal_preshape=float(prior.get('grasp_proximal_preshape_rad',0.))
+        if not abs(self.grasp_proximal_preshape)<=.08:
+            raise ValueError('Supported grasp preshape must be within 0.08 rad')
+        self.grasp_preshape_indices=np.array([self.names.index('right_hand_'+f+'_0_joint')
+                                             for f in ['index','middle']])
+        self.grasp_preshape_duration=12.
+        proposed=self.initial[self.grasp_preshape_indices]+self.grasp_proximal_preshape
+        limits=model.jnt_range[model.actuator_trnid[self.grasp_preshape_indices,0]]
+        if self.grasp_proximal_preshape and (np.any(proposed<limits[:,0]+.01) or np.any(proposed>limits[:,1]-.01)):
+            raise ValueError('Grasp preshape violates the original source margin')
         self.release_extra=float(prior.get('release_extra_opening_rad',.04))
         self.release_load_feedback=bool(prior.get('release_load_feedback',False))
         self.release_preserve_posture=bool(prior.get('release_preserve_posture',False))
@@ -128,7 +138,7 @@ class ToolActor:
     def hand_load_feedforward(self):
         """Optional own-motor disturbance compensation; no plant contact input."""
         result=np.zeros(len(self.hand))
-        if self.tool_stroke_active and self.phase in self.loaded_phases:
+        if (self.tool_stroke_active or self.grasp_proximal_preshape) and self.phase in self.loaded_phases:
             for k,a in enumerate(self.hand):
                 if a not in self.drivers:
                     bound=.5*np.max(abs(self.m.actuator_ctrlrange[a]))
@@ -160,6 +170,14 @@ class ToolActor:
         if max(abs(proxy))>4. or max(abs(effort))>self.motor_load_abort_nm:self.abort('Observed motor load exceeds the development bound',t)
         if self.phase=='settle' and t-self.phase_started>=2.:self.change('close',t)
         if self.phase=='close':
+            if self.grasp_proximal_preshape:
+                # Establish the new contact distribution while the tray
+                # still supports the tool. The 12 s quintic ramp matches the
+                # supported preshape used by the carrying controller.
+                u=float(np.clip((t-self.phase_started)/self.grasp_preshape_duration,0.,1.))
+                u=u**3*(10.+u*(-15.+6.*u))
+                self.command[self.grasp_preshape_indices]=self.initial[self.grasp_preshape_indices]+u*self.grasp_proximal_preshape
+                self.motor_load_abort_nm=min(.3,.5*self.source_driver_effort_nm)
             for i in range(3):
                 if not self.flags[i] and proxy[i]>.05:self.flags[i]=True;self.release_since[i]=None
                 elif self.flags[i] and proxy[i]<.02:
@@ -169,7 +187,8 @@ class ToolActor:
             self.hold_entered=self.hold_entered or bool(all(self.flags))
             # The inferred 18 g tool and 0.225 sliding friction require more
             # than mere touch. Require sustained opposed load before lifting.
-            if self.hold_entered and np.all(proxy>self.lift_force):
+            preshape_finished=not self.grasp_proximal_preshape or t-self.phase_started>=self.grasp_preshape_duration
+            if self.hold_entered and preshape_finished and np.all(proxy>self.lift_force):
                 if self.load_since is None:self.load_since=t
                 if t-self.load_since>=getattr(self,'minimum_load_dwell',.5):self.change('lift',t)
             else:self.load_since=None
