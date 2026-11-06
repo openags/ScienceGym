@@ -57,8 +57,10 @@ def controller(folder):
         for name,digest in contract['source_snapshot_sha256'].items(): assert sha(folder/'source_snapshot'/name)==digest
     for name, digest in receipt['source_modules'].items(): assert sha(folder/'actor_bundle/code'/name) == digest
     assert sha(folder/'actor_bundle/model/world.xml') == receipt['bundled_model_sha256']
+    for item in receipt.get('input_files', []):
+        assert sha(folder/item['path']) == item['sha256']
     actor = contract.get('actor_module', 'tool_grasp_actor')
-    assert actor in {'tool_grasp_actor', 'dex3_tool_actor','visual_tool_actor','carry_tool_actor'}
+    assert actor in {'tool_grasp_actor', 'dex3_tool_actor','visual_tool_actor','carry_tool_actor','station_pickup_actor'}
     visual=bool(contract.get('observed_approach',False));camera_index=[]
     if visual:
         assert sha(folder/'camera_index.json')==result['camera_index_sha256']

@@ -1,5 +1,25 @@
 # G1 humanoid contact runtime
 
+Latest station integration (6 November 2026): the [20-second approach to the
+existing tool bench](runs/dex3_groot_station_approach_01/station_view/overview.mp4)
+passes its [native walking review](runs/dex3_groot_station_approach_01/walking_review.json)
+and [eight arrival checks](runs/dex3_groot_station_approach_01/waypoint_review.json).
+Actual arrival error is 113.98 mm within the predeclared 150 mm station region;
+maximum odometry error is 46.16 mm. The separate aisle waypoint trial also passes.
+Neither run includes equipment manipulation or repeated navigation acceptance.
+
+The new `station_pickup_actor.py` joins this arrival to a two-second stationary
+controller transfer, eight-second coordinated waist/arm/hand preparation,
+native-depth map registration and the visual tool-pickup actor. Its estimate is
+initialized from encoders/IMU and odometry; physical state is never reset at a
+handoff. All 13,161 recorded walking-prefix outputs match exactly, and the first
+stationary torque solve is finite and within source limits. A fresh uninterrupted
+`dex3_station_pickup_01` run is in progress, without execution qualification yet.
+The [preparation geometry screen](analysis/dex3_station_handoff_screen_01/review.json)
+rejects arm-only preparation because the hand intersects the hip; coordinated
+waist/arm preparation clears all 41 static samples. Dynamic clearance remains
+part of the new run's independent review.
+
 Latest native walking result (6 November 2026): the
 [13-second G1/Dex3 attempt](runs/dex3_groot_walking_05/overview.mp4)
 passes all 18 [independent checks](runs/dex3_groot_walking_05/walking_review.json),
@@ -11,7 +31,7 @@ walking qualification, carrying, navigation or a paper branch.
 The fourth attempt passes contact checks but travels only 0.9971 m, below
 the original 1 m requirement; its failed review is preserved. Encoder/IMU
 odometry on that record has 29.91 mm maximum XY error. Separate sensor-based
-waypoint and existing-tool-station approach trials are now running.
+waypoint and existing-tool-station approach trials have passed their single-run reviews.
 
 Fresh carry08 finishes its 146.731-second sequence without an actor failure
 and passes source motor limits. Its full native physical review is still
@@ -19,15 +39,20 @@ processing. The earlier restored release diagnostic does not qualify it.
 For tool use, a new optional two-joint-per-finger controller regulates
 inferred inward load while retaining the own fingertip material point's
 tangent position. Nine analytic Jacobians match independent finite
-differences within 3.35e-10 m/rad. Its native continuation is running;
-neither kinematic agreement nor an inferred force target establishes tool use.
+differences within 3.35e-10 m/rad. Its [native continuation fails](analysis/dex3_tool_cartesian_evaluation_01/review.json):
+retention is lost before a qualified reopening. A [source-grasp workspace
+screen](analysis/dex3_tool_stroke_workspace_01/review.json) finds only 1.3 mm of
+coordinated inward travel for the old grasp, versus at least 3 mm for candidate 9
+under the same joint margins and command excursion. Candidate 9 passes the new
+initial-scene check, and a fresh visual pickup/stroke run is in progress. These
+kinematic findings do not establish force control or successful tool actuation.
 
 Current execution update (6 November 2026): carry07's complete native replay
 has finished. Its carrying, load continuity, return and release-support checks
 pass, but hand/tray penetration and the separately checked thumb speed fail.
 The [corrected lowering continuation](analysis/dex3_release_inset_checkpoint_01/result.json)
 finishes without hand/tray contact and stays within hand limits. It is a
-restored-state diagnostic; a fresh uninterrupted carry08 is running separately.
+restored-state diagnostic; fresh uninterrupted carry08 has finished and is being reviewed separately.
 The [supported ramped tool stroke](analysis/dex3_tool_supported_ramp_evaluation_01/review.json)
 still loses retention during reopening and is not qualified.
 

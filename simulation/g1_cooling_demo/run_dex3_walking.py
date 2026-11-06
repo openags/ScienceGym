@@ -37,7 +37,10 @@ def sha(p):
 
 
 def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open', minimum_shoulder_abduction=None,
-        policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False):
+        policy_family='unitree', sole_time_constant=None, waypoint_forward=None, station_approach=False,
+        station_pickup=False):
+    if station_pickup and not station_approach:
+        raise ValueError('Continuous station pickup requires the existing-station approach')
     if station_approach and waypoint_forward is None:
         raise ValueError('An authored station approach requires the sensor-based waypoint mode')
     if waypoint_forward is not None and (policy_family != 'groot' or not 1. <= waypoint_forward <= 3.):
@@ -204,10 +207,34 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                      waypoint_goal_xy_m=(station_goal if station_approach else d.qpos[:2]+[0.,-waypoint_forward]).tolist())
     (folder / 'walking_prior.json').write_text(json.dumps(prior, indent=2) + '\n')
     actor_module = 'dex3_walking_actor' if policy_family == 'unitree' else 'groot_walking_actor'
+    extra_modules = ['walking_actor.py', 'odometry.py', actor_module + '.py']
+    policy_files = sorted(p for p in policy.iterdir() if p.suffix in {'.onnx', '.yaml'}) + [folder / 'walking_prior.json']
+    shapes = []
+    if station_pickup:
+        actor_module = 'station_pickup_actor'
+        extra_modules += [actor_module+'.py', 'visual_tool_actor.py', 'dex3_tool_actor.py',
+            'conic_balance.py', 'tool_observation.py', 'tool_pose.py', 'tool_approach_planning.py',
+            'ftir_hand.py', 'joint_rrt.py', 'robot_source_meshes.py', 'source_proximity.py',
+            'tool_cameras.py', 'sensor_rendering.py', 'map_localization.py']
+        tool_prior = json.loads((source / 'policy_source/tool_prior.json').read_text())
+        authored_pose = np.asarray(tool_prior.pop('initial_robot_qpos'))
+        predictor = mujoco.MjModel.from_xml_path(str(folder / 'controller_model/world.xml'))
+        selected_names = SDK_JOINTS[12:] + [predictor.joint(j).name for j in predictor.actuator_trnid[:, 0]
+                                          if '_hand_' in predictor.joint(j).name]
+        preparation_targets = {name: float(authored_pose[predictor.joint(name).qposadr[0]]) for name in selected_names}
+        tool_prior['scope'] = 'Unposed tool/grasp geometry and authored controller parameters; robot pose is estimated online after station arrival'
+        for name, values in [('tool_prior.json', tool_prior), ('preparation_targets.json', preparation_targets)]:
+            path = folder / 'policy_source' / name
+            path.write_text(json.dumps(values, indent=2) + '\n')
+            policy_files.append(path)
+        (folder / 'object_shape_source').mkdir()
+        shape = folder / 'object_shape_source/tool_shape.glb'
+        shutil.copyfile(source / 'object_shape_source/tool_shape.glb', shape)
+        assert sha(shape) == tool_prior['tool_shape_sha256']
+        shapes = [shape]
     command = [sys.executable, str(HERE / (actor_module + '.py')), '--model', str(folder / 'controller_model/world.xml')]
     command, environment, isolation = prepare(folder, folder / 'controller_model/world.xml', command,
-        extra_modules=['walking_actor.py', 'odometry.py', actor_module + '.py'],
-        policy_files=sorted(p for p in policy.iterdir() if p.suffix in {'.onnx', '.yaml'}) + [folder / 'walking_prior.json'])
+        extra_modules=extra_modules, policy_files=policy_files, shape_files=shapes)
     contract = dict(scope=__doc__, hand_kind='unitree_three_finger', model_sha256=sha(folder / 'world.xml'),
         source_contract_sha256=sha(source / 'contract.json'), initial_qpos=d.qpos.tolist(), initial_qvel=d.qvel.tolist(),
         physics_period_s=m.opt.timestep, control_period_s=.001, duration_limit_s=duration,
@@ -233,11 +260,35 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             quaternion_wxyz=d.qpos[3:7].tolist(),scope='Authored start behind the existing tool-station pose; no object state changed')
         contract['evaluation_forward_world_xy']=facing.tolist()
         contract['waypoint']['scope']='Sensor-based approach to the existing tool-station pose; manipulation is not yet included'
+    if station_pickup:
+        for key in ['task', 'actuator_count', 'inferred_control', 'allowed_tool_contact_bodies',
+                    'observed_approach', 'camera_contract', 'tool_shape_sha256']:
+            contract[key] = source_contract[key]
+        contract.update(scope='Uninterrupted sensor-only station arrival, free-space preparation and visual tool pickup in the original complete laboratory',
+            laboratory_import_sha256=sha(folder / 'laboratory_import.json'),
+            balance_period_s=.01, actor_access_isolated=isolation['passed'],
+            controller_prior_sha256=sha(folder / 'policy_source/tool_prior.json'),
+            preparation_targets_sha256=sha(folder / 'policy_source/preparation_targets.json'),
+            qualified_grasp=False, qualified_approach=False,
+            station_handoff=dict(balance_blend_duration_s=2., preparation_duration_s=8.,
+                preparation_settle_dwell_s=1., maximum_preparation_error_rad=.04,
+                maximum_preparation_joint_speed_rad_s=.08, maximum_preparation_root_speed_m_s=.03,
+                preparation_timeout_s=22., registration_timeout_s=34.,
+                initial_pickup_pose_source='Only own sensors, leg odometry and static-map RGB-D registration',
+                robot_or_object_pose_writes_after_initialization=False))
+        contract['camera_contract'] = dict(contract['camera_contract'], capture_phase=['localize', 'observe'])
+        contract['waypoint']['scope'] = 'Sensor-based arrival before continuous preparation and pickup; evaluated separately from grasp success'
     (folder / 'contract.json').write_text(json.dumps(contract, indent=2) + '\n')
     log = (folder / 'actor_stderr.log').open('w')
     actor = subprocess.Popen(command, env=environment, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                              stderr=log, close_fds=True)
     records, sensors, responses = [], [], []
+    cameras = None
+    frame_index, retained_events = [], []
+    if station_pickup:
+        from tool_cameras import ToolCameras
+        cameras = ToolCameras(m)
+        (folder / 'camera_frames').mkdir()
     failure = None
     response = {}
     started = time.monotonic()
@@ -251,15 +302,35 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                     joint_velocity=np.array([d.sensor(m.joint(j).name + '_velocity').data[0] for j in joints]),
                     imu_quaternion=d.sensor('imu_orientation').data.copy(),
                     imu_gyro=d.sensor('imu_angular_velocity').data.copy(), depth=None)
+                retained = {k: v for k, v in packet.items() if k != 'depth'}
+                if station_pickup:
+                    packet.pop('depth')
+                    frame_id = -1
+                    if i % (decimation*200) == 0 and response.get('phase') in {'localize', 'observe'}:
+                        frames = cameras.read(d)
+                        frame_id = len(frame_index)
+                        path = folder / 'camera_frames' / f'{frame_id:05d}.npz'
+                        np.savez_compressed(path, **frames)
+                        frame_index.append(dict(id=frame_id, time_s=float(d.time),
+                                                file=str(path.relative_to(folder)), sha256=sha(path)))
+                    else:
+                        frames = dict(head_rgb=None, head_depth=None)
+                    packet.update(frames)
+                    retained['camera_frame_id'] = frame_id
                 pickle.dump(packet, actor.stdin, protocol=5)
                 actor.stdin.flush()
                 response = pickle.load(actor.stdout)
-                sensors.append({k: v for k, v in packet.items() if k != 'depth'})
-                responses.append(response)
+                sensors.append(retained)
+                responses.append({k: v for k, v in response.items() if k != 'events'})
+                retained_events = response.get('events', retained_events)
                 if response['error']:
                     raise RuntimeError(response['error'])
                 d.ctrl[:] = response['torque']
             records.append((float(d.time), d.qpos.copy(), d.qvel.copy(), d.ctrl.copy(), d.qacc_warmstart.copy()))
+            if station_pickup and response.get('complete'):
+                if response.get('failure'):
+                    failure = response['failure']
+                break
             mujoco.mj_step(m, d)
             if not np.isfinite(d.qpos).all() or np.any(d.warning.number):
                 raise RuntimeError('Physics numerical failure')
@@ -267,7 +338,9 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
                 raise RuntimeError('Walking support lost')
             if i % round(.5 / m.opt.timestep) == 0:
                 print('dex3_walk', round(float(d.time), 3), 'xyz', np.round(d.qpos[:3], 3).tolist(),
-                      'wall_s', round(time.monotonic() - started, 1), flush=True)
+                      'phase', response.get('phase'), 'wall_s', round(time.monotonic() - started, 1), flush=True)
+        if station_pickup and not response.get('complete'):
+            failure = 'Duration exhausted before the continuous station attempt ended'
     except Exception as error:
         failure = type(error).__name__ + ': ' + str(error)
         print('failed', failure, flush=True)
@@ -279,7 +352,10 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
             actor.kill()
             actor.wait()
         log.close()
-    records.append((float(d.time), d.qpos.copy(), d.qvel.copy(), d.ctrl.copy(), d.qacc_warmstart.copy()))
+        if cameras is not None:
+            cameras.close()
+    if not records or abs(records[-1][0]-d.time) > 1e-12:
+        records.append((float(d.time), d.qpos.copy(), d.qvel.copy(), d.ctrl.copy(), d.qacc_warmstart.copy()))
     np.savez_compressed(folder / 'trace.npz', **{k: np.array([row[i] for row in records])
         for i, k in enumerate(['time', 'qpos', 'qvel', 'ctrl', 'qacc_warmstart'])})
     if sensors:
@@ -291,6 +367,18 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
         trace_sha256=sha(folder / 'trace.npz'), contract_sha256=sha(folder / 'contract.json'),
         responses_sha256=sha(folder / 'responses.pkl'), sensors_sha256=sha(folder / 'sensors.npz'),
         qualified_walking=False, qualified_carry=False, qualified_paper_branch=False)
+    if station_pickup:
+        def plain(value):
+            if isinstance(value, np.ndarray):
+                return value.tolist()
+            if isinstance(value, np.generic):
+                return value.item()
+            raise TypeError(type(value).__name__)
+        (folder / 'events.json').write_text(json.dumps(retained_events, indent=2, default=plain) + '\n')
+        (folder / 'camera_index.json').write_text(json.dumps(frame_index, indent=2) + '\n')
+        result.update(scope=contract['scope'], camera_index_sha256=sha(folder / 'camera_index.json'),
+                      events_sha256=sha(folder / 'events.json'), final_phase=response.get('phase'),
+                      qualified_grasp=False)
     (folder / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result), flush=True)
     return result
@@ -309,7 +397,8 @@ if __name__ == '__main__':
     p.add_argument('--sole-contact-time-constant', type=float)
     p.add_argument('--waypoint-forward', type=float)
     p.add_argument('--station-approach', action='store_true')
+    p.add_argument('--station-pickup', action='store_true')
     a = p.parse_args()
     if run(a.source, a.folder, a.duration, a.speed, a.stop_at, a.hand_posture,
-           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach)['failure']:
+           a.minimum_shoulder_abduction, a.policy_family, a.sole_contact_time_constant,a.waypoint_forward,a.station_approach,a.station_pickup)['failure']:
         raise SystemExit(1)

@@ -1,5 +1,6 @@
 """Render recorded walking in the full laboratory without motion edits."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -9,12 +10,18 @@ import mujoco
 import numpy as np
 from PIL import Image
 
-from run_dex3_walking import sha
+
+def sha(path):
+    digest = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(block)
+    return digest.hexdigest()
 
 RENDERER_SHA = sha(__file__)
 
 
-def render(folder, output=None):
+def render(folder, output=None, camera_mode='aisle'):
     folder = Path(folder).resolve()
     output = folder if output is None else Path(output).resolve()
     if output != folder:
@@ -45,6 +52,15 @@ def render(folder, output=None):
     camera = mujoco.MjvCamera()
     camera.lookat[:] = [-.52, .1, .75]
     camera.distance, camera.azimuth, camera.elevation = 3.0, 90., -18.
+    if camera_mode == 'station':
+        heading = np.asarray(contract['evaluation_forward_world_xy'])
+        camera.lookat[:2] = .5 * (positions[0, :2] + positions[-1, :2])
+        camera.lookat[2] = .80
+        camera.distance = 3.2
+        camera.azimuth = np.degrees(np.arctan2(heading[1], heading[0])) + 180.
+        camera.elevation = -22.
+        if m.nlight == 2:
+            m.light_pos[:] = [camera.lookat + [-.8, -.8, 2.], camera.lookat + [.8, .8, 2.]]
     option = mujoco.MjvOption()
     option.geomgroup[3] = 0
     option.sitegroup[:] = 0
@@ -79,7 +95,7 @@ def render(folder, output=None):
                   renderer_sha256=RENDERER_SHA, movie_sha256=sha(output / 'overview.mp4'),
                   camera=dict(lookat=camera.lookat.tolist(), distance=camera.distance,
                               azimuth=camera.azimuth, elevation=camera.elevation),
-                  fps=fps, frames=frames, physics_acceptance_implied=False)
+                  camera_mode=camera_mode, fps=fps, frames=frames, physics_acceptance_implied=False)
     (output / 'render_receipt.json').write_text(json.dumps(report, indent=2) + '\n')
 
 
@@ -87,5 +103,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('folder')
     p.add_argument('--output')
+    p.add_argument('--camera-mode', choices=['aisle', 'station'], default='aisle')
     a = p.parse_args()
-    render(a.folder, a.output)
+    render(a.folder, a.output, a.camera_mode)
