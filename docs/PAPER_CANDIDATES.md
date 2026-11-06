@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **400**.
+Last screened: **2026-11-06**. Candidate count: **401**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4130,3 +4130,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - All extracted written text of the [21-page coauthor-hosted supplement](https://artioevans.wordpress.com/wp-content/uploads/2015/03/mosiv2.pdf) was read, including Materials and Methods, supplementary analysis, Figures S1-S6 captions and Movies S1-S4 captions. The supplement retains an unresolved "Fig. ??" cross-reference, and its identity with the final publisher supplement is unverified. Figure pixels were not visually inspected, and the movies were not watched. This is written-source screening, not a publisher-complete or visually complete review.
 - Scope is prepared inert specimen configuration tracking, reversible manipulations and mechanical-response record comparisons only. Fabrication and material-processing protocols are excluded. Specimen suitability, physical handling and mechanical testing require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through public author- and coauthor-hosted copies. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
+
+## Additional candidate: mechanical-hysteron configuration and state-sensing records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Mechanical hysterons with tunable interactions of general sign](https://www.nature.com/articles/s41467-026-70913-2) | Nature Communications / 2026 | 10.1038/s41467-026-70913-2 | Prepared spring-and-bar specimen identity, configuration tracking and repeated state-sensing records suggest a future long-horizon manipulation-and-characterization task. | Complete arXiv v4 text, Methods and appended written SI read; equivalence to final publisher main/SI and supplementary videos unverified. |
+
+- **CANDIDATE only.** Joseph D. Paulsen, *Nature Communications* **17**, 2799 (2026). The complete public [arXiv v4 manuscript](https://arxiv.org/pdf/2409.07726v4), including Methods, figure material and appended Supplementary Information Sections I-V with Figures S1-S3, was read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Equivalence of the arXiv v4 main article and appended SI to the final published main article and supplement was not established. Supplementary videos were not verified. This is version-specific source screening, not a claim of publisher-complete or supplementary-media review.
+- Reported experiments demonstrate latching, cycle counting and a period-two response. Autonomous learning is proposed, not demonstrated, and mixed-sign interactions within a reciprocal pair were not realized. These distinctions remain explicit; source results are not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is guarded low-force spring-and-bar state configuration and repeated sensing. Specimen suitability, stored elastic energy, fixtures, sensing and physical manipulation require separate apparatus qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through the public arXiv copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
