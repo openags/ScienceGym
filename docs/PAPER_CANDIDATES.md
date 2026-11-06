@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **403**.
+Last screened: **2026-11-06**. Candidate count: **404**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4166,3 +4166,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Robotic indentation and pressure/force acquisition are reported experimental demonstrations. S4 includes 14-day diffusion measurements with daily refill, and S10 includes two-week repeatability measurements with baseline correction; baseline stability is not wholly unstudied. Quantitative fatigue/damage tolerance remains untested in the screened source. A future fatigue or damage investigation is an inferred task opportunity, not a demonstrated experiment or autonomous capability. Reported results are source claims, not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is limited to pre-cured specimens and guarded, non-human mechanical testing with specimen, configuration and contact-history records. Human-contact and medical demonstrations are excluded. Specimen suitability, fixtures, apparatus setup and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through the public author deposit. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, CAD, data, code or other source assets redistributed.
+
+## Additional candidate: granular slip-avalanche measurement and sample-history records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Universality of slip avalanches in flowing granular matter](https://www.nature.com/articles/ncomms10641) | Nature Communications / 2016 | 10.1038/ncomms10641 | Prepared nonliving sample identity, calibration/configuration tracking and repeated guarded force and optical measurements suggest a future long-horizon measurement-coordination task. | Full published main text, Methods, Analysis and figure captions read; separate SI absence not conclusively verified; raw data, code and CAD not reviewed. |
+
+- **CANDIDATE only.** Denisov et al., *Nature Communications* **7**, 10641 (2016). The full published main text, Methods, Analysis and figure captions were read through the public [University of Amsterdam repository copy](https://pure.uva.nl/ws/files/10721604/Universality_of_slip_avalanches_in_flowing_granular_matter.pdf). Suitability remains a preliminary inference; no task conversion, robot-feasibility validation, autonomous execution or scientific reproduction is claimed.
+- No separate Supplementary Information is cited in the reviewed PDF or was located in targeted searches, but its absence has not been conclusively verified. Raw data, executable analysis/control code and apparatus CAD were not reviewed. Text and caption reading does not establish a complete visual, supplementary-source or computational audit.
+- Force and imaging experiments use different bead sizes and must retain separate specimen and acquisition identities. Initial pre-shear history and imaging-liquid concentrations are not specified in the screened source. Reported scaling and strain correlations remain source claims, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to preprepared nonliving samples, guarded repeated measurements, sample-history tracking, calibration, acquisition quality checks and cross-condition comparisons. Apparatus, sample suitability, laser exposure, moving/loading hardware, liquid handling and physical manipulation require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through the public institutional repository. The published copy states **CC BY 4.0**, subject to third-party exceptions. Citation metadata and original commentary only; no source text, figures, data, code, CAD or other source assets redistributed.
