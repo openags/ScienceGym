@@ -19,9 +19,13 @@ Switch travel, dwell and physical acceptance are unchanged.
 It completes the commanded approach, press, withdrawal and return in 34.840 s
 without a controller error. Complete isolated-controller replay and source
 motor-limit checks pass. The [recorded video](runs/dex3_ftir_press_04/press.mp4)
-is available; independent native key-travel/contact verification is pending.
-The actor's inferred contact depth is not evidence that the physical switch
-was actuated.
+is available. Its [independent native review](runs/dex3_ftir_press_04/physical_press_review.json)
+passes 14/15 checks: maximum intended key travel is 0.168 mm, below the unchanged
+0.240 mm acceptance threshold. All contact, support and motor checks pass, but
+the press is unsuccessful. Fresh `dex3_ftir_press_05` increases only the
+commanded depth beyond the observed surface from 1.0 to 1.5 mm, retaining zero
+force feedforward and all physical acceptance bounds. Actor-inferred contact
+depth does not establish switch actuation.
 
 Loaded support transfer is geometrically possible at the recorded station
 stance. The [own-robot screen](analysis/dex3_station_support_geometry_01/review.json)
@@ -42,9 +46,25 @@ passes all 12 checks after replaying from the original initial state. The tool
 closes below the declared gap threshold for 3.965 s and reopens above its
 declared threshold for 13.365 s while all three fingers retain load. Maximum
 finger force is 2.615 N, tool/wrist drift is 2.229 mm and external tool support
-is zero during this window. The full-run contact review remains pending; this
-specific stroke pass does not establish specimen handling or repeated skill
-qualification. Repeated-qualified skills, paper branches and campaigns remain zero.
+is zero during this window. The [completed full-run review](runs/dex3_tool_stroke_12/physical_review.json)
+passes 17/18 checks but fails contact acceptance: the index finger contacts the
+tray rim during lowering at 88.497 s. A recorded contact-normal diagnosis
+motivates a 0.707 mm horizontal lowering offset. An exact-prefix continuation
+tests this controller revision before a fresh run; no state-restored diagnostic
+receives fresh-execution credit. The specific stroke pass does not establish
+specimen handling or repeated skill qualification. Repeated-qualified skills,
+paper branches and campaigns remain zero.
+
+The optical source station previously retained candidate-7 grasp geometry.
+`dex3_optical_observe_start_04` now binds the candidate-9 geometry used in
+`dex3_tool_stroke_12` to the existing exact optical scene. Its preparation
+preserves the current stroke prior except for optical observation and map
+registration. The initial robot joints also differ from the older optical
+preparation, so the earlier in-progress support diagnostic was stopped and
+retained without a pass. A new three-second passive support check uses the
+matching initial state and recorded motor prefix, the current contact solver,
+correct per-object velocity indices and the original 20 micrometre contact
+bound. No specimen, reference or cap handling is credited by preparation.
 
 Current FTIR integration (6 November 2026): a fresh **G1/Dex3** native RGB-D
 key attempt reaches the press stage in the original laboratory, then fails at

@@ -54,6 +54,9 @@ class Dex3FTIRActor:
         self.press_force = float(setup.get('press_force_n', .45))
         if not np.isfinite(self.press_force) or not 0. <= self.press_force <= .45:
             raise ValueError('Press feedforward must be between zero and 0.45 N')
+        self.press_depth = float(setup.get('press_depth_m', .001))
+        if not np.isfinite(self.press_depth) or not .0005 <= self.press_depth <= .002:
+            raise ValueError('Commanded press depth must be between 0.5 and 2 mm')
         lowering = float(setup.get('com_lowering_m', 0.))
         leg_weight = float(setup.get('leg_posture_weight', 1.))
         if not 0. <= lowering <= .04 or not .1 <= leg_weight <= 1.:
@@ -109,9 +112,9 @@ class Dex3FTIRActor:
         for i, (a, b) in enumerate(zip(path[:-1], path[1:])):
             duration = max(1., 1.875*float(np.max(abs(b-a)))/.45)
             stages.append(dict(name='approach_'+str(i), kind='joint', duration=duration, start=a, goal=b))
-        for name, duration, a, b in [('press', 3., .03, -.001),
-                                    ('hold', .65, -.001, -.001),
-                                    ('withdraw', 2., -.001, .03)]:
+        for name, duration, a, b in [('press', 3., .03, -self.press_depth),
+                                    ('hold', .65, -self.press_depth, -self.press_depth),
+                                    ('withdraw', 2., -self.press_depth, .03)]:
             stages.append(dict(name=name, kind='cartesian', duration=duration,
                                start=self.contact_wrist+a*self.normal, goal=self.contact_wrist+b*self.normal))
         for i, (a, b) in enumerate(zip(path[:0:-1], path[-2::-1])):
@@ -123,6 +126,7 @@ class Dex3FTIRActor:
         self.kinematic.qpos[:] = self.d.qpos
         self.events.append(dict(time_s=t, kind='sensor_target_selected', label=self.label,
             source='native_head_rgb_depth_and_own_robot_state', plan=self.plan,
+            commanded_press_depth_m=self.press_depth,
             nominal_motion_duration_s=sum(s['duration'] for s in stages)))
 
     def update(self, packet):

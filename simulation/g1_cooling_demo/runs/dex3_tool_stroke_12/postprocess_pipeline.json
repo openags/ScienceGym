@@ -1,6 +1,6 @@
 {
   "scope": "Finish evidence processing after one identified, currently running trial.\n\nNo controller, physical state, acceptance threshold, or task status is changed.\nThe receipt records processing completion separately from evaluator verdicts.\n",
-  "status": "processing",
+  "status": "processed",
   "runner_pid": 4051696,
   "runner_start_ticks": "77956279",
   "script_sha256": {
@@ -19,13 +19,14 @@
   "jobs": {
     "physics": {
       "pid": 18913,
-      "status": "running",
+      "status": "finished",
       "command": [
         "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
         "-B",
         "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_tool_stroke_12/source_snapshot/verify_tool_grasp.py",
         "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_tool_stroke_12"
-      ]
+      ],
+      "exit_code": 0
     },
     "limits": {
       "pid": 18914,
@@ -67,5 +68,20 @@
       ],
       "exit_code": 0
     }
-  }
+  },
+  "verdicts": {
+    "physical_review.json": {
+      "passed": false,
+      "sha256": "190f326615b1f6e11e698bd1d4acde23f7e30b0e807286881dd575076cd3e360"
+    },
+    "controller_replay.json": {
+      "passed": true,
+      "sha256": "f31812826d1825d6dc7a9c2f0702b83f5b37ec6cf03836f80f485c7b8aad2c9b"
+    },
+    "source_limit_review.json": {
+      "passed": true,
+      "sha256": "558a4e54aac1aefce9c7114cafe093283d5ebe5a9d03e4a7a482bd171ab1682d"
+    }
+  },
+  "finished_unix": 1793964237.054179
 }
