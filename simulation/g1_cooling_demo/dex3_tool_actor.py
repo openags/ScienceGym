@@ -60,6 +60,13 @@ class ToolActor:
         if not .02<=self.requested_lift_height<=.06:
             raise ValueError('Requested tool lift must be between 20 and 60 mm')
         self.lower_start_height=0.
+        self.lower_clearance_height=float(prior.get('lower_clearance_height_m',0.))
+        if not 0.<=self.lower_clearance_height<=.004:
+            raise ValueError('Lowering clearance must be 0 to 4 mm')
+        self.lower_xy_offset=np.asarray(prior.get('lower_xy_offset_m',[0.,0.]),dtype=float)
+        if self.lower_xy_offset.shape!=(2,) or not np.isfinite(self.lower_xy_offset).all() or np.linalg.norm(self.lower_xy_offset)>.006:
+            raise ValueError('Authored lowering XY correction must stay within 6 mm')
+        self.lower_position_offset=np.zeros(3)
         self.failure=None;self.events=[];self.release_command=None
         self.release_clear_since=None
         self.release_clearance_started=None;self.withdraw_start_height=0.
@@ -82,6 +89,11 @@ class ToolActor:
                 raise ValueError('Tool stroke needs three larger force targets below the original 4 N bound')
         self.tool_open_force=self.hold_force.copy();self.tool_stroke_active=False
         self.tool_stroke_done=False;self.tool_force_since=None
+        self.tool_force_ramp=float(prior.get('tool_force_ramp_s',0.))
+        if not (self.tool_force_ramp==0. or .25<=self.tool_force_ramp<=3.):
+            raise ValueError('Tool force ramp must be disabled or 0.25 to 3 seconds')
+        self.tool_force_from=self.hold_force.copy();self.tool_force_goal=self.hold_force.copy()
+        self.tool_force_ramp_started=None
         self.grasp_proximal_preshape=float(prior.get('grasp_proximal_preshape_rad',0.))
         if not abs(self.grasp_proximal_preshape)<=.08:
             raise ValueError('Supported grasp preshape must be within 0.08 rad')
@@ -95,6 +107,11 @@ class ToolActor:
         self.release_extra=float(prior.get('release_extra_opening_rad',.04))
         self.release_load_feedback=bool(prior.get('release_load_feedback',False))
         self.release_preserve_posture=bool(prior.get('release_preserve_posture',False))
+        self.release_compensation_decay=float(prior.get('release_compensation_decay_s',0.))
+        if not (self.release_compensation_decay==0. or .05<=self.release_compensation_decay<=.5):
+            raise ValueError('Release compensation decay must be disabled or 0.05 to 0.5 seconds')
+        self.previous_hand_feedforward=np.zeros(len(self.hand))
+        self.release_hand_feedforward=np.zeros(len(self.hand))
         self.release_clearance_height=float(prior.get('release_clearance_height_m',0.))
         if not 0<=self.release_clearance_height<=.004:
             raise ValueError('Release clearance motion must stay within 0 to 4 mm')
@@ -123,6 +140,10 @@ class ToolActor:
 
     def change(self, phase, t):
         if phase=='lower':self.lower_start_height=self.lift_height
+        if phase=='release':
+            # Capture the previous own compensation command, not plant
+            # contact forces. A smooth decay avoids dropping it in one tick.
+            self.release_hand_feedforward=self.previous_hand_feedforward.copy()
         if phase=='release' and self.release_preserve_posture:
             # Opening the distal drivers while resetting a proximal preshape
             # can move the fingertip back into the supported tool. Retain the
@@ -153,6 +174,11 @@ class ToolActor:
                     result[k]=np.clip(self.filtered[a],-bound,bound)
         return result
 
+    def set_tool_force_target(self, target, t):
+        self.tool_force_from=self.hold_force.copy()
+        self.tool_force_goal=np.asarray(target).copy();self.tool_force_ramp_started=t
+        if not self.tool_force_ramp:self.hold_force=self.tool_force_goal.copy()
+
     def update(self, obs):
         if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
         if not all(np.isfinite(np.asarray(v)).all() for v in obs.values()):raise ValueError('Nonfinite sensor packet')
@@ -175,6 +201,10 @@ class ToolActor:
         if min(lever)<.001:raise RuntimeError('Source contact feature cannot close toward the opposed fingers')
         effort=self.signs*self.filtered[self.drivers];proxy=effort/lever
         self.latest_force_proxy=proxy.copy()
+        if self.tool_force_ramp and self.tool_force_ramp_started is not None:
+            u=float(np.clip((t-self.tool_force_ramp_started)/self.tool_force_ramp,0.,1.))
+            u=u*u*(3.-2.*u)
+            self.hold_force=self.tool_force_from+u*(self.tool_force_goal-self.tool_force_from)
         if max(abs(proxy))>4. or max(abs(effort))>self.motor_load_abort_nm:self.abort('Observed motor load exceeds the development bound',t)
         if self.phase=='settle' and t-self.phase_started>=2.:self.change('close',t)
         if self.phase=='close':
@@ -228,7 +258,7 @@ class ToolActor:
         elif self.phase=='hold' and elapsed>=1.:
             if self.tool_squeeze_force is not None and not self.tool_stroke_done:
                 self.tool_stroke_active=True;self.tool_force_since=None
-                self.hold_force=self.tool_squeeze_force.copy()
+                self.set_tool_force_target(self.tool_squeeze_force,t)
                 self.motor_load_abort_nm=min(.3,.5*self.source_driver_effort_nm)
                 limits=m.jnt_range[m.actuator_trnid[self.drivers,0]]
                 self.lower[self.drivers]=np.maximum(self.initial[self.drivers]-.25,limits[:,0]+.01)
@@ -237,7 +267,8 @@ class ToolActor:
             else:self.change('lower',t)
         elif self.phase in {'tool_squeeze','tool_reopen'}:
             stroke_phase=self.phase
-            if np.all(abs(proxy-self.hold_force)<=.15*self.hold_force):
+            ramp_finished=not self.tool_force_ramp or t-self.tool_force_ramp_started>=self.tool_force_ramp
+            if ramp_finished and np.all(abs(proxy-self.hold_force)<=.15*self.hold_force):
                 if self.tool_force_since is None:self.tool_force_since=t
                 if t-self.tool_force_since>=.75:
                     self.events.append(dict(time_s=t,kind='tool_force_target_reached',
@@ -245,14 +276,17 @@ class ToolActor:
                         target_proxy_n=self.hold_force.tolist(),actual_tip_gap_observed=False))
                     self.tool_force_since=None
                     if self.phase=='tool_squeeze':
-                        self.hold_force=self.tool_open_force.copy();self.change('tool_reopen',t)
+                        self.set_tool_force_target(self.tool_open_force,t);self.change('tool_reopen',t)
                     else:
                         self.tool_stroke_done=True;self.change('lower',t)
             else:self.tool_force_since=None
             if self.phase==stroke_phase and elapsed>=20.:
                 self.abort('Tool stroke did not reach a stable observed motor-load target',t)
         elif self.phase in {'lower','abort_lower'}:
-            self.lift_height=(self.lower_start_height if self.phase=='lower' else self.abort_height)*(1-smooth(elapsed/2.))
+            start_height=self.lower_start_height if self.phase=='lower' else self.abort_height
+            stop_height=min(start_height,self.lower_clearance_height) if self.phase=='lower' else 0.
+            self.lift_height=stop_height+(start_height-stop_height)*(1-smooth(elapsed/2.))
+            if self.phase=='lower':self.lower_position_offset[:2]=self.lower_xy_offset*smooth(elapsed/2.)
             if elapsed>=2.:self.release_command=self.command.copy();self.change('release',t)
         elif self.phase=='release':
             self.command=self.release_command+smooth(elapsed/2.)*(self.release_target-self.release_command)
@@ -289,7 +323,7 @@ class ToolActor:
             if elapsed>=2.:self.change('rest',t)
         elif self.phase=='rest' and elapsed>=2.:self.change('finished',t)
         self.before_target(t,dt)
-        target=self.wrist_position+self.wrist_rotation@self.center_offset+[0.,0.,self.lift_height]
+        target=self.wrist_position+self.wrist_rotation@self.center_offset+[0.,0.,self.lift_height]+self.lower_position_offset
         if t+1e-9>=self.next_balance:
             self.balance.com_target=self.com_start+smooth(t/2.)*(self.com_goal-self.com_start)
             posture=self.initial.copy();posture[self.hand]=self.command[self.hand]
@@ -314,7 +348,11 @@ class ToolActor:
         kd=np.minimum(2*np.sqrt(kp*inertia_modes),.4*damping_scale*inertia_modes/dt)
         error=U.T@(self.command-d.qpos[self.qa])[self.hand]
         speed=U.T@d.qvel[self.va[self.hand]]
-        torque=self.body_torque.copy();torque[self.hand]=gravity[self.hand]+U@(kp*error-kd*speed)+self.hand_load_feedforward()
+        feedforward=self.hand_load_feedforward()
+        if self.phase=='release' and self.release_compensation_decay:
+            feedforward=self.release_hand_feedforward*(1-smooth((t-self.phase_started)/self.release_compensation_decay))
+        self.previous_hand_feedforward=feedforward.copy()
+        torque=self.body_torque.copy();torque[self.hand]=gravity[self.hand]+U@(kp*error-kd*speed)+feedforward
         torque=np.clip(torque,m.actuator_ctrlrange[:,0],m.actuator_ctrlrange[:,1]);self.previous_torque=torque.copy();self.last_time=t
         return dict(torque=torque,error=None,phase=self.phase,failure=self.failure,complete=self.phase=='finished',
             requested_joint_position=self.command.copy(),motor_load_nm=effort.copy(),force_proxy_n=proxy.copy(),

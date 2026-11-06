@@ -36,6 +36,8 @@ def main():
     p.add_argument('--checkpoint-phase',choices=['close','lift','hold','carry_descend','lower'],default='lower')
     p.add_argument('--measure-prelift-native',action='store_true',
                    help='Record every native contact step in the final prelift window; evaluator only')
+    p.add_argument('--measure-hand-native',action='store_true',
+                   help='Record hand positions, speeds and motor commands at every native step; evaluator only')
     p.add_argument('--diagnose-balance',action='store_true',
                    help='Retain a rejected actor-owned QP; diagnostic wrapper only')
     p.add_argument('--seconds',type=float,default=18.);a=p.parse_args()
@@ -68,7 +70,9 @@ def main():
         command=receipt['command_prefix']+[sys.executable,'-c',wrapper.read_text(),
                                            '--diagnostic-actor',actor,'--model','/model/world.xml']
         report['diagnostic_balance_wrapper_sha256']=sha(wrapper)
-    failure=None;records=[];response={};started=time.monotonic();actuation_native=[]
+    failure=None;records=[];response={};started=time.monotonic();actuation_native=[];hand_native=[]
+    hand_tray=dict(maximum_penetration_m=0.,maximum_normal_force_n=0.,first_excess=None,
+                   evaluated_native_steps=0)
     cameras=None;camera_records=[]
     with (out/'actor_stderr.log').open('wb') as stderr,(out/'monitor.jsonl').open('w') as monitor:
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=stderr,env=receipt['environment'])
@@ -110,6 +114,13 @@ def main():
             report['restored_original_step_v_error']=float(np.max(abs(test.qvel-v[k+1])))
             del q,v,w;trace.close()
             names=[m.joint(j).name for j in robot_joints(m)];dt=float(m.opt.timestep);stride=round(.001/dt)
+            hand_actuators=np.array([a for a,j in enumerate(m.actuator_trnid[:,0])
+                                     if m.joint(j).name.startswith('right_hand_')])
+            hand_joints=m.actuator_trnid[hand_actuators,0]
+            hand_bodies={b for b in range(m.nbody) if (m.body(b).name or '').startswith('right_hand_')}
+            tray_bodies={m.body('carrier_tray').id}
+            for b in range(m.nbody):
+                if m.body_parentid[b] in tray_bodies:tray_bodies.add(b)
             inspection=bool(contract.get('tool_inspection_contract'))
             if inspection:
                 from tool_cameras import ToolCameras
@@ -167,7 +178,24 @@ def main():
                     records.append((float(d.time),d.qpos.copy(),d.qvel.copy(),d.ctrl.copy()))
                     if response.get('complete'):
                         failure=response.get('failure');break
+                if a.measure_hand_native:
+                    hand_native.append((float(d.time),response['phase'],
+                        d.qpos[m.jnt_qposadr[hand_joints]].copy(),
+                        d.qvel[m.jnt_dofadr[hand_joints]].copy(),d.ctrl[hand_actuators].copy()))
                 mujoco.mj_step(m,d)
+                if a.measure_hand_native:
+                    hand_tray['evaluated_native_steps']+=1
+                    for ci,c in enumerate(d.contact):
+                        bs={int(m.geom_bodyid[g]) for g in c.geom}
+                        if not (bs&hand_bodies and bs&tray_bodies):continue
+                        penetration=max(0.,-float(c.dist));wrench=np.zeros(6)
+                        mujoco.mj_contactForce(m,d,ci,wrench)
+                        hand_tray['maximum_penetration_m']=max(hand_tray['maximum_penetration_m'],penetration)
+                        hand_tray['maximum_normal_force_n']=max(hand_tray['maximum_normal_force_n'],float(wrench[0]))
+                        if penetration>contract['physical_acceptance']['maximum_other_penetration_m'] and hand_tray['first_excess'] is None:
+                            hand_tray['first_excess']=dict(time_s=float(d.time-dt),
+                                phase=response['phase'],penetration_m=penetration,
+                                geoms=[m.geom(g).name for g in c.geom])
                 if np.any(d.warning.number) or d.qpos[2]<.6:raise RuntimeError('Physical instability in continuation')
                 if np.any(d.xfrc_applied) or np.any(d.qfrc_applied):raise RuntimeError('External force unexpectedly applied')
                 monitor_due=i%(stride*10)==0
@@ -229,6 +257,17 @@ def main():
         report['tool_actuation_native']=dict(file=native_path.name,sha256=sha(native_path),
             samples=len(actuation_native),sample_period_s=dt,evaluator_only=True,
             continuous_pickup_and_tool_use=False,qualified_tool_actuation=False)
+    if hand_native:
+        native_path=out/'hand_native.npz'
+        np.savez_compressed(native_path,joint_names=np.array([m.joint(j).name for j in hand_joints]),
+            **{name:np.asarray([r[i] for r in hand_native])
+               for i,name in enumerate(['time_s','phase','position_rad','velocity_rad_s','command_nm'])})
+        report['hand_native']=dict(file=native_path.name,sha256=sha(native_path),
+            samples=len(hand_native),sample_period_s=dt,evaluator_only=True,
+            restored_state_diagnostic_only=True)
+        hand_tray['original_penetration_bound_m']=contract['physical_acceptance']['maximum_other_penetration_m']
+        hand_tray['within_penetration_bound']=hand_tray['maximum_penetration_m']<=hand_tray['original_penetration_bound_m']
+        report['native_hand_tray_contacts']=hand_tray
     report.update(failure=failure,wall_seconds=time.monotonic()-started,
         trace_sha256=sha(out/'trace.npz') if records else None)
     (out/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)

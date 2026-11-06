@@ -19,18 +19,21 @@ def main():
     p.add_argument('recording',type=Path)
     p.add_argument('model_run',type=Path)
     p.add_argument('output',type=Path)
+    p.add_argument('--time',type=float,help='Inspect a recorded time instead of the last state')
     a=p.parse_args()
     result=json.loads((a.recording/'result.json').read_text())
     contract=json.loads((a.model_run/'contract.json').read_text())
     assert sha(a.recording/'trace.npz')==result['trace_sha256']
-    assert sha(a.model_run/'contract.json')==result['actor_contract_sha256']
+    assert sha(a.model_run/'contract.json')==result.get('actor_contract_sha256',result.get('contract_sha256'))
     assert sha(a.model_run/'world.xml')==contract['model_sha256']
     a.output.mkdir(parents=True,exist_ok=False)
     shutil.copyfile(__file__,a.output/Path(__file__).name)
     m=mujoco.MjModel.from_xml_path(str((a.model_run/'world.xml').resolve()))
     d=mujoco.MjData(m)
     with np.load(a.recording/'trace.npz') as z:
-        recorded_q=z['qpos'][-1].copy();recorded_time=float(z['time'][-1])
+        times=z['time'];index=-1 if a.time is None else int(np.searchsorted(times,a.time))
+        assert -1<=index<len(times)
+        recorded_q=z['qpos'][index].copy();recorded_time=float(times[index])
     joints=[j for j in range(m.njnt) if m.joint(j).name.startswith('right_hand_')]
     def contacts(with_jacobian=False):
         rows=[]
@@ -45,8 +48,12 @@ def main():
                 jp,jr=np.zeros((3,m.nv)),np.zeros((3,m.nv))
                 mujoco.mj_jac(m,d,jp,jr,c.pos,bodies[hand_index])
                 normal=c.frame[:3]*(1 if hand_index==1 else -1)
+                row['hand_separation_normal_world']=normal.tolist()
                 row['hand_separation_jacobian_m_per_rad']={m.joint(j).name:
                     float(normal@jp[:,m.jnt_dofadr[j]]) for j in joints}
+                row['arm_separation_jacobian_m_per_rad']={m.joint(j).name:
+                    float(normal@jp[:,m.jnt_dofadr[j]]) for j in range(m.njnt)
+                    if m.joint(j).name.startswith('right_') and not m.joint(j).name.startswith('right_hand_')}
             rows.append(row)
         return rows
     d.qpos[:]=recorded_q;mujoco.mj_forward(m,d)
@@ -58,8 +65,8 @@ def main():
         rows.append(dict(middle_proximal_delta_rad=delta,contacts=contacts(),
             within_source_range=bool(joint.range[0]<=d.qpos[joint.qposadr[0]]<=joint.range[1])))
     monitor=[json.loads(line) for line in (a.recording/'monitor.jsonl').read_text().splitlines()]
-    entry=next(row for row in monitor if row['phase']=='release')['hand_commands_rad']
-    final=monitor[-1]['hand_commands_rad']
+    entry=next(row for row in monitor if row['phase']=='release').get('hand_commands_rad')
+    final=monitor[-1].get('hand_commands_rad')
     report=dict(scope=__doc__,trace_sha256=result['trace_sha256'],
         model_sha256=contract['model_sha256'],contract_sha256=sha(a.model_run/'contract.json'),
         script_sha256=sha(__file__),monitor_sha256=sha(a.recording/'monitor.jsonl'),

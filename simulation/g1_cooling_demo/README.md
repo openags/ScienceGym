@@ -115,8 +115,19 @@ approach at that stance. A [sensor-derived stance screen](analysis/dex3_heel_sta
 finds alternatives; the [selected initial stance](runs/dex3_heel_observe_start_02/stance_selection.json)
 changes X/Y by -40/-20 mm and retains elbow margin. This is an authored initial
 condition, not executed locomotion. A second fresh pickup/squeeze/reopen/release
-trial, `dex3_heel_visual_actuation_02`, is running with the observed-pose fallback.
+trial, `dex3_heel_visual_actuation_02`, finishes at 54.320 s with motor-load
+protection during reopening. The [native recorded-shape diagnostic](analysis/dex3_heel_stroke_kinematics_02/review.json)
+finds only 6.11 mm minimum squeezed gap and 0.984 rad tool/wrist rotation on
+reopening; it does not evaluate contact forces. The [unchanged-stiffness screen](analysis/dex3_tool_mechanical_grasp_screen_01/review.json)
+estimates 8.27–8.40 N thumb load for these heel grasps, above the original 4 N
+bound. Original beam grasps estimate 2.41–2.94 N. These are small-deflection
+design estimates, not measured commercial-tool properties or dynamic success.
+A new original-beam candidate ramps squeeze/reopen targets over two seconds
+and uses a 3 N thumb squeeze target, retaining all physical acceptance bounds.
 No grasp, tool-use or paper-branch qualification transfers from preparation.
+The native tool-stroke evaluator now supports replay from the original initial
+state: a compact window restore lost the unattended cover sleeping cache and
+failed the unchanged exact-state tolerance. That failure is retained separately.
 
 The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
 contains continuous visual pickup, four outward steps, four return steps and
@@ -251,8 +262,13 @@ numerical retry solves that unchanged QP with stationarity residual 4.03e-8;
 infeasibility rejection and original physical constraints/tolerances. The
 [candidate replay](analysis/dex3_carry_balance_replay_01/result.json) reproduces
 the whole accepted prefix exactly and resolves the final rejected packet.
-`dex3_visual_carry_07` is executing a fresh original-state trial of that repair;
-neither the input replay nor the pending run grants carrying qualification.
+The [fresh carry-07 recording](runs/dex3_visual_carry_07/result.json) finishes
+its pickup, outward/return steps, release and empty-hand base return at 146.731 s
+without a controller error. It does not pass acceptance: the [source motor
+review](runs/dex3_visual_carry_07/source_limit_review.json) finds 12.408 rad/s
+at the right thumb distal joint, above its unchanged 12 rad/s source limit.
+Independent full contact replay and video processing are still running.
+Neither the numerical repair nor sequence completion grants carrying qualification.
 The withheld carry-05 attempt has not been relabelled as an execution.
 
 Exact reference/holder/cap surfaces pass [all six component cases](analysis/pike_reference_support_09/review.json).
@@ -616,3 +632,47 @@ The selected payload uses the existing Bürkle 5386-0041 spatula reconstruction,
 `extended_attempts.json` indexes all second-hour development attempts, including a model setup failure, grasp failures, heavy payload failures and failures after transport during parking. `attempts_extended/` retains their available models, snapshots, traces, sensor observations and depth. Legacy depth arrays are losslessly repacked, preserving their original SHA in encoding receipts. These changing controller versions must not be pooled into an acceptance success rate. Original diagnostic model paths can reference the workstation; the selected episode is the portable replay artifact. `attempt_archives/` and `attempts.json` retain the earlier sprint's records.
 
 Full-demo work still includes accepted assets and room clearances, full laboratory dynamics, loaded carrying and walking, assembly, connectors, thin films, configuration changes, recovery and cleanup across all 11 paper branches. The contract requires at least 19/20 for skills, 9/10 per branch and three complete campaigns. These are not yet achieved. No hardware run or scientific-result reproduction is claimed.
+
+The [release compensation diagnostic](analysis/dex3_release_decay_evaluation_01/review.json)
+replays 134,131 original controller packets exactly, then decays the previous
+own non-closing-joint compensation over 100 ms. In its 2.5 s restored window,
+thumb distal peak speed is 0.690 rad/s versus the original 12.408 rad/s. All
+seven hand source limits pass in that window, but the diagnostic fails exact
+restored-state and pre-release equivalence because the compact state did not
+preserve native sleep history. It therefore supplies a development lead, not
+a carrying pass. A separate candidate stops lowering 4 mm above the original
+wrist reference to address finger/tray contact; passive support, release and
+all source/contact bounds remain independently required.
+
+The first [3 N ramped beam-grasp diagnostic](analysis/dex3_tool_force_ramp_evaluation_01/review.json)
+replays 49,988 prior controller responses exactly and reaches a 0.0154 mm tip
+gap during squeezing. It nevertheless fails retained closure and reopening:
+tool/wrist translation reaches 13.36 mm during squeezing and 29.69 mm overall,
+and the own-contact-feature closing lever becomes invalid during reopening.
+No force-bound relaxation is used. The next supported-preshape candidate applies
+-0.04 rad proximal adjustment and a 0.25 rad reference envelope while the tray
+still supports the tool, before the same 3 N/two-second stroke ramp.
+
+The completed [native heel-stroke review](analysis/dex3_heel_tool_stroke_evaluation_03/review.json)
+replays the original initial-state prefix and tool window with zero qpos/qvel
+error. It fails completion, closure, reopening and absence of external tool
+support. Peak finger force is 2.600 N; the earlier proxy protection event is not
+proof of a 4 N physical finger-force violation. Full-run contact and controller
+reviews also remain separate from this stroke check.
+
+The [4 mm height-only release diagnostic](analysis/dex3_release_clearance_checkpoint_02/result.json)
+finishes its control sequence but still fails the original 20 micrometre
+hand/tray penetration bound, reaching 123.8 micrometres. A [recorded-contact
+Jacobian diagnosis](analysis/dex3_carry_release_contact_direction_08/review.json)
+identifies the index distal link against the tray's sloped rim; its separation
+normal has substantial horizontal components. The next authored lowering
+candidate adds +3/-3 mm world XY correction while retaining the 4 mm height
+and 100 ms compensation decay. It is a diagnostic hypothesis, not executed
+cross-station manipulation or accepted release.
+
+The current WIP publication includes the carry06/carry07/heel02 preview movies,
+frozen inputs, source snapshots and available reviews. Their raw full-run
+sensor, controller and physics arrays remain local pending separate publication;
+see each run's `publication_status.json`. This is not a complete downloadable
+execution bundle or a final demo delivery. The diagnostic windows published
+alongside them remain explicitly separate from fresh continuous execution.
