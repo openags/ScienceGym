@@ -26,12 +26,22 @@ the original 1 mm sole-contact penetration bound pass, including source motor
 limits and exact controller/physics/sensor replay. The
 [complete-body camera view](runs/dex3_groot_walking_01/visual_review_02/overview.mp4)
 shows this failed trial without changing its trajectory.
-A second run tests an explicitly recorded sole-contact response revision
-(20 ms to 10 ms for the eight sole collision geoms). This changes physical
-response, not acceptance, and is not a measured sole material property.
-It requires its own full review; any later manipulation on that revised plant
-also requires fresh qualification. Neither interface agreement nor the first
-walking video qualifies carrying, navigation, or a paper branch.
+The [second full review](runs/dex3_groot_walking_02/walking_review.json) also
+fails sole penetration, with a 1.495 mm maximum and no other robot penetration.
+Its geom-only contact revision has no physical effect: all 32 explicit
+sole/floor pairs retain their original 4 ms response, and its trace is
+byte-identical to the first run. The frozen revision's claim that physical
+response changed is corrected by
+[this separate diagnosis](analysis/dex3_sole_response_diagnosis_01/review.json).
+The runner now edits the effective pairs and checks both compiled parameters
+and actual first-contact parameters using a separate, discarded unactuated
+probe. A fresh fourth run tests 2 ms pair response under the same acceptance
+bounds. The third preparation stopped at an overly restrictive initial-contact
+gate before any walking; exact tangency can have zero initial contacts.
+The response is an authored simulation parameter, not a measured sole property.
+Any manipulation on the revised plant also requires fresh qualification.
+Neither interface agreement nor these walking videos qualify carrying,
+navigation, or a paper branch.
 
 The latest [59.09-second visual tool recording](runs/dex3_visual_grasp_04/overview.mp4)
 passes all 18 [independent physical checks](runs/dex3_visual_grasp_04/physical_review.json),

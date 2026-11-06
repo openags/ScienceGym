@@ -57,23 +57,29 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
         shutil.copyfile(source / name, folder / name)
     contact_revision = None
     if sole_time_constant is not None:
-        if not .005 <= sole_time_constant <= .02:
-            raise ValueError('Sole contact time constant must be between 5 and 20 ms')
+        if not .001 <= sole_time_constant <= .02:
+            raise ValueError('Sole contact time constant must be between 1 and 20 ms')
         xml = ET.parse(folder / 'world.xml')
+        imported = json.loads((folder / 'laboratory_import.json').read_text())
+        floors = {part['geom'] for part in imported['parts'] if part['source_part'] in
+                  {'indoor_floor', 'annex_floor', 'outdoor_floor', 'outdoor_access_path'}}
         changed = []
-        for geom in xml.findall('.//geom'):
-            name = geom.get('name', '')
-            if 'ankle_roll_link_collision' in name:
-                before = geom.get('solref', '0.02 1')
-                geom.set('solref', f'{sole_time_constant:g} 1')
-                changed.append(dict(geom=name, previous_solref=before, candidate_solref=geom.get('solref')))
-        assert len(changed) == 8
+        # Explicit contact pairs override geom solref. The earlier geom-only
+        # candidate left all 32 sole/floor pairs unchanged and had no effect.
+        for pair in xml.findall('contact/pair'):
+            names = [pair.get('geom1', ''), pair.get('geom2', '')]
+            if any('ankle_roll_link_collision' in name for name in names) and set(names) & floors:
+                before = pair.get('solref', '0.02 1')
+                pair.set('solref', f'{sole_time_constant:g} 1')
+                changed.append(dict(geoms=names, previous_solref=before, candidate_solref=pair.get('solref')))
+        assert len(changed) == 32
         xml.write(folder / 'world.xml', encoding='unicode')
         contact_revision = dict(scope='Authored numerical contact-response candidate, not a measured sole material constant',
             changed=changed, source_world_sha256=source_contract['model_sha256'],
             candidate_world_sha256=sha(folder / 'world.xml'), geometry_masses_and_actuators_changed=False,
             acceptance_changed=False, physical_response_changed=True,
-            basis='The unchanged official-policy trial exceeds the 1 mm sole penetration bound at landing; test a shorter critically damped contact response with the same 100 us integrator step.')
+            basis='The unchanged official-policy trial exceeds the 1 mm sole penetration bound at landing. Revise the effective explicit sole/floor pairs, preserving all other contacts and the 100 us integrator step.',
+            contact_parameter_reference='https://mujoco.readthedocs.io/en/stable/XMLreference.html#contact-pair')
         (folder / 'contact_response_revision.json').write_text(json.dumps(contact_revision, indent=2) + '\n')
     m = mujoco.MjModel.from_xml_path(str(folder / 'world.xml'))
     d = mujoco.MjData(m)
@@ -122,6 +128,39 @@ def run(source, folder, duration=12., speed=.2, stop_at=8., hand_posture='open',
     imported = json.loads((folder / 'laboratory_import.json').read_text())
     floor = {part['geom'] for part in imported['parts'] if part['source_part'] in
              {'indoor_floor', 'annex_floor', 'outdoor_floor', 'outdoor_access_path'}}
+    if sole_time_constant is not None:
+        pairs = []
+        for i in range(m.npair):
+            names = [m.geom(int(m.pair_geom1[i])).name, m.geom(int(m.pair_geom2[i])).name]
+            if any('ankle_roll_link_collision' in name for name in names) and set(names) & floor:
+                pairs.append(dict(geoms=names, solref=m.pair_solref[i].tolist()))
+        def sole_contacts(data):
+            return [dict(geoms=[m.geom(int(g)).name for g in c.geom], solref=c.solref.tolist())
+                    for c in data.contact
+                    if any('ankle_roll_link_collision' in m.geom(int(g)).name for g in c.geom)
+                    and {m.geom(int(g)).name for g in c.geom} & floor]
+        initial_contacts = sole_contacts(d)
+        # At exact sole/floor tangency there may be no active constraint yet.
+        # A separate unactuated probe checks the first physical contact; its
+        # state is discarded and never replaces this attempt's initial state.
+        probe = mujoco.MjData(m)
+        probe.qpos[:], probe.qvel[:] = d.qpos, d.qvel
+        mujoco.mj_forward(m, probe)
+        active = sole_contacts(probe)
+        while not active and probe.time < .05:
+            mujoco.mj_step(m, probe)
+            active = sole_contacts(probe)
+        effective = dict(scope='Compiled pairs and a separate unactuated first-contact probe',
+            model_sha256=sha(folder / 'world.xml'), requested_solref=[sole_time_constant, 1.],
+            compiled_pairs=pairs, active_initial_contacts=initial_contacts,
+            separate_probe_time_s=float(probe.time), separate_probe_contacts=active,
+            probe_state_used_by_execution=False,
+            passed=len(pairs) == 32 and bool(active) and all(
+                np.allclose(row['solref'], [sole_time_constant, 1.], rtol=0., atol=1e-12)
+                for row in pairs + active))
+        (folder / 'effective_contact_response.json').write_text(json.dumps(effective, indent=2) + '\n')
+        if not effective['passed']:
+            raise ValueError('The requested sole response is not active in the native contact model')
     contacts = []
     for contact in d.contact:
         if not {int(m.geom_bodyid[g]) for g in contact.geom} & robot:
