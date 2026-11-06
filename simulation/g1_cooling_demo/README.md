@@ -1,6 +1,20 @@
 # G1 humanoid contact runtime
 
-Latest control revisions (6 November 2026): a stationary FTIR stance need not
+Latest verified FTIR result (6 November 2026): `dex3_ftir_press_06` completes
+34.820 seconds of observed approach, key press, withdrawal and return. All
+[15 native physical checks](runs/dex3_ftir_press_06/physical_press_review.json),
+isolated-controller replay and source motor-limit checks pass. Actual key travel
+reaches 0.279 mm with 0.372 s of qualifying finger contact before release and
+return, against the unchanged 0.240 mm / 0.050 s requirements. The commanded
+depth is 2.0 mm, with no added wrist-force feedforward. A 0.5 ms physics step
+and four native CPU workers reduce execution to 340.9 wall seconds, compared
+with 1260.8 seconds for the preceding 34.840-second attempt. Control remains
+at 1 kHz. The [35-second video](runs/dex3_ftir_press_06/press.mp4) is available.
+This is one component trial from an authored station posture; navigation,
+sample installation, acquisition outcomes and repeated reliability are not
+credited. Full paper branches remain **0/11**.
+
+Earlier control revisions: a stationary FTIR stance need not
 move its COM to the midpoint of the soles. The previous controller requested
 a 42.9 mm horizontal shift, and both first trials contacted the worktop with
 the torso around 1.23–1.26 s, before the button approach. The
@@ -24,8 +38,9 @@ passes 14/15 checks: maximum intended key travel is 0.168 mm, below the unchange
 0.240 mm acceptance threshold. All contact, support and motor checks pass, but
 the press is unsuccessful. Fresh `dex3_ftir_press_05` increases only the
 commanded depth beyond the observed surface from 1.0 to 1.5 mm, retaining zero
-force feedforward and all physical acceptance bounds. Actor-inferred contact
-depth does not establish switch actuation.
+force feedforward and all physical acceptance bounds. Its completed native
+review passes 14/15 checks but key travel is only 0.224 mm. Actor-inferred
+contact depth does not establish switch actuation.
 
 Loaded support transfer is geometrically possible at the recorded station
 stance. The [own-robot screen](analysis/dex3_station_support_geometry_01/review.json)

@@ -27,6 +27,8 @@ def main():
     p.add_argument('run',type=Path);p.add_argument('output',type=Path)
     p.add_argument('--worlds',type=int,nargs='+',default=[1,4])
     p.add_argument('--steps',type=int,default=100)
+    p.add_argument('--compiled-sleep-aliases',action='store_true',
+        help='Diagnostic: map explicit NEVER/ALLOWED to corresponding compiled AUTO variants for Warp import')
     a=p.parse_args();run=a.run.resolve();out=a.output.resolve()
     if not 1<=a.steps<=1000 or any(n not in {1,2,4,8} for n in a.worlds):
         p.error('Use 1–1000 steps and at most eight worlds')
@@ -46,25 +48,45 @@ def main():
     try:
         start=time.perf_counter();model=mujoco.MjModel.from_xml_path(str(run/'world.xml'))
         with np.load(run/'trace.npz') as trace:ctrl=trace['ctrl'][0].copy()
-        def initial():
-            d=mujoco.MjData(model);d.qpos[:]=contract['initial_qpos'];d.qvel[:]=contract['initial_qvel']
-            d.ctrl[:]=ctrl;mujoco.mj_forward(model,d);return d
+        def initial(host=model):
+            d=mujoco.MjData(host);d.qpos[:]=contract['initial_qpos'];d.qvel[:]=contract['initial_qvel']
+            d.ctrl[:]=ctrl;mujoco.mj_forward(host,d);return d
         report.update(model_load_s=time.perf_counter()-start,nq=model.nq,nv=model.nv,ngeom=model.ngeom,
             physics_step_s=float(model.opt.timestep),fixed_control_sha256=hashlib.sha256(ctrl.tobytes()).hexdigest())
         cpu=initial();start=time.perf_counter()
         for _ in range(a.steps):mujoco.mj_step(model,cpu)
         report.update(cpu_wall_s=time.perf_counter()-start,cpu_warning_counts=cpu.warning.number.tolist())
+        gpu_host=model
+        if a.compiled_sleep_aliases:
+            gpu_host=mujoco.MjModel.from_xml_path(str(run/'world.xml'))
+            before=gpu_host.tree_sleep_policy.copy()
+            for source,target in [(mujoco.mjtSleepPolicy.mjSLEEP_NEVER,mujoco.mjtSleepPolicy.mjSLEEP_AUTO_NEVER),
+                                  (mujoco.mjtSleepPolicy.mjSLEEP_ALLOWED,mujoco.mjtSleepPolicy.mjSLEEP_AUTO_ALLOWED)]:
+                gpu_host.tree_sleep_policy[before==source]=target
+            check=initial(gpu_host)
+            for _ in range(a.steps):mujoco.mj_step(gpu_host,check)
+            exact=all(np.array_equal(getattr(cpu,key),getattr(check,key)) for key in ['qpos','qvel','qacc','qfrc_constraint'])
+            report.update(model_or_acceptance_modified=True,acceptance_modified=False,
+                compiled_sleep_aliases=dict(original=before.tolist(),mapped=gpu_host.tree_sleep_policy.tolist(),
+                    native_cpu_endpoint_exact=exact,bounded_native_steps=a.steps,
+                    complete_trajectory_or_sleep_transition_equivalence_proven=False))
+            save()
+            if not exact:raise RuntimeError('Compiled sleep aliases change the bounded native reference')
         wp.init();device=wp.get_device('cuda:0')
         report['device']=dict(name=device.name,alias=device.alias,architecture=device.arch)
         with wp.ScopedDevice(device):
-            start=time.perf_counter();gpu_model=mjw.put_model(model)
+            start=time.perf_counter();gpu_model=mjw.put_model(gpu_host)
+            # Conditional CUDA graph nodes require a newer driver. Fixed graph
+            # execution retains the source model's solver limits.
+            gpu_model.opt.graph_conditional=False
+            report['cuda_conditional_graph_nodes']=False
             report['model_transfer_s']=time.perf_counter()-start
             for n in a.worlds:
                 start=time.perf_counter()
-                data=mjw.put_data(model,initial(),nworld=n,nconmax=512,njmax=2048)
+                data=mjw.put_data(gpu_host,initial(gpu_host),nworld=n,nconmax=512,njmax=2048)
                 mjw.step(gpu_model,data);wp.synchronize()
                 warm=time.perf_counter()-start
-                data=mjw.put_data(model,initial(),nworld=n,nconmax=512,njmax=2048)
+                data=mjw.put_data(gpu_host,initial(gpu_host),nworld=n,nconmax=512,njmax=2048)
                 with wp.ScopedCapture() as capture:mjw.step(gpu_model,data)
                 wp.synchronize();start=time.perf_counter()
                 for _ in range(a.steps):wp.capture_launch(capture.graph)
