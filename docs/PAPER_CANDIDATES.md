@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **401**.
+Last screened: **2026-11-06**. Candidate count: **402**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4142,3 +4142,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Reported experiments demonstrate latching, cycle counting and a period-two response. Autonomous learning is proposed, not demonstrated, and mixed-sign interactions within a reciprocal pair were not realized. These distinctions remain explicit; source results are not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is guarded low-force spring-and-bar state configuration and repeated sensing. Specimen suitability, stored elastic energy, fixtures, sensing and physical manipulation require separate apparatus qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through the public arXiv copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
+
+## Additional candidate: optical-tweezer automation and inert-colloid measurement records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [SmartTrap: automated precision experiments with optical tweezers](https://www.nature.com/articles/s41592-026-03129-3) | Nature Methods / 2026 | 10.1038/s41592-026-03129-3 | Prepared inert-colloid specimen identity, calibration/configuration tracking and coordinated positioning and optical-measurement records suggest a future long-horizon instrument-coordination task. | Published-version core text, Methods, figure captions and seven Extended Data captions read; visual, media and data/code review gaps remain. |
+
+- **CANDIDATE only.** Selin, Ciarlo, Pesce et al., *Nature Methods* **23**, 1368-1378 (2026). The published-version core scholarly text, Methods, figure captions and seven Extended Data captions were read from the public [institutional-repository copy](https://hdl.handle.net/2445/230874). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The publisher index lists no separate technical Supplementary Information narrative. Reporting Summary and Peer Review PDFs were not read. Five supplementary-video captions were read, but the videos were not watched. Figure images and the final three image-only PDF pages were not visually audited; code, raw data and training data were not audited. This is written-source screening, not a complete visual, media, data or computational review.
+- The source reports a 4.5-hour experiment, but medium changes were manual and depletion or clogging still required human intervention. This does not establish unattended end-to-end autonomy. Reported performance remains source evidence, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to prepared inert colloids and associated configuration, positioning and measurement-record coordination. Blood- and DNA-related work is excluded. Specimen suitability, apparatus setup, laser and electrical safety, and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through the public institutional repository and publisher metadata/index. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
