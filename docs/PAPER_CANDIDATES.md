@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **404**.
+Last screened: **2026-11-06**. Candidate count: **405**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4178,3 +4178,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Force and imaging experiments use different bead sizes and must retain separate specimen and acquisition identities. Initial pre-shear history and imaging-liquid concentrations are not specified in the screened source. Reported scaling and strain correlations remain source claims, not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is limited to preprepared nonliving samples, guarded repeated measurements, sample-history tracking, calibration, acquisition quality checks and cross-condition comparisons. Apparatus, sample suitability, laser exposure, moving/loading hardware, liquid handling and physical manipulation require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through the public institutional repository. The published copy states **CC BY 4.0**, subject to third-party exceptions. Citation metadata and original commentary only; no source text, figures, data, code, CAD or other source assets redistributed.
+
+## Additional candidate: modular origami ternary logic and configuration-verification records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Toward Ternary Computing Enabled by Origami-Inspired Modular Architectures](https://www.nature.com/articles/s41467-026-79187-0) | Nature Communications / 2026 | 10.1038/s41467-026-79187-0 | Prepared-part identity, modular assembly and reconfiguration, and repeated truth-table verification suggest a future long-horizon assembly-and-measurement task. | Accepted main manuscript and selected necessary SI text/captions screened; supplementary videos and source-data workbooks not independently examined. |
+
+- **CANDIDATE only.** Wang et al., *Nature Communications* (2026), accepted Article in Press version dated **5 November 2026**. A final volume and article number are not yet recorded. The official [accepted main manuscript](https://www.nature.com/articles/s41467-026-79187-0_reference.pdf) was read through its Methods and Results, with necessary passages and captions checked in the [Supplementary Information](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-026-79187-0/MediaObjects/41467_2026_79187_MOESM1_ESM.pdf), notably S2 and S6-S10. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Supplementary videos and source-data workbooks were not independently examined. Selected written SI screening does not establish a complete supplementary-media, raw-data or computational audit. The accepted manuscript is the screened version; later publisher versions require their own check.
+- The physical full adders are electromechanical assemblies with microcontroller-mediated feedback, not purely mechanical autonomous systems. The reported 50-cycle accuracy assessment applies to the manually operated gate, not the full adder. These results remain source claims, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to prepared nonliving parts, assembly and configuration tracking, guarded reconfiguration, and truth-table verification with linked measurement records. This proposed robot-task fit is an inference, not a demonstrated robot task. Part suitability, fixtures, moving components, electrical interfaces and physical manipulation require separate qualification and safety review before conversion. No fabrication procedure, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through the official accepted manuscript and SI. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code, CAD or other source assets redistributed.
