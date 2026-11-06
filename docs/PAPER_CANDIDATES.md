@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **402**.
+Last screened: **2026-11-06**. Candidate count: **403**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4154,3 +4154,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The source reports a 4.5-hour experiment, but medium changes were manual and depletion or clogging still required human intervention. This does not establish unattended end-to-end autonomy. Reported performance remains source evidence, not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is limited to prepared inert colloids and associated configuration, positioning and measurement-record coordination. Blood- and DNA-related work is excluded. Specimen suitability, apparatus setup, laser and electrical safety, and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through the public institutional repository and publisher metadata/index. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code or other source assets redistributed.
+
+## Additional candidate: fluidic tactile sensing and guarded mechanical-measurement records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Tactile perception through fluid–solid interaction](https://www.nature.com/articles/s41467-026-72497-3) | Nature Communications / 2026 | 10.1038/s41467-026-72497-3 | Pre-cured specimen identity, calibration/configuration tracking and repeated guarded robotic indentation with linked pressure and force records suggest a future long-horizon mechanical-characterization task. | Author-deposited main text and included SI sections S1–S14 read; exact equivalence to publisher main/SI, referenced S15 CAD material and supplementary-media review remain unresolved. |
+
+- **CANDIDATE only.** Goshtasbi et al., *Nature Communications* **17**, 5874 (2026). The main text and included Supplementary Information sections S1–S14 were read in the public [62-page author deposit](https://arxiv.org/pdf/2610.03773). Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Exact equivalence of the deposited main article and SI to the final publisher versions was not established. The main text references S15 for CAD material, while the deposited SI ends at S14. Separate CAD/code assets were not inspected and supplementary videos were not watched. This is version-specific written-source screening, not a publisher-complete, visual, media or computational audit.
+- Robotic indentation and pressure/force acquisition are reported experimental demonstrations. S4 includes 14-day diffusion measurements with daily refill, and S10 includes two-week repeatability measurements with baseline correction; baseline stability is not wholly unstudied. Quantitative fatigue/damage tolerance remains untested in the screened source. A future fatigue or damage investigation is an inferred task opportunity, not a demonstrated experiment or autonomous capability. Reported results are source claims, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to pre-cured specimens and guarded, non-human mechanical testing with specimen, configuration and contact-history records. Human-contact and medical demonstrations are excluded. Specimen suitability, fixtures, apparatus setup and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through the public author deposit. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, CAD, data, code or other source assets redistributed.
