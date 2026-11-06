@@ -1,5 +1,38 @@
 # G1 humanoid contact runtime
 
+Current execution update (6 November 2026): carry07's complete native replay
+has finished. Its carrying, load continuity, return and release-support checks
+pass, but hand/tray penetration and the separately checked thumb speed fail.
+The [corrected lowering continuation](analysis/dex3_release_inset_checkpoint_01/result.json)
+finishes without hand/tray contact and stays within hand limits. It is a
+restored-state diagnostic; a fresh uninterrupted carry08 is running separately.
+The [supported ramped tool stroke](analysis/dex3_tool_supported_ramp_evaluation_01/review.json)
+still loses retention during reopening and is not qualified.
+
+Two fresh current-Dex3 trials of the earlier official Unitree walking policy
+also fail. The [second native review](runs/dex3_official_walking_02/walking_review.json)
+confirms exact physics and sensor/controller replay, but finds later self-contact,
+a hand-speed violation, backwards drift and failure to stop. Its initial pose
+passes the newly added collision gate. The first trial's open thumb intersected
+the hip at time zero; its failed evidence remains available.
+The alternative [official NVIDIA decoupled policies](locomotion_groot_policy/SOURCE.json)
+are now downloaded with their pinned Git LFS hashes and licenses. The
+[adapter comparison](analysis/groot_policy_adapter_01/review.json) matches
+upstream features, history and output references exactly on 600 recorded sensor
+packets, covering standing and walking modes. The first
+[full-room native review](runs/dex3_groot_walking_01/walking_review.json)
+now records 1.0065 m forward travel and a commanded stop. All checks except
+the original 1 mm sole-contact penetration bound pass, including source motor
+limits and exact controller/physics/sensor replay. The
+[complete-body camera view](runs/dex3_groot_walking_01/visual_review_02/overview.mp4)
+shows this failed trial without changing its trajectory.
+A second run tests an explicitly recorded sole-contact response revision
+(20 ms to 10 ms for the eight sole collision geoms). This changes physical
+response, not acceptance, and is not a measured sole material property.
+It requires its own full review; any later manipulation on that revised plant
+also requires fresh qualification. Neither interface agreement nor the first
+walking video qualifies carrying, navigation, or a paper branch.
+
 The latest [59.09-second visual tool recording](runs/dex3_visual_grasp_04/overview.mp4)
 passes all 18 [independent physical checks](runs/dex3_visual_grasp_04/physical_review.json),
 [isolated controller replay](runs/dex3_visual_grasp_04/controller_replay.json) and
@@ -267,7 +300,9 @@ its pickup, outward/return steps, release and empty-hand base return at 146.731 
 without a controller error. It does not pass acceptance: the [source motor
 review](runs/dex3_visual_carry_07/source_limit_review.json) finds 12.408 rad/s
 at the right thumb distal joint, above its unchanged 12 rad/s source limit.
-Independent full contact replay and video processing are still running.
+The completed [independent full contact replay](runs/dex3_visual_carry_07/physical_review.json)
+fails only its contact-bound check: the index finger meets the tray rim while
+lowering. The other carrying checks pass, and the native preview video is ready.
 Neither the numerical repair nor sequence completion grants carrying qualification.
 The withheld carry-05 attempt has not been relabelled as an execution.
 

@@ -1,0 +1,65 @@
+{
+  "scope": "Diagnose loaded control from an explicitly restored grasp checkpoint.\n\nThe frozen isolated actor first consumes every original sensor packet up to\nthe checkpoint. Physics then starts from a recorded held-tool state. This is\nnot a continuous pickup/carry recording, independent replay, or skill result.\nThe separate full run must execute its own pickup and carry without resets.\n",
+  "physical_execution": true,
+  "continuous_pickup_carry": false,
+  "qualified_carry": false,
+  "source_result_sha256": "c6f701a38e7efcda1027153bc2b34d294d77224164110090ae5de93658604361",
+  "actor_contract_sha256": "c54b7897db57d082180797c2b365bdedb26ff03dc7cb789fc12f6e69b26daa4d",
+  "script_sha256": "4f4f19a1d443446b078c6f8b5bca227dae27949348884dfe405fbc0991e815cd",
+  "checkpoint_time_s": 37.46200000012008,
+  "requested_continuation_s": 55.0,
+  "checkpoint_phase": "close",
+  "native_prelift_measurement_requested": false,
+  "prefix_packets_replayed": 37462,
+  "maximum_prefix_response_error": 0.0,
+  "restored_original_step_q_error": 6.780505671235485e-14,
+  "restored_original_step_v_error": 6.780505671599713e-10,
+  "final_time_s": 73.47500000131558,
+  "last_phase": "finished",
+  "physics_warnings": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "final_base_xy_error_m": 0.04218405599960982,
+  "tool_actuation_native": {
+    "file": "tool_actuation_native.npz",
+    "sha256": "be9200061922b39738e069c474d38414e4246a924fec10b71da9cf5b79e1db25",
+    "samples": 134830,
+    "sample_period_s": 0.0001,
+    "evaluator_only": true,
+    "continuous_pickup_and_tool_use": false,
+    "qualified_tool_actuation": false
+  },
+  "hand_native": {
+    "file": "hand_native.npz",
+    "sha256": "fde79f1b963e6a35d9ffce78a11761ec93d74cac63ab6ee745dcc960daf47e26",
+    "samples": 360130,
+    "sample_period_s": 0.0001,
+    "evaluator_only": true,
+    "restored_state_diagnostic_only": true
+  },
+  "native_hand_tray_contacts": {
+    "maximum_penetration_m": 0.00013329749608019076,
+    "maximum_normal_force_n": 0.47044188758941025,
+    "first_excess": {
+      "time_s": 70.13950000120485,
+      "phase": "abort_lower",
+      "penetration_m": 2.028726282318984e-05,
+      "geoms": [
+        "dex3_right_geom_17",
+        "tray_contact_8"
+      ]
+    },
+    "evaluated_native_steps": 360130,
+    "original_penetration_bound_m": 2e-05,
+    "within_penetration_bound": false
+  },
+  "failure": "Observed loss of three-finger load",
+  "wall_seconds": 1472.227746885037,
+  "trace_sha256": "186a23dec86ee6f8cde5dd88a77b0f1815c2aa2120e84a94a43450f7e96871f4"
+}
