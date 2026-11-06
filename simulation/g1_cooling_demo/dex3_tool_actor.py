@@ -18,7 +18,7 @@ from observations import StateEstimate
 
 class ToolActor:
     fields={'time_s','joint_position','joint_velocity','imu_quaternion','imu_gyro'}
-    loaded_phases=frozenset({'close','lift','hold','lower'})
+    loaded_phases=frozenset({'close','lift','hold','lower','tool_squeeze','tool_reopen'})
 
     def __init__(self, model, prior):
         self.m=model;self.d=mujoco.MjData(model);self.d.qpos[:]=prior['initial_robot_qpos']
@@ -66,6 +66,14 @@ class ToolActor:
         self.lift_force=np.asarray(prior.get('lift_force_proxy_threshold_n',[.5,.25,.25]),dtype=float)
         assert self.hold_force.shape==self.lift_force.shape==(3,)
         assert np.all(self.lift_force>0) and np.all(self.hold_force>self.lift_force) and max(self.hold_force)<4.
+        self.tool_squeeze_force=prior.get('tool_squeeze_force_proxy_n')
+        if self.tool_squeeze_force is not None:
+            self.tool_squeeze_force=np.asarray(self.tool_squeeze_force,dtype=float)
+            if (self.tool_squeeze_force.shape!=(3,) or not np.isfinite(self.tool_squeeze_force).all()
+                    or np.any(self.tool_squeeze_force<=self.hold_force) or max(self.tool_squeeze_force)>=4.):
+                raise ValueError('Tool stroke needs three larger force targets below the original 4 N bound')
+        self.tool_open_force=self.hold_force.copy();self.tool_stroke_active=False
+        self.tool_stroke_done=False;self.tool_force_since=None
         self.release_extra=float(prior.get('release_extra_opening_rad',.04))
         self.release_load_feedback=bool(prior.get('release_load_feedback',False))
         self.release_preserve_posture=bool(prior.get('release_preserve_posture',False))
@@ -119,7 +127,13 @@ class ToolActor:
 
     def hand_load_feedforward(self):
         """Optional own-motor disturbance compensation; no plant contact input."""
-        return np.zeros(len(self.hand))
+        result=np.zeros(len(self.hand))
+        if self.tool_stroke_active and self.phase in self.loaded_phases:
+            for k,a in enumerate(self.hand):
+                if a not in self.drivers:
+                    bound=.5*np.max(abs(self.m.actuator_ctrlrange[a]))
+                    result[k]=np.clip(self.filtered[a],-bound,bound)
+        return result
 
     def update(self, obs):
         if set(obs)!=ToolActor.fields:raise ValueError('Unexpected observation fields')
@@ -184,7 +198,32 @@ class ToolActor:
         if self.phase=='lift':
             self.lift_height=self.requested_lift_height*smooth(elapsed/2.)
             if elapsed>=2.:self.change('hold',t)
-        elif self.phase=='hold' and elapsed>=1.:self.change('lower',t)
+        elif self.phase=='hold' and elapsed>=1.:
+            if self.tool_squeeze_force is not None and not self.tool_stroke_done:
+                self.tool_stroke_active=True;self.tool_force_since=None
+                self.hold_force=self.tool_squeeze_force.copy()
+                self.motor_load_abort_nm=min(.3,.5*self.source_driver_effort_nm)
+                limits=m.jnt_range[m.actuator_trnid[self.drivers,0]]
+                self.lower[self.drivers]=np.maximum(self.initial[self.drivers]-.25,limits[:,0]+.01)
+                self.upper[self.drivers]=np.minimum(self.initial[self.drivers]+.25,limits[:,1]-.01)
+                self.change('tool_squeeze',t)
+            else:self.change('lower',t)
+        elif self.phase in {'tool_squeeze','tool_reopen'}:
+            stroke_phase=self.phase
+            if np.all(abs(proxy-self.hold_force)<=.15*self.hold_force):
+                if self.tool_force_since is None:self.tool_force_since=t
+                if t-self.tool_force_since>=.75:
+                    self.events.append(dict(time_s=t,kind='tool_force_target_reached',
+                        operation=self.phase,force_proxy_n=proxy.tolist(),
+                        target_proxy_n=self.hold_force.tolist(),actual_tip_gap_observed=False))
+                    self.tool_force_since=None
+                    if self.phase=='tool_squeeze':
+                        self.hold_force=self.tool_open_force.copy();self.change('tool_reopen',t)
+                    else:
+                        self.tool_stroke_done=True;self.change('lower',t)
+            else:self.tool_force_since=None
+            if self.phase==stroke_phase and elapsed>=20.:
+                self.abort('Tool stroke did not reach a stable observed motor-load target',t)
         elif self.phase in {'lower','abort_lower'}:
             self.lift_height=(self.lower_start_height if self.phase=='lower' else self.abort_height)*(1-smooth(elapsed/2.))
             if elapsed>=2.:self.release_command=self.command.copy();self.change('release',t)

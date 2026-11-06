@@ -33,16 +33,18 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('source_recording');p.add_argument('actor_run');p.add_argument('output')
-    p.add_argument('--checkpoint-phase',choices=['close','lift','carry_descend','lower'],default='lower')
+    p.add_argument('--checkpoint-phase',choices=['close','lift','hold','carry_descend','lower'],default='lower')
     p.add_argument('--measure-prelift-native',action='store_true',
                    help='Record every native contact step in the final prelift window; evaluator only')
+    p.add_argument('--diagnose-balance',action='store_true',
+                   help='Retain a rejected actor-owned QP; diagnostic wrapper only')
     p.add_argument('--seconds',type=float,default=18.);a=p.parse_args()
     source,run,out=map(lambda x:Path(x).resolve(),[a.source_recording,a.actor_run,a.output])
     out.mkdir(parents=True,exist_ok=False)
     shutil.copyfile(__file__,out/Path(__file__).name)
     contract=json.loads((run/'contract.json').read_text());receipt=json.loads((run/'actor_isolation.json').read_text())
     original=json.loads((source/'result.json').read_text())
-    assert contract['task']=='visual_pickup_loaded_out_and_back_release' and receipt['passed']
+    assert contract['task'] in {'visual_pickup_loaded_out_and_back_release','pickup_hold_replace_release'} and receipt['passed']
     assert sha(run/'world.xml')==contract['model_sha256']==json.loads((source/'contract.json').read_text())['model_sha256']
     for f,key in [('trace.npz','trace_sha256'),('sensors.npz','sensors_sha256'),('responses.pkl','responses_sha256')]:
         assert sha(source/f)==original[key]
@@ -58,14 +60,28 @@ def main():
     report['checkpoint_phase']=a.checkpoint_phase
     report['native_prelift_measurement_requested']=a.measure_prelift_native
     (out/'contract.json').write_text(json.dumps(report,indent=2)+'\n')
-    command=receipt['command_prefix']+[sys.executable,'/actor/carry_tool_actor.py','--model','/model/world.xml']
-    failure=None;records=[];response={};started=time.monotonic()
+    actor=contract['actor_module'];assert actor in {'carry_tool_actor','visual_tool_actor'}
+    command=receipt['command_prefix']+[sys.executable,'/actor/'+actor+'.py','--model','/model/world.xml']
+    if a.diagnose_balance:
+        assert actor=='visual_tool_actor'
+        wrapper=Path(__file__).with_name('capture_balance_failure.py')
+        shutil.copyfile(wrapper,out/wrapper.name)
+        command=receipt['command_prefix']+[sys.executable,'-c',wrapper.read_text(),
+                                           '--model','/model/world.xml']
+        report['diagnostic_balance_wrapper_sha256']=sha(wrapper)
+    failure=None;records=[];response={};started=time.monotonic();actuation_native=[]
     with (out/'actor_stderr.log').open('wb') as stderr,(out/'monitor.jsonl').open('w') as monitor:
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=stderr,env=receipt['environment'])
         def ask(obs):
             pickle.dump(obs,process.stdin,protocol=5);process.stdin.flush()
             value=pickle.load(process.stdout)
-            if value.get('error'):raise RuntimeError(value['error'])
+            if value.get('error'):
+                if a.diagnose_balance and 'diagnostic_balance_problem' in value:
+                    problem=out/'rejected_balance_problem.npz'
+                    np.savez_compressed(problem,**value['diagnostic_balance_problem'])
+                    report['rejected_balance_problem']=dict(file=problem.name,sha256=sha(problem),
+                        time_s=float(obs['time_s']),scope='Own-robot estimated balance QP; diagnostic only')
+                raise RuntimeError(value['error'])
             return value
         try:
             prefix_error=0.
@@ -98,8 +114,20 @@ def main():
             for b in range(m.nbody):
                 if m.body_parentid[b] in bodies:bodies.add(b)
             allowed={m.body(n).id for n in contract['allowed_tool_contact_bodies']}
+            actuation=bool(contract.get('tool_actuation_contract'))
+            endpoints={}
+            if actuation:
+                rest=mujoco.MjData(m);rest.qpos[:]=d.qpos
+                for j in range(m.njnt):
+                    if int(m.jnt_bodyid[j]) in bodies and m.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE:
+                        rest.qpos[m.jnt_qposadr[j]]=0.
+                mujoco.mj_kinematics(m,rest);root=m.body('tweezer').id
+                for label,sign in [('negative',-1.),('positive',1.)]:
+                    tip=max((b for b in bodies if m.body(b).name.startswith(label+'_beam_')),key=lambda b:m.body(b).name)
+                    point=rest.xpos[root]+rest.xmat[root].reshape(3,3)@np.array([-.130,sign*.004,0.])
+                    endpoints[label]=(tip,rest.xmat[tip].reshape(3,3).T@(point-rest.xpos[tip]))
             native_window=deque();previous_phase=None
-            preload_window=contract['carry_contract'].get('minimum_native_loaded_before_lift_s',.5)
+            preload_window=contract.get('carry_contract',{}).get('minimum_native_loaded_before_lift_s',.5)
             for i in range(round(a.seconds/dt)):
                 if i%stride==0:
                     obs=dict(time_s=float(d.time),joint_position=np.array([d.sensor(n+'_encoder').data[0] for n in names]),
@@ -128,10 +156,14 @@ def main():
                 if np.any(d.warning.number) or d.qpos[2]<.6:raise RuntimeError('Physical instability in continuation')
                 if np.any(d.xfrc_applied) or np.any(d.qfrc_applied):raise RuntimeError('External force unexpectedly applied')
                 monitor_due=i%(stride*10)==0
-                if monitor_due or (a.measure_prelift_native and response['phase']=='close'):
+                record_actuation=actuation and response['phase'] in {'hold','tool_squeeze','tool_reopen'}
+                if monitor_due or record_actuation or (a.measure_prelift_native and response['phase']=='close'):
                     forces={n:0. for n in ['thumb','index','middle']}
+                    other_tool_load=0.
                     for ci,c in enumerate(d.contact):
                         bs={int(m.geom_bodyid[g]) for g in c.geom}
+                        if record_actuation and sum(int(m.geom_bodyid[g]) in bodies for g in c.geom)==1 and not bs&allowed:
+                            wrench=np.zeros(6);mujoco.mj_contactForce(m,d,ci,wrench);other_tool_load+=max(0.,float(wrench[0]))
                         if not(bs&bodies and bs&allowed):continue
                         name=m.body(next(iter(bs&allowed))).name;f=next(n for n in forces if n in name)
                         wrench=np.zeros(6);mujoco.mj_contactForce(m,d,ci,wrench);forces[f]+=max(0.,float(wrench[0]))
@@ -141,6 +173,13 @@ def main():
                         native_window.append((float(d.time-dt),bool(loaded),
                                               [forces[n] for n in ['thumb','index','middle']]))
                         while native_window and native_window[0][0]<d.time-preload_window-.002:native_window.popleft()
+                    if record_actuation:
+                        tips=[d.xpos[b]+d.xmat[b].reshape(3,3)@point for b,point in endpoints.values()]
+                        wrist=d.site('right_wrist_reference')
+                        relative=wrist.xmat.reshape(3,3).T@(d.body('tweezer').xpos-wrist.xpos)
+                        actuation_native.append((float(d.time-dt),response['phase'],
+                            [forces[n] for n in ['thumb','index','middle']],other_tool_load,
+                            float(np.linalg.norm(tips[1]-tips[0])),relative.copy()))
                 if monitor_due:
                     monitor.write(json.dumps(dict(time_s=float(d.time-dt),phase=response['phase'],
                         base_m=d.qpos[:3].tolist(),tool_m=d.body('tweezer').xpos.tolist(),
@@ -163,6 +202,13 @@ def main():
             except subprocess.TimeoutExpired:process.kill();process.wait()
     if records:np.savez_compressed(out/'trace.npz',**{n:np.array([r[i] for r in records]) for i,n in enumerate(['time','qpos','qvel','ctrl'])})
     (out/'events.json').write_text(json.dumps(response.get('events',[]),indent=2)+'\n')
+    if actuation_native:
+        native_path=out/'tool_actuation_native.npz'
+        np.savez_compressed(native_path,**{name:np.asarray([r[i] for r in actuation_native])
+            for i,name in enumerate(['time_s','phase','force_n','other_tool_contact_load_n','tip_gap_m','tool_wrist_position_m'])})
+        report['tool_actuation_native']=dict(file=native_path.name,sha256=sha(native_path),
+            samples=len(actuation_native),sample_period_s=dt,evaluator_only=True,
+            continuous_pickup_and_tool_use=False,qualified_tool_actuation=False)
     report.update(failure=failure,wall_seconds=time.monotonic()-started,
         trace_sha256=sha(out/'trace.npz') if records else None)
     (out/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)

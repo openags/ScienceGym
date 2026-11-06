@@ -16,6 +16,25 @@ remains separate. The earlier walking/window run uses Inspire hands; that result
 does not transfer automatically to the three-finger model. There remain
 **0 of 11 qualified paper branches and 0 qualified complete campaigns**.
 
+Free-tool actuation now has a separate optional squeeze/reopen controller and
+[declared tip-gap contract](runs/dex3_tool_actuation_candidate_02/contract.json).
+The first [restored-state trial](analysis/dex3_tool_actuation_checkpoint_01/result.json)
+stops two milliseconds after squeezing starts: the balance solver returns
+`AlmostSolved`, which remains rejected. An isolated diagnostic reproduces all
+49,988 prior responses and the same failure, retaining the exact
+[actor-owned balance problem](analysis/dex3_tool_actuation_balance_01/result.json).
+The [numerical comparison](analysis/dex3_tool_actuation_balance_comparison_01/review.json)
+finds a full-accuracy solution with finer KKT regularization/refinement, without
+changing the objective, constraints or tolerances. `conic_balance.py` tries that
+setting only after the original solve is rejected; infeasible results remain
+rejected. The new continuation is `analysis/dex3_tool_actuation_checkpoint_02`.
+`evaluate_tool_actuation_checkpoint.py` checks actual native tip separation,
+tool retention, finger loads and closure/reopening dwell independently of the
+actor's inferred loads. No successful tool stroke or specimen pickup is claimed.
+The [held-tool camera inspection](analysis/dex3_held_tool_visibility_03/review.json)
+also finds substantial head-camera occlusion after grasp; initial localization
+is not evidence of visible tool tips during use.
+
 The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
 contains continuous visual pickup, four outward steps, four return steps and
 lowering to the tray. Its [execution result](runs/dex3_visual_carry_03/result.json)
@@ -168,9 +187,15 @@ a 20 micrometre clearance. Only this declared initial specimen pose changes;
 the robot, tool, tray, other objects, contact settings and meshes remain exact.
 Its [0.15-second startup check](analysis/optical_startup_screen_02/review.json)
 passes the unchanged 20 micrometre operation bound with a 14.317 micrometre peak,
-no optical-face contact and no external force. Full three-second support and
-corrected-velocity verification are still required and are running separately.
-No component result is transferred as room acceptance.
+no optical-face contact and no external force. The full
+[three-second support check](analysis/optical_runtime_support_11/review.json)
+and [corrected-velocity replay](analysis/optical_support_velocity_recheck_11/review.json)
+now pass with exact retained states. The 14.317 micrometre peak also satisfies
+the unchanged stricter operation bound. The corrected
+[operation station](runs/dex3_optical_observe_start_03/review.json) and
+[isolated controller preparation](runs/dex3_exact_optical_preparation_02/preparation.json)
+are rendered, not executed. The specimen's declared initial placement does not
+count as robot handling, and these checks do not establish final room acceptance.
 The [corrected support replay](analysis/optical_support_velocity_recheck_01/review.json)
 checks the specimen's own velocity address, which the original evaluator
 accidentally replaced with the cap address. All retained states replay exactly

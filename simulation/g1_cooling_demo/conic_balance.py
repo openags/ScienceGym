@@ -28,18 +28,31 @@ def solve(P,q,A,lower,upper):
     settings=clarabel.DefaultSettings()
     settings.verbose=False;settings.max_threads=1
     settings.tol_gap_abs=settings.tol_gap_rel=settings.tol_feas=1e-9
-    solver=clarabel.DefaultSolver(P,q,transformed,bound,cones,settings)
-    answer=solver.solve()
-    x=np.asarray(answer.x);z=np.asarray(answer.z)
-    dual=np.zeros(len(lower));dual[equal]=z[:ne]
-    dual[high]=z[ne:ne+nh];dual[low]-=z[ne+nh:]
-    projected=A@x
-    violation=float(max(0.,np.max(lower-projected),np.max(projected-upper)))
     full=P+P.T-sparse.diags(P.diagonal())
-    stationarity=float(np.max(abs(full@x+q+A.T@dual)))
-    info=SimpleNamespace(status='clarabel:'+str(answer.status),
-                         status_val=1 if answer.status==clarabel.SolverStatus.Solved else 0,
-                         iter=answer.iterations,prim_res=violation,dual_res=stationarity)
-    if (info.status_val!=1 or not np.isfinite(np.r_[x,dual]).all() or violation>1e-6):
-        raise RuntimeError('Conic balance QP rejected: '+str(vars(info)))
-    return SimpleNamespace(x=x,y=dual,info=info)
+    attempts=[]
+    for retry in range(2):
+        if retry:
+            # Retained tool-actuation QP: the default KKT regularization
+            # stalled above the original dual-feasibility tolerance. Retry
+            # the identical QP with finer linear-system regularization and
+            # refinement. These are numerical settings, not objective terms
+            # or relaxed physical constraints. Never accept AlmostSolved.
+            settings.static_regularization_constant=1e-10
+            settings.iterative_refinement_max_iter=20
+        solver=clarabel.DefaultSolver(P,q,transformed,bound,cones,settings)
+        answer=solver.solve()
+        x=np.asarray(answer.x);z=np.asarray(answer.z)
+        dual=np.zeros(len(lower));dual[equal]=z[:ne]
+        dual[high]=z[ne:ne+nh];dual[low]-=z[ne+nh:]
+        projected=A@x
+        violation=float(max(0.,np.max(lower-projected),np.max(projected-upper)))
+        stationarity=float(np.max(abs(full@x+q+A.T@dual)))
+        info=SimpleNamespace(status='clarabel:'+str(answer.status),
+                             status_val=1 if answer.status==clarabel.SolverStatus.Solved else 0,
+                             iter=answer.iterations,prim_res=violation,dual_res=stationarity)
+        attempts.append(dict(**vars(info),linear_system_retry=bool(retry)))
+        if info.status_val==1 and np.isfinite(np.r_[x,dual]).all() and violation<=1e-6:
+            info.attempts=attempts
+            return SimpleNamespace(x=x,y=dual,info=info)
+    info.attempts=attempts
+    raise RuntimeError('Conic balance QP rejected: '+str(vars(info)))

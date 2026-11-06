@@ -1,0 +1,91 @@
+{
+  "scope": "Compare numerical settings on one retained, rejected balance QP.\n\nEvery case solves the identical objective and physical constraints with the\noriginal full-accuracy tolerances. No answer here actuates the robot.\n",
+  "source_result_sha256": "36c57585c8602e57312372fe6d61fe934036a628a1e4f8b05f0d0700ae5d2ac8",
+  "problem_sha256": "f9c733326017e230bbc4e7fb080685d7283c7e6f670defb8d6782a84bd19d651",
+  "source_sha256": "89454ab1cdc81256403f789fe9214ace514608280243344012f090cc8bc9c6c1",
+  "rows": [
+    {
+      "name": "original",
+      "changed_settings": {},
+      "status": "AlmostSolved",
+      "iterations": 14,
+      "original_constraint_violation": 5.684341886080802e-14,
+      "original_stationarity": 1.5335753903980478e-06,
+      "primal_residual": 8.731858727185427e-17,
+      "dual_residual": 3.747264357253243e-09,
+      "gap_absolute": 7.302760423044674e-07,
+      "gap_relative": 1.670991536096533e-10,
+      "objective": -4370.315627153961,
+      "original_acceptance_passed": false
+    },
+    {
+      "name": "refine_regularization",
+      "changed_settings": {
+        "static_regularization_constant": 1e-10,
+        "iterative_refinement_max_iter": 20
+      },
+      "status": "Solved",
+      "iterations": 12,
+      "original_constraint_violation": 5.684341886080802e-14,
+      "original_stationarity": 5.262774826052404e-08,
+      "primal_residual": 1.2228571775931457e-16,
+      "dual_residual": 1.325080859552083e-10,
+      "gap_absolute": 3.985751391155645e-07,
+      "gap_relative": 9.12005385737228e-11,
+      "objective": -4370.315629149193,
+      "original_acceptance_passed": true
+    },
+    {
+      "name": "refine_regularization_12",
+      "changed_settings": {
+        "static_regularization_constant": 1e-12,
+        "iterative_refinement_max_iter": 20
+      },
+      "status": "NumericalError",
+      "iterations": 8,
+      "original_constraint_violation": 1.1368683772161603e-13,
+      "original_stationarity": 4.722711682554655,
+      "primal_residual": 2.541816113616985e-11,
+      "dual_residual": 0.009074000018833633,
+      "gap_absolute": 6057.278251566574,
+      "gap_relative": 1.3937512355093737,
+      "objective": -4346.0253861965675,
+      "original_acceptance_passed": false
+    },
+    {
+      "name": "equilibrate_30",
+      "changed_settings": {
+        "equilibrate_max_iter": 30
+      },
+      "status": "AlmostSolved",
+      "iterations": 14,
+      "original_constraint_violation": 5.684341886080802e-14,
+      "original_stationarity": 1.5336537699262302e-06,
+      "primal_residual": 9.152222715729561e-17,
+      "dual_residual": 3.678836942473819e-09,
+      "gap_absolute": 7.302505764528178e-07,
+      "gap_relative": 1.670933266045103e-10,
+      "objective": -4370.315627153875,
+      "original_acceptance_passed": false
+    },
+    {
+      "name": "shorter_interior_steps",
+      "changed_settings": {
+        "max_step_fraction": 0.95
+      },
+      "status": "AlmostSolved",
+      "iterations": 20,
+      "original_constraint_violation": 2.6645352591003757e-15,
+      "original_stationarity": 8.092695294425729e-07,
+      "primal_residual": 6.263388274491826e-17,
+      "dual_residual": 1.8969340218600725e-09,
+      "gap_absolute": 2.4479049898218364e-08,
+      "gap_relative": 5.601208694865592e-12,
+      "objective": -4370.315628599475,
+      "original_acceptance_passed": false
+    }
+  ],
+  "physical_constraints_changed": false,
+  "original_tolerances_changed": false,
+  "qualified_robot_operation": false
+}
