@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-05**. Candidate count: **398**.
+Last screened: **2026-11-06**. Candidate count: **399**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4108,3 +4108,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The ultra-soft condition has only one reported replicate per height. The SI wetting-ridge estimate calls the 17.9-kPa substrate the softest despite a 2.7-kPa condition elsewhere in the sources; this inconsistency remains unresolved. Reported results are source claims, not independently reproduced measurements or acceptance thresholds.
 - Scope is prepared-specimen identity, condition/history tracking and coordinated imaging and measurement-record comparisons only. Specialized high-speed polarimetry is required, and specimen preparation, instrument setup and physical testing need separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-05** through public publisher sources. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, data, code or other source assets redistributed.
+
+## Additional candidate: prepared-suspension rheometry and measurement records (2026-11-06)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Generality of shear thickening in dense suspensions](https://www.nature.com/articles/nmat2627) | Nature Materials / 2010 | 10.1038/nmat2627 | Preprepared lower-hazard specimen identity, sample-history tracking and linked repeated rheometry and imaging records suggest a future long-horizon materials-characterization task. | All five pages of the author-hosted advance-online main article and all six written SI pages read; only selected figure pages visually reviewed. |
+
+- **CANDIDATE only.** Brown et al., *Nature Materials* **9**, 220-224 (2010). All five pages of the public [author-hosted advance-online published-layout main article](https://jfi.uchicago.edu/~jaeger/group/JaegerGroupPapers/suspensions/Brown_nmat2627.pdf), including captions, were read. Suitability remains preliminary; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- All six pages of the written [Supplementary Information](https://jfi.uchicago.edu/~jaeger/group/JaegerGroupPapers/suspensions/Brown_nmat2627-s1.pdf), including captions, were read. Only selected figure pages were visually reviewed. External fabrication references, raw data and code were not inspected. This is written-source screening with limited visual review, not a complete visual, data or computational audit.
+- Scope is preprepared lower-hazard specimen identity, sample-history tracking and repeated rheometry and imaging-record coordination only. Synthesis and electrical or chemical operating protocols are excluded. Specimen suitability, instrument setup and physical testing require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-06** through public author-hosted copies. The source carries an all-rights-reserved notice; public availability does not imply permission to reproduce its content. Citation metadata and original commentary only; no source text, figures, data, code or other source assets redistributed.
