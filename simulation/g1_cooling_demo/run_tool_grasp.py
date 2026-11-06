@@ -35,7 +35,7 @@ def plain(value):
     raise TypeError(type(value).__name__)
 
 
-def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0.):
+def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=.5, approach_feedforward=False, carry_distance=None, carry_thumb_force=None, prepare_only=False, carry_load_abort=None, carry_preload_before_lift=False, carry_command_excursion=None, carry_finger_load_compensation=False, carry_body_joint_damper=False, carry_prelift_dwell=None, carry_body_withdrawal=False, carry_support_inset=0., carry_proximal_preshape=0., contact_cone=None, contact_impratio=None, release_extra_opening=.04, release_driver_openings=None, release_load_feedback=False, observe_optical_coupon=False, release_clearance_height=0., release_preserve_posture=False, tool_lift_height=.03, register_optical_map=False, return_base_after_release=False, grip_force_deadband=0., loaded_hand_damping_scale=1., hand_contact_impedance=None, tool_squeeze_force=None, grasp_proximal_preshape=0., inspect_held_tool=False):
     station, output = Path(station).resolve(), Path(output).resolve()
     review = json.loads((station/'review.json').read_text())
     assert review['passed_initial_scene_checks']
@@ -49,6 +49,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         raise ValueError('Free-tool stroke requires Dex3, no carrying, and a larger force target below 4 N')
     visual = bool(contract.get('observed_approach',False))
     if visual: assert dex3
+    if inspect_held_tool and (not visual or carry_distance is not None or tool_squeeze_force is not None):
+        raise ValueError('Held-tool inspection requires the visual pickup task without carrying or tool stroke')
     if observe_optical_coupon and (not visual or not contract.get('optical_scene_binding')):
         raise ValueError('Coupon observation requires the bound visual optical station')
     if return_base_after_release and carry_distance is None:
@@ -102,6 +104,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     actor_module = 'dex3_tool_actor' if dex3 else 'tool_grasp_actor'
     if visual: actor_module='visual_tool_actor'
     if carry_distance is not None:actor_module='carry_tool_actor'
+    if inspect_held_tool:actor_module='inspection_tool_actor'
     assert sha(station/'contract.json') == review['contract_sha256']
     assert sha(station/'world.xml') == contract['plant_sha256']
     assert sha(station/'robot_predictor.xml') == contract['predictor_sha256']
@@ -114,6 +117,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if visual:extra_modules.extend(['dex3_tool_actor.py','tool_observation.py','tool_pose.py','tool_approach_planning.py',
         'ftir_hand.py','joint_rrt.py','robot_source_meshes.py','source_proximity.py','tool_cameras.py','sensor_rendering.py'])
     if carry_distance is not None:extra_modules.extend(['visual_tool_actor.py','quasistatic_walking.py'])
+    if inspect_held_tool:extra_modules.extend(['visual_tool_actor.py','carry_tool_actor.py','quasistatic_walking.py','held_tool_observation.py'])
     if observe_optical_coupon:extra_modules.append('optical_coupon_observation.py')
     if register_optical_map:extra_modules.append('map_localization.py')
     plugins = contract.get('collision_plugins', [])
@@ -182,6 +186,9 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
             prior['tool_squeeze_force_proxy_n']=[tool_squeeze_force,tool_squeeze_force/2,tool_squeeze_force/2]
         if grasp_proximal_preshape:
             prior['grasp_proximal_preshape_rad']=grasp_proximal_preshape
+        if inspect_held_tool:
+            prior['tool_inspection']=dict(raise_m=.06,wrist_rotation_rad=.5,
+                motion_duration_s=4.,observation_duration_s=2.,minimum_detected_frames=4)
         prior['post_release_withdrawal_m']=.02
         prior['scope'] += '; source material points on the robot hand, not object/contact observations'
     shapes=[]
@@ -244,10 +251,20 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         allowed_tool_contact_bodies=['right_index_force_sensor_2', 'right_index_force_sensor_3',
             'right_thumb_force_sensor_3', 'right_thumb_force_sensor_4', 'right_index_2', 'right_thumb_4'],
         qualified_grasp=False, qualified_paper_branch=False)
+    if inspect_held_tool:
+        run_contract['task']='pickup_inspect_replace_release'
+        run_contract['tool_inspection_contract']=dict(**prior['tool_inspection'],
+            planning_inputs='Own encoders/IMU, observed pickup surfaces, public robot/tool geometry',
+            camera_stream='Native head RGB-D during inspection motion and hold at 5 Hz',
+            minimum_observation_frames=4,
+            held_observation_method='depth_with_own_robot_surface_exclusion',
+            nonclosing_joint_motor_residual_compensation=True,
+            observation_does_not_certify_tip_pose=True,qualified_held_tool_inspection=False)
     if grasp_proximal_preshape:
         run_contract['supported_grasp_preshape']=dict(
             index_and_middle_proximal_offset_rad=grasp_proximal_preshape,
             ramp_duration_s=12.,source_joint_margin_rad=.01,
+            driver_command_excursion_rad=.15,
             lift_requires_preshape_finished_and_fresh_load_dwell=True,
             nonclosing_joint_motor_residual_compensation=True,
             scope='Authored supported grasp adjustment; no grasp or tool-use qualification')
@@ -286,7 +303,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if dex3:
         run_contract['allowed_tool_contact_bodies']=[r['body'] for r in contract['robot_contact_features']]
         run_contract['inferred_control'].update(hold_force_proxy_n=prior['hold_force_proxy_n'],first_contact_force_proxy_n=.03,
-            pickup_motor_load_observer_abort_nm=.15,
+            pickup_motor_load_observer_abort_nm=.3 if grasp_proximal_preshape else .15,
             lift_force_proxy_threshold_n=prior['lift_force_proxy_threshold_n'],lift_load_hold_s=.5,
             release_extra_opening_rad=prior['release_extra_opening_rad'],
             post_release_withdrawal_m=prior['post_release_withdrawal_m'],
@@ -373,7 +390,7 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
     if visual:
         from tool_cameras import ToolCameras
         cameras=ToolCameras(model);(output/'camera_frames').mkdir()
-    failure = None; response = {}; started = time.monotonic()
+    failure = None; response = {}; retained_events = []; started = time.monotonic()
     stop = {'signal': None}
     previous_handlers = {}
     for signum in [signal.SIGINT, signal.SIGTERM]:
@@ -399,7 +416,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                     retained=dict(packet)
                     if visual:
                         frame_id=-1
-                        if i % (stride*200)==0 and response.get('phase','observe')=='observe':
+                        if i % (stride*200)==0 and (response.get('phase','observe')=='observe' or
+                                (inspect_held_tool and response.get('phase') in {'inspect_move','inspect_hold','inspect_return'})):
                             frames=cameras.read(data);frame_id=len(frame_index)
                             path=output/'camera_frames'/f'{frame_id:05d}.npz'
                             np.savez_compressed(path,**frames)
@@ -409,6 +427,8 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
                     sensors.append(retained)
                     pickle.dump(packet, process.stdin, protocol=5); process.stdin.flush()
                     response = pickle.load(process.stdout)
+                    if 'events' in response:
+                        retained_events = response['events']
                     responses.append({k: v for k, v in response.items() if k != 'events'})
                     if response['error']: raise RuntimeError(response['error'])
                     data.ctrl[:] = response['torque']
@@ -456,7 +476,9 @@ def run(station, output, duration, close_timeout=6., thumb_force=.6, lift_force=
         for i, k in enumerate(['time', 'qpos', 'qvel', 'ctrl', 'qacc_warmstart'])})
     if sensors: np.savez_compressed(output/'sensors.npz', **{k: np.asarray([r[k] for r in sensors]) for k in sensors[0]})
     (output/'responses.pkl').write_bytes(pickle.dumps(responses, protocol=5))
-    (output/'events.json').write_text(json.dumps(response.get('events', []), indent=2)+'\n')
+    # An exception response can omit events. Keep the last actual controller
+    # history instead of erasing the completed phases of a failed attempt.
+    (output/'events.json').write_text(json.dumps(retained_events, indent=2)+'\n')
     if visual:(output/'camera_index.json').write_text(json.dumps(frame_index,indent=2)+'\n')
     result = dict(scope=__doc__, status='failed' if failure else 'attempt_finished_pending_independent_verification',
         failure=failure, simulated_seconds=float(data.time), wall_seconds=time.monotonic()-started,
@@ -520,5 +542,7 @@ if __name__ == '__main__':
                    help='Increase own-velocity feedback during loaded phases (1 to 2); unchanged physical limits')
     p.add_argument('--grasp-proximal-preshape',type=float,default=0.,
                    help='Ramp index/middle proximal references while the tool is supported; at most 0.08 rad')
+    p.add_argument('--inspect-held-tool',action='store_true',
+                   help='Plan and execute a held-tool observation pose, acquire native RGB-D and return')
     a = p.parse_args()
-    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape)['status'] == 'failed': raise SystemExit(1)
+    if run(a.station, a.output, a.duration, a.close_timeout,a.thumb_force,a.lift_force,a.approach_feedforward,a.carry_distance,a.carry_thumb_force,a.prepare_only,a.carry_load_abort,a.carry_preload_before_lift,a.carry_command_excursion,a.carry_finger_load_compensation,a.carry_body_joint_damper,a.carry_prelift_dwell,a.carry_body_withdrawal,a.carry_support_inset,a.carry_proximal_preshape,a.contact_cone,a.contact_impratio,a.release_extra_opening,a.release_driver_openings,a.release_load_feedback,a.observe_optical_coupon,a.release_clearance_height,a.release_preserve_posture,a.tool_lift_height,a.register_optical_map,a.return_base_after_release,a.grip_force_deadband,a.loaded_hand_damping_scale,a.hand_contact_impedance,a.tool_squeeze_force,a.grasp_proximal_preshape,a.inspect_held_tool)['status'] == 'failed': raise SystemExit(1)

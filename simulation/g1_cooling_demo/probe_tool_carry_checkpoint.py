@@ -44,7 +44,7 @@ def main():
     shutil.copyfile(__file__,out/Path(__file__).name)
     contract=json.loads((run/'contract.json').read_text());receipt=json.loads((run/'actor_isolation.json').read_text())
     original=json.loads((source/'result.json').read_text())
-    assert contract['task'] in {'visual_pickup_loaded_out_and_back_release','pickup_hold_replace_release'} and receipt['passed']
+    assert contract['task'] in {'visual_pickup_loaded_out_and_back_release','pickup_hold_replace_release','pickup_inspect_replace_release'} and receipt['passed']
     assert sha(run/'world.xml')==contract['model_sha256']==json.loads((source/'contract.json').read_text())['model_sha256']
     for f,key in [('trace.npz','trace_sha256'),('sensors.npz','sensors_sha256'),('responses.pkl','responses_sha256')]:
         assert sha(source/f)==original[key]
@@ -60,16 +60,16 @@ def main():
     report['checkpoint_phase']=a.checkpoint_phase
     report['native_prelift_measurement_requested']=a.measure_prelift_native
     (out/'contract.json').write_text(json.dumps(report,indent=2)+'\n')
-    actor=contract['actor_module'];assert actor in {'carry_tool_actor','visual_tool_actor'}
+    actor=contract['actor_module'];assert actor in {'carry_tool_actor','visual_tool_actor','inspection_tool_actor'}
     command=receipt['command_prefix']+[sys.executable,'/actor/'+actor+'.py','--model','/model/world.xml']
     if a.diagnose_balance:
-        assert actor=='visual_tool_actor'
         wrapper=Path(__file__).with_name('capture_balance_failure.py')
         shutil.copyfile(wrapper,out/wrapper.name)
         command=receipt['command_prefix']+[sys.executable,'-c',wrapper.read_text(),
-                                           '--model','/model/world.xml']
+                                           '--diagnostic-actor',actor,'--model','/model/world.xml']
         report['diagnostic_balance_wrapper_sha256']=sha(wrapper)
     failure=None;records=[];response={};started=time.monotonic();actuation_native=[]
+    cameras=None;camera_records=[]
     with (out/'actor_stderr.log').open('wb') as stderr,(out/'monitor.jsonl').open('w') as monitor:
         process=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=stderr,env=receipt['environment'])
         def ask(obs):
@@ -110,6 +110,15 @@ def main():
             report['restored_original_step_v_error']=float(np.max(abs(test.qvel-v[k+1])))
             del q,v,w;trace.close()
             names=[m.joint(j).name for j in robot_joints(m)];dt=float(m.opt.timestep);stride=round(.001/dt)
+            inspection=bool(contract.get('tool_inspection_contract'))
+            if inspection:
+                from tool_cameras import ToolCameras
+                cameras=ToolCameras(m);(out/'camera_frames').mkdir()
+                report['camera_source_sha256']={}
+                for name in ['tool_cameras.py','sensor_rendering.py']:
+                    src=Path(__file__).with_name(name);shutil.copyfile(src,out/name)
+                    report['camera_source_sha256'][name]=sha(src)
+                report['qualified_held_tool_inspection']=False
             bodies={m.body('tweezer').id}
             for b in range(m.nbody):
                 if m.body_parentid[b] in bodies:bodies.add(b)
@@ -134,6 +143,12 @@ def main():
                         joint_velocity=np.array([d.sensor(n+'_velocity').data[0] for n in names]),
                         imu_quaternion=d.sensor('imu_orientation').data.copy(),imu_gyro=d.sensor('imu_angular_velocity').data.copy(),
                         head_rgb=None,head_depth=None)
+                    if cameras is not None and i%(stride*200)==0 and response.get('phase') in {'inspect_move','inspect_hold','inspect_return'}:
+                        frame=cameras.read(d);obs.update(frame)
+                        path=out/'camera_frames'/f'{len(camera_records):05d}.npz'
+                        np.savez_compressed(path,**frame)
+                        camera_records.append(dict(id=len(camera_records),time_s=float(d.time),
+                            phase_before_observation=response['phase'],file=str(path.relative_to(out)),sha256=sha(path)))
                     response=ask(obs);d.ctrl[:]=response['torque']
                     if a.measure_prelift_native and response['phase']=='lift' and previous_phase=='close':
                         selected=[v for v in native_window if d.time-preload_window<=v[0]<d.time]
@@ -200,8 +215,13 @@ def main():
             process.stdin.close()
             try:process.wait(timeout=15)
             except subprocess.TimeoutExpired:process.kill();process.wait()
+            if cameras is not None:cameras.close()
     if records:np.savez_compressed(out/'trace.npz',**{n:np.array([r[i] for r in records]) for i,n in enumerate(['time','qpos','qvel','ctrl'])})
     (out/'events.json').write_text(json.dumps(response.get('events',[]),indent=2)+'\n')
+    if camera_records:
+        (out/'camera_index.json').write_text(json.dumps(camera_records,indent=2)+'\n')
+        report['camera_index_sha256']=sha(out/'camera_index.json')
+        report['camera_frames']=len(camera_records)
     if actuation_native:
         native_path=out/'tool_actuation_native.npz'
         np.savez_compressed(native_path,**{name:np.asarray([r[i] for r in actuation_native])

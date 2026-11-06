@@ -4,8 +4,10 @@ Executed inside the existing read-only actor sandbox, with the same sensor
 input and frozen actor modules. No failed answer reaches a motor. The extra
 error payload is consumed only by the external diagnostic recorder.
 """
+import argparse
 import pickle
 import runpy
+import sys
 
 import conic_balance
 
@@ -33,4 +35,9 @@ def forward(value, *args, **kwargs):
 
 conic_balance.solve = capture
 pickle.dump = forward
-runpy.run_path('/actor/visual_tool_actor.py', run_name='__main__')
+parser = argparse.ArgumentParser(add_help=False)
+parser.add_argument('--diagnostic-actor', default='visual_tool_actor',
+                    choices=['visual_tool_actor', 'carry_tool_actor', 'inspection_tool_actor'])
+args, remaining = parser.parse_known_args()
+sys.argv = [sys.argv[0], *remaining]
+runpy.run_path('/actor/' + args.diagnostic_actor + '.py', run_name='__main__')

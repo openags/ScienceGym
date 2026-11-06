@@ -35,8 +35,12 @@ not establish tip closure. The next [prepared candidate](runs/dex3_tool_actuatio
 ramps the index/middle proximal references by -0.04 rad over 12 seconds while
 the tool is still tray-supported, then requires a fresh load dwell before
 lifting. Nonclosing joints retain own-motor load compensation, following the
-carrying grasp design. `analysis/dex3_tool_actuation_checkpoint_03` tests that
-change from an explicitly restored pre-grasp state; no result is yet claimed.
+carrying grasp design. The [third restored-state trial](analysis/dex3_tool_actuation_checkpoint_03/result.json)
+has now finished and [fails independent actuation assessment](analysis/dex3_tool_actuation_evaluation_03/review.json):
+the squeezed gap reaches only 1.636 mm, and reopening loses the grasp. Its
+frozen contract incorrectly records a 0.15 Nm observer abort threshold; the
+frozen preshape actor actually uses 0.3 Nm. This discrepancy remains disclosed;
+the frozen contract is not rewritten and no qualification is granted.
 `evaluate_tool_actuation_checkpoint.py` checks actual native tip separation,
 tool retention, finger loads and closure/reopening dwell independently of the
 actor's inferred loads. No successful tool stroke or specimen pickup is claimed.
@@ -47,8 +51,24 @@ is not evidence of visible tool tips during use. A separate
 finds 14 of 35 sampled paths within the original contact bounds. A 60 mm raise
 and 0.5 rad wrist rotation increases visible tool pixels from 52 to 2,531.
 That screen uses a retained state and a rigid-grasp hypothesis; it is neither
-an executed motion nor online tool tracking. Sensor-based planning and physical
-retention tests remain required before adopting the inspection motion.
+an executed motion nor online tool tracking. A subsequent [sensor-based physical
+continuation](analysis/dex3_tool_inspection_checkpoint_01/result.json) executes
+the inspection raise and wrist rotation, but detects no tool in any of its ten
+inspection observations and loses three-finger load on return. Its 51 native
+camera frames are retained. The earlier visibility prediction therefore does
+not establish successful online observation or physical retention. This failed
+continuation has not undergone independent full-physics replay.
+The [retained-frame diagnosis](analysis/dex3_inspection_observation_diagnosis_03/review.json)
+also identifies an appearance failure: visible tool pixels become substantially
+brighter when the wrist turns, and the pickup detector's dark threshold rejects
+them. A new held-tool detector removes surfaces explained by own-robot source
+meshes, then fits remaining native depth points to tool CAD. All three inspected
+frames produce candidates whose retained pixels associate with the tool; all
+three robot-only negative frames reject detection. This is an offline test with
+reconstructed proprioception, not exact sensor replay or a qualified full/tip
+pose. `dex3_tool_inspection_checkpoint_02` is now testing the detector inside the
+isolated actor and adding own-motor compensation on nonclosing finger joints.
+Its physical result and independent replay remain pending.
 
 The latest [140.13-second loaded recording](runs/dex3_visual_carry_03/overview.mp4)
 contains continuous visual pickup, four outward steps, four return steps and
@@ -89,10 +109,10 @@ is unchanged. Its [restored-state release trial](analysis/dex3_release_checkpoin
 finishes without an execution failure. A fresh continuous run,
 [`dex3_visual_carry_04`](runs/dex3_visual_carry_04/result.json), has finished
 143.789 s from the original initial state without a controller-reported failure;
-its independent physics review is still processing. Its pre-release controller
-is unchanged, so it does not address
-the additional carry-03 acceptance failures above. No fresh carrying success
-has been established.
+its [independent physics review](runs/dex3_visual_carry_04/physical_review.json)
+now fails contact bounds, carry-load continuity, base return, tool return and
+prelift loading. Its pre-release controller is unchanged. No fresh carrying
+success has been established.
 
 The passive optical scene is now joined to the visual tool-start contract.
 The [initial RGB-D coupon diagnostic](analysis/optical_coupon_observation_06/review.json)
@@ -119,8 +139,10 @@ then passes [actual runtime localization](analysis/optical_coupon_runtime_observ
 at 0.249 mm and exact controller replay. That bounded run intentionally stops
 before completing the tool operation; its duration failure is retained. A fresh
 full tool trial, [`dex3_optical_visual_grasp_03`](runs/dex3_optical_visual_grasp_03/result.json),
-has finished 59.610 s without a controller-reported failure; independent physics
-review is still processing. Its first offline localization evaluator failed to
+has finished 59.610 s without a controller-reported failure; its independent
+physics review now fails the original sample/tray startup contact bound.
+The separately corrected support configuration is not a pass for this recording.
+Its first offline localization evaluator failed to
 import a missing scene-builder dependency, before producing an assessment.
 The evaluator now uses the self-contained, pinned collision loader; the failed
 invocation remains recorded separately from the
@@ -171,8 +193,18 @@ uses 0.99 only on 141 explicit fingertip/tool pairs. Source geometry, masses,
 joint dynamics, friction, zero contact margin/gap and all pre-existing pairs are
 unchanged, as are the physical acceptance bounds. This is an uncalibrated
 simulation compliance choice, not a measured hardware material claim.
-`dex3_visual_carry_06` is testing it from the original initial state together with
-the separately diagnosed 45 mm lift, release and empty-hand-return corrections.
+[`dex3_visual_carry_06`](runs/dex3_visual_carry_06/result.json) executes the
+original-state trial with the separately diagnosed 45 mm lift, release and
+empty-hand-return corrections, but stops at 136.140 s during lowering when the
+frozen old balance solver rejects `AlmostSolved`. The [captured failure](analysis/dex3_carry_balance_capture_01/result.json)
+reproduces all 136,140 accepted sensor responses exactly. The existing strict
+numerical retry solves that unchanged QP with stationarity residual 4.03e-8;
+[regression](analysis/dex3_carry_balance_regression_01/review.json) retains the
+infeasibility rejection and original physical constraints/tolerances. The
+[candidate replay](analysis/dex3_carry_balance_replay_01/result.json) reproduces
+the whole accepted prefix exactly and resolves the final rejected packet.
+`dex3_visual_carry_07` is executing a fresh original-state trial of that repair;
+neither the input replay nor the pending run grants carrying qualification.
 The withheld carry-05 attempt has not been relabelled as an execution.
 
 Exact reference/holder/cap surfaces pass [all six component cases](analysis/pike_reference_support_09/review.json).

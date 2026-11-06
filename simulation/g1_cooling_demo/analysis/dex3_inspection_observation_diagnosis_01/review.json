@@ -1,0 +1,1251 @@
+{
+  "scope": "Attribute a failed held-tool observation using retained frames and states.\n\nThis evaluator-only diagnostic reconstructs camera frames from recorded plant\nstates. Those calibration/segmentation values never enter a controller. It\ntests appearance and search-window hypotheses, not online pose qualification.\n",
+  "source_result_sha256": "999f727ab1bf27ffa0961d0872e58fb968c7df9ce4ba2e95c165befb1735b242",
+  "source_trace_sha256": "d3294715e1715a588b1c19edcef6062f8ccbe0d44a65e45aad67bf308ed15ba2",
+  "actor_contract_sha256": "65190df7d9fc5b51eb3cafb0e3fe51e4a2a2f24edd84455bb94b36a54eb4e6f7",
+  "source_sha256": {
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "diagnose_inspection_observation.py": "81d72e1b97de241b8ceb95847a6a0a51ab394f8d2fac56152a446319d0feea3d"
+  },
+  "rows": [
+    {
+      "time_s": 55.38800000071516,
+      "native_frame_sha256": "663afd4de39a15ae5d67f5976c7e4b65898161558981b1ca71d643a953a8d291",
+      "tool_depth_pixels": 1201,
+      "tool_intensity_quantiles": [
+        17.0,
+        55.0,
+        71.33333333333333,
+        78.33333333333333,
+        108.66666666666667
+      ],
+      "tool_wrist_translation_change_m": 0.004412921371134501,
+      "nominal_tool_center_error_m": 0.13127148384135665,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 321,
+              "center_m": [
+                6.071180211431477,
+                -6.472862370979812,
+                0.9729063697821045
+              ],
+              "principal_axes": [
+                [
+                  -0.8184544229292425,
+                  -0.42775991753671777,
+                  -0.38360632233650854
+                ],
+                [
+                  -0.4883878623144128,
+                  0.8696270362077732,
+                  0.07229186565889009
+                ],
+                [
+                  -0.3026708666712393,
+                  -0.24651626892654602,
+                  0.9206628457926476
+                ]
+              ],
+              "observed_spans_m": [
+                0.04460235988874052,
+                0.03981099141819967,
+                0.013125723331857773
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 3,
+              "points": 86,
+              "center_m": [
+                6.085689240192313,
+                -6.483525020549022,
+                0.9743772344721063
+              ],
+              "principal_axes": [
+                [
+                  -0.8213804429265793,
+                  -0.5665430989221268,
+                  0.06605365274872654
+                ],
+                [
+                  -0.10853321102266285,
+                  0.041551969719668715,
+                  -0.9932240310813697
+                ],
+                [
+                  -0.5599595611138776,
+                  0.8229838096075333,
+                  0.09561871700156178
+                ]
+              ],
+              "observed_spans_m": [
+                0.02632957364565435,
+                0.01770843494641488,
+                0.008699318364621199
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 5,
+              "points": 95,
+              "center_m": [
+                6.086367620813873,
+                -6.520245692889158,
+                0.9736001308122143
+              ],
+              "principal_axes": [
+                [
+                  -0.8988445326547104,
+                  -0.37166922378856365,
+                  0.232250929395647
+                ],
+                [
+                  -0.15041197595889508,
+                  -0.23613918294138628,
+                  -0.9600075644326531
+                ],
+                [
+                  -0.4116488110086996,
+                  0.8978308718061441,
+                  -0.15634891117926875
+                ]
+              ],
+              "observed_spans_m": [
+                0.02889391069255317,
+                0.01692594569414849,
+                0.0036811901139094617
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 22,
+              "points": 252,
+              "center_m": [
+                6.071102220685159,
+                -6.565130093551824,
+                0.966614606206171
+              ],
+              "principal_axes": [
+                [
+                  -0.01691394258912399,
+                  -0.7027493626881867,
+                  0.7112364246770825
+                ],
+                [
+                  0.9903930260039656,
+                  0.08586453613047354,
+                  0.10839250655744845
+                ],
+                [
+                  0.13724275058741608,
+                  -0.7062369394731814,
+                  -0.6945457600005591
+                ]
+              ],
+              "observed_spans_m": [
+                0.031187210447534065,
+                0.010346376202507146,
+                0.00556622865009221
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3386,
+              "center_m": [
+                6.070711578004562,
+                -6.511270500948723,
+                0.9755984791109936
+              ],
+              "principal_axes": [
+                [
+                  -0.006493478745797976,
+                  -0.9999320193277753,
+                  0.009684598951708413
+                ],
+                [
+                  -0.9944918911644198,
+                  0.005444375284759892,
+                  -0.10467204586695629
+                ],
+                [
+                  -0.1046122035997396,
+                  0.01031094083176973,
+                  0.994459637872332
+                ]
+              ],
+              "observed_spans_m": [
+                0.11700988507737445,
+                0.04623427026021412,
+                0.032899637955072274
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3567,
+              "center_m": [
+                6.07093794220136,
+                -6.511166087493029,
+                0.9755551498296168
+              ],
+              "principal_axes": [
+                [
+                  0.000785759037666001,
+                  0.9996982963256695,
+                  -0.024549926808215352
+                ],
+                [
+                  0.9949884881877245,
+                  0.001673075838562938,
+                  0.09997554296499209
+                ],
+                [
+                  0.09998645386571754,
+                  -0.02450545124645579,
+                  -0.9946869818704607
+                ]
+              ],
+              "observed_spans_m": [
+                0.11655230820184631,
+                0.04588228228007251,
+                0.0333926779984315
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 221,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 221,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 221,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 190,
+              "center_m": [
+                6.07114963465229,
+                -6.568088914050347,
+                0.966269525102614
+              ],
+              "principal_axes": [
+                [
+                  -0.13396839868210972,
+                  -0.6072662822024584,
+                  0.7831220407155937
+                ],
+                [
+                  0.9878004811722628,
+                  -0.018522852759857246,
+                  0.15461925275166435
+                ],
+                [
+                  0.07938940452225153,
+                  -0.7942824223320325,
+                  -0.6023394026825417
+                ]
+              ],
+              "observed_spans_m": [
+                0.01704209247548759,
+                0.0091132029098497,
+                0.003549911060961852
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 221,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 221,
+              "center_m": [
+                6.071361077685922,
+                -6.569388996011219,
+                0.9662272148964134
+              ],
+              "principal_axes": [
+                [
+                  -0.12636951290874446,
+                  -0.6046297035743063,
+                  0.786418252434958
+                ],
+                [
+                  0.9880969646124639,
+                  -0.006616838008390299,
+                  0.15368996707139626
+                ],
+                [
+                  0.0877219170495196,
+                  -0.7964792144245934,
+                  -0.5982689414124217
+                ]
+              ],
+              "observed_spans_m": [
+                0.02036865604698275,
+                0.009131947840451668,
+                0.0034667345066113466
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 221,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 221,
+              "center_m": [
+                6.071361077685922,
+                -6.569388996011219,
+                0.9662272148964134
+              ],
+              "principal_axes": [
+                [
+                  -0.12636951290874446,
+                  -0.6046297035743063,
+                  0.786418252434958
+                ],
+                [
+                  0.9880969646124639,
+                  -0.006616838008390299,
+                  0.15368996707139626
+                ],
+                [
+                  0.0877219170495196,
+                  -0.7964792144245934,
+                  -0.5982689414124217
+                ]
+              ],
+              "observed_spans_m": [
+                0.02036865604698275,
+                0.009131947840451668,
+                0.0034667345066113466
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time_s": 56.388000000748356,
+      "native_frame_sha256": "0bb7975c381bc8e5858c9b8c984e07837469de0e6b49a58ec9ed61c3e437c377",
+      "tool_depth_pixels": 1204,
+      "tool_intensity_quantiles": [
+        17.0,
+        55.0,
+        70.66666666666667,
+        77.66666666666667,
+        83.0
+      ],
+      "tool_wrist_translation_change_m": 0.005846464242228857,
+      "nominal_tool_center_error_m": 0.1313610183664287,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 404,
+              "center_m": [
+                6.0742092151398355,
+                -6.47551101653176,
+                0.9731322650676368
+              ],
+              "principal_axes": [
+                [
+                  -0.9227144122936954,
+                  0.2187376576439876,
+                  -0.3174144774170235
+                ],
+                [
+                  -0.21413752160504343,
+                  -0.9755346529672602,
+                  -0.049772107659779276
+                ],
+                [
+                  -0.32053585631930487,
+                  0.022044908447729855,
+                  0.9469798238743956
+                ]
+              ],
+              "observed_spans_m": [
+                0.0410533764996648,
+                0.0362240369824335,
+                0.01548942573233853
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 4,
+              "points": 97,
+              "center_m": [
+                6.086204709529699,
+                -6.520782124002433,
+                0.9730372894341461
+              ],
+              "principal_axes": [
+                [
+                  -0.8455780229241463,
+                  -0.3514684565745563,
+                  -0.4018304756744953
+                ],
+                [
+                  -0.26266869741763377,
+                  -0.3813771378689787,
+                  0.8863163284673194
+                ],
+                [
+                  -0.4647611887245056,
+                  0.854997896338912,
+                  0.23016436455589573
+                ]
+              ],
+              "observed_spans_m": [
+                0.030043907447426514,
+                0.017328429384463037,
+                0.003948657839694091
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 25,
+              "points": 260,
+              "center_m": [
+                6.070531108230019,
+                -6.565509311775968,
+                0.9655045655953703
+              ],
+              "principal_axes": [
+                [
+                  -0.06986768221618894,
+                  -0.6588103471203808,
+                  0.74905769704934
+                ],
+                [
+                  0.9885849648131134,
+                  0.05475119289271177,
+                  0.1403640773926149
+                ],
+                [
+                  0.13348510900917945,
+                  -0.7503140898343493,
+                  -0.6474646648805317
+                ]
+              ],
+              "observed_spans_m": [
+                0.025868875253620527,
+                0.010303557010923791,
+                0.004959822255155505
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3402,
+              "center_m": [
+                6.070598500802562,
+                -6.511325521173616,
+                0.9752801729242991
+              ],
+              "principal_axes": [
+                [
+                  -0.012141605714199033,
+                  -0.9999166680240673,
+                  0.004386162141112767
+                ],
+                [
+                  -0.9930582799973552,
+                  0.011544860140395734,
+                  -0.117055408815796
+                ],
+                [
+                  -0.11699501672881354,
+                  0.0057769552521987465,
+                  0.9931156996285171
+                ]
+              ],
+              "observed_spans_m": [
+                0.11727373309506739,
+                0.0463157093507545,
+                0.03317761974913967
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3593,
+              "center_m": [
+                6.070866595130051,
+                -6.511281502503459,
+                0.9752415216411088
+              ],
+              "principal_axes": [
+                [
+                  0.005398835988835187,
+                  0.9998311819974676,
+                  -0.017563031501208533
+                ],
+                [
+                  0.9936656942660881,
+                  -0.003392437534052992,
+                  0.11232532842716421
+                ],
+                [
+                  0.11224678440230901,
+                  -0.018058207915635872,
+                  -0.9935162608222459
+                ]
+              ],
+              "observed_spans_m": [
+                0.11687210983063348,
+                0.04591760077125655,
+                0.033641061055872695
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 220,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 220,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 220,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 192,
+              "center_m": [
+                6.07067988649274,
+                -6.568342397778657,
+                0.9651199880452096
+              ],
+              "principal_axes": [
+                [
+                  -0.15025329703721022,
+                  -0.5864410341087547,
+                  0.7959339546990706
+                ],
+                [
+                  0.9850164964967039,
+                  -0.01986317224566562,
+                  0.17131245143800378
+                ],
+                [
+                  0.08465487793864711,
+                  -0.8097483361525315,
+                  -0.580638599939239
+                ]
+              ],
+              "observed_spans_m": [
+                0.017219617982981508,
+                0.00911093149388989,
+                0.0029800317802616254
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 220,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 220,
+              "center_m": [
+                6.070862662918196,
+                -6.569580773580828,
+                0.9650049732853871
+              ],
+              "principal_axes": [
+                [
+                  -0.12513943554200782,
+                  -0.604238441933807,
+                  0.7869155145005293
+                ],
+                [
+                  0.9873739141060497,
+                  0.001796371560912456,
+                  0.1583967385778995
+                ],
+                [
+                  0.09712299117679597,
+                  -0.7968015300804967,
+                  -0.5963844785423674
+                ]
+              ],
+              "observed_spans_m": [
+                0.020291657570869037,
+                0.00915909038418232,
+                0.0032519981374466646
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 220,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 220,
+              "center_m": [
+                6.070862662918196,
+                -6.569580773580828,
+                0.9650049732853871
+              ],
+              "principal_axes": [
+                [
+                  -0.12513943554200782,
+                  -0.604238441933807,
+                  0.7869155145005293
+                ],
+                [
+                  0.9873739141060497,
+                  0.001796371560912456,
+                  0.1583967385778995
+                ],
+                [
+                  0.09712299117679597,
+                  -0.7968015300804967,
+                  -0.5963844785423674
+                ]
+              ],
+              "observed_spans_m": [
+                0.020291657570869037,
+                0.00915909038418232,
+                0.0032519981374466646
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time_s": 57.18800000077491,
+      "native_frame_sha256": "39a486e60d1b0b5b569c0e2c7a2bf8e792c11b44eb1f0d2c8e1dec4cdfc8ed9a",
+      "tool_depth_pixels": 1210,
+      "tool_intensity_quantiles": [
+        16.666666666666668,
+        54.666666666666664,
+        69.66666666666667,
+        76.66666666666667,
+        108.0
+      ],
+      "tool_wrist_translation_change_m": 0.007089435643856525,
+      "nominal_tool_center_error_m": 0.13144001770028518,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 372,
+              "center_m": [
+                6.071989801532232,
+                -6.476032089049172,
+                0.9719335949625847
+              ],
+              "principal_axes": [
+                [
+                  0.9274094741925657,
+                  0.2841427326185269,
+                  0.24325824688578462
+                ],
+                [
+                  0.2790207055599148,
+                  -0.9586497756904173,
+                  0.05601833126361347
+                ],
+                [
+                  0.2491166655338744,
+                  0.01592215653700682,
+                  -0.9683425901428147
+                ]
+              ],
+              "observed_spans_m": [
+                0.04065302695883943,
+                0.03788668757762283,
+                0.01587469990896023
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 5,
+              "points": 108,
+              "center_m": [
+                6.085110239934898,
+                -6.521453728985977,
+                0.9724587573201492
+              ],
+              "principal_axes": [
+                [
+                  -0.840600986351403,
+                  -0.2603772609016665,
+                  -0.4749670133287092
+                ],
+                [
+                  -0.3380486486759686,
+                  -0.4329545366252461,
+                  0.8356275966864489
+                ],
+                [
+                  -0.42321754792706856,
+                  0.8629913390185117,
+                  0.27592182933873793
+                ]
+              ],
+              "observed_spans_m": [
+                0.030881066518628195,
+                0.016528056371353274,
+                0.008863963278941334
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 28,
+              "points": 250,
+              "center_m": [
+                6.069924241676684,
+                -6.566190736990079,
+                0.964285980957764
+              ],
+              "principal_axes": [
+                [
+                  -0.14619113724854071,
+                  -0.5988568540771919,
+                  0.7873999109186812
+                ],
+                [
+                  0.985741774995428,
+                  -0.021149472159261103,
+                  0.16693068278853687
+                ],
+                [
+                  0.08331449104952163,
+                  -0.8005767721787544,
+                  -0.5934100836933981
+                ]
+              ],
+              "observed_spans_m": [
+                0.021972224966198516,
+                0.009683709233149547,
+                0.003806704986590413
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3406,
+              "center_m": [
+                6.070440443475097,
+                -6.511338666415309,
+                0.9750553226189446
+              ],
+              "principal_axes": [
+                [
+                  -0.016570913344647054,
+                  -0.9998582177019597,
+                  0.002991542208529719
+                ],
+                [
+                  -0.9915783696998693,
+                  0.016049192338438083,
+                  -0.12850976682195328
+                ],
+                [
+                  -0.12844353457559937,
+                  0.005095872755969621,
+                  0.9917037312154179
+                ]
+              ],
+              "observed_spans_m": [
+                0.11731105181243912,
+                0.046269727885653714,
+                0.03351319476341615
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3617,
+              "center_m": [
+                6.070755091090873,
+                -6.511370263831498,
+                0.975002255661763
+              ],
+              "principal_axes": [
+                [
+                  -0.008190096001006342,
+                  -0.999848505796917,
+                  0.015358638714632116
+                ],
+                [
+                  -0.9923405926004721,
+                  0.006233443108065104,
+                  -0.12337460218522343
+                ],
+                [
+                  -0.12326017444753978,
+                  0.016251450479597526,
+                  0.9922413112506814
+                ]
+              ],
+              "observed_spans_m": [
+                0.11702201137486815,
+                0.04586744675645017,
+                0.03382124887733516
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 218,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 218,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 218,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 192,
+              "center_m": [
+                6.0702745755296545,
+                -6.568517243633717,
+                0.9640964229783995
+              ],
+              "principal_axes": [
+                [
+                  -0.13624753614318982,
+                  -0.6010212686769252,
+                  0.7875341538580337
+                ],
+                [
+                  0.9863156564700382,
+                  -0.007802478556055423,
+                  0.16468317197109159
+                ],
+                [
+                  0.09283337060016715,
+                  -0.799194942380369,
+                  -0.5938597556466093
+                ]
+              ],
+              "observed_spans_m": [
+                0.01819228204516906,
+                0.00919482511436312,
+                0.003671294076938091
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 218,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 218,
+              "center_m": [
+                6.070426900739669,
+                -6.569683385884284,
+                0.963961841844849
+              ],
+              "principal_axes": [
+                [
+                  -0.11671756801325632,
+                  -0.6137560259834355,
+                  0.7808204338297583
+                ],
+                [
+                  0.9871460801313822,
+                  0.014733065322048992,
+                  0.15914004294162915
+                ],
+                [
+                  0.10917703878709185,
+                  -0.789358269327203,
+                  -0.6041472476527929
+                ]
+              ],
+              "observed_spans_m": [
+                0.019930134083334956,
+                0.009116237149894492,
+                0.003613382280307535
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 218,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 218,
+              "center_m": [
+                6.070426900739669,
+                -6.569683385884284,
+                0.963961841844849
+              ],
+              "principal_axes": [
+                [
+                  -0.11671756801325632,
+                  -0.6137560259834355,
+                  0.7808204338297583
+                ],
+                [
+                  0.9871460801313822,
+                  0.014733065322048992,
+                  0.15914004294162915
+                ],
+                [
+                  0.10917703878709185,
+                  -0.789358269327203,
+                  -0.6041472476527929
+                ]
+              ],
+              "observed_spans_m": [
+                0.019930134083334956,
+                0.009116237149894492,
+                0.003613382280307535
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "calibration_basis": "Evaluator reconstruction at retained state; not exact native sensor replay",
+  "physical_execution": false,
+  "online_observation_qualified": false
+}
