@@ -1,0 +1,56 @@
+{
+  "model": "Thermo Scientific Nicolet 6700",
+  "manufacturer_CAD": false,
+  "units": "m",
+  "sources": [
+    {
+      "id": "MANUFACTURER_SPEC",
+      "url": "https://cdn.labwrench.com/eMan/manualNo/3511/thermo_scientific_nicolet_6700_brochure.pdf",
+      "authorship": "Thermo Fisher Scientific PS10160_E 04/07M, hosted by LabWrench",
+      "sha256": "696fafd1e8062a5c758e35b3eb43979b606fd18ee1415b7f458375fa436c6a4b",
+      "review": "Both pages: exterior photograph, 692 x 655 x 254 mm overall dimensions; 210 x 260 x 200 mm sample compartment; 69 kg",
+      "redistributed": false
+    },
+    {
+      "id": "MANUFACTURER_BROCHURE",
+      "url": "https://mmrc.caltech.edu/FTIR/Nicolet/Nicolet%206700%20brochure.pdf",
+      "authorship": "Thermo Electron Corporation; Caltech MMRC mirror",
+      "sha256": "404878f7877b7ea1147623d4a0ad2a206b234fc5e438b081a14d69dd026b5ce2",
+      "review": "Cover and page 2: instrument exterior, top ribs, detector caps, scan controls, front access ports. Installed Smart accessories are excluded from the bare instrument.",
+      "redistributed": false
+    },
+    {
+      "id": "USER_MANUAL",
+      "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
+      "sha256": "0bd488af3213c5d68261feee2b48cc00bff740f42890a919b45450740af17e57",
+      "review": "Sample compartment, interchangeable accessories and instrument cover are distinct items.",
+      "redistributed": false
+    }
+  ],
+  "vendor_resource_search": {
+    "date": "2026-10-19",
+    "queries": [
+      "site.thermofisher.com Nicolet 6700 3D CAD dimensions",
+      "Nicolet 6700 PS10160 dimensions sample compartment cover"
+    ],
+    "result": "Manufacturer drawings and photographs located; no model-specific downloadable vendor CAD located in these searches."
+  },
+  "source_conflicts": [
+    {
+      "topic": "previous reconstruction",
+      "previous": "690 x 655 mm footprint and 285 x 340 mm bay",
+      "selected": "692 x 655 mm footprint and 210 x 260 mm usable bay from PS10160_E",
+      "resolution": "Replace the old inferred envelope and oversized bay."
+    },
+    {
+      "topic": "central dark housing in brochure",
+      "resolution": "This is an installed Smart accessory; do not mistake it for the bare instrument or IntegratIR housing."
+    }
+  ],
+  "inferences": [
+    "Local shell profiles, corner radii, ribs, ventilation and control dimensions are photograph-derived, not measured CAD.",
+    "Sample-bay datum and selected hinged cover geometry must be qualified separately before manipulation.",
+    "Rear service interfaces and mounting sockets are selected approximate envelopes.",
+    "No IntegratIR, ATR or Smart accessory is included in this bare-instrument asset."
+  ]
+}

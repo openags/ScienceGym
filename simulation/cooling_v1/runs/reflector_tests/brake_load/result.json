@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "configuration": {
+    "source_solar_path_sha256": "e962449b155f2bd858f2eaa6cee0bb4e56f5588e8c6d6687874ea21e3ad5fc8d",
+    "emitter_origin_m": [
+      0.48,
+      0.16,
+      0.86
+    ],
+    "reflector_height_m": 0.15,
+    "reflector_diameter_m": 0.06,
+    "track_thickness_m": 0.0015,
+    "guide_reference_xy_m": [
+      0.08044008867990633,
+      -0.042355125808162974
+    ],
+    "guide_coefficients": [
+      -1.1585362962562346e-06,
+      0.21828854249001978,
+      1.181490933410126,
+      -2.1790601315486584,
+      -6.772798082572768
+    ],
+    "max_guide_fit_error_m": 1.1585362962562346e-06,
+    "brake_stiffness_N_m": 1000,
+    "brake_preload_m": 0.003,
+    "selected_cam_ratio": 1.0,
+    "robot_only_actuation": true,
+    "whole_paper_validated": false,
+    "brake_enabled": true,
+    "release_blocked": false,
+    "limitations": [
+      "Captured-guide and cam joint relations are selected ideal mechanism models",
+      "Fixture dimensions, friction, spring and grasp pedestal are inferred",
+      "Internal guide bushings and release cam use ideal joint relations; wear and elastic fixture deflection are not modeled",
+      "This world starts with track and disk mounted; it cannot qualify their installation"
+    ]
+  },
+  "observations": [
+    {
+      "condition": "1_N_shear",
+      "force_N": [
+        1,
+        0,
+        0
+      ],
+      "duration_s": 1.0,
+      "time_s": 1.5999999999999346,
+      "displacement_m": 5.6655997890571524e-05,
+      "mechanism": {
+        "release_travel_m": -1.4237058332766856e-05,
+        "brake_lift_m": -1.4227082528614833e-05,
+        "brake_contact_N": 3.0152028474748187,
+        "position_m": [
+          0.5601235612602525,
+          0.11757472552375896,
+          1.007
+        ]
+      }
+    },
+    {
+      "condition": "60_s_retained_wait",
+      "force_N": [
+        0,
+        0,
+        0
+      ],
+      "duration_s": 60.0,
+      "time_s": 61.59999999994714,
+      "displacement_m": 5.68122643749518e-05,
+      "mechanism": {
+        "release_travel_m": -1.4229520620626376e-05,
+        "brake_lift_m": -1.4229128684969787e-05,
+        "brake_contact_N": 3.0152008713150145,
+        "position_m": [
+          0.560123711151276,
+          0.11757477166581655,
+          1.007
+        ]
+      }
+    },
+    {
+      "condition": "5_N_overload_expected_slip",
+      "force_N": [
+        -5,
+        0,
+        0
+      ],
+      "duration_s": 0.2,
+      "time_s": 61.79999999994667,
+      "displacement_m": 0.16568812432039906,
+      "mechanism": {
+        "release_travel_m": -1.6387615915163876e-05,
+        "brake_lift_m": -1.640320795986421e-05,
+        "brake_contact_N": 3.0130029728643186,
+        "position_m": [
+          0.3944400424047325,
+          0.11878986487115288,
+          1.007
+        ]
+      }
+    }
+  ],
+  "whole_paper_validated": false,
+  "scope": "Stationary nominal brake challenged by external loads; this is a mechanism test, not robot actuation evidence",
+  "input_sha256": {
+    "test_reflector_brake.py": "fd3e79a294f3394492918c33b3572114547c4544ea02a463fad3f6cc721f1296",
+    "reflector_world.py": "108bc25067a3c73efdeba6d18dd83596d9da9aa1f0c2b94758ad6b011ceb51a9",
+    "run_reflector.py": "c2af5c2892b6c743df3e82693044cada7e75ac455bc870cf890001eac3b1ff20",
+    "hardware_control.py": "3828657a8e116d02ace37e51c66287f4cb5b9fc469159093057b994d708067e7",
+    "continuous_control.py": "3b904ca09023d8f20d44da6e5ae322abe2045ee9e60151ea8db67c3130c35e40",
+    "world.py": "dcb850941345da7a85384a1bdcde518ce82b1cb8d24667b929f743679c830db2",
+    "contact_safety.py": "24848b080f490eb8de35dff0131f0bb7790f970b510a2092d7d60aca7f1da794"
+  },
+  "artifacts_sha256": {
+    "workcell.xml": "b96bc29278a73fdd795f356b6da79e97248abf8792c5f1829e6423d7ad2f72d5",
+    "physics_trace.npz": "19c0c30e2472355571ed7219fe7c5625cde19e5c2c2093ba2f629df1a44c75db"
+  }
+}

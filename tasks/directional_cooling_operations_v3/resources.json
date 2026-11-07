@@ -83,11 +83,15 @@
       "identity": "Omega 5TC-TT-K-36-36",
       "paper_locator": "Main Methods: temperature",
       "used_by_branch": "CALIBRATE",
-      "geometry_status": "surface_routes_only",
-      "scene_roots": [],
+      "geometry_status": "inferred_map_contact_geometry",
+      "scene_roots": [
+        "COOLER_THERMAL_MAP"
+      ],
       "exact_serial_and_configuration_known": false,
       "physics_validated": false,
-      "researched_source_ids": []
+      "researched_source_ids": [
+        "TC_DATASHEET"
+      ]
     },
     {
       "id": "REF_RTD",
@@ -305,5 +309,28 @@
     "fasteners",
     "masking and cleaning supplies"
   ],
-  "allocation": "Minimum reconstruction: white and black assemblies, identified optical specimens, eight calibrated K probes (two emitters plus six map sensors), two independent 2425 channels/devices for simultaneous heating, one USB-TC can accommodate eight channels; actual instrument quantities and session reuse are supplied inputs."
+  "allocation": "Minimum reconstruction: white and black assemblies, identified optical specimens, eight calibrated K probes (two emitters plus six map sensors), two independent 2425 channels/devices for simultaneous heating, one USB-TC can accommodate eight channels; actual instrument quantities and session reuse are supplied inputs.",
+  "manipulation_interfaces": "interaction_contracts.json",
+  "additional_reconstructed_materials": [
+    {
+      "id": "calibration_block_stock",
+      "purpose": "Fabricate probe holes explicitly through CAL_BLOCK_PREP",
+      "source_basis": "E_CAL; dimensions and tooling inferred"
+    },
+    {
+      "id": "fine_wire_transition",
+      "purpose": "Join 36 AWG K probes to qualified DAQ-compatible conductors with strain relief",
+      "source_basis": "E_TC_WIRE and E_DAQ_MANUAL; selected hardware remains a reconstruction input"
+    },
+    {
+      "id": "bath_water_and_fill_vessel",
+      "purpose": "Fill stationary bath with block displacement accounted for",
+      "source_basis": "E_CAL and E_BATH_FILL"
+    },
+    {
+      "id": "reversible_emitter_jig",
+      "purpose": "Retain thin emitter during underside probe/heater work",
+      "source_basis": "Reconstructed manipulation fixture; dimensions/load qualification required"
+    }
+  ]
 }

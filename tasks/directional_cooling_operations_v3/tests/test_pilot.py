@@ -15,7 +15,7 @@ class PilotTests(unittest.TestCase):
     def test_complete_symbolic_campaign(self):
         result=planner.verify_plan(self.plan)
         self.assertEqual(result['physical_successes'],0)
-        self.assertEqual(self.plan['counts']['operation_definitions_used'],63)
+        self.assertEqual(self.plan['counts']['operation_definitions_used'],64)
     def test_missing_coat_rejected(self):
         self.event('COAT_RUN')['coat_iterations'].pop();self.rejects()
     def test_unprepared_optical_witness_rejected(self):

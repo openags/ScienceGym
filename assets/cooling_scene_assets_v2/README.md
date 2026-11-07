@@ -1,7 +1,7 @@
 # Cooling pilot geometry v2
 
 Original metric Blender geometry for the paired directional-cooling apparatus,
-an exploded inspection variant, a fixed-band variant, a Keithley 2425 exterior,
+an exploded inspection variant, a fixed-band variant, a seven-probe thermal-map variant, a Keithley 2425 exterior,
 a USB-TC terminal enclosure, an A25 bath with an explicitly inferred AC150 head,
 Cary5000/DRA2500 and Nicolet6700/IntegratIR optical compartments, and an EKO STR-32G.
 The scene is a review arrangement, not the actual rooftop or laboratory layout.
@@ -15,7 +15,8 @@ Inspect [the native Blender scene](geometry/cooling_pilot.blend),
 Further views show the [stack](evidence/exploded_stack.png),
 [fixed band](evidence/fixed_band.png), [commercial devices](evidence/commercial_devices.png),
 [2425](evidence/keithley_2425.png), [USB-TC](evidence/usb_tc.png),
-[optical instruments](evidence/optical_instruments.png) and [solar tracker](evidence/solar_tracker.png).
+[optical instruments](evidence/optical_instruments.png), [solar tracker](evidence/solar_tracker.png)
+and a [thermal-map contact cutaway](evidence/thermal_map_contacts.png).
 
 Source comparison: [paper supplement, Figure 1](https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf),
 [2425 dimensions](https://download.tek.com/document/2425RevC_DocSpec.pdf),
@@ -47,3 +48,15 @@ These limitations are machine-readable and cannot be hidden by a rendered image.
 All included geometry and procedural materials are newly authored under the
 repository's license. No vendor CAD, product photographs or manuals are included.
 Manufacturer/model names are identification, not endorsement.
+
+October 17 interaction corrections: the USB-TC now has two source-topology
+26-pin banks with CJC gaps after pin10/36, numbered terminals, slotted screw
+heads, open conductor cavities and a hollow Type-B shell. The old four-by-thirteen layout is superseded. Exact
+pitch remains inferred. The fixed-band cover uses distinct nominal 50 micrometre
+LDPE layers. Ordinary cooler variants carry one emitter contact; a separate
+thermal-map variant has the emitter plus six inferred source-related contacts.
+Its cutaway view removes the front half of selected parts for inspection only, and cannot establish physical
+access or a stable assembly state. No historical measured temperatures appear
+in these geometry markers.
+
+Authored cavity checks: `inspect_interaction_geometry.py` verifies open central wire-entry axes and recessed driver slots at all 52 terminals, plus the open USB shell. The hash-bound receipt is `geometry/interaction_checks.json`. These checks do not qualify insertion clearance, grasping or electrical behavior.
