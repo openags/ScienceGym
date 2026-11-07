@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-07**. Candidate count: **407**.
+Last screened: **2026-11-07**. Candidate count: **408**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4212,3 +4212,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Figure images, supplementary media, code and raw data were not independently audited. Text and caption reading does not establish a complete visual, media, mathematical or computational review.
 - Potential scope is limited to prepared-film handling, specimen and conditioning-history tracking, and linked top- and side-view image comparisons. Film fabrication, dyes, solvents and laser setup are excluded. Specimen suitability, liquid containment, fixtures, imaging and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-07** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
+
+## Additional candidate: passive pappus actuation and hydration-history imaging records (2026-11-07)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Dandelion pappus morphing is actuated by radially patterned material swelling](https://www.nature.com/articles/s41467-022-30245-3) | Nature Communications / 2022 | 10.1038/s41467-022-30245-3 | Prepared nonliving seed-actuator identity, specimen placement, hydration-history tracking and paired imaging records suggest a future long-horizon specimen-handling-and-measurement task. | Published 14-page main article and 12-page technical SI read through an institutional repository; selected main and supplementary figures visually checked; media, data and code review gaps remain. |
+
+- **CANDIDATE only.** Seale et al., *Nature Communications* **13**, 2498 (2022). The complete written [published main article](https://cris.unibo.it/retrieve/558a4a32-bfe9-4377-b69d-4875def8062e/s41467-022-30245-3-1.pdf), including Methods and figure captions, and [technical Supplementary Information](https://cris.unibo.it/retrieve/18a37dc5-8e2f-4e8b-b991-d6a9d4619fad/41467_2022_30245_MOESM1_ESM.pdf) were read through the public [University of Bologna repository](https://cris.unibo.it/handle/11585/1039541). The written SI includes Figures S1-S9 captions, Supplementary Note 1 sections 1.1-1.5 and Table S1. Suitability remains a preliminary inference; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Main Figures 1-2 and Supplementary Figures 2 and 9 were visually inspected. Supplementary movies, their separate description file, the Reporting Summary, peer-review file, raw data, code and the cited chamber-design source were not independently reviewed. This is written-source screening with selected visual checks, not a complete media, data or computational audit.
+- Material-property and geometry changes in the model are simulations, not additional physical alterations or experiments. Predicted and measured holding angles differ. Reported findings remain source claims, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to prepared nonliving seed-actuator specimens, identity and placement tracking, hydration-history and environmental records, and paired imaging with blinded angle records. Chemical preparation, staining, resin curing, histology, cutting, propagation and specialized laser, SEM or AFM work are excluded. Specimen suitability, fixtures, imaging, environmental control and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-07** through the public institutional repository, which identifies the main article as the Version of Record. The published article states **CC BY 4.0**, subject to third-party exceptions. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
