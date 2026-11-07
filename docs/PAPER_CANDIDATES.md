@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-07**. Candidate count: **409**.
+Last screened: **2026-11-07**. Candidate count: **410**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4237,3 +4237,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The reported sampling is random, not an implemented intelligent optimization loop. Classifier agreement with human labels is not ground-truth accuracy, and agreement is lower for cross shapes. One paper grade, restricted falling space, airflow and release bias limit generalization. Reported findings remain source claims, not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is limited to prepared nonliving paper samples, identity and placement tracking, guarded robot handling, release-pose verification, coordinated imaging, trajectory-quality checks and linked classification/comparison records. Laser manufacture is excluded. Sample suitability, fixtures, motion guarding, imaging and release conditions require separate qualification and safety review before conversion. No fabrication procedure, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-07** through the public institutional repository, which identifies the main article as an accepted version and records all-rights-reserved terms. Public availability does not establish reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
+
+## Additional candidate: liquid-marble handling and incline-comparison records (2026-11-07)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Liquid marbles](https://www.nature.com/articles/35082026) | Nature / 2001 | 10.1038/35082026 | Prepared-marble custody, substrate exchange, controlled incline comparisons and image-based measurement records suggest a future long-horizon handling-and-measurement task. | Complete four-page main article read and all four main figures visually checked through an author-hosted published-layout PDF; independent live supplement inventory and raw-data review remain unverified. |
+
+- **CANDIDATE only.** Pascale Aussillous and David Quéré, *Nature* **411**, 924-927 (2001). The complete four-page main article, including figure captions and references, was read through the public [author-hosted published-layout PDF](https://pascaleaussillous.wordpress.com/wp-content/uploads/2016/09/2_2001naturemarbles.pdf). All four main figures were visually checked. Proposed robot-task suitability remains a preliminary inference; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- No separate Supplementary Information is cited in the reviewed main article or identified in the checked official search metadata. An independent live publisher supplement inventory was not verified, so supplementary-source completeness is not established. Raw data, code and apparatus assets were not reviewed.
+- The reported doughnut-shaped marbles are not fully open toroids. Electrical and magnetic actuation is asserted without corresponding data shown in the reviewed main article. Reported observations remain source claims, not independently reproduced measurements or task-acceptance thresholds.
+- Potential scope is limited to qualified, preprepared nonliving marbles, specimen custody and condition records, substrate exchange, controlled incline comparisons, imaging and linked measurement records. Powder treatment, nanopowder handling, electrical or magnetic field actuation and high-speed launch are excluded. Specimen suitability, containment, fixtures, motion guarding and physical handling require separate qualification and safety review before conversion. No preparation procedure, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-07** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, data, code or other source assets redistributed.
