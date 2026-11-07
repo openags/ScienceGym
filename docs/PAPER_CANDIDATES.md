@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-06**. Candidate count: **405**.
+Last screened: **2026-11-07**. Candidate count: **406**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4190,3 +4190,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The physical full adders are electromechanical assemblies with microcontroller-mediated feedback, not purely mechanical autonomous systems. The reported 50-cycle accuracy assessment applies to the manually operated gate, not the full adder. These results remain source claims, not independently reproduced measurements or task-acceptance thresholds.
 - Potential scope is limited to prepared nonliving parts, assembly and configuration tracking, guarded reconfiguration, and truth-table verification with linked measurement records. This proposed robot-task fit is an inference, not a demonstrated robot task. Part suitability, fixtures, moving components, electrical interfaces and physical manipulation require separate qualification and safety review before conversion. No fabrication procedure, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-06** through the official accepted manuscript and SI. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, videos, data, code, CAD or other source assets redistributed.
+
+## Additional candidate: origami curvature programming and mechanical-characterization records (2026-11-07)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Programming curvature using origami tessellations](https://www.nature.com/articles/nmat4540) | Nature Materials / 2016 | 10.1038/nmat4540 | Prepared-specimen provenance, folding and geometry verification, fixture handling and repeated mechanical characterization with conditioning-history records suggest a future long-horizon manipulation-and-measurement task. | Six main-article pages and 24 written SI pages in an author-hosted combined PDF read; selected figures visually checked; Online Methods completeness and media/data review gaps remain. |
+
+- **CANDIDATE only.** *Nature Materials* **15**, 583-588 (2016). The six main-article pages and 24 written Supplementary Information pages in the public [author-hosted combined PDF](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/2016-05.pdf) were read. Physical paper models and mechanical comparisons were identified in the source. Suitability remains a preliminary inference; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Main Figure 3 and Supplementary Figure S9 were visually inspected. Completeness of the separately referenced Online Methods was not established. The two movies, code, pattern assets and raw measurements were not independently reviewed. This is written-source screening with selected visual checks, not a publisher-complete, media-complete or computational audit.
+- Potential scope is limited to prepared nonliving specimens, specimen and conditioning-history tracking, guarded folding and geometry checks, fixture handling and linked mechanical-characterization records. Folding remains a substantial manipulation challenge; the source does not establish that a robot can carry out this proposed workflow. Specimen suitability, fixtures, loading equipment and physical handling require separate qualification and safety review before conversion. No fabrication procedure, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-07** through the public author-hosted copy. Copyright and patent-pending notices are retained as rights caveats; public availability does not establish source-content or implementation reuse permission. Citation metadata and original commentary only; no source text, figures, movies, patterns, data, code or other source assets redistributed.
