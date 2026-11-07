@@ -1,0 +1,949 @@
+# First-paper humanoid demo implementation
+
+Owner choices updated on 24 October 2026, including the later open hand selection. This is the active execution plan for
+the Bhatia directional-cooling pilot, not a completion receipt.
+
+## Completion target
+
+Cover all eleven existing physical branches and their shared preparation,
+transfers, configuration changes, recovery and cleanup, using the selected
+Unitree humanoid and its own articulated hands. Preserve the paper's source
+facts, explicit reconstruction inferences and object lineage. Scientific-result
+agreement and physical-hardware experiments are outside this demo's acceptance.
+
+The machine-readable [pilot contract](../../assets/cooling_lab_v1/pilot_contract.json)
+records the latest owner decisions: the body remains Unitree, while publicly
+supported hands from other manufacturers are allowed. Select G1 29DoF rev 1.0
+with Inspire FTP left/right for the current asset integration, based on the
+[official resource audit](HUMANOID_RESOURCE_SELECTION.md). The actor must use
+robot sensors; adaptations remain limited to added cameras and ordinary tools.
+Robot-specific fixtures and added fiducials are excluded. The previous H2 /
+Dex5-S assets and body evidence remain historical references.
+Model acquisition and static inspection grant no manipulation qualification.
+The owner's development authorization is recorded below.
+
+## Delivery order and acceptance
+
+On 26 October 2026 the owner explicitly authorized parallel scene and G1
+manipulation development for the one-hour delivery sprint. The exact reply and
+scope are retained in `assets/cooling_lab_v1/development_authorization.json`.
+This supersedes the sequencing restriction below, but grants neither scene
+acceptance nor manipulation qualification and does not change the full target.
+
+1. **Assets and laboratory.** Decompose and allocate all required resources;
+   reconstruct commercial equipment from inspected manufacturer sources;
+   represent operational parts and access states; check complete humanoid,
+   hand and carried-load geometry. Deliver a source/model comparison and a
+   dimensioned interactive scene. Acceptance of this exact revision remains
+   pending; the later authorization permits parallel manipulation development.
+2. **Sensor-driven capabilities.** Add calibrated head RGB-D and bilateral wrist
+   RGB observation models, plus evidenced proprioceptive/contact channels.
+   Isolate the controller process from simulator truth and evaluator records.
+   Implement perception, stable support, motion, tool use and manipulation
+   with observable success and bounded recovery. The camera configuration is
+   currently a proposal, not installed hardware or a simulated sensor receipt.
+3. **Paper campaign.** Bind every manual step to concrete instances, perception
+   and action interfaces. Preserve identity and state across stations and
+   branches. Automatic device processes may be represented explicitly after
+   robot setup; no manual work may disappear into a process receipt.
+4. **Repeatable delivery.** Package reproducible runs, continuous videos,
+   sensor and physics traces, independent verdicts and failure evidence. Extend
+   the existing localhost review rather than claiming playback is a new run.
+
+Engineering targets are 19 successes from 20 preregistered trials per required
+skill, 9 from 10 per branch, and three consecutive complete campaigns without
+human takeover. Declare source-based perturbation ranges before testing; retain
+all failures. Missed grasps, slips, incomplete connections, blocked covers and
+sensor failures must be recognized. These targets do not imply a statistical
+guarantee of general reliability.
+
+## ScienceGym manuscript after demo delivery
+
+On 27 October 2026 (Asia/Singapore), the owner requested an illustrated
+ScienceGym research manuscript **after completing the demo**. This is an
+additional deliverable; manuscript preparation must not displace the current
+demo repair and validation work. The initial inspection found no manuscript.
+A subsequent workspace check on 27 October found an 18-page English discussion
+draft with six generated figure groups under `manuscript/sciencegym/`. Its PDF
+and editable input hashes match its build receipt. It freezes existing partial
+results and failed composition evidence; it is not a final paper reporting a
+completed demo. The README also mentions an earlier manuscript outside this
+release, whose text and figures must be located and reviewed before reuse.
+
+After the demo is complete, write a full manuscript with an editable source,
+compiled PDF, references, and separately exportable figures. Explain the
+paper-to-manipulation reconstruction method, evidence and inferred steps,
+task and state representations, source-backed assets, humanoid execution,
+controller/evaluator separation, and reproducible evaluation. Include a
+system overview, a worked paper-to-task example, laboratory and asset figures,
+an annotated operation sequence, and plots based on recorded outcomes.
+Use actual traces for results and failures; the presentation film supplies
+illustrations only. Do not claim 1,000 completed papers, qualified branches,
+or success rates without the corresponding evidence. Venue-specific formatting
+can follow once the manuscript and results exist. The owner has authorized
+writing this paper, but has not requested journal/conference submission.
+
+The manuscript package is maintained under `manuscript/sciencegym/`, with
+`main.tex`, a bibliography, compiled PDF, and editable figure sources. Update
+its results after demo completion without overwriting the existing frozen
+evidence snapshot. The final planned figure set is:
+
+1. ScienceGym system overview: paper evidence, reconstructed manipulation
+   steps, task/state representation, sourced assets, execution and evaluation.
+2. One worked reconstruction: an inspected paper passage or paraphrase linked
+   to its operation chain, with inferred details distinguished from evidence.
+3. Laboratory and commercial assets: dimensioned layout, robot access space,
+   and source-to-model comparisons with source attribution.
+4. A continuous demo sequence: actual rendered frames tied to timestamps,
+   object identities and operation IDs, including grasp and release details.
+5. Evaluation: plots generated from retained run records, covering the tested
+   scope, trial counts, failures and recovery; untested claims remain explicit.
+6. Failure analysis: examples such as contact errors or incorrect object-state
+   transitions, together with the implemented corrections and their evidence.
+
+Each figure and results table must identify its generating script, source
+revision and input records so it can be rebuilt. Presentation frames and
+measured simulation outcomes must be identified in their respective captions.
+The introduction, related work, method, demo case study, evaluation, limitations
+and conclusion should form a complete paper, rather than a collection of
+project screenshots. The available results determine the paper's claims;
+the intended future scale of 1,000 papers is not a completed dataset.
+
+The presentation-film repair remains a prerequisite for this writing request.
+The second development viewer now starts the Cary DRA and Nicolet IntegratIR
+inside their instrument bays, with their own PTFE and gold standards at the
+actual sphere ports. These are explicitly inferred initial configurations;
+installation, detector cable mating, optical alignment and support stability
+are not executed or qualified by their placement. The former flying specimen
+into an empty instrument bay has been removed.
+
+The two Nicolet cover phases now have a continuous arm solution and
+collision-planned approach/withdrawal paths. Their
+[`optical_07` sampled review](../../viewer/cooling_concept_v2/audits/optical_07/sampled_interaction_review.json)
+checks 410 states at 0.1-second spacing, including phase boundaries: no sampled
+robot/environment or unexpected self intersections, joint-limit or speed
+failures, or sole penetration; maximum palm/pregrasp endpoint error is
+0.198 mm. This is a geometric subtask result, not complete optical handling,
+force/dynamics validation, full-film acceptance or branch qualification.
+Earlier failed attempts remain available. The commercial cover's retention
+at the selected 65-degree open angle is an unresolved mechanical inference.
+
+The collision reviewers also now apply the instrument group's world transform
+to static source parts that the viewer merges for rendering. Historical
+aperture-cover and cart-room samples were rechecked after this fix and retained
+their zero unexpected intersection counts. The historical lowered-idle
+`idle_regression_04` revision was rejected for 108 robot/environment intersection
+states during bench approach and withdrawal. Twenty collision-planned free-arm
+paths now replace those transitions. A later aperture-cover IK branch jump
+was resolved with continuous contact seeds and four revised path endpoints.
+The independent [`approach_03` review](../../viewer/cooling_concept_v2/audits/approach_03/sampled_interaction_review.json)
+checks 2,732 selected states at 0.1-second spacing: zero unexpected environment,
+self or payload intersections, joint-limit/speed failures or sole penetration.
+Its cart/room check covers 367 states. The two return-carrying routes omitted
+by the original phase-name selection have a separate
+[`return_01` review](../../viewer/cooling_concept_v2/audits/return_01/sampled_interaction_review.json):
+207 states pass the same robot, payload and motion checks. Selection by action
+is now available to avoid relying only on phase names. These are sampled
+subtask reviews, not continuous-time, whole-film, contact-force or dynamics
+qualification. Earlier failed attempts and their exact source snapshots remain.
+
+The gold reference's initially protruding optical-face datum has been corrected
+to a selected 0.05 mm recess behind the supporting shoulder. The manufacturer's
+photograph establishes a central face within its holder, not this exact depth;
+the dimension remains an explicit inference. Its installed source-mesh review
+now reports no reference/port intersections. Screening 23 continuous left-arm
+lift candidates yielded one 61-knot candidate without sampled intersections in
+the stated planning region. That component began at a closed grasp and omitted
+ankle meshes. It is now integrated with planned hand entry/exit, partial opening,
+grasp closure, four grounded lateral steps, held-reference transfer, cap seating
+and release. The complete source robot and laboratory were then checked in
+[`reference_01`](../../viewer/cooling_concept_v2/audits/reference_01/sampled_interaction_review.json):
+1,146 sampled states pass joint, sole, self, robot/environment and reference/
+environment checks. Intended non-optical support contacts are bounded by
+part identity, contact location, support height and a 1 micrometre tolerance;
+the maximum reported numeric depths are 2.55 nm at the cap and 6.02 nm at the
+port panel. Optical-face contacts are never waived. This is sampled geometry,
+not force, balance, full optical procedure or film qualification.
+
+A separate inferred protective-cap candidate supports the non-optical holder
+shoulder while keeping the optical face 15.05 mm above its inner floor. Its
+local 51-state hand-closure review reports no hand/cap/reference intersections;
+the complete-asset candidate preserves the other 90 source parts exactly.
+It is saved under `assets/pike_integratir_dtgs_v1/revisions/cap_support/` and
+used by the development-only `viewer/cooling_concept_v2/runtime_scene.json`;
+the original laboratory manifest and asset remain intact. Internal fit
+dimensions are inferred, not manufacturer CAD or tolerances. The reviewers
+now read and verify the manifest and geometry hashes frozen with each export.
+
+The subsequent `reference_02` revision reorders the operation to match the
+IntegratIR substitution method: retrieve the capped standard, place it on the
+port, close the access for background, reopen, then remove and cap the standard
+before specimen exchange. The standard starts and ends in protected storage.
+Its [1,660 sampled states](../../viewer/cooling_concept_v2/audits/reference_02/sampled_interaction_review.json)
+pass the independent joint, sole, self, robot/environment and reference/
+environment checks. Background/sample scan controls and actual specimen
+exchange are still placeholders, so this
+sequence is not a completed optical measurement. The development timeline is
+818.57 seconds long; no corresponding full movie has been rendered or accepted.
+
+Reference/specimen
+exchange, calibration, sensor installation, reflector locking and wiring
+remain unfinished; no replacement full film or final manuscript has been delivered.
+The later local discussion draft is recorded in the manuscript section above.
+
+The optical-specimen repair now distinguishes the selected **25 mm optical
+witness** from the paper's **50 mm apparatus emitter**. Two identified copper
+witnesses, each with three coating layers and an ordinary annular edge holder,
+replace the unsupported primitive disc in the development scene. Stock and
+paint types follow the reconstruction; holder details, the masked rim, coating
+thickness and optical-face recess are explicitly inferred. They do not stand
+in for the separate two-layer nanoporous/LDPE optical specimens. The scene now
+contains the original 81 identities plus these two witnesses.
+
+The [assembly review](../../assets/cooling_optical_specimens_v1/assembly_review.json)
+checks 55 pairs of independently reloaded CAD solids without positive-volume
+overlap. It retains FCL's ambiguous triangle-contact depths at coplanar
+clip/carrier surfaces rather than treating those depths as solid penetration.
+The [staging review](../../viewer/cooling_concept_v2/specimen_staging.json)
+checks both witnesses against the laboratory geometry and the actual Cary
+benchtop; the complete footprint stays at least 82.5 mm inside its edge.
+
+Ordinary Ideal-tek tweezers now have a source-mesh closing model and an opposed
+Inspire-finger fit. The elastic shape is an engineering inference, not a force
+model. Local checks cover 51 coupled finger/tool closure states and 82 approach/
+closure states with the tips straddling the annular wall from above. The tips
+stay approximately 1.2 mm above the support plane, avoiding the need to reach
+under a flat specimen. The original heel-only tray placement failed because
+one spring arm extended lower than the heel block; the corrected candidate
+uses the actual joined-end surfaces and retains both supports. Eight of 16
+open-hand candidates clear the tool, tray and bench plane. This proposed tool
+staging has **not** been inserted into the film or credited as a pickup.
+
+One [61-pose FTIR extraction candidate](../../viewer/cooling_concept_v2/previews/specimen_port_refined.json)
+passes the local robot/self/tool/witness/environment checks after refining a
+continuous right-arm solution. The specimen and tool follow actual palm FK.
+The planning region is the FTIR bench and nearby instruments; ankle meshes,
+between-pose swept clearance, free-arm entry, initial tool pickup, sample
+delivery, release, station transfer, forces and dynamics remain outside this
+result. [Inspection frames in the full laboratory](../../viewer/cooling_concept_v2/previews/specimen_port_inspection/0_close.jpg)
+show this isolated held-specimen initial condition; it is not a new complete
+workflow or a replacement video. The older failed search and staging records
+are retained. These results grant no branch or campaign qualification credit.
+
+The subsequent local FTIR exchange episode composes **78 segments over
+372.55 seconds**: ordinary-tool pickup, white-witness mounting, tool return,
+white-witness retrieval and restaging, then the same cycle for the black
+witness. The actual source hand and palm FK drive the same tool and carrier
+identities throughout. The tray/tool staging is rotated and shifted on the
+existing benchtop to clear the SpectraTech accessory. Source-mesh leg IK adds
+twelve grounded lateral foot placements between the staging and port stances.
+No added robot fixture or altered equipment envelope is used for clearance.
+
+Inspect this separately initialized episode at
+`http://localhost:8769/viewer/cooling_concept_v2/index.html?episode=ftir`.
+It begins with the witnesses and tools already delivered, the Nicolet access
+open, and the reference capped. Those initial conditions do not execute the
+missing Cary-to-FTIR delivery, background/sample controls or the full paper
+workflow. The default development film and the rejected 9m39s video are not
+replaced by this local episode. Camera-only inspection frames are retained in
+`viewer/cooling_concept_v2/previews/optical_episode_inspection/`.
+
+The local episode's independent export contains 4,038 states at 0.1-second
+spacing plus both sides of operation boundaries. The exporter records the
+actual renderer's tweezer deformation. The reviewers reconstruct that shape
+from the pinned source GLB and check its vertices before using it for contact
+queries. Robot/environment, robot self-contact, joint/sole and tool/specimen/
+tray-environment reviews are kept under `audits/optical_exchange_01/`.
+Their aggregate verdict is generated only after all records exist:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/optical_exchange_01 --step .1 --episode ftir
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/audit_optical_exchange.py viewer/cooling_concept_v2/audits/optical_exchange_01
+python viewer/cooling_concept_v2/review_optical_episode.py viewer/cooling_concept_v2/audits/optical_exchange_01
+```
+
+The retained [aggregate review](../../viewer/cooling_concept_v2/audits/optical_exchange_01/sampled_interaction_review.json)
+passes all 4,038 states: zero unexpected robot/environment, self or tool/
+specimen/tray-environment intersections; zero joint-limit, speed, sole,
+source-FK or object-ownership failures. All 78 segments are represented.
+
+These checks concern sampled geometry. Dynamic balance, contact forces,
+sensor-driven execution, complete film acceptance and the eleven qualified
+paper branches remain separate unfinished requirements.
+
+The extended `?episode=ftir_delivery` mode now executes two Cary-to-FTIR
+witness deliveries before that exchange sequence. Both witnesses begin at
+their original Cary-side support poses. The robot collects the staged tool,
+walks to each witness, grasps its annular wall, turns and walks forward to the
+FTIR station, places the witness, and returns the tool. Lowering/raising the
+carrying hand occurs in the aisle. The earlier high-hand walking variant was
+rejected during visual inspection; its source export and images are retained.
+
+This extended sequence has **136 segments over 774.92 seconds**. Its
+[new-prefix review](../../viewer/cooling_concept_v2/audits/optical_delivery_02/sampled_interaction_review.json)
+checks 4,364 states with no unexpected intersections or joint/sole/ownership
+failures. Its unchanged exchange suffix is checked against every one of the
+earlier 4,038 recorded states, including source assets, deforming vertices and
+scene transforms; the maximum numeric difference is 2.58e-13. The
+[composition receipt](../../viewer/cooling_concept_v2/audits/optical_delivery_composed_02/composed_review.json)
+records complete segment coverage by those two evidence sets. Their state
+counts overlap at the handoff and are not summed as unique states.
+
+The tools are initially allocated to FTIR, the access is open and the reference
+is capped. Cary reference/sample clamping, actual background/sample acquisition,
+supply preparation and integration with the remaining paper operations are
+still unfinished. This extended interactive sequence does not replace the
+rejected full film or grant dynamic/branch qualification. Inspection images
+are under `viewer/cooling_concept_v2/previews/optical_delivery_inspection/`.
+Reproduce its new evidence in a fresh audit directory with:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/optical_delivery_recheck --step .1 --episode ftir_delivery --phases '_delivery_|^white_mount_free_entry$'
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/audit_optical_exchange.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/review_optical_episode.py viewer/cooling_concept_v2/audits/optical_delivery_recheck
+python viewer/cooling_concept_v2/verify_delivery_suffix.py viewer/cooling_concept_v2/audits/optical_delivery_suffix_recheck
+python viewer/cooling_concept_v2/review_delivery_episode.py viewer/cooling_concept_v2/audits/optical_delivery_recheck viewer/cooling_concept_v2/audits/optical_delivery_suffix_recheck viewer/cooling_concept_v2/audits/optical_delivery_composed_recheck
+```
+
+## Cary optical mechanism
+
+The Cary reference/sample clamp now has a separate
+[working-mechanism candidate](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/revision.json).
+The existing installed clamp already reaches the 14 mm reference backing via
+a static offset; the missing pieces were guide clearance, a closing spring,
+travel for thinner samples, and rotation away from the open baseline port.
+The candidate adds a bored slider, distal spring stop and offset arm while
+preserving all 101 unrelated DRA parts exactly. Local mechanism dimensions
+and the rotational parking choice are explicit reconstruction inferences.
+
+Its [mechanism review](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/mechanism_review.json)
+checks 138 reference-release, clear-port parking and witness-closing states.
+It checks pad/backing contact, guide/coil/module clearance and the unblocked
+16 mm aperture. The
+[inspection images](../../assets/cary_internal_dra_2500_v1/revisions/working_clamp/cutaway_previews/)
+hide the extension hood as a cutaway; they do not show a robot opening it.
+The original sliding lid and the extension's lift/slide/hinge cover are
+distinct access operations. This candidate is not integrated into the
+delivery episode. Robot actuation, reference storage, retention forces and
+acquisition controls remain to implement. The installed mechanism clearance
+probe below covers a selected access corridor, not a robot exchange.
+
+Rebuild and review with `build_cary_clamp_candidate.py`,
+`review_cary_clamp.py`, and `preview_cary_clamp.py` under
+`viewer/cooling_concept_v2/`, using the simulation Python environment.
+
+### Executed Cary access preparation
+
+The separate `?episode=cary_access` viewer now composes 23 segments over
+81.09 seconds in the same complete laboratory. G1 grips the main lid pull,
+slides it 150 mm, releases and withdraws, takes four grounded foot placements
+to the hood stance, grips and unhooks the removable hood, steps backward,
+lowers it for carrying, moves sideways, approaches the bench, seats the hood,
+releases it and withdraws its hand. The hood follows source palm FK while
+held and remains at its supported bench pose after release. Every boundary
+checks joint, root, lid and hood continuity. This is access preparation;
+reference/sample exchange, acquisition, cover restoration and the whole paper
+workflow remain unfinished.
+
+The [cover revision](../../assets/cary_5000_v1/revisions/cover_clearance/operable_revision.json)
+adds open-bottom hose-barb reliefs and a selected 20 mm grip clearance while
+preserving 103 unrelated source parts. These local dimensions are explicitly
+inferred, not manufacturer CAD or measured dimensions. The manufacturer manual
+allows complete hood removal. The selected 150 mm main-lid opening is an
+inference; the manual requires opening the lid but does not specify that the
+complete selected 305 mm stroke is necessary for every sample exchange.
+The original hood and the earlier relief-only revision remain available.
+
+The first exported access attempt retains an oversized lid-finger gap. The
+second tightens the static fit to 0.1 mm but reveals seven interpolated thumb
+intersection states. `refine_cary_lid_path.py` inserts 47 projected contact
+knots to constrain motion between endpoints. Those failed exports and their
+exact renderer sources remain under `audits/cary_access_01` and
+`audits/cary_access_02`. A third export finds one 78 micrometre hood/rail
+interpenetration during the first lift. `refine_cary_cover_path.py` inserts
+180 constrained lift knots, preserving the asset's dimensions and rail fit.
+A key-pose fit is not treated as proof of continuous contact. The clearance
+checker also bounds the actual source-normal overlap
+at nominal hood/base bearing faces; it does not excuse arbitrary contact
+depths. Inspection captures are under
+`viewer/cooling_concept_v2/previews/cary_episode_inspection/`.
+
+The initial [sampled access review](../../viewer/cooling_concept_v2/audits/cary_access_04/sampled_interaction_review.json)
+covers all 23 segments in 4,933 states, using 0.1-second samples plus knots
+and boundary samples. It reports zero unexpected robot/environment, self or
+moving-device intersections, and zero joint/sole, FK, ownership, grasp-clearance
+or bench-support failures. Maximum sampled index/thumb clearances are 0.105 mm
+at the main-lid pull and 0.118 mm at the hood handle. The resting hood's bottom
+is 0.976 micrometres above the actual source worktop. These toleranced geometric
+contacts do not establish grasp retention or support forces.
+
+Export and independently review the live access episode with:
+
+```bash
+python viewer/cooling_concept_v2/export_audit.py viewer/cooling_concept_v2/audits/cary_access_recheck --step .1 --episode cary_access
+python viewer/cooling_concept_v2/audit_geometry.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_self_contact.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_motion.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/audit_cary_access.py viewer/cooling_concept_v2/audits/cary_access_recheck
+python viewer/cooling_concept_v2/review_cary_episode.py viewer/cooling_concept_v2/audits/cary_access_recheck
+```
+
+The access variant does not install the separate working clamp candidate.
+The original 9 min 39 s movie remains unchanged; this episode does not replace
+it or grant contact-force, balance, dynamics, branch or campaign qualification.
+
+### Installed clamp and pending robot exchange
+
+`cary_clamp_scene.py` places the candidate in the complete laboratory with the
+lid at 150 mm and the hood at its actually demonstrated bench pose. It removes
+the legacy 19 mm slider offset, preserves the reference's installed pose and
+updates the slider, arm, pad and spring together. The
+[installed clearance review](../../viewer/cooling_concept_v2/previews/cary_exchange_access_01/review.json)
+checks 108 states: clamp withdrawal, rotation with the reference still in
+place, and a 60 mm reference withdrawal corridor. All sampled mechanism and
+reference clearances pass. The initial clamp matches the exported candidate
+within 7.45 nm. The reference's nominal cap seating has at most 0.216 micrometres
+of source-normal overlap; this bounded, explicitly identified seating contact
+does not waive other collisions. The reference would need real support before
+the clamp releases it; the probe does not implement that support.
+
+An attempt to extend the main lid from 150 to 305 mm is retained as
+`previews/cary_lid_operation_09_rejected.json`: body collisions reject the
+searched trajectories. Full travel is not treated as a prerequisite when the
+selected exchange can clear the current opening. Local source-hand searches
+also remain developmental: the first search found six reference and three
+slider candidates, but all 18 pairs collide. A wider search found 16 and eight
+candidates, and all 128 pairs still collide. These are close approach poses,
+not accepted force-retaining grasps or a completed bimanual operation.
+
+The manufacturer's ordinary sample mount ledge (0810169700), included in the
+standard holder kit and described in the manual's reflectance operation/
+figure 16, remains an unimplemented support option. The subsequent candidate
+below instead keeps the reference in the robot's left hand while its right
+hand operates an ordinary long forceps. No robot-specific support fixture or
+invisible attachment has been substituted for the missing operation.
+
+Reproduce with `review_cary_exchange_access.py --trial <new-id>`,
+`fit_cary_exchange_hands.py --target reference|clamp --trial <new-id>`, and
+`review_cary_hand_pairs.py --trial <same-id>`. The wider search uses
+`--tilts -1.1 -.85 -.6 -.3 0 .3 .6 .85 1.1 --biases -.006 -.003 0 .003`.
+Each recorded search/review retains its source hashes and the input searches
+retain frozen source snapshots. These results do not replace the live access
+episode or qualify any paper branch.
+
+### Extended access clip and bimanual extraction candidate
+
+The current Cary access viewer is **141.35 seconds / 34 continuous segments**.
+After placing the hood on the existing bench, G1 returns through the aisle,
+regrasps the lid, steps forward to extend its opening from 150 to 200 mm,
+releases, steps back and withdraws its arm. Released-hand waypoints constrain
+position while allowing wrist orientation to change; held-handle stages retain
+the exact grasp constraint. The direct diagonal return was rejected for a
+torso/hose-barb collision and retained under `previews/cary_return_01/`.
+
+The [independent review](../../viewer/cooling_concept_v2/audits/cary_access_05/sampled_interaction_review.json)
+checks all 8,937 exported states: zero unexpected robot/environment, self,
+moving-device, grasp, support, joint or sole failures. Sampling includes
+0.1-second intervals, authored knots and boundary neighborhoods. The clean
+[Cary access MP4](../../viewer/cooling_concept_v2/media/cary_access_05.mp4)
+contains 3,393 frames at 1280 x 720 / 24 fps, with no text or watermark.
+Its [capture receipt](../../viewer/cooling_concept_v2/media/cary_access_05.json)
+pins the reviewed renderer, geometry, initial scene and video. This is an
+access-preparation clip, not the replacement whole-paper film or dynamics
+qualification. The original 9 min 39 s movie remains unchanged.
+
+The exact compressed frame export exceeds GitHub's per-file limit. Three
+binary chunks and `frames_archive.json` preserve it byte-for-byte; restore the
+ordinary audit input after a fresh checkout with:
+
+```bash
+python viewer/cooling_concept_v2/audit_frames_archive.py viewer/cooling_concept_v2/audits/cary_access_05 --restore
+```
+
+Rebuild the current access composition with:
+
+```bash
+python viewer/cooling_concept_v2/build_cary_access_episode.py --extension previews/cary_lid_stepped_04/plan.json --return-path previews/cary_return_02/plan.json
+```
+
+For the cramped spring clamp, the new ordinary tool is
+[FST 11000-20](https://finescience.com/anatomical-standard-forceps-straight/11000-20).
+Its manufacturer supplies a product photograph, tip drawing and datasheet.
+The [asset revision](../../assets/fst_11000_20_v1/revision.json) records the
+200 mm length, 50 g mass, 3.75 x 1.9 mm serrated tips and stainless material as
+source values. Body contour, opening, serration pitch and closing deformation
+are explicitly inferred; the meshes are original reconstructions, not factory
+CAD. External photographs and PDFs are referenced and hashed, not redistributed.
+`python assets/fst_11000_20_v1/fetch_references.py` retrieves the exact external
+references into the generator's cache and rejects changed source bytes. Then
+`python viewer/cooling_concept_v2/long_forceps.py` rebuilds the two mesh variants.
+The selected grip's [closure profile](../../viewer/cooling_concept_v2/previews/long_forceps_closure_03/profile.json)
+passes 51 fitted knots and 150 interpolated source-hand/tool checks, including
+the terminal wrist housing. Spring stiffness, friction and retention force
+remain unqualified.
+
+The first full-arm searches exposed a missing local-screening component:
+the terminal wrist-yaw housing is rigid relative to the palm but was absent
+from the earlier finger-only managers. `cary_distal_hand.py` now includes it;
+the earlier rejected body searches and their source snapshots remain intact.
+Rigidly turning the entire forceps with the clamp also drove the right hand
+into the instrument. The current candidate instead maintains the tool's world
+orientation while its opposed jaw contacts follow the clamp arm around the
+post. The jaws remain parallel to the arm's faces; this relative turning and
+the selected 55-degree parked angle are reconstruction inferences, not a
+manufacturer-specified trajectory or a measured friction model. Every retained
+planning knot checks both jaw gaps against the actual clamp-arm mesh.
+
+The resulting [bimanual planning candidate](../../viewer/cooling_concept_v2/previews/cary_bimanual_exchange_04/plan.json)
+has **90 states**: left-hand support, right-tool clamp retraction, 55-degree
+parking, then a 76 mm left-hand reference withdrawal. All represented source
+robot parts, tool, moving clamp and reference clear the planning laboratory
+geometry at those states. The ankles are omitted from this planning tier. Hand approach,
+forceps pickup, reference storage, interpolation review and independent
+whole-episode checks are still pending. Inspection snapshots begin with both
+grasps established; they are not an executed pickup or a continuous workflow.
+The next operation work is to add supported tool staging and pickup, connect
+the two hand approaches to this candidate, then store the reference and close
+the instrument for the required baseline procedure. No complete branch or
+campaign is qualified by these access and extraction results.
+
+The earlier ordinary-tool staging candidate was
+`previews/long_forceps_staging_07/staging.json`. It uses a second instance of the
+existing ordinary tray on the free left side of the Cary bench, with the tool
+tip supported by the worktop and the welded heel at a tray corner. All 51 local
+hand-closure states clear the tool, tray and worktop; the smallest signed
+tool/tray distance is positive. Earlier central-rim placements intersected the
+index finger. Trial 06 is explicitly rejected by its added review: its boolean
+collision query was clear but the signed distance was negative. The corrected
+checker requires nonnegative distance at every state. A subsequent full-scene
+review **rejects trial 07** because the tray intersects the Cary housing.
+Its local hand checks do not establish that the layout fits the laboratory.
+
+### Immediate delivery: one complete measurement across workstations
+
+The owner's latest instruction prioritizes a concise complete experiment
+demonstration with humanoid locomotion between workstations. The immediate
+deliverable is now one white-witness FTIR measurement, recorded in
+[`single_measurement_demo.json`](../../viewer/cooling_concept_v2/single_measurement_demo.json).
+It reuses the existing tool collection, walk to the Cary-side material bench,
+witness pickup, loaded return, gold-reference handling, FTIR sample exchange
+and tool return. The Cary-side bench is used for material preparation here;
+this does not claim execution of Cary spectroscopy. The broader paper and
+dynamics qualifications remain open, but they are not prerequisites for this
+requested demonstration video.
+
+The missing acquisition actions use the instrument's actual SAMPLE,
+BACKGROUND and OK/ENTER buttons. The manufacturer's user guide, printed
+pages 52–53, describes those controls and requires OMNIC to be running.
+The PIKE DLaTGS manual, printed pages 4–5, specifies gold-reference background
+and substitution with the sample, with the selector remaining in SAMPLE.
+Configuration, detector connection and controller-PC readiness are explicit
+initial conditions requiring scene review. No generated spectra will stand
+in for measured scientific results.
+
+The continuous procedure is now **541.14 seconds / 103 segments**. It includes
+full-body button approaches, two long transfers between the material bench
+and FTIR, local stance changes, gold-reference handling, cover operations,
+both acquisition controls, sample retrieval, tool return and final closure.
+The displayed waits are 12 seconds each, compressing an explicitly inferred
+instrument interval; they do not generate spectra.
+
+The separate `nicolet_6700_mechanism_v1` variant cuts inferred hinge seats,
+closure seams and key wells into four stationary parts. All 189 other meshes
+and transforms remain exact. The serialized artifact passes 521 cover-angle
+and 124 key-travel states. Source arm IK is refined during cover contact,
+with smooth transitions back to the existing free-arm paths.
+
+`audits/measurement_04/sampled_interaction_review.json` passes **6,022 states**
+covering the entire procedure: robot/environment intersections, robot
+self-contact, joint limits/speeds, sole clearance, tool/specimen ownership,
+reference support, moving mechanisms, fingertip clearance and acquisition
+order. Earlier failed traces remain available. This is a geometric check of
+an authored demonstration, without dynamics or controller qualification.
+The clean **541.167-second / 12,988-frame / 1280×720 / 24 fps** film is now
+published as `media/ftir_measurement_01.mp4`. The separate
+`audits/measurement_video_03/sampled_interaction_review.json` passes every
+encoded video frame. Robot/environment, self, tool/specimen, reference and
+mechanism checks report zero unexpected intersections; source FK/ownership,
+button/cover contact, acquisition order and joint motion checks pass. The
+maximum sampled sole-plane penetration is 1.56 micrometres, within the
+explicit 10-micrometre source-mesh plane tolerance. This is geometric evidence,
+not contact dynamics. Six frames decoded from the actual film were inspected.
+
+Open [the chaptered player](../../viewer/cooling_concept_v2/measurement_demo.html)
+or [the interactive scene](../../viewer/cooling_concept_v2/index.html?episode=ftir_measurement).
+The [delivery receipt](../../viewer/cooling_concept_v2/measurement_delivery.json)
+binds the MP4, capture, reviews and source hashes. Exact final-frame data are
+stored in five chunks; `audit_frames_archive.py --restore` reconstructs the
+original compressed trace. Failed earlier exports and aborted films remain
+in their original folders. The 141.375-second Cary access movie is a separate
+preparation clip.
+
+### Supported pickup and connected reference-removal planning
+
+The replacement staging is `previews/long_forceps_staging_08/staging.json`:
+the tool and ordinary tray move 120 mm left. All 51 local closure states have
+nonnegative support distances, and the full-scene pickup planner checks the
+new tray against the existing laboratory before using it. The original short
+tweezers and both optical witnesses retain their actual access-episode poses.
+This proposed layout is visible in the inspection snapshots but has not yet
+been installed in a continuous live episode.
+
+The following planning paths now pass their source-geometry checks:
+
+| Operation | Retained plan | Checked planning representation |
+| --- | --- | --- |
+| Access endpoint to tool station | `previews/cary_tool_transfer_to_pickup_01/plan.json` | 615 source-leg states |
+| Tool approach, finger closure and lift | `previews/cary_tool_pickup_02/plan.json` | 3 free-entry knots and 143 manipulation states |
+| Upright tool-carrying posture | `previews/cary_tool_carry_04/plan.json` | 5 path knots with checked edges |
+| Loaded return to the instrument | `previews/cary_tool_transfer_to_exchange_01/plan.json` | 615 source-leg states |
+| Tool preclosure and both free-arm approaches | `previews/cary_exchange_free_01/plan.json` | 57 knots; final joint error below 2e-9 rad |
+| Left-hand support, right-tool clamp operation and reference withdrawal | `previews/cary_exchange_entry_01/plan.json` | 254 manipulation states |
+
+The [inspection images](../../viewer/cooling_concept_v2/previews/cary_exchange_entry_01/inspection/capture.json)
+contain twelve valid views in the established laboratory. The rejected black
+export and later WebGL-context-loss attempt remain archived separately;
+neither counts as a successful capture. The successful capture records its
+process-local GPU selection and rejects lost contexts or uniform images.
+
+These paths still need composition, speed retiming and an independent dense
+review of the resulting interpolation. This planning tier omits ankle
+housings and does not establish contact forces, balance, dynamics or sensor
+control. Reference storage, tool return, sample exchange, enclosure closure
+and the required baseline/measurement controls remain unfinished. There is
+still no replacement full film or qualified complete paper branch.
+
+## Laboratory contact integration
+
+The G1 contact plant now imports the existing full laboratory instead of a
+separate primitive workbench. All 81 base asset identities are accounted for:
+G1 and the white tray are dynamic, and the other 79 assets remain fixed initial
+obstacles. The original 6,537 environment parts retain their source triangles,
+dimensions and placements. The actor receives only the authored architecture
+as a static map, plus depth, encoders and IMU observations; loose equipment and
+the target are absent from its model. The latest actor uses read-only bundles
+and separate filesystem, PID and network namespaces. Active probes and a
+forbidden-packet rejection test check this enforcement; sensor calibration
+and general localization remain open.
+
+Three 80.54-second runs exercise empty, preloaded-tool and isolated-actor tray
+transport and return on the actual white assembly bench. The
+[runtime guide and evidence](../../simulation/g1_cooling_demo/LABORATORY.md)
+retain their source snapshots, recorded sensor inputs, physics trajectories,
+independent replay and the failed first import attempt. Initial robot/tray
+staging is explicit setup, not executed preparation. Non-convex equipment
+cavities, device articulation, tool loading, locomotion, recovery and all eleven
+paper branches remain unqualified. The separate clean long-horizon film is an
+authored presentation and does not grant physical acceptance credit.
+
+A separate 12-second unloaded walking trial now advances 1.957 m in the same
+laboratory and transfers to stationary torque control at 6.602 s. It passes
+independent replay, feet-only floor contact and stopping checks. The official
+G1 29DoF velocity policy, training actuator assumptions, IMU heading correction,
+rotating sole-wrench constraints and all seven development attempts are
+recorded in the runtime guide. A subsequent joined attempt,
+`simulation/g1_cooling_demo/runs/laboratory_mission_04`, ran walking, parking,
+posture preparation and tray manipulation in one 99.162-second simulation.
+Its independent evaluation **failed**: the tray returned 55.2 mm from its
+source location, exceeding the 20 mm threshold, and hand/worktop contacts
+were detected. Exact motor replay and payload containment passed. The run and
+three earlier failed attempts remain available; this adds no qualified branch
+or reliability credit. Carrying, navigation and complete campaign qualification
+remain open.
+
+## Implemented asset-phase changes
+
+- The active constraint file and [readiness record](../../assets/cooling_lab_v1/readiness.json)
+  connect 200 manual definitions, 33 interfaces and eleven branches to current
+  resource requirements. Compound resources are decomposed, with unallocated
+  quantities left visibly unknown. This is an author/reviewer artifact, not an
+  actor instruction bundle or execution credit.
+- The complete official G1/Inspire source model is now placed in the laboratory.
+  The gravity-enabled floating-root MJCF retains source inertials, limits and
+  wrist transforms, with 41 independent actuators and 12 mimic constraints.
+  Palm collision components remove the initial zero-pose convex-hull artifact;
+  finite short-run dynamics and source-frame checks are asset evidence only.
+- The scene's bespoke film/emitter jigs and carriers were removed. Ordinary
+  Mitutoyo 530-104, Wiha 26100 and Buerkle 4208-0022 candidates are source-linked.
+  A small tray does not resolve heavy transport or delicate-film retention;
+  the legacy specialized-tool requirements remain open.
+- The review page displays policy, branch readiness, resource gaps, standardized
+  asset views and geometric articulation. It keeps every new candidate unaccepted.
+- The fabrication room now contains a selected OMAX ProtoMAX reconstruction,
+  including its transparent opening lid, slat bed, stage, nozzle, hopper, cabinet,
+  internal pump and ordinary laptop console. Manufacturer source discrepancies
+  and inferred local dimensions remain visible. This machine is an authored
+  selection, not the unidentified historical machine from the paper.
+- Raw copper and track aluminum thicknesses were corrected to 0.5 and 1.5 mm
+  from the task's source records. Foam and acrylic stock were added separately;
+  stock plan sizes and acrylic thickness remain authored selections.
+- New G1-specific bounds cover 129 restricted static poses: a 0.60 m body/hand
+  radius plus 0.10 m route margin, with a 1.43 m height allowance. The source wrist transforms are retained. The 94-point station screen records
+  each position-only IK result and external obstacle conflicts, including 24
+  supply/service approaches. Shoulder alignment, unused-arm retraction and
+  proposed-camera clearance are screened. The
+  Cary mounting datum remains distinct from its authored 80 mm upper palm
+  approach; finger contact and insertion remain open. Selected equipment/tools moved
+  closer to bench fronts without changing source geometry dimensions.
+  Two-hand coordination, loads, cameras, walking and balance remain unqualified.
+- Three camera requirements remain separately inventoried. The head uses G1's
+  native D435i optical frame. Two D405 units and an optional D455 bench reference
+  retain pinned manufacturer mesh geometry. Official Unitree wrist STEP parts
+  are now tessellated with their source roles verified against embedded CAD
+  names. A finite clocking search moves the G1/FTP placement above each wrist,
+  removing the observed pitch-housing conflict at sampled finger poses. Clamp
+  interference is resolved with a separately labeled G1 collar derivative that
+  retains the source camera arm. A 31.2 mm bore, matched bolt ears and explicit
+  M3 screws, washers and nuts replace the incompatible source collar. Positive
+  radial clearance, camera screw depth and discrete unfastened removal paths
+  are checked; liner preload, cables and dynamic loads remain open. The
+  original source mount is preserved and must still fail its regression cases.
+  Station IK rejects attachment intersections with every robot link, including
+  its parent wrist. No accepted installation or transit qualification follows.
+- The browser renders head RGB / ideal axial depth and both candidate wrist RGB
+  views from the current source kinematics. Camera frames are checked against
+  MuJoCo. Cutaway, isolation and review labels cannot remove scene occluders
+  from these images. Nominal catalogue FOV, uncalibrated extrinsics and opaque
+  depth treatment remain explicit; no sensor noise, observation timing,
+  controller process isolation or execution credit is claimed.
+- Eight individually staged Omega 5TC-TT-K-36-36 probes use the catalogue's
+  0.13 mm conductor diameter and nominal 1 m length. Coiled rest shape, jacket
+  envelope, stripped ends and weld details are inferred. No cable mechanics,
+  DAQ connection, strain-relief or temperature observation credit is claimed.
+
+- Twenty-two additional supply/service types now have source ledgers, real
+  openings and separate parts. They add a fine-wire stripping tool, ordinary
+  tweezers, slotted driver, fill vessel, vented ambient RTD, eight K-connector
+  pairs, thin raw films, masking stock, unmachined copper, a catalog cart and a
+  separate wipes can. OMAX 317864 clamps, Knipex 78 03 125 cutters, Noga RB1000
+  deburring and eight individual Pomona 5908A leads extend preparation and
+  electrical stock. Local dimensions and material assumptions are explicit.
+  Two angular-reflection candidates now include the Harrick HRS stage and its
+  FTIR base, and the Spectra-Tech 500 rotary frame, four separate mirrors and
+  the M4 sample/reference surface. The earlier extra M4 mirror plus separate
+  specimen is retained as a rejected topology fixture. The former short-face
+  perpendicular rotor is also retained because it misses the finite reference.
+  A selected 105-degree tandem candidate uses extended M3 and reference faces,
+  with two edge stops that leave the grazing-angle exit clear. It passes 594
+  actual-triangle diagnostic rays across 66 angles, including all obstructions;
+  optical calibration and the manufacturer's exact mechanism remain unresolved.
+  Source aperture sizes/ranges are distinct from inferred dimensions. They are
+  staged on the optical bench; Nicolet mounts, retention and optical alignment
+  remain open. Geometry sliders inspect the selected rigid carrier; they do not
+  implement robot manipulation or a calibrated optical instrument.
+  The scene has 81 instances; compound requirements and full campaign quantities
+  remain incomplete. Forty-nine component requirements now bind to named staged
+  units, including individual sheets and eight connector pairs. Shared tools
+  remain the same physical instances. Staged assets are not executed preparation
+  operations.
+  Clamp installation/force and wire-tool compatibility remain unresolved.
+- The [unified inventory](../../assets/cooling_lab_v1/laboratory_inventory.json)
+  reconciles base, installed-weather and partial-preparation views into 118
+  review identities, including one site design. U30, cart, sensor leads and
+  removed parts keep their identities; two temporary ties are additional stock,
+  separate from the fourteen retained ties and their cutoffs. The explicit
+  installation needs now include separate ordinary applicators, a 300-wipe pack
+  and an inferred 3 L grease-wipe reservation. Sixteen needs retain one missing
+  clean-packaging collection point; full trial/reset budgets remain open.
+  Two packaging films and every reserved wipe retain identities. One separate 85 g silicone
+  tube is selected for the EPDM channel, with two conflicting manufacturer
+  density scenarios sharing one identity. The silicone door gasket is excluded;
+  cable-jacket compatibility and application remain unqualified. These additions
+  preserve every original component and deficit; they grant no initial-state
+  or task credit. The same allocation page displays and filters these records.
+- The [campaign allocation](../../assets/cooling_lab_v1/campaign_allocation.json)
+  covers all 154 component requirements and eleven branches, with selected
+  quantities for 69 components, 77 unresolved quantity/specification requirements,
+  and eight non-stock output/configuration/frame/calibration requirements. All
+  154 still require completion and acceptance. The
+  [quantity policy](../../assets/cooling_lab_v1/component_quantity_policy.json)
+  adds 32 explicit selections with remaining conditions, including shared tools,
+  containers, optical subassemblies and the selected robot components. One G1
+  retains distinct body/left-hand/right-hand part bindings without extra stock;
+  the head frame does not supply a separately modeled D435i. Two independent
+  heater candidates match the paired power requirement.
+  Completed apparatus meshes and the fixed-configuration display are references,
+  not prebuilt starting stock. The selected pair is reused by identity. The
+  [stock cut plan](../../assets/cooling_lab_v1/stock_cutplan.json) reserves 75
+  envelopes on 40 sheets/blanks, eight tube sections, four purchased profiles and six angle cuts
+  using actual apparatus meshes.
+  Copper, aluminum, foam, acrylic and hollow-tube stock are separately inspectable.
+  The former undersized acrylic/Mylar and insufficient LDPE remain as rejected
+  evidence. Selected 12 μm foil now agrees between stock and custom apparatus;
+  the manufacturer's candidate is not identified as the paper's original Mylar.
+  Manufacturing tools, remaining connecting hardware, optical specimen formats, services and
+  reset/consumption budgets still need allocation. The [interactive review](../../viewer/lab_review_v1/allocation.html)
+  exposes these limits and exact source versions; no new controller is introduced.
+  In particular, the cutter's stated 0.2 mm minimum soft wire exceeds the
+  finest thermocouple conductor. The meter leads have full entry-to-entry
+  lengths and open shrouds, but no heater-side adaptor or electrical circuit.
+  Detached G1 battery/charger candidates and an ordinary service inspection
+  bench extend the scene. The 2024 manual constrains their case dimensions;
+  local geometry, connector details and charger revision remain explicit gaps.
+  No charging, autonomous battery replacement or complete service facility is
+  qualified. The approach shares the south cross-aisle and must stay clear.
+  Flat-white/black ColorMaster stock cans and a PELCO 16032 silver-paste
+  candidate add three capped units at the coating bench. Package scales are
+  explicit hypotheses; removable hollow caps and an open bottle mouth provide
+  inspection geometry. No spraying, adhesive application or material
+  compatibility is qualified. Exact paper SKU/brand, complete SDS coverage,
+  ordinary dispensing tools and campaign allocation remain open.
+
+- The selected Thorlabs L200/M central-support candidate now has a pinned
+  official STEP/drawing, a reproducible local download/conversion and a
+  [source-CAD inspector](../../viewer/lab_review_v1/lift.html). All 86 solids,
+  actual plate bores/slots and the 16 links are retained at source scale.
+  Four raw tessellation seams are corrected by 14 edge subdivisions without
+  moving vertices or filling physical holes; their failed meshes are retained.
+  This is a selected substitute for the unidentified paper support. The three
+  reference configurations now include a nominal mounting with actual base and
+  platform holes, four M3×10 underside screws/large washers and four M3×8
+  ISO 10642 platform screws. Two loose jacks and 24 ordinary mounting pieces
+  are initial stock; a separate 5 mm aluminum plate reserves both platforms.
+  The [mounting checks](../../assets/cooling_lab_v1/apparatus_mount_checks.json)
+  preserve nominal thread-envelope intersections and unresolved load, preload,
+  acrylic stress, tool access and cover connections. Legacy disconnected
+  probe placeholders are removed. The actual core is inspectable in the browser;
+  the upper thermal/reflector group follows the corrected source height.
+  The first stock placement caused shoulder/shelf overlaps. Those poses remain
+  replayed failure fixtures; the three stock groups move 300 mm toward the aisle
+  and are checked again with the same robot and collision screen.
+  Manufacturer CAD and every composite containing it stay in ignored local cache/geometry directories;
+  the repository distributes source pins, code and review evidence.
+
+- The [frame inspector](../../viewer/lab_review_v1/frame.html) now shows the
+  actual selected base, two 20-2020 nominal profiles, outboard hollow uprights,
+  ordinary bridge plates, split clamps, T-nuts and reflector clamp plates.
+  Rails follow the 305 mm inner span shown in SI Figure 1, with the acrylic
+  below their tops. Nominal slots and central bores replace overlapping box
+  geometry. Commercial identities, public dimensions and original machining
+  choices are separated in the [source ledger](../../assets/cooling_lab_v1/apparatus_frame_sources.json).
+  The track span is now 395 mm, with actual upper-clamp holes; its selected
+  curve and the paper's conflicting reflector-height statements remain open.
+  Flat underside connections and four ordinary feet keep screw heads clear
+  of the support plane. The reflector uses two screw-clamped backing plates,
+  with countersinks continuing through the thin disk into its upper plate.
+  The [frame checks](../../assets/cooling_lab_v1/apparatus_frame_checks.json)
+  inspect exported solids and use solid-intersection volume to distinguish
+  coplanar contacts from intersections; FCL contact depth alone was misleading
+  on coincident faces. A sharp T-nut envelope intersected the diagonal web;
+  that actual failed mesh is retained. Its inferred 0.25 mm edge break needs
+  manufacturer CAD/metrology confirmation before product-fit acceptance.
+  Clamp deformation, thread/seat forces, preload, tolerances, adhesion,
+  complete reflector travel, manufacturing-tool/reset allocation and robot assembly
+  remain unqualified. This is still asset work before owner acceptance.
+
+- [Frame starting stock](../../assets/cooling_lab_v1/frame_stock.json) now adds
+  three separate scene assets with 95 units: four 340 mm purchased profile
+  lengths, four uncut 250 mm upright tubes, three raw aluminum blanks and 84
+  fastener/pad units. Eight inferred release liners remain with the pads.
+  Actual geometry supplies low resting poses for the long screws; settling,
+  pickup and retention are still unqualified. Twenty custom bridge, clamp and
+  carriage outputs have reserved cut envelopes; upper carriage plates require
+  facing 4 mm raw stock to 3.75 mm. Drilling, tapping, slots and workholding
+  remain manufacturing requirements. A retained world-space failure mesh
+  records the initial overlap with existing aluminum-tube stock; the blanks
+  moved 390 mm left. Independent checks reject duplicated physical members
+  and an omitted T-nut. These quantities do not include failed trials or resets
+  and do not convert completed display assemblies into starting stock.
+
+- An [isolated cover review](../../viewer/lab_review_v1/cover.html) now compares
+  a membrane-supported ring hypothesis with retained legacy failures. Published
+  tube/ring diameters, 16 micrometre film and 57 mm shield height are preserved;
+  a 51 mm PE support, film drape and 58 micrometre adhesive are explicit choices.
+  All 29 candidate solids have positive closed geometry. The 205 geometric
+  checks include actual film-normal gauge, contact connectivity, solid overlap
+  and section-hole checks. The browser retains 25 views. Neither membrane
+  equilibrium nor adhesion is qualified. The legacy invalid coating, copper
+  winding and floating shield remain available for comparison. Actual section
+  faces resolve misleading open-clipping interference without altering the
+  physical meshes. Three ordinary angle-stock connections now use six M3×6
+  screws and three washers; a separate adhesive annulus joins the aperture.
+  The selected platform grows to 180 mm square while retaining the jack bores.
+  Its previous 170 mm size fails the foot-support counterexample. Nominal thread
+  faceting intersections remain explicit, with no preload or physical retention
+  claim. All three laboratory display configurations now use the candidate,
+  with 50 μm LDPE in the fixed configuration and separate white/black coating
+  appearances. Thirty-one independent stock units include raw angle, eighteen
+  hardware pieces and twelve lined adhesive sheets for initial, fixed,
+  restoration and aperture attachments. Actual angle-cut containment and
+  film-normal gauge are checked. A retained failed world-coordinate export
+  demonstrates why thin meshes need local vertices and separate translations;
+  the prepared scene also checks for foil/substrate intersections. Ordinary
+  tools, adhesion, physical retention, reset stock and owner acceptance remain open.
+
+- A separate FTIR installation review now adds the 206 × 252 mm floor candidate
+  and 38 ordinary mounting parts. Thermo site guide 269-158000 supplies the floor
+  dimensions, focus offsets, approximately 90 mm optical height and approximately
+  190 mm cover clearance; thickness, attachment pattern and adapters remain
+  hypotheses. The original source instrument and bench-staged accessories are
+  preserved. A rear adapter relief and relocated screw remove the sampled purge
+  outlet insertion conflict, with the rejected geometry retained as a regression
+  fixture. Both assemblies clear 25 nominal open-bay vertical samples, excluding
+  hands, forces and balance. The Spectra-Tech candidate still exceeds nominal
+  closed-cover clearance by 16 mm and blocks one driver approach. The inferred
+  Harrick front-fold ray is displaced by 60 mm; shifting it into alignment
+  collides with the instrument. Neither candidate is mounting-qualified, and an
+  open-cover inspection does not authorize measurement with the cover open.
+
+- Four ordinary fastening tools are now separate, allocated bench instances:
+  Wiha 2 / 2.5 / 3 mm hex drivers and an 8 mm Stahlwille combination wrench.
+  The existing PH00 and slotted precision drivers retain their identities but
+  now use the inspected 120 mm overall / 40 mm blade catalog dimensions and
+  photo-guided grip orientation. PH00 shaft diameter is corrected to 2 mm.
+  The slotted tool's catalog 0.25 mm tip conflicts with the current photograph's
+  0.23 mm marking; this remains explicit, with no terminal-fit claim. Socket
+  checks and four new palm approaches do not establish grasping or tightening.
+
+## Historical compatibility and remaining work
+
+`selected_reconstruction.json` in the existing task package still selects Panda
+and custom tools. It is historical evidence and must not become the humanoid
+runtime input. The 20-second H2 foundation reads privileged simulator state and
+does not qualify sensor-only manipulation. Preserve both records with their
+original scope. New task/controller bindings require their own revision and
+evidence under the recorded parallel-development authorization.
+
+The current scene is **not ready for whole-laboratory acceptance**. Remaining
+items include the hand's qualified contact/dynamic description, camera mounting, ordinary
+tool solutions for film/underside handling, complete resource quantities,
+qualified fabrication services and tooling, exact angular optical accessories, wiring and consumables,
+full carried-load space checks, and evidence for installation/support/services.
+No owner approval or scene safety qualification is inferred from green checks.
+
+Build and verification instructions are in the
+[laboratory package](../../assets/cooling_lab_v1/README.md). The later parallel
+development authorization permits the contact runtime described above. Its
+isolated sensor actor and stationary tray sequence have recorded execution
+evidence; the complete paper task and scene acceptance remain open.
+
+## Current embodiment resource integration
+
+The official G1/Inspire FTP bundle is pinned in `assets/unitree_g1_inspire_v1/`:
+URDF, all 93 referenced meshes, repository licenses, and versioned NVIDIA /
+Unitree configuration references. The asset inspector at
+`viewer/robot_resource_review_v1/index.html` shows the source geometry without
+rescaling. It is a static zero-pose preview, not a standing/balance demonstration.
+The new selection is bound to all 200 manual-step requirements; execution
+bindings remain null. The [integration record](../../assets/unitree_g1_inspire_v1/README.md)
+records completed source mapping, collision repair and bounded static checks.
+The lab viewer can display each tested posture. Target-interior access,
+contact qualification, revised camera installation and carried-object clearance stay
+open. Do not reuse the H2 spatial certificate or mix FTP and DFQ joint names.
+The owner scene gate remains open.
+
+## 2026-10-26 one-hour development delivery
+
+The owner explicitly authorized scene and operation development in parallel; see `assets/cooling_lab_v1/development_authorization.json`. This changes development sequencing only. Scene acceptance, qualified skill/branch counts and full-campaign requirements remain unchanged.
+
+`simulation/g1_cooling_demo/` now provides an actual G1 29DoF / Inspire FTP floating-base contact runtime. A separate actor reads native-head depth, joint encoders and IMU data; it localizes an empty Bürkle tray, approaches with both hands, applies joint torques to grip, lifts, transfers, places and retracts. The packaged 38-second development episode, all earlier attempts, exact source snapshots, physics/sensor records, independent continuous motor replay and video are linked from `viewer/cooling_demo_v1/index.html`.
+
+This is one empty-tray subskill on a local test workbench. It does not cover the whole paper, loaded walking, assembly, connectors, thin films, configuration switching, recovery or cleanup. The task policy uses timed stages after initial depth localization. Fixed-foot localization, idealized sensors, inferred contact parameters and a non-hardened process boundary are not qualified. **0/11 paper branches and 0 full campaigns remain qualified.** The full laboratory viewer and its initial weather-stock layout are separate review scenes; they are not yet the complete dynamic runtime world.
+
+The initial weather-stock candidate now preserves source components and assigns the previously missing portable weather identities to ordinary bench, shelf and tray locations. Folding and support placements are reconstruction candidates, not verified manipulation or stable-load outcomes. New initial-stock and allocation checks do not grant equipment or owner acceptance.

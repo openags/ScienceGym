@@ -1,0 +1,661 @@
+{
+  "scope": "Replay physical motion and native camera observations of an inspection probe.\n\nThis is a restored-state diagnostic, not a continuous pickup qualification.\nThe evaluator reconstructs camera calibration from robot sensors, reruns the\nactor's appearance detector, and uses segmentation only to reject false tool\nassociations after inference. No evaluator data enters the controller.\n",
+  "source_result_sha256": "bcb5f88e45bd368a36e9bfb0abee126f3ba3f46e59128cf363f526efe822b32c",
+  "actor_contract_sha256": "b975fa2b7769b9842fc394d41159d7e79a863126b06740249486cb216dc7c4c7",
+  "trace_sha256": "adaf9940a3a3660a3455b1539c2b519ececdc5a0c70aa00b26c50e33ef0fb22f",
+  "source_sha256": {
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "tool_pose.py": "67de6054658aa84b3298497e5912c793c4de8403bbedbe3aa837b1b53f49bf81",
+    "held_tool_observation.py": "325dce5dd9f528cb2817430a942e89159043e7044654a3c9a5c49babd73b3c66",
+    "evaluate_inspection_checkpoint.py": "a69fc3818564a4518950aacedcd8e55b6906649d735253a366a7f2a05a0c9a1e",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "tool_cameras.py": "35e25d8434f115cbc70fd8941565f9f2ae2b572b49357cd66baad594acc29e8f",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3"
+  },
+  "checks": {
+    "attempt_completed_without_error": false,
+    "inspection_and_return_sequence": false,
+    "exact_continuation_replay": true,
+    "exact_native_camera_replay": true,
+    "independent_detector_replay": true,
+    "sufficient_observation_frames": true,
+    "sufficient_true_tool_detections": true,
+    "retained_loaded_inspection": true,
+    "original_contact_bounds": false,
+    "bounded_finger_load": true,
+    "no_unintended_hand_tool_load": true,
+    "original_source_joint_ranges": true,
+    "no_external_forces": true,
+    "no_numerical_warnings": true
+  },
+  "passed_inspection_diagnostic": false,
+  "maximum_q_replay_error": 0.0,
+  "maximum_v_replay_error": 0.0,
+  "maximum_rgb_error": 0.0,
+  "maximum_depth_error_m": 0.0,
+  "maximum_finger_force_n": 2.603841318693217,
+  "maximum_unintended_hand_tool_load_n": 0.0,
+  "maximum_source_joint_range_excess_rad": 0.0,
+  "three_finger_loaded_s": 22.391399999961155,
+  "loaded_inspection_s": 1.9643999999998,
+  "contact_failures": [
+    {
+      "time_s": 71.10100000123677,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.000329587752475935,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10110000123677,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00040376841075107084,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10120000123678,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00045999772543814377,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10130000123678,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005010245795783463,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10140000123678,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005291899571463476,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10150000123679,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005465294208970571,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10160000123679,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005548093707512525,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.1017000012368,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005555594262632857,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.1018000012368,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005501012963260443,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.1019000012368,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005395744654602685,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.1020000012368,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005249589962801338,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.1021000012368,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0005070957254215136,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10220000123681,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0004867041097808,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10230000123681,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00046439795963437724,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10240000123682,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0004406767960687396,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10250000123682,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00041594385073051576,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10260000123682,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0003905415295099024,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10270000123683,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00036413415127478643,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10280000123683,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.00033618029349546935,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10290000123683,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0003065023126854749,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.10300000123684,
+      "parts": [
+        "tweezer_heel",
+        "lab_part_1514"
+      ],
+      "penetration_m": 0.0002751062007013694,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11450000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_10"
+      ],
+      "penetration_m": 0.0003130486005889894,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11450000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_10"
+      ],
+      "penetration_m": 0.0002978963906180825,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11450000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_11"
+      ],
+      "penetration_m": 0.00029791192396381083,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11460000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_10"
+      ],
+      "penetration_m": 0.0003948858169834817,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11460000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_10"
+      ],
+      "penetration_m": 0.0003805750636139936,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11460000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_11"
+      ],
+      "penetration_m": 0.0003805964022869182,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11460000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_11"
+      ],
+      "penetration_m": 0.000272952711203302,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11460000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_12"
+      ],
+      "penetration_m": 0.0002728501406773053,
+      "bound_m": 0.00025
+    },
+    {
+      "time_s": 71.11470000123722,
+      "parts": [
+        "lab_part_1514",
+        "positive_steel_arm_10"
+      ],
+      "penetration_m": 0.0004582878216767398,
+      "bound_m": 0.00025
+    }
+  ],
+  "frames": [
+    {
+      "time_s": 63.86200000099647,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 0,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 64.0620000010031,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 0,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 64.26200000100974,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 0,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 64.46200000101638,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 0,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 64.66200000102302,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 0,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 64.86200000102966,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 3,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 65.0620000010363,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 7,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 65.26200000104294,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 13,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 65.46200000104957,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 22,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 65.66200000105621,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 120,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 65.86200000106285,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 517,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 66.06200000106949,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1030,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 66.26200000107613,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1073,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 66.46200000108277,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1097,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 66.66200000108941,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1123,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 66.86200000109605,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1151,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 67.06200000110269,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1172,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 67.26200000110933,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1188,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 67.46200000111597,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1199,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 67.6620000011226,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1207,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 67.86200000112925,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1207,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 68.06200000113589,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1209,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 68.26200000114252,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1211,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1184,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 68.46200000114916,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1209,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1182,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 68.6620000011558,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1206,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1179,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 68.86200000116244,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1206,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1179,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 69.06200000116908,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1207,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1180,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 69.26200000117572,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1211,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1176,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 69.46200000118236,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1205,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1163,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 69.662000001189,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1203,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1149,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 69.86200000119564,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1204,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1127,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 70.06200000120228,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1207,
+      "actor_inspected": true,
+      "candidate_found": true,
+      "component_points": 1075,
+      "true_tool_fraction": 1.0,
+      "detector_record_matches": true,
+      "segmentation_supplied_to_detector": false
+    },
+    {
+      "time_s": 70.26200000120892,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1205,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 70.46200000121556,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1204,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 70.6620000012222,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1199,
+      "actor_inspected": false
+    },
+    {
+      "time_s": 70.86200000122884,
+      "rgb_error": 0,
+      "depth_error_m": 0.0,
+      "depth_identical": true,
+      "visible_tool_depth_pixels": 1197,
+      "actor_inspected": false
+    }
+  ],
+  "minimum_true_tool_association_fraction": 0.9,
+  "association_evaluator_only": true,
+  "continuous_pickup_qualification": false,
+  "controller_continuation_replay_verified": false,
+  "qualified_held_tool_inspection": false,
+  "qualified_paper_branch": false,
+  "qualified_tip_pose": false
+}

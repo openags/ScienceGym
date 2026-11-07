@@ -1,0 +1,51 @@
+{
+  "scope": "Retained unsuccessful compositions and aborted exports for the cross-workstation FTIR demonstration.",
+  "runs": [
+    {
+      "folder": "audits/measurement_01",
+      "delivered": false,
+      "reason": "Geometry and optical reviewers could not run because two tool-deformation samples were exported; three are required. Self, motion and reference checks passed separately. No complete-scene pass.",
+      "report_sha256": {
+        "export.json": "c88c1051df509ed1e1bbdc883265c4bffd30d1c8a945d5ee54618f1556bdbe44",
+        "export_failure_notes.json": "846e8aa60a414a4c0e85a98009973e8ed4ac03c5312937cd618cca944cdad4c5"
+      }
+    },
+    {
+      "folder": "audits/measurement_02",
+      "delivered": false,
+      "reason": "40 robot/environment intersection frames: 26 small sole-plane errors and 14 thumb/handle intersections. Mechanism reviewer also found missing hinge seats, closure clearances and key wells in the instrument reconstruction.",
+      "report_sha256": {
+        "export.json": "d94683db63f1f323d7cf80553c8974433fcc9b133d7c0930ef8f5b603127487b",
+        "geometry_review.json": "1e176129bbcd0f73f75b72053e5a038d1efff7be2248f6f113320ed82fbaf535",
+        "ftir_mechanism_review.json": "b952300265ae421021c8be849d735e01548ce3884da393065fb9c6f63eb04232"
+      }
+    },
+    {
+      "folder": "audits/measurement_03",
+      "delivered": false,
+      "reason": "Instrument mechanism intersections were corrected; one thumb/handle intersection remained from source arm IK residual. The aggregate sole threshold was also stricter than the existing triangle reviewer: 1 micrometre versus 10 micrometres. The subsequent aggregate explicitly matches the existing 10-micrometre source-mesh plane threshold and retains the actual signed height.",
+      "report_sha256": {
+        "export.json": "c7eaa156fa70ba5c25fcdbac5fd223811e388462080a1cd2338d47846d06b7ba",
+        "geometry_review.json": "aeba9eb2965407cd95650bba5ec5ff4b08a8dca5dfc9483525e122dcf5e8a2ef",
+        "ftir_mechanism_review.json": "9bea4b450828ecb5ffaab1bd139963880363de800444f8c2723d681920e4baa0",
+        "sampled_interaction_review.json": "23d92dedba0c3f4de6a55ed6031c5003f4e59acdfd1b37baf74324ed0e3847bc"
+      }
+    },
+    {
+      "folder": "audits/measurement_video_01",
+      "delivered": false,
+      "reason": "Aborted after the independently detected measurement_02 contact failures; partial recording was not delivered.",
+      "report_sha256": {
+        "failure.json": "74ca1ca67449ed9b80ae7c5d0937e1c67bbf94788c8a430365ce813b8c401089"
+      }
+    },
+    {
+      "folder": "audits/measurement_video_02",
+      "delivered": false,
+      "reason": "Aborted after the independently detected measurement_03 contact failure; partial recording was not delivered.",
+      "report_sha256": {
+        "failure.json": "44846028939d6a63d8a8d62bc3529759965e5446c940a33e030d6ecfc0f28255"
+      }
+    }
+  ]
+}

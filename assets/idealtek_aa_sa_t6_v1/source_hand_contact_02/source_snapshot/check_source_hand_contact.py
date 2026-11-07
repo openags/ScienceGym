@@ -1,0 +1,359 @@
+"""Contact characterization with the actual Inspire hand and a free tweezer.
+
+The source terminal wrist housing is mounted to a stationary test stand. The
+tool retains its free joint and gravity, and rests on a plane. Only six source
+hand motors actuate. This is a closure/release diagnostic, not whole-body
+pickup, perception qualification, arm reach, or a laboratory task receipt.
+"""
+import argparse
+from copy import deepcopy
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import sys
+import time
+import xml.etree.ElementTree as ET
+
+import mujoco
+import numpy as np
+from scipy.spatial.transform import Rotation
+
+ROOT = Path(__file__).resolve().parents[2]
+ROBOT = ROOT/'assets/unitree_g1_inspire_v1'
+RUNTIME = ROOT/'simulation/g1_cooling_demo'
+sys.path.insert(0, str(RUNTIME))
+sys.path.insert(0, str(ROOT/'viewer/cooling_concept_v2'))
+from source_geometry import fk
+from hand_touch import attach as attach_touch, read as read_touch, TOUCH_PADS
+from thumb_contacts import attach as attach_thumb
+from distal_contacts import attach as attach_distal
+
+
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def numbers(values):
+    return ' '.join(format(float(v), '.17g') for v in values)
+
+
+def pose(position, quaternion):
+    result = np.eye(4)
+    result[:3, :3] = Rotation.from_quat(np.r_[quaternion[1:], quaternion[0]]).as_matrix()
+    result[:3, 3] = position
+    return result
+
+
+def build(source, fit, output, candidate_index=0):
+    source, fit, output = map(lambda p: Path(p).resolve(), [source, fit, output])
+    output.mkdir(parents=True, exist_ok=False)
+    (output/'source_snapshot').mkdir()
+    for path in [Path(__file__), RUNTIME/'hand_touch.py', RUNTIME/'thumb_contacts.py',
+                 RUNTIME/'distal_contacts.py']:
+        shutil.copyfile(path, output/'source_snapshot'/path.name)
+    fit_review = json.loads(fit.read_text())
+    assert fit_review['passed_local_pad_geometry']
+    assert sha(fit.parent/'contract.json') == fit_review['contract_sha256']
+    fit_contract = json.loads((fit.parent/'contract.json').read_text())
+    assert sha(source/'rest_geometry.glb') == fit_contract['source_hashes'][str((source/'rest_geometry.glb').relative_to(ROOT))]
+    support_path = ROOT/fit_contract['support_review']
+    assert sha(support_path) == fit_contract['support_review_sha256']
+    support = json.loads(support_path.read_text())
+    assert support['passed']
+    candidate = fit_review['candidates'][candidate_index]
+    initial_tool = np.asarray(support['final_qpos'])
+    world_from_source = pose(initial_tool[:3], initial_tool[3:7])
+    world_from_source[:3, 3] -= world_from_source[:3, :3]@np.array([.13, 0, .00575])
+    world_from_palm = world_from_source@np.asarray(candidate['source_tool_from_palm'])
+    source_fk = fk(candidate['q'])
+    wrist_pose = world_from_palm@np.linalg.inv(source_fk['right_palm_force_sensor'])@source_fk['right_wrist_yaw_link']
+
+    robot = ET.parse(ROBOT/'simulation/robot.xml').getroot()
+    attach_thumb(robot, output)
+    attach_touch(robot, ROBOT, output)
+    attach_distal(robot, output)
+    hand = deepcopy(robot.find(".//body[@name='right_wrist_yaw_link']"))
+    for node in hand.findall('joint'):
+        hand.remove(node)
+    hand.set('pos', numbers(wrist_pose[:3, 3]))
+    quat = Rotation.from_matrix(wrist_pose[:3, :3]).as_quat()
+    hand.set('quat', numbers(np.r_[quat[3], quat[:3]]))
+    joints = {n.get('name') for n in hand.iter('joint')}
+    bodies = {n.get('name') for n in hand.iter('body')}
+    sites = {n.get('name') for n in hand.iter('site')}
+    meshes = {n.get('mesh') for n in hand.iter('geom') if n.get('mesh')}
+    # Retain explicit manufacturer-derived inertials. Only the tool computes
+    # mass from its declared material and meshes.
+    root = ET.Element('mujoco', model='Source Inspire free-tool contact diagnostic')
+    ET.SubElement(root, 'compiler', angle='radian', autolimits='true', inertiafromgeom='auto', fusestatic='false')
+    tool_xml = ET.parse(source/'tool.xml').getroot()
+    option = deepcopy(tool_xml.find('option'))
+    option.set('gravity', '0 0 -9.81')
+    root.append(option)
+    defaults = ET.SubElement(root, 'default')
+    tool_defaults = ET.SubElement(defaults, 'default', {'class':'passive_tweezer'})
+    for node in tool_xml.find('default'):
+        tool_defaults.append(deepcopy(node))
+    assets = ET.SubElement(root, 'asset')
+    for node in robot.find('asset'):
+        if node.get('name') in meshes:
+            copied = deepcopy(node)
+            if copied.get('file'):
+                copied.set('file', str((ROBOT/copied.get('file')).resolve()))
+            assets.append(copied)
+    world = ET.SubElement(root, 'worldbody')
+    world.append(hand)
+    ET.SubElement(world, 'geom', name='support_plane', type='plane', size='.3 .3 .01',
+                  rgba='.5 .52 .54 1', friction='.7 .005 .0001', solref='.001 1', solimp='.9999 .9999 .00001')
+    ET.SubElement(world, 'light', pos='0 -.3 .5', dir='0 .2 -1')
+    contact = ET.SubElement(root, 'contact')
+    for node in robot.findall('contact/*'):
+        if node.get('body1') in bodies and node.get('body2') in bodies:
+            contact.append(deepcopy(node))
+    equalities = ET.SubElement(root, 'equality')
+    for node in robot.find('equality'):
+        if node.get('joint1') in joints and node.get('joint2') in joints:
+            equalities.append(deepcopy(node))
+    actuator = ET.SubElement(root, 'actuator')
+    for node in robot.find('actuator'):
+        if node.get('joint') in joints:
+            actuator.append(deepcopy(node))
+    sensor = ET.SubElement(root, 'sensor')
+    for node in robot.find('sensor'):
+        if node.get('joint') in joints or node.get('site') in sites:
+            sensor.append(deepcopy(node))
+    ET.SubElement(root, 'visual')
+    root.find('visual').append(ET.Element('global', offwidth='1280', offheight='720'))
+    # The internal predictor has only the mounted hand. Its gravity calculation
+    # receives measured encoders and velocities, not the plant's tool state.
+    predictor = deepcopy(root)
+    predictor.find('worldbody').remove(predictor.find("worldbody/geom[@name='support_plane']"))
+    ET.SubElement(predictor.find('option'), 'flag', contact='disable')
+    ET.indent(predictor)
+    ET.ElementTree(predictor).write(output/'hand_predictor.xml', encoding='unicode')
+    for node in tool_xml.find('asset'):
+        copied = deepcopy(node)
+        copied.set('file', str(source/'meshes'/node.get('file')))
+        assets.append(copied)
+    tool = deepcopy(tool_xml.find("worldbody/body[@name='tweezer']"))
+    tool.set('childclass', 'passive_tweezer')
+    tool.set('pos', numbers(initial_tool[:3]))
+    tool.set('quat', numbers(initial_tool[3:7]))
+    world.append(tool)
+    ET.indent(root)
+    ET.ElementTree(root).write(output/'contact.xml', encoding='unicode')
+    model = mujoco.MjModel.from_xml_path(str(output/'contact.xml'))
+    data = mujoco.MjData(model)
+    tool_reference = mujoco.MjModel.from_xml_path(str(source/'tool.xml'))
+    for joint in range(tool_reference.njnt):
+        original = tool_reference.joint(joint)
+        width = 7 if tool_reference.jnt_type[joint] == mujoco.mjtJoint.mjJNT_FREE else 1
+        start = int(tool_reference.jnt_qposadr[joint])
+        data.joint(original.name).qpos[:] = initial_tool[start:start+width]
+    for name, value in candidate['q'].items():
+        data.joint(name).qpos[0] = value
+    for i in range(model.neq):
+        a,b = model.eq_obj1id[i],model.eq_obj2id[i]
+        data.qpos[model.jnt_qposadr[a]] = model.eq_data[i,0]+model.eq_data[i,1]*data.qpos[model.jnt_qposadr[b]]
+    mujoco.mj_forward(model, data)
+    assert model.nu == 6 and model.neq == 6
+    actual_palm = pose(data.body('right_palm_force_sensor').xpos, data.body('right_palm_force_sensor').xquat)
+    assert np.max(abs(actual_palm-world_from_palm)) < 1e-8
+    return model, data, candidate, support_path
+
+
+class HandController:
+    """Encoder PD and bounded tactile closure, with robot-only gravity bias."""
+    def __init__(self, predictor_path, initial_q):
+        self.m = mujoco.MjModel.from_xml_path(str(predictor_path))
+        self.d = mujoco.MjData(self.m)
+        self.names = [self.m.joint(i).name for i in range(self.m.njnt)]
+        self.qa = self.m.jnt_qposadr
+        self.va = self.m.jnt_dofadr
+        self.driver_names = [self.m.joint(j).name for j in self.m.actuator_trnid[:,0]]
+        self.driver_joints = self.m.actuator_trnid[:,0]
+        self.driver_qa = self.m.jnt_qposadr[self.driver_joints]
+        self.driver_va = self.m.jnt_dofadr[self.driver_joints]
+        self.initial = np.array([initial_q[n] for n in self.driver_names])
+        self.command = self.initial.copy()
+        self.coupling = np.zeros((self.m.nv, self.m.nu))
+        self.coupling[self.driver_va, np.arange(self.m.nu)] = 1
+        for i in range(self.m.neq):
+            a,b = self.m.eq_obj1id[i],self.m.eq_obj2id[i]
+            self.coupling[self.m.jnt_dofadr[a]] = self.m.eq_data[i,1]*self.coupling[self.m.jnt_dofadr[b]]
+        self.closed = None
+        self.filtered = np.zeros(2)
+        self.targets = [(self.driver_names.index('right_index_1_joint'),1),
+                        (self.driver_names.index('right_thumb_2_joint'),6)]
+
+    def update(self, obs):
+        if set(obs) != {'time_s','joint_position','joint_velocity','touch_n'}:
+            raise ValueError('Non-sensor field in hand controller input')
+        q,v,touch = map(np.asarray, [obs['joint_position'],obs['joint_velocity'],obs['touch_n']])
+        if q.shape != (len(self.names),) or v.shape != q.shape or touch.shape != (7,):
+            raise ValueError('Malformed hand observation')
+        if not np.isfinite(np.r_[q,v,touch]).all() or np.any(touch<0):
+            raise ValueError('Nonfinite hand observation')
+        self.d.qpos[self.qa] = q
+        self.d.qvel[self.va] = v
+        mujoco.mj_forward(self.m,self.d)
+        t = float(obs['time_s'])
+        self.filtered += (1-np.exp(-.001/.03))*(touch[[1,6]]-self.filtered)
+        if np.max(touch)>4.:
+            raise RuntimeError('Tactile overload above the preregistered 4 N bound')
+        if 1. <= t < 7.:
+            for i,(driver,_) in enumerate(self.targets):
+                increment = np.clip(1.-self.filtered[i],-.5,1.)*.015*.001
+                self.command[driver] = np.clip(self.command[driver]+increment,
+                                               self.initial[driver]-.02,self.initial[driver]+.08)
+        elif t >= 7.:
+            if self.closed is None:
+                self.closed = self.command.copy()
+            u = np.clip((t-7.)/2.,0,1)
+            s = u*u*(3-2*u)
+            self.command = self.closed+s*(self.initial-self.closed)
+        gravity = self.coupling.T@(self.d.qfrc_bias-self.d.qfrc_passive)
+        torque = gravity+3.*(self.command-self.d.qpos[self.driver_qa])-.08*self.d.qvel[self.driver_va]
+        torque = np.clip(torque,self.m.actuator_ctrlrange[:,0],self.m.actuator_ctrlrange[:,1])
+        return dict(torque=torque, requested_joint_position=self.command.copy(), filtered_touch_n=self.filtered.copy())
+
+
+def run(source, fit, output, candidate_index=0):
+    output = Path(output).resolve()
+    model,data,candidate,support_path = build(source,fit,output,candidate_index)
+    controller = HandController(output/'hand_predictor.xml',candidate['q'])
+    dt = float(model.opt.timestep)
+    stride = round(.001/dt)
+    assert abs(stride*dt-.001) < 1e-12
+    initial = data.qpos.copy()
+    tool = model.joint('tweezer_free').qposadr[0]
+    contract = dict(scope=__doc__, duration_s=11., control_period_s=.001,
+        integrator='discrete', timestep_s=dt, tactile_target_n=1., tactile_abort_n=4.,
+        hand_gains=dict(kp_nm_rad=3.,kd_nms_rad=.08,maximum_closure_rad=.08),
+        checks=dict(minimum_bilateral_contact_duration_s=1.,maximum_hand_tool_penetration_m=.00025,
+                    maximum_unexpected_penetration_m=.00002,maximum_tool_support_penetration_m=.00025,
+                    maximum_horizontal_tool_motion_m=.005,minimum_tip_closure_m=.001,
+                    maximum_released_tip_gap_error_m=.0001,maximum_source_joint_limit_excess_rad=.001),
+        candidate_index=candidate_index,fit_review_sha256=sha(fit),support_review_sha256=sha(support_path),
+        source_model_sha256=sha(Path(source)/'tool.xml'),plant_sha256=sha(output/'contact.xml'),
+        controller_model_sha256=sha(output/'hand_predictor.xml'),script_sha256=sha(__file__),
+        initial_qpos=initial.tolist(),controller_fields=['time_s','joint_position','joint_velocity','touch_n'],
+        controller_os_isolated=False,qualified_robot_grasp=False,qualified_paper_branch=False)
+    assert model.opt.integrator == mujoco.mjtIntegrator.mjINT_DISCRETE
+    (output/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+    names = controller.names
+    def observations():
+        return dict(time_s=float(data.time),joint_position=np.array([data.joint(n).qpos[0] for n in names]),
+                    joint_velocity=np.array([data.joint(n).qvel[0] for n in names]),touch_n=read_touch(data))
+    tool_body = model.body('tweezer').id
+    tool_bodies = {tool_body}
+    for b in range(model.nbody):
+        if model.body_parentid[b] in tool_bodies:tool_bodies.add(b)
+    support_geom = model.geom('support_plane').id
+    pad_names = {'right_index_force_sensor_2','right_index_force_sensor_3',
+                 'right_thumb_force_sensor_3','right_thumb_force_sensor_4'}
+    allowed_hand_bodies = {model.body(n).id for n in pad_names}
+    tips = {}
+    for label, sign in [('negative',-1),('positive',1)]:
+        body_id = max((b for b in tool_bodies if model.body(b).name.startswith(label+'_beam_')),
+                      key=lambda b:model.body(b).name)
+        # Nominal endpoint in the tool root frame, retained as a material point.
+        root_pose = pose(data.body('tweezer').xpos,data.body('tweezer').xquat)
+        point = root_pose[:3,:3]@np.array([-.130,sign*.004,0.])+root_pose[:3,3]
+        tips[label]=(body_id,data.xmat[body_id].reshape(3,3).T@(point-data.xpos[body_id]))
+    records=[]; sensor_rows=[]; commands=[]; touch_rows=[]; gaps=[]
+    max_contact=0.;max_support=0.;max_xy=0.;joint_excess=0.;bilateral=0.;unintended=[];failure=None
+    started=time.monotonic()
+    def save_state():
+        records.append((float(data.time),data.qpos.copy(),data.qvel.copy(),data.ctrl.copy(),data.qacc_warmstart.copy()))
+    initial_contacts=[]
+    for c in data.contact:
+        if c.dist < -.00002 and support_geom not in c.geom:
+            initial_contacts.append(dict(parts=[model.geom(int(g)).name for g in c.geom],distance_m=float(c.dist)))
+    (output/'initial_contacts.json').write_text(json.dumps(initial_contacts,indent=2)+'\n')
+    if initial_contacts:failure='Initial source-hand/tool geometry has unexpected physical-model penetration'
+    for step in range(round(11./dt)) if failure is None else []:
+        if step%stride == 0:
+            obs=observations();sensor_rows.append(obs)
+            try:
+                command=controller.update(obs);data.ctrl[:]=command['torque'];commands.append(command)
+            except Exception as exc:
+                failure=str(exc);break
+        save_state()
+        t=float(data.time)
+        mujoco.mj_step(model,data)
+        force_by_finger={'index':0.,'thumb':0.}
+        for index,c in enumerate(data.contact):
+            pair=list(map(int,c.geom));bodies=[int(model.geom_bodyid[g]) for g in pair]
+            tool_side=[b in tool_bodies for b in bodies]
+            if any(tool_side) and support_geom in pair:
+                max_support=max(max_support,-float(c.dist))
+            elif sum(tool_side)==1 and any(b in allowed_hand_bodies for b in bodies):
+                max_contact=max(max_contact,-float(c.dist))
+                pad=next(model.body(b).name for b in bodies if b in allowed_hand_bodies)
+                wrench=np.zeros(6);mujoco.mj_contactForce(model,data,index,wrench)
+                force_by_finger['index' if 'index' in pad else 'thumb']+=max(0.,float(wrench[0]))
+            elif c.dist < -.00002 and len(unintended)<30:
+                unintended.append(dict(time_s=t,parts=[model.geom(g).name for g in pair],distance_m=float(c.dist)))
+        if min(force_by_finger.values())>.2:bilateral+=dt
+        max_xy=max(max_xy,float(np.linalg.norm(data.qpos[tool:tool+2]-initial[tool:tool+2])))
+        for j in range(model.njnt):
+            if model.jnt_limited[j]:
+                value=float(data.qpos[model.jnt_qposadr[j]])
+                joint_excess=max(joint_excess,model.jnt_range[j,0]-value,value-model.jnt_range[j,1])
+        points={k:data.xpos[b]+data.xmat[b].reshape(3,3)@p for k,(b,p) in tips.items()}
+        gap=float(np.linalg.norm(points['positive']-points['negative']))
+        if step%stride==0:
+            gaps.append([float(data.time),gap]);touch_rows.append([float(data.time),*read_touch(data)])
+        if np.any(data.warning.number):failure='MuJoCo numerical warning';break
+        if step%10000==0:print('source_hand_contact',round(data.time,4), '/',11.,flush=True)
+    save_state()
+    trace={key:np.array([r[i] for r in records]) for i,key in enumerate(['time','qpos','qvel','ctrl','qacc_warmstart'])}
+    np.savez_compressed(output/'trace.npz',**trace)
+    np.savez_compressed(output/'sensors.npz',time=np.array([r['time_s'] for r in sensor_rows]),
+        joint_position=np.array([r['joint_position'] for r in sensor_rows]),
+        joint_velocity=np.array([r['joint_velocity'] for r in sensor_rows]),
+        touch_n=np.array([r['touch_n'] for r in sensor_rows]))
+    np.savez_compressed(output/'commands.npz',**{key:np.array([r[key] for r in commands])
+        for key in ['torque','requested_joint_position','filtered_touch_n']})
+    replay=mujoco.MjData(model);replay.qpos[:]=initial;replay.qvel[:]=trace['qvel'][0]
+    mujoco.mj_forward(model,replay);replay.qacc_warmstart[:]=trace['qacc_warmstart'][0]
+    q_error=v_error=0.
+    for index in range(len(records)-1):
+        replay.ctrl[:]=trace['ctrl'][index];mujoco.mj_step(model,replay)
+        q_error=max(q_error,float(np.max(abs(replay.qpos-trace['qpos'][index+1]))))
+        v_error=max(v_error,float(np.max(abs(replay.qvel-trace['qvel'][index+1]))))
+    repeated=HandController(output/'hand_predictor.xml',candidate['q']);torque_error=0.
+    for obs,command in zip(sensor_rows,commands):
+        result=repeated.update(obs)
+        torque_error=max(torque_error,float(np.max(abs(result['torque']-command['torque']))))
+    released=[gap for t,gap in gaps if t>10.]
+    checks=dict(attempt_completed=failure is None and data.time>=11.-1e-7,
+        initial_geometry_accepted=not initial_contacts,no_numerical_warnings=not np.any(data.warning.number),
+        exact_physics_replay=q_error<1e-9 and v_error<1e-8,
+        complete_controller_replay=len(commands)==len(sensor_rows) and len(commands)==11000 and torque_error<1e-10,
+        free_tool_and_source_mimics_only=model.neq==6 and model.nu==6,
+        no_external_forces=not np.any(data.xfrc_applied) and not np.any(data.qfrc_applied),
+        bilateral_contact=bilateral>=1.,intended_penetration=max_contact<=.00025,
+        tool_support_penetration=max_support<=.00025,no_unintended_penetration=not unintended,
+        bounded_tool_displacement=max_xy<=.005,source_joint_limits=joint_excess<=.001,
+        measurable_tip_closure=bool(gaps) and min(g for _,g in gaps)<=.007,
+        released_gap_recovers=bool(released) and max(abs(g-.008) for g in released)<.0001)
+    result=dict(passed=all(checks.values()),checks={k:bool(v) for k,v in checks.items()},failure=failure,
+        scope=__doc__,duration_s=float(data.time),seconds=time.monotonic()-started,
+        bilateral_contact_s=bilateral,maximum_hand_tool_penetration_m=max_contact,
+        maximum_tool_support_penetration_m=max_support,maximum_horizontal_tool_motion_m=max_xy,
+        maximum_source_joint_limit_excess_rad=float(joint_excess),unintended_contacts=unintended,
+        maximum_replay_q_error=q_error,maximum_replay_v_error=v_error,maximum_motor_replay_error=torque_error,
+        gap_samples=gaps,touch_samples=touch_rows,trace_sha256=sha(output/'trace.npz'),
+        contract_sha256=sha(output/'contract.json'),qualified_robot_grasp=False,qualified_paper_branch=False)
+    (output/'review.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k not in ['gap_samples','touch_samples']}),flush=True)
+    return result
+
+
+if __name__=='__main__':
+    p=argparse.ArgumentParser();p.add_argument('source');p.add_argument('fit');p.add_argument('output')
+    p.add_argument('--candidate-index',type=int,default=0);a=p.parse_args()
+    if not run(a.source,a.fit,a.output,a.candidate_index)['passed']:raise SystemExit(1)

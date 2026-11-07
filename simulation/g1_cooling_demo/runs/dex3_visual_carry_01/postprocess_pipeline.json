@@ -1,0 +1,87 @@
+{
+  "scope": "Finish evidence processing after one identified, currently running trial.\n\nNo controller, physical state, acceptance threshold, or task status is changed.\nThe receipt records processing completion separately from evaluator verdicts.\n",
+  "status": "processed",
+  "runner_pid": 1294500,
+  "runner_start_ticks": "70409004",
+  "script_sha256": {
+    "physics": "8fde0ffde6c1e9672df1128dcd285ae6849bbeba2adecc65d3edee139701e0a2",
+    "limits": "b9ba96f0362a549770b1b21591f7a45dcb204a034daca9bab533a07a8ffb84a6",
+    "render": "5ce0fc464d0afcfd4f0c8a3a4b288b7e780f79ddddbdc1b56b8bf046c0555227",
+    "archive": "11c6dc6261ec2defed29a0cb5cdd472f004aa175f8e6aa78dfe9aba7a8a23135"
+  },
+  "process_pid": 1297254,
+  "started_unix": 1793881758.9046843,
+  "qualified_grasp": false,
+  "qualified_paper_branch": false,
+  "result_sha256": "e7648d327fb9f5bc8328475311fade81846641bfbce9c7c5d4b70c20e1ac39b4",
+  "execution_failure": "Observed loss of three-finger load",
+  "simulated_seconds": 62.04200000093605,
+  "jobs": {
+    "physics": {
+      "pid": 1390282,
+      "status": "finished",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_visual_carry_01/source_snapshot/verify_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_visual_carry_01"
+      ],
+      "exit_code": 0
+    },
+    "limits": {
+      "pid": 1390283,
+      "status": "finished",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/verify_dex3_limits.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_visual_carry_01"
+      ],
+      "exit_code": 0
+    },
+    "render": {
+      "pid": 1390284,
+      "status": "finished",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/render_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_visual_carry_01",
+        "--movie"
+      ],
+      "exit_code": 0
+    },
+    "archive": {
+      "pid": 1390285,
+      "status": "finished",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/viewer/cooling_concept_v2/audit_frames_archive.py",
+        "simulation/g1_cooling_demo/runs/dex3_visual_carry_01",
+        "--source-file",
+        "trace.npz",
+        "--manifest-file",
+        "trace_archive.json",
+        "--expected-sha256",
+        "fd764a3f0b0b630b9e16abeb7a689bba0aaf534458faeed1b284321999118652"
+      ],
+      "exit_code": 0
+    }
+  },
+  "verdicts": {
+    "physical_review.json": {
+      "passed": false,
+      "sha256": "7966b98b64c85c95313ead17e8def45bdf7cfdea7b186cde2b47a06980239431"
+    },
+    "controller_replay.json": {
+      "passed": true,
+      "sha256": "2a1154666fc84c78dcbf6cfe12f834c1a72b3a8964348a745f48a85922f8932a"
+    },
+    "source_limit_review.json": {
+      "passed": true,
+      "sha256": "63d6b2ce36147ca99a3834b32bea4021f54c08faa16ce8539f2e79761c527af1"
+    }
+  },
+  "finished_unix": 1793886326.4060755
+}

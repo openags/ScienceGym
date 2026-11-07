@@ -1,10 +1,12 @@
 """Fail closed on broken references, missing roles and invalid symbolic plans."""
 import json
+import hashlib
 import math
 import struct
 import jsonschema
 from pathlib import Path
 import planner
+from validate_manipulation import validate_contract
 
 HERE=Path(__file__).resolve().parent
 ASSET=HERE.parents[1]/'assets/cooling_scene_assets_v2'
@@ -17,6 +19,8 @@ def validate():
     check({r['role'] for r in roles}==required and len(roles)==18,'incomplete or duplicate artifact roles')
     for r in roles:
         check((HERE/r['path']).is_file(),'missing role file '+r['path'])
+    for path in package.get('supporting_artifacts',{}).values():
+        check((HERE/path).is_file(),'missing supporting artifact '+path)
     jsonschema.Draft202012Validator(planner.read('operations.schema')).validate(planner.read('operations'))
     ops=planner.read('operations')['operations'];byid={o['id']:o for o in ops}
     check(len(byid)==len(ops),'duplicate operation id')
@@ -36,6 +40,11 @@ def validate():
             if s['basis']=='reconstruction_inference':check(s['inference_id'] in inferences,'untraced inference')
             else:check(s['source_id'] in planner.read('provenance')['source_ids'],'untraced external supplement')
         check(set(o['depends_on'])<=set(byid),'dangling dependency')
+        for loop in o.get('iteration_contracts',[]):
+            step_order=[s['id'] for s in o['reference_steps']]
+            body=loop['body_step_ids']
+            check(body and len(body)==len(set(body)) and set(body)<=set(step_order),'invalid iteration body')
+            check([step_order.index(s) for s in body]==sorted(step_order.index(s) for s in body),'unordered iteration body')
     visiting=set();visited=set()
     def visit(i):
         check(i not in visiting,'cyclic operation dependency '+i)
@@ -62,6 +71,8 @@ def validate():
         check(e['operation_id'] in byid,'unknown planned operation')
         check(set(e['required_step_ids'])=={s['id'] for s in byid[e['operation_id']]['reference_steps']},'missing occurrence step obligations')
     parts=json.loads((ASSET/'parts.json').read_text())['parts'];partids={p['id'] for p in parts}
+    manipulation=validate_contract(ops,planner.read('interaction_contracts'),planner.read('asset_bindings'),
+        planner.read('daq_terminal_contract'),planner.read('sensor_installation'),parts,planner.read('manipulation_coverage'))
     check(len(parts)==len(partids),'duplicate geometry part id')
     check(all(all(math.isfinite(v) for v in p['bounds_m']+p['local_position_m']) for p in parts),'nonfinite geometry')
     glb=(ASSET/'geometry/cooling_pilot.glb').read_bytes();magic,version,length=struct.unpack('<4sII',glb[:12])
@@ -91,21 +102,31 @@ def validate():
     exported_meshes={x.get('name') for x in g['nodes'] if 'mesh' in x}
     check(partids<=exported_meshes,'export dropped authored geometry (including wires/labels): '+str(sorted(partids-exported_meshes)[:5]))
     bypart={p['id']:p for p in parts}
+    ray_receipt=json.loads((ASSET/'geometry/interaction_checks.json').read_text())
+    check(ray_receipt['native_sha256']==hashlib.sha256((ASSET/'geometry/cooling_pilot.blend').read_bytes()).hexdigest(),'geometry ray check belongs to another scene')
+    check(ray_receipt['passed'] and ray_receipt['usb_shell_open'],'failed authored cavity checks')
+    check(len(ray_receipt['terminal_checks'])==52 and all(c['wire_entry_axis_open'] and c['driver_slot_recess_m']>0 for c in ray_receipt['terminal_checks']),'incomplete authored terminal cavity checks')
     for ident,expected in {
         'COOLER_WHITE__emitter_copper':[.05,.05,.0005],
         'COOLER_WHITE__film_spacer':[.127,.127,.0064],
         'COOLER_WHITE__radiation_shield':[.152,.152,.057],
         'KEITHLEY_2425__chassis':[.213,.370,.089],
         'MCC_USB_TC__case':[.12852,.08839,.03556],
+        'COOLER_FIXED_BAND__cover_lower':[.127,.127,.000050],
+        'COOLER_FIXED_BAND__cover_upper':[.127,.127,.000050],
     }.items():check(all(abs(a-b)<1e-5 for a,b in zip(bypart[ident]['bounds_m'],expected)),'source dimension mismatch '+ident)
     # 10 micrometres accommodates beveled polygon bounds; not a manufacturing tolerance.
     for b in planner.read('asset_bindings')['bindings']:
         for part in b['part_selection']:
-            check(any(x==part or x.endswith('__'+part) for x in partids),'dangling part binding '+part)
+            check(part in partids,'dangling or ambiguous part binding '+part)
     review=planner.read('review');check(len(review['gates'])==8,'missing review gate')
+    check({g['id'] for g in review['gates']}=={'PTR-%02d'%i for i in range(1,9)},'duplicate review gate')
+    check(all(g['status'] in {'not_reviewed','pass','changes_required','not_applicable'} for g in review['gates']),'nonstandard review status')
     check(not review['accepted_as_gold_standard'],'open gates cannot certify gold standard')
+    for path,expected in review['reviewed_inputs_sha256'].items():
+        check(hashlib.sha256((HERE/path).read_bytes()).hexdigest()==expected,'review input changed: '+path)
     return {'package_roles':len(roles),'operations':len(ops),'reference_steps':len(stepids),'branches':len(branches),
             'planned_occurrences':result['planned_occurrences'],'asset_parts':len(parts),'export_roots':len(roots),
-            'physical_successes':0,'equipment_fidelity_accepted':False}
+            'physical_successes':0,'equipment_fidelity_accepted':False,**manipulation}
 
 if __name__=='__main__':print(json.dumps(validate(),indent=2))

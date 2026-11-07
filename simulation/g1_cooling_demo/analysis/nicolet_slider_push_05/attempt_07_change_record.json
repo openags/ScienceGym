@@ -1,0 +1,32 @@
+{
+  "attempt": "ftir_slider_07",
+  "changes": [
+    "After the existing tactile push and complete arm/hand withdrawal, execute a motor-controlled torso turn to -0.5 rad.",
+    "Use fresh native RGB-D and robot proprioception to estimate slider position, with closed-view baseline correction and axial grip coverage.",
+    "Require eight consecutive accepted frames spanning at least 0.65 seconds and position standard deviation below 2 mm, then return torso to -0.2 rad.",
+    "Failure to observe a valid final state is retained as a failed attempt; bounded torso return is attempted."
+  ],
+  "input_sources": [
+    "Native head RGB-D",
+    "Robot encoders/IMU",
+    "Native scalar tactile sensors",
+    "Public unposed CAD and architectural map"
+  ],
+  "forbidden_inputs": [
+    "Instrument joint state",
+    "Scene-object poses",
+    "Plant contact list",
+    "Evaluator outputs"
+  ],
+  "sensor_gate_development_evidence": "analysis/nicolet_slider_push_04/endpoint_views_02.json",
+  "scope": "A single observed window operation, still requiring independent full physics/isolation/outcome replay. Walking and full-paper branches remain open.",
+  "source_hashes": {
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "c69ee8689c98cb436af1e755305e99a50f5ff76b015f6f2f5011a291af38d424",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "2c4da4ae37358f62dd2ea17ea65e05128cbc3bb69aef93f8cc837f135a1b33cc",
+    "simulation/g1_cooling_demo/ftir_slider_outcome.py": "f032b0bfa85d72af1034944a2a6ceb77bea93f3fedbe59bda2775600da392a4b",
+    "simulation/g1_cooling_demo/run_ftir_slider.py": "d3bfc731bc0a11134677bfe507b1c1b4f9d41d01f67a37ea8c8e17989207b9ee",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "77c8e92ff152b92411c16d37eebd3b4c39982b4599405cb152e0ca64dd097678",
+    "simulation/g1_cooling_demo/verify_isolation.py": "bbb93a6eaba521befe7d9d7f34620bf1d7b5ec4766d78ae6095ca06da9b4281c"
+  },
+  "physical_efficacy_verified": false
+}

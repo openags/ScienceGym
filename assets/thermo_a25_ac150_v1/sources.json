@@ -1,0 +1,18 @@
+{
+  "model": "Thermo Scientific ARCTIC A25 with selected AC150 controller",
+  "historical_identity": {"bath": "A25 named by the paper", "controller": "AC150 selected reconstruction; paper does not identify the head"},
+  "sources": [
+    {"id":"USER_MANUAL","url":"https://documents.thermofisher.com/TFS-Assets/LED/manuals/D00167~.pdf","sha256":"043311452bcf294d4381043b073a4ff4229291577f9ca9968d674971c53cd063","locators":["printed 2-1: AC150 dimensions and fill levels","printed 2-2: A25 envelope and working area","printed 3-7: rear circulation ports","printed 3-15: filling","printed 4-1: controller panel"]},
+    {"id":"A25_PHOTOGRAPH","url":"https://www.thermofisher.com/TFS-Assets/LED/product-images/F79599~p.eps-650.jpg","sha256":"a8c69aae514f9f27a0494f026251c44c5346e91c8f5456e6315bbfed9147fb3e","locators":["Model A25 label visible on front; AC150 label on head; lid, handle, drain, vents and panel layout"]},
+    {"id":"BATH_BROCHURE","url":"https://documents.thermofisher.com/TFS-Assets/LED/brochures/refrigerated-heated-bath-circulators-brochure-BRTCBATHS-EN.pdf","sha256":"49034c296a2b9813654af10e174c42e8b1088736daff0a13e711afef8118bc8b","locators":["Arctic series table and ordering configuration"]},
+    {"id":"PRODUCT_PAGE","url":"https://www.thermofisher.com/order/catalog/product/de/de/1555251","locators":["AC150 configuration, circulation fittings, front drain, integrated handles"]}
+  ],
+  "source_conflicts": [
+    {"field":"combined_height_m","manual":0.749,"product_page":0.711,"selected":0.749,"reason":"The manual distinguishes AC150/AC200 from shorter SC heads; use its configuration-specific table."},
+    {"field":"working_depth_m","manual":0.200,"product_page":0.204,"selected":0.200,"reason":"Use the same manual revision for envelope and working depth; retain the 4 mm source conflict."},
+    {"field":"family_product_images","reason":"The product gallery also shows A28, A28F, A5B, A25B and A10. Only F79599 is used as the A25 exterior reference."}
+  ],
+  "cad_search": {"queries":["site:thermofisher.com A25 AC150 CAD","AC150 A25 STEP model","A25 CAD drawing Thermo Scientific bath"],"result":"No complete downloadable manufacturer CAD located; original parametric reconstruction, not vendor CAD.","retrieved_utc":"2026-10-19"},
+  "rights": "Manufacturer documents and photographs are references only and are not embedded or redistributed in this asset.",
+  "inferences": ["515 mm bath rim height and shell subdivisions estimated from the A25 photograph", "Unspecified radii, wall thickness, vent pitch, feature coordinates and lid grip clearance", "Reservoir extends beneath the controller; only the 173 x 184 x 200 mm working region is dimensioned by the manual", "Rear photograph in the manual is a typical AC200: AC200-only USB and multifunction ports are omitted for selected AC150", "Pump and heater internals are clearance representations, not validated fluid or thermal hardware"]
+}

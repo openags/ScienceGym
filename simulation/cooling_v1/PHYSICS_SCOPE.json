@@ -1,0 +1,48 @@
+{
+  "whole_paper_validated": false,
+  "robot": {
+    "model": "Franka Emika Panda from pinned MuJoCo Menagerie",
+    "base": "fixed to a task-authored workbench",
+    "arm": "source joints, inertias, collision meshes and torque limits retained",
+    "controller": "damped Jacobian IK, limited position servos, actuator-based gravity compensation",
+    "perception": "privileged simulator object and joint state; no image-based perception claim",
+    "gripper_changes": "position gain 2000, damping 40, actuator force limited to +/-40 N; simulated rubber-pad friction 1.4/0.01/0.006, six-dimensional contact",
+    "grasp_attachment": "contact only; no object-to-hand equality/weld and no live object pose writes"
+  },
+  "contact_model": {
+    "timestep_s": 0.002,
+    "solver": "implicitfast; elliptic contact cone; 80 iterations",
+    "objects": "rigid bodies; decomposed rings preserve holes",
+    "support": "measured post-release contact-manifold force, velocity and pose checks",
+    "excluded": [
+      "foam compression",
+      "thin-film mechanics",
+      "flexible wire mechanics",
+      "liquid flow",
+      "coating and machining physics",
+      "thermal and optical prediction"
+    ],
+    "mass_assumptions_kg": {
+      "each_rigid_foam_layer": 0.02,
+      "copper_emitter": 0.0088,
+      "emitter_carrier": 0.069,
+      "probe_with_handling_fixture": 0.025,
+      "lid_with_handle": 0.105
+    },
+    "mass_basis": "Simulation test parameters except nominal copper mass derived from geometry; not measured apparatus/material properties. Rigid foam stress/damage is unvalidated.",
+    "collision_audit": "Arm/environment force and penetration checked every 10 physics steps; gripper-to-object contact and final support checked at task checkpoints. This is not complete collision qualification."
+  },
+  "authored_fixtures": {
+    "assembly": "Source-size 25 mm foam layers and 50 mm by 0.5 mm emitter; task-authored alignment nest/pins and balanced overhead edge carrier. The carrier and alignment fixtures are not qualified for the final optical/thermal experiment.",
+    "probe": "3 mm rigid sheath, 5 mm square clearance bore, inferred handling collar and stand; does not represent the source's complete thermocouple/bath calibration setup.",
+    "lid": "inferred grasp handle, lid stand and aperture support; one lid cycle does not establish paired cooler operation.",
+    "door": "inferred supported hinged access fixture with 0.22 Nm friction; not a certified Cary/Nicolet door mechanism."
+  },
+  "source_meshes": {
+    "provenance": "original cooling_scene_assets_v2 GLB, converted without remeshing",
+    "use": "USB-TC and A25 visual context only in the current workcells",
+    "collision_status": "source visual meshes do not establish manufacturer-specific contact geometry",
+    "qualified_equipment_fidelity": false
+  },
+  "completion_rule": "Whole-paper acceptance requires every required manipulation occurrence and branch to pass in a causally continuous bound scene. Separate workcell successes do not satisfy this rule."
+}

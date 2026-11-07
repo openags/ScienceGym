@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "batch_geometry_preserved",
+      "passed": true,
+      "before_meshes": 6631,
+      "after_meshes": 765
+    },
+    {
+      "name": "absent_normals_recovered",
+      "passed": true,
+      "mesh_count": 4953
+    },
+    {
+      "name": "all_scene_meshes_have_finite_normals",
+      "passed": true,
+      "total": 807,
+      "missing": 0,
+      "nonfinite": 0
+    },
+    {
+      "name": "receiver_shadows_visible_on_floor_and_supports",
+      "passed": true,
+      "changed_pixels": 238352,
+      "threshold_per_channel": 12
+    },
+    {
+      "name": "rendering_restored_after_probe",
+      "passed": true
+    },
+    {
+      "name": "label_depth_has_no_visible_interference",
+      "passed": true
+    },
+    {
+      "name": "foreground_blocks_label",
+      "passed": true
+    },
+    {
+      "name": "disabled_depth_fixture_rejected",
+      "passed": true
+    },
+    {
+      "name": "no_rendering_errors",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "captures": [
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_on.png",
+      "sha256": "31cc0d5cdcb99d0a94adbd44cadc53e16740e8de3c56e179f68016d5d063c382"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_off.png",
+      "sha256": "e3777e146765422636ebdefb7a447393d023326dc641be72d29fe99c7cc58618"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/receiver_shadows_restored.png",
+      "sha256": "31cc0d5cdcb99d0a94adbd44cadc53e16740e8de3c56e179f68016d5d063c382"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_depth_valid.png",
+      "sha256": "b218551c01b47dc487b96df6d76d7743156d8fd74c27484eb994e74ae5f21808"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_unobstructed_reference.png",
+      "sha256": "b218551c01b47dc487b96df6d76d7743156d8fd74c27484eb994e74ae5f21808"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_foreground_occlusion.png",
+      "sha256": "6eb4eeb4215d29441d191ee66a43c9782d0afee13fe7ea3f2d2b867e2e9641cb"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_hidden_behind_foreground.png",
+      "sha256": "6eb4eeb4215d29441d191ee66a43c9782d0afee13fe7ea3f2d2b867e2e9641cb"
+    },
+    {
+      "path": "viewer/lab_review_v1/evidence/label_invalid_depth_disabled_fixture.png",
+      "sha256": "4e040a300aea52a3caece7dcab7253ccac8dcd201ad59ceff0ece31eeca96bd7"
+    }
+  ],
+  "browser": "131.0.6778.204",
+  "renderer": {
+    "pixel_ratio": 1.5,
+    "context": {
+      "alpha": true,
+      "antialias": false,
+      "depth": true,
+      "desynchronized": false,
+      "failIfMajorPerformanceCaveat": false,
+      "powerPreference": "default",
+      "premultipliedAlpha": true,
+      "preserveDrawingBuffer": true,
+      "stencil": false,
+      "xrCompatible": false
+    }
+  },
+  "source_files": [
+    {
+      "path": "assets/cooling_lab_v1/historical_review_inputs/16cd4a833fd97fe591e96b6a8911254392c376da81c7b6c77431c49075169fe9.js",
+      "sha256": "16cd4a833fd97fe591e96b6a8911254392c376da81c7b6c77431c49075169fe9",
+      "historical_original_path": "viewer/lab_review_v1/main.js",
+      "historical_revision": "bbde5e7fdd829bcdc857c3e55c230fb37543c352"
+    },
+    {
+      "path": "viewer/lab_review_v1/check_rendering.py",
+      "sha256": "536d1aa13c59e91f15910df9dfd04eec972f6b0436244d40828ef1f9866dffe1"
+    },
+    {
+      "path": "viewer/lab_review_v1/render_batches.js",
+      "sha256": "5313956a12f6ba350a9dda2ccd1a0694cdb42dc9b5e9920b145508e82e02620a"
+    },
+    {
+      "path": "assets/cooling_lab_v1/scene.json",
+      "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9"
+    },
+    {
+      "path": "assets/cooling_lab_v1/room_details.py",
+      "sha256": "e3e0194ca03073304997a4bafab1dd8e6cb2015cbeb80d24cb3a80a2127e33ec"
+    }
+  ],
+  "test_hook_sha256": "487516cc5b30e29ee6c8c091686cff7bc9908e51a1c14a3d60af5214522b4e05",
+  "scope": "Receiver-shadow comparison, unobstructed label depth rendering and foreground occlusion with a rejected disabled-depth fixture; not photometric, product-fidelity or safety acceptance",
+  "current_revision_applicability": "Historical inspection inputs preserved by content hash; not a requalification of the current viewer or inventory. Current automated receipts are listed in evidence_status.json."
+}

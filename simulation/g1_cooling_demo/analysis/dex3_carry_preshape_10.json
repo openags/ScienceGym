@@ -1,0 +1,61 @@
+{
+  "scope": "Offline authoring hypothesis from a failed physical trajectory; not controller observation, exact contact tracking or successful execution",
+  "source_trace_sha256": "a266317b713d2922516320adcd44421baf2a23ace6414e82aa2fbc27c860729c",
+  "source_model_sha256": "47e144448b874640669d393309dde5d0432db423c9ad5550939c6dd1e2b3a089",
+  "sparse_wrench_diagnosis_sha256": "95b0c10f66675efdbcc64f143486f1a26194c4f3ba56bad0ca81467985432c5e",
+  "selected_proximal_change_rad": 0.04,
+  "selected_duration_s": 12.0,
+  "rows": [
+    {
+      "finger": "index",
+      "source_contact_local_m": [
+        -0.10496412875559794,
+        0.0023882698206243703,
+        0.0017093895541251765
+      ],
+      "joint_contact_jacobian_tool_m_per_rad": [
+        [
+          -0.0024057004152926104,
+          -0.08402130517458213,
+          0.030660849441740985
+        ],
+        [
+          -0.001471482967897292,
+          -0.038281545840728806,
+          0.02850639966461534
+        ]
+      ],
+      "linearized_distal_compensation_ratio": -2.19482529582673,
+      "predicted_contact_z_shift_m": -0.0012762287054041354
+    },
+    {
+      "finger": "middle",
+      "source_contact_local_m": [
+        -0.05161041403444116,
+        0.003936059775055054,
+        0.0019778840207795513
+      ],
+      "joint_contact_jacobian_tool_m_per_rad": [
+        [
+          -0.0023605956409587232,
+          -0.0851300669600458,
+          0.02808956029162262
+        ],
+        [
+          -0.0014134060184255914,
+          -0.03941821200244161,
+          0.025412033792421504
+        ]
+      ],
+      "linearized_distal_compensation_ratio": -2.1596633290919622,
+      "predicted_contact_z_shift_m": -0.0010716750883006337
+    }
+  ],
+  "hypothesis": "Flex index/middle proximal joints while still on the tray; allow their distal force servos to compensate, moving contact away from the upper tool edges",
+  "limitations": [
+    "Linearized at one recorded loaded state; true contact points can move",
+    "Distal compensation is force-driven, not imposed by this calculation",
+    "No online tool slip observation; full physical attempt still required"
+  ],
+  "qualification": false
+}

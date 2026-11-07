@@ -1,0 +1,839 @@
+{
+  "schema_version": "sciencegym.cooling.manipulation.v1",
+  "visibility": "trusted_author_evaluator",
+  "selection_semantics": "Role templates must bind actual instance IDs. Reference actions are not observed outcomes.",
+  "interfaces": [
+    {
+      "id": "carrier",
+      "target_role": "payload and retained carrier",
+      "contact_region": "carrier structural handles and dock latch",
+      "tool_role": "parallel gripper and dock latch tool",
+      "support_transition": "source support -> closed carrier -> destination support",
+      "preserve": "Do not lift by film, optical face, track or sensor lead",
+      "recovery": "Reseat on last observed support before retrying the latch or grasp",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Carrier handles, retention latches and station docks have no modeled fixture.",
+      "execution_qualified": false
+    },
+    {
+      "id": "stock",
+      "target_role": "stock, storage compartment and labeled tray",
+      "contact_region": "compartment handle and stock edges",
+      "tool_role": "gripper, sheet support or film frame",
+      "support_transition": "stock rack -> retained tray",
+      "preserve": "Separate accepted, unused and rejected stock",
+      "recovery": "Return identified stock to a supported slot and reconcile count",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Stock rack, trays, unfinished blanks and replacement inventory need geometry.",
+      "execution_qualified": false
+    },
+    {
+      "id": "cutting",
+      "target_role": "stock blank, cutter and cutting fixture",
+      "contact_region": "blank clamp lands and tool work origin",
+      "tool_role": "clamp driver, selected cutter and edge-finishing tool",
+      "support_transition": "blank retained in fixture -> cut part retained -> labeled carrier",
+      "preserve": "Keep clamps clear of cut and retain the offcut independently",
+      "recovery": "Stop the tool, inspect restraint, replace damaged stock under a new identity",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Selected cutting machines, stock fixtures, cutting paths and finishing tools need geometry; map recesses are a thermal-path-changing hypothesis.",
+      "execution_qualified": false
+    },
+    {
+      "id": "machine_ui",
+      "target_role": "installed machine controller",
+      "contact_region": "job selection, start and stop controls",
+      "tool_role": "button tool or authorized device interface",
+      "support_transition": "stock remains clamped throughout machine motion",
+      "preserve": "Controller acknowledgment is not proof of completed cutting",
+      "recovery": "Request stop and verify stopped state before access",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Water-jet model and actual control interface are unselected.",
+      "execution_qualified": false
+    },
+    {
+      "id": "coating",
+      "target_role": "emitter, masking, paint can and cap",
+      "contact_region": "disk backside/edge, mask margin and nozzle actuator",
+      "tool_role": "edge fixture, masking tool and spray-can gripper",
+      "support_transition": "emitter remains on coating support during every coat and cure",
+      "preserve": "Protect optical face from gripper contact; retain the paint identity",
+      "recovery": "Release nozzle, retain disk and inspect coat before rework or replacement",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Spray can/nozzle, masking, coating support and compatible surface-preparation tools need geometry.",
+      "execution_qualified": false
+    },
+    {
+      "id": "base",
+      "target_role": "base, frame and insulation layers",
+      "contact_region": "base underside, frame fasteners and foam rim",
+      "tool_role": "gripper and selected fastener driver",
+      "support_transition": "bench fixture -> fastened base -> supported insulation stack",
+      "preserve": "Do not compress foam using an unqualified clamp load",
+      "recovery": "Support loose components, undo the affected connection and inspect seating",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_WHITE",
+          "part_ids": [
+            "COOLER_WHITE__acrylic_base",
+            "COOLER_WHITE__foam_1",
+            "COOLER_WHITE__foam_2"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_BLACK",
+          "part_ids": [
+            "COOLER_BLACK__acrylic_base",
+            "COOLER_BLACK__foam_1",
+            "COOLER_BLACK__foam_2"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_FIXED_BAND",
+          "part_ids": [
+            "COOLER_FIXED_BAND__acrylic_base",
+            "COOLER_FIXED_BAND__foam_1",
+            "COOLER_FIXED_BAND__foam_2"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__acrylic_base",
+            "COOLER_THERMAL_MAP__foam_1",
+            "COOLER_THERMAL_MAP__foam_2"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Exact framing fastener and jig interfaces remain inferred.",
+      "execution_qualified": false
+    },
+    {
+      "id": "emitter",
+      "target_role": "coated emitter and PE support tube",
+      "contact_region": "disk edge/backside and tube outside wall",
+      "tool_role": "edge gripper and reversible emitter support jig",
+      "support_transition": "carrier/jig -> insulation seat; jig retained during underside access",
+      "preserve": "No optical-face grip, wire pinch or unsupported inversion",
+      "recovery": "Reseat in the jig and inspect coating, probe and support",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_WHITE",
+          "part_ids": [
+            "COOLER_WHITE__emitter_copper",
+            "COOLER_WHITE__PE_support"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_BLACK",
+          "part_ids": [
+            "COOLER_BLACK__emitter_copper",
+            "COOLER_BLACK__PE_support"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_FIXED_BAND",
+          "part_ids": [
+            "COOLER_FIXED_BAND__emitter_copper",
+            "COOLER_FIXED_BAND__PE_support"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__emitter_copper",
+            "COOLER_THERMAL_MAP__PE_support"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Edge gripper and reversible jig have not been fitted to the 0.5 mm copper disk.",
+      "execution_qualified": false
+    },
+    {
+      "id": "film",
+      "target_role": "two identified films, spacer and film jig",
+      "contact_region": "outer film margins and spacer attachment annuli",
+      "tool_role": "edge-support frame, ring-turning jig and guided trimming tool",
+      "support_transition": "both film edges retained until ring attachment and support are accepted",
+      "preserve": "Do not clamp the optical aperture or assume the ring rests on the smaller tube",
+      "recovery": "Retain jig, quarantine torn film and rebuild with two separately identified sheets",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_WHITE",
+          "part_ids": [
+            "COOLER_WHITE__film_spacer",
+            "COOLER_WHITE__cover_lower",
+            "COOLER_WHITE__cover_upper"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_BLACK",
+          "part_ids": [
+            "COOLER_BLACK__film_spacer",
+            "COOLER_BLACK__cover_lower",
+            "COOLER_BLACK__cover_upper"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_FIXED_BAND",
+          "part_ids": [
+            "COOLER_FIXED_BAND__film_spacer",
+            "COOLER_FIXED_BAND__cover_lower",
+            "COOLER_FIXED_BAND__cover_upper"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__film_spacer",
+            "COOLER_THERMAL_MAP__cover_lower",
+            "COOLER_THERMAL_MAP__cover_upper"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Ring jig, attachment tooling and membrane load-bearing qualification are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "shield",
+      "target_role": "Mylar, radiation shield and aperture plate",
+      "contact_region": "outer cylinder wall, plate rim and foil margins",
+      "tool_role": "gripper and foil trimming/attachment tools",
+      "support_transition": "bench/carrier -> supported assembly; cover jig retained until qualified",
+      "preserve": "Do not trap probe leads or touch the convection films",
+      "recovery": "Lift back to retained support, clear leads and recheck aperture alignment",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_WHITE",
+          "part_ids": [
+            "COOLER_WHITE__radiation_shield",
+            "COOLER_WHITE__aperture_plate",
+            "COOLER_WHITE__mylar_base"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_BLACK",
+          "part_ids": [
+            "COOLER_BLACK__radiation_shield",
+            "COOLER_BLACK__aperture_plate",
+            "COOLER_BLACK__mylar_base"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_FIXED_BAND",
+          "part_ids": [
+            "COOLER_FIXED_BAND__radiation_shield",
+            "COOLER_FIXED_BAND__aperture_plate",
+            "COOLER_FIXED_BAND__mylar_base"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__radiation_shield",
+            "COOLER_THERMAL_MAP__aperture_plate",
+            "COOLER_THERMAL_MAP__mylar_base"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Lead clearance and fasteners are not metrology qualified.",
+      "execution_qualified": false
+    },
+    {
+      "id": "reflector",
+      "target_role": "uprights, track, carriage and reflector",
+      "contact_region": "structural brackets, track clamps and carriage lock",
+      "tool_role": "gripper and compatible fastener driver",
+      "support_transition": "parts supported before clamps release; carriage supported while unlocked",
+      "preserve": "Retain reflector face orientation and full-aperture shadow",
+      "recovery": "Resecure carriage on the last supported position and invalidate lost-shade interval",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_WHITE",
+          "part_ids": [
+            "COOLER_WHITE__reflector_track",
+            "COOLER_WHITE__reflector_carriage",
+            "COOLER_WHITE__solar_reflector"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_BLACK",
+          "part_ids": [
+            "COOLER_BLACK__reflector_track",
+            "COOLER_BLACK__reflector_carriage",
+            "COOLER_BLACK__solar_reflector"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_FIXED_BAND",
+          "part_ids": [
+            "COOLER_FIXED_BAND__fixed_reflector_band"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__reflector_track",
+            "COOLER_THERMAL_MAP__reflector_carriage",
+            "COOLER_THERMAL_MAP__solar_reflector"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Site/date track, actual locking mechanism and fastener fit remain unresolved.",
+      "execution_qualified": false
+    },
+    {
+      "id": "bath_lid",
+      "target_role": "A25 bath lid",
+      "contact_region": "lid handle and storage support",
+      "tool_role": "gripper",
+      "support_transition": "bath rim -> lid stand -> bath rim",
+      "preserve": "Keep liquid and probe leads clear of the handle and closing path",
+      "recovery": "Place lid on stand, inspect interference and retry without trapping leads",
+      "asset_variants": [
+        {
+          "root_id": "THERMO_A25_AC150_HYPOTHESIS",
+          "part_ids": [
+            "THERMO_A25_AC150_HYPOTHESIS__removable_lid",
+            "THERMO_A25_AC150_HYPOTHESIS__lid_handle"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Actual lid handling clearance needs checking against installed controller.",
+      "execution_qualified": false
+    },
+    {
+      "id": "bath_fill",
+      "target_role": "bath drain, fill vessel, water and block",
+      "contact_region": "drain closure, vessel handle/spout and reservoir rim",
+      "tool_role": "drain tool and supported pouring gripper",
+      "support_transition": "block supported in reservoir; vessel retained during pouring",
+      "preserve": "Use installed-controller fill limits with block displacement; do not assume an empty bath is ready",
+      "recovery": "Stop pouring, retain vessel, correct level or drain connection and recheck",
+      "asset_variants": [
+        {
+          "root_id": "THERMO_A25_AC150_HYPOTHESIS",
+          "part_ids": [
+            "THERMO_A25_AC150_HYPOTHESIS__calibration_copper_block"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Drain, pouring vessel, liquid level and block cradle are not modeled.",
+      "execution_qualified": false
+    },
+    {
+      "id": "cal_block",
+      "target_role": "copper block, reference RTD and K probes",
+      "contact_region": "block lifting fixture, drilled holes and probe sheaths",
+      "tool_role": "block support jig and probe gripper",
+      "support_transition": "supported block and probe tray -> supported immersed block",
+      "preserve": "Grip probe body rather than wire; preserve probe-to-hole identity",
+      "recovery": "Withdraw to labeled support, inspect hole fit and reinsert without forcing",
+      "asset_variants": [
+        {
+          "root_id": "THERMO_A25_AC150_HYPOTHESIS",
+          "part_ids": [
+            "THERMO_A25_AC150_HYPOTHESIS__calibration_copper_block",
+            "THERMO_A25_AC150_HYPOTHESIS__immersion_RTD"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Probe holes, immersion depths and block cradle require a fabrication drawing.",
+      "execution_qualified": false
+    },
+    {
+      "id": "daq_terminals",
+      "target_role": "K-probe lead pairs and USB-TC",
+      "contact_region": "verified CnH/CnL wire entries and terminal screw heads",
+      "tool_role": "wire gripper and terminal screwdriver",
+      "support_transition": "DAQ retained; each conductor held until its clamp is secure",
+      "preserve": "Use verified polarity and terminal map; no bare conductor bridges adjacent terminals",
+      "recovery": "Stop acquisition, identify the affected pair, loosen and reseat it; recheck calibration validity",
+      "asset_variants": [
+        {
+          "root_id": "MCC_USB_TC",
+          "part_ids": [
+            "MCC_USB_TC__pin_03",
+            "MCC_USB_TC__pin_04",
+            "MCC_USB_TC__pin_07",
+            "MCC_USB_TC__pin_08",
+            "MCC_USB_TC__pin_13",
+            "MCC_USB_TC__pin_14",
+            "MCC_USB_TC__pin_17",
+            "MCC_USB_TC__pin_18",
+            "MCC_USB_TC__pin_44",
+            "MCC_USB_TC__pin_43",
+            "MCC_USB_TC__pin_40",
+            "MCC_USB_TC__pin_39",
+            "MCC_USB_TC__pin_34",
+            "MCC_USB_TC__pin_33",
+            "MCC_USB_TC__pin_30",
+            "MCC_USB_TC__pin_29",
+            "MCC_USB_TC__pin_03_wire_entry",
+            "MCC_USB_TC__pin_04_wire_entry",
+            "MCC_USB_TC__pin_07_wire_entry",
+            "MCC_USB_TC__pin_08_wire_entry",
+            "MCC_USB_TC__pin_13_wire_entry",
+            "MCC_USB_TC__pin_14_wire_entry",
+            "MCC_USB_TC__pin_17_wire_entry",
+            "MCC_USB_TC__pin_18_wire_entry",
+            "MCC_USB_TC__pin_44_wire_entry",
+            "MCC_USB_TC__pin_43_wire_entry",
+            "MCC_USB_TC__pin_40_wire_entry",
+            "MCC_USB_TC__pin_39_wire_entry",
+            "MCC_USB_TC__pin_34_wire_entry",
+            "MCC_USB_TC__pin_33_wire_entry",
+            "MCC_USB_TC__pin_30_wire_entry",
+            "MCC_USB_TC__pin_29_wire_entry",
+            "MCC_USB_TC__pin_03_screw",
+            "MCC_USB_TC__pin_04_screw",
+            "MCC_USB_TC__pin_07_screw",
+            "MCC_USB_TC__pin_08_screw",
+            "MCC_USB_TC__pin_13_screw",
+            "MCC_USB_TC__pin_14_screw",
+            "MCC_USB_TC__pin_17_screw",
+            "MCC_USB_TC__pin_18_screw",
+            "MCC_USB_TC__pin_44_screw",
+            "MCC_USB_TC__pin_43_screw",
+            "MCC_USB_TC__pin_40_screw",
+            "MCC_USB_TC__pin_39_screw",
+            "MCC_USB_TC__pin_34_screw",
+            "MCC_USB_TC__pin_33_screw",
+            "MCC_USB_TC__pin_30_screw",
+            "MCC_USB_TC__pin_29_screw"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Terminal pitch is inferred; fine-wire transition and its retention/CJC effects require qualification.",
+      "execution_qualified": false
+    },
+    {
+      "id": "rtd_meter",
+      "target_role": "reference RTD and Keithley 2000",
+      "contact_region": "selected RTD lead connector and meter input terminals",
+      "tool_role": "connector gripper and configured meter UI",
+      "support_transition": "probe retained in block; cable strain relieved at meter",
+      "preserve": "Lead count and resistance/temperature conversion must match the actual RTD configuration",
+      "recovery": "Return meter to the declared measurement-off state and resolve lead mapping",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Keithley2000, probe terminal configuration and compatible connectors are unmodeled.",
+      "execution_qualified": false
+    },
+    {
+      "id": "bath_ui",
+      "target_role": "installed A25 circulator controller",
+      "contact_region": "power, setpoint and stop controls",
+      "tool_role": "button tool or authorized device interface",
+      "support_transition": "bath/block remain supported with accepted fluid level",
+      "preserve": "AC150 head is a hypothesis; bind the actual controller before commands",
+      "recovery": "Stop program and read back bath conditions before removing probes",
+      "asset_variants": [
+        {
+          "root_id": "THERMO_A25_AC150_HYPOTHESIS",
+          "part_ids": [
+            "THERMO_A25_AC150_HYPOTHESIS__controller_key",
+            "THERMO_A25_AC150_HYPOTHESIS__controller_key.001",
+            "THERMO_A25_AC150_HYPOTHESIS__controller_key.002",
+            "THERMO_A25_AC150_HYPOTHESIS__controller_key.003",
+            "THERMO_A25_AC150_HYPOTHESIS__controller_key.004"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "AC150 controller is a selected variant; installed head is not historically established.",
+      "execution_qualified": false
+    },
+    {
+      "id": "probe_attachment",
+      "target_role": "identified K junction, silver paste and target surface",
+      "contact_region": "declared sensor contact patch and lead strain relief",
+      "tool_role": "fine gripper, metered applicator and probe-retaining jig",
+      "support_transition": "target supported; junction retained until attachment is accepted",
+      "preserve": "Do not pull the junction by its wire or bridge an intended thermal gap",
+      "recovery": "Retain the target, remove failed attachment with qualified method and re-inspect contact",
+      "asset_variants": [
+        {
+          "root_id": "COOLER_THERMAL_MAP",
+          "part_ids": [
+            "COOLER_THERMAL_MAP__probe_contact_TC_W",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_1",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_2",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_3",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_4",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_5",
+            "COOLER_THERMAL_MAP__probe_contact_TC_MAP_6"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Contact markers are inferred locations, not attachment/thermal qualification; insulation recesses and lead channels are not cut into the mesh.",
+      "execution_qualified": false
+    },
+    {
+      "id": "optical_access",
+      "target_role": "Cary/Nicolet sample access cover",
+      "contact_region": "installed lid/door grasp region",
+      "tool_role": "gripper",
+      "support_transition": "cover follows actual supported joint or is seated on its stand",
+      "preserve": "Bind instrument-specific opening path; no generic hinge trajectory is assumed",
+      "recovery": "Stop at observed obstruction and inspect holder/lead clearance",
+      "asset_variants": [
+        {
+          "root_id": "AGILENT_CARY_5000",
+          "part_ids": [
+            "AGILENT_CARY_5000__sample_lid",
+            "AGILENT_CARY_5000__sample_front_door"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "THERMO_NICOLET_6700",
+          "part_ids": [
+            "THERMO_NICOLET_6700__sample_bay_lid"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Commercial cover hinge axes, travel limits and grasp regions require dimensional verification.",
+      "execution_qualified": false
+    },
+    {
+      "id": "optical_accessory",
+      "target_role": "DRA2500, IntegratIR or angular accessory",
+      "contact_region": "accessory base, locating pin and retaining fasteners",
+      "tool_role": "base-support gripper and compatible driver",
+      "support_transition": "accessory stand -> instrument locating base -> stand",
+      "preserve": "Do not lift by optics, selector, purge tube or detector cable",
+      "recovery": "Support on stand and resolve variant/locating mismatch before fitting",
+      "asset_variants": [
+        {
+          "root_id": "AGILENT_CARY_5000",
+          "part_ids": [
+            "AGILENT_CARY_5000__sample_floor",
+            "AGILENT_CARY_5000__DRA2500_body"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "THERMO_NICOLET_6700",
+          "part_ids": [
+            "THERMO_NICOLET_6700__sample_compartment_floor",
+            "THERMO_NICOLET_6700__IntegratIR_base"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Exact holders/locators and all angular accessories remain unqualified or absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "ftir_connections",
+      "target_role": "IntegratIR detector cable and optional purge tube",
+      "contact_region": "keyed detector connector and purge connector",
+      "tool_role": "connector gripper",
+      "support_transition": "accessory seated; cable supported independently",
+      "preserve": "Bench and accessory power off for detector-cable changes; purge route requires actual setup",
+      "recovery": "Keep power off, inspect connector key and restore the correct supported cable route",
+      "asset_variants": [
+        {
+          "root_id": "THERMO_NICOLET_6700",
+          "part_ids": [
+            "THERMO_NICOLET_6700__IntegratIR_detector_connector",
+            "THERMO_NICOLET_6700__IntegratIR_detector_cable",
+            "THERMO_NICOLET_6700__IntegratIR_purge_port"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Selected DTGS detector interface and purge arrangement need actual-model checks.",
+      "execution_qualified": false
+    },
+    {
+      "id": "optical_reference",
+      "target_role": "reference standard, cap and sphere port plugs",
+      "contact_region": "reference nonoptical rim, cap and declared measurement port",
+      "tool_role": "edge gripper and reference storage nest",
+      "support_transition": "reference nest -> measurement port -> capped nest",
+      "preserve": "Never grip gold/reference optical surface; bind substitution/Taylor method",
+      "recovery": "Retain sample and reference separately and reacquire after configuration changes",
+      "asset_variants": [
+        {
+          "root_id": "AGILENT_CARY_5000",
+          "part_ids": [
+            "AGILENT_CARY_5000__DRA2500_port_plug"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "THERMO_NICOLET_6700",
+          "part_ids": [
+            "THERMO_NICOLET_6700__IntegratIR_gold_reference",
+            "THERMO_NICOLET_6700__IntegratIR_reference_cap",
+            "THERMO_NICOLET_6700__IntegratIR_selector"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Angular reference/holder and DRA reference layout require verification.",
+      "execution_qualified": false
+    },
+    {
+      "id": "optical_sample",
+      "target_role": "identified optical specimen and holder",
+      "contact_region": "specimen edge, holder latch and selected measurement port",
+      "tool_role": "edge gripper and compatible holder",
+      "support_transition": "specimen carrier -> retained measurement holder -> carrier",
+      "preserve": "Two-film specimen spacing and aperture coverage remain physical requirements",
+      "recovery": "Support sample before releasing holder, inspect fit and re-reference if needed",
+      "asset_variants": [
+        {
+          "root_id": "AGILENT_CARY_5000",
+          "part_ids": [
+            "AGILENT_CARY_5000__DRA2500_sample_port"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        },
+        {
+          "root_id": "THERMO_NICOLET_6700",
+          "part_ids": [
+            "THERMO_NICOLET_6700__IntegratIR_18mm_sample_port"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Witness carriers, clamps and angular sample holder are missing; full cooler is not a substitute.",
+      "execution_qualified": false
+    },
+    {
+      "id": "angle_controls",
+      "target_role": "angular accessory and polarization optics",
+      "contact_region": "angle lock/scale and polarizer mount/scale",
+      "tool_role": "adjustment tool and optics-mount gripper",
+      "support_transition": "specimen retained throughout angle/polarization adjustment",
+      "preserve": "Configure angle/polarization before reference; any later change invalidates it",
+      "recovery": "Return to supported configuration, re-read settings and acquire a fresh reference",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Harrick/SpectraTech variants and polarizer mounting/controls are unmodeled.",
+      "execution_qualified": false
+    },
+    {
+      "id": "acquisition_ui",
+      "target_role": "selected instrument or acquisition console",
+      "contact_region": "explicit start, stop, settings and record-selection interface",
+      "tool_role": "button/keyboard tool or authorized device interface",
+      "support_transition": "physical samples and instruments remain retained at their stations",
+      "preserve": "Bind command to instrument and sample identity; acknowledgment alone is not an observation",
+      "recovery": "Stop the affected acquisition, preserve partial data and inspect configuration",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Per-instrument software/button interface and input tool are not implemented.",
+      "execution_qualified": false
+    },
+    {
+      "id": "ambient_mount",
+      "target_role": "ambient RTD, shield and mast",
+      "contact_region": "RTD sheath/support and shield/mast clamps",
+      "tool_role": "probe gripper and clamp driver",
+      "support_transition": "probe stand -> ventilated shield on retained mast",
+      "preserve": "Exposed element remains shaded with airflow; support and height are observed",
+      "recovery": "Retain probe, correct mast/shield attachment and recheck exposure",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Ambient RTD, ventilated shield and mast/fixture are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "weather_mount",
+      "target_role": "HOBO U30 and identified weather sensors",
+      "contact_region": "sensor mounting brackets and keyed logger connectors",
+      "tool_role": "clamp driver and connector gripper",
+      "support_transition": "sensors/logger fixed on retained outdoor support",
+      "preserve": "GHI, air temperature and humidity channels retain distinct identities",
+      "recovery": "Resecure mounts and correct channel identity before restarting logging",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "HOBO variant, sensor mounts and logger connectors are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "solar_mount",
+      "target_role": "STR-32G, MS-56 and MS-402",
+      "contact_region": "tracker mounting plate, sensor brackets and level adjusters",
+      "tool_role": "gripper, level and fastener driver",
+      "support_transition": "tracker on fixed support; sensors retained on their mounts",
+      "preserve": "Distinguish sun-normal GTI from horizontal weather GHI",
+      "recovery": "Stop tracker motion before adjusting an obstructed sensor mount",
+      "asset_variants": [
+        {
+          "root_id": "EKO_STR_32G",
+          "part_ids": [
+            "EKO_STR_32G__selected_mount_plate",
+            "EKO_STR_32G__azimuth_mount",
+            "EKO_STR_32G__elevation_flange_-0.145",
+            "EKO_STR_32G__elevation_flange_0.145"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "MS-56/MS-402 sensor bodies, mounts and qualified tracker joints are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "daq_box",
+      "target_role": "USB-TC, reflective enclosure and cables",
+      "contact_region": "enclosure lid, DAQ mounting lands and cable exits",
+      "tool_role": "gripper and enclosure fastener driver",
+      "support_transition": "DAQ on retained enclosure mount; cables strain relieved",
+      "preserve": "Maintain calibrated CJC environment; reflective wrap must not short terminals",
+      "recovery": "Retain DAQ, reopen the enclosure and restore isolated routing",
+      "asset_variants": [
+        {
+          "root_id": "MCC_USB_TC",
+          "part_ids": [
+            "MCC_USB_TC__case",
+            "MCC_USB_TC__USB_B"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Reflective enclosure, cable exits, mounting and strain relief are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "metal_lids",
+      "target_role": "two removable aluminum baseline lids",
+      "contact_region": "each metal lid's rim or qualified handle",
+      "tool_role": "gripper and separate lid stands",
+      "support_transition": "lid stand -> aperture support -> lid stand",
+      "preserve": "Remove metal lids while leaving both convection films in place",
+      "recovery": "Reseat or store lid on supported surface and record intervention time",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Baseline lids, grasp regions and storage stands are absent.",
+      "execution_qualified": false
+    },
+    {
+      "id": "heater",
+      "target_role": "heater, emitter underside and attachment layer",
+      "contact_region": "heater nonactive edge, backside contact patch and retained lead tails",
+      "tool_role": "emitter jig, thin-part gripper and qualified attachment/release tool",
+      "support_transition": "emitter remains in reversible jig throughout attachment/removal",
+      "preserve": "Resolve 50.8 mm catalog heater versus 50 mm disk fit; protect probe contact",
+      "recovery": "Retain emitter, stop removal on damage and qualify repair or allocate replacement",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Heater attachment and 50.8/50 mm fit conflict are unresolved; no fitted heater mesh.",
+      "execution_qualified": false
+    },
+    {
+      "id": "heater_wiring",
+      "target_role": "heater force/sense leads and source meter",
+      "contact_region": "heater electrical nodes and source-meter FORCE/SENSE terminals",
+      "tool_role": "connector gripper and terminal tool",
+      "support_transition": "outputs off; heater and leads independently supported",
+      "preserve": "Sense at heater nodes, not supply; keep white/black loops distinct",
+      "recovery": "Verify output off, identify and correct the affected node then repeat continuity checks",
+      "asset_variants": [
+        {
+          "root_id": "KEITHLEY_2425",
+          "part_ids": [
+            "KEITHLEY_2425__sense",
+            "KEITHLEY_2425__sense.001",
+            "KEITHLEY_2425__force",
+            "KEITHLEY_2425__force.001"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Four-wire nodes/terminations and second independently controlled instrument instance require binding.",
+      "execution_qualified": false
+    },
+    {
+      "id": "smu_ui",
+      "target_role": "two independent Keithley2425 channels and control console",
+      "contact_region": "output control and selected feedback/target interface",
+      "tool_role": "button tool or authorized device interface",
+      "support_transition": "wired assemblies remain supported; no energized transport",
+      "preserve": "Each command and readback bind one heater and its calibrated sensor",
+      "recovery": "Command both outputs off and keep access blocked until actual state is known",
+      "asset_variants": [
+        {
+          "root_id": "KEITHLEY_2425",
+          "part_ids": [
+            "KEITHLEY_2425__output_button",
+            "KEITHLEY_2425__power"
+          ],
+          "instance_selection": "Bind the current payload/instrument configuration; never choose all variants at once"
+        }
+      ],
+      "geometry_status": "partial_named_geometry",
+      "remaining": "Exact 2425 panel/actuation and per-channel controller interfaces are not qualified.",
+      "execution_qualified": false
+    },
+    {
+      "id": "storage",
+      "target_role": "tools, specimens, rejected material and storage supports",
+      "contact_region": "container handles, specimen supports and compartment latches",
+      "tool_role": "gripper and material-specific handling tool",
+      "support_transition": "retained carrier -> identified storage or waste support",
+      "preserve": "Do not return rejected material to accepted inventory",
+      "recovery": "Retain uncertain item separately and reconcile identity/disposition",
+      "asset_variants": [],
+      "geometry_status": "unmodeled",
+      "remaining": "Storage supports, material containers and tool racks are absent.",
+      "execution_qualified": false
+    }
+  ],
+  "parameter_card": "manipulation_card",
+  "step_contract": "operations.schema.json#/$defs/interaction"
+}

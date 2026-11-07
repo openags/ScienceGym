@@ -1,0 +1,79 @@
+{
+  "passed": false,
+  "checks": {
+    "frozen_sensor_actor_replayed": true,
+    "every_motor_output_reproduced": true,
+    "every_retained_response_reproduced": true,
+    "full_event_sequence_reproduced": false,
+    "every_camera_frame_consumed": true,
+    "independent_physics_passed": false,
+    "isolation_passed": true,
+    "attempt_completed": false,
+    "one_sensor_derived_handoff": true,
+    "one_visual_confirmation": false,
+    "eight_fresh_confirmation_frames": false,
+    "stable_visual_positions": false,
+    "continuous_physics_clock": true,
+    "declared_initial_pose_preserved": true,
+    "executed_approach_before_operation": true,
+    "handoff_xy_error_below_five_mm": true,
+    "handoff_after_stable_map_observations": true,
+    "actual_gap_inside_unchanged_requirement": false,
+    "observed_error_below_guard_margin": false
+  },
+  "failure": null,
+  "maximum_torque_replay_error_nm": 0.0,
+  "maximum_response_replay_error": 0.0,
+  "maximum_event_replay_error": null,
+  "sensor_packets": 122996,
+  "camera_frames": 2460,
+  "event_difference_examples": [
+    {
+      "path": "$/65/solution/baseline/self_intersections/0/0",
+      "actual": "'right_ankle_roll_link'",
+      "recorded": "'left_ankle_roll_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/0/1",
+      "actual": "'right_knee_link'",
+      "recorded": "'left_knee_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/1/0",
+      "actual": "'left_ankle_roll_link'",
+      "recorded": "'right_ankle_roll_link'"
+    },
+    {
+      "path": "$/65/solution/baseline/self_intersections/1/1",
+      "actual": "'left_knee_link'",
+      "recorded": "'right_knee_link'"
+    }
+  ],
+  "replayed_events_sha256": "e41caf4732711e4a1182cd27dbb47b8ff3486dddcfb7b9ec0412ec35696b9fce",
+  "comparison_helper_sha256": "5f7c0420e74fa1e7648adf799856a0f3871444962fe9cc318af2b87abcac4a06",
+  "compared_responses": 24600,
+  "handoff_truth_review": {
+    "time_s": 134.48199999991402,
+    "executed_horizontal_displacement_m": 1.0204834942186654,
+    "estimated_root_position_m": [
+      5.970898060299154,
+      -5.218744202383272,
+      0.7816456266217651
+    ],
+    "xy_error_m": 0.0015663783531216862
+  },
+  "outcome_truth_review": [],
+  "verifier_sha256": "e02b260fc36e1c87a7b2360bd3eb74cf73d7f9804555a505a9487d3aaba935fb",
+  "physical_review_sha256": "25e24e472ad09dfc388d11a48d45916ce3a43f6458dadbe0f7d488be340aa8b9",
+  "isolation_review_sha256": "ac9eef664a6db7e281342b4680f7cf4599154f440408c46c0a7e8a83a385ea3f",
+  "result_sha256": "5efee2f554ac47b5bbe0c4dbfc53158d54153e55d8453c53a588264ef7cb6411",
+  "trace_sha256": "dddc1b9e38f4e0f4ad95a7180c537994f11ef167bf9072ef6486397c9361905d",
+  "sensors_sha256": "a7b9d7c9ebe50778dedba21bd09b170a6da2faaef66dfac2904961158f2c0499",
+  "camera_indexes_sha256": {
+    "head_rgb_index.json": "4036f39a6925180e48be23bbd6f07151e0b997e4e559245740122c4a53fc6c4d",
+    "head_depth_index.json": "55da21f3062a76ac5b1dcafa1e59462056d67e6922452f7c822c8b8d19897dbb"
+  },
+  "qualified_skill": false,
+  "qualified_paper_branch": false,
+  "scope": "One continuous local walking approach and observed window operation; no carrying, full interstation experiment or reliability qualification."
+}

@@ -1,0 +1,62 @@
+{
+  "model": "Thermo Scientific Nicolet 6700",
+  "manufacturer_CAD": false,
+  "units": "m",
+  "sources": [
+    {
+      "id": "MANUFACTURER_SPEC",
+      "url": "https://cdn.labwrench.com/eMan/manualNo/3511/thermo_scientific_nicolet_6700_brochure.pdf",
+      "authorship": "Thermo Fisher Scientific PS10160_E 04/07M, hosted by LabWrench",
+      "sha256": "696fafd1e8062a5c758e35b3eb43979b606fd18ee1415b7f458375fa436c6a4b",
+      "review": "Both pages: exterior photograph, 692 x 655 x 254 mm overall dimensions; 210 x 260 x 200 mm sample compartment; 69 kg",
+      "redistributed": false
+    },
+    {
+      "id": "MANUFACTURER_BROCHURE",
+      "url": "https://mmrc.caltech.edu/FTIR/Nicolet/Nicolet%206700%20brochure.pdf",
+      "authorship": "Thermo Electron Corporation; Caltech MMRC mirror",
+      "sha256": "404878f7877b7ea1147623d4a0ad2a206b234fc5e438b081a14d69dd026b5ce2",
+      "review": "Cover and page 2: instrument exterior, top ribs, detector caps, scan controls, front access ports. Installed Smart accessories are excluded from the bare instrument.",
+      "redistributed": false
+    },
+    {
+      "id": "USER_MANUAL",
+      "url": "https://knowledge1.thermofisher.com/@api/deki/files/4426/269-155800_-_Nicolet_FT-IR_User_Guide.pdf?revision=1",
+      "sha256": "0bd488af3213c5d68261feee2b48cc00bff740f42890a919b45450740af17e57",
+      "review": "Printed pp. 33-34 describe the sliding sample door; p. 51 locates it in the hinged cover; pp. 91-93 distinguish cover, fixed front wall, two interior 15-contact connectors and purge outlet. p. 95 lists the Detector/Motors pinout. PDF pp. 57 and 98 illustrations were inspected.",
+      "redistributed": false
+    }
+  ],
+  "vendor_resource_search": {
+    "date": "2026-10-19",
+    "queries": [
+      "site.thermofisher.com Nicolet 6700 3D CAD dimensions",
+      "Nicolet 6700 PS10160 dimensions sample compartment cover"
+    ],
+    "result": "Manufacturer drawings and photographs located; no model-specific downloadable vendor CAD located in these searches."
+  },
+  "source_conflicts": [
+    {
+      "topic": "previous reconstruction",
+      "previous": "690 x 655 mm footprint and 285 x 340 mm bay",
+      "selected": "692 x 655 mm footprint and 210 x 260 mm usable bay from PS10160_E",
+      "resolution": "Replace the old inferred envelope and oversized bay."
+    },
+    {
+      "topic": "cover versus accessory",
+      "resolution": "The manual identifies a standard hinged cover with a sliding window and a fixed front wall. Some brochure photos show Smart accessories; central dark geometry is not automatically an accessory."
+    },
+    {
+      "topic": "earlier selected cover and detector connector",
+      "previous": "L-shaped cover moved the front wall with the top; detector socket approximated on exterior rear",
+      "selected": "Top cover with separate sliding window; fixed front wall; Detector/Motors connector on interior rear wall",
+      "resolution": "Correct component separation and interface location from user-manual illustrations; local dimensions remain inferred."
+    }
+  ],
+  "inferences": [
+    "Local shell profiles, corner radii, ribs, ventilation and control dimensions are photograph-derived, not measured CAD.",
+    "Hinge and sliding-door mechanisms are documented; hinge datum, slider travel, handle dimensions and mount geometry are inferred and need contact qualification.",
+    "Interior connector identities and two rows totaling 15 contacts are source-grounded; local dimensions and placement are inferred. Rear power/USB details remain approximate.",
+    "No IntegratIR, ATR or Smart accessory is included in this bare-instrument asset."
+  ]
+}

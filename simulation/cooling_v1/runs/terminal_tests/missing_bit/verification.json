@@ -1,0 +1,165 @@
+{
+  "passed": true,
+  "expected": "missing_bit",
+  "checks": [
+    {
+      "name": "expected_execution_outcome",
+      "passed": true,
+      "failure": "ExecutionFailure: Driver did not seat in the physical slot"
+    },
+    {
+      "name": "archived_sources_match",
+      "passed": true,
+      "changed": []
+    },
+    {
+      "name": "finite_trace",
+      "passed": true
+    },
+    {
+      "name": "continuous_clock",
+      "passed": true,
+      "samples": 10560,
+      "maximum_interval_s": 0.005000000000165983
+    },
+    {
+      "name": "trace_reaches_end",
+      "passed": true
+    },
+    {
+      "name": "numerical_guards",
+      "passed": true,
+      "observed": {
+        "maximum_solver_iterations": 41,
+        "solver_limit_steps": 0,
+        "warnings": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "physics_steps": 527842,
+        "maximum_edge_strain": 0.0003365676709993215
+      }
+    },
+    {
+      "name": "only_robot_and_driver_actuated",
+      "passed": true
+    },
+    {
+      "name": "no_payload_weld",
+      "passed": true
+    },
+    {
+      "name": "bounded_gripper_command",
+      "passed": true
+    },
+    {
+      "name": "selected_full_wire_length",
+      "passed": true,
+      "total_length_m": 0.5999999999997545
+    },
+    {
+      "name": "sampled_wire_continuity",
+      "passed": true,
+      "maximum_speed_m_s": 0.17100188524037221
+    },
+    {
+      "name": "passive_thread_kinematics",
+      "passed": true,
+      "maximum_axial_residual_m": 3.6240094162308114e-09
+    },
+    {
+      "name": "lead_strain_all_saved_states",
+      "passed": true,
+      "maximum_edge_strain": 8.206559383761025e-05,
+      "worst_time_s": 0.11500000000000227
+    },
+    {
+      "name": "failed_at_physical_driver_seating",
+      "passed": true
+    },
+    {
+      "name": "bit_contact_physically_absent",
+      "passed": true
+    },
+    {
+      "name": "exact_event_0",
+      "passed": true
+    },
+    {
+      "name": "exact_event_1",
+      "passed": true
+    },
+    {
+      "name": "wire_inserted",
+      "passed": true,
+      "time_s": 32.46719999995427,
+      "depth_m": 0.004994233114861732,
+      "clamp_normal_N": 0.0,
+      "driver_normal_N": 0.0,
+      "clip_normal_N": 0.018287320340189102,
+      "finger_normal_N": {
+        "left_finger": 2.0029060290253953,
+        "right_finger": 1.9970958864329984
+      },
+      "finger_axial_N": 0.009310164367343639,
+      "screw_advance_m": -1.6332437859274265e-11,
+      "screw_turn_rad": 1.903137552279928e-15,
+      "tip_m": [
+        0.4341146836111037,
+        0.08489423311486173,
+        0.841823090690148
+      ]
+    },
+    {
+      "name": "exact_event_2",
+      "passed": true
+    },
+    {
+      "name": "passive_clip_retention",
+      "passed": true,
+      "time_s": 35.54570000005646,
+      "depth_m": 0.004894024257028923,
+      "clamp_normal_N": 0.0052406418555828,
+      "driver_normal_N": 0.0,
+      "clip_normal_N": 0.12636866793239193,
+      "finger_normal_N": {},
+      "finger_axial_N": 0.0,
+      "screw_advance_m": 3.1143760496125335e-11,
+      "screw_turn_rad": 1.7254527677599156e-15,
+      "tip_m": [
+        0.4341210080914975,
+        0.08479402425702892,
+        0.8430461513482683
+      ]
+    },
+    {
+      "name": "sampled_unintended_contacts",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "sampled_clamp_load_bound",
+      "passed": true,
+      "maximum_N": 0.007101835366052225
+    },
+    {
+      "name": "sampled_observed_grasp_geometry",
+      "passed": true,
+      "observations": 83,
+      "failures": [],
+      "contact_sampling_interval_s": 0.005,
+      "live_three_ms_gap_independently_proven": false
+    }
+  ],
+  "result_sha256": "07927837028efda0b846a4be0c099074a424a0f464d92aca7665020bab705ca8",
+  "verifier_sha256": "50c6fa8fd85be39e79364dcb49c17010d5a56b49e94f7b24e9575fcc80452d77",
+  "engine_version": "3.16.0",
+  "whole_paper_validated": false,
+  "electrical_continuity_validated": false,
+  "scope": "One 24 AWG extension end and selected passive terminal: insertion, screw operation, robot pull test, withdrawal and return. No paired circuit or fine-wire transition."
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Diagnose loaded control from an explicitly restored grasp checkpoint.\n\nThe frozen isolated actor first consumes every original sensor packet up to\nthe checkpoint. Physics then starts from a recorded held-tool state. This is\nnot a continuous pickup/carry recording, independent replay, or skill result.\nThe separate full run must execute its own pickup and carry without resets.\n",
+  "physical_execution": true,
+  "continuous_pickup_carry": false,
+  "qualified_carry": false,
+  "source_result_sha256": "c6f701a38e7efcda1027153bc2b34d294d77224164110090ae5de93658604361",
+  "actor_contract_sha256": "c2e9dd0c6caadbd520ea8c5f602a9eeb4ebeceaaa303dacec1d2c026858d7ca1",
+  "script_sha256": "f70d72c852689c28b081bdd428f3ca95354e7710641aaf9e274dfe9bb5a590e0",
+  "checkpoint_time_s": 49.9880000005359,
+  "requested_continuation_s": 45.0,
+  "checkpoint_phase": "hold",
+  "native_prelift_measurement_requested": false,
+  "prefix_packets_replayed": 49988,
+  "maximum_prefix_response_error": 0.0,
+  "restored_original_step_q_error": 6.780505671235485e-14,
+  "restored_original_step_v_error": 6.780505671599713e-10,
+  "tool_actuation_native": {
+    "file": "tool_actuation_native.npz",
+    "sha256": "1e1120b97e6e39071bfccda6f2ec17a26fac8d9bee5b48258507e8e88a2cfd4e",
+    "samples": 10020,
+    "sample_period_s": 0.0001,
+    "evaluator_only": true,
+    "continuous_pickup_and_tool_use": false,
+    "qualified_tool_actuation": false
+  },
+  "failure": "RuntimeError: Conic balance QP rejected: {'status': 'clarabel:AlmostSolved', 'status_val': 0, 'iter': 14, 'prim_res': 5.684341886080802e-14, 'dual_res': 1.5335753903980478e-06}",
+  "wall_seconds": 194.59822338900995,
+  "trace_sha256": "9d601095e374e2939c6361d9c9c2a4b0e32b8839022c619eac84473feef8ce3c"
+}

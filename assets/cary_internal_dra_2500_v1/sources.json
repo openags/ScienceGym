@@ -1,0 +1,42 @@
+{
+  "model": "Cary internal DRA 2500, legacy 0010081100",
+  "units": "m",
+  "manufacturer_CAD": false,
+  "sources": [
+    {
+      "id": "INTERNAL_DRA_MANUAL",
+      "url": "https://mmrc.caltech.edu/Cary%20UV-Vis%20Int.Sphere/manuals/Cary%20manuals/4000_5000_6000i_Internal%20DRA.pdf",
+      "sha256": "d5a5f26ba53b9c00418e18ab34eb670e7584b0a273c9fad4b573fb11db07330a",
+      "authorship": "Varian Cary WinUV Help, manufacturer-authored manual mirrored by Caltech",
+      "review": "PDF pp. 9-19, 33-42: sphere/port dimensions, envelope and mass, removable S/D cap, sample clamps, reference disks, installation and reflection handling; figures 10 and 11 visually inspected.",
+      "redistributed": false
+    },
+    {
+      "id": "LEGACY_EXTENDED_BAY",
+      "url": "https://mmrc.caltech.edu/Cary%20UV-Vis%20Int.Sphere/manuals/Cary%20manuals/4000_6000i_extended_sample_compartment.pdf",
+      "sha256": "e2dd2720de6d7db51ba7ba0a8f5e17a4ff284c24df37171677d9e5942d7f1c46",
+      "review": "Legacy required 0010079800 extension: 154 x 212 x 170 mm interior, approximately 180 mm added depth, keyhole mount and removable/hinged cover. Keep separate from 2021 flyer dimensional statement.",
+      "redistributed": false
+    }
+  ],
+  "vendor_resource_search": {
+    "date": "2026-10-19",
+    "queries": [
+      "Agilent internal DRA 2500 CAD STEP",
+      "Cary internal DRA 2500 0010081100 installation manual"
+    ],
+    "result": "Manufacturer-authored dimensional manual and photographs found; no downloadable model CAD located in these searches."
+  },
+  "variant_resolution": [
+    "The paper does not identify accessory generation. Legacy 0010081100 is an explicit reconstruction choice.",
+    "Use the manual 16 mm reflectance port and 140 x 340 x 200 mm, 5 kg module. Later sample-size tables do not replace these interface dimensions.",
+    "This is the internal 110 mm sphere, not the external 150 mm sphere or a generic cylinder.",
+    "15-pin D-range connector with two high-voltage pins is stated by the manual, but exact contact layout and mating dimensions are unresolved. No invented pin array or electrical/mating credit."
+  ],
+  "inferences": [
+    "Local housing proportions, sphere location, cap-carrier geometry, clamp shape, spring geometry and lock-down foot/pin sizes are inferred.",
+    "Reference holder dimensions are inferred around the source 44.45 mm diameter and 6 mm PTFE layer.",
+    "Optical paths, detector function, contact compliance and force requirements are not qualified by the static asset.",
+    "The 5 kg source module exceeds the current 3 kg Panda payload. Installation requires an adequately rated handler or a physically modeled support assist; it cannot receive credit from the current Panda lift."
+  ]
+}

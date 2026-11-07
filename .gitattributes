@@ -1,0 +1,37 @@
+# Keep content-addressed robot sources, recordings and verification inputs exact.
+/assets/unitree_h2_v1/** -text
+/simulation/humanoid_v1/** -text
+/assets/cooling_lab_v1/** -text
+/viewer/lab_review_v1/** -text
+/assets/g1_sensor_rig_v1/** -text
+# Preserve vendor whitespace and legacy-encoded CAD headers as source evidence.
+/assets/g1_sensor_rig_v1/vendor/** -whitespace
+/assets/g1_sensor_rig_v1/vendor/**/*.STEP -diff
+/assets/g1_sensor_rig_v1/geometry/*.step -diff -whitespace
+# Generated trajectories and frozen evidence stay byte-exact across checkouts.
+# GitHub may collapse these data files; executable reviewers remain visible.
+/simulation/g1_cooling_demo/runs/** -text
+/simulation/g1_cooling_demo/runs/dex3_station_carry_*/policy_source/** -whitespace
+/simulation/g1_cooling_demo/runs/dex3_station_carry_*/actor_bundle/model/policy/** -whitespace
+/viewer/cooling_concept_v2/previews/** -text linguist-generated=true
+/viewer/cooling_concept_v2/audits/** -text linguist-generated=true
+/viewer/cooling_concept_v2/single_measurement_episode.json -text linguist-generated=true
+# Preserve upstream locomotion source snapshots, including vendor whitespace.
+/simulation/g1_cooling_demo/runs/*/locomotion_policy_source/reference/** -text -whitespace
+/simulation/g1_cooling_demo/locomotion_policy/reference/action_manager.h -text -whitespace
+# Official walking weights, licenses and references are pinned by byte hashes.
+/simulation/g1_cooling_demo/locomotion_groot_policy/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3*_walking_*/policy_source/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3*_walking_*/actor_bundle/model/policy/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_groot_waypoint_*/policy_source/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_groot_station_*/policy_source/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_groot_waypoint_*/actor_bundle/model/policy/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_groot_station_*/actor_bundle/model/policy/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_station_pickup_*/policy_source/** -text -whitespace
+/simulation/g1_cooling_demo/runs/dex3_station_pickup_*/actor_bundle/model/policy/** -text -whitespace
+/simulation/g1_cooling_demo/runs/*/plant_only_sentinel binary
+# Frozen evaluator inputs include upstream URDF bytes with CRLF line endings.
+/simulation/g1_cooling_demo/runs/*/source_snapshot/** -text
+/simulation/g1_cooling_demo/runs/*/source_snapshot/*.urdf -whitespace
+/simulation/g1_cooling_demo/runs/*/review_tools/** -text
+/simulation/g1_cooling_demo/runs/*/review_tools/**/*.urdf -whitespace

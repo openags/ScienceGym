@@ -1,0 +1,56 @@
+{
+  "main_sha256": "61aeeee09edffef28d8a0410fb6ee0dd550029fc204888302d1b4fa32aa5cb84",
+  "camera_only_injection": "\nwindow.referencePreview=(t,closeup)=>{\n renderAt(t);const r=robotAt(t),target=new THREE.Vector3().setFromMatrixPosition(r.referenceState.reference);\n if(closeup){camera.position.copy(target).add(V([-.45,-.4,.35]));camera.lookAt(target.clone().add(V([0,0,.06])));}\n else{camera.position.set(r.position.x-1.1,r.position.y-1.6,1.85);camera.lookAt(r.position.clone().add(V([0,.2,.80])));}\n renderer.render(scene,camera);return renderer.domElement.toDataURL('image/jpeg',.95).split(',')[1];\n};\n",
+  "records": [
+    {
+      "file": "close_grip.jpg",
+      "time_s": 131.56157761829945,
+      "closeup": false
+    },
+    {
+      "file": "close_grip_closeup.jpg",
+      "time_s": 131.56157761829945,
+      "closeup": true
+    },
+    {
+      "file": "lift.jpg",
+      "time_s": 134.69938125060693,
+      "closeup": false
+    },
+    {
+      "file": "lift_closeup.jpg",
+      "time_s": 134.69938125060693,
+      "closeup": true
+    },
+    {
+      "file": "sidestep.jpg",
+      "time_s": 140.21218488291439,
+      "closeup": false
+    },
+    {
+      "file": "sidestep_closeup.jpg",
+      "time_s": 140.21218488291439,
+      "closeup": true
+    },
+    {
+      "file": "seat_in_cap.jpg",
+      "time_s": 146.27549164056796,
+      "closeup": false
+    },
+    {
+      "file": "seat_in_cap_closeup.jpg",
+      "time_s": 146.27549164056796,
+      "closeup": true
+    },
+    {
+      "file": "release_grip.jpg",
+      "time_s": 146.89142324056797,
+      "closeup": false
+    },
+    {
+      "file": "release_grip_closeup.jpg",
+      "time_s": 146.89142324056797,
+      "closeup": true
+    }
+  ]
+}

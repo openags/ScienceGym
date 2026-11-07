@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "selected_product": "KNIPEX 95 61 190 forged wire-rope cutter",
+  "selection_status": "ordinary_tool_candidate_not_robot_qualified",
+  "purpose": "Separate tool candidate for the selected tripod guy and ground wire; the existing electronic flush cutter is not assumed suitable for steel rope.",
+  "sources": [
+    {
+      "id": "KNIPEX_9561190_MANUFACTURER_DATASHEET_2021",
+      "url": "https://www.farnell.com/datasheets/3709540.pdf",
+      "publisher": "KNIPEX Werk; manufacturer-authored document hosted by distributor",
+      "document_date": "2021-07-05",
+      "sha256": "82f717b987225808eadd1a1504b2069f3fe7fd3297815372bf29c1932718526f",
+      "locator": "Page 1 product photograph, dimensions and capacity table; page 2 three use photographs and cutaway of the adjustable bolted joint and internal opening spring",
+      "inspected_at": "2026-10-26",
+      "visual_inspection": "Both rendered pages inspected. Embedded original product/use/cutaway images extracted locally for reference; source images are not redistributed."
+    },
+    {
+      "id": "KNIPEX_9561190_MANUFACTURER_DATASHEET_2022",
+      "url": "https://www.knipex-tools.com/sites/default/files/Product%20data%20sheet%20EN%2095%2061%20190.pdf",
+      "document_date": "2022-12-12",
+      "locator": "Page 1 manufacturer dimensions and distinct wire-rope/copper-wire capacity rows; web PDF extraction inspected",
+      "retrieval_limit": "Direct local download returned HTTP 403; raw bytes and a PDF hash were not obtained. Do not substitute the older distributor PDF hash for this revision.",
+      "inspected_at": "2026-10-26"
+    },
+    {
+      "id": "KNIPEX_9561190_US_PRODUCT_PAGE",
+      "url": "https://www.knipex-tools.com/products/cable-and-wire-rope-shears/wire-rope-shears/wire-rope-shears-tethered-attachment/9561190",
+      "locator": "Product identity, published inch dimensions and wire-rope capacity; page accessed through web tool",
+      "retrieval_limit": "Local page/gallery download returned HTTP 403. No raw page or photo hash is claimed.",
+      "inspected_at": "2026-10-26"
+    },
+    {
+      "id": "ONSET_TRIPOD_TOOL_REQUIREMENT",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/12317-B%20MAN-TRIPOD.pdf",
+      "sha256": "60ecc89d71d541b316ae193b1e6519a8693a71b73baee478a7cbbc41e6d4862e",
+      "locator": "Page 1 separately lists wire cutters and cable cutters for guy/ground wire; later instructions cut the selected guy and ground lengths",
+      "inspected_at": "2026-10-26"
+    }
+  ],
+  "manufacturer_facts": {
+    "article_number": "95 61 190",
+    "ean": "4003773040651",
+    "catalogue_envelope_mm": [190, 60, 20],
+    "catalogue_envelope_jaw_state_specified": false,
+    "mass_g": 310,
+    "handles": "plastic-coated",
+    "head": "polished",
+    "body_material": "forged chrome-vanadium steel",
+    "adjustable_bolted_joint": true,
+    "internal_opening_spring": true,
+    "crimping_dies": 2,
+    "cutting_capacity_diameter_mm": {
+      "wire_rope": 5.0,
+      "multiple_stranded_copper": 7.0,
+      "fine_stranded_copper": 6.0,
+      "medium_hard_wire": 4.0,
+      "piano_wire": 2.5,
+      "iron": 4.0
+    }
+  },
+  "source_differences": [
+    "The US product page lists 7 1/2 by 1 3/4 by 13/16 inches, approximately 190.5 by 44.45 by 20.6375 mm, while both inspected manufacturer datasheet versions list 190 by 60 by 20 mm. They must not be silently averaged or treated as one exact jaw configuration.",
+    "The US page describes wire rope up to 13/64 inch, approximately 5.159 mm; the manufacturer metric table gives 5.0 mm. Use the explicit metric table for the candidate applicability record.",
+    "The 6 mm figure belongs to fine-stranded copper cable, not the wire-rope row."
+  ],
+  "modeling_policy": {
+    "official_cad_retrieved": false,
+    "basis": "Original reconstruction constrained by the manufacturer dimensions, photographs and joint cutaway; no downloaded manufacturer CAD claim.",
+    "length_reference_mm": 190,
+    "closed_width_selection_mm": 44.45,
+    "closed_width_basis": "Candidate interpretation of the US width and closed product-photo proportions; it does not resolve the metric 60 mm catalogue envelope or identify its jaw state.",
+    "thickness_reference_mm": 20,
+    "opening_angle_manufacturer_known": false,
+    "local_dimensions_inferred": [
+      "Forged profiles, blade bevels, crimp shapes and all local radii",
+      "Pivot bore, shoulder, thread clearance, washers and screw dimensions",
+      "Spring wire, coil count, cavity and spring ends",
+      "Grip cross-sections, coating thickness and exact overlap with forged arms",
+      "Selected inspection opening; no manufacturer joint limit or cutting-force claim"
+    ]
+  },
+  "cad_search": {
+    "date": "2026-10-26",
+    "queries": ["Knipex 95 61 190 CAD STEP, restricted to knipex.com, knipex-tools.com and github.com"],
+    "outcome": "No official or reproducibly licensed STEP/STL was retrieved in this search; manufacturer-authored dimension and mechanism references are available."
+  },
+  "reuse": {
+    "source_images_and_pdf": "Reference use only; not copied into the repository",
+    "planned_geometry": "Independently authored candidate with source facts and inferences kept separate"
+  },
+  "limits": [
+    "The selected station's 3 mm wire envelopes are themselves hypotheses; a catalogue capacity does not establish their actual material grade or cutting force.",
+    "Wire rope, copper cable and solid piano wire are distinct material cases. A 3 mm piano-wire request exceeds this tool's quoted 2.5 mm row.",
+    "Grasp span, contact, handle forces, severing, deformation and cut-end behavior require later validation after scene acceptance."
+  ],
+  "robot_use_qualified": false,
+  "owner_acceptance": null
+}

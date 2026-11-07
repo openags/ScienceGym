@@ -1,0 +1,133 @@
+{
+  "passed": true,
+  "outcomes": [
+    {
+      "case": "16um",
+      "passed": true,
+      "expected_supported": true,
+      "observation": {
+        "position_m": [
+          -1.2658823936254403e-13,
+          2.4949707730967772e-12,
+          0.06040223279205887
+        ],
+        "tilt_rad": 0.0,
+        "speed": 3.3436005362420583e-08,
+        "support_vertical_force_n": 0.6267481947531466,
+        "assembly_weight_n": 0.6267452073141392,
+        "max_edge_strain": 0.0013149383500823397,
+        "valid": true
+      },
+      "physics_steps": 3000
+    },
+    {
+      "case": "50um",
+      "passed": true,
+      "expected_supported": true,
+      "observation": {
+        "position_m": [
+          -1.3672925204361201e-13,
+          2.5111021054505294e-12,
+          0.06044469330860294
+        ],
+        "tilt_rad": 3.942476676500724e-08,
+        "speed": 5.2552217506114344e-05,
+        "support_vertical_force_n": 0.6345187929724737,
+        "assembly_weight_n": 0.6345195390927357,
+        "max_edge_strain": 0.0006404573991951601,
+        "valid": true
+      },
+      "physics_steps": 3000
+    },
+    {
+      "case": "half_timestep",
+      "passed": true,
+      "expected_supported": true,
+      "observation": {
+        "position_m": [
+          -1.2652185320275686e-13,
+          2.494887847566595e-12,
+          0.06040223295275243
+        ],
+        "tilt_rad": 0.0,
+        "speed": 6.697790981108885e-08,
+        "support_vertical_force_n": 0.6267256815862707,
+        "assembly_weight_n": 0.6267452073141392,
+        "max_edge_strain": 0.0013149116559227902,
+        "valid": true
+      },
+      "physics_steps": 6000
+    },
+    {
+      "case": "mesh12_reference",
+      "passed": true,
+      "expected_supported": true,
+      "observation": {
+        "position_m": [
+          7.65340421005029e-09,
+          -1.900067820929673e-09,
+          0.06033539381741383
+        ],
+        "tilt_rad": 0.0,
+        "speed": 0.002016397666724137,
+        "support_vertical_force_n": 0.626829904841239,
+        "assembly_weight_n": 0.6267452073141379,
+        "max_edge_strain": 0.002124838036989596,
+        "valid": true
+      },
+      "physics_steps": 3000
+    },
+    {
+      "case": "missing_lower",
+      "passed": true,
+      "expected_supported": false,
+      "observation": {
+        "position_m": [
+          1.1441131731124926e-07,
+          4.2441156608936747e-07,
+          0.05285704266374698
+        ],
+        "tilt_rad": 5.9938105238819674e-05,
+        "speed": 6.922571416549966e-05,
+        "support_vertical_force_n": 0.6330449727361168,
+        "assembly_weight_n": 0.6257615126335495,
+        "max_edge_strain": 0.006965083209012457,
+        "valid": false
+      },
+      "physics_steps": 3000
+    },
+    {
+      "case": "missing_both",
+      "passed": true,
+      "expected_supported": false,
+      "observation": {
+        "position_m": [
+          -2.4042355465057047e-10,
+          -4.141433292595464e-10,
+          0.003199997940324061
+        ],
+        "tilt_rad": 0.0,
+        "speed": 5.003900257653804e-13,
+        "support_vertical_force_n": 0,
+        "assembly_weight_n": 0.62477781795296,
+        "max_edge_strain": 0,
+        "valid": false
+      },
+      "physics_steps": 3000
+    }
+  ],
+  "mesh_refinement": {
+    "reference_sectors": 12,
+    "selected_sectors": 8,
+    "vertical_position_difference_m": 6.683897464503791e-05,
+    "tolerance_m": 0.0003
+  },
+  "input_sha256": {
+    "test_selected_membrane.py": "45a5853a8dc6b26a7df5bc1ac35db59b4e5787249416e042e396d4ae43fc6860",
+    "membrane.py": "05cdcb924b012f24079565cd3a6abf728d794e7a18f30fe8d2e9059785102f9c",
+    "test_membrane.py": "066a855f24519fbef4f04a228a2c1f82b3b766f249921e9fc311c8ad701c2b35"
+  },
+  "engine_version": "3.16.0",
+  "scope": "Static contact support, 16/50 um sheets, time-step and mesh sensitivity, missing-sheet counterexamples. Ideal permanent bonds and inextensible cloth; no adhesion or rupture calibration.",
+  "whole_paper_validated": false
+}

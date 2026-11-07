@@ -1,0 +1,84 @@
+{
+  "scope": "Finish independent evidence for one identified Dex3 FTIR recording.\n\nProcessing completion is separate from the physical and controller verdicts.\nThe frozen review tools never change the recorded actor or plant trajectory.\n",
+  "status": "processed",
+  "process_pid": 4111657,
+  "runner_pid": 4093514,
+  "runner_start_ticks": "78045610",
+  "review_source_sha256": {
+    "verify_dex3_limits.py": "b9ba96f0362a549770b1b21591f7a45dcb204a034daca9bab533a07a8ffb84a6",
+    "verify_dex3_ftir_controller.py": "b7d331a46d9ebd5f682b9e3d64aabd3332be3ff476af9060b5aaa0bc409040b0",
+    "render_dex3_ftir_press.py": "c3e2f8030e25b1e972828c0402b5ed3350bb9a75593ad13f07b7dd62361fb75c",
+    "sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3",
+    "verify_dex3_ftir_press.py": "a40e4246a30f178a099f9bf2c1e1268d224ee8627897ebe4b40346f72cf58016",
+    "analysis/g1_dex3_comparison_01/g1_29dof_with_hand_rev_1_0.urdf": "97da67732d067c3147fc5fb7b7bafc8982718f4e7f8c92ff82266a4d9c07200d"
+  },
+  "qualified_ftir_press": false,
+  "qualified_paper_branch": false,
+  "execution_failure": "Robot pose did not reach press",
+  "result_sha256": "91a30546eb054c1e168c3ec73d129fb263ca1a08c126430253805e880f0917c6",
+  "jobs": {
+    "controller": {
+      "pid": 4138125,
+      "status": "terminal",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01/review_tools/verify_dex3_ftir_controller.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01"
+      ],
+      "exit_code": 0
+    },
+    "physics": {
+      "pid": 4138126,
+      "status": "terminal",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01/review_tools/verify_dex3_ftir_press.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01"
+      ],
+      "exit_code": 1
+    },
+    "limits": {
+      "pid": 4138127,
+      "status": "terminal",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01/review_tools/verify_dex3_limits.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01"
+      ],
+      "exit_code": 0
+    },
+    "render": {
+      "pid": 4138128,
+      "status": "terminal",
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01/review_tools/render_dex3_ftir_press.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_ftir_press_01"
+      ],
+      "exit_code": 0
+    }
+  },
+  "verdicts": {
+    "physical_press_review.json": {
+      "sha256": "a06410a9b669ef8b9a6203e2deca50ea5fa9265e34f6be6ec7a7c5bef6ef373e",
+      "passed": false
+    },
+    "controller_replay.json": {
+      "sha256": "53bd9917204e2f5d1df55d2e083553d19b92fe3313e6a161a5a6502a232f3281",
+      "passed": true
+    },
+    "source_limit_review.json": {
+      "sha256": "bc5d49a67410b6e9db7f0274f636b4012b0fca29b1eb119fb5e168e14d804b45",
+      "passed": true
+    },
+    "press_video.json": {
+      "sha256": "92b493155485629de3ae2f4bee1a78920d3b419ed4ad0fc9079d4831d219d071",
+      "passed": null
+    }
+  }
+}

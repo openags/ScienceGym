@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-24",
+  "selection_basis": "Authored ordinary laboratory tool selections; paper does not identify these catalog models",
+  "cad_search": "Inspected manufacturer product/catalog references; no reusable CAD obtained in this pass; original geometry reconstructed",
+  "sources": [
+    {
+      "id": "MITUTOYO_CATALOG",
+      "url": "https://www.mitutoyo.com/webfoo/wp-content/uploads/D_section.pdf",
+      "locator": "PDF page 10 / printed D-10, dimensions table and series photographs",
+      "sha256": "091b8745cc19af75613288739cb9be2a1f8d8e8418110f693630379d34297da7",
+      "inspected": true
+    },
+    {
+      "id": "MITUTOYO_SKU",
+      "url": "https://mitutoyo.com/products/small-tool-instruments-and-data-management/calipers/vernier-calipers/vernier-scale-caliper/",
+      "locator": "530-104 row",
+      "inspected": true
+    },
+    {
+      "id": "WIHA_SKU",
+      "url": "https://www.wihatools.com/products/precision-phillips-driver-00-x-40mm",
+      "locator": "26100 description and specifications",
+      "inspected": true
+    },
+    {
+      "id": "WIHA_PRECISION_CATALOG",
+      "url": "https://assets.testequity.com/te1/Documents/pdf/wiha/Wiha_Professional-Screwdrivers-and-Nut-Drivers_Catalog_0725.pdf",
+      "sha256": "912567b2096c2b04caa54b881322a0a0df9a6047388ffd9a71e2c6a774d1c0bf",
+      "locator": "Manufacturer-authored catalog hosted by distributor; printed/PDF page 20, 26100 row: PH00, 40 mm blade, 2 mm shaft, 120 mm overall; metric actual, inch approximate",
+      "inspected_at": "2026-10-26",
+      "inspected": true
+    },
+    {
+      "id": "WIHA_26100_PHOTO",
+      "url": "https://www.wihatools.com/cdn/shop/files/rbuna4vrp6i0ntmad8eo_013488c8-1d6c-4beb-848f-1646d6302e49_1800x.jpg?v=1776760193",
+      "sha256": "290b723f0f3883ac3ca8838aacb2ecba75208aa638ebccd35902392b4469f2b4",
+      "locator": "Visible 261 / PH00 x40 marking, narrow hex grip toward blade, broader rear grip and red cap; tapered Phillips tip",
+      "inspected_at": "2026-10-26",
+      "inspected": true
+    },
+    {
+      "id": "BUERKLE_CATALOG",
+      "url": "https://www.buerkle.de/assets-original/Redaktionscontent/Produktkatalog/Katalog/buerkle_catalogue_2024_english_no_prices.pdf",
+      "locator": "PDF page 218 / printed 216, shallow-form bowl, 4208-0022",
+      "sha256": "af868a442dcfd0b47a324b2b578d5740d572bb5c481fd52a6e5794f646249621",
+      "inspected": true
+    }
+  ],
+  "rights": "Reference documents and photographs not redistributed. Geometry and original scale marks authored here.",
+  "items": {
+    "mitutoyo_530_104": {
+      "identity": "Mitutoyo 530-104 vernier caliper",
+      "source_dimensions_mm": {
+        "L": 229,
+        "a": 40,
+        "b": 21,
+        "c": 17,
+        "d": 16,
+        "range": 150
+      },
+      "source_mass_g": 143,
+      "source_resolution_mm": 0.05,
+      "inferences": [
+        "Local jaw contours, slider thickness and lock screw dimensions",
+        "Open review pose 20 mm; inspection displacement 130 mm",
+        "Only metric marks currently authored; inch markings and fine legends remain unresolved"
+      ],
+      "interfaces": [
+        "sliding jaw",
+        "fixed and moving measuring faces",
+        "lock screw",
+        "depth rod"
+      ],
+      "qualification": "Visual candidate; not a calibrated sensing device"
+    },
+    "wiha_26100": {
+      "identity": "Wiha 26100 precision Phillips #00 x 40 mm",
+      "source_blade_length_mm": 40,
+      "source_overall_length_mm": 120,
+      "source_shaft_diameter_mm": 2,
+      "catalog_overall_length_in": 4.7,
+      "product_page_width_in": 0.5,
+      "dimension_resolution": "Use actual 120 mm catalog length, not 119.38 mm converted from rounded 4.7 inch. Product-page width is not an independently dimensioned handle drawing.",
+      "inferences": [
+        "Photograph-guided taper, selected 12.7 mm grip diameter, seven-millimetre cap and five-millimetre buried shaft are inferred; no manufacturer CAD obtained",
+        "Closed tapered four-flute Phillips tip remains an inferred candidate, not a gauged PH00 drive profile",
+        "Original PH00 size text and selected material appearance; no copied manufacturer logo"
+      ],
+      "interfaces": [
+        "grip",
+        "free turning cap",
+        "Phillips tip"
+      ],
+      "qualification": "No compatibility asserted with all pilot fasteners or DAQ terminals"
+    },
+    "buerkle_4208_0022": {
+      "identity": "Buerkle 4208-0022 shallow stainless bowl",
+      "source_dimensions_mm": [
+        300,
+        200,
+        50
+      ],
+      "inferences": [
+        "Wall thickness 1.2 mm and corner radii 18-22 mm selected from photograph",
+        "No invented handles, docks or latches"
+      ],
+      "interfaces": [
+        "ordinary rim grasp",
+        "bottom support",
+        "open cavity"
+      ],
+      "qualification": "No load rating, retention or large-cooler carriage qualification"
+    }
+  }
+}

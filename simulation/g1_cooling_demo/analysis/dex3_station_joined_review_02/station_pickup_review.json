@@ -1,0 +1,41 @@
+{
+  "scope": "Join independent walking, station handoff and actual pickup evidence.\n\nRun the frozen attempt's controller and continuous-physics replay first. This\nreview checks that those results belong to one uninterrupted trace and that\narrival, posture preparation and sensor-based manipulation occur in order.\nIt cannot qualify a paper branch, tool actuation, or repeated reliability.\n",
+  "passed": false,
+  "checks": {
+    "controller_replay": true,
+    "continuous_physics_and_tool_outcome": false,
+    "source_motor_limits": true,
+    "uninterrupted_stage_order": true,
+    "actual_station_arrival": true,
+    "actual_preparation_posture": true,
+    "both_feet_lift_before_arrival": true,
+    "controller_attempt_completed": false,
+    "no_return_to_walking": true
+  },
+  "metrics": {
+    "arrival_position_error_m": 0.11224479610762961,
+    "arrival_heading_error_rad": 0.009955485420517312,
+    "maximum_last_second_arrival_speed_m_s": 0.022500275425121456,
+    "prepared_joint_error_rad": 0.0226571597531032,
+    "prepared_joint_speed_rad_s": 1.659940453709665e-05,
+    "maximum_each_sole_lift_before_arrival_m": [
+      0.038103943937168094,
+      0.041224564816199565
+    ],
+    "stage_times_s": [
+      13.159999999982668,
+      24.16199999995703,
+      24.799999999955542,
+      27.599999999949016
+    ]
+  },
+  "trace_sha256": "4b6ba0abdfd68baa617b336ac69bac5dbdbfa85039bbc3c50e873ac8c8577353",
+  "contract_sha256": "b4de7d55ca75d79a2a23c685a3ebd990538493d34b94a6ae9471894fa7bae8fa",
+  "physical_review_sha256": "6c6e3aaebd879491758876c148efc645fb290250280213d7abd4e1468837c8cc",
+  "controller_review_sha256": "d3e0e76fc1c38d0567f4794f2475f4dc9162a4dea288800aa17505a39a6b6b03",
+  "source_limits_review_sha256": "f4be7411e9ce8db3b1632f981fa5daf33dc1cda1b1047da2805d2de92d102989",
+  "verifier_sha256": "fead54fdd3894484ed644dafd3b4962f289c207aea2e4e3b2e91e817a51e45a1",
+  "qualified_repeated_navigation": false,
+  "qualified_repeated_grasp": false,
+  "qualified_paper_branch": false
+}

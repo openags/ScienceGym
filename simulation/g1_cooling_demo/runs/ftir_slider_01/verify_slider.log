@@ -1,0 +1,51 @@
+QH7089 qhull precision warning: The initial hull is narrow.  Is the input lower
+dimensional (e.g., a square in 3-d instead of a cube)?  Cosine of the minimum
+angle is 0.9999999999999996.  If so, Qhull may produce a wide facet.
+Options 'Qs' (search all points), 'Qbb' (scale last coordinate), or
+'QbB' (scale to unit box) may remove this warning.
+See 'Limitations' in qh-impre.htm.  Use 'Pp' to skip this warning.
+verify_slider 0 / 49197
+verify_slider 2500 / 49197
+verify_slider 5000 / 49197
+verify_slider 7500 / 49197
+verify_slider 10000 / 49197
+verify_slider 12500 / 49197
+verify_slider 15000 / 49197
+verify_slider 17500 / 49197
+verify_slider 20000 / 49197
+verify_slider 22500 / 49197
+verify_slider 25000 / 49197
+verify_slider 27500 / 49197
+verify_slider 30000 / 49197
+verify_slider 32500 / 49197
+verify_slider 35000 / 49197
+verify_slider 37500 / 49197
+verify_slider 40000 / 49197
+verify_slider 42500 / 49197
+verify_slider 45000 / 49197
+verify_slider 47500 / 49197
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/verify_ftir_slider.py", line 143, in <module>
+    if not verify(a.folder)['passed']:raise SystemExit(1)
+           ^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/verify_ftir_slider.py", line 135, in verify
+    (folder/'physical_slider_review.json').write_text(json.dumps(report,indent=2)+'\n')
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

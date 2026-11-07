@@ -1,0 +1,26 @@
+{
+  "attempt": "ftir_slider_02",
+  "change": "Apply desired tactile push load at encoder-predicted index surface point instead of wrist reference, including its moment and finger DOFs.",
+  "evidence_before_attempt": {
+    "first_attempt_maximum_travel_m": 0.016578143753824118,
+    "first_attempt_failure": "Distal tactile contact lost; sampled contact moves to index-2 link near 48 s.",
+    "finger_deflection_normal_peak_observed_m": 7.359704005358953e-05,
+    "wrist_error_normal_near_contact_loss_m": 0.005858205030805107,
+    "surface_load_virtual_work_regression_passed": true
+  },
+  "causality": "Model omission confirmed; physical efficacy of correction unproven.",
+  "unchanged": [
+    "source geometry",
+    "motor and joint limits",
+    "2 mm free-space clearance",
+    "2 N desired load",
+    "6 N force abort",
+    "70 mm window goal",
+    "contact evaluation thresholds"
+  ],
+  "source_sha256": {
+    "simulation/g1_cooling_demo/balance.py": "ea90b7b2aec7c1b5a4b9e8f4d797919937c3182f6b1e97a2445b535ef2c69dc8",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "70956a3b2bd557579484968f846ac08efa42ce2a8c0393249956bc1fa1462940",
+    "simulation/g1_cooling_demo/verify_ftir_slider.py": "64bbde1f093f564b3ab9c631b7d9368cb1843a1addbe9372f55ce75972d9c3d1"
+  }
+}

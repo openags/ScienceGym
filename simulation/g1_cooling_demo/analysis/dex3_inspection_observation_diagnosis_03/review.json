@@ -1,0 +1,1742 @@
+{
+  "scope": "Attribute a failed held-tool observation using retained frames and states.\n\nThis evaluator-only diagnostic reconstructs camera frames from recorded plant\nstates. Those calibration/segmentation values never enter a controller. It\ntests appearance and search-window hypotheses, not online pose qualification.\n",
+  "source_result_sha256": "999f727ab1bf27ffa0961d0872e58fb968c7df9ce4ba2e95c165befb1735b242",
+  "source_trace_sha256": "d3294715e1715a588b1c19edcef6062f8ccbe0d44a65e45aad67bf308ed15ba2",
+  "actor_contract_sha256": "65190df7d9fc5b51eb3cafb0e3fe51e4a2a2f24edd84455bb94b36a54eb4e6f7",
+  "source_sha256": {
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "tool_pose.py": "67de6054658aa84b3298497e5912c793c4de8403bbedbe3aa837b1b53f49bf81",
+    "diagnose_inspection_observation.py": "7372d8a2e09f2a0271183c7b5b549fbf1f121ba1bb2c588b2370f88de57a548f",
+    "held_tool_observation.py": "325dce5dd9f528cb2817430a942e89159043e7044654a3c9a5c49babd73b3c66",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "sensor_rendering.py": "c1814bb34cf29b02f8b852fdf4bf64ca370c56cf5ac2152ac11261135c6052a7",
+    "tool_cameras.py": "35e25d8434f115cbc70fd8941565f9f2ae2b572b49357cd66baad594acc29e8f",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3"
+  },
+  "rows": [
+    {
+      "time_s": 55.38800000071516,
+      "native_frame_sha256": "663afd4de39a15ae5d67f5976c7e4b65898161558981b1ca71d643a953a8d291",
+      "tool_depth_pixels": 1201,
+      "tool_intensity_quantiles": [
+        17.0,
+        55.0,
+        71.33333333333333,
+        78.33333333333333,
+        108.66666666666667
+      ],
+      "tool_wrist_translation_change_m": 0.004412921371134501,
+      "nominal_source_frame_origin_error_m": 0.0014381887311036765,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 321,
+              "center_m": [
+                6.071180211431477,
+                -6.472862370979812,
+                0.9729063697821045
+              ],
+              "principal_axes": [
+                [
+                  -0.8184544229292425,
+                  -0.42775991753671777,
+                  -0.38360632233650854
+                ],
+                [
+                  -0.4883878623144128,
+                  0.8696270362077732,
+                  0.07229186565889009
+                ],
+                [
+                  -0.3026708666712393,
+                  -0.24651626892654602,
+                  0.9206628457926476
+                ]
+              ],
+              "observed_spans_m": [
+                0.04460235988874052,
+                0.03981099141819967,
+                0.013125723331857773
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 3,
+              "points": 86,
+              "center_m": [
+                6.085689240192313,
+                -6.483525020549022,
+                0.9743772344721063
+              ],
+              "principal_axes": [
+                [
+                  -0.8213804429265793,
+                  -0.5665430989221268,
+                  0.06605365274872654
+                ],
+                [
+                  -0.10853321102266285,
+                  0.041551969719668715,
+                  -0.9932240310813697
+                ],
+                [
+                  -0.5599595611138776,
+                  0.8229838096075333,
+                  0.09561871700156178
+                ]
+              ],
+              "observed_spans_m": [
+                0.02632957364565435,
+                0.01770843494641488,
+                0.008699318364621199
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 5,
+              "points": 95,
+              "center_m": [
+                6.086367620813873,
+                -6.520245692889158,
+                0.9736001308122143
+              ],
+              "principal_axes": [
+                [
+                  -0.8988445326547104,
+                  -0.37166922378856365,
+                  0.232250929395647
+                ],
+                [
+                  -0.15041197595889508,
+                  -0.23613918294138628,
+                  -0.9600075644326531
+                ],
+                [
+                  -0.4116488110086996,
+                  0.8978308718061441,
+                  -0.15634891117926875
+                ]
+              ],
+              "observed_spans_m": [
+                0.02889391069255317,
+                0.01692594569414849,
+                0.0036811901139094617
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 22,
+              "points": 252,
+              "center_m": [
+                6.071102220685159,
+                -6.565130093551824,
+                0.966614606206171
+              ],
+              "principal_axes": [
+                [
+                  -0.01691394258912399,
+                  -0.7027493626881867,
+                  0.7112364246770825
+                ],
+                [
+                  0.9903930260039656,
+                  0.08586453613047354,
+                  0.10839250655744845
+                ],
+                [
+                  0.13724275058741608,
+                  -0.7062369394731814,
+                  -0.6945457600005591
+                ]
+              ],
+              "observed_spans_m": [
+                0.031187210447534065,
+                0.010346376202507146,
+                0.00556622865009221
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3386,
+              "center_m": [
+                6.070711578004562,
+                -6.511270500948723,
+                0.9755984791109936
+              ],
+              "principal_axes": [
+                [
+                  -0.006493478745797976,
+                  -0.9999320193277753,
+                  0.009684598951708413
+                ],
+                [
+                  -0.9944918911644198,
+                  0.005444375284759892,
+                  -0.10467204586695629
+                ],
+                [
+                  -0.1046122035997396,
+                  0.01031094083176973,
+                  0.994459637872332
+                ]
+              ],
+              "observed_spans_m": [
+                0.11700988507737445,
+                0.04623427026021412,
+                0.032899637955072274
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3567,
+              "center_m": [
+                6.07093794220136,
+                -6.511166087493029,
+                0.9755551498296168
+              ],
+              "principal_axes": [
+                [
+                  0.000785759037666001,
+                  0.9996982963256695,
+                  -0.024549926808215352
+                ],
+                [
+                  0.9949884881877245,
+                  0.001673075838562938,
+                  0.09997554296499209
+                ],
+                [
+                  0.09998645386571754,
+                  -0.02450545124645579,
+                  -0.9946869818704607
+                ]
+              ],
+              "observed_spans_m": [
+                0.11655230820184631,
+                0.04588228228007251,
+                0.0333926779984315
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 321,
+              "center_m": [
+                6.071180211431477,
+                -6.472862370979812,
+                0.9729063697821045
+              ],
+              "principal_axes": [
+                [
+                  -0.8184544229292425,
+                  -0.42775991753671777,
+                  -0.38360632233650854
+                ],
+                [
+                  -0.4883878623144128,
+                  0.8696270362077732,
+                  0.07229186565889009
+                ],
+                [
+                  -0.3026708666712393,
+                  -0.24651626892654602,
+                  0.9206628457926476
+                ]
+              ],
+              "observed_spans_m": [
+                0.04460235988874052,
+                0.03981099141819967,
+                0.013125723331857773
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 3,
+              "points": 85,
+              "center_m": [
+                6.086015785830804,
+                -6.483446832146828,
+                0.9741147409180003
+              ],
+              "principal_axes": [
+                [
+                  -0.7658603307165284,
+                  -0.6236495049326037,
+                  -0.15658623449105655
+                ],
+                [
+                  -0.100250236970235,
+                  0.3563534353010159,
+                  -0.928957544313289
+                ],
+                [
+                  -0.6351439551961284,
+                  0.6957539249953841,
+                  0.3354379704674705
+                ]
+              ],
+              "observed_spans_m": [
+                0.026181033374171898,
+                0.01383025840339607,
+                0.006482812651864761
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 5,
+              "points": 95,
+              "center_m": [
+                6.086367620813873,
+                -6.520245692889158,
+                0.9736001308122143
+              ],
+              "principal_axes": [
+                [
+                  -0.8988445326547104,
+                  -0.37166922378856365,
+                  0.232250929395647
+                ],
+                [
+                  -0.15041197595889508,
+                  -0.23613918294138628,
+                  -0.9600075644326531
+                ],
+                [
+                  -0.4116488110086996,
+                  0.8978308718061441,
+                  -0.15634891117926875
+                ]
+              ],
+              "observed_spans_m": [
+                0.02889391069255317,
+                0.01692594569414849,
+                0.0036811901139094617
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 22,
+              "points": 252,
+              "center_m": [
+                6.071102220685159,
+                -6.565130093551824,
+                0.966614606206171
+              ],
+              "principal_axes": [
+                [
+                  -0.01691394258912399,
+                  -0.7027493626881867,
+                  0.7112364246770825
+                ],
+                [
+                  0.9903930260039656,
+                  0.08586453613047354,
+                  0.10839250655744845
+                ],
+                [
+                  0.13724275058741608,
+                  -0.7062369394731814,
+                  -0.6945457600005591
+                ]
+              ],
+              "observed_spans_m": [
+                0.031187210447534065,
+                0.010346376202507146,
+                0.00556622865009221
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3315,
+              "center_m": [
+                6.070979014465368,
+                -6.511461008649753,
+                0.9751471130931297
+              ],
+              "principal_axes": [
+                [
+                  -0.01120721546576736,
+                  0.999418081080386,
+                  -0.03221641710529829
+                ],
+                [
+                  -0.9950053804490935,
+                  -0.01434210407592085,
+                  -0.09878561093616468
+                ],
+                [
+                  -0.09919017692725278,
+                  0.030948396731884934,
+                  0.9945871030437037
+                ]
+              ],
+              "observed_spans_m": [
+                0.11716823465737757,
+                0.04699252191453143,
+                0.031133450692163993
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1201,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3474,
+              "center_m": [
+                6.071282969212029,
+                -6.511362980753667,
+                0.9749875708482003
+              ],
+              "principal_axes": [
+                [
+                  -0.005895909904207909,
+                  0.9994449171094686,
+                  -0.032788655209520595
+                ],
+                [
+                  -0.9955546056957729,
+                  -0.008948933034285166,
+                  -0.09376003239910749
+                ],
+                [
+                  -0.09400141128906137,
+                  0.03209009600476818,
+                  0.9950547524704708
+                ]
+              ],
+              "observed_spans_m": [
+                0.11688609601135791,
+                0.0469067735235141,
+                0.031156006559950232
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        }
+      ],
+      "held_detector": {
+        "proposal": {
+          "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+          "candidate_found": true,
+          "search_points": 3568,
+          "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+          "robot_surface_exclusion_m": 0.0015,
+          "nominal_shape_search_distance_m": 0.012,
+          "partial_surface_only": true,
+          "qualified_tool_pose": false,
+          "qualified_tip_pose": false,
+          "grasp_hypothesis_is_not_an_observation": true,
+          "robot_explained_points": 2397,
+          "visible_candidate_points": 1171,
+          "observed_spans_m": [
+            0.12960709924563837,
+            0.01367018007348882,
+            0.009576869447698933
+          ],
+          "surface_fit": {
+            "position_m": [
+              6.061094186690964,
+              -6.451068829572336,
+              0.9648386795262234
+            ],
+            "rotation_matrix": [
+              [
+                0.05725371237362589,
+                0.8463523693217003,
+                0.5295372313284327
+              ],
+              [
+                -0.9979058024403141,
+                0.06450596183982185,
+                0.004794824613204316
+              ],
+              [
+                -0.03010019726496936,
+                -0.5287027972601089,
+                0.8482731460407943
+              ]
+            ],
+            "median_surface_distance_m": 0.0001933977061769244,
+            "inlier_fraction": 0.9795046968403074,
+            "score_m2": 1.7945228461553946e-07,
+            "iterations": 32
+          },
+          "fitted_origin_change_from_prior_m": 0.001072057089342245,
+          "checks": {
+            "visible_length": true,
+            "visible_width": true,
+            "visible_thickness": true,
+            "surface_residual": true,
+            "surface_inliers": true,
+            "bounded_search": true
+          }
+        },
+        "true_tool_fraction": 1.0,
+        "segmentation_supplied_to_detector": false,
+        "calibration": "Own-robot estimate from reconstructed encoders and IMU"
+      },
+      "robot_only_negative": {
+        "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+        "candidate_found": false,
+        "search_points": 2719,
+        "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+        "robot_surface_exclusion_m": 0.0015,
+        "nominal_shape_search_distance_m": 0.012,
+        "partial_surface_only": true,
+        "qualified_tool_pose": false,
+        "qualified_tip_pose": false,
+        "grasp_hypothesis_is_not_an_observation": true,
+        "robot_explained_points": 2719,
+        "visible_candidate_points": 0,
+        "reason": "insufficient_unexplained_surface"
+      }
+    },
+    {
+      "time_s": 56.388000000748356,
+      "native_frame_sha256": "0bb7975c381bc8e5858c9b8c984e07837469de0e6b49a58ec9ed61c3e437c377",
+      "tool_depth_pixels": 1204,
+      "tool_intensity_quantiles": [
+        17.0,
+        55.0,
+        70.66666666666667,
+        77.66666666666667,
+        83.0
+      ],
+      "tool_wrist_translation_change_m": 0.005846464242228857,
+      "nominal_source_frame_origin_error_m": 0.0015502432338663633,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 404,
+              "center_m": [
+                6.0742092151398355,
+                -6.47551101653176,
+                0.9731322650676368
+              ],
+              "principal_axes": [
+                [
+                  -0.9227144122936954,
+                  0.2187376576439876,
+                  -0.3174144774170235
+                ],
+                [
+                  -0.21413752160504343,
+                  -0.9755346529672602,
+                  -0.049772107659779276
+                ],
+                [
+                  -0.32053585631930487,
+                  0.022044908447729855,
+                  0.9469798238743956
+                ]
+              ],
+              "observed_spans_m": [
+                0.0410533764996648,
+                0.0362240369824335,
+                0.01548942573233853
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 4,
+              "points": 97,
+              "center_m": [
+                6.086204709529699,
+                -6.520782124002433,
+                0.9730372894341461
+              ],
+              "principal_axes": [
+                [
+                  -0.8455780229241463,
+                  -0.3514684565745563,
+                  -0.4018304756744953
+                ],
+                [
+                  -0.26266869741763377,
+                  -0.3813771378689787,
+                  0.8863163284673194
+                ],
+                [
+                  -0.4647611887245056,
+                  0.854997896338912,
+                  0.23016436455589573
+                ]
+              ],
+              "observed_spans_m": [
+                0.030043907447426514,
+                0.017328429384463037,
+                0.003948657839694091
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 25,
+              "points": 260,
+              "center_m": [
+                6.070531108230019,
+                -6.565509311775968,
+                0.9655045655953703
+              ],
+              "principal_axes": [
+                [
+                  -0.06986768221618894,
+                  -0.6588103471203808,
+                  0.74905769704934
+                ],
+                [
+                  0.9885849648131134,
+                  0.05475119289271177,
+                  0.1403640773926149
+                ],
+                [
+                  0.13348510900917945,
+                  -0.7503140898343493,
+                  -0.6474646648805317
+                ]
+              ],
+              "observed_spans_m": [
+                0.025868875253620527,
+                0.010303557010923791,
+                0.004959822255155505
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3402,
+              "center_m": [
+                6.070598500802562,
+                -6.511325521173616,
+                0.9752801729242991
+              ],
+              "principal_axes": [
+                [
+                  -0.012141605714199033,
+                  -0.9999166680240673,
+                  0.004386162141112767
+                ],
+                [
+                  -0.9930582799973552,
+                  0.011544860140395734,
+                  -0.117055408815796
+                ],
+                [
+                  -0.11699501672881354,
+                  0.0057769552521987465,
+                  0.9931156996285171
+                ]
+              ],
+              "observed_spans_m": [
+                0.11727373309506739,
+                0.0463157093507545,
+                0.03317761974913967
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3593,
+              "center_m": [
+                6.070866595130051,
+                -6.511281502503459,
+                0.9752415216411088
+              ],
+              "principal_axes": [
+                [
+                  0.005398835988835187,
+                  0.9998311819974676,
+                  -0.017563031501208533
+                ],
+                [
+                  0.9936656942660881,
+                  -0.003392437534052992,
+                  0.11232532842716421
+                ],
+                [
+                  0.11224678440230901,
+                  -0.018058207915635872,
+                  -0.9935162608222459
+                ]
+              ],
+              "observed_spans_m": [
+                0.11687210983063348,
+                0.04591760077125655,
+                0.033641061055872695
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 403,
+              "center_m": [
+                6.07424952831278,
+                -6.475474659709591,
+                0.9730738175874105
+              ],
+              "principal_axes": [
+                [
+                  -0.9220865442611855,
+                  0.21836098357797354,
+                  -0.3194916051218324
+                ],
+                [
+                  -0.21040309895100276,
+                  -0.9757918216098062,
+                  -0.05967291539073572
+                ],
+                [
+                  -0.3247875318485601,
+                  0.012198431467830189,
+                  0.9457083363413084
+                ]
+              ],
+              "observed_spans_m": [
+                0.04101932034547373,
+                0.0361684735639866,
+                0.01524503603305943
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 3,
+              "points": 95,
+              "center_m": [
+                6.085980719177963,
+                -6.520850117709178,
+                0.9730197257593234
+              ],
+              "principal_axes": [
+                [
+                  -0.8369113726893985,
+                  -0.3626037508069658,
+                  -0.4099974075087134
+                ],
+                [
+                  -0.25920367986980036,
+                  -0.39718423483160636,
+                  0.8803738614606783
+                ],
+                [
+                  -0.48207137086234453,
+                  0.8430677336382594,
+                  0.23841977663975075
+                ]
+              ],
+              "observed_spans_m": [
+                0.029903822273000657,
+                0.01763365342865022,
+                0.003878286726111409
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 24,
+              "points": 260,
+              "center_m": [
+                6.070531108230019,
+                -6.565509311775968,
+                0.9655045655953703
+              ],
+              "principal_axes": [
+                [
+                  -0.06986768221618894,
+                  -0.6588103471203808,
+                  0.74905769704934
+                ],
+                [
+                  0.9885849648131134,
+                  0.05475119289271177,
+                  0.1403640773926149
+                ],
+                [
+                  0.13348510900917945,
+                  -0.7503140898343493,
+                  -0.6474646648805317
+                ]
+              ],
+              "observed_spans_m": [
+                0.025868875253620527,
+                0.010303557010923791,
+                0.004959822255155505
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3291,
+              "center_m": [
+                6.070800032229887,
+                -6.5115182414094965,
+                0.9746494590086133
+              ],
+              "principal_axes": [
+                [
+                  -0.019945021804014473,
+                  -0.9989195821391987,
+                  -0.04197456996904063
+                ],
+                [
+                  -0.9936587275343208,
+                  0.024451555692633572,
+                  -0.10974723057592382
+                ],
+                [
+                  -0.11065500124310863,
+                  -0.03951948687747018,
+                  0.9930728477089832
+                ]
+              ],
+              "observed_spans_m": [
+                0.11733413577863686,
+                0.04672170361132712,
+                0.03114736348211674
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1204,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3461,
+              "center_m": [
+                6.071147605117428,
+                -6.511473367020901,
+                0.9745081808927794
+              ],
+              "principal_axes": [
+                [
+                  -0.013770048451290916,
+                  0.9989422133125483,
+                  -0.04387300112684371
+                ],
+                [
+                  -0.9943319472286236,
+                  -0.01830628438956191,
+                  -0.10473231913970726
+                ],
+                [
+                  -0.10542468632242703,
+                  0.04218215753224828,
+                  0.9935322345549449
+                ]
+              ],
+              "observed_spans_m": [
+                0.11725988648336227,
+                0.04665822222702281,
+                0.031090454708209057
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        }
+      ],
+      "held_detector": {
+        "proposal": {
+          "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+          "candidate_found": true,
+          "search_points": 3594,
+          "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+          "robot_surface_exclusion_m": 0.0015,
+          "nominal_shape_search_distance_m": 0.012,
+          "partial_surface_only": true,
+          "qualified_tool_pose": false,
+          "qualified_tip_pose": false,
+          "grasp_hypothesis_is_not_an_observation": true,
+          "robot_explained_points": 2418,
+          "visible_candidate_points": 1176,
+          "observed_spans_m": [
+            0.12962045365170644,
+            0.013869325528247486,
+            0.00958668368552636
+          ],
+          "surface_fit": {
+            "position_m": [
+              6.06114520903539,
+              -6.451557548401792,
+              0.96505212331478
+            ],
+            "rotation_matrix": [
+              [
+                0.05227104893037461,
+                0.8450816256321791,
+                0.5320759188899574
+              ],
+              [
+                -0.9976861968491197,
+                0.06738668977514002,
+                -0.009015911373126857
+              ],
+              [
+                -0.043474015922817744,
+                -0.5303735288077858,
+                0.8466486460625333
+              ]
+            ],
+            "median_surface_distance_m": 0.0001891824856103948,
+            "inlier_fraction": 0.9787414965986394,
+            "score_m2": 1.8426580514443754e-07,
+            "iterations": 57
+          },
+          "fitted_origin_change_from_prior_m": 0.0015832391426361036,
+          "checks": {
+            "visible_length": true,
+            "visible_width": true,
+            "visible_thickness": true,
+            "surface_residual": true,
+            "surface_inliers": true,
+            "bounded_search": true
+          }
+        },
+        "true_tool_fraction": 1.0,
+        "segmentation_supplied_to_detector": false,
+        "calibration": "Own-robot estimate from reconstructed encoders and IMU"
+      },
+      "robot_only_negative": {
+        "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+        "candidate_found": false,
+        "search_points": 2718,
+        "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+        "robot_surface_exclusion_m": 0.0015,
+        "nominal_shape_search_distance_m": 0.012,
+        "partial_surface_only": true,
+        "qualified_tool_pose": false,
+        "qualified_tip_pose": false,
+        "grasp_hypothesis_is_not_an_observation": true,
+        "robot_explained_points": 2718,
+        "visible_candidate_points": 0,
+        "reason": "insufficient_unexplained_surface"
+      }
+    },
+    {
+      "time_s": 57.18800000077491,
+      "native_frame_sha256": "39a486e60d1b0b5b569c0e2c7a2bf8e792c11b44eb1f0d2c8e1dec4cdfc8ed9a",
+      "tool_depth_pixels": 1210,
+      "tool_intensity_quantiles": [
+        16.666666666666668,
+        54.666666666666664,
+        69.66666666666667,
+        76.66666666666667,
+        108.0
+      ],
+      "tool_wrist_translation_change_m": 0.007089435643856525,
+      "nominal_source_frame_origin_error_m": 0.00164860928135912,
+      "hypotheses": [
+        {
+          "window": "nominal_grasp",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 372,
+              "center_m": [
+                6.071989801532232,
+                -6.476032089049172,
+                0.9719335949625847
+              ],
+              "principal_axes": [
+                [
+                  0.9274094741925657,
+                  0.2841427326185269,
+                  0.24325824688578462
+                ],
+                [
+                  0.2790207055599148,
+                  -0.9586497756904173,
+                  0.05601833126361347
+                ],
+                [
+                  0.2491166655338744,
+                  0.01592215653700682,
+                  -0.9683425901428147
+                ]
+              ],
+              "observed_spans_m": [
+                0.04065302695883943,
+                0.03788668757762283,
+                0.01587469990896023
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 5,
+              "points": 108,
+              "center_m": [
+                6.085110239934898,
+                -6.521453728985977,
+                0.9724587573201492
+              ],
+              "principal_axes": [
+                [
+                  -0.840600986351403,
+                  -0.2603772609016665,
+                  -0.4749670133287092
+                ],
+                [
+                  -0.3380486486759686,
+                  -0.4329545366252461,
+                  0.8356275966864489
+                ],
+                [
+                  -0.42321754792706856,
+                  0.8629913390185117,
+                  0.27592182933873793
+                ]
+              ],
+              "observed_spans_m": [
+                0.030881066518628195,
+                0.016528056371353274,
+                0.008863963278941334
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 28,
+              "points": 250,
+              "center_m": [
+                6.069924241676684,
+                -6.566190736990079,
+                0.964285980957764
+              ],
+              "principal_axes": [
+                [
+                  -0.14619113724854071,
+                  -0.5988568540771919,
+                  0.7873999109186812
+                ],
+                [
+                  0.985741774995428,
+                  -0.021149472159261103,
+                  0.16693068278853687
+                ],
+                [
+                  0.08331449104952163,
+                  -0.8005767721787544,
+                  -0.5934100836933981
+                ]
+              ],
+              "observed_spans_m": [
+                0.021972224966198516,
+                0.009683709233149547,
+                0.003806704986590413
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3406,
+              "center_m": [
+                6.070440443475097,
+                -6.511338666415309,
+                0.9750553226189446
+              ],
+              "principal_axes": [
+                [
+                  -0.016570913344647054,
+                  -0.9998582177019597,
+                  0.002991542208529719
+                ],
+                [
+                  -0.9915783696998693,
+                  0.016049192338438083,
+                  -0.12850976682195328
+                ],
+                [
+                  -0.12844353457559937,
+                  0.005095872755969621,
+                  0.9917037312154179
+                ]
+              ],
+              "observed_spans_m": [
+                0.11731105181243912,
+                0.046269727885653714,
+                0.03351319476341615
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "nominal_grasp",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3617,
+              "center_m": [
+                6.070755091090873,
+                -6.511370263831498,
+                0.975002255661763
+              ],
+              "principal_axes": [
+                [
+                  -0.008190096001006342,
+                  -0.999848505796917,
+                  0.015358638714632116
+                ],
+                [
+                  -0.9923405926004721,
+                  0.006233443108065104,
+                  -0.12337460218522343
+                ],
+                [
+                  -0.12326017444753978,
+                  0.016251450479597526,
+                  0.9922413112506814
+                ]
+              ],
+              "observed_spans_m": [
+                0.11702201137486815,
+                0.04586744675645017,
+                0.03382124887733516
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 24.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 42.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": []
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 64.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 2,
+              "points": 371,
+              "center_m": [
+                6.072027609460275,
+                -6.475993949896134,
+                0.9718668264889069
+              ],
+              "principal_axes": [
+                [
+                  0.928025035577542,
+                  0.279044932528356,
+                  0.24678626171557316
+                ],
+                [
+                  0.27128679601404654,
+                  -0.9602589778233527,
+                  0.06562141280164575
+                ],
+                [
+                  0.2552900461234934,
+                  0.006051540291205402,
+                  -0.9668455777477442
+                ]
+              ],
+              "observed_spans_m": [
+                0.04051530322750814,
+                0.037709593159173216,
+                0.015182631408959108
+              ],
+              "checks": {
+                "length": false,
+                "width": false,
+                "thickness": true
+              }
+            },
+            {
+              "component": 4,
+              "points": 105,
+              "center_m": [
+                6.084781265060176,
+                -6.521567946046681,
+                0.9723544403032529
+              ],
+              "principal_axes": [
+                [
+                  -0.8358941985819828,
+                  -0.2604522262881503,
+                  -0.48316200864568226
+                ],
+                [
+                  -0.33905997822774436,
+                  -0.44721907817614925,
+                  0.8276674617740364
+                ],
+                [
+                  -0.43164710116156935,
+                  0.8556633297838707,
+                  0.28551890676799746
+                ]
+              ],
+              "observed_spans_m": [
+                0.02964929313627314,
+                0.01669542176427198,
+                0.008955695863469077
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            },
+            {
+              "component": 26,
+              "points": 250,
+              "center_m": [
+                6.069924241676684,
+                -6.566190736990079,
+                0.964285980957764
+              ],
+              "principal_axes": [
+                [
+                  -0.14619113724854071,
+                  -0.5988568540771919,
+                  0.7873999109186812
+                ],
+                [
+                  0.985741774995428,
+                  -0.021149472159261103,
+                  0.16693068278853687
+                ],
+                [
+                  0.08331449104952163,
+                  -0.8005767721787544,
+                  -0.5934100836933981
+                ]
+              ],
+              "observed_spans_m": [
+                0.021972224966198516,
+                0.009683709233149547,
+                0.003806704986590413
+              ],
+              "checks": {
+                "length": false,
+                "width": true,
+                "thickness": true
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 96.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3264,
+              "center_m": [
+                6.070621007038557,
+                -6.511564975090537,
+                0.9742607078076381
+              ],
+              "principal_axes": [
+                [
+                  -0.02602081466213904,
+                  -0.9984424076096593,
+                  -0.04935256721737766
+                ],
+                [
+                  -0.9923294389467282,
+                  0.03176686589274863,
+                  -0.11947029267153904
+                ],
+                [
+                  -0.12085198303705931,
+                  -0.04586529099416351,
+                  0.9916103938937059
+                ]
+              ],
+              "observed_spans_m": [
+                0.11767373204325018,
+                0.04629124393830958,
+                0.030997377620128722
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        },
+        {
+          "window": "evaluator_true_tool",
+          "threshold": 160.0,
+          "tool_pixels_in_window": 1210,
+          "detected": false,
+          "component_points": 0,
+          "true_tool_fraction": 0.0,
+          "components": [
+            {
+              "component": 1,
+              "points": 3452,
+              "center_m": [
+                6.0710036532320375,
+                -6.51158614845331,
+                0.9741087562562799
+              ],
+              "principal_axes": [
+                [
+                  -0.018516383304215518,
+                  0.9985002146069175,
+                  -0.05152150016518201
+                ],
+                [
+                  -0.9931643741096654,
+                  -0.02430821899068163,
+                  -0.11416495297970163
+                ],
+                [
+                  -0.11524612595956447,
+                  0.049055396435464124,
+                  0.9921249409887201
+                ]
+              ],
+              "observed_spans_m": [
+                0.11725329811240986,
+                0.04624040438533432,
+                0.030896327083572567
+              ],
+              "checks": {
+                "length": true,
+                "width": false,
+                "thickness": false
+              }
+            }
+          ]
+        }
+      ],
+      "held_detector": {
+        "proposal": {
+          "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+          "candidate_found": true,
+          "search_points": 3618,
+          "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+          "robot_surface_exclusion_m": 0.0015,
+          "nominal_shape_search_distance_m": 0.012,
+          "partial_surface_only": true,
+          "qualified_tool_pose": false,
+          "qualified_tip_pose": false,
+          "grasp_hypothesis_is_not_an_observation": true,
+          "robot_explained_points": 2439,
+          "visible_candidate_points": 1179,
+          "observed_spans_m": [
+            0.12970398858899934,
+            0.014102611550759439,
+            0.009688057673028076
+          ],
+          "surface_fit": {
+            "position_m": [
+              6.061013328505982,
+              -6.451614895516026,
+              0.9650920721049419
+            ],
+            "rotation_matrix": [
+              [
+                0.05008736489884537,
+                0.8462562609534074,
+                0.5304164370328703
+              ],
+              [
+                -0.9973934190305656,
+                0.07000099086706217,
+                -0.01749939862238405
+              ],
+              [
+                -0.051938651811589694,
+                -0.5281573648779154,
+                0.847556590661183
+              ]
+            ],
+            "median_surface_distance_m": 0.00018901967629548726,
+            "inlier_fraction": 0.9779474130619169,
+            "score_m2": 1.842728835617682e-07,
+            "iterations": 53
+          },
+          "fitted_origin_change_from_prior_m": 0.0016370908302678648,
+          "checks": {
+            "visible_length": true,
+            "visible_width": true,
+            "visible_thickness": true,
+            "surface_residual": true,
+            "surface_inliers": true,
+            "bounded_search": true
+          }
+        },
+        "true_tool_fraction": 1.0,
+        "segmentation_supplied_to_detector": false,
+        "calibration": "Own-robot estimate from reconstructed encoders and IMU"
+      },
+      "robot_only_negative": {
+        "scope": "Observe a partially occluded held tool from depth and own-robot geometry.\n\nThe known grasp bounds a search; it is never returned as a measurement. Remove\nsurfaces explained by the sensed robot pose, then fit the remaining visible\ndepth points to unposed tool CAD. A candidate is a partial surface observation,\nnot a qualified full pose, fingertip separation, or stable-grasp measurement.\n",
+        "candidate_found": false,
+        "search_points": 2718,
+        "source": "Native depth, own-robot pose/visual meshes and unposed tool CAD",
+        "robot_surface_exclusion_m": 0.0015,
+        "nominal_shape_search_distance_m": 0.012,
+        "partial_surface_only": true,
+        "qualified_tool_pose": false,
+        "qualified_tip_pose": false,
+        "grasp_hypothesis_is_not_an_observation": true,
+        "robot_explained_points": 2718,
+        "visible_candidate_points": 0,
+        "reason": "insufficient_unexplained_surface"
+      }
+    }
+  ],
+  "calibration_basis": "Evaluator reconstruction at retained state; not exact native sensor replay",
+  "source_cad_origin_from_dynamic_body_m": [
+    -0.13,
+    0.0,
+    -0.00575
+  ],
+  "physical_execution": false,
+  "online_observation_qualified": false
+}

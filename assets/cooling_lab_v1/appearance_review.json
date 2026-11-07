@@ -1,0 +1,67 @@
+{
+  "status": "visual_detail_review_in_progress_not_accepted",
+  "review_date": "2026-10-23",
+  "authored_room": {
+    "finish_basis": "Original design colours and procedural finish textures; roughness and normals are unmeasured visual selections, not supplier data.",
+    "colour_space": "sRGB authoring palette converted to linear glTF baseColorFactor; normal and metallic/roughness textures use linear data.",
+    "texture_generation": {
+      "seed": 5001,
+      "uv_repeat_m": 0.2,
+      "finishes": [
+        "powder-coat appearance",
+        "resin worktop appearance",
+        "rubber feet",
+        "brushed metal appearance",
+        "painted wall"
+      ]
+    },
+    "construction": [
+      "0.6 x 1.2 m ceiling infill panels with fitted light apertures and grilles",
+      "1.5 mm furniture edge breaks and 2 mm worktop edge breaks, preserving outer dimensions",
+      "separate cabinet carcass panels, recessed drawer gaps, handle mounts and fasteners",
+      "floor leveling screws, rubber feet, door hinge barrels and handle standoffs",
+      "glazing beads and metric floor finish"
+    ],
+    "unqualified": [
+      "Measured BRDF or photometric reproduction",
+      "Furniture structural/load ratings",
+      "Chemical resistance of surfaces",
+      "Electrical or ventilation performance"
+    ]
+  },
+  "renderer_corrections": {
+    "missing_normal_failure": "Imported GLBs without NORMAL rendered with flat shading but did not receive biased shadow coordinates correctly. Missing normals are reconstructed from unchanged triangle positions.",
+    "reflection_lighting": "Approximate indoor environment reflection plus layout-positioned preview lamps; not an optical measurement scene.",
+    "static_batches": "Renderer-only material batching preserves triangle counts and bounds within 1e-5 m; movable cover nodes retain source IDs."
+  },
+  "commercial_spot_checks": [
+    {
+      "asset": "cary",
+      "source_ledger": "assets/cary_5000_v1/sources.json",
+      "source_ledger_sha256": "e9e280a2d166c8781f68374f1cd055b3794b92d641baaa5d09a2f738da644afd",
+      "url": "https://www.agilent.com/cs/library/brochures/5990-7786EN_Cary-4000-5000-6000i-UV-Vis-NIR_Brochure.pdf",
+      "document_sha256": "34790bdaddbe19a3d1a601887f454c7d88a0cbd0a1cce66941f3394d9acc60ea",
+      "pdf_page": 1,
+      "observations": [
+        "Cover photograph inspected against existing front evidence: broad white housings and dark sample access are represented.",
+        "Local pull recess, front switch/indicator arrangement, moulded contour transitions and printed legends still require a closer matched-view correction; no fidelity acceptance given."
+      ],
+      "manufacturer_image_redistributed": false,
+      "accepted": false
+    },
+    {
+      "asset": "nicolet",
+      "source_ledger": "assets/nicolet_6700_v1/sources.json",
+      "source_ledger_sha256": "20cac74241f0357df7f89f4cfc6a0d1e33353ab72f3291ac8d6fcaa8176438ea",
+      "url": "https://mmrc.caltech.edu/FTIR/Nicolet/Nicolet%206700%20brochure.pdf",
+      "document_sha256": "404878f7877b7ea1147623d4a0ad2a206b234fc5e438b081a14d69dd026b5ce2",
+      "pdf_page": 1,
+      "observations": [
+        "Cover photograph inspected against existing front evidence: ribbed rear housing, dark central cover, detector caps and separate control area are represented.",
+        "Local radii, cover surface finish, control/legend details and exact historical accessories remain unmeasured; no fidelity acceptance given."
+      ],
+      "manufacturer_image_redistributed": false,
+      "accepted": false
+    }
+  ]
+}

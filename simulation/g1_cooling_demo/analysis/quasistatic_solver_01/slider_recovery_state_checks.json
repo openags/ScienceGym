@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": {
+    "late_contact_loss_can_be_inspected": true,
+    "early_loss_cannot_enter_recovery_inspection": true,
+    "overload_cannot_enter_recovery_inspection": true,
+    "short_loss_cannot_enter_recovery_inspection": true,
+    "nonfinite_load_cannot_enter_recovery_inspection": true,
+    "seven_frames_do_not_resolve_fault": true,
+    "repeated_timestamp_is_not_a_new_frame": true,
+    "eight_frames_require_return_before_resolution": true,
+    "settled_return_resolves_fault_with_explicit_record": true,
+    "original_fault_is_preserved": true,
+    "failed_visual_confirmation_remains_failed_after_return": true,
+    "overload_stays_terminal_after_withdrawal": true
+  },
+  "source_sha256": {
+    "check_slider_recovery.py": "e5f46700d83ad1d51756bcfa40a7fced236eb70cf7ce2b66db59357e76549bac",
+    "ftir_slider_actor.py": "dcd67261b40ead7764a7a8eeddd04897900d9ed548847e6ad328ec259f9c4e69",
+    "ftir_slider_observed_actor.py": "f455af2d3ee4a461f1a7bc1d515e1e35ee2b4a6f65c868141000692c01290e13"
+  },
+  "scope": "Fault-injection checks for the post-withdrawal visual recovery state machine.\n\nSynthetic observations exercise failure handling only; they are not physical\nor perception validation. Full native-sensor execution is still required."
+}

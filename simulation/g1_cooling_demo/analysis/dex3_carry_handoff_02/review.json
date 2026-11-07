@@ -1,0 +1,2165 @@
+{
+  "scope": "Replay recorded sensor packets to inspect a proposed loaded-walking handoff.\n\nThis host-side diagnostic checks policy equivalence up to the new carrying\nstage and sampled loaded-arm geometry. It neither moves a physical payload\nnor supplies carrying, isolation or repeated-reliability qualification.\n",
+  "qualified_carry": false,
+  "physical_execution": false,
+  "source_sha256": {
+    "carry_tool_actor.py": "091d680fa9f91d17c056bacdced5279dbac81f8a9bb7193b2a2c9dc60b6e8352",
+    "joint_rrt.py": "8ebc34c13a43e844e99c4fdb6f79e9add2adc386aff9d6e96549d660be6de2ac",
+    "tool_approach_planning.py": "ef5212f2da1aced7e5cb4b2ff235109617e4255caa411d3395b785597398ec34",
+    "ftir_hand.py": "aa5b05636e0a4b798a01745b1b713a807ca651e4760cbf695bf823d5412e4434",
+    "tool_observation.py": "4fe8551f5e61fc17b9c5eb09d12a4b66b8f587ad2ba209783407883924382a7d",
+    "tool_pose.py": "67de6054658aa84b3298497e5912c793c4de8403bbedbe3aa837b1b53f49bf81",
+    "quasistatic_walking.py": "9fbff21f4b156f421479da7b4efcfb393540b3344f0d1c68b26ee2524bb970cd",
+    "visual_tool_actor.py": "2af2e3cf1e60a5b6ef2e401059a5818875cac20b91dc6f5e676963e3e32b5de3",
+    "check_tool_carry_handoff.py": "6822e5584ae41432af4ead3e8150a412457e58f57ae03a94c6780674f76b530e",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "conic_balance.py": "6efb9f389dcdfe4bbf05bbd3b25e62302db915b955673c134e695cc365d5dbf1",
+    "source_proximity.py": "5b890513cdcf30746c12f2a44dfbd2838c5000f5aa97cb4c5436010c69978b28",
+    "observations.py": "87a3da3a5f45ed478706791e8eedb7b9cc84c34a04264602e4d1107d20df1fb3",
+    "dex3_tool_actor.py": "5ea40e0ba6ef4f8deada954fe98ae406ec7211281f3db9ba22349bfb9b5cb044",
+    "balance.py": "b992192907f792ebe40961ce629ce8f1752338853e3079bf6d6ebfb3c5fe55cc"
+  },
+  "source_result_sha256": "c6f701a38e7efcda1027153bc2b34d294d77224164110090ae5de93658604361",
+  "handoff_time_s": 50.988000000569095,
+  "handoff_phase": "carry_raise",
+  "handoff_failure": null,
+  "handoff_clearance": {
+    "clear": true,
+    "tool_environment_distance_m": 0.02467918871539859,
+    "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+  },
+  "compared_prefix_packets": 50988,
+  "maximum_prefix_response_error": 0.0,
+  "sampled_arm_plan": {
+    "planned": true,
+    "rotation_vector_rad": [
+      0.0,
+      -0.6,
+      0.0
+    ],
+    "raise_path": {
+      "joint_path": [
+        [
+          -0.901429329879227,
+          -0.10279816122137288,
+          1.1111402444511165,
+          0.2501575070326227,
+          -0.8672044210832459,
+          1.436718308798298,
+          0.8633347761225432
+        ],
+        [
+          -0.9054645336363628,
+          -0.10467485333277646,
+          1.1121678350524806,
+          0.2489584833261081,
+          -0.8669050814419579,
+          1.4379997103679438,
+          0.8677532207292233
+        ],
+        [
+          -0.9095012566128626,
+          -0.10654934726820152,
+          1.1131871535905533,
+          0.2477781957966053,
+          -0.8665913813205829,
+          1.4392585927602053,
+          0.8721601429228768
+        ],
+        [
+          -0.9135375804225188,
+          -0.10841782266757317,
+          1.1141899059120428,
+          0.24662475017687013,
+          -0.8662632319975139,
+          1.4404878570935093,
+          0.8765433987616364
+        ],
+        [
+          -0.9175732158572023,
+          -0.11028020236320091,
+          1.1151759479604664,
+          0.24549813932318537,
+          -0.8659207306794533,
+          1.441687344037684,
+          0.8809028504129267
+        ],
+        [
+          -0.9216079070731864,
+          -0.11213642430905726,
+          1.1161451621708953,
+          0.2443983348606873,
+          -0.8655639832104054,
+          1.4428569230378057,
+          0.8852384043409427
+        ],
+        [
+          -0.9256414015882636,
+          -0.11398642634138817,
+          1.117097433106535,
+          0.24332531111851013,
+          -0.8651930971783497,
+          1.443996465990665,
+          0.8895499703708905
+        ],
+        [
+          -0.9296734502561103,
+          -0.11583014618066706,
+          1.1180326475566431,
+          0.24227904498820532,
+          -0.8648081818831213,
+          1.4451058474191212,
+          0.893837461667085
+        ],
+        [
+          -0.9337038073383872,
+          -0.11766752144769645,
+          1.1189506946269216,
+          0.2412595158928798,
+          -0.8644093482624786,
+          1.44618494455511,
+          0.8981007947406097
+        ],
+        [
+          -0.9377322305749568,
+          -0.11949848967871886,
+          1.11985146582732,
+          0.24026670575654352,
+          -0.8639967088163472,
+          1.4472336374190216,
+          0.902339889452557
+        ],
+        [
+          -0.9417584812524933,
+          -0.12132298833982647,
+          1.1207348551576346,
+          0.23930059897312098,
+          -0.8635703775296439,
+          1.4482518088964091,
+          0.9065546690136529
+        ],
+        [
+          -0.9457823242715313,
+          -0.12314095484043422,
+          1.12160075919083,
+          0.2383611823753847,
+          -0.8631304697937956,
+          1.4492393448119885,
+          0.9107450599802986
+        ],
+        [
+          -0.9498035282117482,
+          -0.12495232654609101,
+          1.1224490771540792,
+          0.23744844520348213,
+          -0.8626771023271432,
+          1.45019613400093,
+          0.9149109922472016
+        ],
+        [
+          -0.9538218653954618,
+          -0.12675704079045022,
+          1.1232797110072656,
+          0.23656237907340735,
+          -0.8622103930942917,
+          1.4511220683771726,
+          0.9190523990364967
+        ],
+        [
+          -0.9578371119492735,
+          -0.12855503488647807,
+          1.1240925655190759,
+          0.23570297794521658,
+          -0.8617304612246165,
+          1.452017042998928,
+          0.9231692168836144
+        ],
+        [
+          -0.9618490478637224,
+          -0.13034624613694581,
+          1.1248875483404694,
+          0.23487023809105698,
+          -0.8612374269300345,
+          1.4528809561311649,
+          0.9272613856198508
+        ],
+        [
+          -0.9658574570509887,
+          -0.13213061184408226,
+          1.1256645700755152,
+          0.23406415806316755,
+          -0.8607314114221607,
+          1.4537137093050512,
+          0.9313288483517718
+        ],
+        [
+          -0.9698621274004988,
+          -0.13390806931858323,
+          1.1264235443495834,
+          0.2332847386616238,
+          -0.8602125368290418,
+          1.4545152073743934,
+          0.9353715514376063
+        ],
+        [
+          -0.9738628508323776,
+          -0.13567855588787622,
+          1.127164387874735,
+          0.23253198290205004,
+          -0.8596809261115785,
+          1.455285358568891,
+          0.9393894444606241
+        ],
+        [
+          -0.9778594233487469,
+          -0.13744200890368524,
+          1.1278870205123754,
+          0.2318058959832265,
+          -0.8591367029797812,
+          1.4560240745442903,
+          0.9433824801997006
+        ],
+        [
+          -0.981851645082784,
+          -0.13919836574884697,
+          1.1285913653330018,
+          0.23110648525477465,
+          -0.8585799918089595,
+          1.4567312704292783,
+          0.947350614597037
+        ],
+        [
+          -0.9858393203454971,
+          -0.14094756384357934,
+          1.1292773486731733,
+          0.23043376018462067,
+          -0.8580109175560886,
+          1.4574068648692762,
+          0.9512938067233855
+        ],
+        [
+          -0.9898222576701854,
+          -0.14268954065092207,
+          1.1299449001894233,
+          0.22978773232679317,
+          -0.8574296056763258,
+          1.458050780066794,
+          0.9552120187405376
+        ],
+        [
+          -0.9938002698545325,
+          -0.1444242336817732,
+          1.1305939529094509,
+          0.22916841528885284,
+          -0.8568361820400293,
+          1.458662941818803,
+          0.9591052158616657
+        ],
+        [
+          -0.9977731740003252,
+          -0.1461515804990783,
+          1.131224443280121,
+          0.22857582469984972,
+          -0.8562307728501487,
+          1.459243279550526,
+          0.9629733663090909
+        ],
+        [
+          -1.001740791550758,
+          -0.1478715187216054,
+          1.1318363112126923,
+          0.22800997817803959,
+          -0.85561350456038,
+          1.4597917263462055,
+          0.9668164412701283
+        ],
+        [
+          -1.0057029483252813,
+          -0.14958398602700568,
+          1.132429500124854,
+          0.2274708952990685,
+          -0.8549845037939747,
+          1.4603082189763232,
+          0.9706344148506455
+        ],
+        [
+          -1.0096594745520322,
+          -0.15128892015446474,
+          1.1330039569799932,
+          0.22695859756401954,
+          -0.8543438972635348,
+          1.46079269792181,
+          0.9744272640269536
+        ],
+        [
+          -1.0136102048977396,
+          -0.15298625890669962,
+          1.1335596323232515,
+          0.22647310836796963,
+          -0.8536918116917513,
+          1.461245107394702,
+          0.9781949685956675
+        ],
+        [
+          -1.0175549784952134,
+          -0.1546759401515228,
+          1.1340964803147107,
+          0.22601445296864603,
+          -0.8530283737332651,
+          1.461665395355677,
+          0.9819375111220295
+        ],
+        [
+          -1.021493638968287,
+          -0.15635790182286433,
+          1.1346144587594866,
+          0.22558265845549633,
+          -0.8523537098977848,
+          1.4620535135281962,
+          0.9856548768865936
+        ],
+        [
+          -1.0254260344543213,
+          -0.1580320819214468,
+          1.1351135291350103,
+          0.22517775371884846,
+          -0.8516679464745567,
+          1.4624094174096107,
+          0.9893470538306391
+        ],
+        [
+          -1.029352017624198,
+          -0.15969841851482797,
+          1.1355936566150988,
+          0.224799769419824,
+          -0.8509712094582187,
+          1.4627330662787292,
+          0.9930140325000668
+        ],
+        [
+          -1.0332714456998402,
+          -0.16135684973723682,
+          1.1360548100912766,
+          0.22444873796028594,
+          -0.8502636244762477,
+          1.463024423200426,
+          0.9966558059883125
+        ],
+        [
+          -1.0371841804692774,
+          -0.16300731378884023,
+          1.1364969621910967,
+          0.22412469345345012,
+          -0.8495453167180375,
+          1.463283455026994,
+          1.0002723698781366
+        ],
+        [
+          -1.0410900882992378,
+          -0.16464974893474696,
+          1.1369200892935158,
+          0.2238276716949176,
+          -0.8488164108656446,
+          1.4635101323962703,
+          1.0038637221824438
+        ],
+        [
+          -1.0449890401453108,
+          -0.16628409350362902,
+          1.1373241715414963,
+          0.2235577101341476,
+          -0.8480770310264132,
+          1.463704429726799,
+          1.0074298632843892
+        ],
+        [
+          -1.0488809115597002,
+          -0.16791028588600573,
+          1.1377091928516827,
+          0.22331484784658098,
+          -0.8473273006674118,
+          1.4638663252097872,
+          1.0109707958767062
+        ],
+        [
+          -1.052765582696587,
+          -0.16952826453219869,
+          1.1380751409213279,
+          0.22309912550630712,
+          -0.846567342551879,
+          1.4639958007981153,
+          1.0144865249005148
+        ],
+        [
+          -1.0566429383151188,
+          -0.17113796795007263,
+          1.1384220072324762,
+          0.2229105853592669,
+          -0.8457972786776573,
+          1.4640928421923718,
+          1.0179770574836648
+        ],
+        [
+          -1.0605128677800708,
+          -0.17273933470243516,
+          1.1387497870533634,
+          0.22274927119723018,
+          -0.845017230217712,
+          1.4641574388238718,
+          1.021442402878684
+        ],
+        [
+          -1.0643752650602125,
+          -0.17433230340424058,
+          1.139058479437236,
+          0.22261522833232686,
+          -0.8442273174628177,
+          1.4641895838349113,
+          1.0248825724005577
+        ],
+        [
+          -1.068230028724397,
+          -0.1759168127195141,
+          1.1393480872184425,
+          0.22250850357242857,
+          -0.8434276597663728,
+          1.4641892740560456,
+          1.0282975793642517
+        ],
+        [
+          -1.0720770619354467,
+          -0.17749280135814582,
+          1.1396186170060987,
+          0.22242914519706855,
+          -0.8426183754915392,
+          1.4641565099807983,
+          1.0316874390223636
+        ],
+        [
+          -1.0759162724418363,
+          -0.17906020807241038,
+          1.1398700791750895,
+          0.22237720293433944,
+          -0.8417995819605603,
+          1.4640912957374517,
+          1.0350521685026568
+        ],
+        [
+          -1.0797475725672212,
+          -0.18061897165341062,
+          1.1401024878547157,
+          0.22235272793839336,
+          -0.8409713954064659,
+          1.4639936390583312,
+          1.0383917867458712
+        ],
+        [
+          -1.0835708791979344,
+          -0.1821690309271934,
+          1.140315860914846,
+          0.2223557727680208,
+          -0.8401339309270588,
+          1.4638635512463871,
+          1.041706314443682
+        ],
+        [
+          -1.0873861137683298,
+          -0.18371032475099225,
+          1.1405102199498296,
+          0.22238639136570476,
+          -0.8392873024413078,
+          1.4637010471393788,
+          1.0449957739770679
+        ],
+        [
+          -1.0911932022442439,
+          -0.18524279200906027,
+          1.1406855902600255,
+          0.2224446390379308,
+          -0.8384316226480798,
+          1.463506145071486,
+          1.0482601893550165
+        ],
+        [
+          -1.0949920751044069,
+          -0.18676637160859585,
+          1.1408420008311573,
+          0.22253057243612745,
+          -0.8375670029873047,
+          1.4632788668325856,
+          1.0514995861537442
+        ],
+        [
+          -1.0987826673200387,
+          -0.1882810024754193,
+          1.1409794843114636,
+          0.22264424953872433,
+          -0.8366935536034928,
+          1.4630192376251552,
+          1.0547139914564336
+        ]
+      ],
+      "samples": [
+        {
+          "fraction": 0.0,
+          "position_error_m": 2.2796530290165753e-06,
+          "rotation_error_rad": 7.214257120852253e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.02665520245945357,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.02,
+          "position_error_m": 1.3546308697891588e-06,
+          "rotation_error_rad": 6.088573641341788e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.027653584463807935,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.04,
+          "position_error_m": 1.3529082200117341e-06,
+          "rotation_error_rad": 6.056525099324188e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.02865132900684521,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.06,
+          "position_error_m": 1.3526454118292671e-06,
+          "rotation_error_rad": 6.023078774818695e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.029649083006438516,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.08,
+          "position_error_m": 1.3527967059545091e-06,
+          "rotation_error_rad": 5.990164104765185e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.030646839359475497,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.1,
+          "position_error_m": 1.3533743299077832e-06,
+          "rotation_error_rad": 5.9578381363968834e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03164459780675627,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.12,
+          "position_error_m": 1.3543704769265036e-06,
+          "rotation_error_rad": 5.926094825318255e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03264235813541517,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.14,
+          "position_error_m": 1.3557767701134774e-06,
+          "rotation_error_rad": 5.894927645080046e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.033640120157385434,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.16,
+          "position_error_m": 1.3575843484362437e-06,
+          "rotation_error_rad": 5.864329736289969e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03463765461224441,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.18,
+          "position_error_m": 1.3597839096100493e-06,
+          "rotation_error_rad": 5.8342939335584566e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03563403763116955,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.2,
+          "position_error_m": 1.3623657440169173e-06,
+          "rotation_error_rad": 5.804812786092541e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03663042184693541,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.22,
+          "position_error_m": 1.365319765968989e-06,
+          "rotation_error_rad": 5.775878594441661e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03762680714488884,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.24,
+          "position_error_m": 1.3686355698147143e-06,
+          "rotation_error_rad": 5.747483424662192e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03862319342196001,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.26,
+          "position_error_m": 1.3723024556304018e-06,
+          "rotation_error_rad": 5.7196191547467714e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.03961958058522671,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.28,
+          "position_error_m": 1.3763094776730187e-06,
+          "rotation_error_rad": 5.6922774868042844e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.040615968550680004,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.3,
+          "position_error_m": 1.3806454831720069e-06,
+          "rotation_error_rad": 5.665449989799398e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.041612357242171896,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.32,
+          "position_error_m": 1.3852991462756548e-06,
+          "rotation_error_rad": 5.639128124253264e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04260874659050934,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.34,
+          "position_error_m": 1.3902590138915423e-06,
+          "rotation_error_rad": 5.61330326939516e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04360513653267478,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.36,
+          "position_error_m": 1.3955135350303542e-06,
+          "rotation_error_rad": 5.5879667623320395e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04460152701114595,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.38,
+          "position_error_m": 1.4010511064521522e-06,
+          "rotation_error_rad": 5.563109921907926e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.045597917973313626,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.4,
+          "position_error_m": 1.4068600931213722e-06,
+          "rotation_error_rad": 5.538724077884381e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04659430937096106,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.42,
+          "position_error_m": 1.4129288829491712e-06,
+          "rotation_error_rad": 5.514800605680672e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.047590701159822696,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.44,
+          "position_error_m": 1.4192458863901325e-06,
+          "rotation_error_rad": 5.491330951244505e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04858709329918483,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.46,
+          "position_error_m": 1.4257996002073297e-06,
+          "rotation_error_rad": 5.4683066651379035e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.04958348575154528,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.48,
+          "position_error_m": 1.4325786031797269e-06,
+          "rotation_error_rad": 5.445719426238034e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05057987848230241,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.5,
+          "position_error_m": 1.4395716130377855e-06,
+          "rotation_error_rad": 5.4235610693456675e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05157627145948937,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.52,
+          "position_error_m": 1.4467674747272805e-06,
+          "rotation_error_rad": 5.401823617841526e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05257266465352872,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.54,
+          "position_error_m": 1.4541552131906697e-06,
+          "rotation_error_rad": 5.380499305046245e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05356905803702771,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.56,
+          "position_error_m": 1.4617240348262636e-06,
+          "rotation_error_rad": 5.359580599806237e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05456545158457848,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.58,
+          "position_error_m": 1.469463358199548e-06,
+          "rotation_error_rad": 5.339060234115766e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05556184527259627,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.6,
+          "position_error_m": 1.4773628058481376e-06,
+          "rotation_error_rad": 5.318931223649364e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.056558239079161333,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.62,
+          "position_error_m": 1.4854122525446578e-06,
+          "rotation_error_rad": 5.299186892289961e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.057554632983887036,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.64,
+          "position_error_m": 1.493601810949719e-06,
+          "rotation_error_rad": 5.2798208920885275e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05855102696779073,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.66,
+          "position_error_m": 1.5019218482928219e-06,
+          "rotation_error_rad": 5.260827224730494e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.05954742101319222,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.68,
+          "position_error_m": 1.5103630086695116e-06,
+          "rotation_error_rad": 5.242200262283595e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06054381510360221,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.7000000000000001,
+          "position_error_m": 1.5189162011339356e-06,
+          "rotation_error_rad": 5.223934759709122e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06154020922364073,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.72,
+          "position_error_m": 1.527572623586857e-06,
+          "rotation_error_rad": 5.206025880299311e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06253660335894894,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.74,
+          "position_error_m": 1.5363237567884428e-06,
+          "rotation_error_rad": 5.188469204689399e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06353299749611882,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.76,
+          "position_error_m": 1.5451613698474954e-06,
+          "rotation_error_rad": 5.171260748256073e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06452939162262072,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.78,
+          "position_error_m": 1.5540775312691966e-06,
+          "rotation_error_rad": 5.15439697409587e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06552578572674184,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.8,
+          "position_error_m": 1.56306459789359e-06,
+          "rotation_error_rad": 5.137874806021747e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06652217979753279,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.8200000000000001,
+          "position_error_m": 1.572115233174325e-06,
+          "rotation_error_rad": 5.121691640218781e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06751857382959787,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.84,
+          "position_error_m": 1.5812223834924372e-06,
+          "rotation_error_rad": 5.105845351857401e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0685149678101795,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.86,
+          "position_error_m": 1.5903793020442193e-06,
+          "rotation_error_rad": 5.090334307015488e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.06951136172863892,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.88,
+          "position_error_m": 1.5995795313360043e-06,
+          "rotation_error_rad": 5.075157370922745e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07050775557658807,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.9,
+          "position_error_m": 1.6088169107081046e-06,
+          "rotation_error_rad": 5.0603139108152755e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07150414934617359,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.92,
+          "position_error_m": 1.6180855649533076e-06,
+          "rotation_error_rad": 5.0458038034027036e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0725005430300489,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.9400000000000001,
+          "position_error_m": 1.6273799081127878e-06,
+          "rotation_error_rad": 5.031627439582423e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07349693662133541,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.96,
+          "position_error_m": 1.6366946378902518e-06,
+          "rotation_error_rad": 5.017785726448202e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07449333011359888,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.98,
+          "position_error_m": 1.6460247338264583e-06,
+          "rotation_error_rad": 5.0042800883812125e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07548972350081815,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 1.0,
+          "position_error_m": 1.655365447448135e-06,
+          "rotation_error_rad": 4.991112468809251e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0764861167773589,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        }
+      ]
+    },
+    "retract_path": {
+      "joint_path": [
+        [
+          -1.0987826673200387,
+          -0.1882810024754193,
+          1.1409794843114636,
+          0.22264424953872433,
+          -0.8366935536034928,
+          1.4630192376251552,
+          1.0547139914564336
+        ],
+        [
+          -1.0955433897731988,
+          -0.1927173493765726,
+          1.1416039729256728,
+          0.20235162821752997,
+          -0.8395569407745553,
+          1.4675057274980532,
+          1.0577329858303435
+        ],
+        [
+          -1.0923719727629715,
+          -0.19686458626276576,
+          1.1421263661331036,
+          0.1824954466610607,
+          -0.8423887949688177,
+          1.4718299105680301,
+          1.0605547697726698
+        ],
+        [
+          -1.0892407592100275,
+          -0.2008171791948592,
+          1.142580617099122,
+          0.16293441800878708,
+          -0.8452007859836224,
+          1.4760366610348956,
+          1.0632475248839004
+        ],
+        [
+          -1.0861491010583213,
+          -0.20457987772335717,
+          1.1429740393779138,
+          0.14365767522005204,
+          -0.8479949172897838,
+          1.4801326454977557,
+          1.0658190917426216
+        ],
+        [
+          -1.0830964298154064,
+          -0.2081576602683047,
+          1.14331427968831,
+          0.12465401719126329,
+          -0.8507731323070831,
+          1.4841246520113336,
+          1.0682774883628805
+        ],
+        [
+          -1.0800824400674676,
+          -0.2115551508062361,
+          1.1436085611978875,
+          0.10591305691220748,
+          -0.8535372453998993,
+          1.48801917725663,
+          1.0706301314717357
+        ],
+        [
+          -1.0771070598255692,
+          -0.21477665710144236,
+          1.1438637308097612,
+          0.08742513226982099,
+          -0.8562889596791237,
+          1.4918224595449239,
+          1.0728839021888112
+        ],
+        [
+          -1.074170428656825,
+          -0.21782619780562704,
+          1.1440862947931734,
+          0.06918124016953488,
+          -0.859029883775183,
+          1.4955405060965292,
+          1.0750451947187365
+        ],
+        [
+          -1.071272878746426,
+          -0.220707526640133,
+          1.1442824506716394,
+          0.05117297815199705,
+          -0.8617615464382562,
+          1.4991791174215463,
+          1.077119959670622
+        ],
+        [
+          -1.068414918489744,
+          -0.22342415396159182,
+          1.1444581157555553,
+          0.033392492602200945,
+          -0.8644854092887305,
+          1.5027439091846995,
+          1.0791137425917545
+        ],
+        [
+          -1.0655972182745712,
+          -0.22597936604363036,
+          1.1446189527468278,
+          0.015832432666261897,
+          -0.8672028779816379,
+          1.5062403319096676,
+          1.0810317183318108
+        ],
+        [
+          -1.0628205981679062,
+          -0.22837624235675863,
+          1.1447703927785777,
+          -0.0015140908706066589,
+          -0.8699153120060826,
+          1.5096736888226117,
+          1.0828787217597704
+        ],
+        [
+          -1.0600860172664675,
+          -0.23061767108735742,
+          1.1449176562009102,
+          -0.018653542378917285,
+          -0.8726240333053416,
+          1.5130491520896867,
+          1.0846592752789574
+        ],
+        [
+          -1.0573945645073342,
+          -0.2327063631024371,
+          1.1450657713800845,
+          -0.035591994393312495,
+          -0.8753303338742006,
+          1.516371777666208,
+          1.0863776135216783
+        ],
+        [
+          -1.0547474507659687,
+          -0.23464486453775185,
+          1.1452195917412689,
+          -0.052335157296948376,
+          -0.8780354824654658,
+          1.5196465189437594,
+          1.0880377055505073
+        ],
+        [
+          -1.0521460020950635,
+          -0.2364355681627093,
+          1.145383811254296,
+          -0.068888406079417,
+          -0.8807407305175002,
+          1.5228782393562572,
+          1.0896432748483307
+        ],
+        [
+          -1.049591653979477,
+          -0.23808072365501493,
+          1.145562978535346,
+          -0.08525680451095939,
+          -0.8834473173972337,
+          1.5260717240843815,
+          1.09119781734045
+        ],
+        [
+          -1.0470859465011573,
+          -0.23958244690033684,
+          1.145761509714999,
+          -0.10144512702926588,
+          -0.8861564750386672,
+          1.5292316909797963,
+          1.0927046176593247
+        ],
+        [
+          -1.0446305203236856,
+          -0.2409427284175243,
+          1.1459837002039843,
+          -0.11745787859629767,
+          -0.8888694320447169,
+          1.5323628008156607,
+          1.0941667638347152
+        ],
+        [
+          -1.0422271134196488,
+          -0.2421634409973869,
+          1.1462337354715648,
+          -0.13329931274957244,
+          -0.8915874173093309,
+          1.5354696669574117,
+          1.095587160567743
+        ],
+        [
+          -1.0398775584755324,
+          -0.24324634663139608,
+          1.146515700936819,
+          -0.14897344804310475,
+          -0.8943116632079218,
+          1.5385568645365377,
+          1.0969685412265033
+        ],
+        [
+          -1.0375837809190027,
+          -0.24419310279814913,
+          1.1468335910615879,
+          -0.1644840830505346,
+          -0.8970434083962041,
+          1.541628939202231,
+          1.0983134786833315
+        ],
+        [
+          -1.0353477975217904,
+          -0.24500526816653287,
+          1.1471913177221609,
+          -0.17983481008086202,
+          -0.8997839002503981,
+          1.544690415516861,
+          1.0996243950974134
+        ],
+        [
+          -1.0331717155394486,
+          -0.24568430776764577,
+          1.147592717928349,
+          -0.19502902774035014,
+          -0.9025343969757057,
+          1.5477458050561879,
+          1.1009035707332304
+        ],
+        [
+          -1.031057732355267,
+          -0.24623159768148845,
+          1.1480415609495132,
+          -0.21006995245850904,
+          -0.905296169404287,
+          1.5507996142686682,
+          1.102153151892597
+        ],
+        [
+          -1.0290081356021077,
+          -0.24664842927869707,
+          1.148541554900624,
+          -0.22496062908311043,
+          -0.9080705024989949,
+          1.553856352144811,
+          1.1033751580276288
+        ],
+        [
+          -1.027025303740536,
+          -0.24693601305293597,
+          1.149096352834209,
+          -0.2397039406375745,
+          -0.910858696574275,
+          1.5569205377427315,
+          1.1045714880916646
+        ],
+        [
+          -1.0251117070767368,
+          -0.24709548207548832,
+          1.149709558378968,
+          -0.25430261732490284,
+          -0.9136620682414011,
+          1.5599967076139454,
+          1.1057439261768582
+        ],
+        [
+          -1.0232699092075095,
+          -0.24712789509934585,
+          1.1503847309599213,
+          -0.2687592448530622,
+          -0.9164819510807583,
+          1.5630894231699215,
+          1.1068941464783606
+        ],
+        [
+          -1.0215025688834753,
+          -0.24703423933730048,
+          1.151125390630571,
+          -0.2830762721503616,
+          -0.9193196960398853,
+          1.5662032780283166,
+          1.1080237176178256
+        ],
+        [
+          -1.019812442285359,
+          -0.24681543293495986,
+          1.1519350225431872,
+          -0.2972560185326378,
+          -0.9221766715518166,
+          1.5693429053762509,
+          1.1091341063517304
+        ],
+        [
+          -1.0182023857108138,
+          -0.24647232715723033,
+          1.1528170810788843,
+          -0.31130068037905606,
+          -0.9250542633640654,
+          1.572512985386061,
+          1.1102266806829442
+        ],
+        [
+          -1.0166753586724497,
+          -0.246005708303967,
+          1.153774993655308,
+          -0.32521233736859556,
+          -0.9279538740641993,
+          1.575718252718075,
+          1.1113027123873238
+        ],
+        [
+          -1.015234427410405,
+          -0.24541629936834472,
+          1.1548121642263218,
+          -0.3389929583260454,
+          -0.930876922283586,
+          1.5789635041445287,
+          1.1123633789606981
+        ],
+        [
+          -1.0138827688249323,
+          -0.24470476144916808,
+          1.1559319764837488,
+          -0.35264440672278424,
+          -0.9338248415558387,
+          1.5822536063272516,
+          1.1134097649845291
+        ],
+        [
+          -1.0126236748370285,
+          -0.24387169492623098,
+          1.157137796768157,
+          -0.36616844587566527,
+          -0.9367990788015323,
+          1.585593503782086,
+          1.1144428629020686
+        ],
+        [
+          -1.011460557186774,
+          -0.24291764040578528,
+          1.1584329766911772,
+          -0.3795667438850384,
+          -0.9398010924048105,
+          1.5889882270615572,
+          1.115463573189301
+        ],
+        [
+          -1.0103969526811265,
+          -0.241843079441206,
+          1.1598208554685148,
+          -0.39284087835216525,
+          -0.9428323498416062,
+          1.5924429011877321,
+          1.116472703897828
+        ],
+        [
+          -1.0094365289042602,
+          -0.2406484350318645,
+          1.1613047619582002,
+          -0.40599234091525754,
+          -0.9458943248120564,
+          1.595962754366064,
+          1.1174709695385008
+        ],
+        [
+          -1.0085830904047242,
+          -0.23933407190108413,
+          1.1628880163941258,
+          -0.41902254164318903,
+          -0.9489884938221617,
+          1.5995531270103507,
+          1.1184589892659678
+        ],
+        [
+          -1.0078405853746522,
+          -0.23790029655205325,
+          1.1645739318001072,
+          -0.431932813326593,
+          -0.9521163321512682,
+          1.6032194811082108,
+          1.1194372843149167
+        ],
+        [
+          -1.0072131128365218,
+          -0.23634735709805074,
+          1.1663658150638283,
+          -0.44472441570659743,
+          -0.9552793091321534,
+          1.6069674099546252,
+          1.1204062746280496
+        ],
+        [
+          -1.0067049303528293,
+          -0.23467544286109665,
+          1.1682669676440676,
+          -0.45739853968341826,
+          -0.9584788826600669,
+          1.6094295580000002,
+          1.1213662746045372
+        ],
+        [
+          -1.0051910386573824,
+          -0.23219640179437642,
+          1.1697918189788532,
+          -0.46878521047854116,
+          -0.9666031484656815,
+          1.6094295580000002,
+          1.126259136517998
+        ],
+        [
+          -1.0018607617593678,
+          -0.22866501669403402,
+          1.1705017554296469,
+          -0.4783371686322495,
+          -0.9822791412877253,
+          1.6094295580000002,
+          1.1372821074560788
+        ],
+        [
+          -0.9984916407402036,
+          -0.22493341286460908,
+          1.1712474959276111,
+          -0.4876178913318032,
+          -0.9984647674152347,
+          1.6094295580000002,
+          1.14871826987146
+        ],
+        [
+          -0.9953318609737581,
+          -0.22113197275708874,
+          1.172151157860955,
+          -0.4968545828099933,
+          -1.014198228649133,
+          1.6094295580000002,
+          1.1597882255324843
+        ],
+        [
+          -0.9921272838279794,
+          -0.21712600285738107,
+          1.173083506609579,
+          -0.5058153265487012,
+          -1.030461483413904,
+          1.6094295580000002,
+          1.1712893300172356
+        ],
+        [
+          -0.9889405552776442,
+          -0.21294810449434662,
+          1.174072375420462,
+          -0.5145590923651436,
+          -1.0470020270313325,
+          1.6094295580000002,
+          1.1830176882006032
+        ],
+        [
+          -0.9860209906758226,
+          -0.20872784505968794,
+          1.1752544743688003,
+          -0.5233003820488648,
+          -1.0629445609849542,
+          1.6094295580000002,
+          1.1942636182520021
+        ]
+      ],
+      "samples": [
+        {
+          "fraction": 0.0,
+          "position_error_m": 1.655365447448135e-06,
+          "rotation_error_rad": 4.991112468809251e-06,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0764861167773589,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.02,
+          "position_error_m": 1.6018466473060918e-05,
+          "rotation_error_rad": 3.099832273211344e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07655813474973519,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.04,
+          "position_error_m": 1.5681897003733143e-05,
+          "rotation_error_rad": 2.9757499304943602e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07669529863500087,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.06,
+          "position_error_m": 1.5461358611760336e-05,
+          "rotation_error_rad": 2.900711542714034e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0768941041899813,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.08,
+          "position_error_m": 1.526367235013515e-05,
+          "rotation_error_rad": 2.8394956511783613e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07677947651945624,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.1,
+          "position_error_m": 1.50873410384897e-05,
+          "rotation_error_rad": 2.7911854265009416e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07653539916739918,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.12,
+          "position_error_m": 1.4930080951930944e-05,
+          "rotation_error_rad": 2.754179018789214e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0762826577442735,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.14,
+          "position_error_m": 1.478993833706757e-05,
+          "rotation_error_rad": 2.7270313262248754e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07603064881066972,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.16,
+          "position_error_m": 1.4665229798793686e-05,
+          "rotation_error_rad": 2.7084482867634437e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07581923867023306,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.18,
+          "position_error_m": 1.455450158596603e-05,
+          "rotation_error_rad": 2.6972830935936952e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0755644029249844,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.2,
+          "position_error_m": 1.4456495419716595e-05,
+          "rotation_error_rad": 2.6925298487019132e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07532261389622905,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.22,
+          "position_error_m": 1.4370119852014013e-05,
+          "rotation_error_rad": 2.6933151100614915e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.075097780683453,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.24,
+          "position_error_m": 1.4294426208068622e-05,
+          "rotation_error_rad": 2.6988879162454232e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07490887124000727,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.26,
+          "position_error_m": 1.4228588355678521e-05,
+          "rotation_error_rad": 2.70860891856992e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07468971562708372,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.28,
+          "position_error_m": 1.4171885669690445e-05,
+          "rotation_error_rad": 2.721939197778338e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07448140995247977,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.3,
+          "position_error_m": 1.4123688676201908e-05,
+          "rotation_error_rad": 2.7384292400148677e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07428883160602802,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.32,
+          "position_error_m": 1.4083446904109346e-05,
+          "rotation_error_rad": 2.7577084198735702e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0741060704731876,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.34,
+          "position_error_m": 1.405067865194489e-05,
+          "rotation_error_rad": 2.7794752258363096e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07393377471891001,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.36,
+          "position_error_m": 1.4024962313705489e-05,
+          "rotation_error_rad": 2.8034883599887576e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0737499506687476,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.38,
+          "position_error_m": 1.4005929008741372e-05,
+          "rotation_error_rad": 2.8295587685077014e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07355928333460691,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.4,
+          "position_error_m": 1.3993256390240825e-05,
+          "rotation_error_rad": 2.85754260125239e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07340215574203612,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.42,
+          "position_error_m": 1.398666335353523e-05,
+          "rotation_error_rad": 2.8873350594135774e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0732571518805796,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.44,
+          "position_error_m": 1.3985905559391712e-05,
+          "rotation_error_rad": 2.918865071948214e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0731042850009107,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.46,
+          "position_error_m": 1.3990771679953124e-05,
+          "rotation_error_rad": 2.95209072242982e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07295470559094389,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.48,
+          "position_error_m": 1.4001080163295574e-05,
+          "rotation_error_rad": 2.9869953490374565e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07283595438284055,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.5,
+          "position_error_m": 1.4016676567895017e-05,
+          "rotation_error_rad": 3.023584239111822e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0727177804737573,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.52,
+          "position_error_m": 1.4037431290800944e-05,
+          "rotation_error_rad": 3.061881843943717e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07257845506479794,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.54,
+          "position_error_m": 1.4063237668882476e-05,
+          "rotation_error_rad": 3.101929446519576e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07247930261085715,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.56,
+          "position_error_m": 1.4094010443407855e-05,
+          "rotation_error_rad": 3.143783219436144e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07239956536090447,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.58,
+          "position_error_m": 1.4129684448041277e-05,
+          "rotation_error_rad": 3.187512620582553e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07235392579121189,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.6,
+          "position_error_m": 1.4170213622483736e-05,
+          "rotation_error_rad": 3.233199078470802e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07234925227308618,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.62,
+          "position_error_m": 1.4215570194460951e-05,
+          "rotation_error_rad": 3.280934926034229e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.0723439776494681,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.64,
+          "position_error_m": 1.4265744097755042e-05,
+          "rotation_error_rad": 3.330822547318749e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07235862704198219,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.66,
+          "position_error_m": 1.4320742563305975e-05,
+          "rotation_error_rad": 3.382973707531596e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07238070925908219,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.68,
+          "position_error_m": 1.4380589883338415e-05,
+          "rotation_error_rad": 3.4375090399762344e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07234948320195672,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.7000000000000001,
+          "position_error_m": 1.4445327346222746e-05,
+          "rotation_error_rad": 3.494557667799625e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07232469357091027,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.72,
+          "position_error_m": 1.4515013315642294e-05,
+          "rotation_error_rad": 3.554256942110506e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.072312809303287,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.74,
+          "position_error_m": 1.4589723452346061e-05,
+          "rotation_error_rad": 3.61675227961928e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07231844674148827,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.76,
+          "position_error_m": 1.466955109183438e-05,
+          "rotation_error_rad": 3.6821970876175447e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07237225181387447,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.78,
+          "position_error_m": 1.4754607756714527e-05,
+          "rotation_error_rad": 3.750752761695629e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07248520188616106,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.8,
+          "position_error_m": 1.4845023809213662e-05,
+          "rotation_error_rad": 3.82258874886076e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07259917318654971,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.8200000000000001,
+          "position_error_m": 1.4940949245205898e-05,
+          "rotation_error_rad": 3.897882663586165e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07279022932079154,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.84,
+          "position_error_m": 1.5042554630890878e-05,
+          "rotation_error_rad": 3.9768204500092136e-05,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07305926548252394,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.86,
+          "position_error_m": 4.8522527511718105e-05,
+          "rotation_error_rad": 0.0013541528052953477,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07346320316055673,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.88,
+          "position_error_m": 0.00017646403523056568,
+          "rotation_error_rad": 0.0038421826048305177,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07398505968306417,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.9,
+          "position_error_m": 0.00018055174380434964,
+          "rotation_error_rad": 0.003931389393824078,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07445575231785187,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.92,
+          "position_error_m": 0.00017737746142984043,
+          "rotation_error_rad": 0.0038624797647785996,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07497049036977668,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.9400000000000001,
+          "position_error_m": 0.00018169175515616912,
+          "rotation_error_rad": 0.003956647886421817,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07554012551661807,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.96,
+          "position_error_m": 0.00017831817665946612,
+          "rotation_error_rad": 0.0038834090517139777,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07615208488220289,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 0.98,
+          "position_error_m": 0.0001709164517336247,
+          "rotation_error_rad": 0.0037224402954747775,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.076811871883805,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        },
+        {
+          "fraction": 1.0,
+          "position_error_m": 0.00017471364648683198,
+          "rotation_error_rad": 0.0038053832273133715,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07752924090246485,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        }
+      ]
+    },
+    "attempts": [
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.013240367561141261,
+        "endpoint_rotation_error_rad": 0.26983861714595775,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          -0.2,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.007818031121952033,
+        "endpoint_rotation_error_rad": 0.2700379696303794,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.2,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.018879614010929305,
+        "endpoint_rotation_error_rad": 0.2928339544103162,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.005384297059613463,
+        "endpoint_rotation_error_rad": 0.12654360489390776,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.2,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.02354392110848651,
+        "endpoint_rotation_error_rad": 0.38943073863311606,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.0,
+          -0.2
+        ],
+        "endpoint_position_error_m": 0.013972513856164786,
+        "endpoint_rotation_error_rad": 0.23949955238789955,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.0,
+          0.2
+        ],
+        "endpoint_position_error_m": 0.01352250935305496,
+        "endpoint_rotation_error_rad": 0.3408051636170175,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          -0.4,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.0036131346570096074,
+        "endpoint_rotation_error_rad": 0.2847734662733433,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.4,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.023619223135892688,
+        "endpoint_rotation_error_rad": 0.35373992278790867,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          -0.4,
+          0.0
+        ],
+        "endpoint_position_error_m": 8.196541282058543e-07,
+        "endpoint_rotation_error_rad": 0.009957364133071975,
+        "failure": "withdrawal_path",
+        "detail": {
+          "fraction": 0.76,
+          "position_error_m": 0.000611787378034605,
+          "rotation_error_rad": 0.03704203321602703,
+          "clearance": {
+            "clear": true,
+            "tool_environment_distance_m": 0.07770129010271846,
+            "tool_pose_basis": "source grasp transform and own wrist; slip not observed"
+          }
+        }
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.4,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.06861518147512487,
+        "endpoint_rotation_error_rad": 1.6192336508552438,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.0,
+          -0.4
+        ],
+        "endpoint_position_error_m": 0.015403373214744442,
+        "endpoint_rotation_error_rad": 0.2603888224369288,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          0.0,
+          0.4
+        ],
+        "endpoint_position_error_m": 0.04444185817814938,
+        "endpoint_rotation_error_rad": 1.07687135786274,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          -0.6,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.015450564156422505,
+        "endpoint_rotation_error_rad": 0.3789329892115454,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.6,
+          0.0,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.026348872982509305,
+        "endpoint_rotation_error_rad": 0.4435729771685111,
+        "failure": "endpoint_ik"
+      },
+      {
+        "rotation_vector_rad": [
+          0.0,
+          -0.6,
+          0.0
+        ],
+        "endpoint_position_error_m": 0.000175772618079226,
+        "endpoint_rotation_error_rad": 0.0038284485438241115
+      }
+    ],
+    "source_joint_range": "Official source bounds minus 5 mrad margin",
+    "physical_execution": false
+  },
+  "passed": true
+}

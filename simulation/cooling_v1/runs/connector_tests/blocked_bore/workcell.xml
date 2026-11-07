@@ -1,0 +1,996 @@
+<mujoco model="ScienceGym cooling contact workcell">
+  <compiler angle="radian" meshdir="" autolimits="true" />
+  <option integrator="implicitfast" timestep=".0001" iterations="120" cone="elliptic" impratio="10" noslip_iterations="0" />
+  <default>
+    <default class="panda">
+      <material specular="0.5" shininess="0.25" />
+      <joint armature="0.1" damping="1" axis="0 0 1" range="-2.8973 2.8973" />
+      <general dyntype="none" biastype="affine" ctrlrange="-2.8973 2.8973" forcerange="-87 87" />
+      <default class="finger">
+        <joint axis="0 1 0" type="slide" range="0 0.04" />
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" />
+        <default class="fingertip_pad_collision_1">
+          <geom type="box" size="0.0085 0.004 0.0085" pos="0 0.0055 0.0445" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_2">
+          <geom type="box" size="0.003 0.002 0.003" pos="0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_3">
+          <geom type="box" size="0.003 0.002 0.003" pos="-0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_4">
+          <geom type="box" size="0.003 0.002 0.0035" pos="0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_5">
+          <geom type="box" size="0.003 0.002 0.0035" pos="-0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+      </default>
+    </default>
+    <geom solref=".004 1" solimp=".95 .99 .0005" condim="4" />
+  </default>
+  <asset>
+    <material class="panda" name="white" rgba="1 1 1 1" />
+    <material class="panda" name="off_white" rgba="0.901961 0.921569 0.929412 1" />
+    <material class="panda" name="black" rgba="0.25 0.25 0.25 1" />
+    <material class="panda" name="green" rgba="0 1 0 1" />
+    <material class="panda" name="light_blue" rgba="0.039216 0.541176 0.780392 1" />
+    <mesh name="link0_c" file="robot/link0.stl" />
+    <mesh name="link1_c" file="robot/link1.stl" />
+    <mesh name="link2_c" file="robot/link2.stl" />
+    <mesh name="link3_c" file="robot/link3.stl" />
+    <mesh name="link4_c" file="robot/link4.stl" />
+    <mesh name="link5_c0" file="robot/link5_collision_0.obj" />
+    <mesh name="link5_c1" file="robot/link5_collision_1.obj" />
+    <mesh name="link5_c2" file="robot/link5_collision_2.obj" />
+    <mesh name="link6_c" file="robot/link6.stl" />
+    <mesh name="link7_c" file="robot/link7.stl" />
+    <mesh name="hand_c" file="robot/hand.stl" />
+    <mesh file="robot/link0_0.obj" />
+    <mesh file="robot/link0_1.obj" />
+    <mesh file="robot/link0_2.obj" />
+    <mesh file="robot/link0_3.obj" />
+    <mesh file="robot/link0_4.obj" />
+    <mesh file="robot/link0_5.obj" />
+    <mesh file="robot/link0_7.obj" />
+    <mesh file="robot/link0_8.obj" />
+    <mesh file="robot/link0_9.obj" />
+    <mesh file="robot/link0_10.obj" />
+    <mesh file="robot/link0_11.obj" />
+    <mesh file="robot/link1.obj" />
+    <mesh file="robot/link2.obj" />
+    <mesh file="robot/link3_0.obj" />
+    <mesh file="robot/link3_1.obj" />
+    <mesh file="robot/link3_2.obj" />
+    <mesh file="robot/link3_3.obj" />
+    <mesh file="robot/link4_0.obj" />
+    <mesh file="robot/link4_1.obj" />
+    <mesh file="robot/link4_2.obj" />
+    <mesh file="robot/link4_3.obj" />
+    <mesh file="robot/link5_0.obj" />
+    <mesh file="robot/link5_1.obj" />
+    <mesh file="robot/link5_2.obj" />
+    <mesh file="robot/link6_0.obj" />
+    <mesh file="robot/link6_1.obj" />
+    <mesh file="robot/link6_2.obj" />
+    <mesh file="robot/link6_3.obj" />
+    <mesh file="robot/link6_4.obj" />
+    <mesh file="robot/link6_5.obj" />
+    <mesh file="robot/link6_6.obj" />
+    <mesh file="robot/link6_7.obj" />
+    <mesh file="robot/link6_8.obj" />
+    <mesh file="robot/link6_9.obj" />
+    <mesh file="robot/link6_10.obj" />
+    <mesh file="robot/link6_11.obj" />
+    <mesh file="robot/link6_12.obj" />
+    <mesh file="robot/link6_13.obj" />
+    <mesh file="robot/link6_14.obj" />
+    <mesh file="robot/link6_15.obj" />
+    <mesh file="robot/link6_16.obj" />
+    <mesh file="robot/link7_0.obj" />
+    <mesh file="robot/link7_1.obj" />
+    <mesh file="robot/link7_2.obj" />
+    <mesh file="robot/link7_3.obj" />
+    <mesh file="robot/link7_4.obj" />
+    <mesh file="robot/link7_5.obj" />
+    <mesh file="robot/link7_6.obj" />
+    <mesh file="robot/link7_7.obj" />
+    <mesh file="robot/hand_0.obj" />
+    <mesh file="robot/hand_1.obj" />
+    <mesh file="robot/hand_2.obj" />
+    <mesh file="robot/hand_3.obj" />
+    <mesh file="robot/hand_4.obj" />
+    <mesh file="robot/finger_0.obj" />
+    <mesh file="robot/finger_1.obj" />
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1=".17 .21 .26" rgb2=".2 .24 .29" width="512" height="512" />
+    <material name="floor_mat" texture="floor_tex" texrepeat="5 5" reflectance=".05" />
+    <mesh name="keithley_2425_0000" file="keithley_2425/0000.obj" />
+    <mesh name="keithley_2425_0001" file="keithley_2425/0001.obj" />
+    <mesh name="keithley_2425_0002" file="keithley_2425/0002.obj" />
+    <mesh name="keithley_2425_0003" file="keithley_2425/0003.obj" />
+    <mesh name="keithley_2425_0004" file="keithley_2425/0004.obj" />
+    <mesh name="keithley_2425_0005" file="keithley_2425/0005.obj" />
+    <mesh name="keithley_2425_0006" file="keithley_2425/0006.obj" />
+    <mesh name="keithley_2425_0007" file="keithley_2425/0007.obj" />
+    <mesh name="keithley_2425_0008" file="keithley_2425/0008.obj" />
+    <mesh name="keithley_2425_0009" file="keithley_2425/0009.obj" />
+    <mesh name="keithley_2425_0010" file="keithley_2425/0010.obj" />
+    <mesh name="keithley_2425_0011" file="keithley_2425/0011.obj" />
+    <mesh name="keithley_2425_0012" file="keithley_2425/0012.obj" />
+    <mesh name="keithley_2425_0013" file="keithley_2425/0013.obj" />
+    <mesh name="keithley_2425_0014" file="keithley_2425/0014.obj" />
+    <mesh name="keithley_2425_0015" file="keithley_2425/0015.obj" />
+    <mesh name="keithley_2425_0016" file="keithley_2425/0016.obj" />
+    <mesh name="keithley_2425_0017" file="keithley_2425/0017.obj" />
+    <mesh name="keithley_2425_0018" file="keithley_2425/0018.obj" />
+    <mesh name="keithley_2425_0019" file="keithley_2425/0019.obj" />
+    <mesh name="keithley_2425_0020" file="keithley_2425/0020.obj" />
+    <mesh name="keithley_2425_0021" file="keithley_2425/0021.obj" />
+    <mesh name="keithley_2425_0022" file="keithley_2425/0022.obj" />
+    <mesh name="keithley_2425_0023" file="keithley_2425/0023.obj" />
+    <mesh name="keithley_2425_0024" file="keithley_2425/0024.obj" />
+    <mesh name="keithley_2425_0025" file="keithley_2425/0025.obj" />
+    <mesh name="keithley_2425_0026" file="keithley_2425/0026.obj" />
+    <mesh name="keithley_2425_0027" file="keithley_2425/0027.obj" />
+    <mesh name="keithley_2425_0028" file="keithley_2425/0028.obj" />
+    <mesh name="keithley_2425_0029" file="keithley_2425/0029.obj" />
+    <mesh name="keithley_2425_0030" file="keithley_2425/0030.obj" />
+    <mesh name="keithley_2425_0031" file="keithley_2425/0031.obj" />
+    <mesh name="keithley_2425_0032" file="keithley_2425/0032.obj" />
+    <mesh name="keithley_2425_0033" file="keithley_2425/0033.obj" />
+    <mesh name="keithley_2425_0034" file="keithley_2425/0034.obj" />
+    <mesh name="keithley_2425_0035" file="keithley_2425/0035.obj" />
+    <mesh name="keithley_2425_0036" file="keithley_2425/0036.obj" />
+    <mesh name="keithley_2425_0037" file="keithley_2425/0037.obj" />
+    <mesh name="keithley_2425_0038" file="keithley_2425/0038.obj" />
+    <mesh name="keithley_2425_0039" file="keithley_2425/0039.obj" />
+    <mesh name="keithley_2425_0040" file="keithley_2425/0040.obj" />
+    <mesh name="keithley_2425_0041" file="keithley_2425/0041.obj" />
+    <mesh name="keithley_2425_0042" file="keithley_2425/0042.obj" />
+    <mesh name="keithley_2425_0043" file="keithley_2425/0043.obj" />
+    <mesh name="keithley_2425_0044" file="keithley_2425/0044.obj" />
+    <mesh name="keithley_2425_0045" file="keithley_2425/0045.obj" />
+    <mesh name="keithley_2425_0046" file="keithley_2425/0046.obj" />
+    <mesh name="keithley_2425_0047" file="keithley_2425/0047.obj" />
+    <mesh name="keithley_2425_0048" file="keithley_2425/0048.obj" />
+    <mesh name="keithley_2425_0049" file="keithley_2425/0049.obj" />
+    <mesh name="keithley_2425_0050" file="keithley_2425/0050.obj" />
+    <mesh name="keithley_2425_0051" file="keithley_2425/0051.obj" />
+    <mesh name="keithley_2425_0052" file="keithley_2425/0052.obj" />
+    <mesh name="keithley_2425_0053" file="keithley_2425/0053.obj" />
+    <mesh name="keithley_2425_0054" file="keithley_2425/0054.obj" />
+    <mesh name="keithley_2425_0055" file="keithley_2425/0055.obj" />
+    <mesh name="keithley_2425_0056" file="keithley_2425/0056.obj" />
+    <mesh name="keithley_2425_0057" file="keithley_2425/0057.obj" />
+    <mesh name="keithley_2425_0058" file="keithley_2425/0058.obj" />
+    <mesh name="keithley_2425_0059" file="keithley_2425/0059.obj" />
+    <mesh name="keithley_2425_0060" file="keithley_2425/0060.obj" />
+    <mesh name="keithley_2425_0061" file="keithley_2425/0061.obj" />
+    <mesh name="keithley_2425_0062" file="keithley_2425/0062.obj" />
+    <mesh name="keithley_2425_0063" file="keithley_2425/0063.obj" />
+    <mesh name="keithley_2425_0064" file="keithley_2425/0064.obj" />
+    <mesh name="keithley_2425_0065" file="keithley_2425/0065.obj" />
+    <mesh name="keithley_2425_0066" file="keithley_2425/0066.obj" />
+    <mesh name="keithley_2425_0067" file="keithley_2425/0067.obj" />
+    <mesh name="keithley_2425_0068" file="keithley_2425/0068.obj" />
+    <mesh name="keithley_2425_0069" file="keithley_2425/0069.obj" />
+    <mesh name="keithley_2425_0070" file="keithley_2425/0070.obj" />
+    <mesh name="keithley_2425_0071" file="keithley_2425/0071.obj" />
+    <mesh name="keithley_2425_0072" file="keithley_2425/0072.obj" />
+    <mesh name="keithley_2425_0073" file="keithley_2425/0073.obj" />
+    <mesh name="keithley_2425_0074" file="keithley_2425/0074.obj" />
+    <mesh name="keithley_2425_0075" file="keithley_2425/0075.obj" />
+    <mesh name="keithley_2425_0076" file="keithley_2425/0076.obj" />
+    <mesh name="keithley_2425_0077" file="keithley_2425/0077.obj" />
+    <mesh name="keithley_2425_0078" file="keithley_2425/0078.obj" />
+    <mesh name="keithley_2425_0079" file="keithley_2425/0079.obj" />
+    <mesh name="keithley_2425_0080" file="keithley_2425/0080.obj" />
+    <mesh name="keithley_2425_0081" file="keithley_2425/0081.obj" />
+    <mesh name="keithley_2425_0082" file="keithley_2425/0082.obj" />
+    <mesh name="keithley_2425_0083" file="keithley_2425/0083.obj" />
+    <mesh name="keithley_2425_0084" file="keithley_2425/0084.obj" />
+    <mesh name="keithley_2425_0085" file="keithley_2425/0085.obj" />
+    <mesh name="keithley_2425_0086" file="keithley_2425/0086.obj" />
+    <mesh name="keithley_2425_0087" file="keithley_2425/0087.obj" />
+    <mesh name="keithley_2425_0088" file="keithley_2425/0088.obj" />
+    <mesh name="keithley_2425_0089" file="keithley_2425/0089.obj" />
+    <mesh name="keithley_2425_0090" file="keithley_2425/0090.obj" />
+    <mesh name="keithley_2425_0091" file="keithley_2425/0091.obj" />
+    <mesh name="keithley_2425_0092" file="keithley_2425/0092.obj" />
+    <mesh name="keithley_2425_0093" file="keithley_2425/0093.obj" />
+    <mesh name="keithley_2425_0094" file="keithley_2425/0094.obj" />
+    <mesh name="keithley_2425_0095" file="keithley_2425/0095.obj" />
+    <mesh name="keithley_2425_0096" file="keithley_2425/0096.obj" />
+    <mesh name="keithley_2425_0097" file="keithley_2425/0097.obj" />
+    <mesh name="keithley_2425_0098" file="keithley_2425/0098.obj" />
+    <mesh name="keithley_2425_0099" file="keithley_2425/0099.obj" />
+    <mesh name="keithley_2425_0100" file="keithley_2425/0100.obj" />
+    <mesh name="keithley_2425_0101" file="keithley_2425/0101.obj" />
+    <mesh name="keithley_2425_0102" file="keithley_2425/0102.obj" />
+    <mesh name="keithley_2425_0103" file="keithley_2425/0103.obj" />
+    <mesh name="keithley_2425_0104" file="keithley_2425/0104.obj" />
+    <mesh name="keithley_2425_0105" file="keithley_2425/0105.obj" />
+    <mesh name="keithley_2425_0106" file="keithley_2425/0106.obj" />
+    <mesh name="keithley_2425_0107" file="keithley_2425/0107.obj" />
+    <mesh name="keithley_2425_0108" file="keithley_2425/0108.obj" />
+    <mesh name="keithley_2425_0109" file="keithley_2425/0109.obj" />
+    <mesh name="keithley_2425_0110" file="keithley_2425/0110.obj" />
+    <mesh name="keithley_2425_0111" file="keithley_2425/0111.obj" />
+    <mesh name="keithley_2425_0112" file="keithley_2425/0112.obj" />
+    <mesh name="keithley_2425_0113" file="keithley_2425/0113.obj" />
+    <mesh name="keithley_2425_0114" file="keithley_2425/0114.obj" />
+    <mesh name="keithley_2425_0115" file="keithley_2425/0115.obj" />
+    <mesh name="keithley_2425_0116" file="keithley_2425/0116.obj" />
+    <mesh name="keithley_2425_0117" file="keithley_2425/0117.obj" />
+    <mesh name="keithley_2425_0118" file="keithley_2425/0118.obj" />
+    <mesh name="keithley_2425_0119" file="keithley_2425/0119.obj" />
+    <mesh name="keithley_2425_0120" file="keithley_2425/0120.obj" />
+    <mesh name="keithley_2425_0121" file="keithley_2425/0121.obj" />
+    <mesh name="keithley_2425_0122" file="keithley_2425/0122.obj" />
+    <mesh name="keithley_2425_0123" file="keithley_2425/0123.obj" />
+    <mesh name="keithley_2425_0124" file="keithley_2425/0124.obj" />
+    <mesh name="keithley_2425_0125" file="keithley_2425/0125.obj" />
+    <mesh name="keithley_2425_0126" file="keithley_2425/0126.obj" />
+    <mesh name="keithley_2425_0127" file="keithley_2425/0127.obj" />
+    <mesh name="keithley_2425_0128" file="keithley_2425/0128.obj" />
+    <mesh name="keithley_2425_0129" file="keithley_2425/0129.obj" />
+    <mesh name="keithley_2425_0130" file="keithley_2425/0130.obj" />
+    <mesh name="keithley_2425_0131" file="keithley_2425/0131.obj" />
+    <mesh name="keithley_2425_0132" file="keithley_2425/0132.obj" />
+    <mesh name="keithley_2425_0133" file="keithley_2425/0133.obj" />
+    <mesh name="keithley_2425_0134" file="keithley_2425/0134.obj" />
+    <mesh name="keithley_2425_0135" file="keithley_2425/0135.obj" />
+    <mesh name="keithley_2425_0136" file="keithley_2425/0136.obj" />
+    <mesh name="keithley_2425_0137" file="keithley_2425/0137.obj" />
+    <mesh name="keithley_2425_0138" file="keithley_2425/0138.obj" />
+    <mesh name="keithley_2425_0139" file="keithley_2425/0139.obj" />
+    <mesh name="keithley_2425_0140" file="keithley_2425/0140.obj" />
+    <mesh name="keithley_2425_0141" file="keithley_2425/0141.obj" />
+    <mesh name="keithley_2425_0142" file="keithley_2425/0142.obj" />
+    <mesh name="keithley_2425_0143" file="keithley_2425/0143.obj" />
+    <mesh name="keithley_2425_0144" file="keithley_2425/0144.obj" />
+    <mesh name="keithley_2425_0145" file="keithley_2425/0145.obj" />
+    <mesh name="keithley_2425_0146" file="keithley_2425/0146.obj" />
+    <mesh name="keithley_2425_0147" file="keithley_2425/0147.obj" />
+    <mesh name="keithley_2425_0148" file="keithley_2425/0148.obj" />
+    <mesh name="keithley_2425_0149" file="keithley_2425/0149.obj" />
+    <mesh name="keithley_2425_0150" file="keithley_2425/0150.obj" />
+    <mesh name="keithley_2425_0151" file="keithley_2425/0151.obj" />
+    <mesh name="keithley_2425_0152" file="keithley_2425/0152.obj" />
+    <mesh name="keithley_2425_0153" file="keithley_2425/0153.obj" />
+    <mesh name="keithley_2425_0154" file="keithley_2425/0154.obj" />
+    <mesh name="keithley_2425_0155" file="keithley_2425/0155.obj" />
+    <mesh name="keithley_2425_0156" file="keithley_2425/0156.obj" />
+    <mesh name="keithley_2425_0157" file="keithley_2425/0157.obj" />
+    <mesh name="keithley_2425_0158" file="keithley_2425/0158.obj" />
+    <mesh name="keithley_2425_0159" file="keithley_2425/0159.obj" />
+    <mesh name="keithley_2425_0160" file="keithley_2425/0160.obj" />
+    <mesh name="keithley_2425_0161" file="keithley_2425/0161.obj" />
+    <mesh name="keithley_2425_0162" file="keithley_2425/0162.obj" />
+    <mesh name="keithley_2425_0163" file="keithley_2425/0163.obj" />
+    <mesh name="keithley_2425_0164" file="keithley_2425/0164.obj" />
+    <mesh name="keithley_2425_0165" file="keithley_2425/0165.obj" />
+    <mesh name="keithley_2425_0166" file="keithley_2425/0166.obj" />
+    <mesh name="keithley_2425_0167" file="keithley_2425/0167.obj" />
+    <mesh name="keithley_2425_0168" file="keithley_2425/0168.obj" />
+    <mesh name="keithley_2425_0169" file="keithley_2425/0169.obj" />
+    <mesh name="keithley_2425_0170" file="keithley_2425/0170.obj" />
+    <mesh name="keithley_2425_0171" file="keithley_2425/0171.obj" />
+    <mesh name="keithley_2425_0172" file="keithley_2425/0172.obj" />
+    <mesh name="keithley_2425_0173" file="keithley_2425/0173.obj" />
+    <mesh name="keithley_2425_0174" file="keithley_2425/0174.obj" />
+    <mesh name="keithley_2425_0175" file="keithley_2425/0175.obj" />
+    <mesh name="keithley_2425_0176" file="keithley_2425/0176.obj" />
+    <mesh name="keithley_2425_0177" file="keithley_2425/0177.obj" />
+    <mesh name="keithley_2425_0178" file="keithley_2425/0178.obj" />
+    <mesh name="keithley_2425_0179" file="keithley_2425/0179.obj" />
+    <mesh name="keithley_2425_0180" file="keithley_2425/0180.obj" />
+    <mesh name="keithley_2425_0181" file="keithley_2425/0181.obj" />
+    <mesh name="keithley_2425_0182" file="keithley_2425/0182.obj" />
+    <mesh name="keithley_2425_0183" file="keithley_2425/0183.obj" />
+    <mesh name="keithley_2425_0184" file="keithley_2425/0184.obj" />
+    <mesh name="keithley_2425_0185" file="keithley_2425/0185.obj" />
+    <mesh name="keithley_2425_0186" file="keithley_2425/0186.obj" />
+    <mesh name="keithley_2425_0187" file="keithley_2425/0187.obj" />
+    <mesh name="keithley_2425_0188" file="keithley_2425/0188.obj" />
+    <mesh name="keithley_2425_0189" file="keithley_2425/0189.obj" />
+    <mesh name="keithley_2425_0190" file="keithley_2425/0190.obj" />
+    <mesh name="keithley_2425_0191" file="keithley_2425/0191.obj" />
+    <mesh name="keithley_2425_0192" file="keithley_2425/0192.obj" />
+    <mesh name="keithley_2425_0193" file="keithley_2425/0193.obj" />
+    <mesh name="keithley_2425_0194" file="keithley_2425/0194.obj" />
+    <mesh name="keithley_2425_0195" file="keithley_2425/0195.obj" />
+    <mesh name="keithley_2425_0196" file="keithley_2425/0196.obj" />
+    <mesh name="keithley_2425_0197" file="keithley_2425/0197.obj" />
+    <mesh name="keithley_2425_0198" file="keithley_2425/0198.obj" />
+    <mesh name="keithley_2425_0199" file="keithley_2425/0199.obj" />
+    <mesh name="keithley_2425_0200" file="keithley_2425/0200.obj" />
+    <mesh name="keithley_2425_0201" file="keithley_2425/0201.obj" />
+    <mesh name="keithley_2425_0202" file="keithley_2425/0202.obj" />
+    <mesh name="keithley_2425_0203" file="keithley_2425/0203.obj" />
+    <mesh name="keithley_2425_0204" file="keithley_2425/0204.obj" />
+    <mesh name="keithley_2425_0205" file="keithley_2425/0205.obj" />
+    <mesh name="keithley_2425_0206" file="keithley_2425/0206.obj" />
+    <mesh name="keithley_2425_0207" file="keithley_2425/0207.obj" />
+    <mesh name="keithley_2425_0208" file="keithley_2425/0208.obj" />
+    <mesh name="keithley_2425_0209" file="keithley_2425/0209.obj" />
+    <mesh name="keithley_2425_0210" file="keithley_2425/0210.obj" />
+    <mesh name="keithley_2425_0211" file="keithley_2425/0211.obj" />
+    <mesh name="keithley_2425_0212" file="keithley_2425/0212.obj" />
+    <mesh name="keithley_2425_0213" file="keithley_2425/0213.obj" />
+    <mesh name="keithley_2425_0214" file="keithley_2425/0214.obj" />
+    <mesh name="keithley_2425_0215" file="keithley_2425/0215.obj" />
+    <mesh name="keithley_2425_0216" file="keithley_2425/0216.obj" />
+    <mesh name="keithley_2425_0217" file="keithley_2425/0217.obj" />
+    <mesh name="keithley_2425_0218" file="keithley_2425/0218.obj" />
+    <mesh name="keithley_2425_0219" file="keithley_2425/0219.obj" />
+    <mesh name="keithley_2425_0220" file="keithley_2425/0220.obj" />
+    <mesh name="keithley_2425_0221" file="keithley_2425/0221.obj" />
+    <mesh name="keithley_2425_0222" file="keithley_2425/0222.obj" />
+    <mesh name="keithley_2425_0223" file="keithley_2425/0223.obj" />
+    <mesh name="keithley_2425_0224" file="keithley_2425/0224.obj" />
+    <mesh name="keithley_2425_0225" file="keithley_2425/0225.obj" />
+    <mesh name="keithley_2425_0226" file="keithley_2425/0226.obj" />
+    <mesh name="keithley_2425_0227" file="keithley_2425/0227.obj" />
+    <mesh name="keithley_2425_0228" file="keithley_2425/0228.obj" />
+    <mesh name="keithley_2425_0229" file="keithley_2425/0229.obj" />
+    <mesh name="keithley_2425_0230" file="keithley_2425/0230.obj" />
+    <mesh name="keithley_2425_0231" file="keithley_2425/0231.obj" />
+    <mesh name="keithley_2425_0232" file="keithley_2425/0232.obj" />
+    <mesh name="keithley_2425_0233" file="keithley_2425/0233.obj" />
+    <mesh name="keithley_2425_0234" file="keithley_2425/0234.obj" />
+    <mesh name="keithley_2425_0235" file="keithley_2425/0235.obj" />
+  </asset>
+  <worldbody>
+    <light name="top" pos="0 -1 3" mode="trackcom" diffuse=".8 .8 .8" directional="true" dir="0 .2 -1" />
+    <body name="link0" childclass="panda" pos="0 0 .74">
+      <inertial mass="0.629769" pos="-0.041018 -0.00014 0.049974" fullinertia="0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6" />
+      <geom mesh="link0_0" material="off_white" class="visual" />
+      <geom mesh="link0_1" material="black" class="visual" />
+      <geom mesh="link0_2" material="off_white" class="visual" />
+      <geom mesh="link0_3" material="black" class="visual" />
+      <geom mesh="link0_4" material="off_white" class="visual" />
+      <geom mesh="link0_5" material="black" class="visual" />
+      <geom mesh="link0_7" material="white" class="visual" />
+      <geom mesh="link0_8" material="white" class="visual" />
+      <geom mesh="link0_9" material="black" class="visual" />
+      <geom mesh="link0_10" material="off_white" class="visual" />
+      <geom mesh="link0_11" material="white" class="visual" />
+      <geom mesh="link0_c" class="collision" />
+      <body name="link1" pos="0 0 0.333">
+        <inertial mass="4.970684" pos="0.003875 0.002081 -0.04762" fullinertia="0.70337 0.70661 0.0091170 -0.00013900 0.0067720 0.019169" />
+        <joint name="joint1" />
+        <geom material="white" mesh="link1" class="visual" />
+        <geom mesh="link1_c" class="collision" />
+        <body name="link2" quat="1 -1 0 0">
+          <inertial mass="0.646926" pos="-0.003141 -0.02872 0.003495" fullinertia="0.0079620 2.8110e-2 2.5995e-2 -3.925e-3 1.0254e-2 7.04e-4" />
+          <joint name="joint2" range="-1.7628 1.7628" />
+          <geom material="white" mesh="link2" class="visual" />
+          <geom mesh="link2_c" class="collision" />
+          <body name="link3" pos="0 -0.316 0" quat="1 1 0 0">
+            <joint name="joint3" />
+            <inertial mass="3.228604" pos="2.7518e-2 3.9252e-2 -6.6502e-2" fullinertia="3.7242e-2 3.6155e-2 1.083e-2 -4.761e-3 -1.1396e-2 -1.2805e-2" />
+            <geom mesh="link3_0" material="white" class="visual" />
+            <geom mesh="link3_1" material="white" class="visual" />
+            <geom mesh="link3_2" material="white" class="visual" />
+            <geom mesh="link3_3" material="black" class="visual" />
+            <geom mesh="link3_c" class="collision" />
+            <body name="link4" pos="0.0825 0 0" quat="1 1 0 0">
+              <inertial mass="3.587895" pos="-5.317e-2 1.04419e-1 2.7454e-2" fullinertia="2.5853e-2 1.9552e-2 2.8323e-2 7.796e-3 -1.332e-3 8.641e-3" />
+              <joint name="joint4" range="-3.0718 -0.0698" />
+              <geom mesh="link4_0" material="white" class="visual" />
+              <geom mesh="link4_1" material="white" class="visual" />
+              <geom mesh="link4_2" material="black" class="visual" />
+              <geom mesh="link4_3" material="white" class="visual" />
+              <geom mesh="link4_c" class="collision" />
+              <body name="link5" pos="-0.0825 0.384 0" quat="1 -1 0 0">
+                <inertial mass="1.225946" pos="-1.1953e-2 4.1065e-2 -3.8437e-2" fullinertia="3.5549e-2 2.9474e-2 8.627e-3 -2.117e-3 -4.037e-3 2.29e-4" />
+                <joint name="joint5" />
+                <geom mesh="link5_0" material="black" class="visual" />
+                <geom mesh="link5_1" material="white" class="visual" />
+                <geom mesh="link5_2" material="white" class="visual" />
+                <geom mesh="link5_c0" class="collision" />
+                <geom mesh="link5_c1" class="collision" />
+                <geom mesh="link5_c2" class="collision" />
+                <body name="link6" quat="1 1 0 0">
+                  <inertial mass="1.666555" pos="6.0149e-2 -1.4117e-2 -1.0517e-2" fullinertia="1.964e-3 4.354e-3 5.433e-3 1.09e-4 -1.158e-3 3.41e-4" />
+                  <joint name="joint6" range="-0.0175 3.7525" />
+                  <geom mesh="link6_0" material="off_white" class="visual" />
+                  <geom mesh="link6_1" material="white" class="visual" />
+                  <geom mesh="link6_2" material="black" class="visual" />
+                  <geom mesh="link6_3" material="white" class="visual" />
+                  <geom mesh="link6_4" material="white" class="visual" />
+                  <geom mesh="link6_5" material="white" class="visual" />
+                  <geom mesh="link6_6" material="white" class="visual" />
+                  <geom mesh="link6_7" material="light_blue" class="visual" />
+                  <geom mesh="link6_8" material="light_blue" class="visual" />
+                  <geom mesh="link6_9" material="black" class="visual" />
+                  <geom mesh="link6_10" material="black" class="visual" />
+                  <geom mesh="link6_11" material="white" class="visual" />
+                  <geom mesh="link6_12" material="green" class="visual" />
+                  <geom mesh="link6_13" material="white" class="visual" />
+                  <geom mesh="link6_14" material="black" class="visual" />
+                  <geom mesh="link6_15" material="black" class="visual" />
+                  <geom mesh="link6_16" material="white" class="visual" />
+                  <geom mesh="link6_c" class="collision" />
+                  <body name="link7" pos="0.088 0 0" quat="1 1 0 0">
+                    <inertial mass="7.35522e-01" pos="1.0517e-2 -4.252e-3 6.1597e-2" fullinertia="1.2516e-2 1.0027e-2 4.815e-3 -4.28e-4 -1.196e-3 -7.41e-4" />
+                    <joint name="joint7" />
+                    <geom mesh="link7_0" material="white" class="visual" />
+                    <geom mesh="link7_1" material="black" class="visual" />
+                    <geom mesh="link7_2" material="black" class="visual" />
+                    <geom mesh="link7_3" material="black" class="visual" />
+                    <geom mesh="link7_4" material="black" class="visual" />
+                    <geom mesh="link7_5" material="black" class="visual" />
+                    <geom mesh="link7_6" material="black" class="visual" />
+                    <geom mesh="link7_7" material="white" class="visual" />
+                    <geom mesh="link7_c" class="collision" />
+                    <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
+                      <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017" />
+                      <geom mesh="hand_0" material="off_white" class="visual" />
+                      <geom mesh="hand_1" material="black" class="visual" />
+                      <geom mesh="hand_2" material="black" class="visual" />
+                      <geom mesh="hand_3" material="white" class="visual" />
+                      <geom mesh="hand_4" material="off_white" class="visual" />
+                      <geom mesh="hand_c" class="collision" />
+                      <body name="left_finger" pos="0 0 0.0584">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint1" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <body name="right_finger" pos="0 0 0.0584" quat="0 0 0 1">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint2" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <site name="tcp" pos="0 0 .1034" size=".003" rgba="0 .5 1 1" />
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="floor" type="plane" size="5 5 .1" material="floor_mat" />
+    <geom name="bench" type="box" size="0.68 0.67 0.04" pos="0.45 0 0.7" rgba="0.72 0.75 0.78 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_-0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_-0.57" type="box" size="0.035 0.035 0.37" pos="1.04 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_0.57" type="box" size="0.035 0.035 0.37" pos="1.04 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <light pos="1 1 3" diffuse=".5 .5 .5" />
+    <body name="keithley_2425" pos="0.46 0.22 0.86">
+      <geom name="keithley_2425_IEC_contact_0" type="mesh" mesh="keithley_2425_0000" pos="-0.0414789468 0.184 0.0382961668" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEC_contact_1" type="mesh" mesh="keithley_2425_0001" pos="-0.0484789461 0.184 0.0302961674" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEC_contact_2" type="mesh" mesh="keithley_2425_0002" pos="-0.0344789475 0.184 0.0302961674" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEC_recess" type="mesh" mesh="keithley_2425_0003" pos="-0.0414789468 0.182999998 0.0332961679" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_0" type="mesh" mesh="keithley_2425_0004" pos="0.05824605 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_1" type="mesh" mesh="keithley_2425_0005" pos="0.06044605 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_10" type="mesh" mesh="keithley_2425_0006" pos="0.0802460462 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_11" type="mesh" mesh="keithley_2425_0007" pos="0.0824460536 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_2" type="mesh" mesh="keithley_2425_0008" pos="0.0626460463 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_3" type="mesh" mesh="keithley_2425_0009" pos="0.0648460537 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_4" type="mesh" mesh="keithley_2425_0010" pos="0.0670460463 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_5" type="mesh" mesh="keithley_2425_0011" pos="0.0692460537 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_6" type="mesh" mesh="keithley_2425_0012" pos="0.0714460462 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_7" type="mesh" mesh="keithley_2425_0013" pos="0.0736460537 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_8" type="mesh" mesh="keithley_2425_0014" pos="0.0758460462 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_0_9" type="mesh" mesh="keithley_2425_0015" pos="0.0780460536 0.180999994 0.0290142856" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_0" type="mesh" mesh="keithley_2425_0016" pos="0.05824605 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_1" type="mesh" mesh="keithley_2425_0017" pos="0.06044605 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_10" type="mesh" mesh="keithley_2425_0018" pos="0.0802460462 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_11" type="mesh" mesh="keithley_2425_0019" pos="0.0824460536 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_2" type="mesh" mesh="keithley_2425_0020" pos="0.0626460463 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_3" type="mesh" mesh="keithley_2425_0021" pos="0.0648460537 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_4" type="mesh" mesh="keithley_2425_0022" pos="0.0670460463 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_5" type="mesh" mesh="keithley_2425_0023" pos="0.0692460537 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_6" type="mesh" mesh="keithley_2425_0024" pos="0.0714460462 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_7" type="mesh" mesh="keithley_2425_0025" pos="0.0736460537 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_8" type="mesh" mesh="keithley_2425_0026" pos="0.0758460462 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_contact_1_9" type="mesh" mesh="keithley_2425_0027" pos="0.0780460536 0.180999994 0.0264142863" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_edge_-1" type="mesh" mesh="keithley_2425_0028" pos="0.07034605 0.180999994 0.022214286" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_edge_1" type="mesh" mesh="keithley_2425_0029" pos="0.07034605 0.180999994 0.033214286" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_insert" type="mesh" mesh="keithley_2425_0030" pos="0.07034605 0.179999992 0.027714286" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_jackscrew_-1" type="mesh" mesh="keithley_2425_0031" pos="0.0503460504 0.180999994 0.0277142862" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_jackscrew_1" type="mesh" mesh="keithley_2425_0032" pos="0.0903460532 0.180999994 0.0277142862" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_side_-1" type="mesh" mesh="keithley_2425_0033" pos="0.0553460494 0.180999994 0.027714286" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_IEEE488_side_1" type="mesh" mesh="keithley_2425_0034" pos="0.0853460506 0.180999994 0.027714286" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_0_0" type="mesh" mesh="keithley_2425_0035" pos="-0.0898802653 0.180999994 0.030254703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_0_1" type="mesh" mesh="keithley_2425_0036" pos="-0.0876802653 0.180999994 0.030254703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_0_2" type="mesh" mesh="keithley_2425_0037" pos="-0.0854802653 0.180999994 0.030254703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_0_3" type="mesh" mesh="keithley_2425_0038" pos="-0.0832802653 0.180999994 0.030254703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_0_4" type="mesh" mesh="keithley_2425_0039" pos="-0.0810802653 0.180999994 0.030254703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_1_0" type="mesh" mesh="keithley_2425_0040" pos="-0.088780269 0.180999994 0.0276547037" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_1_1" type="mesh" mesh="keithley_2425_0041" pos="-0.0865802616 0.180999994 0.0276547037" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_1_2" type="mesh" mesh="keithley_2425_0042" pos="-0.0843802691 0.180999994 0.0276547037" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_contact_1_3" type="mesh" mesh="keithley_2425_0043" pos="-0.0821802616 0.180999994 0.0276547037" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_edge_-1" type="mesh" mesh="keithley_2425_0044" pos="-0.0854802653 0.180999994 0.0254547037" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_edge_1" type="mesh" mesh="keithley_2425_0045" pos="-0.0854802653 0.180999994 0.032454703" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_insert" type="mesh" mesh="keithley_2425_0046" pos="-0.0854802653 0.179999992 0.0289547034" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_jackscrew_-1" type="mesh" mesh="keithley_2425_0047" pos="-0.0974802673 0.180999994 0.0289547036" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_jackscrew_1" type="mesh" mesh="keithley_2425_0048" pos="-0.0734802634 0.180999994 0.0289547036" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_side_-1" type="mesh" mesh="keithley_2425_0049" pos="-0.0924802646 0.180999994 0.0289547034" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_OUTPUT_ENABLE_side_1" type="mesh" mesh="keithley_2425_0050" pos="-0.078480266 0.180999994 0.0289547034" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_0_0" type="mesh" mesh="keithley_2425_0051" pos="0.0138171054 0.180999994 0.0287041813" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_0_1" type="mesh" mesh="keithley_2425_0052" pos="0.0160171054 0.180999994 0.0287041813" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_0_2" type="mesh" mesh="keithley_2425_0053" pos="0.0182171054 0.180999994 0.0287041813" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_0_3" type="mesh" mesh="keithley_2425_0054" pos="0.0204171054 0.180999994 0.0287041813" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_0_4" type="mesh" mesh="keithley_2425_0055" pos="0.0226171054 0.180999994 0.0287041813" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_1_0" type="mesh" mesh="keithley_2425_0056" pos="0.0149171054 0.180999994 0.026104182" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_1_1" type="mesh" mesh="keithley_2425_0057" pos="0.0171171054 0.180999994 0.026104182" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_1_2" type="mesh" mesh="keithley_2425_0058" pos="0.0193171054 0.180999994 0.026104182" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_contact_1_3" type="mesh" mesh="keithley_2425_0059" pos="0.0215171054 0.180999994 0.026104182" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_edge_-1" type="mesh" mesh="keithley_2425_0060" pos="0.0182171054 0.180999994 0.023904182" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_edge_1" type="mesh" mesh="keithley_2425_0061" pos="0.0182171054 0.180999994 0.0309041813" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_insert" type="mesh" mesh="keithley_2425_0062" pos="0.0182171054 0.179999992 0.0274041817" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_jackscrew_-1" type="mesh" mesh="keithley_2425_0063" pos="0.00621710531 0.180999994 0.0274041819" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_jackscrew_1" type="mesh" mesh="keithley_2425_0064" pos="0.0302171055 0.180999994 0.0274041819" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_side_-1" type="mesh" mesh="keithley_2425_0065" pos="0.0112171052 0.180999994 0.0274041817" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_RS232_side_1" type="mesh" mesh="keithley_2425_0066" pos="0.0252171047 0.180999994 0.0274041817" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_bottom_shell" type="mesh" mesh="keithley_2425_0067" pos="0 -0.00150000001 0.0157500003" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_brand" type="mesh" mesh="keithley_2425_0068" pos="-0.087380473 -0.184 0.0981512186" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_chassis_ground_screw" type="mesh" mesh="keithley_2425_0069" pos="0.0260644741 0.180999994 0.0832230003" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_display_bezel" type="mesh" mesh="keithley_2425_0070" pos="-0.0234453231 -0.180500001 0.0785714313" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_display_window" type="mesh" mesh="keithley_2425_0071" pos="-0.0234453231 -0.182999998 0.0795017406" rgba="0.00392156863 0.00392156863 0.00392156863 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_foot_-1_-0.126" type="mesh" mesh="keithley_2425_0072" pos="-0.0850000009 -0.126000002 0.00749999983" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_foot_-1_0.13" type="mesh" mesh="keithley_2425_0073" pos="-0.0850000009 0.129999995 0.00749999983" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_foot_1_-0.126" type="mesh" mesh="keithley_2425_0074" pos="0.0850000009 -0.126000002 0.00749999983" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_foot_1_0.13" type="mesh" mesh="keithley_2425_0075" pos="0.0850000009 0.129999995 0.00749999983" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_force_hi_contact" type="mesh" mesh="keithley_2425_0076" pos="0.0917892084 -0.174000002 0.0844634175" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_force_hi_insulator" type="mesh" mesh="keithley_2425_0077" pos="0.0917892084 -0.182500005 0.0844634138" rgba="0.521568627 0.0156862745 0.00784313725 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_force_lo_contact" type="mesh" mesh="keithley_2425_0078" pos="0.0917892084 -0.174000002 0.0639965162" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_force_lo_insulator" type="mesh" mesh="keithley_2425_0079" pos="0.0917892084 -0.182500005 0.0639965143" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_front_bumper_-1" type="mesh" mesh="keithley_2425_0080" pos="-0.102499999 -0.175500005 0.0595000014" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_front_bumper_1" type="mesh" mesh="keithley_2425_0081" pos="0.102499999 -0.175500005 0.0595000014" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_fuse_drawer" type="mesh" mesh="keithley_2425_0082" pos="-0.0414789468 0.184 0.0512822308" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_group_MEAS" type="mesh" mesh="keithley_2425_0083" pos="-0.0516134427 -0.182999998 0.0547165063" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_group_SOURCE" type="mesh" mesh="keithley_2425_0084" pos="0.00321925292 -0.182999998 0.0547165063" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_guard_contact" type="mesh" mesh="keithley_2425_0085" pos="0.0462434217 0.174000002 0.0919059217" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_guard_insulator" type="mesh" mesh="keithley_2425_0086" pos="0.0462434199 0.182500005 0.0919059217" rgba="0.780392157 0.788235294 0.729411765 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_guard_sense_contact" type="mesh" mesh="keithley_2425_0087" pos="0.0462434217 0.174000002 0.0692682937" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_guard_sense_insulator" type="mesh" mesh="keithley_2425_0088" pos="0.0462434199 0.182500005 0.0692682937" rgba="0.0235294118 0.0745098039 0.341176471 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_handle_arm_-1" type="mesh" mesh="keithley_2425_0089" pos="-0.114 -0.146500006 0.0309999995" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_handle_arm_1" type="mesh" mesh="keithley_2425_0090" pos="0.114 -0.146500006 0.0309999995" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_handle_crossbar" type="mesh" mesh="keithley_2425_0091" pos="0 -0.172999993 0.0120000001" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_handle_pivot_-1" type="mesh" mesh="keithley_2425_0092" pos="-0.112000003 -0.119999997 0.0500000007" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_handle_pivot_1" type="mesh" mesh="keithley_2425_0093" pos="0.112000003 -0.119999997 0.0500000007" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_&lt;" type="mesh" mesh="keithley_2425_0094" pos="0.0130251795 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_&gt;" type="mesh" mesh="keithley_2425_0095" pos="0.024671223 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_AUTO" type="mesh" mesh="keithley_2425_0096" pos="0.047043886 -0.182999998 0.0370174199" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_CONFIG" type="mesh" mesh="keithley_2425_0097" pos="-0.0148640284 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_DIGITS" type="mesh" mesh="keithley_2425_0098" pos="-0.0703359693 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_DISPLAY_EDIT" type="mesh" mesh="keithley_2425_0099" pos="-0.0878050327 -0.182999998 0.0475609751" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_DISPLAY_TOGGLE" type="mesh" mesh="keithley_2425_0100" pos="-0.0878050327 -0.182999998 0.0373275244" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_ENTER" type="mesh" mesh="keithley_2425_0101" pos="0.024671223 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_EXIT" type="mesh" mesh="keithley_2425_0102" pos="0.0130251795 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_FCTN" type="mesh" mesh="keithley_2425_0103" pos="-0.0301877686 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_FILTER" type="mesh" mesh="keithley_2425_0104" pos="-0.0430597104 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_LIMIT" type="mesh" mesh="keithley_2425_0105" pos="-0.0314136706 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_LOCAL" type="mesh" mesh="keithley_2425_0106" pos="-0.0703359693 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_MEAS_I" type="mesh" mesh="keithley_2425_0107" pos="-0.0580769775 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_MEAS_R" type="mesh" mesh="keithley_2425_0108" pos="-0.0433661861 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_MEAS_V" type="mesh" mesh="keithley_2425_0109" pos="-0.0709489209 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_MENU" type="mesh" mesh="keithley_2425_0110" pos="-0.00321798562 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_OUTPUT" type="mesh" mesh="keithley_2425_0111" pos="0.072481297 -0.182999998 0.0311254356" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_POWER" type="mesh" mesh="keithley_2425_0112" pos="-0.0878050327 -0.182999998 0.0249233452" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_RANGE_DOWN" type="mesh" mesh="keithley_2425_0113" pos="0.047043886 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_RANGE_UP" type="mesh" mesh="keithley_2425_0114" pos="0.047043886 -0.182999998 0.048491288" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_RECALL" type="mesh" mesh="keithley_2425_0115" pos="-0.0314136706 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_REL" type="mesh" mesh="keithley_2425_0116" pos="-0.0586899295 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SOURCE_DOWN" type="mesh" mesh="keithley_2425_0117" pos="0.0252841732 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SOURCE_I" type="mesh" mesh="keithley_2425_0118" pos="-0.00260503567 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SOURCE_UP" type="mesh" mesh="keithley_2425_0119" pos="0.0130251797 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SOURCE_V" type="mesh" mesh="keithley_2425_0120" pos="-0.0151705032 -0.182999998 0.0475609752" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SPEED" type="mesh" mesh="keithley_2425_0121" pos="-0.0586899295 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_STORE" type="mesh" mesh="keithley_2425_0122" pos="-0.0430597104 -0.182999998 0.0249233451" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_SWEEP" type="mesh" mesh="keithley_2425_0123" pos="-0.00321798562 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_TERMINALS" type="mesh" mesh="keithley_2425_0124" pos="0.0924021602 -0.182999998 0.0298850178" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_TRIG" type="mesh" mesh="keithley_2425_0125" pos="-0.0148640284 -0.182999998 0.0354668982" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_key_panel" type="mesh" mesh="keithley_2425_0126" pos="-0.0234453231 -0.180000007 0.0360871069" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_125V_866" type="mesh" mesh="keithley_2425_0127" pos="0.0642723722 -0.184 0.0754936491" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_125V_981" type="mesh" mesh="keithley_2425_0128" pos="0.0995169786 -0.184 0.0754936491" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_250V_981" type="mesh" mesh="keithley_2425_0129" pos="0.0994932171 -0.184 0.0550266107" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_4-WIRE_892" type="mesh" mesh="keithley_2425_0130" pos="0.0721649959 -0.184 0.096581252" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_5V_925" type="mesh" mesh="keithley_2425_0131" pos="0.0823331604 -0.184 0.0754850949" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_HI_924" type="mesh" mesh="keithley_2425_0132" pos="0.0819820166 -0.184 0.0903791652" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_INPUT/_956" type="mesh" mesh="keithley_2425_0133" pos="0.0918528892 -0.184 0.0965210561" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_LO_924" type="mesh" mesh="keithley_2425_0134" pos="0.0820092631 -0.184 0.0562670318" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_OUTPUT_956" type="mesh" mesh="keithley_2425_0135" pos="0.0918275437 -0.184 0.0937896756" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_PEAK_866" type="mesh" mesh="keithley_2425_0136" pos="0.0642837777 -0.184 0.0727032066" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_PEAK_925" type="mesh" mesh="keithley_2425_0137" pos="0.0823657929 -0.184 0.0727032066" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_PEAK_981" type="mesh" mesh="keithley_2425_0138" pos="0.0995283842 -0.184 0.0522363052" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_PEAK_981.001" type="mesh" mesh="keithley_2425_0139" pos="0.0995283842 -0.184 0.0727032066" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_SENSE_892" type="mesh" mesh="keithley_2425_0140" pos="0.0721760846 -0.184 0.0937896756" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_legend_TERMINALS_958" type="mesh" mesh="keithley_2425_0141" pos="0.0923641418 -0.184 0.0379708645" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_mains_module" type="mesh" mesh="keithley_2425_0142" pos="-0.0414789468 0.180999994 0.0410487801" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_model" type="mesh" mesh="keithley_2425_0143" pos="0.0103334244 -0.184 0.0615482669" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_output_button_recess" type="mesh" mesh="keithley_2425_0144" pos="0.072481297 -0.181999996 0.0379477367" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_output_indicator" type="mesh" mesh="keithley_2425_0145" pos="0.072481297 -0.183500007 0.0425993018" rgba="0.780392157 0.788235294 0.729411765 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_output_legend" type="mesh" mesh="keithley_2425_0146" pos="0.0725213748 -0.184 0.0240172111" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_brand" type="mesh" mesh="keithley_2425_0147" pos="-0.00653757059 0.184 0.0956606633" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_bumper_-1" type="mesh" mesh="keithley_2425_0148" pos="-0.102499999 0.179000005 0.0595000014" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_bumper_1" type="mesh" mesh="keithley_2425_0149" pos="0.102499999 0.179000005 0.0595000014" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_force_hi_contact" type="mesh" mesh="keithley_2425_0150" pos="0.0664223656 0.174000002 0.0919059217" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_force_hi_insulator" type="mesh" mesh="keithley_2425_0151" pos="0.0664223693 0.182500005 0.0919059217" rgba="0.521568627 0.0156862745 0.00784313725 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_force_lo_contact" type="mesh" mesh="keithley_2425_0152" pos="0.0664223656 0.174000002 0.0692682937" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_force_lo_insulator" type="mesh" mesh="keithley_2425_0153" pos="0.0664223693 0.182500005 0.0692682937" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_fuse" type="mesh" mesh="keithley_2425_0154" pos="-0.0423597721 0.184 0.077925877" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_gpib" type="mesh" mesh="keithley_2425_0155" pos="0.0703267239 0.184 0.0435527464" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_125V_326" type="mesh" mesh="keithley_2425_0156" pos="0.0955038386 0.184 0.0813856353" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_125V_469" type="mesh" mesh="keithley_2425_0157" pos="0.0554262082 0.184 0.0813856353" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_250V_490" type="mesh" mesh="keithley_2425_0158" pos="0.0495644431 0.184 0.055336715" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_4-WIRE_357" type="mesh" mesh="keithley_2425_0159" pos="0.0868913993 0.184 0.0565777697" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_5V_394" type="mesh" mesh="keithley_2425_0160" pos="0.0764671733 0.184 0.0813770811" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_5V_533" type="mesh" mesh="keithley_2425_0161" pos="0.0375105907 0.184 0.0813770811" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_GUARD_554" type="mesh" mesh="keithley_2425_0162" pos="0.031671637 0.184 0.0913088408" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_GUARD_557" type="mesh" mesh="keithley_2425_0163" pos="0.0308308483 0.184 0.069601522" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_HI_394" type="mesh" mesh="keithley_2425_0164" pos="0.076511845 0.184 0.0993721948" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_INPUT/_430" type="mesh" mesh="keithley_2425_0165" pos="0.0663586848 0.184 0.0565175739" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_LO_394" type="mesh" mesh="keithley_2425_0166" pos="0.0764845985 0.184 0.0593680752" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_OUTPUT_430" type="mesh" mesh="keithley_2425_0167" pos="0.0663840303 0.184 0.0537861932" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_PEAK_490" type="mesh" mesh="keithley_2425_0168" pos="0.0495292761 0.184 0.0525464096" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_SENSE_357" type="mesh" mesh="keithley_2425_0169" pos="0.0868803107 0.184 0.0537861933" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_SENSE_557" type="mesh" mesh="keithley_2425_0170" pos="0.0308276799 0.184 0.06588027" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_legend_V, Ω_554" type="mesh" mesh="keithley_2425_0171" pos="0.0316893787 0.184 0.0946509255" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_line" type="mesh" mesh="keithley_2425_0172" pos="-0.0423591956 0.184 0.0717237829" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_model" type="mesh" mesh="keithley_2425_0173" pos="-0.0190474535 0.184 0.0897614767" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_output" type="mesh" mesh="keithley_2425_0174" pos="-0.0854751961 0.184 0.03766076" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_panel" type="mesh" mesh="keithley_2425_0175" pos="0 0.178000017 0.0595000014" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_screw_-1_0.025" type="mesh" mesh="keithley_2425_0176" pos="-0.0920000002 0.180000007 0.0250000003" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_screw_-1_0.094" type="mesh" mesh="keithley_2425_0177" pos="-0.0920000002 0.180000007 0.0939999967" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_screw_1_0.025" type="mesh" mesh="keithley_2425_0178" pos="0.0920000002 0.180000007 0.0250000003" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_screw_1_0.094" type="mesh" mesh="keithley_2425_0179" pos="0.0920000002 0.180000007 0.0939999967" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_sense_hi_contact" type="mesh" mesh="keithley_2425_0180" pos="0.0866013169 0.174000002 0.0919059217" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_sense_hi_insulator" type="mesh" mesh="keithley_2425_0181" pos="0.0866013169 0.182500005 0.0919059217" rgba="0.521568627 0.0156862745 0.00784313725 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_sense_lo_contact" type="mesh" mesh="keithley_2425_0182" pos="0.0866013169 0.174000002 0.0692682937" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_sense_lo_insulator" type="mesh" mesh="keithley_2425_0183" pos="0.0866013169 0.182500005 0.0692682937" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_serial" type="mesh" mesh="keithley_2425_0184" pos="0.0179381097 0.184 0.0345597131" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_rear_trigger" type="mesh" mesh="keithley_2425_0185" pos="-0.0126235641 0.184 0.036420339" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_sense_hi_contact" type="mesh" mesh="keithley_2425_0186" pos="0.0721748173 -0.174000002 0.0844634175" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_sense_hi_insulator" type="mesh" mesh="keithley_2425_0187" pos="0.072174821 -0.182500005 0.0844634138" rgba="0.521568627 0.0156862745 0.00784313725 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_sense_lo_contact" type="mesh" mesh="keithley_2425_0188" pos="0.0721748173 -0.174000002 0.0639965162" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_sense_lo_insulator" type="mesh" mesh="keithley_2425_0189" pos="0.072174821 -0.182500005 0.0639965143" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_side_shell_-1" type="mesh" mesh="keithley_2425_0190" pos="-0.101750001 -0.00150000001 0.0595000014" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_side_shell_1" type="mesh" mesh="keithley_2425_0191" pos="0.101750001 -0.00150000001 0.0595000014" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_terminal_panel" type="mesh" mesh="keithley_2425_0192" pos="0.0816755369 -0.180499998 0.059034843" rgba="0.690196078 0.698039216 0.650980392 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_&lt;" type="mesh" mesh="keithley_2425_0193" pos="0.0130251795 -0.185000002 0.0354167254" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_&gt;" type="mesh" mesh="keithley_2425_0194" pos="0.024671223 -0.185000002 0.0354167254" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_AUTO" type="mesh" mesh="keithley_2425_0195" pos="0.047006818 -0.185000002 0.0370447528" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_CONFIG" type="mesh" mesh="keithley_2425_0196" pos="-0.0148838729 -0.185000002 0.0249506779" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_DIGITS" type="mesh" mesh="keithley_2425_0197" pos="-0.0703033945 -0.185000002 0.0249506779" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_DISPLAY_EDIT" type="mesh" mesh="keithley_2425_0198" pos="-0.0966361691 -0.182999998 0.0475814962" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_DISPLAY_TOGGLE" type="mesh" mesh="keithley_2425_0199" pos="-0.0967302936 -0.182999998 0.0373474983" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_ENTER" type="mesh" mesh="keithley_2425_0200" pos="0.0247243913 -0.185000002 0.0249514268" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_EXIT" type="mesh" mesh="keithley_2425_0201" pos="0.0131026852 -0.185000002 0.0249514268" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_FCTN" type="mesh" mesh="keithley_2425_0202" pos="-0.0301877688 -0.185000002 0.0475883078" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_FILTER" type="mesh" mesh="keithley_2425_0203" pos="-0.0430065423 -0.185000002 0.0354949799" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_LIMIT" type="mesh" mesh="keithley_2425_0204" pos="-0.0313361647 -0.185000002 0.0354949799" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_LOCAL" type="mesh" mesh="keithley_2425_0205" pos="-0.0702648287 -0.185000002 0.0354942311" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_MEAS_I" type="mesh" mesh="keithley_2425_0206" pos="-0.0580769777 -0.185000002 0.0475890567" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_MEAS_R" type="mesh" mesh="keithley_2425_0207" pos="-0.0433661863 -0.185000002 0.0475957963" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_MEAS_V" type="mesh" mesh="keithley_2425_0208" pos="-0.0709492956 -0.185000002 0.0475890567" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_MENU" type="mesh" mesh="keithley_2425_0209" pos="-0.0032093738 -0.185000002 0.0249405685" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_OUTPUT" type="mesh" mesh="keithley_2425_0210" pos="0.0724797992 -0.185000002 0.0310924862" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_POWER" type="mesh" mesh="keithley_2425_0211" pos="-0.0966539541 -0.182999998 0.0249433191" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_RANGE_DOWN" type="mesh" mesh="keithley_2425_0212" pos="0.047043886 -0.185000002 0.0248125155" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_RANGE_UP" type="mesh" mesh="keithley_2425_0213" pos="0.047043886 -0.185000002 0.0484411151" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_RECALL" type="mesh" mesh="keithley_2425_0214" pos="-0.0313425302 -0.185000002 0.0249506779" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_REL" type="mesh" mesh="keithley_2425_0215" pos="-0.0586187891 -0.185000002 0.0354949799" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SOURCE_DOWN" type="mesh" mesh="keithley_2425_0216" pos="0.025284173 -0.185000002 0.0474501454" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SOURCE_I" type="mesh" mesh="keithley_2425_0217" pos="-0.0026050359 -0.185000002 0.0475890567" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SOURCE_UP" type="mesh" mesh="keithley_2425_0218" pos="0.0130251795 -0.185000002 0.0475108021" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SOURCE_V" type="mesh" mesh="keithley_2425_0219" pos="-0.0151708779 -0.185000002 0.0475890567" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SPEED" type="mesh" mesh="keithley_2425_0220" pos="-0.0586846877 -0.185000002 0.0249506779" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_STORE" type="mesh" mesh="keithley_2425_0221" pos="-0.0430582127 -0.185000002 0.0249506779" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_SWEEP" type="mesh" mesh="keithley_2425_0222" pos="-0.00319364818 -0.185000002 0.0354942311" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_TERMINALS" type="mesh" mesh="keithley_2425_0223" pos="0.0924553283 -0.185000002 0.0298419594" rgba="0.811764706 0.839215686 0.8 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_text_TRIG" type="mesh" mesh="keithley_2425_0224" pos="-0.0149291782 -0.185000002 0.0354942311" rgba="0.0117647059 0.0156862745 0.0156862745 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_top_shell" type="mesh" mesh="keithley_2425_0225" pos="0 -0.00150000001 0.103249997" rgba="0.490196078 0.501960784 0.470588235 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_insert" type="mesh" mesh="keithley_2425_0226" pos="-0.0126118418 0.180500001 0.0264738672" rgba="0.0235294118 0.0274509804 0.0235294118 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_shell" type="mesh" mesh="keithley_2425_0227" pos="-0.0126118422 0.181000002 0.0264738677" rgba="0.588235294 0.611764706 0.580392157 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_0" type="mesh" mesh="keithley_2425_0228" pos="-0.0143118417 0.181199998 0.0284738671" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_1" type="mesh" mesh="keithley_2425_0229" pos="-0.0126118418 0.181199998 0.0284738671" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_2" type="mesh" mesh="keithley_2425_0230" pos="-0.0109118419 0.181199998 0.0284738671" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_3" type="mesh" mesh="keithley_2425_0231" pos="-0.0150118424 0.181199998 0.0264738668" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_4" type="mesh" mesh="keithley_2425_0232" pos="-0.0126118418 0.181199998 0.0264738668" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_5" type="mesh" mesh="keithley_2425_0233" pos="-0.0102118421 0.181199998 0.0264738668" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_6" type="mesh" mesh="keithley_2425_0234" pos="-0.0136118419 0.181199998 0.0244738683" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="keithley_2425_trigger_link_socket_7" type="mesh" mesh="keithley_2425_0235" pos="-0.0116118426 0.181199998 0.0244738683" rgba="0.00784313725 0.0117647059 0.0117647059 1" mass="0" contype="0" conaffinity="0" group="2" />
+      <geom name="collision_top_shell" type="box" size="0.102499999 0.172499999 0.000750000007" pos="0 -0.00150000001 0.103249997" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="collision_bottom_shell" type="box" size="0.102499999 0.172499999 0.000750000007" pos="0 -0.00150000001 0.0157500003" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="collision_side_shell_-1" type="box" size="0.000750000007 0.172499999 0.0430000015" pos="-0.101750001 -0.00150000001 0.0595000014" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="collision_side_shell_1" type="box" size="0.000750000007 0.172499999 0.0430000015" pos="0.101750001 -0.00150000001 0.0595000014" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="collision_key_panel" type="box" size="0.0825000033 0.00150000001 0.0199999996" pos="-0.0234453231 -0.180000007 0.0360871069" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="collision_display_bezel" type="box" size="0.0820000023 0.00200000009 0.0222500004" pos="-0.0234453231 -0.180500001 0.0785714313" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <body name="jack_sense_hi" pos="0.0721748201 -0.185 0.0844634146" euler="-1.57079632679 0 0">
+        <geom name="jack_wall_sense_hi_0" type="box" size="0.00255 0.000266282702 0.006" pos="0.00395 0 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_1" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.130899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_2" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.261799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_3" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.392699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_4" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.523598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_5" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.654498469" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_6" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.785398163" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_7" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.916297857" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_8" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.04719755" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_9" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.17809725" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_10" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.30899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_11" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.43989663" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_12" type="box" size="0.00255 0.000266282702 0.006" pos="2.41867743e-19 0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.57079633" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_13" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.70169602" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_14" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.83259571" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_15" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.96349541" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_16" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.0943951" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_17" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.2252948" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_18" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.35619449" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_19" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.48709418" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_20" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.61799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_21" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.74889357" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_22" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.87979327" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_23" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.01069296" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_24" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00395 4.83735486e-19 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.14159265" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_25" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.27249235" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_26" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.40339204" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_27" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.53429174" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_28" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.66519143" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_29" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.79609112" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_30" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.92699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_31" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.05789051" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_32" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.1887902" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_33" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.3196899" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_34" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.45058959" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_35" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.58148929" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_36" type="box" size="0.00255 0.000266282702 0.006" pos="-7.25603228e-19 -0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.71238898" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_37" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.84328867" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_38" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.97418837" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_39" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.10508806" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_40" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.23598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_41" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.36688745" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_42" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.49778714" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_43" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.62868684" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_44" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.75958653" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_45" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.89048623" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_46" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.02138592" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_hi_47" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.15228561" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="jack_sense_lo" pos="0.0721748201 -0.185 0.0639965157" euler="-1.57079632679 0 0">
+        <geom name="jack_wall_sense_lo_0" type="box" size="0.00255 0.000266282702 0.006" pos="0.00395 0 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_1" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.130899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_2" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.261799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_3" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.392699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_4" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.523598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_5" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.654498469" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_6" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.785398163" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_7" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.916297857" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_8" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.04719755" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_9" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.17809725" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_10" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.30899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_11" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.43989663" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_12" type="box" size="0.00255 0.000266282702 0.006" pos="2.41867743e-19 0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.57079633" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_13" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.70169602" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_14" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.83259571" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_15" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.96349541" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_16" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.0943951" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_17" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.2252948" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_18" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.35619449" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_19" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.48709418" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_20" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.61799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_21" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.74889357" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_22" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.87979327" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_23" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.01069296" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_24" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00395 4.83735486e-19 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.14159265" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_25" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.27249235" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_26" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.40339204" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_27" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.53429174" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_28" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.66519143" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_29" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.79609112" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_30" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.92699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_31" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.05789051" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_32" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.1887902" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_33" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.3196899" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_34" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.45058959" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_35" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.58148929" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_36" type="box" size="0.00255 0.000266282702 0.006" pos="-7.25603228e-19 -0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.71238898" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_37" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.84328867" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_38" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.97418837" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_39" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.10508806" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_40" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.23598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_41" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.36688745" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_42" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.49778714" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_43" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.62868684" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_44" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.75958653" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_45" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.89048623" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_46" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.02138592" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_sense_lo_47" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.15228561" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="jack_force_hi" pos="0.0917892086 -0.185 0.0844634146" euler="-1.57079632679 0 0">
+        <geom name="jack_wall_force_hi_0" type="box" size="0.00255 0.000266282702 0.006" pos="0.00395 0 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_1" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.130899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_2" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.261799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_3" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.392699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_4" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.523598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_5" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.654498469" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_6" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.785398163" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_7" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.916297857" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_8" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.04719755" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_9" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.17809725" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_10" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.30899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_11" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.43989663" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_12" type="box" size="0.00255 0.000266282702 0.006" pos="2.41867743e-19 0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.57079633" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_13" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.70169602" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_14" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.83259571" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_15" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.96349541" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_16" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.0943951" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_17" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.2252948" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_18" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.35619449" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_19" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.48709418" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_20" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.61799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_21" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.74889357" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_22" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.87979327" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_23" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.01069296" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_24" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00395 4.83735486e-19 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.14159265" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_25" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.27249235" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_26" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.40339204" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_27" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.53429174" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_28" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.66519143" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_29" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.79609112" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_30" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.92699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_31" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.05789051" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_32" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.1887902" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_33" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.3196899" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_34" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.45058959" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_35" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.58148929" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_36" type="box" size="0.00255 0.000266282702 0.006" pos="-7.25603228e-19 -0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.71238898" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_37" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.84328867" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_38" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.97418837" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_39" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.10508806" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_40" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.23598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_41" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.36688745" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_42" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.49778714" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_43" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.62868684" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_44" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.75958653" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_45" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.89048623" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_46" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.02138592" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_hi_47" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.15228561" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="jack_force_lo" pos="0.0917892086 -0.185 0.0639965157" euler="-1.57079632679 0 0">
+        <geom name="jack_wall_force_lo_0" type="box" size="0.00255 0.000266282702 0.006" pos="0.00395 0 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_1" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.130899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_2" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.261799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_3" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.392699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_4" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.523598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_5" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.654498469" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_6" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.785398163" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_7" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 0.916297857" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_8" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.04719755" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_9" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.17809725" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_10" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.30899694" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_11" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.43989663" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_12" type="box" size="0.00255 0.000266282702 0.006" pos="2.41867743e-19 0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.57079633" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_13" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.70169602" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_14" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.83259571" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_15" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 1.96349541" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_16" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.0943951" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_17" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.2252948" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_18" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.35619449" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_19" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.48709418" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_20" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.61799388" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_21" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.74889357" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_22" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 2.87979327" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_23" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.01069296" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_24" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00395 4.83735486e-19 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.14159265" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_25" type="box" size="0.00255 0.000266282702 0.006" pos="-0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.27249235" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_26" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.40339204" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_27" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.53429174" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_28" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.66519143" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_29" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.79609112" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_30" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 3.92699082" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_31" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.05789051" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_32" type="box" size="0.00255 0.000266282702 0.006" pos="-0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.1887902" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_33" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.3196899" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_34" type="box" size="0.00255 0.000266282702 0.006" pos="-0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.45058959" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_35" type="box" size="0.00255 0.000266282702 0.006" pos="-0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.58148929" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_36" type="box" size="0.00255 0.000266282702 0.006" pos="-7.25603228e-19 -0.00395 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.71238898" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_37" type="box" size="0.00255 0.000266282702 0.006" pos="0.000515578459 -0.0039162072 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.84328867" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_38" type="box" size="0.00255 0.000266282702 0.006" pos="0.00102233523 -0.00381540701 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 4.97418837" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_39" type="box" size="0.00255 0.000266282702 0.006" pos="0.00151159956 -0.00364932415 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.10508806" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_40" type="box" size="0.00255 0.000266282702 0.006" pos="0.001975 -0.00342080034 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.23598776" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_41" type="box" size="0.00255 0.000266282702 0.006" pos="0.00240460764 -0.00313374569 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.36688745" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_42" type="box" size="0.00255 0.000266282702 0.006" pos="0.00279307179 -0.00279307179 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.49778714" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_43" type="box" size="0.00255 0.000266282702 0.006" pos="0.00313374569 -0.00240460764 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.62868684" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_44" type="box" size="0.00255 0.000266282702 0.006" pos="0.00342080034 -0.001975 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.75958653" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_45" type="box" size="0.00255 0.000266282702 0.006" pos="0.00364932415 -0.00151159956 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 5.89048623" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_46" type="box" size="0.00255 0.000266282702 0.006" pos="0.00381540701 -0.00102233523 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.02138592" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+        <geom name="jack_wall_force_lo_47" type="box" size="0.00255 0.000266282702 0.006" pos="0.0039162072 -0.000515578459 0.006" rgba="0 0 0 0" friction=".5 .001 .0001" euler="0 0 6.15228561" mass="0.00020833333333333335" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+    </body>
+    <body name="meter_riser" pos="0.46 0.22 0.74">
+      <geom name="riser_top" type="box" size="0.125 0.19 0.006" pos="0 0 0.114" rgba="0.14 0.22 0.29 1" friction="1 .005 .0001" />
+      <geom name="riser_leg_-0.1_-0.15" type="box" size="0.009 0.009 0.054" pos="-0.1 -0.15 0.054" rgba="0.14 0.22 0.29 1" friction="1 .005 .0001" />
+      <geom name="riser_leg_-0.1_0.15" type="box" size="0.009 0.009 0.054" pos="-0.1 0.15 0.054" rgba="0.14 0.22 0.29 1" friction="1 .005 .0001" />
+      <geom name="riser_leg_0.1_-0.15" type="box" size="0.009 0.009 0.054" pos="0.1 -0.15 0.054" rgba="0.14 0.22 0.29 1" friction="1 .005 .0001" />
+      <geom name="riser_leg_0.1_0.15" type="box" size="0.009 0.009 0.054" pos="0.1 0.15 0.054" rgba="0.14 0.22 0.29 1" friction="1 .005 .0001" />
+    </body>
+    <body name="plug" pos="0.38 -0.27 0.81">
+      <freejoint name="plug_free" />
+      <geom name="plug_grip" type="cylinder" size="0.006 0.015" pos="0 0 0" rgba="0.65 0.025 0.018 1" friction="1 .005 .0001" euler="1.57079632679 0 0" mass=".006" />
+      <geom name="pin_core" type="cylinder" size="0.0015 0.009" pos="0 0.024 0" rgba="0.62 0.64 0.66 1" friction="1 .005 .0001" euler="1.57079632679 0 0" mass=".002" />
+      <geom name="plug_tail" type="cylinder" size="0.0025 0.004" pos="0 -0.019 0" rgba="0.14 0.15 0.16 1" friction="1 .005 .0001" euler="1.57079632679 0 0" mass=".001" />
+      <site name="plug_grasp" pos="0 0 0" size=".001" />
+      <site name="plug_tip" pos="0 .033 0" size=".0005" />
+      <body name="plug_leaf_0" pos="0.0019 0 0">
+        <joint name="leaf_compression_0" type="slide" axis="1 0 0" range="-.0006 0" stiffness="2500" damping=".2" springref="0" solreflimit=".001 1" solimplimit=".999 .999 .00001" />
+        <geom name="spring_contact_0" type="capsule" fromto="0 .018 0 0 .030 0" size=".0002" mass=".00005" rgba=".7 .72 .74 1" friction=".5 .001 .0001" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="plug_leaf_1" pos="1.16341446e-19 0 0.0019">
+        <joint name="leaf_compression_1" type="slide" axis="6.123234e-17 0 1" range="-.0006 0" stiffness="2500" damping=".2" springref="0" solreflimit=".001 1" solimplimit=".999 .999 .00001" />
+        <geom name="spring_contact_1" type="capsule" fromto="0 .018 0 0 .030 0" size=".0002" mass=".00005" rgba=".7 .72 .74 1" friction=".5 .001 .0001" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="plug_leaf_2" pos="-0.0019 0 2.32682892e-19">
+        <joint name="leaf_compression_2" type="slide" axis="-1 0 1.2246468e-16" range="-.0006 0" stiffness="2500" damping=".2" springref="0" solreflimit=".001 1" solimplimit=".999 .999 .00001" />
+        <geom name="spring_contact_2" type="capsule" fromto="0 .018 0 0 .030 0" size=".0002" mass=".00005" rgba=".7 .72 .74 1" friction=".5 .001 .0001" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <body name="plug_leaf_3" pos="-3.49024338e-19 0 -0.0019">
+        <joint name="leaf_compression_3" type="slide" axis="-1.8369702e-16 0 -1" range="-.0006 0" stiffness="2500" damping=".2" springref="0" solreflimit=".001 1" solimplimit=".999 .999 .00001" />
+        <geom name="spring_contact_3" type="capsule" fromto="0 .018 0 0 .030 0" size=".0002" mass=".00005" rgba=".7 .72 .74 1" friction=".5 .001 .0001" solref=".002 1" solimp=".99 .999 .0001" />
+      </body>
+      <flexcomp name="plug_lead" type="direct" dim="1" point="0 -0.023 0 0 -0.036 -0.017 0 -0.049 -0.034 0 -0.062 -0.051 0 -0.075 -0.068 0.023 -0.075 -0.068 0.046 -0.075 -0.068 0.069 -0.075 -0.068 0.092 -0.075 -0.068 0.115 -0.075 -0.068 0.138 -0.075 -0.068 0.161 -0.075 -0.068 0.184 -0.075 -0.068 0.207 -0.075 -0.068 0.23 -0.075 -0.068 0.23 -0.051 -0.068 0.23 -0.027 -0.068 0.23 -0.003 -0.068 0.23 0.021 -0.068 0.23 0.045 -0.068 0.20651482 0.045 -0.068 0.183029639 0.045 -0.068 0.159544459 0.045 -0.068 0.136059279 0.045 -0.068 0.112574099 0.045 -0.068 0.0890889185 0.045 -0.068 0.0656037382 0.045 -0.068" element="0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26" mass="0.0024504422698000384" radius=".001" rgba=".15 .025 .025 1">
+        <pin id="0" />
+        <edge equality="true" damping=".001" solref=".002 1" solimp=".9999 .9999 .00001" />
+        <contact selfcollide="auto" condim="3" friction=".3 .001 .0001" solref=".0021 1" solimp=".99 .999 .0001" />
+      </flexcomp>
+    </body>
+    <body name="plug_stand" pos="0.38 -0.27 0.74">
+      <geom name="plug_support_-1" type="box" size="0.007 0.0005 0.032" pos="0 -0.014 0.032" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_side_-1_-1" type="box" size="0.002 0.0005 0.035" pos="-0.0085 -0.014 0.035" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_side_-1_1" type="box" size="0.002 0.0005 0.035" pos="0.0085 -0.014 0.035" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_support_1" type="box" size="0.007 0.0005 0.032" pos="0 0.014 0.032" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_side_1_-1" type="box" size="0.002 0.0005 0.035" pos="-0.0085 0.014 0.035" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_side_1_1" type="box" size="0.002 0.0005 0.035" pos="0.0085 0.014 0.035" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+      <geom name="plug_stand_foot" type="box" size="0.018 0.024 0.003" pos="0 0 0.003" rgba="0.08 0.35 0.42 1" friction="1 .005 .0001" />
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_joint1" coef="0.5" />
+      <joint joint="finger_joint2" coef="0.5" />
+    </fixed>
+  </tendon>
+  <equality>
+    <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1" />
+  </equality>
+  <actuator>
+    <general class="panda" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" />
+    <general class="panda" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" ctrlrange="-1.7628 1.7628" />
+    <general class="panda" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" />
+    <general class="panda" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" ctrlrange="-3.0718 -0.0698" />
+    <general class="panda" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" ctrlrange="-0.0175 3.7525" />
+    <general class="panda" name="actuator7" joint="joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator8" tendon="split" forcerange="-40 40" ctrlrange="-40 40" gainprm="1 0 0" biasprm="0 0 0" />
+  </actuator>
+  <contact>
+    <exclude body1="link0" body2="link1" />
+  </contact>
+  <visual>
+    <global offwidth="1280" offheight="800" />
+  </visual>
+</mujoco>

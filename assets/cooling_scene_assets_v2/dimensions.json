@@ -65,6 +65,13 @@
       "basis": "source"
     },
     {
+      "id": "LDPE_film_each",
+      "value": 5e-05,
+      "unit": "m",
+      "source_locator": "SI Note 6, approximately 50 micrometres",
+      "basis": "source_approximate"
+    },
+    {
       "id": "shield_ID",
       "value": 0.14,
       "unit": "m",
@@ -233,10 +240,10 @@
   "global_inference_rule": "Every dimension not explicitly source/manufacturer listed is a selected visual reconstruction: fasteners, port placement, track curve, frame supports, accessory offsets and wire routes. They are not metrology-ready.",
   "known_geometry_gaps": [
     "Track shown is illustrative, not generated for a site/date; solar_geometry.py checks qualified samples separately",
-    "Fixed-band model currently retains generic PE visual material; LDPE thickness and separation must be configured",
+    "Fixed-band model uses two nominal 50 micrometre LDPE layers; optical material values and attachment mechanics remain unqualified",
     "Heater and underside mounting/lead fit are not modeled",
     "Full rooftop support, foil DAQ box and shielded ambient mast not yet modeled",
-    "Sensor wire endpoints are schematic; six precise map surface bindings remain to be implemented",
+    "Seven source-related map contact locations now have explicit target parts; exact coordinates, two internal insulation recesses and lead routes remain inferred and unqualified",
     "The 107 mm spacer bore exceeds the 102 mm PE support outside diameter: the cover attachment/load path is not specified by the source and needs qualification, not invisible support geometry",
     "Cary DRA accessory shape/ports inferred from photos; Nicolet envelope and selected DTGS variant require dimensional and historical verification"
   ],

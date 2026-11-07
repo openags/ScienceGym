@@ -1,0 +1,40 @@
+{
+  "operation": "Continuous one-metre approach, window push and sensor-confirmed recovery after late contact loss if needed",
+  "run": "runs/ftir_approach_08",
+  "walking_controller": "quasistatic",
+  "initial_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "maximum_simulation_duration_s": 420.0,
+  "approach_timeout_s": 313.0,
+  "physical_acceptance": "Original verify_ftir_slider.py thresholds unchanged",
+  "prior": "assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json",
+  "scope": "Development attempt, not complete interstation experiment or repeated-run qualification",
+  "source_hashes": {
+    "simulation/g1_cooling_demo/balance.py": "67c04d759c844cd6478f49a67ea65fd6e5dd0826351576c17a5486decf3eb497",
+    "simulation/g1_cooling_demo/conic_balance.py": "6efb9f389dcdfe4bbf05bbd3b25e62302db915b955673c134e695cc365d5dbf1",
+    "simulation/g1_cooling_demo/quasistatic_walking.py": "1ebdf1a8c1289c8e93b17a2034b623cb0283e23919df38c43d340b5ec4e43d6a",
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "d445bd15917687336a76e1d7aae13f7b8f07150f417ea2de135800a2fa84c35c",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "7cf88d5286aa462d37ba55777c8e04ac5c82b661c3b7f93d3a84047fb76c6127",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "2180f631dae555b5ff738b2e921b9a4f991afb5439d18b7cdd7b59dcbe8a72fe",
+    "simulation/g1_cooling_demo/verify_ftir_approach.py": "ff79563c938ae81c768158aa6d499b5628ad87044e535dcab66162119c83881d",
+    "simulation/g1_cooling_demo/verify_ftir_slider.py": "7d267dcf732095ad9eddf32fe741b1c60ce78502b84c8ad17df3bd23ac03a34a",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "dcd67261b40ead7764a7a8eeddd04897900d9ed548847e6ad328ec259f9c4e69",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "f455af2d3ee4a461f1a7bc1d515e1e35ee2b4a6f65c868141000692c01290e13",
+    "simulation/g1_cooling_demo/ftir_slider_outcome.py": "f032b0bfa85d72af1034944a2a6ceb77bea93f3fedbe59bda2775600da392a4b",
+    "simulation/g1_cooling_demo/check_slider_recovery.py": "e5f46700d83ad1d51756bcfa40a7fced236eb70cf7ce2b66db59357e76549bac"
+  },
+  "recovery": {
+    "trigger": "Push contact loss only: filtered load below 0.1 N for more than 0.35 s, commanded travel at least 60 mm; no overload recovery",
+    "outcome": "Original 8 distinct fresh native RGB-D fits, 66--74 mm interior guard, stable observed position, followed by settled return; fault retained until completion",
+    "unchanged_limits": "6 N load guard; all original physical review contact, support, travel, joint and motor thresholds",
+    "retained_evidence": "Original recovery fault and its context remain in events; failed attempt 07 is unchanged",
+    "source_of_decisions": "Native tactile, RGB-D, encoders and IMU only; reviewer truth is not supplied to the actor"
+  },
+  "predecessor": "runs/ftir_approach_07: failed after late contact loss; independent physical review pending at launch"
+}

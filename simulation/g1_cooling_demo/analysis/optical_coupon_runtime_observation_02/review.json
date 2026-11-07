@@ -1,0 +1,84 @@
+{
+  "scope": "Evaluate the coupon pose actually reported by an isolated recorded actor.\n\nNative object state is used only by this offline evaluator. It checks the first\nfour-frame accepted pose and observation gate, then reports later object drift\nseparately. It does not validate sample handling or replace full physics and\ncontroller replay. The future sample operation must obtain fresh observations.\n",
+  "checks": {
+    "four_native_frames": true,
+    "approach_waited_for_pose": true,
+    "accepted_center_within_one_millimetre": true,
+    "accepted_normal_within_five_degrees": true,
+    "no_unobserved_yaw_or_coating_claim": true
+  },
+  "passed_initial_runtime_observation": true,
+  "first_accepted_time_s": 2.8000000000014844,
+  "first_approach_time_s": 3.0000000000019065,
+  "accepted_pose": {
+    "center_m": [
+      6.245943243483771,
+      -6.479295141030524,
+      0.8530258454155344
+    ],
+    "normal_toward_camera": [
+      -0.017107947149922708,
+      -0.018060974544453653,
+      0.9996905117799308
+    ],
+    "observed_frames": 4,
+    "yaw_observable": false,
+    "coating_side_observed": false,
+    "source": "Native RGB-D circular copper rim; own-robot camera calibration and source radius"
+  },
+  "accepted_center_error_m": 0.00024877067005084314,
+  "accepted_normal_error_rad": 0.001617800883313494,
+  "observed_frame_diagnostics": [
+    {
+      "time_s": 2.2000000000002182,
+      "frame_id": 11,
+      "center_error_m": 0.00023747680993067193,
+      "normal_error_rad": 0.0035393823063965255
+    },
+    {
+      "time_s": 2.4000000000006403,
+      "frame_id": 12,
+      "center_error_m": 0.00024609477818243844,
+      "normal_error_rad": 0.0030786141698334536
+    },
+    {
+      "time_s": 2.6000000000010624,
+      "frame_id": 13,
+      "center_error_m": 0.0002585470885253767,
+      "normal_error_rad": 0.0005297510322926979
+    },
+    {
+      "time_s": 2.8000000000014844,
+      "frame_id": 14,
+      "center_error_m": 0.00025031927845176727,
+      "normal_error_rad": 0.0002198404499840313
+    }
+  ],
+  "source_center_at_acceptance_m": [
+    6.245850953313065,
+    -6.479297241514814,
+    0.8527948368472209
+  ],
+  "source_normal_at_acceptance": [
+    -0.015593029714097324,
+    -0.017494326927297934,
+    0.9997253652627273
+  ],
+  "later_object_center_drift_m": 1.8767601009501508e-06,
+  "later_object_normal_drift_rad": 5.771194914292421e-08,
+  "final_time_s": 4.999000000001688,
+  "later_pose_tracking_qualified": false,
+  "result_sha256": "e8f41ffa9ca097ac22b306fdb6a7986655c384832f0cecf3f591837454477e96",
+  "contract_sha256": "8b7a2f59163c8b7300592a3e1ff3d02813ee98da20cbb5578e3d972ead64e3f5",
+  "trace_sha256": "315179352a2be59814d6ace11da8aaf2d8df385065cdf84a96ffd0a8d1e44e64",
+  "responses_sha256": "8d2e86eff65e8da2e3909e646edef7624b0b0828d6aa0d32d0b938d21142aed0",
+  "camera_index_sha256": "24894ca7b4a65d23fe4c67e82fe01881a03aeae2e6bf2f01ea6a62509a1c780c",
+  "source_sha256": {
+    "runtime_collision_plugins.py": "4035caf2ece0ee3e213549d5b6179ece8be77380034a9a026e3973a3d5cfce2e",
+    "evaluate_optical_coupon_run.py": "274cd169182081acb0dc035c1752a29cf8064c58dbd86a9af535bc4208e5c1fb",
+    "build_tool_station.py": "c1fd14edb11671d8c2f180900ccb590c278a6d3074874a66c8c81cdd396870f7"
+  },
+  "full_controller_and_physics_replay_required": true,
+  "qualified_robot_handling": false,
+  "qualified_paper_branch": false
+}

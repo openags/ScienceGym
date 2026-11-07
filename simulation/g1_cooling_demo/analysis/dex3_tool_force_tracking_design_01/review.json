@@ -1,0 +1,145 @@
+{
+  "scope": "Recorded failure diagnosis and explicit controller-tuning hypothesis; not a completed actuation or physical validation",
+  "source_native_sha256": "1c0c700a3de778e96d59041a0c02c8da910e7107e9224b61ae0c37865d4de2bf",
+  "source_review_sha256": "315ba4bac217ac6d81d712f4eca5bd04fe2a6cd2875333a2fc26a7183841ed2e",
+  "source_result_sha256": "65a848efb10fad019d4a01c18eec343ac1485d1767b5166990acb651f9d2317c",
+  "measured_force_gap_samples": [
+    {
+      "time_s": 54.00000000066908,
+      "tip_gap_m": 0.004526641912712498,
+      "tool_wrist_drift_m": 0.0005276034836580543,
+      "mean_finger_loads_over_next_100ms_n": [
+        1.1347423394919496,
+        0.5314528220319399,
+        0.6222166562317658
+      ]
+    },
+    {
+      "time_s": 58.00000000080187,
+      "tip_gap_m": 0.0033061032574993555,
+      "tool_wrist_drift_m": 0.002984073568157093,
+      "mean_finger_loads_over_next_100ms_n": [
+        1.5314924913796173,
+        0.710491342841268,
+        0.8356649135697218
+      ]
+    },
+    {
+      "time_s": 62.000000000934655,
+      "tip_gap_m": 0.0017413488149648582,
+      "tool_wrist_drift_m": 0.00946612245532539,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.0057110329058117,
+        0.9060341179796478,
+        1.1151327462843783
+      ]
+    },
+    {
+      "time_s": 66.00000000106743,
+      "tip_gap_m": 0.0006123397542406284,
+      "tool_wrist_drift_m": 0.009490651663980122,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.3612690883885414,
+        1.0722486575149275,
+        1.3058527844683476
+      ]
+    },
+    {
+      "time_s": 67.00000000110063,
+      "tip_gap_m": 0.000392409184029947,
+      "tool_wrist_drift_m": 0.00950136193177767,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.4260039512239455,
+        1.1079432554883375,
+        1.3365219238637251
+      ]
+    },
+    {
+      "time_s": 68.00000000113383,
+      "tip_gap_m": 0.000186494936993717,
+      "tool_wrist_drift_m": 0.009513243249432677,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.4888147936445852,
+        1.1400612015424498,
+        1.3681182068887758
+      ]
+    },
+    {
+      "time_s": 69.00000000116702,
+      "tip_gap_m": 1.5808616001259084e-05,
+      "tool_wrist_drift_m": 0.00951776909782438,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.5508031336355037,
+        1.184450709829994,
+        1.389063785227
+      ]
+    },
+    {
+      "time_s": 70.00000000120022,
+      "tip_gap_m": 1.655315527689469e-05,
+      "tool_wrist_drift_m": 0.010777665952437116,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.535506344581813,
+        1.196794084451324,
+        1.367870950806053
+      ]
+    },
+    {
+      "time_s": 71.00000000123342,
+      "tip_gap_m": 0.00011175053981442824,
+      "tool_wrist_drift_m": 0.013303232036642059,
+      "mean_finger_loads_over_next_100ms_n": [
+        2.472026658788584,
+        1.1665515258223758,
+        1.3355185091772475
+      ]
+    }
+  ],
+  "diagnosis": "Native tip closure precedes the 3 N force target; continued closure exceeds tool retention and tip-contact bounds. The new guard allows the controller to detect lost grasp, but its abort switched back to the invalid scalar lever.",
+  "candidate_control": {
+    "scope": "Operate the free passive tweezer while maintaining the robot grasp; no specimen pickup credit",
+    "squeeze_force_proxy_n": [
+      2.45,
+      1.1025,
+      1.3475000000000001
+    ],
+    "reopen_force_proxy_n": [
+      1.2,
+      0.6,
+      0.6
+    ],
+    "actor_inputs": "Own encoders, IMU and inferred motor loads; no simulator tool pose or tip gap",
+    "minimum_open_tip_gap_m": 0.003,
+    "maximum_squeezed_tip_gap_m": 0.0005,
+    "maximum_tool_wrist_translation_drift_m": 0.01,
+    "force_target_relative_band": 0.03,
+    "force_target_dwell_s": 0.75,
+    "phase_timeout_s": 20.0,
+    "driver_command_excursion_rad": 0.25,
+    "source_joint_margin_rad": 0.01,
+    "physical_contact_and_motor_limits_unchanged": true,
+    "qualified_tool_actuation": false,
+    "coordinated_fingers": {
+      "frame": "Unposed grasp axes transformed using own wrist encoders",
+      "load_observer": "Two own-motor residuals per finger resolved into inward and tangent components; uncalibrated",
+      "normal_force_gain_m_per_n_s": 0.0006,
+      "maximum_cartesian_speed_m_s": 0.0005,
+      "tangent_position_gain_per_s": 2.0,
+      "maximum_joint_reference_speed_rad_s": 0.03,
+      "maximum_jacobian_condition_number": 100.0,
+      "minimum_jacobian_singular_value_m_per_rad": 0.001,
+      "closure_guard": "Active coordinated Jacobian; scalar lever guard applies only to single-joint control",
+      "tangent_reference": "Own fingertip material points at squeeze entry",
+      "active_through_lowering": true,
+      "load_coordinates_retained_during_abort_and_release": true,
+      "opposing_index_load_fraction": 0.45,
+      "physical_acceptance_changed": false
+    }
+  },
+  "hypothesis": "A lower squeeze target, load distribution informed by the native recording and tighter force convergence may avoid continued tip compression. Faster bounded admittance reduces settling time. New physics must establish closure and reopening.",
+  "unchanged_physical_task_limits": true,
+  "diagnostic": "dex3_tool_force_tracking_checkpoint_01",
+  "diagnostic_uses_restored_state": true,
+  "qualified_tool_actuation": false,
+  "qualified_paper_branch": false
+}

@@ -1,83 +1,126 @@
 {
   "reviewer": "Codex author self-review; not independent approval",
-  "date": "2026-10-15",
+  "date": "2026-10-19",
   "gates": [
     {
       "id": "PTR-01",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "source_inventory.json",
         "coverage_matrix.json"
       ],
-      "remaining": "Raw author data unavailable; no quantitative replication claim"
+      "remaining": "Inspected source corpus and declared physical scope are traceable. Reused source reviews are pinned by byte hashes. Unavailable historical raw data limits result replication, not the task-chain scope."
     },
     {
       "id": "PTR-02",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "operations.json",
         "resources.json",
-        "dependencies.json"
+        "dependencies.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md",
+        "selected_reconstruction.json",
+        "episode_inputs.py",
+        "selected_solar_path.json"
       ],
-      "remaining": "Qualified fixture/tool choices and commercial interface geometry remain incomplete"
+      "remaining": "109 explicit input fields across 14 cards select geometry, fixtures, channels and operating context. Remaining wire, optical, fabrication and carrier interfaces still need complete physical implementations."
     },
     {
       "id": "PTR-03",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "branches.json",
         "planner.py"
       ],
-      "remaining": "Historical repeats and PID targets are not reported; test work order must not become experiment default"
+      "remaining": "Fixture walkthrough retains all 11 branches, explicit loops and configuration-bound angular references; invented fixture repeats remain distinct from historical repetitions."
     },
     {
       "id": "PTR-04",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "operations.json",
-        "reconstruction_inferences.json"
+        "reconstruction_inferences.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md",
+        "selected_reconstruction.json",
+        "episode_inputs.py",
+        "selected_solar_path.json"
       ],
-      "remaining": "Reference actions are a reconstructed manipulation design, not low-level robot trajectories"
+      "remaining": "Every manipulation definition retains its contact/tool/support/observation/recovery contract. Selected missing values are concrete and labeled as inferences; most occurrence bindings remain unimplemented."
     },
     {
       "id": "PTR-05",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "state_contract.json",
         "recovery.json",
         "planner.py"
       ],
-      "remaining": "Only selected symbolic invariants implemented; no contact simulation or physical recovery validation"
+      "remaining": "Symbolic replay rejects omitted steps, stale references and invalid assembly revisions. Support, retention and contact predicates still need scene/instance qualification."
     },
     {
       "id": "PTR-06",
-      "status": "design_reviewed",
+      "status": "pass",
       "evidence": [
         "package.json",
-        "validate.py"
+        "validate.py",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md",
+        "selected_reconstruction.json",
+        "episode_inputs.py",
+        "selected_solar_path.json"
       ],
-      "remaining": "Interchange contract is scoped to this pilot revision"
+      "remaining": "18 artifact roles plus explicit supporting manipulation artifacts resolve; exact step/interface/part links have schema and semantic checks."
     },
     {
       "id": "PTR-07",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "agent_visible.json",
         "evaluator_reference.json",
         "tests/test_pilot.py"
       ],
-      "remaining": "Allowlist projection tested; real observation evaluator not implemented"
+      "remaining": "Actor projection excludes reference manipulation artifacts. Bounded workcells have independent trace observations; full-campaign observation and recovery execution remain incomplete."
     },
     {
       "id": "PTR-08",
-      "status": "partial",
+      "status": "changes_required",
       "evidence": [
         "VERIFICATION.json",
-        "../../assets/cooling_scene_assets_v2/equipment_research.json"
+        "../../assets/cooling_scene_assets_v2/equipment_research.json",
+        "interaction_contracts.json",
+        "manipulation_coverage.json",
+        "MANIPULATION_REVIEW.md"
       ],
-      "remaining": "Standalone review package; existing explorer stays on frozen v2. Equipment fidelity and whole-paper execution not accepted"
+      "remaining": "Keithley 2000 and 2425, Omega P-M RTD and KHR-2/2-P reconstructions have manufacturer sources and geometry checks. Other equipment and complete interface fidelity remain unaccepted."
     }
   ],
   "accepted_as_gold_standard": false,
-  "scale_to_1000_authorized_by_this_review": false
+  "scale_to_1000_authorized_by_this_review": false,
+  "reconstruction_revision": "2026-10-19.selected-inputs.1",
+  "base_commit": "f7137685961e3828ad32bf7d399cefa8824b1d62",
+  "supersedes": "review_history/2026-10-15/review.json",
+  "scope": "Author static manipulation review including explicit selected inputs; bounded simulation records remain separate from complete branch acceptance",
+  "accepted_as_manipulation_template": false,
+  "reviewed_inputs_sha256": {
+    "operations.json": "e296501cc9e642b9dd512bf6b946661196a1f5ab88ea089167c5f942cbe45baa",
+    "operations.schema.json": "51e645c02640c5cc117b05df71ea727a61b82eb26f35d9a7e2b322d400f4b333",
+    "interaction_contracts.json": "6adc3edfcdfabeda506ed7e215cfeeb39b2ae7f90c5dbfd696b520620b13420f",
+    "asset_bindings.json": "0320cfa65d735bbbd22e31a6b2c9758b2dc5d28089e3706a8da4f183a617d276",
+    "daq_terminal_contract.json": "b735f0c653a752e38d12f4fa6e6834ae620123c71f6bf95e16c089b9ee06925f",
+    "sensor_installation.json": "88fa7ac81a12224a3f81096daa91d3a22738723824ca91878091cfa78deb0622",
+    "manipulation_coverage.json": "869c872bc9eda8bc2b63f554756dfb42d83f47601d5788d045312ed24ea80a24",
+    "source_inventory.json": "1ace1f99d0d2928607c631f0fe3a211050069a3879d26b07404b20614cc3555a",
+    "episode_input_contract.json": "83442c8ff824421ba05032d0c273fb4dff0ac60c5176e6e102dd980173506e29",
+    "package.json": "f8e592443b9bb84e9c86f33e84c0794894b71e22d70b9e9dbd78b40e45aad996",
+    "../../assets/cooling_scene_assets_v2/parts.json": "9f0b587eb60200c61c802241dafb0288eb397010be63bc522c0060be4644686d",
+    "selected_reconstruction.json": "088cdcfe964b4a89fab5394e1ea82f267eacdde91fd9b2801d78e01ae37c2289",
+    "episode_inputs.py": "77cb8c7fb57b92c3d1ea3a914413064ab56b43c3e39a4400d1ed36dfba9c580c",
+    "selected_solar_path.json": "d1d48d969e10c9df87d5db4048ee00aecb6b9872cbf90313841e0e49d82666a1",
+    "agent_visible.json": "eed98cb8db80adbf0bc48842e38693031e422b94b22d3c358f3afde57f8d3a24"
+  }
 }

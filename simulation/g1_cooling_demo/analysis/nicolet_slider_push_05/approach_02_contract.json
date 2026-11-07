@@ -1,0 +1,55 @@
+{
+  "recorded_at_utc": "2026-10-28T00:41:02.778038+00:00",
+  "run": "ftir_approach_02",
+  "initial_map_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_map_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "continuous_plant_clock": true,
+  "no_runtime_robot_or_object_state_writes": true,
+  "required_checks": [
+    "At least 0.5 m executed horizontal approach before the station handoff",
+    "Stable motor-controlled parking and FTIR posture preparation",
+    "Native depth registration to public architecture, preserving floor-based height",
+    "At least five consecutive accepted map observations with XY information eigenvalue ratio >= 0.01 and position standard deviation < 1 mm",
+    "Station handoff uses sensor-derived state and current global time",
+    "All unchanged physical window/contact/motor/support requirements",
+    "Native RGB-D post-push confirmation and return",
+    "Active namespace isolation and independent controller/sensor replay"
+  ],
+  "development_assumptions": [
+    "Initial authored aisle pose and known level floor",
+    "Pinned official velocity-policy training rotor inertia 0.01 kg m^2",
+    "Leg odometry support selection inferred from sole height",
+    "Local straight aisle route to the FTIR workstation"
+  ],
+  "source_hashes": {
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "01a9ba5b9511b489835e6e4c785cde7d2868368ca79cd5906fd38ed3d801896c",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "6678b449b4461b296637dbfa2cc786a6897a678201124a5c15947b8c5733c450",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "9e867e3ba3cd4db42102dc3ae6e178734fba4b08a6086e5a647df9aa7d2f9a48",
+    "simulation/g1_cooling_demo/ftir_slider_scan_actor.py": "c0582a38c8f1908d7acfc7a879c41343c605d4953dc588b6a62258a3452f1afa",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "55e5afaaf56a041c89c82b6a17eab63b406ce486a3eecae59ee5c1a4347ff9bf",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "ce6edabe5f434ec93076917072f53c5065c9d7aa5bcd99b44aa1b40e4455c272",
+    "simulation/g1_cooling_demo/map_localization.py": "c356f16734774e181808668595e016a7985027e75e9eb29c51c8cdcbb146e5ba",
+    "simulation/g1_cooling_demo/walking_actor.py": "a636760195b752503251fe424b031e5ba73825d1ec1622a547d964a73f8d03a2",
+    "simulation/g1_cooling_demo/odometry.py": "4e15faa638942e6000e6e8a53638e4a611a6fa61bef72ddd4551e61406915716",
+    "simulation/g1_cooling_demo/balance.py": "4cb8b090940bca0c8f4f3ff9a4064167a811b470d643dbc09d40711ad84b0966",
+    "simulation/g1_cooling_demo/ftir_hand.py": "eff350521ddc6d7799e91f33dbaca412e26603083325d707f6ea4847a40b3fd3"
+  },
+  "scope": "Connect real walking to the observed station operation. This is not carrying, a complete measurement sequence, the 7.15 m interstation route, or any qualified paper branch.",
+  "changes": [
+    "Initialize and hold folded source-bounded hands; initial self-contact preflight tightened to existing 20 micrometre runtime criterion.",
+    "Keep actual parked leg posture and foot constraints; interpolate only upper body to station posture.",
+    "Weight waist posture 4 and other upper joints 3; unchanged upper error .05 rad, yaw .02 rad, speed .03 rad/s gates plus base velocity and IMU stability.",
+    "Keep all previous physical/support/contact thresholds and independent raw-sensor verification requirements."
+  ],
+  "regressions": {
+    "station_handoff_regression.json": "a3f4c57d66ca0597eef58c9e381c995905b619799286b451aea048987adc3448",
+    "walking_hand_rest_review.json": "ac1d9a8d891abe225d73958b2b3521b68328de6d2e0daa97a9e93a67e9e0ec6f",
+    "preparation_weights_tracking_regression.json": "99d6b46e129295a52488a4976529ef00a66817e4570ff4b4c18bca9ba77698dc"
+  }
+}
