@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-07**. Candidate count: **406**.
+Last screened: **2026-11-07**. Candidate count: **407**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4201,3 +4201,14 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Main Figure 3 and Supplementary Figure S9 were visually inspected. Completeness of the separately referenced Online Methods was not established. The two movies, code, pattern assets and raw measurements were not independently reviewed. This is written-source screening with selected visual checks, not a publisher-complete, media-complete or computational audit.
 - Potential scope is limited to prepared nonliving specimens, specimen and conditioning-history tracking, guarded folding and geometry checks, fixture handling and linked mechanical-characterization records. Folding remains a substantial manipulation challenge; the source does not establish that a robot can carry out this proposed workflow. Specimen suitability, fixtures, loading equipment and physical handling require separate qualification and safety review before conversion. No fabrication procedure, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-07** through the public author-hosted copy. Copyright and patent-pending notices are retained as rights caveats; public availability does not establish source-content or implementation reuse permission. Citation metadata and original commentary only; no source text, figures, movies, patterns, data, code or other source assets redistributed.
+
+## Additional candidate: droplet wrapping and prepared-film imaging records (2026-11-07)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Optimal wrapping of liquid droplets with ultrathin sheets](https://www.nature.com/articles/nmat4397) | Nature Materials / 2015 | 10.1038/nmat4397 | Prepared-film handling, specimen and conditioning-history tracking, and linked top- and side-view image comparisons suggest a future long-horizon manipulation-and-measurement task. | All extracted text in an author-hosted 16-page combined main, Methods and written SI PDF read, including figure and movie captions; visual, media, code and raw-data review gaps remain. |
+
+- **CANDIDATE only.** *Nature Materials* **14**, 1206-1209 (2015). All extracted scholarly text in the public [author-hosted combined PDF](https://vincentdemery.github.io/files/articles/Paulsen2015.pdf) was read: four main-article pages, one Methods page and eleven written Supplementary Information pages, including figure and movie captions. Suitability remains a preliminary inference; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- Figure images, supplementary media, code and raw data were not independently audited. Text and caption reading does not establish a complete visual, media, mathematical or computational review.
+- Potential scope is limited to prepared-film handling, specimen and conditioning-history tracking, and linked top- and side-view image comparisons. Film fabrication, dyes, solvents and laser setup are excluded. Specimen suitability, liquid containment, fixtures, imaging and physical handling require separate qualification and safety review before conversion. No experimental procedures, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-07** through the public author-hosted copy. Public availability does not establish unrestricted reuse permission. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
