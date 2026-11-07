@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-07**. Candidate count: **414**.
+Last screened: **2026-11-07**. Candidate count: **415**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4298,3 +4298,15 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - Potential scope is limited to qualified prepared substrates and nonliving specimens, specimen identity and placement checks, explicit freeze-state confirmation, guarded instrument-controlled conditioning, time-lapse acquisition, environmental records and linked condition comparisons. Coated-substrate fabrication is excluded. Nitrogen supply, cold surfaces, electrical/water separation, fixture compatibility, instrument calibration and safe thaw/reset require separate qualification before conversion. No preparation procedure, operating parameters, converted task or asset is supplied.
 - Access checked **2026-11-07** through the public institutional repository. The main article states **CC BY 4.0**, subject to third-party exceptions; snowflake imagery is separately credited to Kenneth Libbrecht. Citation metadata and original commentary only; no source text, figures, movies, data, code or other source assets redistributed.
 
+
+## Additional candidate: granular-flow fingering and imaging comparisons (2026-11-07)
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Fingering in granular flows](https://www.nature.com/articles/386816a0) | Nature / 1997 | 10.1038/386816a0 | Prepared-grain batch tracking, guarded chute-state checks, imaging registration and linked condition comparisons suggest a future granular-mechanics laboratory task. | Both published main-article pages read from a public institutional scan, including all prose, captions and references; both page images and all three figures inspected. No written supplement was identified; monochrome-image and archival-completeness limits remain. |
+
+- **CANDIDATE only.** O. Pouliquen, J. Delour and S. B. Savage, *Nature* **386**, 816-817 (1997), published **24 April 1997**. The complete two-page main article was read using the [institution-hosted scan](https://yakari.polytechnique.fr/Django-pub/documents/pouliquen1997rp-2pp.pdf), with OCR-assisted text reading checked against both page images. All experimental narrative, three figure captions, references and acknowledgements were covered. Proposed robot-task suitability remains a preliminary inference; no task conversion, robot-feasibility validation or scientific reproduction is claimed.
+- The official public article record lists no supplementary-information section, the main article cites no supplement, and an indexed title/DOI supplement search identified none. This establishes the written materials found during this check, not the absence of all historical supplementary material. Raw data, original image sequences and cited external references were not reviewed.
+- The source investigates size/shape segregation, particle recirculation and the breakup of granular-flow fronts. The monochrome scan does not preserve enough tonal detail for quantitative checking of tracer concentrations; the paper itself treats image grey levels as an approximate concentration indicator. Figure inspection and reading do not independently reproduce these findings, establish a quantitative repeatability protocol or supply robot-task acceptance thresholds.
+- Potential scope is limited to independently qualified prepared nonliving specimens and guarded apparatus: batch/composition history, chute and collection-state checks, imaging registration, controlled observations, linked comparison records and segregation/carryover-aware recovery. Particle containment, dust exposure, glass breakage, tilt/gate pinch points, spills, camera calibration and safe reset need separate qualification. Prepared-specimen entry is a design restriction, not evidence of equivalence to the source experiments. No preparation procedure, operating parameters, converted task or asset is supplied.
+- Access checked **2026-11-07**. Public availability of the institutional scan does not establish redistribution permission; no open-reuse licence was identified. Citation metadata and original commentary only; no source prose, figures, scan, data, code or other source assets redistributed.
