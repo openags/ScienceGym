@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-08**. Candidate count: **417**.
+Last screened: **2026-11-08**. Candidate count: **418**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4336,3 +4336,17 @@ One new **CANDIDATE** is listed below. This is selected-source screening for pos
 - The source reports non-spherical particle-armoured bubbles and relates their shape retention to interfacial jamming. It supplies no replicate counts, quantitative persistence duration, outcome tolerances or robot reliability measurements. Qualitative shape retention and apparent lack of hysteresis are source observations, not task acceptance thresholds. The main prose names zirconium oxide while Figure 1e names ground zirconium; this unresolved material discrepancy is retained, and both routes are excluded. The unrelated carbon-nanotube erratum printed on the same page is not a correction to this paper.
 - Prospective scope starts with independently qualified, prepared polymer-microparticle-covered air bubbles in aqueous specimens and a contained cartridge. Specimen identity, optical registration, guarded chamber handling, continuous object/state tracking, post-action reconciliation, failed-run records and contained waste/reset could provide a multistep task. Preparation chemistry, device fabrication, dry powders, metal/zirconium materials, compressed-gas cylinder operation, loose glass handling, deliberate aerosol generation, topology-changing puncture, biological or medical uses and environmental microplastic release are excluded. Materials, containment, fixtures, actuation limits, observation duration, repeat schedules and scoring require separate qualification; this bounded proposal does not establish reproduction of every reported morphology. No preparation recipe, operating settings, converted task or asset is supplied.
 - Access checked **2026-11-08** through public author-hosted files without an access restriction. The main retains Nature Publishing Group copyright; public availability is not an unrestricted reuse grant. Bibliographic links and original assessment only; no source PDFs, extracted text, figures, renders, data, code or other source assets are redistributed.
+
+
+## Additional candidate: cohesive-granule drainage and measurement history (2026-11-08)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. It does not change the reviewed-design or task-package counts.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [What keeps sandcastles standing?](https://www.nature.com/articles/42831) | Nature / 1997 | 10.1038/42831 | Prepared-cartridge custody, contained granule transfer, linked surface images, blockage classification and verified reset suggest a future multistep manipulation-and-metrology task. | Complete author-hosted one-page published main text and Figure 1 read and visually inspected; no SI cited or identified in indexed metadata; live archival inventory and cited-method gaps remain. |
+
+- D. J. Hornbaker, R. Albert, I. Albert, A.-L. Barabási and P. Schiffer, **Nature 387, 765 (19 June 1997)**. The article reports physical measurements of oil-wetted polystyrene spheres. Mean repose angle, spatial surface variation and a fitted model are distinct evidence; no robotic handling, independent-repeat count or automated reset is established.
+- Full main reviewed through the [author-hosted published PDF](https://barabasi.com/media/pub_imports/files/46.pdf), including its figure and numerical typesetting. No written SI is cited in the main or found in indexed publisher metadata. This is not proof of a complete archival inventory. Cited methods, raw data and later replications were not read.
+- Future scope is prepared, qualified corn-oil/bead cartridges within contained, guarded apparatus. Exclude pump oil, dry fine powders, aerosol-generating handling, environmental discharge and unqualified blockage clearing. Apparatus, material handling, perception, interlocks, controls, uncertainties and reset require independent validation. No operating settings or execution claim is supplied.
+- Access checked **2026-11-08** through the public author-hosted main without an access restriction. The main carries Macmillan Publishers Ltd copyright (1997). Public author hosting does not establish unrestricted reuse rights. Citation links and original commentary only; no article, extracted text, figure or render is bundled.
