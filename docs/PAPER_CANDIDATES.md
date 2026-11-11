@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-11**. Candidate count: **423**.
+Last screened: **2026-11-11**. Candidate count: **424**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4423,3 +4423,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Written-source screening used the [public laboratory-hosted publisher-typeset main and SI](https://fluids.snu.ac.kr/Publication/Elasto-magnetic%20instabilities%20for%20amplified%20actuation%20and%20mechanical%20memory.pdf). The appended SI matches the [publisher-linked 45-page SI](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-68225-y/MediaObjects/41467_2025_68225_MOESM1_ESM.pdf) in extracted text, page dimensions and rendered pixels at 72 dpi. This comparison does not constitute visual figure review or verification of equation typesetting; complete source-package review is not claimed.
 - Prospective scope starts with independently qualified prepared specimens and modules. Handling safety, fixtures, instrument coordination, calibration, repeatability and acceptance criteria require separate validation. No fabrication recipe, operating settings, equipment commands, robot controller or asset is supplied.
 - Access checked **2026-11-11**. Citation links and original commentary only; no source text, PDF, figure, movie, dataset or code is redistributed.
+
+
+## Additional candidate: kirigami deformation history and sequential object handling (2026-11-11)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Diffusive kinks turn kirigami into machines](https://www.nature.com/articles/s41467-024-45602-7) | Nature Communications / 2024 | 10.1038/s41467-024-45602-7 | Prepared-specimen identity, fixture checks, time-linked deformation records and object-position tracking suggest a future multistep mechanics-and-handling task. | All extractable main and written SI text, including captions and supplementary-video descriptions, read; figure images and equation typesetting were not reviewed. Videos, data and code remain unread. |
+
+- Shahram Janbaz and Corentin Coulais, **Nature Communications 15, 1255 (2024)**. Title, journal, year, DOI and official link were checked against the institutional final published version and repository record. The paper combines physical demonstrations with computational models; its rowing example is computational, not an experimentally demonstrated rowing machine.
+- Written-source screening used the [nine-page published main, preceded by a repository cover](https://pure.uva.nl/ws/files/237026938/s41467-024-45602-7.pdf), and the 11-page written SI plus supplementary-video descriptions in the [institutional supplementary archive](https://pure.uva.nl/ws/files/237026936/Supplementary_materials.zip), linked from the [UvA repository record](https://dare.uva.nl/id/730e38dd-5ae3-44b8-b839-2aeec8beec99). Figure images, equation typesetting, video content, data and code were not reviewed; complete source-package review is not claimed.
+- Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen history, linked observations and object tracking offer preliminary task structure, not evidence of robot feasibility or reproduced results. Fabrication, operating settings and equipment commands are excluded; handling safety, fixtures, calibration, repeatability and acceptance criteria require separate validation.
+- Access checked **2026-11-11** through the public institutional sources. Direct publisher-page access returned a cookie/identity-provider error. The article is **CC BY 4.0**, subject to component exceptions. Citation links and original commentary only; no source text, PDF, figure, video, dataset, code or asset is redistributed.
