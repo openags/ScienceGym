@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-11**. Candidate count: **422**.
+Last screened: **2026-11-11**. Candidate count: **423**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4409,3 +4409,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - The addendum limits the interpretation of the wetting claims. Universal self-cleaning is not established and must not become a task requirement or acceptance threshold. Reported material responses remain source claims, not independently validated robot measurements or scoring criteria.
 - Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen identity, deformation history, linked optical/electrical observations, failed-run records and verified reset could support a multistep task. Graphene synthesis and transfer chemistry, unqualified material handling and equipment operation are outside this bounded proposal. Robot feasibility, containment, fixtures, electrical safety, calibration, repeat schedules and acceptance criteria require separate validation. No hazardous protocol, preparation recipe, operating settings, robot controller or 3D asset is supplied.
 - Access checked **2026-11-11** through the public author-hosted combined source. Public availability does not establish unrestricted reuse rights. Bibliographic links and original commentary only; no source PDF, extracted text, figure, movie, dataset or code is redistributed.
+
+
+## Additional candidate: elasto-magnetic specimen tracking and mechanical memory (2026-11-11)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Elasto-magnetic instabilities for amplified actuation and mechanical memory](https://www.nature.com/articles/s41467-025-68225-y) | Nature Communications / 2026 | 10.1038/s41467-025-68225-y | Prepared-specimen and module tracking, comparative measurements, linked imaging, state-history records and verified reset suggest a future multistep mechanics task. | All extractable prose, captions, tables and references in the main and 45-page written SI read; equation extraction is incomplete. Figures were not visually reviewed; videos, data and code remain unread. |
+
+- **Nature Communications 17, 1511 (2026).** Title, journal, year, DOI and official link were checked. Task suitability is a preliminary inference, not evidence of robot feasibility or independently reproduced scientific results.
+- Written-source screening used the [public laboratory-hosted publisher-typeset main and SI](https://fluids.snu.ac.kr/Publication/Elasto-magnetic%20instabilities%20for%20amplified%20actuation%20and%20mechanical%20memory.pdf). The appended SI matches the [publisher-linked 45-page SI](https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-68225-y/MediaObjects/41467_2025_68225_MOESM1_ESM.pdf) in extracted text, page dimensions and rendered pixels at 72 dpi. This comparison does not constitute visual figure review or verification of equation typesetting; complete source-package review is not claimed.
+- Prospective scope starts with independently qualified prepared specimens and modules. Handling safety, fixtures, instrument coordination, calibration, repeatability and acceptance criteria require separate validation. No fabrication recipe, operating settings, equipment commands, robot controller or asset is supplied.
+- Access checked **2026-11-11**. Citation links and original commentary only; no source text, PDF, figure, movie, dataset or code is redistributed.
