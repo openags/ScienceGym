@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-09**. Candidate count: **420**.
+Last screened: **2026-11-11**. Candidate count: **421**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4380,3 +4380,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Equation extraction, conflicting SI table values and a main-to-SI table-reference mismatch need source reconciliation. A smaller signed mean deviation does not establish uniformly smaller absolute errors. Repeated measurements do not by themselves establish independent specimen replication. No quantitative benchmark criterion, repaired model or scientific-reproduction claim is supplied.
 - Prospective scope starts with independently qualified prepared yarn/coil specimens and reference fixtures. Identity, geometry and handling history, instrument-calibration provenance, paired measurement records and model-comparison bookkeeping remain distinct. Fabrication, powered-operation procedures, operating settings and robot execution are outside this entry; fixtures, electrical safety, uncertainty, repeat schedules and scoring require separate qualification.
 - The article is **CC BY 4.0**, subject to component exceptions. Citation links and original commentary only; no source PDF, extracted text, figure, dataset or code is redistributed.
+
+
+## Additional candidate: cryo-EM specimen preparation and film-state observation (2026-11-11)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. It does not change the reviewed-design or task-package counts.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Foam film vitrification for cryo-EM](https://www.nature.com/articles/s41467-025-61270-7) | Nature Communications / 2025 | 10.1038/s41467-025-61270-7 | Precision loop/grid handling, film-state observation, timed transfer and linked imaging suggest a future staged specimen-preparation and measurement task. | Main prose, Methods and captions read from a public institutional PDF; written SI extracted text and captions read from a public repository file. Figure images were not comprehensively reviewed; other listed media and data remain unread. |
+
+- **Nature Communications 16, 6199 (2025).** The paper describes foam-film vitrification for cryo-electron microscopy. Potential task suitability is a preliminary inference about a coordinated handling, observation and measurement workflow, not evidence of robotic execution or independently reproduced scientific results.
+- Source reading covered main prose, Methods and captions through the [MRC Laboratory of Molecular Biology PDF](https://www2.mrc-lmb.cam.ac.uk/groups/JYL/PDF/foam_film_vitrifiction_Zhang_2025.pdf), and extracted written Supplementary Information text and captions through the [University of Cambridge repository file](https://api.repository.cam.ac.uk/server/api/core/bitstreams/05d296c5-1b2e-446e-bfe0-7fcda0bb3737/content). Figure pixels were not comprehensively reviewed. The reporting summary, movies, source data and deposited maps were not read; complete source-package review is not claimed.
+- Prospective robot handling, observation, transfer timing and imaging records require separate feasibility and safety validation. Biological specimens, cryogenic equipment, fixtures, calibration, repeatability and acceptance criteria remain unqualified for this proposal. No specimen-preparation recipe, operating parameters, hardware commands, converted task or 3D asset is supplied.
+- Access checked **2026-11-11** using the public institutional sources above. A direct publisher-page request returned a cookie/identity-provider error, so clean live publisher access is not claimed. Citation links and original commentary only; no source PDF, extracted text, figure, movie, dataset, map or code is redistributed.
