@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-11**. Candidate count: **421**.
+Last screened: **2026-11-11**. Candidate count: **422**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4394,3 +4394,18 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Source reading covered main prose, Methods and captions through the [MRC Laboratory of Molecular Biology PDF](https://www2.mrc-lmb.cam.ac.uk/groups/JYL/PDF/foam_film_vitrifiction_Zhang_2025.pdf), and extracted written Supplementary Information text and captions through the [University of Cambridge repository file](https://api.repository.cam.ac.uk/server/api/core/bitstreams/05d296c5-1b2e-446e-bfe0-7fcda0bb3737/content). Figure pixels were not comprehensively reviewed. The reporting summary, movies, source data and deposited maps were not read; complete source-package review is not claimed.
 - Prospective robot handling, observation, transfer timing and imaging records require separate feasibility and safety validation. Biological specimens, cryogenic equipment, fixtures, calibration, repeatability and acceptance criteria remain unqualified for this proposal. No specimen-preparation recipe, operating parameters, hardware commands, converted task or 3D asset is supplied.
 - Access checked **2026-11-11** using the public institutional sources above. A direct publisher-page request returned a cookie/identity-provider error, so clean live publisher access is not claimed. Citation links and original commentary only; no source PDF, extracted text, figure, movie, dataset, map or code is redistributed.
+
+
+## Additional candidate: graphene deformation history and linked measurements (2026-11-11)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. It does not change the reviewed-design or task-package counts.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Multifunctionality and control of the crumpling and unfolding of large-area graphene](https://www.nature.com/articles/nmat3542) | Nature Materials / 2013 | 10.1038/nmat3542 | Prepared-specimen custody, deformation-history tracking and linked optical/electrical measurements suggest a future multistep materials-characterization task. | All extracted written text of the public author-hosted main, SI and addendum read; figure images, equation typesetting, movies, raw data, code and publisher-file equivalence remain unreviewed. |
+
+- **Nature Materials 12, 321-325 (2013).** The paper investigates controlled crumpling and unfolding of large-area graphene. Proposed robot-task suitability is a preliminary inference about specimen handling, deformation history and linked measurements, not evidence of robotic feasibility or independently reproduced scientific results.
+- Written-source screening covered all extracted text of the main, Supplementary Information and addendum in the [public author-hosted combined PDF](https://bpb-us-w1.wpmucdn.com/sites.usc.edu/dist/6/402/files/2021/05/15_combine.pdf). Figure images and equation typesetting were not visually reviewed. Movies, raw data, code and equivalence to the publisher's files were not checked; complete source-package review is not claimed.
+- The addendum limits the interpretation of the wetting claims. Universal self-cleaning is not established and must not become a task requirement or acceptance threshold. Reported material responses remain source claims, not independently validated robot measurements or scoring criteria.
+- Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen identity, deformation history, linked optical/electrical observations, failed-run records and verified reset could support a multistep task. Graphene synthesis and transfer chemistry, unqualified material handling and equipment operation are outside this bounded proposal. Robot feasibility, containment, fixtures, electrical safety, calibration, repeat schedules and acceptance criteria require separate validation. No hazardous protocol, preparation recipe, operating settings, robot controller or 3D asset is supplied.
+- Access checked **2026-11-11** through the public author-hosted combined source. Public availability does not establish unrestricted reuse rights. Bibliographic links and original commentary only; no source PDF, extracted text, figure, movie, dataset or code is redistributed.
