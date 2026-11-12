@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **427**.
+Last screened: **2026-11-12**. Candidate count: **428**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4479,3 +4479,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - The indexed official record lists two movies, but no written SI. A complete archival inventory is not established. Raw data and code were not reviewed.
 - Suitability is preliminary. Prepared specimens, materials, fixtures, handling safety and calibration require independent qualification. Fabrication and unqualified materials are excluded. No operating procedure, equipment command or robot-feasibility claim is supplied.
 - Access checked **2026-11-12**. Public reprint access does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: mechanical water-surface locomotion and linked imaging (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [The hydrodynamics of water strider locomotion](https://www.nature.com/articles/nature01793) | Nature / 2003 | 10.1038/nature01793 | Prepared mechanical-model identification, repeated locomotion observations and linked image records suggest a multistep measurement task; scope is restricted to the nonbiological Robostrider. | Extracted main text, experimental descriptions, captions and references across the four-page published reprint read; figure pixels and equation typesetting not reviewed. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Hu, Chan & Bush, **Nature 424, 663–666 (2003)**. Title, authors, journal, year and DOI checked against the indexed official record and [public author-hosted published reprint](https://thales.mit.edu/bush/wp-content/uploads/2012/11/nature03.pdf).
+- No supplementary section was identified for this article in the retrieved indexed official record or reprint. The supplementary-information notice above its title belongs to the preceding article; this does not establish that no supplement exists. Raw data and code were not reviewed.
+- Suitability is preliminary and limited to independently qualified, prepared mechanical models. Live-animal work, fabrication and unqualified materials are excluded. Handling safety, fixtures, calibration and acceptance criteria require independent qualification. No operating procedure, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned a cookie/identity-provider redirect error; the public reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
