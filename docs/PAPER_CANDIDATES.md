@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **433**.
+Last screened: **2026-11-12**. Candidate count: **434**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4564,3 +4564,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. Unrelated articles sharing the reprint pages are outside this candidate. Raw data, code and detailed methods cited externally were not reviewed.
 - Suitability is preliminary. Materials, particle handling, fixtures, moving equipment, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public institutional reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: granular-size comparisons and linked records (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Size separation of granular particles](https://www.nature.com/articles/35104697) | Nature / 2001 | 10.1038/35104697 | Prepared-particle and sample identification, repeated placement and reset, comparative mechanical observations and linked measurement records suggest a multistep granular-materials task. | Complete article-specific extracted prose, Figure 1 caption and references read from the one-page published reprint. Figure pixels not reviewed. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Möbius, Lauderdale, Nagel & Jaeger, **Nature 414, 270 (2001)**. Title, authors, journal, year and DOI checked against the indexed official record and [public author-lab published reprint](https://jfi.uchicago.edu/~jaeger/group/JaegerGroupPapers/granular/Brazilnut_rise_time_Nature.pdf).
+- No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. The related laboratory project page links movies, but their page was unavailable and their status as article supplements was not verified. Unrelated adjacent article text is outside this candidate. Raw data and code were not reviewed.
+- Suitability is preliminary. Materials, particle handling, fixtures, moving equipment, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public author-lab reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
