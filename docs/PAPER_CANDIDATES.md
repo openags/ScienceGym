@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **430**.
+Last screened: **2026-11-12**. Candidate count: **431**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4522,3 +4522,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - The indexed official supplementary inventory lists videos of orbiting, attractive interaction and repulsive interaction. Video content, raw data and code were not reviewed; source review remains incomplete. Unrelated material sharing the printed page is outside this candidate.
 - Suitability is preliminary. Materials, fixtures, vibration and illumination safety, handling, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. Direct publisher access returned a cookie/identity-provider redirect error; the public reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: granular-motion comparisons and linked imaging (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Two types of avalanche behaviour in granular media](https://www.nature.com/articles/20392) | Nature / 1999 | 10.1038/20392 | Prepared-specimen and fixture identification, repeated comparative measurements and linked image records suggest a multistep granular-mechanics task. | Extracted main article prose, experimental descriptions, captions and references read from the three-page published reprint. Figure pixels and equation typesetting not reviewed. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Daerr & Douady, **Nature 399, 241–243 (1999)**. Title, authors, journal, year and DOI checked against the indexed official record and [public author-hosted published reprint](https://labo.msc.u-paris.fr/~daerr/reprints/Daerr-Douady_Two-types-avalanches_Nature1999.pdf).
+- No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. Unrelated articles sharing the reprint pages are outside this candidate. Raw data and code were not reviewed.
+- Suitability is preliminary. Materials, particle handling, fixtures, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned a cookie/identity-provider redirect error; the public author-hosted reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
