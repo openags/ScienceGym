@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **428**.
+Last screened: **2026-11-12**. Candidate count: **429**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4493,3 +4493,18 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary section was identified for this article in the retrieved indexed official record or reprint. The supplementary-information notice above its title belongs to the preceding article; this does not establish that no supplement exists. Raw data and code were not reviewed.
 - Suitability is preliminary and limited to independently qualified, prepared mechanical models. Live-animal work, fabrication and unqualified materials are excluded. Handling safety, fixtures, calibration and acceptance criteria require independent qualification. No operating procedure, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. Direct publisher access returned a cookie/identity-provider redirect error; the public reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: comparative fluid measurements and linked records (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Fluid ‘rope trick’ investigated](https://www.nature.com/articles/32321) | Nature / 1998 | 10.1038/32321 | Prepared-fluid and fixture identification, comparative measurements and linked image records suggest a multistep fluid-mechanics task, subject to independent optical-safety qualification. | Extracted original prose, experimental descriptions, captions and references, plus the 2000 correction, read from a public published reprint. Figure pixels and equation typesetting not reviewed. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Mahadevan, Ryu & Samuel, **Nature 392, 140 (1998)**. Title, authors, journal, year and DOI checked against the indexed official record and [public author-hosted published original and correction](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/pre2000-11.pdf).
+- The [2000 correction](https://www.nature.com/articles/35000659), **Nature 403, 502**, DOI **10.1038/35000659**, revises the scaling argument and reanalyses the experimental data. Any later source review must use the corrected interpretation rather than the original scaling claim.
+- No supplementary section was identified for this article in the retrieved indexed official record or original; this does not establish that no supplement exists. Unrelated articles sharing the reprint pages are outside this candidate. Raw data and code were not reviewed.
+- Suitability is preliminary. Materials, fixtures, handling safety, optical safety, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned a cookie/identity-provider redirect error; the public author-hosted reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
