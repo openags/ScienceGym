@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **435**.
+Last screened: **2026-11-12**. Candidate count: **436**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4592,3 +4592,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary material was identified in the retrieved record or manuscript; this does not establish that no supplement exists. Published-version differences, figure pixels, supplementary inventory, raw data and code remain unreviewed. Source screening is incomplete.
 - Suitability is preliminary. Materials, prepared specimens, fixtures, moving equipment, fluid containment, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public author manuscript was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: fluid-coalescence comparisons and linked imaging (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Coalescence of bubbles and drops in an outer fluid](https://www.nature.com/articles/ncomms4182) | Nature Communications / 2014 | 10.1038/ncomms4182 | Fluid-sample identification, instrument setup, repeated comparative measurements and linked imaging records suggest a multistep fluid-mechanics task. | Complete seven-page published-layout text, including Methods, four figure captions, table and references, read. Figure pixels not inspected. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Paulsen et al., **Nature Communications 5, 3182 (2014)**. Title, journal, year and DOI checked against the indexed official record and [public author-lab published reprint](https://www.jcburtonlab.com/uploads/4/8/5/9/48592089/coalescence_of_bubbles_and_drops_-_2014.pdf).
+- No supplementary material was identified in the retrieved indexed record or article; this does not establish that no supplement exists. Figure pixels, supplementary inventory, raw data and externally referenced methods remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Materials, prepared specimens, fixtures, fluid containment, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public author-lab reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
