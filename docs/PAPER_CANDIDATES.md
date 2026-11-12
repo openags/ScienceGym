@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **432**.
+Last screened: **2026-11-12**. Candidate count: **433**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4550,3 +4550,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. Raw data and code were not reviewed.
 - Suitability is preliminary. Materials, particle handling, fixtures, moving equipment, water containment, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. The official record labels its content a subscription preview; the public institutional reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: granular-force comparisons and linked imaging (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Logarithmic rate dependence of force networks in sheared granular materials](https://www.nature.com/articles/nature01394) | Nature / 2003 | 10.1038/nature01394 | Prepared-particle and fixture identification, comparative mechanical measurements, prolonged observation and linked image records suggest a multistep granular-mechanics task. | Complete article-specific extracted prose, experimental descriptions, all five figure captions and references read across the four-page published reprint. Figure pixels and equation typesetting not reviewed. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Hartley & Behringer, **Nature 421, 928–931 (2003)**. Title, authors, journal, year and DOI checked against the indexed official record and [public institutional published reprint](https://www.phys.sinica.edu.tw/jctsai/Ray2016/Reference/%5B9%5D_Hartley_Behringer_2003Nature_Logarithmic_Rate_Dependece_of_force_networks_in_Sheared_Granular.pdf).
+- No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. Unrelated articles sharing the reprint pages are outside this candidate. Raw data, code and detailed methods cited externally were not reviewed.
+- Suitability is preliminary. Materials, particle handling, fixtures, moving equipment, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public institutional reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
