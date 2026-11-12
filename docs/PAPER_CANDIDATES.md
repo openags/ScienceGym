@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **426**.
+Last screened: **2026-11-12**. Candidate count: **427**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4465,3 +4465,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Screening used the [public author-hosted reprint](https://blog.espci.fr/jbico/files/2018/04/bico04.pdf). The supplementary-information notice at the top of its page belongs to the preceding article. No separate supplement was identified for this paper in the indexed publisher record or article; a complete archival inventory is not established. Raw data and code were not reviewed.
 - Task suitability is preliminary. Independently qualified specimens, fixtures, handling safety, calibration, repeatability and acceptance criteria remain prerequisites. No preparation recipe, operating settings, equipment commands, robot controller or asset is supplied; robot feasibility and scientific reproduction are not established.
 - Access checked **2026-11-12**. Direct publisher-page access returned a cookie/identity-provider error; clean live publisher access is not claimed. Public availability does not establish unrestricted reuse rights. Citation links and original commentary only; no source text, PDF, figure, dataset or code is redistributed.
+
+
+## Additional candidate: prepared-surface comparisons and linked imaging (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Imbibition by polygonal spreading on microdecorated surfaces](https://www.nature.com/articles/nmat1978) | Nature Materials / 2007 | 10.1038/nmat1978 | Prepared-surface identity, comparison records and linked imaging suggest a multistep wetting-measurement task. | Extracted main prose, Methods, captions and references read; figures and equation typesetting unreviewed. Two listed supplementary movies remain unread. |
+
+- Courbin et al., **Nature Materials 6, 661–664 (2007)**. Metadata checked against the indexed official record and [public author-hosted published reprint](https://www.math.ucla.edu/~mroper/archive/www/Publications_files/Courbin_Nat%20Mater_2007.pdf).
+- The indexed official record lists two movies, but no written SI. A complete archival inventory is not established. Raw data and code were not reviewed.
+- Suitability is preliminary. Prepared specimens, materials, fixtures, handling safety and calibration require independent qualification. Fabrication and unqualified materials are excluded. No operating procedure, equipment command or robot-feasibility claim is supplied.
+- Access checked **2026-11-12**. Public reprint access does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
