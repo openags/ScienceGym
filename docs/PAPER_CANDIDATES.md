@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-11**. Candidate count: **424**.
+Last screened: **2026-11-12**. Candidate count: **425**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4437,3 +4437,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Written-source screening used the [nine-page published main, preceded by a repository cover](https://pure.uva.nl/ws/files/237026938/s41467-024-45602-7.pdf), and the 11-page written SI plus supplementary-video descriptions in the [institutional supplementary archive](https://pure.uva.nl/ws/files/237026936/Supplementary_materials.zip), linked from the [UvA repository record](https://dare.uva.nl/id/730e38dd-5ae3-44b8-b839-2aeec8beec99). Figure images, equation typesetting, video content, data and code were not reviewed; complete source-package review is not claimed.
 - Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen history, linked observations and object tracking offer preliminary task structure, not evidence of robot feasibility or reproduced results. Fabrication, operating settings and equipment commands are excluded; handling safety, fixtures, calibration, repeatability and acceptance criteria require separate validation.
 - Access checked **2026-11-11** through the public institutional sources. Direct publisher-page access returned a cookie/identity-provider error. The article is **CC BY 4.0**, subject to component exceptions. Citation links and original commentary only; no source text, PDF, figure, video, dataset, code or asset is redistributed.
+
+
+## Additional candidate: crumpled-sheet specimen tracking and mechanical measurements (2026-11-12)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Conical dislocations in crumpling](https://www.nature.com/articles/43395) | Nature / 1999 | 10.1038/43395 | Prepared-sheet identity, material comparisons, deformation-history records and linked force/imaging measurements suggest a future multistep mechanics task. | Extracted main prose, captions and references read from a public published reprint; equation extraction is corrupted and figure images were not visually reviewed. No separate SI was identified, without establishing its absence. |
+
+- E. Cerda et al., **Nature 401, 46–49 (1999)**. Title, journal, year, DOI and official link were checked. The paper combines physical observations and measurements with numerical models; numerical results are not experimental demonstrations.
+- Written-source screening used the [public laboratory-hosted published reprint](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/pre2000-10.pdf). All extractable main prose, captions and references belonging to this paper were read. Corrupted equation extraction and unreviewed figure pixels limit this screening. No separate SI was found in the indexed publisher record or cited in the paper; this does not establish a complete archival inventory or prove that no supplement exists. Raw data and code were not reviewed.
+- Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen custody, comparative handling, deformation histories and linked force/imaging records provide preliminary task structure, not evidence of robot feasibility or reproduced results. Handling safety, fixtures, calibration, repeatability and acceptance criteria require separate validation. No fabrication recipe, operating settings, equipment commands, robot controller or asset is supplied.
+- Access checked **2026-11-12** through the public reprint. Public availability does not establish unrestricted reuse rights. Citation links and original commentary only; no source text, PDF, figure, dataset or code is redistributed.
