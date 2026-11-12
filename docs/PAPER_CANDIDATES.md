@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **434**.
+Last screened: **2026-11-12**. Candidate count: **435**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4578,3 +4578,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary section was identified in the retrieved indexed official record or article; this does not establish that no supplement exists. The related laboratory project page links movies, but their page was unavailable and their status as article supplements was not verified. Unrelated adjacent article text is outside this candidate. Raw data and code were not reviewed.
 - Suitability is preliminary. Materials, particle handling, fixtures, moving equipment, calibration and acceptance criteria require independent qualification. No operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public author-lab reprint was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: polymer-flow comparisons and linked measurements (2026-11-12)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Elastic turbulence in a polymer solution flow](https://www.nature.com/articles/35011019) | Nature / 2000 | 10.1038/35011019 | Prepared-sample and fixture identification, comparative fluid measurements and linked observation records suggest a multistep fluid-mechanics task. | Complete public author manuscript, including experimental descriptions, captions and references, read. Published version not fully read; figure pixels not inspected. Separate supplementary material not identified or read; inventory remains unverified. |
+
+- Groisman & Steinberg, **Nature 405, 53–55 (2000)**. Title, journal, year and DOI checked against the indexed official record and the [public author manuscript](https://arxiv.org/abs/nlin/0104052), which explicitly links the journal publication and DOI.
+- No supplementary material was identified in the retrieved record or manuscript; this does not establish that no supplement exists. Published-version differences, figure pixels, supplementary inventory, raw data and code remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Materials, prepared specimens, fixtures, moving equipment, fluid containment, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-12**. Direct publisher access returned an inaccessible identity-provider redirect; the public author manuscript was accessible. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
