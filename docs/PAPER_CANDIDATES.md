@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-12**. Candidate count: **425**.
+Last screened: **2026-11-12**. Candidate count: **426**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4451,3 +4451,17 @@ One **CANDIDATE** is added. This is a discovery entry, not a reviewed task desig
 - Written-source screening used the [public laboratory-hosted published reprint](https://softmath.seas.harvard.edu/wp-content/uploads/2019/10/pre2000-10.pdf). All extractable main prose, captions and references belonging to this paper were read. Corrupted equation extraction and unreviewed figure pixels limit this screening. No separate SI was found in the indexed publisher record or cited in the paper; this does not establish a complete archival inventory or prove that no supplement exists. Raw data and code were not reviewed.
 - Prospective scope starts with independently qualified prepared specimens and fixtures. Specimen custody, comparative handling, deformation histories and linked force/imaging records provide preliminary task structure, not evidence of robot feasibility or reproduced results. Handling safety, fixtures, calibration, repeatability and acceptance criteria require separate validation. No fabrication recipe, operating settings, equipment commands, robot controller or asset is supplied.
 - Access checked **2026-11-12** through the public reprint. Public availability does not establish unrestricted reuse rights. Citation links and original commentary only; no source text, PDF, figure, dataset or code is redistributed.
+
+
+## Additional candidate: model-brush specimen handling and comparative imaging (2026-11-12)
+
+One **CANDIDATE** is added. This is a discovery entry, not a reviewed task design, converted task, executable protocol or asset package. Reviewed-design and task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Elastocapillary coalescence in wet hair](https://www.nature.com/articles/432690a) | Nature / 2004 | 10.1038/432690a | Prepared-specimen and fixture handling, comparison records and linked imaging suggest a future multistep mechanics task. | All one-page article prose, caption and references read from a public published reprint; its figure was visually inspected. No separate SI was identified, without establishing its absence. |
+
+- Bico et al., **Nature 432, 690 (2004)**. Title, journal, year, DOI and official link were checked against the indexed publisher record and published reprint. The experiments use a model brush of elastic lamellae; this entry concerns nonbiological mechanics.
+- Screening used the [public author-hosted reprint](https://blog.espci.fr/jbico/files/2018/04/bico04.pdf). The supplementary-information notice at the top of its page belongs to the preceding article. No separate supplement was identified for this paper in the indexed publisher record or article; a complete archival inventory is not established. Raw data and code were not reviewed.
+- Task suitability is preliminary. Independently qualified specimens, fixtures, handling safety, calibration, repeatability and acceptance criteria remain prerequisites. No preparation recipe, operating settings, equipment commands, robot controller or asset is supplied; robot feasibility and scientific reproduction are not established.
+- Access checked **2026-11-12**. Direct publisher-page access returned a cookie/identity-provider error; clean live publisher access is not claimed. Public availability does not establish unrestricted reuse rights. Citation links and original commentary only; no source text, PDF, figure, dataset or code is redistributed.
