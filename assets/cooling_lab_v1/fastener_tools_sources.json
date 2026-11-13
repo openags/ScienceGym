@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-26",
+  "selection_basis": "Ordinary hand tools selected for the reconstructed M3/M4/M5 apparatus fasteners. The paper does not name these tools; this is not evidence of robot use or required torque capability.",
+  "rights": "Manufacturer photographs and PDFs remain external references. Geometry and size markings are authored reconstructions; no manufacturer logo or photograph is redistributed.",
+  "cad_search": "Inspected Wiha manufacturer catalog/product pages and Stahlwille product downloads. No reusable tool CAD obtained in this search; published overall dimensions constrain original geometry, with undisclosed contours explicitly inferred.",
+  "sources": [
+    {
+      "id": "WIHA_HEX_CATALOG_2019",
+      "url": "https://cdn.wihatoolsus.com/pdfs/WihaHexCatalog.pdf",
+      "sha256": "38fcab5c44ddc2bf588e026aca911299bf1d129cb1ac725373f6edf8608abfd4",
+      "locator": "Printed page 21 / PDF page 21: 26320, 26325 and 26330 metric blade, overall length and mass rows; family photograph",
+      "inspected": true
+    },
+    {
+      "id": "WIHA_HEX_PRODUCT",
+      "url": "https://www.wihatools.com/products/precision-hex-screwdrivers",
+      "locator": "Selected 26320 variant, 2.0 mm / 5.7 inch; tapered hex finger grip and separate turning cap",
+      "inspected": true
+    },
+    {
+      "id": "WIHA_26320_PHOTO",
+      "url": "https://www.wihatools.com/cdn/shop/products/gii3fal6ypn6dnniea31_1bb1e2a6-db11-475c-98f2-2b0c10539d7d_1800x.jpg?v=1736447026",
+      "sha256": "cd622be33af1a4e7b59b526334672e11c1b523b9b823398370ded85370642683",
+      "locator": "Inspected visible 263 / 2.0 x 50 identification; straight hex shaft, narrow nose, broader rear grip, red turning cap",
+      "inspected": true
+    },
+    {
+      "id": "STAHLWILLE_40080808",
+      "url": "https://stahlwille.com/en_de/products/detail/874156",
+      "locator": "40080808 OPEN BOX 13 8 row and dimension sketch",
+      "inspected": true
+    },
+    {
+      "id": "STAHLWILLE_DATASHEET",
+      "url": "https://admin.stahlwille.com/api/asset/e9f6c932-ffdd-4ccf-a4d9-63c5e4431652/download",
+      "sha256": "626887760d39fa86564d6688d3dd02bc76a0bd22909f6460678b5cec621a0003",
+      "locator": "Product sheet dated 2026-10-02; page 1 photograph and identity, page 3 drawing and dimensions, page 4 remaining attributes",
+      "inspected": true
+    },
+    {
+      "id": "STAHLWILLE_DIMENSION_SKETCH",
+      "url": "https://cdn-sw.srv-stahl-3255bfef.de/stahlwille/mam/2025/2/28/235ad499-6114-40b0-a0af-0a183cff538b.jpeg",
+      "sha256": "b53f0db62f1cc8d38b908b02bc958e6e4be4e46aae7a7ec46c0af8a4c0c4d459",
+      "locator": "L, b, d, a1, a2 and separate 15-degree jaw/ring orientations; t is not located",
+      "inspected": true
+    }
+  ],
+  "source_conflicts": [
+    "Wiha current gallery also contains an image visibly labeled 264 SW3.0 with a ball end. That image is rejected as a 26320 identity or tip reference.",
+    "Wiha 26325/26330 dimensions are historical catalog data; current availability has not been established. Rounded inch overall lengths are not substituted for explicit metric catalog lengths.",
+    "Stahlwille t=21 mm is printed in the sheet but not located in its dimension drawing. Its meaning is unresolved and it does not drive geometry. Packaging dimensions are not used as tool dimensions."
+  ],
+  "items": {
+    "wiha_26320": {"identity": "Wiha 26320 straight hex precision driver", "drive_mm": 2, "blade_mm": 50, "overall_mm": 145, "source_mass_lb": 0.03, "source": "WIHA_HEX_CATALOG_2019", "inferred_grip_diameter_mm": 12, "inferred_cap_length_mm": 8},
+    "wiha_26325": {"identity": "Wiha 26325 straight hex precision driver", "drive_mm": 2.5, "blade_mm": 60, "overall_mm": 170, "source_mass_lb": 0.04, "source": "WIHA_HEX_CATALOG_2019", "inferred_grip_diameter_mm": 14, "inferred_cap_length_mm": 9},
+    "wiha_26330": {"identity": "Wiha 26330 straight hex precision driver", "drive_mm": 3, "blade_mm": 60, "overall_mm": 170, "source_mass_lb": 0.04, "source": "WIHA_HEX_CATALOG_2019", "inferred_grip_diameter_mm": 14, "inferred_cap_length_mm": 9},
+    "stahlwille_40080808": {"identity": "Stahlwille OPEN BOX 13 8 / 40080808", "drive_mm": 8, "overall_mm": 115, "jaw_width_mm": 18, "jaw_thickness_mm": 4.2, "ring_thickness_mm": 7, "ring_outer_diameter_mm": 12.4, "jaw_angle_degrees": 15, "ring_angle_degrees": 15, "source_mass_g": 21, "source": "STAHLWILLE_DATASHEET"}
+  },
+  "geometry_inferences": [
+    "Photograph-guided black/red/steel display colors are converted to linear glTF factors; they are not measured optical material properties. Original HEX size labels are visual-only curved surfaces, excluded from solid contact checks.",
+    "Hex driver shaft across-flats is modeled 0.02 mm below nominal; tip has a 0.2 mm lead-in chamfer. These are chosen assembly clearances, not manufacturer tolerance specifications.",
+    "Driver handle contour, cap contour and five-millimetre buried shaft length are inferred from photographs. Blade cavity and cap bearing are nominal mating surfaces; molding adhesion and cap retention are not qualified.",
+    "Wrench head/neck contour, 3.0 mm shaft thickness, 0.5 mm face recess and fillet radii are reconstructed from the primary photograph and the shaft/head thickness ratio in the dimension sketch. Actual AS-Drive flank relief is undisclosed; a 0.1 mm-clearance bihex opening is a nominal geometric proxy, not an AS-Drive reproduction.",
+    "All tools are shared reusable candidates. The initial isolated inspection does not allocate them to a workbench, prove access in assembled apparatus or grant torque, grasp or manipulation credit."
+  ],
+  "appearance_accepted": false,
+  "interaction_qualified": false,
+  "owner_acceptance": null
+}

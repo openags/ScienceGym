@@ -1,0 +1,18 @@
+{
+  "recorded_at_utc": "2026-10-28T01:19:29.607317+00:00",
+  "source": {
+    "path": "reference/action_manager.h",
+    "upstream_path": "deploy/include/isaaclab/manager/action_manager.h",
+    "sha256": "2a0cb3b144c548a40f1d452447975d80d21b58bf44298fbf5ff108012594a7ac",
+    "bytes": 3318,
+    "url": "https://github.com/unitreerobotics/unitree_rl_lab/blob/4960b84732b0c2ec593dccbfe963fda1bcd7b1e3/deploy/include/isaaclab/manager/action_manager.h"
+  },
+  "finding": "Upstream last_action returns ActionManager.action(), which stores raw network output before term processing/clipping. Keep self.action unchanged when applying the shoulder-target guard.",
+  "correction": "The failed03 fixed-arm adapter replaced raw action history with processed arm targets. That alteration is removed; this source finding alone does not prove it was the sole cause of loss of balance.",
+  "source_hashes": {
+    "simulation/g1_cooling_demo/locomotion_policy/reference/action_manager.h": "2a0cb3b144c548a40f1d452447975d80d21b58bf44298fbf5ff108012594a7ac",
+    "simulation/g1_cooling_demo/locomotion_policy/reference/observations.h": "f49369aeffe5e63eaa9059d1e2969804ea9e2981df28fd7c99a3db6daefb77cd",
+    "simulation/g1_cooling_demo/locomotion_policy/reference/joint_actions.h": "e6c8c77139e308712fd2a340604f55f318de7b9b075196cdf16c223bf390b78c",
+    "simulation/g1_cooling_demo/walking_actor.py": "2ce0e823c47c238bbd996ab44afc32f12fbe26b03094d1a42e9826cb019680fc"
+  }
+}

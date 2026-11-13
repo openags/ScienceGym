@@ -1,0 +1,58 @@
+{
+  "scope": "Fit opposed source-hand contact surfaces while retaining the tool's support.\n\nOffline authoring only. Material contact points are geometric optimization\nfeatures, not sensors or runtime observations. Independent source-mesh checks\nmust accept the result before any contact experiment can use it. No grasp,\nwhole-body reach, approach trajectory or dynamics qualification is granted.\n",
+  "fit_sha256": "899c79b5395220909e396c03e3c97baaa0aa3e0e0188300b5c82573f0f1fc13e",
+  "support_review": "assets/idealtek_aa_sa_t6_v1/tray_support_12/review.json",
+  "support_geometry_sha256": "e8b92d68113be08d12d7281a45ed68d1c5aca01ffe20defe955431e9ed3db75e",
+  "support_override": true,
+  "support_reader_sha256": "02479f2d2ae31c95e8bcd20f0608ac0408c0526f4962ae9189ed39ed96e3bf22",
+  "support_review_sha256": "4349b2fd9b36423e4c2dc7f5dc0c1c11be429da40f3ae735a01715f33a6a2100",
+  "source_hashes": {
+    "assets/idealtek_aa_sa_t6_v1/revisions/passive_07/rest_geometry.glb": "dd37856f73e696d25c946a76b90942e7e46212769bbe10cf5859d9fac6e7360d",
+    "assets/idealtek_aa_sa_t6_v1/align_source_contact.py": "110867afe482e95798d7fc0cf9ac95f214e0571cf86e72f81af7e8a1c735bf19",
+    "viewer/cooling_concept_v2/source_geometry.py": "f76c882e0faaa9e43abd0d2816c66508d8b1f17ea1f646f23598a6d0d8fd1ee9",
+    "assets/unitree_g1_inspire_v1/SOURCE.json": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+  },
+  "source_visual_geometry_path": "assets/cooling_lab_v1/geometry/prepared_g1.glb",
+  "source_visual_geometry_sha256": "136f87a7b9f84c26bb8721cc00248793c1e194f7b63ab684024f2cc0b43e093a",
+  "kinematics_sha256": "5d3f1084e6af6af5a3afb6e91e36fc1f02821427708998421c5e251faf1bfa01",
+  "contact_body_pairs": [
+    [
+      "right_index_force_sensor_2",
+      "right_thumb_force_sensor_4"
+    ],
+    [
+      "right_index_force_sensor_3",
+      "right_thumb_force_sensor_4"
+    ],
+    [
+      "right_index_2",
+      "right_thumb_4"
+    ]
+  ],
+  "axial_targets_m": [
+    0.06,
+    0.075,
+    0.09,
+    0.105
+  ],
+  "target_heights_m": [
+    0.004,
+    0.00575,
+    0.0075,
+    0.009
+  ],
+  "minimum_pad_clearance_m": 2e-05,
+  "maximum_pad_clearance_m": 0.0005,
+  "maximum_contact_axial_offset_m": 0.002,
+  "maximum_contact_height_offset_m": 0.002,
+  "minimum_inward_closure_velocity_component": 0.8,
+  "minimum_inward_normal_component": 0.7,
+  "minimum_hand_support_clearance_m": 0.001,
+  "allowed_translation_from_seed_m": 0.05,
+  "allowed_rotation_vector_components_rad": 1.0,
+  "solver": "scipy least_squares; material points, directions, plane and source-triangle contact penalties; independent mesh rejection afterwards",
+  "contact_penalty_clearance_m": 5e-05,
+  "contact_penalty_scale_m": 0.0001,
+  "maximum_solver_evaluations": 160,
+  "full_body_or_dynamics_checked": false
+}

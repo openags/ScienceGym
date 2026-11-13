@@ -1,0 +1,70 @@
+{
+  "scope": "Evaluate native tool-gap/load evidence from a restored-state diagnostic.\n\nThe evaluator consumes plant-only measurements, never controller claims about\ntip closure. Passing is limited to the recorded continuation; a fresh pickup,\nindependent full-physics replay and repeated trials remain separate obligations.\n",
+  "diagnostic": "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/dex3_tool_force_tracking_checkpoint_01",
+  "actor_run": "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_tool_force_tracking_candidate_01",
+  "source_result_sha256": "c3dccb6331b753aad6f72f1c0174f71adcc0add90c44d1ac476afd5a910ec9ce",
+  "native_sha256": "b80186ccf647881c491a257e2c5f5370cf599cc2d89bdfccf6677c96e6fa3e2e",
+  "actor_contract_sha256": "4964a3b0279f1f6e2030731ae17cc4109991aaedf5d0a854b0614b08897236b3",
+  "evaluator_sha256": "253c15407e8b9ac99fa9045ce9af112ec4721125a640324ddbaf814a8328c5d7",
+  "sample_period_s": 0.0001,
+  "samples": 228020,
+  "metrics": {
+    "hold": {
+      "samples": 10000,
+      "longest_gap_dwell_s": 1.0,
+      "longest_loaded_gap_dwell_s": 0.013800000000000002,
+      "native_three_finger_loaded_s": 0.9796,
+      "minimum_tip_gap_m": 0.004501626612534553,
+      "maximum_tip_gap_m": 0.004560996551077469,
+      "minimum_finger_load_n": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "tool_squeeze": {
+      "samples": 175580,
+      "longest_gap_dwell_s": 1.711,
+      "longest_loaded_gap_dwell_s": 1.711,
+      "native_three_finger_loaded_s": 17.3677,
+      "minimum_tip_gap_m": 0.00043080495454821024,
+      "maximum_tip_gap_m": 0.004544867565443769,
+      "minimum_finger_load_n": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "tool_reopen": {
+      "samples": 42440,
+      "longest_gap_dwell_s": 0.0,
+      "longest_loaded_gap_dwell_s": 0.0,
+      "native_three_finger_loaded_s": 3.8951000000000002,
+      "minimum_tip_gap_m": 0.00042201221109442605,
+      "maximum_tip_gap_m": 0.009594091655579787,
+      "minimum_finger_load_n": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "checks": {
+    "continuation_finished_without_error": false,
+    "squeeze_then_reopen_then_lower": false,
+    "completed_release_and_withdrawal": true,
+    "open_before_squeeze": true,
+    "closed_while_held": true,
+    "reopened_while_held": false,
+    "original_three_finger_contact_duration": true,
+    "tool_grasp_position_retained": false,
+    "bounded_finger_load": true,
+    "no_unintended_external_tool_support": false
+  },
+  "maximum_tool_wrist_translation_drift_m": 0.14749177131619726,
+  "passed_actuation_diagnostic": false,
+  "continuous_pickup_and_tool_use": false,
+  "qualified_tool_actuation": false,
+  "qualified_specimen_handling": false,
+  "qualified_paper_branch": false
+}

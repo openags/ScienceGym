@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/check_shoulder_policy_history.py", line 48, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/check_shoulder_policy_history.py", line 44, in main
+    output.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

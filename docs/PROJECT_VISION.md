@@ -1,6 +1,6 @@
 # ScienceGym Project Vision and Collaboration
 
-3 October 2026
+Originally 3 October 2026; humanoid execution target updated 23 October 2026.
 
 ScienceGym aims to turn the reported experimental programs of scientific papers into source-grounded tasks for embodied research agents. The central question is whether a robot can preserve experimental intent across preparation, fabrication, transport, instrument use, controls, repeated measurements and recovery. A successful agent must maintain both the physical state of the laboratory and the evidential integrity of its work.
 
@@ -27,6 +27,75 @@ A paper-level task family describes the represented program. An episode covers a
 Every operation must identify an actor, manipulated object, tool, station, interaction interface, preconditions, postconditions and observable completion evidence. The robot retrieves and prepares resources, loads and unloads fixtures, mounts and connects devices, reads controls, transports supported objects and restores stations. Device processing and waiting remain distinct from robot manipulation.
 
 Closed-service abstractions can make an early design inspectable, but their boundary must be visible. If fabrication hides manual work inside a service, the package remains incomplete against the ultimate all-hands-on goal until that work is decomposed or the release explicitly limits its scope. A qualified automatic device process is different from an unnamed human doing the difficult step.
+
+## Humanoid execution target
+
+The owner's latest 24 October 2026 direction retains a **Unitree humanoid
+body**, while authorizing selection of publicly supported hands from any
+manufacturer. Body and hand models are implementation choices, not permanent
+benchmark constraints. The current asset-integration candidate is **G1 29DoF
+rev 1.0 + Inspire FTP left/right**, with an official integrated source bundle.
+See the [resource selection](pilots/HUMANOID_RESOURCE_SELECTION.md),
+[implementation plan](pilots/DIRECTIONAL_COOLING_IMPLEMENTATION.md) and active
+machine-readable pilot contract. The earlier Dex5-S-only restriction is superseded.
+
+The actor must still use robot sensors; only added cameras and ordinary
+laboratory tools are permitted, without added fiducials or robot-specific
+fixtures. Unverified parameters must be labeled, and critical missing physical
+parameters block qualification. Historical Panda inputs and privileged-state
+body tests do not satisfy these choices.
+
+Every required hands-on operation must be performed by that embodiment, with
+explicit single-hand, two-hand, tool-use and supported-transfer actions.
+Manipulation remains the evaluation focus. Standing, reaching and moving
+between stations provide physically consistent conditions for that work;
+scientific-result replication is a separate claim.
+
+For the first-paper pilot, the owner requires asset and laboratory scene
+acceptance before new manipulation-sequence development. Complete the
+equipment, materials, tools and supporting facilities; present the laboratory
+layout and full-humanoid spatial/safe-use evidence; record the owner's review
+of that revision. Existing paper operations inform required asset interfaces
+and access states during this phase. Follow the [laboratory review gates](contributing/REVIEW_CHECKLIST.md#laboratory-scene-review-before-pilot-manipulation-development).
+
+The previous H2 EDU and Dex5-S Pro reconstructions remain separately identified
+historical, unplaced candidates in the laboratory inventory. Their geometry, guessed joints,
+spatial envelopes and body tests do not qualify G1/Inspire. No source model may
+be silently relabeled as another hand or variant. The FTP model's mimic joints
+must be respected; independent command count differs from movable-joint count.
+Official example gains are simulation configuration, not measured actuator
+ratings. Fixed-base or gravity-disabled examples do not establish whole-body
+operation. Exact variant mapping, contact/dynamics, payload, camera installation
+and laboratory reach/clearance remain required before qualification.
+
+Ordinary laboratory tools and fixtures remain available. The humanoid must
+actually retrieve, hold, operate and return hand-held tools, or operate
+documented fixture mechanisms. A preattached Panda screwdriver, an invisible
+grasp constraint or an externally animated gripper does not satisfy this
+requirement. Heavy objects need a physically supported handling method within
+the selected body's and hands' limits, with all setup actions represented.
+
+Execution evidence must include whole-body state, foot/support contacts,
+hand joints and contacts, grasp/load bounds, object continuity, handoffs and
+release. A visually complete humanoid with a frozen or externally moved base
+is insufficient for whole-body acceptance. Bench-supported component tests
+can retain their narrower status while standing/balance remains unqualified.
+
+The existing Panda records retain their original source snapshots and scoped
+physical findings as historical component evidence. Their grasp controllers,
+reachability, fixtures and acceptance receipts must be requalified on the
+selected humanoid. The humanoid accepted manipulation-episode count is
+currently zero.
+
+The [H2 body foundation](../simulation/humanoid_v1/index.html) now records
+standing, unloaded bilateral wrist reach, holding and return. Five cases cover
+nominal operation, an initial-joint perturbation, a halved physics timestep,
+disabled motors and absent ground. The latter two must fail physical support.
+An independent verifier reintegrates every recorded motor command from the
+initial state and recomputes contacts and support. This establishes only the
+declared body-control scope, using privileged simulator state. It does not
+establish articulated hands, grasping, walking, sensor-based perception,
+hardware operation or any paper manipulation step.
 
 ## Source scope and evidence discipline
 
@@ -83,7 +152,11 @@ Characterize horizon using dependency depth, device transitions, persistent obje
 
 The fixed baseline at revision `3a200acfb22dfe6db3ec9864800bc26acb8e1fca` contains 563 files and 16 reviewed paper-level task-design drafts. Nine families appear in the logical explorer, and two selected routes have authored embodied storyboards. There are zero validated whole-paper robot runs. These counts describe different artifacts and must never be combined into a completed-task total. New documentation will change the file count. [5]
 
-The current setting is CPU-only and physical simulation is paused. Continue source-grounded task conversion, asset specifications, inspectable scenes and evaluator design in parallel. Static or visual acceptance does not require new physics work. Displayed robot poses do not prove contact mechanics, reachability, valid control or experimental physics.
+The CPU-only, paused-physics setting described in the 3 October baseline is
+historical. The cooling workbench now contains bounded Panda simulation
+records. Current implementation work is migrating to the humanoid target
+above; no humanoid manipulation is accepted yet. Displayed robot poses do not
+prove contact mechanics, reachability, valid control or experimental physics.
 
 Near-term work should deepen representative families while broadening eligible source coverage. Resolve important gaps, make preparation explicit, improve asset affordances, test bookkeeping and quantify reviewer corrections. Then implement selected end-to-end episodes with trusted state transitions, meaningful interfaces and independently tested evaluators. Expand to campaigns when branch accounting, shared resources and specimen histories function together.
 

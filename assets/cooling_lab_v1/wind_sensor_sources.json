@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "selected_station_sensor": "Onset S-WCF-M003, modified Davis anemometer for HOBO stations",
+  "historical_paper_sensor_identity_known": false,
+  "sources": [
+    {
+      "id": "ONSET_SWCF_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/19877-B%20MAN-S-WCF.pdf",
+      "sha256": "32f7e448ceaa3c23f1b6b87f303cd3aa2bdb61691f322bc646413ef82e2217dd",
+      "inspected_pages": [1, 2, 3],
+      "facts": {"cup_turning_radius_mm": 108, "vane_turning_radius_mm_approx": 135, "listed_dimensions_mm": [470, 191, 121], "listed_cable_m": 3, "digital_network_cable_m": 0.5},
+      "notes": ["Source explicitly says modified for Onset loggers only; do not apply the ordinary Davis RJ11 wiring.", "Diagram specifies a D-shaped vane shaft, separate cup assembly, one U-bolt and an arm through-screw with separate washer and nut.", "Page 1 photograph was inspected at embedded resolution: cream ribbed cylindrical inline adapter with hexagonal end caps; dimensions are not supplied.", "Page 2 kit includes two 1/4 x 3 inch optional lag screws and one 0.05 inch Allen wrench. Tool leg lengths and lag-head dimensions are not supplied."]
+    },
+    {
+      "id": "DAVIS_6410_SPEC",
+      "url": "https://cdn.shopify.com/s/files/1/0515/5992/3873/files/6410_SS.pdf",
+      "sha256": "a699d6664626cba939894ebf92eadea2ddc91403650fd94fa8653b4d8f307143",
+      "version": "DS6410 Rev. J, 2020-07-15",
+      "inspected_pages": [1],
+      "role": "Related original mechanical design; not the selected Onset electrical variant",
+      "notes": ["Davis specifies RJ11, four-conductor 26 AWG cable and 40 ft / 12 m. These facts must not replace the Onset variant.", "Listed dimensions are 381 x 38 x 457 mm; an assembled-state datum is not shown.", "The same sheet states 1 lb 4 oz and 1.332 kg, which are not equivalent; its package weight is 2 lb / 0.9 kg. Preserve the conflict rather than assign an authoritative inertia."]
+    },
+    {
+      "id": "DAVIS_6410_MANUAL",
+      "url": "https://cdn.shopify.com/s/files/1/0515/5992/3873/files/07395-277_IM_6410.pdf",
+      "sha256": "3c3009febf82876c590e474a1755f771235ef5d3ff7768aa1c795030efd0ee9d",
+      "version": "07395.277 Rev. C, 2019-06-18",
+      "text_read_pages": [3, 4, 5, 6, 9, 10, 12],
+      "notes": ["Related assembly diagrams support the distinct vane, cup rotor, arm and base topology. Do not copy its cable length to the Onset variant."]
+    },
+    {
+      "id": "DAVIS_6410_PRODUCT_PHOTO",
+      "url": "https://www.davisinstruments.com/cdn/shop/products/06410_01_85ef64ca-327d-48cf-8b4f-cbcb3ddad232_1500x1127.jpg?v=1618469468",
+      "sha256": "1ba9387ba547fe7e277846389c8612ca04eedee9fc068a1211c05774c6a06c86",
+      "visually_inspected": true,
+      "notes": ["Black bent tubular arm, hourglass lower housing, three open cups, swept vane fin and brass nose. Perspective photograph is not a dimensioned drawing."]
+    },
+    {
+      "id": "DAVIS_6410_KIT_PHOTO",
+      "url": "https://www.davisinstruments.com/cdn/shop/products/06410_02_1500x1127.jpg?v=1618469468",
+      "sha256": "a87f067d008665dc9d9e109a504d376a1c1af8341cff4657511a89e15832e532",
+      "visually_inspected": true,
+      "notes": ["Separate ribbed mast base with long mounting slots; separate cup and vane pieces and a hardware bag. Source image is retained locally, not redistributed."]
+    },
+    {
+      "id": "DAVIS_7905L_SINGLE_ROTOR_PHOTO",
+      "url": "https://www.davisinstruments.com/cdn/shop/products/7905L_750x518_f32272a6-11cf-4d03-b85e-2c46d9d12975_750x518.jpg?v=1618465395",
+      "sha256": "cada3c5a83d1c2d149cf0234559ce785254ab784b50fae3dcabbf913c35afae8",
+      "visually_inspected": true,
+      "notes": ["Official product-page image confirms short radial ribs relative to each 38.1 mm cup. The primary 60 mm sweep-radius hypothesis follows those proportions; it is not a calibrated photogrammetric measurement.", "A 108 mm literal-radius rotor is retained as separate alternative geometry. No claim that the manufacturer confirmed an error or that 108 mm actually means a diameter."]
+    },
+    {
+      "id": "DAVIS_7905L_PRODUCT",
+      "url": "https://www.davisinstruments.com/products/vantage-pro2-monitor-ii-and-wizard-iii-wind-cups-anemometers-2003-and-later",
+      "facts": {"cup_outside_diameter_mm": 38.1},
+      "notes": ["Manufacturer describes replacement cups for Vantage Pro2 anemometers from spring 2003 onward. This is a mechanical reconstruction reference; exact Onset replacement SKU is not established."]
+    }
+  ],
+  "unresolved_conflicts": [
+    "Onset page 1/product specifies 3 m cable; page 2 labels a 40 ft / 12.2 m arm. The latter matches the related Davis original, but a copied-diagram explanation is an inference.",
+    "Onset calls 108 mm a cup turning radius while listing a 191 mm static width. The full 216 mm sweep cannot be assumed to fit that width.",
+    "The Onset and Davis photographs, including the official 7905L single-rotor image, show shorter ribs than the literal 108 mm radius yields. Primary geometry selects a labeled 60 mm radius hypothesis; the literal 108 mm alternative remains inspectable. Perspective, source revision and dimensional meaning remain unresolved.",
+    "Published overall dimensions lack component datums; local arm shape, base size, shaft diameters, bearing geometry and wall thicknesses remain inferences."
+  ],
+  "cad_searches": ["Davis 6410 anemometer CAD 3D model STEP", "site:davisinstruments.com anemometer 6410 CAD STEP dimensions", "site:onsetcomp.com S-WCF-M003 CAD drawing"],
+  "cad_result": "No exact reusable manufacturer CAD obtained in these searches. Unrelated printable anemometers were not substituted.",
+  "rights": "Original generated geometry only. Manufacturer photographs and PDFs remain external/local references; no redistribution permission established.",
+  "owner_acceptance": null,
+  "mechanical_installation_qualified": false,
+  "electrical_qualified": false
+}

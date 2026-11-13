@@ -1,0 +1,1139 @@
+{
+  "source_sha256": {
+    "main.js": "fc813867d500821f0db9364626b3c6985cc024d4d75b4a45dea88b29fec56f98",
+    "motion_poses.json": "f02d4ae79ae5d77a2cf5257337bd146e1b7949eddc1b94c419d04f1ea951d4a3",
+    "hand_ik.js": "8819dffd38186b98ced61133c9bdae6b45fef6f6fe1e642882aaea96a80bb10f",
+    "export_audit.py": "22cfd8445740029e99bfdc1ed8b15125f303d05c94ed8ffe33d0436be52a86fd"
+  },
+  "sample_step_s": 0.5,
+  "frame_count": 1377,
+  "scene": {
+    "duration": 602.1923847496392,
+    "phases": [
+      {
+        "id": "intro",
+        "title": "论文实验准备",
+        "detail": "Bhatia et al. · 定向辐射冷却实验",
+        "duration": 6,
+        "action": "intro",
+        "kind": "work",
+        "start": 0,
+        "end": 6,
+        "position": [
+          6,
+          1.25
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": []
+      },
+      {
+        "id": "to_bath",
+        "title": "前往温度校准工位",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 6,
+        "end": 17.97822000568126,
+        "duration": 11.978220005681258,
+        "length": 6.55849640352238,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "calibration",
+        "title": "校准温度探头",
+        "detail": "水浴、参考 RTD 与热电偶通道比对",
+        "duration": 21,
+        "action": "bath",
+        "kind": "work",
+        "start": 17.97822000568126,
+        "end": 38.97822000568126,
+        "position": [
+          2.9,
+          5.12
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "CAL_MOUNT",
+          "CAL_ACQUIRE"
+        ]
+      },
+      {
+        "id": "to_reference",
+        "title": "核对参考温度读数",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 38.97822000568126,
+        "end": 44.14270515561219,
+        "duration": 5.164485149930931,
+        "length": 2.333980792957177,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "reference",
+        "title": "核对参考与通道",
+        "detail": "检查参考 RTD 和已分配探头身份",
+        "duration": 10,
+        "action": "panel",
+        "kind": "work",
+        "start": 44.14270515561219,
+        "end": 54.14270515561219,
+        "position": [
+          0.8,
+          5.12
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "CAL_MOUNT",
+          "CAL_ACQUIRE"
+        ]
+      },
+      {
+        "id": "to_cary",
+        "title": "转移至光学测量工位",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 54.14270515561219,
+        "end": 69.15527430559875,
+        "duration": 15.012569149986566,
+        "length": 8.43979287299167,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "solar",
+        "title": "太阳波段光学测量",
+        "detail": "先参考、再装样、闭盖扫描与取样",
+        "duration": 23,
+        "action": "cary",
+        "kind": "work",
+        "start": 69.15527430559875,
+        "end": 92.15527430559875,
+        "position": [
+          2.65,
+          7.8
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "OPT_REFERENCE",
+          "OPT_MOUNT",
+          "OPT_SCAN",
+          "OPT_UNLOAD"
+        ]
+      },
+      {
+        "id": "to_ftir",
+        "title": "转移至红外光谱工位",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 92.15527430559875,
+        "end": 104.27117439445652,
+        "duration": 12.115900088857778,
+        "length": 6.6438580550918225,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "infrared",
+        "title": "红外光学测量",
+        "detail": "参考与样品依次装夹，完成红外扫描",
+        "duration": 23,
+        "action": "ftir",
+        "kind": "work",
+        "start": 104.27117439445652,
+        "end": 127.27117439445652,
+        "position": [
+          9.19,
+          7.8
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "OPT_REFERENCE",
+          "OPT_MOUNT",
+          "OPT_SCAN",
+          "OPT_UNLOAD"
+        ]
+      },
+      {
+        "id": "to_white",
+        "title": "前往白色装置装配台",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 127.27117439445652,
+        "end": 144.66313861838998,
+        "duration": 17.39196422393345,
+        "length": 9.91501781883874,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "assemble_white",
+        "title": "白色装置检查与探头安装",
+        "detail": "检查双层纳米 PE 膜，安装探头并复位屏蔽与反射部件",
+        "duration": 27,
+        "action": "assemble_white",
+        "kind": "work",
+        "start": 144.66313861838998,
+        "end": 171.66313861838998,
+        "position": [
+          3.65,
+          2.17
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "BASE",
+          "EMITTER",
+          "FILM",
+          "SHIELD",
+          "REFLECTOR",
+          "TC_ATTACH"
+        ]
+      },
+      {
+        "id": "to_black",
+        "title": "前往黑色对照装置工位",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 171.66313861838998,
+        "end": 182.6421880948622,
+        "duration": 10.979049476472229,
+        "length": 5.939010675412781,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "assemble_black",
+        "title": "黑色对照装置检查与探头安装",
+        "detail": "保持装置结构一致，区分白／黑发射体身份",
+        "duration": 25,
+        "action": "assemble_black",
+        "kind": "work",
+        "start": 182.6421880948622,
+        "end": 207.6421880948622,
+        "position": [
+          9.55,
+          2.17
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "BASE",
+          "EMITTER",
+          "FILM",
+          "SHIELD",
+          "REFLECTOR",
+          "TC_ATTACH"
+        ]
+      },
+      {
+        "id": "to_wiring",
+        "title": "准备采集与转运",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 207.6421880948622,
+        "end": 216.57049338801582,
+        "duration": 8.928305293153603,
+        "length": 4.6675492817552335,
+        "fromYaw": 1.5707963267948966,
+        "yaw": -1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "wiring",
+        "title": "连接探头与采集通道",
+        "detail": "输出关闭状态下接线、检查极性与线缆固定",
+        "duration": 18,
+        "action": "wiring",
+        "kind": "work",
+        "start": 216.57049338801582,
+        "end": 234.57049338801582,
+        "position": [
+          4.905,
+          1.78
+        ],
+        "yaw": -1.5707963267948966,
+        "refs": [
+          "TC_ATTACH",
+          "SYNC",
+          "STOP_SAFE"
+        ]
+      },
+      {
+        "id": "to_pick_white",
+        "title": "装载白色装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 234.57049338801582,
+        "end": 238.13561761630103,
+        "duration": 3.565124228285221,
+        "length": 1.3423770215368371,
+        "fromYaw": -1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "pick_white",
+        "title": "双手托持白色装置",
+        "detail": "从结构底座承托，避开薄膜和光学表面",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 238.13561761630103,
+        "end": 246.13561761630103,
+        "position": [
+          3.65,
+          2.17
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "MOVE.02"
+        ]
+      },
+      {
+        "id": "carry_white",
+        "title": "将白色装置放上小车",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 246.13561761630103,
+        "end": 250.02086829610334,
+        "duration": 3.8852506798023083,
+        "length": 1.5408554214774313,
+        "fromYaw": 1.5707963267948966,
+        "yaw": -1.5707963267948966,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "place_white",
+        "title": "白色装置入车",
+        "detail": "放稳后松手",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 250.02086829610334,
+        "end": 258.02086829610334,
+        "position": [
+          4.69,
+          1.71
+        ],
+        "yaw": -1.5707963267948966,
+        "refs": [
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "to_pick_black",
+        "title": "装载黑色对照装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 258.02086829610334,
+        "end": 267.69628992847566,
+        "duration": 9.675421632372323,
+        "length": 5.13076141207084,
+        "fromYaw": -1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "pick_black",
+        "title": "双手托持黑色装置",
+        "detail": "保持白／黑样机身份独立",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 267.69628992847566,
+        "end": 275.69628992847566,
+        "position": [
+          9.55,
+          2.17
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "MOVE.02"
+        ]
+      },
+      {
+        "id": "carry_black",
+        "title": "将黑色装置放上小车",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 275.69628992847566,
+        "end": 284.94642286296397,
+        "duration": 9.250132934488319,
+        "length": 4.867082419382758,
+        "fromYaw": 1.5707963267948966,
+        "yaw": -1.5707963267948966,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "place_black",
+        "title": "黑色装置入车",
+        "detail": "保持装置间距与采集设备空间",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 284.94642286296397,
+        "end": 292.94642286296397,
+        "position": [
+          5.12,
+          1.71
+        ],
+        "yaw": -1.5707963267948966,
+        "refs": [
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "grasp_cart",
+        "title": "握住小车把手",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 292.94642286296397,
+        "end": 297.7546085870557,
+        "duration": 4.808185724091748,
+        "length": 2.113075148936884,
+        "fromYaw": -1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "take_cart_handle",
+        "title": "双手握住小车把手",
+        "detail": "准备转运",
+        "duration": 3,
+        "action": "push_grip",
+        "kind": "work",
+        "start": 297.7546085870557,
+        "end": 300.7546085870557,
+        "position": [
+          6.03,
+          1.25
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "MOVE.02"
+        ]
+      },
+      {
+        "id": "turn_cart",
+        "title": "转向主通道",
+        "detail": "沿主通道转运白／黑装置和采集设备",
+        "kind": "move",
+        "start": 300.7546085870557,
+        "end": 307.02792981144165,
+        "duration": 6.273321224385922,
+        "length": 3.021459159119272,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "push",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "outdoor_transfer",
+        "title": "把实验装置运至室外",
+        "detail": "沿主通道转运白／黑装置和采集设备",
+        "kind": "move",
+        "start": 307.02792981144165,
+        "end": 323.8634136824094,
+        "duration": 16.835483870967746,
+        "length": 9.570000000000002,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "push",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "release_cart_handle",
+        "title": "停稳小车",
+        "detail": "松开把手，准备卸载",
+        "duration": 3,
+        "action": "push_release",
+        "kind": "work",
+        "start": 323.8634136824094,
+        "end": 326.8634136824094,
+        "position": [
+          6,
+          13.27
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "approach_black_cart",
+        "title": "卸下黑色对照装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 326.8634136824094,
+        "end": 330.88520906877545,
+        "duration": 4.021795386366064,
+        "length": 1.6255131395469593,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "unload_black",
+        "title": "从小车取出黑色装置",
+        "detail": "双手支持底座",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 330.88520906877545,
+        "end": 338.88520906877545,
+        "position": [
+          6.47,
+          14.18
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "SITE_SETUP"
+        ]
+      },
+      {
+        "id": "carry_black_out",
+        "title": "布置黑色对照装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 338.88520906877545,
+        "end": 345.57150835021963,
+        "duration": 6.686299281444205,
+        "length": 3.277505554495407,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "install_black",
+        "title": "黑色装置就位",
+        "detail": "放置在独立室外支撑台上",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 345.57150835021963,
+        "end": 353.57150835021963,
+        "position": [
+          9.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "SITE_SETUP"
+        ]
+      },
+      {
+        "id": "approach_white_cart",
+        "title": "卸下白色冷却装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 353.57150835021963,
+        "end": 361.21834634579966,
+        "duration": 7.646837995580025,
+        "length": 3.8730395572596152,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "unload_white",
+        "title": "从小车取出白色装置",
+        "detail": "双手支持底座",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 361.21834634579966,
+        "end": 369.21834634579966,
+        "position": [
+          6.47,
+          14.61
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "SITE_SETUP"
+        ]
+      },
+      {
+        "id": "carry_white_out",
+        "title": "布置白色冷却装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 369.21834634579966,
+        "end": 381.71150686141,
+        "duration": 12.493160515610345,
+        "length": 6.877759519678414,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "install_white",
+        "title": "白色装置就位",
+        "detail": "确认装置朝向与探头线缆",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 381.71150686141,
+        "end": 389.71150686141,
+        "position": [
+          2.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "SITE_SETUP"
+        ]
+      },
+      {
+        "id": "to_logger",
+        "title": "连接室外采集通道",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 389.71150686141,
+        "end": 401.453179542329,
+        "duration": 11.741672680918992,
+        "length": 6.4118370621697744,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "outdoor_connect",
+        "title": "检查延长线与采集",
+        "detail": "连接已标识探头、固定线缆并开始同步记录",
+        "duration": 16,
+        "action": "wiring",
+        "kind": "work",
+        "start": 401.453179542329,
+        "end": 417.453179542329,
+        "position": [
+          6.55,
+          14.4
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "SITE_SETUP",
+          "ENV_SETUP",
+          "SYNC"
+        ]
+      },
+      {
+        "id": "baseline",
+        "title": "遮盖基线",
+        "detail": "两只铝盖保持闭合；论文基线为五分钟，此处压缩展示等待",
+        "duration": 7,
+        "action": "wait",
+        "kind": "work",
+        "start": 417.453179542329,
+        "end": 424.453179542329,
+        "position": [
+          6.55,
+          14.4
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "LID_BASELINE"
+        ]
+      },
+      {
+        "id": "to_white_lid",
+        "title": "移除白色装置铝盖",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 424.453179542329,
+        "end": 436.2542670476826,
+        "duration": 11.801087505353594,
+        "length": 6.448674253319228,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "open_white",
+        "title": "移除白色装置铝盖",
+        "detail": "保留两层 PE 膜，把铝盖放到支撑台",
+        "duration": 10,
+        "action": "lid_white",
+        "kind": "work",
+        "start": 436.2542670476826,
+        "end": 446.2542670476826,
+        "position": [
+          2.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "LID_REMOVE"
+        ]
+      },
+      {
+        "id": "track_white",
+        "title": "调整白色装置反射片",
+        "detail": "移动并锁定反射片，使其遮挡发射体处直射日光",
+        "duration": 11,
+        "action": "track_white",
+        "kind": "work",
+        "start": 446.2542670476826,
+        "end": 457.2542670476826,
+        "position": [
+          2.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "TRACK_ADJUST"
+        ]
+      },
+      {
+        "id": "to_black_lid",
+        "title": "移除黑色装置铝盖",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 457.2542670476826,
+        "end": 472.26472923187004,
+        "duration": 15.010462184187407,
+        "length": 8.438486554196192,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "open_black",
+        "title": "移除黑色装置铝盖",
+        "detail": "将第二只铝盖放到独立位置",
+        "duration": 10,
+        "action": "lid_black",
+        "kind": "work",
+        "start": 472.26472923187004,
+        "end": 482.26472923187004,
+        "position": [
+          9.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "LID_REMOVE"
+        ]
+      },
+      {
+        "id": "track_black",
+        "title": "调整黑色装置反射片",
+        "detail": "完成对照装置的遮阳调整",
+        "duration": 11,
+        "action": "track_black",
+        "kind": "work",
+        "start": 482.26472923187004,
+        "end": 493.26472923187004,
+        "position": [
+          9.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "TRACK_ADJUST"
+        ]
+      },
+      {
+        "id": "leave_optical_region",
+        "title": "离开光学测量区域",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 493.26472923187004,
+        "end": 500.01265407181916,
+        "duration": 6.7479248399491425,
+        "length": 3.3157134007684688,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "acquire",
+        "title": "记录白／黑装置温度",
+        "detail": "退出遮挡范围；展示采集过程，不生成实验结果",
+        "duration": 9,
+        "action": "wait",
+        "kind": "work",
+        "start": 500.01265407181916,
+        "end": 509.01265407181916,
+        "position": [
+          6.55,
+          14.4
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "TRACKED_STAGNATION"
+        ]
+      },
+      {
+        "id": "stop",
+        "title": "停止采集并断开连接",
+        "detail": "确认输出关闭、保存记录，再处理线缆",
+        "duration": 12,
+        "action": "wiring",
+        "kind": "work",
+        "start": 509.01265407181916,
+        "end": 521.0126540718192,
+        "position": [
+          6.55,
+          14.4
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "STOP_SAFE",
+          "UNMOUNT"
+        ]
+      },
+      {
+        "id": "to_collect_black",
+        "title": "收纳黑色装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 521.0126540718192,
+        "end": 527.6039520937228,
+        "duration": 6.591298021903606,
+        "length": 3.2186047735802363,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "collect_black",
+        "title": "收回黑色装置",
+        "detail": "保留薄膜与探头，承托底座",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 527.6039520937228,
+        "end": 535.6039520937228,
+        "position": [
+          9.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "UNMOUNT"
+        ]
+      },
+      {
+        "id": "return_black",
+        "title": "黑色装置回到小车",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 535.6039520937228,
+        "end": 542.2847203727504,
+        "duration": 6.680768279027536,
+        "length": 3.2740763329970726,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "stow_black",
+        "title": "收纳黑色装置",
+        "detail": "放稳在原分配位置",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 542.2847203727504,
+        "end": 550.2847203727504,
+        "position": [
+          6.47,
+          14.18
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "RESET"
+        ]
+      },
+      {
+        "id": "to_collect_white",
+        "title": "收纳白色装置",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 550.2847203727504,
+        "end": 561.7830796412856,
+        "duration": 11.49835926853513,
+        "length": 6.260982746491781,
+        "fromYaw": 3.141592653589793,
+        "yaw": 1.5707963267948966,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "collect_white",
+        "title": "收回白色装置",
+        "detail": "保持器件身份与完整结构",
+        "duration": 8,
+        "action": "pick",
+        "kind": "work",
+        "start": 561.7830796412856,
+        "end": 569.7830796412856,
+        "position": [
+          2.5,
+          15.07
+        ],
+        "yaw": 1.5707963267948966,
+        "refs": [
+          "UNMOUNT"
+        ]
+      },
+      {
+        "id": "return_white",
+        "title": "白色装置回到小车",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 569.7830796412856,
+        "end": 582.5975102461233,
+        "duration": 12.814430604837765,
+        "length": 7.076946974999414,
+        "fromYaw": 1.5707963267948966,
+        "yaw": 3.141592653589793,
+        "mode": "carry",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "stow_white",
+        "title": "收纳白色装置",
+        "detail": "把装置放回小车并检查台面",
+        "duration": 8,
+        "action": "place",
+        "kind": "work",
+        "start": 582.5975102461233,
+        "end": 590.5975102461233,
+        "position": [
+          6.47,
+          14.61
+        ],
+        "yaw": 3.141592653589793,
+        "refs": [
+          "RESET"
+        ]
+      },
+      {
+        "id": "finish_position",
+        "title": "完成实验后的收纳",
+        "detail": "在同一实验室中转移至下一工位",
+        "kind": "move",
+        "start": 590.5975102461233,
+        "end": 595.1923847496392,
+        "duration": 4.594874503515934,
+        "length": 1.980822192179879,
+        "fromYaw": 3.141592653589793,
+        "yaw": 0.7853981633974483,
+        "mode": "rest",
+        "refs": [
+          "MOVE.02",
+          "MOVE.04"
+        ]
+      },
+      {
+        "id": "finish",
+        "title": "实验流程完成",
+        "detail": "白／黑装置、探头和记录保持对应",
+        "duration": 7,
+        "action": "finish",
+        "kind": "work",
+        "start": 595.1923847496392,
+        "end": 602.1923847496392,
+        "position": [
+          7.2,
+          13.3
+        ],
+        "yaw": 0.7853981633974483,
+        "refs": [
+          "ARCHIVE",
+          "RESET"
+        ]
+      }
+    ],
+    "sourceHashes": {
+      "assets/cooling_lab_v1/geometry/laboratory_structure.glb": "b444dc73d38eddf651ef84baefbeb17e6e5204aab081185f504f6eed4b78e9ae",
+      "assets/cooling_lab_v1/geometry/prepared_cary.glb": "1921232b3e83d54d57fd2d340c59458da2b30d049fe98869e488a290df8008db",
+      "assets/cooling_lab_v1/geometry/prepared_bath.glb": "c0ccfa5068ec1844538792f029980be03e2c25c94125c7e81d81c8ef56a415db",
+      "assets/cooling_lab_v1/geometry/prepared_pike.glb": "8604a5bd0fd9cd242aedca25b72b5456d229dc8c8e6a078964457de259bbf133",
+      "assets/cooling_lab_v1/geometry/prepared_nicolet.glb": "a2ba2cd17236194b6948bf6a838cf319adffb9ec8eafee7e37226833d1215585",
+      "assets/cooling_lab_v1/geometry/prepared_dra.glb": "3745089bdc7cec4732bf8b1e80e81b523d0fd783206b5323e2bc1ff6fb8a5437",
+      "assets/cooling_lab_v1/geometry/prepared_rtd.glb": "a32383180b91120dea090fc62687fd90033bd78f3055debda282122e5d7fdadf",
+      "assets/cooling_lab_v1/geometry/prepared_daq.glb": "9079b06e57567c901bb48d8c9b7c95e2f0ad9fdb881609b7abfdb1939780fe21",
+      "assets/cooling_lab_v1/geometry/prepared_dmm.glb": "a8056a09338ad228809a4050d5624e3de8c8a220a4adc5f268755419e3d4777a",
+      "assets/cooling_lab_v1/geometry/prepared_smu_white.glb": "b33d30205f798ee7e0edd8589a8912f8e1848f3223e3c9d8463d315349d2c2ca",
+      "assets/cooling_lab_v1/geometry/prepared_smu_black.glb": "b33d30205f798ee7e0edd8589a8912f8e1848f3223e3c9d8463d315349d2c2ca",
+      "assets/cooling_lab_v1/geometry/prepared_tc_01.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_spectratech_500.glb": "e28b0b7afc462e5d4b87293db1a0057207258b535e8adc64c0a59f21c0eee492",
+      "assets/cooling_lab_v1/geometry/prepared_heater_white.glb": "8c7dd4b5bfc9a7d6400ed7cc971791a6b2aabeb02fecd1dd5d3c56b08c230671",
+      "assets/cooling_lab_v1/geometry/prepared_heater.glb": "8c7dd4b5bfc9a7d6400ed7cc971791a6b2aabeb02fecd1dd5d3c56b08c230671",
+      "assets/cooling_lab_v1/geometry/prepared_harrick_hrs.glb": "61fd448b2f9f1ce3d0b10f5f7e87b6b24df71a10f7e54931701561c0020bfcae",
+      "assets/cooling_lab_v1/geometry/prepared_tc_03.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_06.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_05.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_04.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_02.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_07.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_tc_08.glb": "5a1cac8ad544d99ab9611199b2b9ba8ee7c8befe1f60eb23e4703bd76175e997",
+      "assets/cooling_lab_v1/geometry/prepared_cooler_fixed.glb": "6bd26154967d610d61da59a94d326e2edc73532cdbc725f9a7a066228b16d06b",
+      "assets/cooling_lab_v1/geometry/prepared_cooler_white.glb": "d1c478d1e0db682c2fe9852af70a8e81959eca4889c9e1b10225662373058654",
+      "assets/cooling_lab_v1/geometry/prepared_cooler_black.glb": "df8846d5dbaaeff2bc4ec5fbdb6e5cf5b2ff254c66aa2e367c53620f78ec196c",
+      "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517",
+      "assets/cooling_lab_v1/geometry/prepared_lift_mount_hardware.glb": "a9ac45431ffc6b1c41b369aa15c3c21e63d790a59b1fa14795ba16a4ee7e05c8",
+      "assets/cooling_lab_v1/geometry/prepared_frame_profile_stock.glb": "aa2b3d50a9280c1d9d8760156accc9135663760644ed7fdfb18796f5539295da",
+      "assets/cooling_lab_v1/geometry/prepared_lab_jack_black.glb": "5f7d9dcbce07efb6b7c119f2ddb196e1d8b999aa0d47e2732f62f03963a89f29",
+      "assets/cooling_lab_v1/geometry/prepared_lab_jack_white.glb": "5f7d9dcbce07efb6b7c119f2ddb196e1d8b999aa0d47e2732f62f03963a89f29",
+      "assets/cooling_lab_v1/geometry/prepared_cover_angle_stock.glb": "2a5119c6054a2018296c95c6528b2f49408fcc87b868b0ae9142cf19cac64a8d",
+      "assets/cooling_lab_v1/geometry/prepared_cover_adhesive_stock.glb": "4eedada02ea64b79c9aa9445ee21a3502ab786ddbcf13089b32734df1b9cb4da",
+      "assets/cooling_lab_v1/geometry/prepared_cover_mount_hardware.glb": "82018c41c0253d4ad298fd752b9df271ec8999654f1291fd565607c833a1af8f",
+      "assets/cooling_lab_v1/geometry/prepared_frame_mount_hardware.glb": "8abf32e242fa52a71b19972babe5497bcff18362d4f45dc4af2845d3034bf533",
+      "assets/cooling_lab_v1/geometry/prepared_tracker.glb": "2f5335441b38a66904a34f0a17860e7fbf21f1039802128e91313403787922b6",
+      "assets/cooling_lab_v1/geometry/prepared_hobo_u30.glb": "10a538ebade5042f768d73a346952775beeba702ec9d534f4c715c522aadf23f",
+      "assets/cooling_lab_v1/geometry/prepared_eko_ms402.glb": "300cf6d106e1e12552a6dead39b653e195e7f12f4bf7db8e407bd50b14bedc5f",
+      "assets/cooling_lab_v1/geometry/prepared_g1.glb": "136f87a7b9f84c26bb8721cc00248793c1e194f7b63ab684024f2cc0b43e093a",
+      "assets/cooling_lab_v1/geometry/prepared_eko_ms56.glb": "514fd8e37057146217621485d8bdbfbaab1569b3347ffcfd87a1f82714e80e64",
+      "assets/cooling_lab_v1/geometry/prepared_camera_head.glb": "6f0bded3d859e81f70d94bbaefef6078b4176e64f625134068c779b3a4c3a427",
+      "assets/cooling_lab_v1/geometry/prepared_camera_wrist_right.glb": "01800651cd48c35379375308d88fbb5c80e3958714c40e08a1c2d18f4ba18e3f",
+      "assets/cooling_lab_v1/geometry/prepared_tray_white.glb": "7c0c3fe34f75745985e2911ef9d2d78f299335b83cbc42a172df3531932ae398",
+      "assets/cooling_lab_v1/geometry/prepared_camera_wrist_left.glb": "01800651cd48c35379375308d88fbb5c80e3958714c40e08a1c2d18f4ba18e3f",
+      "assets/cooling_lab_v1/geometry/prepared_caliper.glb": "1d35ee343dbab018f6247d6ee6578c26dca8462b413879986630697040fdad25",
+      "assets/cooling_lab_v1/geometry/prepared_driver.glb": "4cfd3476208b5889d5a29e12da4952103d2c4a760824ce8f9a5aca6b71884cff",
+      "assets/cooling_lab_v1/geometry/prepared_hex_driver_2.glb": "421b0cfb7bef80e60f61690082a28acb8c12c3122a82d8d3320d3e158bca03e8",
+      "assets/cooling_lab_v1/geometry/prepared_hex_driver_3.glb": "0f3ba0b8e404ca0831d1f69d75ae138d79fabfdc9b8e8e028a79737ac5beb5e2",
+      "assets/cooling_lab_v1/geometry/prepared_hex_driver_2_5.glb": "39aa85b40a241b2c51a3d68b282d1b30cdbe09f37db5f97e7cb84a0b865b3aee",
+      "assets/cooling_lab_v1/geometry/prepared_tray_black.glb": "7c0c3fe34f75745985e2911ef9d2d78f299335b83cbc42a172df3531932ae398",
+      "assets/cooling_lab_v1/geometry/prepared_wrench_8.glb": "06954f02b089492abcb8cc56432749dc176dd48961a26ad8c6f12e7c04445222",
+      "assets/cooling_lab_v1/geometry/prepared_wire_stripper.glb": "75c1af3bf0dfd6008e30a2dcc57bbe4e89badd955c1e838d3e96587f53749bd8",
+      "assets/cooling_lab_v1/geometry/prepared_terminal_driver.glb": "d6934091861f0d0ad452673651d8f3cb1f8ca551d37d308b726d4e0652f55565",
+      "assets/cooling_lab_v1/geometry/prepared_fine_cutter.glb": "758fd6fa007dc3def594df1e77d5364cc008c878f7ddd466bc01a5b318c21f29",
+      "assets/cooling_lab_v1/geometry/prepared_meter_leads_black.glb": "cfa129bad16ad8c28fa774f34c0d23963fecbf02c94d3eea53877fa13b1e8112",
+      "assets/cooling_lab_v1/geometry/prepared_meter_leads_white.glb": "cfa129bad16ad8c28fa774f34c0d23963fecbf02c94d3eea53877fa13b1e8112",
+      "assets/cooling_lab_v1/geometry/prepared_deburring_tool.glb": "9df48ed668c87c3f3fbd441036c29b48f85e6aae1cc709bb97a480b2956c97a0",
+      "assets/cooling_lab_v1/geometry/prepared_tweezers_white.glb": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b",
+      "assets/cooling_lab_v1/geometry/prepared_workholding_kit.glb": "9f4bfc72ea64745d31047484d15536d29356903f7eb96f5646935cbab5658533",
+      "assets/cooling_lab_v1/geometry/prepared_g1_spare_battery.glb": "97304f1ff39b65ab4ab104f03f71acf3792381a5c9be7254e68c99f05199a979",
+      "assets/cooling_lab_v1/geometry/prepared_g1_disconnected_charger.glb": "ed963cd6fc3415e94f34dc3eb7ac95da3af898d0f9beed37842bde9cabfd0980",
+      "assets/cooling_lab_v1/geometry/prepared_tweezers_black.glb": "f4c5c1c15b0db648879acf56037e13d38309f8b9ce0ce84e1e18278aa225752b",
+      "assets/cooling_lab_v1/geometry/prepared_nano_pe_stock.glb": "5c7ff83b4ebad2fe63b80bf3c671ed7ca601da3f53cc9db8db1425b419ff961e",
+      "assets/cooling_lab_v1/geometry/prepared_fill_jug.glb": "e05ab6fa392d9880f492402bb2a98ac358a67f46daae54c1b3161b9a92210ab6",
+      "assets/cooling_lab_v1/geometry/prepared_ambient_rtd.glb": "6c6c338bb5cefcffb3f7c112bf5062eb42001bc394276cf2717fab3e327c5d8f",
+      "assets/cooling_lab_v1/geometry/prepared_tc_transition_kit.glb": "8613c7a30deeff061bf0605d9bff5c869146d1e4f4e16aca5582477d7c82c334",
+      "assets/cooling_lab_v1/geometry/prepared_copper_sheet_stock.glb": "43bf6cbf0cdb98389f24e99d518984d1f5be35dbda0ec725fd2a8a78365d0395",
+      "assets/cooling_lab_v1/geometry/prepared_foam_stock.glb": "9ca27e7e22f993a48369719bf8478f8f00139a56b8aae93de7e1a33010e8717c",
+      "assets/cooling_lab_v1/geometry/prepared_ldpe_stock.glb": "590b4e1257ee8e64eeba7437ec27732a0bf9d59e24064f80e119bf3c7ae4809e",
+      "assets/cooling_lab_v1/geometry/prepared_aluminum_sheet_stock.glb": "de995fa82d57f6e3ca201fca549fd837ed6b35ee411bd8e0d8a815b26e21cc43",
+      "assets/cooling_lab_v1/geometry/prepared_mylar_stock.glb": "26f8ffea3d4fdd229afb06767fedf39d6f6a833afb3e50697d292add26e9d722",
+      "assets/cooling_lab_v1/geometry/prepared_pe_tube_stock.glb": "b24eab1f233bc2e1c84aa32aa1ad8a3e2008321c17085e5616cb132ec29fe259",
+      "assets/cooling_lab_v1/geometry/prepared_acrylic_stock.glb": "2a3f1c08cd36967be5c0b4ca2e9ec1090d02cba65713c43eb7f3d13f32431fda",
+      "assets/cooling_lab_v1/geometry/prepared_masking_tape.glb": "2430730ca25ed69304b17ade0eca6bf36c49c708d83b1bfd452c667b88b50006",
+      "assets/cooling_lab_v1/geometry/prepared_aluminum_tube_stock.glb": "d054db9ccaeae5d90d822d9ff6ce4103e3c9517903760c84b9b0cc1aa29a0256",
+      "assets/cooling_lab_v1/geometry/prepared_coating_white_stock.glb": "0197dde91c208e89f603f0ca88fbef7b3cfb5c0e0fee3f3916bb3bc498b82a6b",
+      "assets/cooling_lab_v1/geometry/prepared_calibration_block_stock.glb": "9c44971cf1bc5bb8ddcde2c2ae8901ecff8757d1e2d08a9b14152abf8ae3d7bb",
+      "assets/cooling_lab_v1/geometry/prepared_oily_waste_can.glb": "37a8128957472edc2c37987e630afd7a1e1d8d494ad5e5f9690513a35ee1d50e",
+      "assets/cooling_lab_v1/geometry/prepared_utility_cart.glb": "c866740d5d525c374c8dc2acb7859154f3ea1171602a6da194ee56a6db26f40f",
+      "assets/cooling_lab_v1/geometry/prepared_coating_black_stock.glb": "3f1cf8d97cc96487a9ae13ad72dd393d819b415a7e8c13b46ea9ff2861dfbbdc",
+      "assets/cooling_lab_v1/geometry/prepared_silver_paste_stock.glb": "0ae03b79f170874947daeb96be96f97b5601d519a823f50dabeb41a1eb4cc49f",
+      "assets/cooling_lab_v1/geometry/prepared_waterjet.glb": "20b46009e92990fb822b3ea5e27d3f4881e5c5c70c1f492684b04554f6357bfd"
+    }
+  },
+  "frames_sha256": "2ec246bdd9a9779e5e916551a88f5e6e9b6af283c51d01842f4496b5a979d594"
+}

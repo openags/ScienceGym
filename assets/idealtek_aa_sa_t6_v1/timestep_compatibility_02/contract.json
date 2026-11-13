@@ -1,0 +1,35 @@
+{
+  "purpose": "After the preserved 2 ms failure, test a 0.5 ms candidate against the unchanged 0.1 ms baseline before any whole-robot integration",
+  "source_revision": "revisions/passive_07",
+  "comparison_revision": "revisions/passive_09",
+  "baseline_fixture": "contact_08",
+  "candidate_fixture": "contact_10",
+  "baseline_timestep_s": 0.0001,
+  "candidate_timestep_s": 0.0005,
+  "integrator": "discrete",
+  "unchanged": [
+    "geometry",
+    "mass",
+    "passive stiffness",
+    "damping",
+    "friction",
+    "contact settings",
+    "fixture commands",
+    "initial pose"
+  ],
+  "acceptance": {
+    "existing_contact_checks_required": true,
+    "existing_hold_checks_required": true,
+    "maximum_absolute_held_gap_difference_m": 5e-05,
+    "maximum_relative_peak_force_difference": 0.05
+  },
+  "scope": "Numerical compatibility of a mounted-heel component fixture only; no robot qualification or calibrated mechanical behavior",
+  "sources": {
+    "assets/idealtek_aa_sa_t6_v1/build_passive.py": "3b1447785c5eefe01f9c4167a4a98e7e0ab1c8e230ec7cc68043123d1662859f",
+    "assets/idealtek_aa_sa_t6_v1/check_passive_contact.py": "0028a103ede6fe9dc47938dee1965e7b29e37fc6db4b8a4e0f60f0fe9d58a480",
+    "assets/idealtek_aa_sa_t6_v1/review_passive_hold.py": "5642579b134b034dab27be414bf938f7e1bf3f94b5bece89fd20dd9a9eca8a91",
+    "assets/idealtek_aa_sa_t6_v1/contact_08/review.json": "94382853d92fc9b1808d6d43650a2dee9b0d4f8ef061c0aff623f57e5adc328f",
+    "assets/idealtek_aa_sa_t6_v1/contact_08/hold_quality_review.json": "e158848bc74c5e46d00d4361990cea595725feb4efa8eec2aba234c4a9ad7198"
+  },
+  "predecessor_review_sha256": "dc9dc2517d304979bfae9c5117306649a78b7c702b0161d946cd6666af4a909c"
+}

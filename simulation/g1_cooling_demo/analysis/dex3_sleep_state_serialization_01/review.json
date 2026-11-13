@@ -1,0 +1,13 @@
+{
+  "scope": "Failed development probe: serializing a sleeping native MjData with Python pickle did not permit continuation",
+  "source_model_sha256": "47e144448b874640669d393309dde5d0432db423c9ad5550939c6dd1e2b3a089",
+  "source_result_sha256": "271302547884a36ab107ee5dddddf4a0f6e72f7d3c32b6d091505f54cf405b8e",
+  "attempted_setup": "Original model and first 500 recorded motor commands; pickle protocol 5, gzip level 3, reload MjData, compare next ten steps",
+  "failure": "mujoco.FatalError: mj_sleep: found sleeping tree 1 in island 1",
+  "passed": false,
+  "adopted": false,
+  "reference": "https://mujoco.readthedocs.io/en/stable/programming/simulation.html#sleeping-islands",
+  "next_action": "Use original-initial-state replay for exact historical evidence; do not infer that compact state or Python pickling preserves sleeping caches",
+  "qualified_carry": false,
+  "qualified_tool_actuation": false
+}

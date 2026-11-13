@@ -1,0 +1,56 @@
+{
+  "schema_version": "sciencegym.asset_sources.v1",
+  "model": "Measurement Computing USB-TC",
+  "source_type": "manufacturer_documentation_reconstruction",
+  "vendor_cad": false,
+  "sources": [
+    {
+      "id": "usb-tc-manual",
+      "url": "https://files.digilent.com/manuals/USB-TC.pdf",
+      "sha256": "fc835290f37dcfee8af0b9669a0f3aa4ac01c72703c99588e4a267d1797c5637",
+      "locator": "Figure 2 p8; Figure 5 p12; Table 12 p16; Tables 13–14 p17",
+      "supports": [
+        "128.52 × 88.39 × 35.56 mm envelope",
+        "52 numbered terminals in opposing 10+16 banks with two CJC gaps",
+        "exact eight-channel H/L pin identities",
+        "16–30 AWG wire range",
+        "USB Type-B interface and two vertically stacked status LEDs",
+        "blue housing, recessed pale terminal blocks and terminal legends"
+      ],
+      "redistributed": false
+    }
+  ],
+  "cad_search": {
+    "date": "2026-10-19",
+    "queries": [
+      "USB-TC dimensions CAD STEP Measurement Computing Digilent",
+      "ASSYBASEUSB STEP PDF"
+    ],
+    "manufacturer_statement_url": "https://forum.digilent.com/profile/15525-fausto/content/page/13/?type=forums_topic_post",
+    "finding": "Manufacturer staff describes a generic medium-blue-enclosure ASSYBASEUSB.STEP, and explicitly says no complete USB-TC 3D file is supplied.",
+    "retrieval": "Public search text was available; direct page and attachment discovery returned HTTP 403. No STEP file was obtained or imported.",
+    "complete_device_cad": false
+  },
+  "source_conflicts": [
+    {
+      "locator": "p8 introductory terminal paragraph",
+      "conflict": "Prose says four rows with 26 connections each, while Figure 2, Figure 5 and Table 14 identify 52 total pins.",
+      "selected_interpretation": "Use the individually enumerated 1–52 pins in four physical blocks: 10+16 on each side."
+    },
+    {
+      "locator": "Table 12 p16",
+      "conflict": "The parenthetical imperial envelope is mislabeled ft.",
+      "selected_interpretation": "Use the explicit millimetre dimensions; do not interpret the parenthetical numbers as feet."
+    }
+  ],
+  "inferred": [
+    "housing wall and bevel dimensions",
+    "terminal pitch and precise offsets within the documented envelope",
+    "wire-entry and screw-slot dimensions",
+    "USB shell opening geometry and exact offset",
+    "clamp clearance and screw pitch",
+    "material colors and roughness"
+  ],
+  "contact_qualified": false,
+  "whole_paper_validated": false
+}

@@ -1,0 +1,57 @@
+{
+  "scope": "Independent native replay of one unloaded G1/Dex3 walking attempt.\n\nChecks sensor-only controller reproducibility, unchanged full-scene dynamics,\nsource motor limits, robot contacts, upright walking and commanded stopping.\nIt does not qualify carrying, navigation, equipment handling or repetition.\n",
+  "passed": true,
+  "checks": {
+    "attempt_completed": true,
+    "controller_replay_exact": true,
+    "continuous_physics_replay": true,
+    "native_sensor_replay": true,
+    "isolated_actor": true,
+    "initial_pose_checked": true,
+    "only_robot_motor_commands": true,
+    "no_external_equalities": true,
+    "no_external_forces": true,
+    "no_numerical_warnings": true,
+    "source_motor_limits": true,
+    "source_joint_positions": true,
+    "upright": true,
+    "robot_contact_bounds": true,
+    "both_feet_step": true,
+    "forward_distance": true,
+    "lateral_deviation": true,
+    "commanded_stop": true
+  },
+  "trace_sha256": "0364947be82af3072ad340b3022f0847939039c5506845182b0734609063d04e",
+  "contract_sha256": "911a3e92760ace85a9c54b67cd349aa0522a9489da3129ba89ec9843be882f0d",
+  "model_sha256": "b813b5bdcb4ae242526a2f80efca1eac86e3817886ad619d89b2761e5be468ac",
+  "verifier_sha256": "865264079b3703a7cd8d4c837b5badcc78433b4db4410cc29588e88200cd1219",
+  "maximum_qpos_replay_error": 0.0,
+  "maximum_qvel_replay_error": 0.0,
+  "maximum_sensor_replay_error": 0.0,
+  "controller_replay_error": 0.0,
+  "compared_sensor_packets": 20000,
+  "minimum_pelvis_height_m": 0.7391406984577822,
+  "minimum_upright_cosine": 0.9926403464962629,
+  "maximum_joint_position_excess_rad": 0.0,
+  "unexpected_contacts": [],
+  "maximum_sole_penetration_m": 0.0007466603532908988,
+  "maximum_other_robot_penetration_m": 0.0,
+  "steps": [
+    13,
+    14
+  ],
+  "maximum_sole_lift_m": [
+    0.03816329534816625,
+    0.041285372868214334
+  ],
+  "forward_m": 1.2872104824290382,
+  "lateral_m": 0.01645468371028877,
+  "maximum_settled_speed_m_s": 0.00021070401098499032,
+  "evaluation_forward_world_xy": [
+    0.9659258262890683,
+    0.25881904510252074
+  ],
+  "qualified_walking": false,
+  "qualified_carry": false,
+  "qualified_paper_branch": false
+}

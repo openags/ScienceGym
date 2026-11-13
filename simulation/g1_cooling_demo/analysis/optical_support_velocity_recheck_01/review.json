@@ -1,0 +1,50 @@
+{
+  "scope": "Replay a full-room support test to correct its specimen velocity indexing.\n\nThe original support script reused `address` in its reference/cap loop, so its\nspecimen speed test read the cap velocity. Retain the original report and use\nthis independently replayed addendum for the affected stability check. Nothing\nhere grants robot placement, handling or complete paper qualification.\n",
+  "original_review_sha256": "aa91b86f554d2bf6a4970470ab24301714b76cbc7e338a2292faa68774e6ab27",
+  "original_review": "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/optical_runtime_support_06/review.json",
+  "world_sha256": "a8c1c44aee635742ebc1d8c34c7149722b422f67deb3986479a26abd1c20611e",
+  "baseline_trace_sha256": "1c6474943e9a77f8bd7b0494d0a9ebd9a7e0db38c91a3ce9be58404819d9a7b8",
+  "retained_trace_sha256": "3adfab4ecfc51732f17683fa27f29c97b79e89959e7c17f410d15c1f6cf2bd26",
+  "maximum_replay_errors": {
+    "qpos": 0.0,
+    "qvel": 0.0,
+    "time": 0.0
+  },
+  "bodies": {
+    "optical_witness_white": {
+      "dof_address": 113,
+      "peak_speed_m_s": 8.534603949421484e-07,
+      "peak_omega_rad_s": 9.24623642711042e-06,
+      "stable": true
+    },
+    "pike_reference": {
+      "dof_address": 119,
+      "peak_speed_m_s": 8.125580463657262e-11,
+      "peak_omega_rad_s": 2.4441152825914416e-09,
+      "stable": true
+    },
+    "pike_reference_cap": {
+      "dof_address": 125,
+      "peak_speed_m_s": 2.706123275683294e-13,
+      "peak_omega_rad_s": 7.572363133045958e-13,
+      "stable": true
+    }
+  },
+  "checks": {
+    "original_unaffected_checks": true,
+    "exact_retained_state_replay": true,
+    "correct_specimen_velocity": true,
+    "reference_and_cap_velocity": true,
+    "no_external_forces": true,
+    "no_numerical_warnings": true
+  },
+  "corrected_asset_support_passed": true,
+  "source_sha256": {
+    "runtime_collision_plugins.py": "4035caf2ece0ee3e213549d5b6179ece8be77380034a9a026e3973a3d5cfce2e",
+    "recheck_optical_support_velocity.py": "1d75a3c6b2fbcb1d6b669952cdf9bbd01e2b0efeba891b8949addc4ea84344e2",
+    "build_tool_station.py": "c1fd14edb11671d8c2f180900ccb590c278a6d3074874a66c8c81cdd396870f7"
+  },
+  "tail_velocities_sha256": "856c6f6435c5319cb785a94d7a144c1bf8398e31395c90c4ea111414eef546c0",
+  "qualified_robot_handling": false,
+  "qualified_paper_branch": false
+}

@@ -1,0 +1,86 @@
+{
+  "scope": "Process one identified continuous station attempt using frozen review tools.",
+  "status": "processing_incomplete",
+  "process_pid": 3603758,
+  "runner_pid": 3598605,
+  "runner_start_ticks": "77004246",
+  "script_sha256": {
+    "physics": "c4d3bc975fb908fc09ddeba32d1efa5c77053345e8b73bf8719b088d7645f00f",
+    "controller": "c4d3bc975fb908fc09ddeba32d1efa5c77053345e8b73bf8719b088d7645f00f",
+    "limits": "b9ba96f0362a549770b1b21591f7a45dcb204a034daca9bab533a07a8ffb84a6",
+    "render": "ecf87fbbb3c772073428b6ebc84422c677c0f293c5081b6e6b7a8dd7c6d657c9",
+    "joined": "f10447c412b3704b9ec8602d020fd2b932f892e443242ece53586e45ac531e97"
+  },
+  "source_urdf_sha256": "97da67732d067c3147fc5fb7b7bafc8982718f4e7f8c92ff82266a4d9c07200d",
+  "jobs": {
+    "physics": {
+      "pid": 3727173,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03/source_snapshot/verify_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03",
+        "--physics-only"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "controller": {
+      "pid": 3727174,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03/source_snapshot/verify_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03",
+        "--controller-only"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "limits": {
+      "pid": 3727175,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03/review_tools/verify_dex3_limits.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "render": {
+      "pid": 3727176,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03/review_tools/render_dex3_walking.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03",
+        "--output",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_pickup_03/station_view",
+        "--camera-mode",
+        "station"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    }
+  },
+  "qualified_paper_branch": false,
+  "execution_failure": null,
+  "simulated_seconds": 82.36900000161083,
+  "result_sha256": "012d0313a7f31871ad546f650dad28e8307d64969b97d501f3b0543935c5f531",
+  "joined_evaluator_exit_code": 1,
+  "verdicts": {
+    "physical_review.json": {
+      "passed": false,
+      "sha256": "e6e22c9070baa311d3cfbe11779cf467448ae8ff4852f2ec2066be8eb8baf79a"
+    },
+    "controller_replay.json": {
+      "passed": true,
+      "sha256": "9c7e7f667a1587f666693b55a7cdf47e19024a12d6ff8134704cbad412385c84"
+    },
+    "source_limit_review.json": {
+      "passed": true,
+      "sha256": "82705878624dbcadc5edc163624a1785574ceaf079ddd84e185606a26197ba4b"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-25",
+  "scope": "Selected ordinary central-support mounting for the two reconstructed cooling apparatus; not the unidentified historical mount",
+  "sources": [
+    {"url": "https://www.thorlabs.com/item/L200_M", "local_record": "assets/thorlabs_l200_v1/sources.json", "facts": "Official source plates have 18 M3 holes each. The four selected CAD centres are at X=+/-37.4904 mm and Y=+/-12.4968 mm. Local plate thickness at these holes is 5.588 mm, measured from source triangles."},
+    {"url": "https://www.accu.co.uk/countersunk-socket-head-screws/5423-SSK-M3-8-A2", "candidate": "SSK-M3-8-A2", "facts": "ISO 10642 M3x8 A2 screw: 6.72 mm maximum head diameter, 1.86 mm countersunk height, 90 degree head, 2 mm hex, 1.1 mm drive depth and 0.5 mm pitch. Overall length includes the head."},
+    {"url": "https://www.accu.co.uk/metric-cap-head-screws/152195-SSCF-M3-10-A2-BL", "candidate": "SSCF-M3-10-A2-BL", "facts": "DIN 912 / ISO 4762 M3x10 A2 screw: 5.5 mm head diameter, 3 mm head height, 2.5 mm hex, 1.3 mm drive depth, 0.5 mm pitch. Length is below the head."},
+    {"url": "https://eshop.boellhoff.de/out/media/pdf/DIN_9021_Edelstahl_A2___en.pdf", "candidate": "Bollhoff A2 large outside-diameter washer, DIN 9021 similar to ISO 7093", "facts": "M3 nominal washer: 3.2 mm bore, 9 mm outside diameter and 0.8 mm thickness. Listed thickness range 0.7 to 0.9 mm; DIN 9021 is withdrawn."}
+  ],
+  "selected_design": {
+    "jack_count": 2,
+    "platform_size_m": [0.17, 0.17, 0.005],
+    "platform_stock_size_m": [0.4, 0.2, 0.005],
+    "mount_hole_diameter_m": 0.0034,
+    "platform_countersink_diameter_m": 0.00672,
+    "top_screws_per_jack": 4,
+    "bottom_screws_per_jack": 4,
+    "bottom_washers_per_jack": 4,
+    "bottom_screw_nominal_engagement_m": 0.003188,
+    "top_screw_nominal_engagement_m": 0.003
+  },
+  "inferences": [
+    "The mounting stage starts from the selected 170 x 170 x 5 mm platform. The subsequent cover reconstruction enlarges it to 180 x 180 x 5 mm for ordinary angle feet while retaining these four countersunk jack holes; see apparatus_cover_sources.json. Material and drilling/countersinking choices are authored",
+    "Use plain clearance holes and large washers in the 6 mm acrylic, not a countersink bearing directly on acrylic",
+    "The bottom plate bears on the selected 12 micrometre base foil; actual foil compression and fastener preload remain unresolved",
+    "Place the official jack in its retracted source pose and lower the thermal/reflector reference geometry together; do not scale the vendor model",
+    "Remove legacy toy lift solids and unconnected historical sensor-lead/contact placeholders; the eight sourced probes remain staged, not installed",
+    "Screws use smooth nominal thread envelopes and actual recessed drives; thread helices, tolerance class and engagement forces are not simulated",
+    "Two jacks and 24 ordinary fastener/washer pieces are the selected initial stock; completed apparatus displays have no initial-stock credit"
+  ],
+  "limits": [
+    "Frame-to-base retention, upright/track attachment, shield/film load path and complete cable installation still need reconstruction",
+    "Countersink and bore tolerances, acrylic stress, fastener preload/torque, vibration, corrosion and structural load rating are not qualified",
+    "The current reference is a static mounting candidate, not a robot assembly sequence, jack actuation or physical installation acceptance",
+    "Drills, countersink tooling and hex keys for these interfaces still require complete source/stock allocation"
+  ],
+  "manufacturer_media_redistributed": false,
+  "owner_acceptance": null
+}

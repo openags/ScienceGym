@@ -1,0 +1,79 @@
+{
+  "status": "rejected_observed_layout",
+  "reason": "Initial machining-stock position overlaps the existing shield-tube stock on shelf 1",
+  "assets": [
+    {
+      "id": "frame_machining_stock",
+      "position_m": [
+        -4.8,
+        3.95,
+        0.6675
+      ],
+      "normalized_bounds_m": [
+        [
+          -0.17499999701976776,
+          -0.10000000149011612,
+          0.0
+        ],
+        [
+          0.17499999701976776,
+          0.10000000149011612,
+          0.027000000700354576
+        ]
+      ],
+      "parts": [
+        "frame_machining_stock__frame_plate_3mm",
+        "frame_machining_stock__frame_clamp_block_20mm",
+        "frame_machining_stock__frame_carriage_plate_4mm"
+      ],
+      "historical_geometry_path": "assets/cooling_lab_v1/geometry/prepared_frame_machining_stock.glb",
+      "historical_geometry_sha256": "13f4c06533345a8314120488168f64a4135c22d83749f857d64ccf120a0f2517"
+    },
+    {
+      "id": "aluminum_tube_stock",
+      "position_m": [
+        -4.7,
+        3.86,
+        0.6675
+      ],
+      "normalized_bounds_m": [
+        [
+          -0.16599999368190765,
+          -0.07599999755620956,
+          0.0
+        ],
+        [
+          0.16599999368190765,
+          0.07599999755620956,
+          0.10000000149011612
+        ]
+      ],
+      "parts": [
+        "aluminum_tube_stock__raw_aluminum_tube_1",
+        "aluminum_tube_stock__raw_aluminum_tube_2"
+      ],
+      "historical_geometry_path": "assets/cooling_lab_v1/geometry/prepared_aluminum_tube_stock.glb",
+      "historical_geometry_sha256": "d054db9ccaeae5d90d822d9ff6ce4103e3c9517903760c84b9b0cc1aa29a0256"
+    }
+  ],
+  "observed_failures": [
+    {
+      "name": "assets_and_authored_fixtures_separated",
+      "passed": false,
+      "pairs_checked": 2701,
+      "overlaps": [
+        [
+          "frame_machining_stock",
+          "aluminum_tube_stock"
+        ]
+      ],
+      "method": "Conservative axis-aligned boxes; intended internal assembly contacts excluded"
+    }
+  ],
+  "historical_scene_sha256": "467edf2b53b130d88b6287deda069868284c2be65b77f4e2471738173d3cc2d7",
+  "accepted": false,
+  "geometry": {
+    "path": "assets/cooling_lab_v1/geometry/frame_stock_layout_rejected.glb",
+    "sha256": "7fb56b265f4ea494df8b3ace8d69a861d571c27023170c3fc9a7b84831a17200"
+  }
+}

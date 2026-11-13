@@ -1,0 +1,55 @@
+<mujoco model="Ideal-tek AA.SA.T.6 passive candidate">
+  <compiler angle="radian" meshdir="meshes" autolimits="true" />
+  <option timestep=".0001" integrator="implicitfast" iterations="100" tolerance="1e-10" />
+  <default>
+    <geom type="mesh" density="8000.0" friction=".225 .002 .0001" priority="1" condim="4" solref=".001 1" solimp=".9999 .9999 .00001" rgba=".15 .17 .19 1" />
+  </default>
+  <asset>
+    <mesh name="negative_steel_arm_00" file="negative_steel_arm_00.stl" />
+    <mesh name="negative_steel_arm_01" file="negative_steel_arm_01.stl" />
+    <mesh name="negative_steel_arm_02" file="negative_steel_arm_02.stl" />
+    <mesh name="negative_steel_arm_03" file="negative_steel_arm_03.stl" />
+    <mesh name="positive_steel_arm_00" file="positive_steel_arm_00.stl" />
+    <mesh name="positive_steel_arm_01" file="positive_steel_arm_01.stl" />
+    <mesh name="positive_steel_arm_02" file="positive_steel_arm_02.stl" />
+    <mesh name="positive_steel_arm_03" file="positive_steel_arm_03.stl" />
+  </asset>
+  <worldbody>
+    <body name="tweezer" pos="0 0 .15">
+      <freejoint name="tweezer_free" />
+      <geom name="tweezer_heel" type="box" pos="-.0015 0 0" size=".0015 .001 .003" />
+      <body name="negative_beam_00" pos="-0.0030000000000000027 -0.0005 0.0">
+        <joint name="negative_bend_00" type="hinge" axis="0 0 1" limited="false" stiffness="8.527207184810432" damping="0.0038745214675811714" />
+        <geom name="negative_steel_arm_00" mesh="negative_steel_arm_00" />
+        <body name="negative_beam_01" pos="-0.022000000000000006 -0.002 0.0">
+          <joint name="negative_bend_01" type="hinge" axis="0 0 1" limited="false" stiffness="9.454244952978058" damping="0.004295741177174032" />
+          <geom name="negative_steel_arm_01" mesh="negative_steel_arm_01" />
+          <body name="negative_beam_02" pos="-0.045 -0.003185194942044257 0.0">
+            <joint name="negative_bend_02" type="hinge" axis="0 0 1" limited="false" stiffness="6.327089455570206" damping="0.002874850275314169" />
+            <geom name="negative_steel_arm_02" mesh="negative_steel_arm_02" />
+            <body name="negative_beam_03" pos="-0.044 0.0011851949420442574 0.0">
+              <joint name="negative_bend_03" type="hinge" axis="0 0 1" limited="false" stiffness="1.8939838345097648" damping="0.0008605726197355114" />
+              <geom name="negative_steel_arm_03" mesh="negative_steel_arm_03" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="positive_beam_00" pos="-0.0030000000000000027 0.0005 0.0">
+        <joint name="positive_bend_00" type="hinge" axis="0 0 1" limited="false" stiffness="8.527207184810432" damping="0.0038745214675811714" />
+        <geom name="positive_steel_arm_00" mesh="positive_steel_arm_00" />
+        <body name="positive_beam_01" pos="-0.022000000000000006 0.002 0.0">
+          <joint name="positive_bend_01" type="hinge" axis="0 0 1" limited="false" stiffness="9.454244952978058" damping="0.004295741177174032" />
+          <geom name="positive_steel_arm_01" mesh="positive_steel_arm_01" />
+          <body name="positive_beam_02" pos="-0.045 0.003185194942044257 0.0">
+            <joint name="positive_bend_02" type="hinge" axis="0 0 1" limited="false" stiffness="6.327089455570206" damping="0.002874850275314169" />
+            <geom name="positive_steel_arm_02" mesh="positive_steel_arm_02" />
+            <body name="positive_beam_03" pos="-0.044 -0.0011851949420442574 0.0">
+              <joint name="positive_bend_03" type="hinge" axis="0 0 1" limited="false" stiffness="1.8939838345097648" damping="0.0008605726197355114" />
+              <geom name="positive_steel_arm_03" mesh="positive_steel_arm_03" />
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

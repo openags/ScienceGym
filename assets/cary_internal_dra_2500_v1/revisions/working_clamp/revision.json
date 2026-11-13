@@ -1,0 +1,54 @@
+{
+  "scope": "Build a separate, mechanically explicit Cary sample-clamp candidate.\n\nNo laboratory asset or accepted playback is replaced here. The saved asset is\nat the installed reference thickness (14 mm); dynamic states are generated\nfrom cary_clamp.py. Neither force retention nor robot access is qualified.\n",
+  "status": "candidate_not_integrated",
+  "manufacturer_CAD": false,
+  "contact_qualified": false,
+  "manufacturer_source": {
+    "url": "https://mmrc.caltech.edu/Cary%20UV-Vis%20Int.Sphere/manuals/Cary%20manuals/4000_5000_6000i_Internal%20DRA.pdf",
+    "cached_pdf_sha256": "d5a5f26ba53b9c00418e18ab34eb670e7584b0a273c9fad4b573fb11db07330a",
+    "evidence": [
+      "Standard sample-holder kit identifies a spring clip and round post.",
+      "Installation step 9 places the clamp on the post in the sphere cap.",
+      "Reflectance operation requires a retained reference, then a retained flat sample.",
+      "Zero baseline uses the uncovered reflectance port inside the closed extension."
+    ]
+  },
+  "diagnosis": [
+    "The existing installed reference clamp has a static 19 mm offset; its pad reaches the 14 mm reference backing.",
+    "Its spring, guide bore, closing travel and clear-port parking motion were unresolved.",
+    "The old spring between cap and slider would push an unlatched compression slider away from the sample."
+  ],
+  "inference": {
+    "guide_radius_m": 0.003,
+    "bore_radius_m": 0.00315,
+    "travel_m": 0.027,
+    "parked_angle_rad": 1.5707963267948966,
+    "spring_wire_radius_m": 0.00035,
+    "spring_mean_radius_m": 0.0042,
+    "spring_turns": 6,
+    "spring_position": "between distal fixed stop and slider",
+    "slider_arm_connection": "fixed overlapping welded/attached joint; not a sliding collision",
+    "reference_gap_m": 0.014,
+    "witness_backing_gap_m": 0.000611,
+    "witness_basis": "Existing optical carrier bottom is 1 um outside port; copper rear face is 0.61 mm from carrier bottom.",
+    "limits": "Local dimensions, bearing fit, spring section, rotation and available actuation clearance are reconstruction choices, not manufacturer specifications."
+  },
+  "unchanged_source_parts": 101,
+  "maximum_unchanged_vertex_error_m": 0.0,
+  "source_geometry": "assets/cooling_lab_v1/geometry/prepared_dra.glb",
+  "source_geometry_sha256": "3745089bdc7cec4732bf8b1e80e81b523d0fd783206b5323e2bc1ff6fb8a5437",
+  "candidate_geometry": "assets/cary_internal_dra_2500_v1/revisions/working_clamp/prepared_dra_candidate.glb",
+  "candidate_geometry_sha256": "c40488d14127c6da676239bf73334316fb2f54d69580a5dc5172dc2f76e6c3fa",
+  "generator_sha256": {
+    "cary_clamp.py": "b1d918305309d177b6d5ad7b70f03203028ff5aaa7e91144bc8586053531aa63",
+    "build_cary_clamp_candidate.py": "f6721ba06f9bea51f41c81b38aba27f2920508ab60aafabca80cfce662d09701"
+  },
+  "geometry_review": "mechanism_review.json (generated separately by review_cary_clamp.py)",
+  "remaining": [
+    "Robot hand grasp and bimanual reference/specimen exchange",
+    "Full compartment/lid clearance",
+    "Retention force, friction and dynamic qualification",
+    "Protective storage for removed PTFE reference",
+    "Complete optical acquisition sequence"
+  ]
+}

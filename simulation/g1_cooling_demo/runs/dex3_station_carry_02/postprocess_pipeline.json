@@ -1,0 +1,90 @@
+{
+  "scope": "Process one identified continuous station attempt using frozen review tools.",
+  "status": "processed",
+  "process_pid": 3944716,
+  "runner_pid": 3938006,
+  "runner_start_ticks": "77723394",
+  "script_sha256": {
+    "physics": "a24c915785c0fab80b4120ddcc706a650994df2e58e0b69bbaa4ce5574637c98",
+    "controller": "a24c915785c0fab80b4120ddcc706a650994df2e58e0b69bbaa4ce5574637c98",
+    "limits": "b9ba96f0362a549770b1b21591f7a45dcb204a034daca9bab533a07a8ffb84a6",
+    "render": "ecf87fbbb3c772073428b6ebc84422c677c0f293c5081b6e6b7a8dd7c6d657c9",
+    "joined": "fead54fdd3894484ed644dafd3b4962f289c207aea2e4e3b2e91e817a51e45a1"
+  },
+  "source_urdf_sha256": "97da67732d067c3147fc5fb7b7bafc8982718f4e7f8c92ff82266a4d9c07200d",
+  "jobs": {
+    "physics": {
+      "pid": 4109919,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02/source_snapshot/verify_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02",
+        "--physics-only"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "controller": {
+      "pid": 4109920,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02/source_snapshot/verify_tool_grasp.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02",
+        "--controller-only"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "limits": {
+      "pid": 4109921,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02/review_tools/verify_dex3_limits.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    },
+    "render": {
+      "pid": 4109922,
+      "command": [
+        "/home/amax/data/media/xyl_ps/scigym/.sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02/review_tools/render_dex3_walking.py",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02",
+        "--output",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/runs/dex3_station_carry_02/station_view",
+        "--camera-mode",
+        "station"
+      ],
+      "status": "terminal",
+      "exit_code": 0
+    }
+  },
+  "qualified_paper_branch": false,
+  "execution_failure": "RuntimeError: RuntimeError: COM did not settle over the declared support sole",
+  "simulated_seconds": 99.9300000021938,
+  "result_sha256": "09f49044df64f63694c3acdda84e22d85cc3dca939c40c283fca0a6c81fcf8d6",
+  "joined_evaluator_exit_code": 1,
+  "verdicts": {
+    "physical_review.json": {
+      "passed": false,
+      "sha256": "25c50569a00bd4575df86c64320579b724dc0b40cc3ec7a386ebf46bc89679cb"
+    },
+    "controller_replay.json": {
+      "passed": true,
+      "sha256": "65e2f835e39aeb3de17c856be9020777a886dae60b984f6e6d8d0775fbe98a18"
+    },
+    "source_limit_review.json": {
+      "passed": true,
+      "sha256": "a472cc59b863ba071e0098ce9332d37fa9e175ce6f009a4dea8ace0a76b75eed"
+    },
+    "station_pickup_review.json": {
+      "passed": false,
+      "sha256": "f53f19ed16988cdb96375c234f33d00bee57b3167de1c2a23fe5adb36de2d319"
+    }
+  }
+}

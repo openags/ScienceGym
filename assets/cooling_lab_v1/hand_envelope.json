@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "bounded_design_sensitivity_not_spatial_acceptance",
+  "hand_bounds": [
+    {
+      "side": "left",
+      "all_authored_joint_angles_radius_m": 0.18818328238962928
+    },
+    {
+      "side": "right",
+      "all_authored_joint_angles_radius_m": 0.18818328238962928
+    }
+  ],
+  "wrist_adapter_allowance_m": 0.03,
+  "reserved_hand_radius_m": 0.22,
+  "wrist_samples": 802,
+  "worst_sample": {
+    "trace_index": 2130,
+    "time_s": 10.649999999999537,
+    "side": "left",
+    "wrist_radius_m": 0.4603167372770921
+  },
+  "selected_body_hand_radius_m": 0.69,
+  "additional_route_margin_m": 0.1,
+  "minimum_required_half_width_m": 0.7899999999999999,
+  "source_artifacts": [
+    {
+      "path": "assets/unitree_dex5s_reconstruction_v1/model.json",
+      "sha256": "02ac2e85237b11b9159c6b012a37a68e4aaa1e70985e13397ecf10bcb7d46f13"
+    },
+    {
+      "path": "assets/cooling_lab_v1/body_envelope.json",
+      "sha256": "e68ba389eb2ce384cadf7aa78c7427cf27363328a12319cbbcf16ab3074742ce"
+    },
+    {
+      "path": "simulation/humanoid_v1/runs/nominal/physics_trace.npz",
+      "sha256": "9745a4b4177e1e9434f4c524fa9837201b994441fa5aa5c99cbf06c34476fed8"
+    },
+    {
+      "path": "simulation/humanoid_v1/runs/nominal/workcell.xml",
+      "sha256": "48258c845baf5b4a2b447f9e41ef698056abb6e998141bb69ecfa5936a973336"
+    },
+    {
+      "path": "simulation/humanoid_v1/world.py",
+      "sha256": "4202076b5506c36aa903b5647f916afbfee577ed3171f6deeeb90c18b0c84d97"
+    },
+    {
+      "path": "assets/unitree_dex5s_reconstruction_v1/geometry/dex5s_pro_left.glb",
+      "sha256": "a3af27150dd6abd7326ab00a2c17f9d7e659923be28db94c2c3aeb8460642b9a"
+    },
+    {
+      "path": "assets/unitree_dex5s_reconstruction_v1/left_kinematics.json",
+      "sha256": "4304b90a701f69afb5f2f2b72542934a4b9cc3b12f6ebf9ad6697abd94d6c962"
+    },
+    {
+      "path": "assets/unitree_dex5s_reconstruction_v1/geometry/dex5s_pro_right.glb",
+      "sha256": "d14573fb2acde72ae3e54f44713312384421bb9bec4e567b28a24e7ab43506e4"
+    },
+    {
+      "path": "assets/unitree_dex5s_reconstruction_v1/right_kinematics.json",
+      "sha256": "71872a8241e02ebaba7bf596682c5c1750432c1f492849ecca117dd7e5c83d6c"
+    }
+  ],
+  "checker_sha256": "7d5f58ca550e6b8cb49d009f64edd0072c3b990f72d294ae9191dc8e5f10f7e4",
+  "load_included": false,
+  "dynamic_motion_validated": false,
+  "actual_mount_qualified": false,
+  "full_spatial_acceptance": false,
+  "limitations": [
+    "Existing unloaded poses sampled every 0.05 s; no walking or new manipulation sequence",
+    "Hand bound is valid for the authored chain, not proof of true hardware joint frames",
+    "30 mm wrist mounting allowance is a declared design assumption requiring later qualification",
+    "No carried loads, camera mount envelopes, stopping/falling or balance coverage"
+  ]
+}

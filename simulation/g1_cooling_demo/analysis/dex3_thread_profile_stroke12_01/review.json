@@ -1,0 +1,515 @@
+{
+  "scope": "Compare native MuJoCo threading on bounded recorded-control segments.\n\nEach segment starts from the same retained q/v/warmstart and replays the same\nmotor commands. The threaded traces are compared to the unthreaded diagnostic,\nnot claimed to reproduce the full source run's unrecorded sleep internals.\nThis measures physics only, under concurrent development load and with timing\ncallbacks enabled. It does not qualify a controller, full run or robot skill.\n",
+  "mujoco_version": "3.16.0",
+  "source_trace_sha256": "2a6eeeb0c698f03085b0755857aef52babb692896524b43f78b360cc77b0bb0d",
+  "model_sha256": "da96566cb02a1d4afcb40c8de1a73b1465c28ad6fefa513ecef17d7fb1465281",
+  "profiler_sha256": "5a0a3d0d8d2e3830667eebed51e19b1505707be911a6e3b37f000ab29212d357",
+  "rows": [
+    {
+      "start_time_s": 0.0,
+      "worker_threads": 0,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 3.324703622958623,
+      "speedup_vs_unthreaded": 1.0,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 3.3126525388797745
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 3.309983040788211
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 3.0927910360042006
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.011829366208985448
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.002196173998527229
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.1745531246997416
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0016756720142439008
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.01737178722396493
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.015617506112903357
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 3.031421457999386
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.02499801549129188
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.0002332216827198863
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.3030916111310944
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 2.727437659050338
+        }
+      },
+      "trajectory_file": "00.000s_threads_0.npz",
+      "trajectory_sha256": "6ba49f682f78903be9c34df3933c4bdf4f8a1a2cda2fad8c9ee700275b0b367c"
+    },
+    {
+      "start_time_s": 0.0,
+      "worker_threads": 4,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 2.8261002079816535,
+      "speedup_vs_unthreaded": 1.1764280734167818,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 2.818071727408096
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 2.815476250485517
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 2.483595847385004
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.012235554750077426
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.002120948280207813
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.28979383560363203
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0017572189681231976
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.0175581241492182
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.014806616818532348
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 2.4211068662116304
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.026786852511577308
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.0002079299883916974
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.30003048991784453
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 2.1201035126578063
+        }
+      },
+      "trajectory_file": "00.000s_threads_4.npz",
+      "trajectory_sha256": "6ba49f682f78903be9c34df3933c4bdf4f8a1a2cda2fad8c9ee700275b0b367c"
+    },
+    {
+      "start_time_s": 55.00000000070228,
+      "worker_threads": 0,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 2.6485814669867977,
+      "speedup_vs_unthreaded": 1.0,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 2.639660762855783
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 2.636951214284636
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 2.434191206935793
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.011894555413164198
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.0022090469719842076
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.1601469541201368
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0017475205240771174
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.016720719751901925
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.016113619902171195
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 2.3747070928802714
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.023318689316511154
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.00024163303896784782
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.30845030036289245
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 2.065392228658311
+        }
+      },
+      "trajectory_file": "55.000s_threads_0.npz",
+      "trajectory_sha256": "a2a55e04fd26057c6f32827f8627e4abda83fa36b25ff4e86fed622065e2b994"
+    },
+    {
+      "start_time_s": 55.00000000070228,
+      "worker_threads": 4,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 2.0730115730548277,
+      "speedup_vs_unthreaded": 1.2776491464945368,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 2.0644063765648752
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 2.0616782007273287
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 1.8615682303206995
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.01236700324807316
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.0022070392733439803
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.15644740220159292
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0017133245710283518
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.016850721556693316
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.01610817387700081
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 1.8005603390047327
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.024663954391144216
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.00022987474221736193
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.3043180879903957
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 1.4952998904045671
+        }
+      },
+      "trajectory_file": "55.000s_threads_4.npz",
+      "trajectory_sha256": "a2a55e04fd26057c6f32827f8627e4abda83fa36b25ff4e86fed622065e2b994"
+    },
+    {
+      "start_time_s": 88.00000000179776,
+      "worker_threads": 0,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 2.5910143749788404,
+      "speedup_vs_unthreaded": 1.0,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 2.582893857616
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 2.580279042129405
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 2.3974193775793537
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.01154819002840668
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.0021343741100281477
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.14147808589041233
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0016276286914944649
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.016466569853946567
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.015857371035963297
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 2.3393088503507897
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.022622637916356325
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.00020859763026237488
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.29796578141395
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 2.040556283434853
+        }
+      },
+      "trajectory_file": "88.000s_threads_0.npz",
+      "trajectory_sha256": "633c6b6c5f8889ac6f67bdf04c7bf1ef7c8f36697fd35117ca327c67e2cdd306"
+    },
+    {
+      "start_time_s": 88.00000000179776,
+      "worker_threads": 4,
+      "steps": 1000,
+      "simulated_duration_s": 0.1,
+      "wall_s": 2.017150203930214,
+      "speedup_vs_unthreaded": 1.2844925330451396,
+      "maximum_q_error_vs_unthreaded": 0.0,
+      "maximum_v_error_vs_unthreaded": 0.0,
+      "within_existing_replay_tolerance": true,
+      "numerical_warning_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "timers": {
+        "mjTIMER_STEP": {
+          "calls": 1000,
+          "wall_s": 2.009118561865762
+        },
+        "mjTIMER_FORWARD": {
+          "calls": 1001,
+          "wall_s": 2.006538126966916
+        },
+        "mjTIMER_INVERSE": {
+          "calls": 0,
+          "wall_s": 0.0
+        },
+        "mjTIMER_POSITION": {
+          "calls": 1000,
+          "wall_s": 1.8287562733748928
+        },
+        "mjTIMER_VELOCITY": {
+          "calls": 1001,
+          "wall_s": 0.011864328640513122
+        },
+        "mjTIMER_ACTUATION": {
+          "calls": 1001,
+          "wall_s": 0.0021132612600922585
+        },
+        "mjTIMER_CONSTRAINT": {
+          "calls": 1001,
+          "wall_s": 0.1362855618353933
+        },
+        "mjTIMER_ADVANCE": {
+          "calls": 1000,
+          "wall_s": 0.0015996061265468597
+        },
+        "mjTIMER_POS_KINEMATICS": {
+          "calls": 1000,
+          "wall_s": 0.016448966111056507
+        },
+        "mjTIMER_POS_INERTIA": {
+          "calls": 1000,
+          "wall_s": 0.015914245042949915
+        },
+        "mjTIMER_POS_COLLISION": {
+          "calls": 1000,
+          "wall_s": 1.76973510265816
+        },
+        "mjTIMER_POS_MAKE": {
+          "calls": 1000,
+          "wall_s": 0.023475433816201985
+        },
+        "mjTIMER_POS_PROJECT": {
+          "calls": 1000,
+          "wall_s": 0.00021049159113317728
+        },
+        "mjTIMER_COL_BROAD": {
+          "calls": 1000,
+          "wall_s": 0.3026631635148078
+        },
+        "mjTIMER_COL_NARROW": {
+          "calls": 1000,
+          "wall_s": 1.4661841923370957
+        }
+      },
+      "trajectory_file": "88.000s_threads_4.npz",
+      "trajectory_sha256": "633c6b6c5f8889ac6f67bdf04c7bf1ef7c8f36697fd35117ca327c67e2cdd306"
+    }
+  ],
+  "full_trajectory_equivalence_evaluated": false,
+  "physical_execution_qualified": false
+}

@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "paper_doi": "10.1038/s41467-018-07293-9",
+  "current_phase": "asset_and_laboratory_scene_development",
+  "sequencing_basis": "Explicit owner instruction: accept all 3D assets and laboratory layout/scenes before developing manipulation steps.",
+  "new_manipulation_development_allowed": false,
+  "allowed_current_work": [
+    "Reconcile all paper resource/asset requirements",
+    "Research exact device and robot resources",
+    "Construct and compare physical-scale assets",
+    "Design indoor/outdoor laboratory scenes",
+    "Evaluate static access, opening sweeps and full-body spatial envelopes",
+    "Prepare safety/design evidence and owner review package"
+  ],
+  "deferred_work": [
+    "New manipulation step/controller development",
+    "New grasping, assembly or full-task execution episodes"
+  ],
+  "existing_task_definitions_role": "Input requirements for assets, interfaces and necessary equipment states during scene development.",
+  "coordinate_convention": {
+    "length": "m",
+    "mass": "kg",
+    "time": "s",
+    "angle": "rad",
+    "handedness": "right",
+    "up_axis": "+Z",
+    "status": "target convention; import transforms must be recorded"
+  },
+  "room": {
+    "mode": "authored_virtual_robot_laboratory_unless_owner_supplies_a_real_site",
+    "dimensions_m": {
+      "main": [
+        12,
+        10,
+        3.4
+      ],
+      "fabrication": [
+        6,
+        5,
+        3.4
+      ],
+      "coating": [
+        6,
+        5,
+        3.4
+      ],
+      "outdoor": [
+        12,
+        8,
+        null
+      ]
+    },
+    "site_jurisdiction": null,
+    "historical_layout_claim": false,
+    "dimensions_basis": "Authored design proposal, subject to equipment and spatial review"
+  },
+  "clearance_policy": {
+    "universal_minimum_width_m": null,
+    "decision_rule": "Derive usable space from whole robot/hand/load sweeps, device openings, uncertainty, manufacturer requirements and any applicable site constraints.",
+    "required_envelopes": [
+      "standing",
+      "transit",
+      "turning",
+      "carrying",
+      "bilateral_work",
+      "station_approach_and_departure",
+      "equipment_open_and_service_states",
+      "fault_and_protective_space"
+    ],
+    "current_exact_hand_geometry_available": true,
+    "final_spatial_acceptance": false,
+    "current_hand_geometry_scope": "Selected official G1 / Inspire FTP source geometry is present; contact, actuator, payload and full-body motion qualification remain open.",
+    "hand_geometry_evidence": [
+      {
+        "path": "assets/unitree_g1_inspire_v1/selection.json",
+        "sha256": "5b14cf1828619b9a22d2334e44eafeeaa5461962ee108b699b075cdd3411e2ce"
+      },
+      {
+        "path": "assets/unitree_g1_inspire_v1/SOURCE.json",
+        "sha256": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3"
+      },
+      {
+        "path": "assets/unitree_g1_inspire_v1/VERIFICATION.json",
+        "sha256": "ce8da099682266eb7bcf8f47b779f891c45ab6db49a126a4ea5b9c0998fdf19d"
+      }
+    ]
+  },
+  "gates": [
+    {
+      "id": "LAB-01",
+      "requirement": "Complete resource decomposition and instance allocation",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/inventory.json",
+          "sha256": "e8f14373edc89543a8d30cf5e649411c6d1afa4e9af559978788d5de264f9700",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/readiness.json",
+          "sha256": "6ea29fc853e061fc3aae40a37c51052a922133b832dc939da6c2b258d2b580b3",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/pilot_contract.json",
+          "sha256": "c83af14d3e86a7a49cb78fec9778e094a3c957ed06b9a78e773e2a18c573bdf7",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/campaign_allocation.json",
+          "sha256": "b8ce48e0e525bb5f57677c47679cd517485f2719f0a1ca70c5abf993931d3909",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-02",
+      "requirement": "Asset source, identity, scale, structure, appearance and rights review",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/outdoor_assets.json",
+          "sha256": "77218f86ba5d1e5978f5038058cccfded8580e4f0be09c9c25708cd3b61f2765",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/resource_followup.json",
+          "sha256": "8ff7152ec7cfdd8569a3419f0cc65d039b83007801ed77e60649cce6691720f5",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/appearance_review.json",
+          "sha256": "8fe78b56f6580e1df2257e561a7ca6eedaa519dc0b760d13e9a47084851f8c04",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_dex5s_reconstruction_v1/model.json",
+          "sha256": "02ac2e85237b11b9159c6b012a37a68e4aaa1e70985e13397ecf10bcb7d46f13",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/ordinary_tools.json",
+          "sha256": "1cf4ea4e63409ef6bb68ac72a8e48a7df29d0e22850c0e0b2b2f9ce577cd153f",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/waterjet.json",
+          "sha256": "7c98284efdb9990e1fb711601af4464893bb11d7d61c13b281c3546bbd410f76",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/stock_sources.json",
+          "sha256": "0d39667fb2a91912cf0bae22fd1688e7a1946dd95eee4bcc51a326deee8735c6",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/realsense_cameras_v1/model.json",
+          "sha256": "c4e8eb661cb130c9ad9b14f4a12cbd8d5fc5b64e9c4a86e11c1ead11a6a6e9af",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/realsense_cameras_v1/VERIFICATION.json",
+          "sha256": "97032d4850847883bcbfc83f5caf2b44d58590f1984b64865c2396ebdbdfe409",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/g1_sensor_rig_v1/SOURCE.json",
+          "sha256": "2963b757193c8c6cdedaf5845d5cd6008b6e82b4d75dd5d2404d91f32d0ac254",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/g1_sensor_rig_v1/rig.json",
+          "sha256": "7fa6a1e824a9632390098fae7fba168b2a003a04aa00c1f614cb24fec721898c",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/g1_sensor_rig_v1/fit_checks.json",
+          "sha256": "cd4d9bcc74ee123e79180048838173a76613ea647c5702e2b4372a7bbe2afb13",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/g1_sensor_rig_v1/adapter.json",
+          "sha256": "04a6a845c820fe49edc65f4d893e37170837668bbfc585742e5b8377bd0bf38f",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/g1_sensor_rig_v1/hardware_sources.json",
+          "sha256": "fcd1ff2373ead495cd361f77d68c46a54b083c0742f95ce53f97427921a05412",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/supplies.json",
+          "sha256": "c8254a8f6ec29894443ee3ed1f951080e075f665aa1cf20d6dadb9885f6571c0",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/supply_sources.json",
+          "sha256": "b498f22ca84b21be4125d73af349041603323647b7b09e2ade8ffb33e9d916b1",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/supply_checks.json",
+          "sha256": "7abd812e766ab861afacb513497b788a9004c0584d5fac1c701e5fa0aea3d2e6",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/preparation_review_inputs.json",
+          "sha256": "f2884157b67f8946eeb8f50cdfebaddcaa952f1739d1391cc06685546ffbe56b",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_stock_reconciliation.json",
+          "sha256": "602f14afbed6a26cede0b7b0504f210f3f6f5c640871ad9864f9338a57ab5ed9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/stock_cutplan.json",
+          "sha256": "248246ff7952935d0137beae67e9c47e5f01fdc9674c6ae46ec0a72f35b5bd90",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/stock_cut_checks.json",
+          "sha256": "077f453d58112359af1ddd3fff381dbf8be77982a617ef77f45153a5ae896cf4",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/angular_accessory_sources.json",
+          "sha256": "fb3034394005c83921b5380edb6db11c89d29f790e32330fec07cc48b80c7d04",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/angular_accessories.json",
+          "sha256": "00e192d99eba7aeb4d955ba8375a02989d80864d3b02bb909b6f776cbcfe68d4",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/angular_accessory_checks.json",
+          "sha256": "ea3f889a65929e1df1969d95413cbd8756611ea6447e637464880de7c4acae6a",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/ftir_mount_sources.json",
+          "sha256": "5e9f6153095decf4fe92dff3d2a386dbe17a41d65d1ad51ebfb8d6294769c70d",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/ftir_mounts.json",
+          "sha256": "b020be54cc7f1dfe4064515d8e4d88443307e75bc255b2e021f1c1f2fc740dc5",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/ftir_mount_checks.json",
+          "sha256": "2cf37a10c90718ff589120e91601511ea0abde87780ed5160c500147d9dc84ac",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/thorlabs_l200_v1/sources.json",
+          "sha256": "7309429b2e4dbd11ea0927a871e094bc1a3b87d75af54f374e901049c4a4f198",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/thorlabs_l200_v1/model.json",
+          "sha256": "adf6ed294daa3919c9ed0387113d8ba690610a96a94c288a7a3e27916f21cdb7",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/thorlabs_l200_v1/checks.json",
+          "sha256": "c290d3d0d386c265518117852671c8d0667a8aaab6845f39cd33d7b710af1260",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_mount_sources.json",
+          "sha256": "dd99170d0eb0d52f90604f9adfcb055297ced2c935e062209826c20baa4045ca",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/lift_mount_stock.json",
+          "sha256": "eb924957bdabc949125b093f2356964ab37dd06a74ad61d830208cfeee12b1b2",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_mount_checks.json",
+          "sha256": "a9502e93019893d35a630daafe000b212ec4fff0f3202f1f10287649666b7948",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_frame_sources.json",
+          "sha256": "a03ab4b9134f3b23c39e7e828fd3d62b8f6f622ce4501e04b4cabea74fbfb926",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_frame_checks.json",
+          "sha256": "8bf68a8196100d4c5a0a79361fdf2f589a020087a2e179f11c258299e815d323",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/frame_sharp_tnut_rejected.json",
+          "sha256": "b0c3cdfc22e7167ef748cfd3eab6e756e320c639d41f4df07d2799f517f6aec3",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/frame_stock.json",
+          "sha256": "fa1ff08d41d3dfac56a62af1776a8628c1082465a4eb0a4c9bc74ff9aae96774",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/frame_stock_checks.json",
+          "sha256": "af47f873d0540e14a95ee5b70034e1dd77d8a9e3f749722a6acdbff32b7711dd",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_cover_sources.json",
+          "sha256": "8811c5e3007a3ffb147dc2c6a68432ae7e8ab80c85f9801520099f206f979b39",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_cover_candidate.json",
+          "sha256": "39b671d2dc0f07937085a1319a7bad6d52244d0595663d7e2cfdf7f4597a3669",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/apparatus_cover_checks.json",
+          "sha256": "532d82c0ab7e2c7b6435fa0d941850ca4dd7c839af96e339d03cacc9c04e1ac7",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/cover_stock.json",
+          "sha256": "a8e841f4cc1e28be7146534f28635d24430624af4debc4f6b8bf3a04d115dfe1",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/cover_stock_checks.json",
+          "sha256": "25c0f4e2a121cfca48f16952f2e406357bd50744fb625d0a95567f1461d3b77d",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/fastener_tools.json",
+          "sha256": "aec5b1385c20c5b343f2c7eaf3c9311b5313b7e339d8988fa30788a4acbb1008",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/fastener_tools_sources.json",
+          "sha256": "2bb4320810ee4598c64e04cb847940c7ccc6d5a68961500b0c15f728d7b5743d",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/fastener_tool_checks.json",
+          "sha256": "483fcdbc9be70ecf4511fc4fcc0bbe648e9767d5c718dd45bbb17378ee619c64",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/fastener_tool_staging.json",
+          "sha256": "0516274008b4f19cd4e3a61cd24d3af1d6e212c1d9b7a530a7a49ba8402bdf67",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/omega_5tc_v1/model.json",
+          "sha256": "19a67599ca6a6db1a751019a21959da0ab7dc94f8207b386dd7e8a39c90e8eb9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/omega_5tc_v1/VERIFICATION.json",
+          "sha256": "79d21df0a20f752f88bc02bcf7037b19686b890d213fc4649c94655dafc19d10",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/SOURCE.json",
+          "sha256": "404102fad92fa5ff622dd1b0b8859028ecec5381888c53c59f28f5bbd59780d3",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/VERIFICATION.json",
+          "sha256": "ce8da099682266eb7bcf8f47b779f891c45ab6db49a126a4ea5b9c0998fdf19d",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/selection.json",
+          "sha256": "5b14cf1828619b9a22d2334e44eafeeaa5461962ee108b699b075cdd3411e2ce",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/integration.json",
+          "sha256": "c748b999443b3d7ebd6edb6adaa6ef6bfbf51b142ec8886f54e82f53af9eb315",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/collision.json",
+          "sha256": "432f2b6b0da740d0988388d5b495518d233fae91abaf266f11e2f34be85e71da",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-03",
+      "requirement": "Process zones and supporting infrastructure",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/risk_register.json",
+          "sha256": "7109fe4cb2b36c73129e563b556ccbba01605426ad34a4755c244982ce835493",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-04",
+      "requirement": "Dimensioned layout, equipment states and service/support requirements",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/floorplan.svg",
+          "sha256": "5b32b1441142bc73ac4963acad0916ebcb86f1e434fd4ed238c57a7ae928ccab",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/layout_checks.json",
+          "sha256": "906c7f758ada7367a5a359c14bd9e06e30552a3c97e4527c249f75e85ca7266b",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-05",
+      "requirement": "Whole humanoid, hand and carried-load spatial envelope checks",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/layout_checks.json",
+          "sha256": "906c7f758ada7367a5a359c14bd9e06e30552a3c97e4527c249f75e85ca7266b",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/unitree_g1_inspire_v1/space.json",
+          "sha256": "ad7febb2018745e9e9699d862397738d2d2f7b6ebcfcac42fb32e9cd13f58266",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/workspace_checks.json",
+          "sha256": "1750db0597df2797a48da305f15b4b06f1af39102b8bbb0e1517292c49f5750b",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-06",
+      "requirement": "Risk register, controls, manufacturer requirements and site applicability",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/risk_register.json",
+          "sha256": "7109fe4cb2b36c73129e563b556ccbba01605426ad34a4755c244982ce835493",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-07",
+      "requirement": "Exact-revision interactive scene and comparison evidence",
+      "status": "open",
+      "evidence": [
+        {
+          "path": "assets/cooling_lab_v1/historical_review_inputs/496d914a0e11b83b4626c6819dba852ac8bc824c729c813f389913a87078dce1.html",
+          "sha256": "496d914a0e11b83b4626c6819dba852ac8bc824c729c813f389913a87078dce1",
+          "scope": "Partial evidence; gate remains open",
+          "historical_original_path": "viewer/lab_review_v1/index.html",
+          "historical_revision": "bbde5e7fdd829bcdc857c3e55c230fb37543c352"
+        },
+        {
+          "path": "assets/cooling_lab_v1/historical_review_inputs/16cd4a833fd97fe591e96b6a8911254392c376da81c7b6c77431c49075169fe9.js",
+          "sha256": "16cd4a833fd97fe591e96b6a8911254392c376da81c7b6c77431c49075169fe9",
+          "scope": "Partial evidence; gate remains open",
+          "historical_original_path": "viewer/lab_review_v1/main.js",
+          "historical_revision": "bbde5e7fdd829bcdc857c3e55c230fb37543c352"
+        },
+        {
+          "path": "viewer/lab_review_v1/render_batches.js",
+          "sha256": "5313956a12f6ba350a9dda2ccd1a0694cdb42dc9b5e9920b145508e82e02620a",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/scene.json",
+          "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/cover.html",
+          "sha256": "54697e6c93390a064e6b906f00f02c5e8f90983fd5f74e623db534ade48bd3a0",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/cover.js",
+          "sha256": "2a34d7fa35b517f674bd3cc9db26aa7277dfe64dd0acaefcabe72b8979b738d9",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/fasteners.html",
+          "sha256": "2630818d714dbedf5d873c3adc35b62485e177a126f3fe6bb61bb5524b6071e4",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/fasteners.js",
+          "sha256": "3fad545d5dd18fd3194f87ed3c06484ec676a058548789f0eeb5e0a33cbc0a46",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/ftir.html",
+          "sha256": "42159e4d1fa79a30bbaae4e7503850251fa35d394cda5b9e280ffce1d7524220",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/ftir.js",
+          "sha256": "afbd6660b8c312865ccc7363e28776aaf66e02a7d353b70ecbb1f3a2cf7bbcd5",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/allocation.html",
+          "sha256": "92b87a602a8d1366e6038f52f5ed8affb605620d7f7d4372a59aa076fb16a19b",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "assets/cooling_lab_v1/historical_review_inputs/0a1f7fc1bf061cddf35d1777c3ecf0a771603e4dd4547ab0491cd90c666857da.js",
+          "sha256": "0a1f7fc1bf061cddf35d1777c3ecf0a771603e4dd4547ab0491cd90c666857da",
+          "scope": "Partial evidence; gate remains open",
+          "historical_original_path": "viewer/lab_review_v1/allocation.js",
+          "historical_revision": "bbde5e7fdd829bcdc857c3e55c230fb37543c352"
+        },
+        {
+          "path": "viewer/lab_review_v1/allocation.css",
+          "sha256": "aaafea481c80c727eed9167f04f881f3b8c0f264cbcdb33c9db4d1aad43129ad",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/sensors.js",
+          "sha256": "7f45ca0b62af0ce2714a78e176541231b140b56d3549f1a0b35ad6b52c74db49",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/lift.html",
+          "sha256": "dd0a1f925a80246126183cd4b4adaa49cb1a3a218b94ba2f98f95df88a69f1a7",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/lift.js",
+          "sha256": "68d06785f5bfdf7039c7c53a51cbccea020876e60bfbde54f651a14fe45e0be4",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/lift.css",
+          "sha256": "ec1cd568009de2bee5243934025fc20f1dc021c3d8e0b6400f864b03358b9d9f",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/frame.html",
+          "sha256": "d613274faaba199e275297a80747a4344a35540a5cc431870174a2da95b6e9b0",
+          "scope": "Partial evidence; gate remains open"
+        },
+        {
+          "path": "viewer/lab_review_v1/frame.js",
+          "sha256": "9d5ddacde5151948abfe380af0cfcb13ab4d5335afbe6efff03792207107016f",
+          "scope": "Partial evidence; gate remains open"
+        }
+      ]
+    },
+    {
+      "id": "LAB-08",
+      "requirement": "Owner acceptance of assets and laboratory scenes",
+      "status": "open",
+      "evidence": []
+    }
+  ],
+  "review_requirements": [
+    "Reconciled inventory",
+    "Per-asset reference/model comparisons",
+    "Dimensioned floor plan",
+    "Interactive full scene",
+    "Station and open-state close-ups",
+    "Spatial measurement/collision report",
+    "Risk and applicability register",
+    "Exact model/scene hashes",
+    "Recorded owner review decision"
+  ],
+  "owner_acceptance": {
+    "decision": "pending",
+    "reviewer": null,
+    "date": null,
+    "reviewed_revision": null,
+    "reviewed_artifact_sha256": {},
+    "evidence": null
+  },
+  "scope": "Asset/scene design acceptance. Does not grant manipulation execution, dynamic robot safety or physical site certification.",
+  "implementation": "Workflow contract for this pilot; no runtime launcher interlock is implemented by this JSON.",
+  "policy_paths": [
+    "docs/contributing/EQUIPMENT_MODELING_STANDARD.md",
+    "docs/contributing/REVIEW_CHECKLIST.md"
+  ],
+  "current_scene": {
+    "path": "assets/cooling_lab_v1/scene.json",
+    "sha256": "849f39ff7c5038c593039ad8913f89d308969e5a0573a432eeb302334ea277b9",
+    "status": "draft_not_accepted"
+  },
+  "pilot_constraints": {
+    "path": "assets/cooling_lab_v1/pilot_contract.json",
+    "sha256": "c83af14d3e86a7a49cb78fec9778e094a3c957ed06b9a78e773e2a18c573bdf7"
+  },
+  "current_revision_applicability": "Historical inspection inputs preserved by content hash; not a requalification of the current viewer or inventory. Current automated receipts are listed in evidence_status.json."
+}

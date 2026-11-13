@@ -1,0 +1,81 @@
+<mujoco model="USB-TC selected terminal mechanism jig">
+  <compiler angle="radian" />
+  <option timestep="0.0001" integrator="implicitfast" solver="Newton" iterations="100" tolerance="1e-10" cone="elliptic" gravity="0 0 -9.81" noslip_iterations="3" noslip_tolerance="1e-12" />
+  <default>
+    <geom solref=".0005 1" solimp=".9999 .9999 .00001" condim="3" />
+  </default>
+  <asset>
+    <mesh name="terminal_03_slot_cheek_-1" vertex="0.00126006944 -0.000225 0.0002 0.00120197453 -0.000440065029 0.0002 0.00110747119 -0.00064180026 0.0002 0.000979421964 -0.000824095029 0.0002 0.000821705543 -0.000981427532 0.0002 0.000639099236 -0.00110903209 0.0002 0.000437134281 -0.00120304348 0.0002 0.000221928302 -0.00126061407 0.0002 -2.05839699e-19 -0.00128 0.0002 -0.000221928302 -0.00126061407 0.0002 -0.000437134281 -0.00120304348 0.0002 -0.000639099236 -0.00110903209 0.0002 -0.000821705543 -0.000981427532 0.0002 -0.000979421964 -0.000824095029 0.0002 -0.00110747119 -0.00064180026 0.0002 -0.00120197453 -0.000440065029 0.0002 -0.00126006944 -0.000225 0.0002 0.00126006944 -0.000225 0.0004 0.00120197453 -0.000440065029 0.0004 0.00110747119 -0.00064180026 0.0004 0.000979421964 -0.000824095029 0.0004 0.000821705543 -0.000981427532 0.0004 0.000639099236 -0.00110903209 0.0004 0.000437134281 -0.00120304348 0.0004 0.000221928302 -0.00126061407 0.0004 -2.05839699e-19 -0.00128 0.0004 -0.000221928302 -0.00126061407 0.0004 -0.000437134281 -0.00120304348 0.0004 -0.000639099236 -0.00110903209 0.0004 -0.000821705543 -0.000981427532 0.0004 -0.000979421964 -0.000824095029 0.0004 -0.00110747119 -0.00064180026 0.0004 -0.00120197453 -0.000440065029 0.0004 -0.00126006944 -0.000225 0.0004" />
+    <mesh name="terminal_03_slot_cheek_1" vertex="0.00126006944 0.000225 0.0002 0.00120197453 0.000440065029 0.0002 0.00110747119 0.00064180026 0.0002 0.000979421964 0.000824095029 0.0002 0.000821705543 0.000981427532 0.0002 0.000639099236 0.00110903209 0.0002 0.000437134281 0.00120304348 0.0002 0.000221928302 0.00126061407 0.0002 -2.05839699e-19 0.00128 0.0002 -0.000221928302 0.00126061407 0.0002 -0.000437134281 0.00120304348 0.0002 -0.000639099236 0.00110903209 0.0002 -0.000821705543 0.000981427532 0.0002 -0.000979421964 0.000824095029 0.0002 -0.00110747119 0.00064180026 0.0002 -0.00120197453 0.000440065029 0.0002 -0.00126006944 0.000225 0.0002 0.00126006944 0.000225 0.0004 0.00120197453 0.000440065029 0.0004 0.00110747119 0.00064180026 0.0004 0.000979421964 0.000824095029 0.0004 0.000821705543 0.000981427532 0.0004 0.000639099236 0.00110903209 0.0004 0.000437134281 0.00120304348 0.0004 0.000221928302 0.00126061407 0.0004 -2.05839699e-19 0.00128 0.0004 -0.000221928302 0.00126061407 0.0004 -0.000437134281 0.00120304348 0.0004 -0.000639099236 0.00110903209 0.0004 -0.000821705543 0.000981427532 0.0004 -0.000979421964 0.000824095029 0.0004 -0.00110747119 0.00064180026 0.0004 -0.00120197453 0.000440065029 0.0004 -0.00126006944 0.000225 0.0004" />
+  </asset>
+  <worldbody>
+    <body name="daq_fixture">
+      <geom name="terminal_03_side_-1" type="box" size="0.0003625 0.0041 0.00345" pos="-0.0472925 -0.0357 0.02125" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_side_1" type="box" size="0.0003625 0.0041 0.00345" pos="-0.0444675 -0.0357 0.02125" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_floor" type="box" size="0.00105 0.0041 0.00155" pos="-0.04588 -0.0357 0.01935" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_roof_side_-1" type="box" size="0.0002 0.0041 0.000375" pos="-0.04673 -0.0357 0.024325" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_roof_end_-1" type="box" size="0.001775 0.0011625 0.00105" pos="-0.04588 -0.0386375 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_roof_side_1" type="box" size="0.0002 0.0041 0.000375" pos="-0.04503 -0.0357 0.024325" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_roof_end_1" type="box" size="0.001775 0.0011625 0.00105" pos="-0.04588 -0.0327625 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <geom name="terminal_03_counterbore_0" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0442925 -0.0357 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 0" />
+      <geom name="terminal_03_counterbore_1" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0443465928 -0.0352891248 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 0.261799388" />
+      <geom name="terminal_03_counterbore_2" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0445051847 -0.03490625 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 0.523598776" />
+      <geom name="terminal_03_counterbore_3" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.044757468 -0.034577468 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 0.785398163" />
+      <geom name="terminal_03_counterbore_4" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04508625 -0.0343251847 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 1.04719755" />
+      <geom name="terminal_03_counterbore_5" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0454691248 -0.0341665928 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 1.30899694" />
+      <geom name="terminal_03_counterbore_6" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04588 -0.0341125 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 1.57079633" />
+      <geom name="terminal_03_counterbore_7" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0462908752 -0.0341665928 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 1.83259571" />
+      <geom name="terminal_03_counterbore_8" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04667375 -0.0343251847 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 2.0943951" />
+      <geom name="terminal_03_counterbore_9" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.047002532 -0.034577468 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 2.35619449" />
+      <geom name="terminal_03_counterbore_10" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0472548153 -0.03490625 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 2.61799388" />
+      <geom name="terminal_03_counterbore_11" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0474134072 -0.0352891248 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 2.87979327" />
+      <geom name="terminal_03_counterbore_12" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0474675 -0.0357 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 3.14159265" />
+      <geom name="terminal_03_counterbore_13" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0474134072 -0.0361108752 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 3.40339204" />
+      <geom name="terminal_03_counterbore_14" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0472548153 -0.03649375 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 3.66519143" />
+      <geom name="terminal_03_counterbore_15" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.047002532 -0.036822532 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 3.92699082" />
+      <geom name="terminal_03_counterbore_16" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04667375 -0.0370748153 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 4.1887902" />
+      <geom name="terminal_03_counterbore_17" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0462908752 -0.0372334072 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 4.45058959" />
+      <geom name="terminal_03_counterbore_18" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04588 -0.0372875 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 4.71238898" />
+      <geom name="terminal_03_counterbore_19" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0454691248 -0.0372334072 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 4.97418837" />
+      <geom name="terminal_03_counterbore_20" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.04508625 -0.0370748153 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 5.23598776" />
+      <geom name="terminal_03_counterbore_21" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.044757468 -0.036822532 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 5.49778714" />
+      <geom name="terminal_03_counterbore_22" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0445051847 -0.03649375 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 5.75958653" />
+      <geom name="terminal_03_counterbore_23" type="box" size="0.0001875 0.000211959329 0.00105" pos="-0.0443465928 -0.0361108752 0.02575" rgba="0 0 0 0" friction="1 .005 .0001" euler="0 0 6.02138592" />
+      <geom name="terminal_03_back" type="box" size="0.00105 0.00065 0.0012" pos="-0.04588 -0.03225 0.0221" rgba="0 0 0 0" friction="1 .005 .0001" />
+      <body name="terminal_03_screw" pos="-0.04588 -0.0357 0.0274">
+        <joint name="terminal_03_advance" type="slide" axis="0 0 1" range="-.0022 0" damping=".01" solreflimit=".001 1" solimplimit=".9999 .9999 .00001" />
+        <joint name="terminal_03_turn" type="hinge" axis="0 0 1" limited="false" damping=".000002" frictionloss="0.0004" solreffriction=".001 1" solimpfriction=".9999 .9999 .00001" />
+        <geom name="terminal_03_head_floor" type="cylinder" size="0.00128 0.0003" pos="0 0 -0.0001" rgba="0 0 0 0" friction="1 .005 .0001" mass=".000032" />
+        <geom name="terminal_03_slot_cheek_-1" type="mesh" mesh="terminal_03_slot_cheek_-1" mass=".000006" rgba="0 0 0 0" friction=".3 .00001 .000001" solref=".0005 1" solimp=".9999 .9999 .00001" />
+        <geom name="terminal_03_slot_cheek_1" type="mesh" mesh="terminal_03_slot_cheek_1" mass=".000006" rgba="0 0 0 0" friction=".3 .00001 .000001" solref=".0005 1" solimp=".9999 .9999 .00001" />
+      </body>
+      <body name="terminal_03_plate" pos="-0.04588 -0.0365 0.0236">
+        <joint name="terminal_03_plate_slide" type="slide" axis="0 0 1" limited="false" damping=".01" />
+        <geom name="terminal_03_pressure_plate" type="box" size="0.001 0.0015 0.0003" pos="0 0 0" rgba="0 0 0 0" friction=".5 .00001 .000001" mass=".00015" contype="0" conaffinity="0" solref=".0005 1" solimp=".9999 .9999 .00001" />
+      </body>
+    </body>
+    <body name="guided_driver" pos="-0.04588 -0.0357 0.02763" gravcomp="1">
+      <joint name="driver_z" type="slide" axis="0 0 1" range="-.003 .006" damping=".1" />
+      <inertial mass=".02" diaginertia=".000001 .000001 .000001" pos="0 0 .03" />
+      <body name="driver_rotor">
+        <joint name="driver_spin" type="hinge" axis="0 0 1" limited="false" damping=".00001" armature=".0000001" />
+        <geom name="driver_shaft" type="cylinder" size="0.0011 0.018" pos="0 0 0.0187" rgba="0 0 0 0" friction="1 .005 .0001" mass=".002" />
+        <geom name="driver_bit" type="box" size="0.0011 0.00016 0.00035" pos="0 0 0.00035" rgba="0 0 0 0" friction=".3 .00001 .000001" mass=".00002" contype="1" conaffinity="1" solref=".0005 1" solimp=".9999 .9999 .00001" />
+        <site name="driver_tip" pos="0 0 0" size=".0001" />
+      </body>
+    </body>
+    <body name="wire" pos="-0.04588 -0.0451 0.0211563">
+      <freejoint name="wire_free" />
+      <geom name="wire_conductor" type="cylinder" size="0.0002553 0.01" pos="0 0 0" rgba="0.7 0.3 0.1 1" friction=".5 .00001 .000001" euler="1.57079632679 0 0" mass="3.521923749967048e-05" />
+    </body>
+    <geom name="staging_ledge" type="box" size="0.003 0.009 0.001" pos="-0.04588 -0.0491 0.0199" rgba="0.1 0.4 0.5 1" friction="0 0 0" />
+  </worldbody>
+  <equality>
+    <joint name="terminal_03_thread" joint1="terminal_03_turn" joint2="terminal_03_advance" polycoef="0 12566.3706 0 0 0" solref=".0005 1" solimp=".9999 .9999 .00001" />
+    <joint name="terminal_03_captive_plate" joint1="terminal_03_plate_slide" joint2="terminal_03_advance" polycoef="0 1 0 0 0" solref=".0005 1" solimp=".9999 .9999 .00001" />
+  </equality>
+  <actuator>
+    <velocity name="driver_motor" joint="driver_spin" kv=".001" ctrlrange="-4 4" forcerange="-.003 .003" />
+    <motor name="driver_axial" joint="driver_z" ctrlrange="-.5 .5" />
+  </actuator>
+</mujoco>

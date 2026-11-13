@@ -1,41 +1,63 @@
 {
   "schema_version": "sciencegym.directional_cooling.v3",
   "status": "static_and_symbolic_checks_passed_with_open_acceptance_gates",
-  "date_utc": "2026-10-15T11:44:40.982966+00:00",
+  "date_utc": "2026-10-18T21:59:48.295451+00:00",
   "counts": {
     "package_roles": 18,
-    "operations": 63,
-    "reference_steps": 248,
+    "operations": 64,
+    "reference_steps": 352,
     "branches": 11,
-    "planned_occurrences": 364,
-    "asset_parts": 634,
-    "export_roots": 10,
+    "planned_occurrences": 365,
+    "asset_parts": 724,
+    "export_roots": 11,
     "physical_successes": 0,
-    "equipment_fidelity_accepted": false
+    "equipment_fidelity_accepted": false,
+    "manipulation_steps": 200,
+    "interaction_interfaces": 33,
+    "interfaces_with_partial_geometry": 20,
+    "interfaces_without_geometry": 13
   },
   "checks": [
     {
-      "command": "python3 tasks/directional_cooling_operations_v3/validate.py",
+      "command": "validate.py",
       "result": "passed",
-      "scope": "schema, references, DAG, branch/loop coverage, symbolic replay, part mesh parity, nominal dimensions and GLB buffer/index integrity"
+      "scope": "Static package, symbolic plan, authored geometry and reviewed-input pins"
     },
     {
-      "command": "python3 -m unittest discover -s tasks/directional_cooling_operations_v3/tests -v",
-      "result": "38 tests passed",
-      "scope": "positive symbolic walkthrough plus rejection tests and solar geometry; no physical observations"
+      "command": "episode_inputs.load",
+      "result": "passed",
+      "scope": "Selected values, provenance and solar-input consistency"
     },
     {
-      "command": "python3 -B scripts/verify_release.py",
-      "result": "11/11 static groups passed",
-      "scope": "existing frozen release regression; does not certify the new pilot or physical execution"
+      "command": [
+        "/tmp/sciencegym-sim-venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/tasks/directional_cooling_operations_v3/tests",
+        "-v"
+      ],
+      "result": "passed",
+      "log": "verification/pilot-tests.txt"
+    },
+    {
+      "command": [
+        "/tmp/sciencegym-sim-venv/bin/python",
+        "-B",
+        "/home/amax/data/media/xyl_ps/scigym/ScienceGym/scripts/verify_release.py"
+      ],
+      "result": "passed",
+      "log": "verification/release-regression.txt"
     }
   ],
   "geometry_checks": {
-    "authored_parts": 634,
-    "exported_mesh_parts": 634,
-    "roots": 10,
+    "authored_parts": 724,
+    "exported_mesh_parts": 724,
+    "roots": 11,
     "nominal_dimension_comparison_tolerance_m": 1e-05,
-    "manufacturing_tolerance_qualified": false
+    "manufacturing_tolerance_qualified": false,
+    "authored_cavity_checks": "../../assets/cooling_scene_assets_v2/geometry/interaction_checks.json"
   },
   "physical_execution_validated": false,
   "equipment_fidelity_accepted": false,
@@ -44,5 +66,17 @@
   "reports": [
     "verification/pilot-tests.txt",
     "verification/release-regression.txt"
-  ]
+  ],
+  "reconstruction_revision": "2026-10-19.selected-inputs.1",
+  "limitations": [
+    "This report validates the authored package and selected inputs, not complete physical branches",
+    "Legacy interface geometry counts remain distinct from newer bounded commercial-device reconstructions",
+    "Full object lineage, station handoffs and all manipulation occurrence observations remain incomplete"
+  ],
+  "selected_inputs": {
+    "cards": 14,
+    "fields": 109,
+    "solar_commands": 241,
+    "hardware_qualified": false
+  }
 }

@@ -1,0 +1,31 @@
+reach 0 endpoint_passed 0
+reach 40 endpoint_passed 7
+reach 80 endpoint_passed 12
+reach 120 endpoint_passed 19
+reach 200 endpoint_passed 26
+reach 240 endpoint_passed 33
+reach 280 endpoint_passed 38
+reach 320 endpoint_passed 41
+reach 360 endpoint_passed 46
+reach 400 endpoint_passed 47
+reach 440 endpoint_passed 52
+reach 480 endpoint_passed 52
+reach 560 endpoint_passed 62
+reach 640 endpoint_passed 62
+reach 720 endpoint_passed 67
+reach 760 endpoint_passed 67
+reach 800 endpoint_passed 67
+reach 840 endpoint_passed 71
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_02/plan_rrt_fast.py", line 238, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_02/plan_rrt_fast.py", line 132, in main
+    begin=time.monotonic();answer=valid(q,reference_hand);fast_seconds=time.monotonic()-begin
+                                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_02/plan_rrt_fast.py", line 127, in valid
+    return fast.check(margin)['clear']
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/analysis/nicolet_slider_push_02/source_proximity.py", line 57, in check
+    raise ValueError('An unplanned joint changed a supposedly fixed assembly')
+ValueError: An unplanned joint changed a supposedly fixed assembly

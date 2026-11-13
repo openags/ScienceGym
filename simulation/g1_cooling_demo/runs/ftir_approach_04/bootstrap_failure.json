@@ -1,0 +1,9 @@
+{
+  "status": "bootstrap_cancelled",
+  "simulated_seconds": 0,
+  "reason": "Prelaunch history regression could not serialize a NumPy boolean; the shell continued despite prelaunch failure. Runner was stopped during scene construction, before a physics trace or actor process.",
+  "owned_runner_pids": [
+    1793176
+  ],
+  "correction": "Convert report booleans to Python bool, preserve original failure, and require shell errexit for dependent launch commands. Use a fresh attempt directory."
+}

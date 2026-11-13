@@ -1,0 +1,58 @@
+{
+  "recorded_at_utc": "2026-10-28T01:22:54.766749+00:00",
+  "run": "ftir_approach_05",
+  "initial_map_xy_m": [
+    4.95,
+    -5.2
+  ],
+  "station_map_xy_m": [
+    5.95,
+    -5.2
+  ],
+  "continuous_plant_clock": true,
+  "no_runtime_robot_or_object_state_writes": true,
+  "required_checks": [
+    "At least 0.5 m executed horizontal approach before the station handoff",
+    "Stable motor-controlled parking and FTIR posture preparation",
+    "Native depth registration to public architecture, preserving floor-based height",
+    "At least five consecutive accepted map observations with XY information eigenvalue ratio >= 0.01 and position standard deviation < 1 mm",
+    "Station handoff uses sensor-derived state and current global time",
+    "All unchanged physical window/contact/motor/support requirements",
+    "Native RGB-D post-push confirmation and return",
+    "Active namespace isolation and independent controller/sensor replay"
+  ],
+  "development_assumptions": [
+    "Initial authored aisle pose and known level floor",
+    "Pinned official velocity-policy training rotor inertia 0.01 kg m^2",
+    "Leg odometry support selection inferred from sole height",
+    "Local straight aisle route to the FTIR workstation"
+  ],
+  "source_hashes": {
+    "simulation/g1_cooling_demo/ftir_approach_actor.py": "ee37593c4164d04ed2bc8e1b1a8772f38329d4c8a32140ed9af456cc3de6d61e",
+    "simulation/g1_cooling_demo/run_ftir_approach.py": "6678b449b4461b296637dbfa2cc786a6897a678201124a5c15947b8c5733c450",
+    "simulation/g1_cooling_demo/run_ftir_press.py": "39812ca39f963be3def345de004dd552dba71b91a868d47dc78f6c6133e9b43b",
+    "simulation/g1_cooling_demo/ftir_slider_scan_actor.py": "c0582a38c8f1908d7acfc7a879c41343c605d4953dc588b6a62258a3452f1afa",
+    "simulation/g1_cooling_demo/ftir_slider_actor.py": "55e5afaaf56a041c89c82b6a17eab63b406ce486a3eecae59ee5c1a4347ff9bf",
+    "simulation/g1_cooling_demo/ftir_slider_observed_actor.py": "ce6edabe5f434ec93076917072f53c5065c9d7aa5bcd99b44aa1b40e4455c272",
+    "simulation/g1_cooling_demo/map_localization.py": "c356f16734774e181808668595e016a7985027e75e9eb29c51c8cdcbb146e5ba",
+    "simulation/g1_cooling_demo/walking_actor.py": "2ce0e823c47c238bbd996ab44afc32f12fbe26b03094d1a42e9826cb019680fc",
+    "simulation/g1_cooling_demo/odometry.py": "4e15faa638942e6000e6e8a53638e4a611a6fa61bef72ddd4551e61406915716",
+    "simulation/g1_cooling_demo/balance.py": "4cb8b090940bca0c8f4f3ff9a4064167a811b470d643dbc09d40711ad84b0966",
+    "simulation/g1_cooling_demo/ftir_hand.py": "4e162cd02f8cc5a55b17e6e919decb9b02d960230df3bb713cd468969129001d",
+    "assets/nicolet_6700_mechanism_v1/slider_push_prior_238_first.json": "b3ce69fdd39c441439d4677d7e09e3d29d80fd351a22ffb3db0ed0924b66c300"
+  },
+  "scope": "Connect real walking to the observed station operation. This is not carrying, a complete measurement sequence, the 7.15 m interstation route, or any qualified paper branch.",
+  "changes": [
+    "Preserve source arm swing and elbow motion; clamp only inward shoulder-roll target to0.4rad outward on each side. Initialize only those two shoulder joints to that boundary.",
+    "Preserve raw network action history, matching pinned upstream ActionManager rather than overwriting history with processed targets.",
+    "Retain bounded acceleration/deceleration, slower approach and parking velocity guard from03.",
+    "Retain238-first original object-local hand candidate order; unchanged shapes and parameters.",
+    "All physical/contact/support/joint/sensor/isolation thresholds unchanged;03failedbalance and04cancelledbootstrap retained."
+  ],
+  "regressions": {
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/walking_shoulder_clearance.json": "aa4fc902ee77ea2b751df396da2a708503e8be555948061d1b1e9e8ca00510e7",
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/shoulder_policy_history.json": "1cba6ee2d18cd32c0dcdcba1d81acbc4ea5218fc98afa61d3e8ffbe5568f302c",
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/action_history_source.json": "102628f6cb116ce0f402561826b8469a7c317bb4b2f00a9b4e8a48b034a14a02",
+    "simulation/g1_cooling_demo/analysis/nicolet_slider_push_06/contact_prior_selection.json": "cf4801fa68d05c2419ea1619916f4e5c8d4656daf61a6f08654f58633608942c"
+  }
+}

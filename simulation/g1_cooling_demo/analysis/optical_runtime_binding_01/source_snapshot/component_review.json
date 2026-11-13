@@ -1,0 +1,288 @@
+{
+  "scope": "Build a free optical coupon and test support on the actual PIKE source panel.\n\nComponent development only: no robot handling, fabrication, accessory mounting,\ninstrument acquisition or paper-branch qualification. The existing annular\npresentation holder is not adopted as a physically qualified fixture.\n",
+  "source_hashes": {
+    "assets/cooling_optical_specimens_v1/witness_white.glb": "d50e763963ad67b8ee88067a6de8c8619acb648e549e37b4a511bb01757e03c4",
+    "assets/pike_integratir_dtgs_v1/geometry/pike_integratir_dtgs.glb": "a9a29955237c709b47dce9087e3dd7f41e92f92fd175bf8bd0a7132743593867",
+    "assets/cooling_optical_specimens_v1/manifest.json": "5a0c89c3cd31991c0f1bfea311b64d406db49e4feeb595bc0d8024b4ea3af0e7",
+    "assets/pike_integratir_dtgs_v1/interfaces.json": "23fa9613c867d166a6b09937bcbc9152746f9fa46f2661346f26a3465d16794f"
+  },
+  "source_manual": "https://www.piketech.com/files/user-manuals/MidIntegratIRwDTGSManual.pdf",
+  "source_manual_locator": "PN 350-048400-01 (2012), printed pages 1 and 4: flat specimens can be supported directly on the upper port",
+  "reconstruction": "25 mm coupon from selected 0.5 mm copper stock, three inferred paint layers; no annular holder in this candidate",
+  "optical_scope": "Only physical support is checked. No optical response, measured paint properties or contamination qualification.",
+  "inferred_dynamics": {
+    "copper_density_kg_m3": 8960.0,
+    "paint_density_kg_m3": 1200.0,
+    "friction": [
+      0.3,
+      0.002,
+      0.0001
+    ],
+    "contact_solref": [
+      0.002,
+      1.0
+    ],
+    "contact_solimp": [
+      0.99,
+      0.99,
+      0.0001
+    ],
+    "note": "Unmeasured development parameters, not vendor calibration; panel held stationary for this component diagnostic"
+  },
+  "collision_solver": {
+    "ccd_tolerance_m": 1e-09,
+    "ccd_iterations": 100,
+    "documentation": "https://mujoco.readthedocs.io/en/stable/computation/#convex-collisions",
+    "reason": "Thin source paint layers require a numerical convergence check; source geometry, mass, friction and physical acceptance bounds remain fixed; selected numerical compliance is recorded separately"
+  },
+  "bonded_paint_collision": null,
+  "source_device_from_glb": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "partition": "Nonoverlapping radial sectors of the actual beveled outer hull and source polygonal bore",
+  "actual_support_plane_m": 0.10200000356417149,
+  "declared_interface_center_m": [
+    0.04,
+    -0.01,
+    0.101
+  ],
+  "interface_to_upper_surface_offset_m": 0.0010000035641714866,
+  "parts": [
+    {
+      "name": "copper_witness",
+      "mass_kg": 0.002192839982641077,
+      "density_kg_m3": 8960.0,
+      "volume_m3": 2.447366052054773e-07,
+      "density_origin": "Unmeasured engineering assumption"
+    },
+    {
+      "name": "paint_coat_1",
+      "mass_kg": 8.769356704862628e-06,
+      "density_kg_m3": 1200.0,
+      "volume_m3": 7.307797254052191e-09,
+      "density_origin": "Unmeasured engineering assumption"
+    },
+    {
+      "name": "paint_coat_2",
+      "mass_kg": 8.769355109726186e-06,
+      "density_kg_m3": 1200.0,
+      "volume_m3": 7.307795924771821e-09,
+      "density_origin": "Unmeasured engineering assumption"
+    },
+    {
+      "name": "paint_coat_3",
+      "mass_kg": 8.769355109726186e-06,
+      "density_kg_m3": 1200.0,
+      "volume_m3": 7.307795924771821e-09,
+      "density_origin": "Unmeasured engineering assumption"
+    }
+  ],
+  "mass_kg": 0.0022191480495653924,
+  "source_panel_cells": 96,
+  "trials": [
+    {
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "passed": true,
+      "checks": {
+        "no_actuators": true,
+        "no_equalities": true,
+        "no_external_forces": true,
+        "no_numerical_warnings": true,
+        "bounded_penetration": true,
+        "stable_last_half_second": true,
+        "bounded_total_contact_load": true,
+        "support_balances_weight": true,
+        "no_contact_inside_source_port": true,
+        "placement_retained": true
+      },
+      "peak_penetration_m": 0.00013952842267130115,
+      "peak_total_contact_load_n": 0.47230741250644315,
+      "last_half_second_peak_speed_m_s": 2.7111239984548627e-13,
+      "last_half_second_peak_angular_speed_rad_s": 7.592342695345498e-10,
+      "last_half_second_stable_steps": 5000.0,
+      "last_half_second_total_steps": 5000,
+      "final_qpos": [
+        0.0400000000108736,
+        -0.010000000014285191,
+        0.10195000255817015,
+        1.0,
+        2.0733757962313835e-10,
+        5.788034380173047e-10,
+        -1.882387389494371e-13
+      ],
+      "mean_final_support_n": 0.021769842366238
+    },
+    {
+      "offset_m": [
+        0.001,
+        0.0
+      ],
+      "passed": true,
+      "checks": {
+        "no_actuators": true,
+        "no_equalities": true,
+        "no_external_forces": true,
+        "no_numerical_warnings": true,
+        "bounded_penetration": true,
+        "stable_last_half_second": true,
+        "bounded_total_contact_load": true,
+        "support_balances_weight": true,
+        "no_contact_inside_source_port": true,
+        "placement_retained": true
+      },
+      "peak_penetration_m": 0.00013952898432227696,
+      "peak_total_contact_load_n": 0.4723072843254169,
+      "last_half_second_peak_speed_m_s": 2.4717455611894823e-11,
+      "last_half_second_peak_angular_speed_rad_s": 2.6927399687311824e-08,
+      "last_half_second_stable_steps": 5000.0,
+      "last_half_second_total_steps": 5000,
+      "final_qpos": [
+        0.04099999975371902,
+        -0.010000000007723359,
+        0.10195000254696274,
+        0.9999999999999993,
+        -2.709870893064991e-10,
+        7.818809737542247e-09,
+        -4.1210978767924025e-12
+      ],
+      "mean_final_support_n": 0.021769842366143162
+    },
+    {
+      "offset_m": [
+        -0.001,
+        0.0
+      ],
+      "passed": true,
+      "checks": {
+        "no_actuators": true,
+        "no_equalities": true,
+        "no_external_forces": true,
+        "no_numerical_warnings": true,
+        "bounded_penetration": true,
+        "stable_last_half_second": true,
+        "bounded_total_contact_load": true,
+        "support_balances_weight": true,
+        "no_contact_inside_source_port": true,
+        "placement_retained": true
+      },
+      "peak_penetration_m": 0.00013952897692412518,
+      "peak_total_contact_load_n": 0.47230728424115265,
+      "last_half_second_peak_speed_m_s": 2.6939177117754764e-13,
+      "last_half_second_peak_angular_speed_rad_s": 7.708271473444763e-10,
+      "last_half_second_stable_steps": 5000.0,
+      "last_half_second_total_steps": 5000,
+      "final_qpos": [
+        0.038999999993112947,
+        -0.01000000000031297,
+        0.10195000254836036,
+        1.0,
+        3.4882714079927785e-10,
+        -6.816459036957307e-09,
+        7.360200017987392e-16
+      ],
+      "mean_final_support_n": 0.0217698423662381
+    },
+    {
+      "offset_m": [
+        0.0,
+        0.001
+      ],
+      "passed": true,
+      "checks": {
+        "no_actuators": true,
+        "no_equalities": true,
+        "no_external_forces": true,
+        "no_numerical_warnings": true,
+        "bounded_penetration": true,
+        "stable_last_half_second": true,
+        "bounded_total_contact_load": true,
+        "support_balances_weight": true,
+        "no_contact_inside_source_port": true,
+        "placement_retained": true
+      },
+      "peak_penetration_m": 0.0001395289813333898,
+      "peak_total_contact_load_n": 0.4723072855848577,
+      "last_half_second_peak_speed_m_s": 6.652805204492131e-12,
+      "last_half_second_peak_angular_speed_rad_s": 7.1050023905719605e-09,
+      "last_half_second_stable_steps": 5000.0,
+      "last_half_second_total_steps": 5000,
+      "final_qpos": [
+        0.04000000000685636,
+        -0.009000000246388366,
+        0.10195000254775877,
+        0.9999999999999993,
+        -7.283317894774735e-09,
+        4.1275138457348113e-10,
+        2.551095588895277e-12
+      ],
+      "mean_final_support_n": 0.021769842366247683
+    },
+    {
+      "offset_m": [
+        0.0,
+        -0.001
+      ],
+      "passed": true,
+      "checks": {
+        "no_actuators": true,
+        "no_equalities": true,
+        "no_external_forces": true,
+        "no_numerical_warnings": true,
+        "bounded_penetration": true,
+        "stable_last_half_second": true,
+        "bounded_total_contact_load": true,
+        "support_balances_weight": true,
+        "no_contact_inside_source_port": true,
+        "placement_retained": true
+      },
+      "peak_penetration_m": 0.00013952895398089453,
+      "peak_total_contact_load_n": 0.47230728395292365,
+      "last_half_second_peak_speed_m_s": 2.575688412600902e-13,
+      "last_half_second_peak_angular_speed_rad_s": 7.246013952597166e-10,
+      "last_half_second_stable_steps": 5000.0,
+      "last_half_second_total_steps": 5000,
+      "final_qpos": [
+        0.0399999999975332,
+        -0.010999999752012239,
+        0.10195000254753646,
+        0.9999999999999993,
+        7.372110093655308e-09,
+        7.178525300135034e-10,
+        -2.17224296589205e-12
+      ],
+      "mean_final_support_n": 0.021769842366238145
+    }
+  ],
+  "world_sha256": "b92cb58dd04fc39f580af2e50bbc9c755200f8934111d8831708511d57b67fc4",
+  "trace_sha256": "233ab9a02c8877e70a1f76a15cadc0f2df8713ab061d6fc080d186fec19da9d5",
+  "script_sha256": "6cf8a58636bc015a749bc791b7c265b2f2a46743939cf39e0e84685518870ad9",
+  "passed_component_support": true,
+  "qualified_robot_handling": false,
+  "qualified_paper_branch": false
+}

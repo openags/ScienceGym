@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-26",
+  "status": "partial_weather_component_construction",
+  "selection_basis": "Selected compatible weather peripherals for the reconstructed U30 station. The paper names U30 but does not establish these sensor and tripod SKUs.",
+  "resource_requirements": [
+    "equipment:WEATHER",
+    "facility:OUTDOOR"
+  ],
+  "sources": [
+    {
+      "id": "ONSET_STHB_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/11427-O%20S-THB%20Manual.pdf",
+      "sha256": "3cc2db1435f321bcbea1669de36bf22b91cfc9959826360d04864b8a1ede63df",
+      "inspected_pages": [
+        1,
+        2
+      ],
+      "facts": {
+        "selected_model": "S-THB-M002",
+        "sensor_dimensions_mm": [
+          10,
+          35
+        ],
+        "mass_g": 110,
+        "total_cable_m": 2.5,
+        "digital_network_cable_m": 0.5
+      },
+      "notes": [
+        "Actual total cable 2.5m despite model suffix M002 and some catalog shorthand 2m; an external catalog result mislabeled M002 8m, rejected.",
+        "Black inline adapter and terminal sensor cap from photos; no dimensions for inline adapter.",
+        "Fits RS3/RS3-B shield; cable ties or ordinary clamp; membrane cap removable. No historical paper SKU claim."
+      ],
+      "local_cache_file": "/tmp/sciencegym-weather-sources/onset-sthb.pdf"
+    },
+    {
+      "id": "ONSET_RS3_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/11269-E%20MAN-RS3.pdf",
+      "sha256": "90da4c1557f75e89eccfe7f8a4280ba8ef9373d77e8f49e8c3b69f8d17b30e0b",
+      "inspected_pages": [
+        1
+      ],
+      "facts": {
+        "shield_height_mm": 89,
+        "total_height_with_bracket_mm": 159,
+        "shield_diameter_mm": 102,
+        "bracket_protrusion_mm": 102,
+        "mast_max_diameter_mm": 51,
+        "ceiling_clearance_mm": 65,
+        "mass_g": 113,
+        "cable_ties": 6,
+        "knurled_nuts": 2,
+        "screws": 2,
+        "hose_clamp": 1
+      },
+      "notes": [
+        "Photo and cross-section inspected; separate shield + inclined bracket + band clamp + two lower knurled nuts.",
+        "Seven drawn lamella levels appear in cross-section; exact profile, rod pitch and internal hardware inferred; check photo/diagram count before authoring.",
+        "Bracket and shield geometry compatible with 35mm sensor within 65mm nominal interior; no thermal qualification."
+      ],
+      "local_cache_file": "/tmp/sciencegym-weather-sources/onset-rs3.pdf"
+    },
+    {
+      "id": "ONSET_SWCF_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/19877-B%20MAN-S-WCF.pdf",
+      "sha256": "32f7e448ceaa3c23f1b6b87f303cd3aa2bdb61691f322bc646413ef82e2217dd",
+      "inspected_pages": [
+        1,
+        2,
+        3
+      ],
+      "facts": {
+        "model": "S-WCF-M003",
+        "listed_dimensions_mm": [
+          470,
+          191,
+          121
+        ],
+        "cup_turning_radius_mm": 108,
+        "vane_turning_radius_mm": 135,
+        "catalog_cable_m": 3,
+        "digital_network_cable_m": 0.5,
+        "mast_range_mm": [
+          32,
+          44
+        ],
+        "maximum_mast_with_other_ubolt_mm": 64,
+        "mass_g": 1332
+      },
+      "conflicts": [
+        "Same manual page2 component image labels 40ft/12.2m cable vs page1/product 3m; preserve conflict. Do not silently add or substitute total lengths.",
+        "Listed static dimensions 191mm width vs 216mm cup sweep; orientation/unassembled state unlocated, do not force continuous swing into static bbox."
+      ],
+      "hardware": [
+        "One U-bolt shown B revision, two sets 1/4 flat+lock washer+hexnut",
+        "Arm machine screw #4x1-1/8, #4 lock washer and #4-40 nut",
+        "0.05in Allen key for vane and cups; D-shaped vane shaft",
+        "7/16in wrench for mast nut; added current 8mm wrench not compatible"
+      ],
+      "notes": [
+        "Mount inline smart adapter horizontally with drip loops; manual recommends2m or greater wind position.",
+        "North alignment, wind/shadow/earth precautions, mast stability are scenario design constraints; no installation acceptance.",
+        "Product https://www.onsetcomp.com/products/sensors/s-wcf-m003 inspected matches3m spec."
+      ],
+      "local_cache_file": "/tmp/sciencegym-weather-sources/onset-swcf.pdf"
+    },
+    {
+      "id": "ONSET_TRIPOD_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/12317-B%20MAN-TRIPOD.pdf",
+      "sha256": "60ecc89d71d541b316ae193b1e6519a8693a71b73baee478a7cbbc41e6d4862e",
+      "inspected_pages": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        10
+      ],
+      "text_read_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10
+      ],
+      "notes": [
+        "M-TPB two metre with nonadjustable legs, separate upper/lower mast and tripod tri-clamps.",
+        "Six5/16-18 radial bolts, each outer+innernut,1/2inwrench.",
+        "Each3feetgroundstake or1/4inconcreteanchor, windneedsM-GWA guy support,groundingkitM-GKA.",
+        "Manual recommends two people for tripod setup; one G1 lifting the completed tower is not established.",
+        "The manufacturer shows temporary cable ties holding the upper mast beside the tripod base during sensor installation; this is an ordinary assembly method, not a robot-specific fixture.",
+        "For the two-metre tripod, guy anchors are 3 to 4 m from the mast. The selected outdoor layout must account for those cables and anchors, not only the listed 0.51 m tripod footprint. Current U30 bench position cannot be reused as a complete installation without a new spatial check."
+      ],
+      "local_cache_file": "/tmp/sciencegym-weather-sources/onset-tripod.pdf"
+    },
+    {
+      "id": "ONSET_MTPB_PRODUCT",
+      "url": "https://www.onsetcomp.com/products/mounting/m-tpb",
+      "facts": {
+        "crossarm_height_range_m": [
+          1.72,
+          2.13
+        ],
+        "leg_top_height_m": 0.81,
+        "mast_diameter_m": 0.041,
+        "listed_footprint_m": 0.51,
+        "mass_lb": 12.8
+      },
+      "notes": [
+        "Webread manufacturer page; exactfootprintdatum unspecified; do not use kitshipping56x10x9in asassembledsize.",
+        "Productprint PDF https://www.onsetcomp.com/print/pdf/node/11181 notdownloadedyet."
+      ]
+    },
+    {
+      "id": "ONSET_U30_RC_MANUAL",
+      "url": "https://www.onsetcomp.com/sites/default/files/resources-documents/12269-M%20U30%20Station%20RC%20Manual.pdf",
+      "sha256": "7ed642a427925c0b89102947860a91a1060a48c980eb2f04b5e38f11ce1096d6",
+      "inspected_pages": [9],
+      "facts": {"smart_sensor_port_type": "RJ-12", "primary_sensor_ports": 5},
+      "notes": [
+        "PDF page 9, printed page 4, identifies RJ-12 ports. A sensor expansion adapter uses one of the primary ports.",
+        "The RC-family manual does not identify the historical paper's communications variant, sensor plug manufacturer or electrical pinout."
+      ]
+    },
+    {
+      "id": "CINCH_325996UL_DRAWING",
+      "url": "https://www.cinch.com/media/drawings/products/ethernet-usb/dr-CCS-AIM-32-5996UL.pdf",
+      "sha256": "e425f92c2a9688cd7ff011c58c5cd7f21f7628e4bd004c4286e6451df1ee5334",
+      "product_url": "https://www.cinch.com/products/ethernet-usb/plugs/32-5996ul",
+      "inspected_pages": [1],
+      "facts": {
+        "model": "32-5996UL",
+        "connector": "RJ12 (6P6C), unshielded, round solid/stranded cable",
+        "reference_length_mm": 13.34,
+        "body_width_mm": 9.65,
+        "body_height_mm": 6.60,
+        "contact_pitch_mm": 1.02,
+        "housing_material": "Clear polycarbonate UL94-V0",
+        "contact_material": "Phosphor bronze with selective gold plating"
+      },
+      "notes": [
+        "Selected envelope reference only. No evidence identifies this as the connector vendor used in the Onset assembly.",
+        "The 32-5956UL flat-cable variant is not selected for the authored round lead.",
+        "The drawing is dated 2015-12-09 and says CAT5E; the current product page says CAT5. No data-rate qualification is claimed.",
+        "Internal channels, cable termination, latch flexure and local radii are original hypotheses; no Onset pinout, crimp operation or U30 insertion acceptance.",
+        "Manufacturer drawing retained in temporary local cache only; no redistribution license."
+      ]
+    }
+  ],
+  "cad_searches": [
+    "site:onsetcomp.com S-THB CAD",
+    "site:onsetcomp.com S-WCF STEP",
+    "site:onsetcomp.com RS3 3D"
+  ],
+  "cad_result": "No reusable manufacturer CAD obtained in these searches; not evidence of global unavailability.",
+  "rights": "Manufacturer media retained in temporary local cache for comparison. No redistribution permission or official CAD obtained; prospective model geometry must be original and distinguish measured facts from inferences.",
+  "source_conflicts_preserved": true,
+  "geometry_available": true,
+  "geometry_scope": "RS3 kit and S-THB-M002 lead reconstruction only. Wind sensor, tripod, anchoring and installed routing remain incomplete.",
+  "assembly_qualified": false,
+  "owner_acceptance": null
+}

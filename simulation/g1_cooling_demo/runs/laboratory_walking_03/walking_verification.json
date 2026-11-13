@@ -1,0 +1,121 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "executor_completed",
+      "passed": true
+    },
+    {
+      "name": "floating_body_motor_torques_only",
+      "passed": true
+    },
+    {
+      "name": "motor_limits",
+      "passed": true
+    },
+    {
+      "name": "all_81_source_assets_present",
+      "passed": true
+    },
+    {
+      "name": "upright_throughout",
+      "passed": true,
+      "minimum_height_m": 0.7527563748146201,
+      "maximum_tilt_deg": 11.192313944013392
+    },
+    {
+      "name": "forward_motion_exceeds_one_metre",
+      "passed": true,
+      "forward_m": 3.999354175480354
+    },
+    {
+      "name": "stays_within_aisle_direction",
+      "passed": false,
+      "lateral_m": 1.3367015422699033
+    },
+    {
+      "name": "stops_after_command",
+      "passed": true,
+      "maximum_speed_after_12_s_m_s": 0.06209151050627143
+    },
+    {
+      "name": "continuous_motor_replay_matches",
+      "passed": true,
+      "max_qpos_error": 0.0,
+      "max_qvel_error": 0.0
+    },
+    {
+      "name": "only_feet_contact_laboratory_floor",
+      "passed": false,
+      "unexpected_pairs": [
+        [
+          "left_hip_roll_link_collision_0",
+          "lab_part_1090"
+        ],
+        [
+          "left_thumb_4_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "left_thumb_force_sensor_4_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "pelvis_contour_link_collision_0",
+          "lab_part_1090"
+        ],
+        [
+          "right_hip_yaw_link_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_index_2_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_index_force_sensor_2_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_index_force_sensor_3_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_middle_2_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_middle_force_sensor_3_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "right_thumb_4_collision_0",
+          "lab_part_1874"
+        ],
+        [
+          "torso_link_collision_0",
+          "lab_part_1090"
+        ]
+      ]
+    },
+    {
+      "name": "no_applied_body_support",
+      "passed": true
+    },
+    {
+      "name": "both_feet_take_steps",
+      "passed": true,
+      "steps": [
+        13,
+        13
+      ],
+      "maximum_sole_height_m": [
+        0.046641810864965064,
+        0.04612603408340073
+      ]
+    }
+  ],
+  "verifier_sha256": "29658b39c41d3fef123f787565b99c1f1a7001ff4427800d7f4584b14f4a992e",
+  "trace_sha256": "d15d6edd042f3e4d242a914ef438ce0a605916a475fc8132c488a036e53ef98a",
+  "scope": "One unloaded, time-commanded compatibility run; no navigation, carrying or repeatability qualification"
+}

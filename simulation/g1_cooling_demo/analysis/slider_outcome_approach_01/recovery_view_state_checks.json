@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checks": {
+    "late_contact_loss_can_be_inspected": true,
+    "early_loss_cannot_enter_recovery_inspection": true,
+    "overload_cannot_enter_recovery_inspection": true,
+    "short_loss_cannot_enter_recovery_inspection": true,
+    "nonfinite_load_cannot_enter_recovery_inspection": true,
+    "seven_frames_do_not_resolve_fault": true,
+    "repeated_timestamp_is_not_a_new_frame": true,
+    "eight_frames_require_return_before_resolution": true,
+    "settled_return_resolves_fault_with_explicit_record": true,
+    "original_fault_is_preserved": true,
+    "failed_visual_confirmation_remains_failed_after_return": true,
+    "overload_stays_terminal_after_withdrawal": true,
+    "unsettled_view_cannot_confirm_outcome": true
+  },
+  "source_sha256": {
+    "check_slider_recovery.py": "acccde5047d0d2dc5ec53b75ac2da7986c13be14bdfd5eb763673c3291b52fae",
+    "ftir_slider_actor.py": "dcd67261b40ead7764a7a8eeddd04897900d9ed548847e6ad328ec259f9c4e69",
+    "ftir_slider_observed_actor.py": "c8a32052fe2c456929d4db1372f4b36c7cb561c1b3cff3c06ca268ad3bc21e56"
+  },
+  "scope": "Fault-injection checks for the post-withdrawal visual recovery state machine.\n\nSynthetic observations exercise failure handling only; they are not physical\nor perception validation. Full native-sensor execution is still required."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "status": "cover_geometry_candidate_with_separate_laboratory_integration_record_not_accepted",
+  "paper": {
+    "url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-018-07293-9/MediaObjects/41467_2018_7293_MOESM1_ESM.pdf",
+    "sha256": "61f8587c1b34a45072fac9b25591b89f1a1b00b212b61e9c29c41e2e73a340b3",
+    "locator": "Supplementary Figure 1, printed page 2; Supplementary Note 2, printed page 13",
+    "locally_inspected": true,
+    "facts": {
+      "emitter_diameter_mm": 50,
+      "emitter_thickness_mm": 0.5,
+      "foam_layer_thickness_mm": 25,
+      "foam_layers": 2,
+      "pe_support_inner_diameter_mm": 76,
+      "pe_support_outer_diameter_mm": 102,
+      "pe_support_height_mm": null,
+      "cover_layer_thickness_mm": 0.016,
+      "cover_layers": 2,
+      "ring_inner_diameter_mm": 107,
+      "ring_outer_diameter_mm": 127,
+      "ring_thickness_mm": 6.4,
+      "shield_inner_diameter_mm": 140,
+      "shield_outer_diameter_mm": 152,
+      "shield_height_mm": 57,
+      "aperture_diameter_mm": 50
+    },
+    "unreported": [
+      "PE support height, film pretension and exact attachment method",
+      "Whether the ring is carried by the lower membrane or an unshown retainer",
+      "Adhesive identity, thickness and coverage",
+      "Shield retention, aperture-sheet fastening and detailed clearances"
+    ]
+  },
+  "legacy_observations": [
+    "The selected legacy PE tube is 57 mm tall although that height is reported for the outer aluminum shield only.",
+    "The ring bore exceeds the PE outside diameter by 5 mm, so the ring cannot bear directly on the tube annulus.",
+    "The legacy shield bottom is 6.4 mm above the platform, without a supporting part.",
+    "Films are centered on nominal mating planes, causing half-gauge intersections into the ring, tube and aperture.",
+    "The legacy coating contains collapsed bevel triangles and the copper disk has inconsistent face winding. Wrapped foil has one coincident four-face seam edge after vertex welding. These failures are retained in the legacy snapshot."
+  ],
+  "selected_geometry_hypothesis": {
+    "status": "candidate_requires_geometric_and_later_physical_review",
+    "pe_support_height_mm": 51,
+    "ring_bottom_above_platform_mm": 50.1,
+    "ring_top_above_platform_mm": 56.5,
+    "shield_bottom_above_platform_mm": 0,
+    "aperture_sheet_thickness_mm": 1,
+    "coating_total_inferred_thickness_mm": 0.06,
+    "foil_seam_numerical_separation_mm": 0.0001,
+    "foil_scope": "Retain 12 micrometre nominal foil gauge and 3 mm lap. A separately recorded 0.1 micrometre seam guard prevents coincident four-face mesh edges. It is not physical adhesive thickness, flexure or contact qualification.",
+    "lower_membrane": "The central lower face rests on the PE annulus at 51 mm. Outside the Mylar-covered support it drapes downward to the adhesive on the ring underside. The ring is carried through membrane tension, not an invisible rigid support.",
+    "lower_membrane_transition_radius_mm": [51.05, 53.4],
+    "upper_membrane": "A flat sheet bonded to the ring upper face, with its real thickness above the adhesive.",
+    "rationale": "A nested ring and lower membrane spanning the 2.5 mm radial gap are a plausible reconstruction of SI Figure 1 b3/b4. The selected height preserves a nominal gap above the emitter and below the aperture without changing published ring or shield dimensions. The photograph does not prove this attachment or equilibrium shape.",
+    "load_path": ["ring", "lower adhesive annulus", "lower membrane tension", "PE tube upper annulus", "platform"],
+    "not_established": ["Membrane equilibrium or pretension", "Ring retention during handling", "Adhesion to porous PE", "Wind resistance", "Historical construction identity"]
+  },
+  "adhesive_candidate": {
+    "product": "3M 9471LE with 300LSE acrylic adhesive",
+    "url": "https://multimedia.3m.com/mws/media/2366108O/3m-adhesive-transfer-tape-9471le.pdf",
+    "revision": "September 2024",
+    "accessed_on": "2026-10-26",
+    "access_method": "Official PDF text inspected through web retrieval; local curl returned HTTP 403. No local PDF hash or download is claimed.",
+    "nominal_adhesive_thickness_mm": 0.058,
+    "nominal_liner_thickness_mm": 0.102,
+    "liner": "58# polycoated kraft paper",
+    "geometry_selection": "Original annular cutouts covering the ring faces only. Liner is removed in the proposed bonded state; initial stock and cutting tools remain separately required.",
+    "source_conflict": "The US product page lists 0.089 mm alongside 2.283 mil, whereas the revision-specific PDF gives 0.058 mm / 2.3 mil. This candidate uses the PDF value explicitly.",
+    "limits": [
+      "Manufacturer values are typical, not acceptance specifications.",
+      "Listed peel tests use ABS, polypropylene and stainless steel, not this porous polyethylene separator.",
+      "This is a selected attachment hypothesis, not the paper's identified adhesive or proof of film compatibility.",
+      "Cleaning, application pressure, dwell and removal/renewal must remain explicit later operations."
+    ]
+  },
+  "separator_followup": {
+    "attempted_url": "https://www.targray.com/li-ion-battery/separators",
+    "accessed_on": "2026-10-26",
+    "result": "Redirects to the general battery materials page. No exact historical 16 micrometre separator tensile/adhesion datasheet was recovered.",
+    "mechanical_parameters_qualified": false
+  },
+  "retention_candidate": {
+    "status": "selected_ordinary_connections_pending_geometry_and_physical_checks",
+    "angle_stock": {
+      "supplier": "Continental Steel, 6063-T52-500-500-0625",
+      "url": "https://continentalsteel.com/viewitems/aluminum-angles/aluminum-architectural-angles-series-6063-t52",
+      "accessed_on": "2026-10-26",
+      "nominal_section_mm": [12.7, 12.7, 1.5875],
+      "facts": "Supplier catalogue lists 6063-T52, sharp inside/outside corners and this inch-to-metric equivalent.",
+      "section_illustration_url": "https://continentalsteel.com/ImgMedium/61.gif",
+      "section_illustration_sha256": "a5aa66511736208878d1c08cfc4a555ec3625c79cc3e8a6a6e4766a02be5ab92",
+      "section_illustration_locally_inspected": true,
+      "redistribution": "Supplier illustration retained locally only; authored geometry uses nominal dimensions.",
+      "selected_cut_width_mm": 10,
+      "selected_angles_deg": [30, 150, 270],
+      "machining": "Cut to width, deburr, drill one 3.4 mm clearance hole in each leg. Hole locations and cut width are authored choices, not supplier finished parts."
+    },
+    "platform": {
+      "selected_size_mm": [180, 180, 5],
+      "previous_size_mm": [170, 170, 5],
+      "reason": "The ordinary 12.7 mm angle feet extend beyond the previous 170 mm square at the south attachment. The enlarged plate keeps them supported and still fits the existing selected raw sheet reservation.",
+      "mounting": "Preserve the four source-derived jack mounting centers/countersinks; add three M3 through-thread envelopes at radius 85 mm."
+    },
+    "hardware": {
+      "per_apparatus": {"M3x6_cap_screws": 6, "M3_large_washers": 3, "angle_cuts": 3},
+      "dimension_sources": ["assets/cooling_lab_v1/apparatus_frame_sources.json", "assets/cooling_lab_v1/apparatus_mount_sources.json"],
+      "side_axis_height_mm": 8,
+      "base_washer_dimensions_mm": [9, 3.2, 0.8],
+      "nominal_side_insertion_mm": 4.4125,
+      "nominal_base_insertion_mm": 3.6125,
+      "threads": "Major-diameter envelopes only; no helical contact, tapping process or preload qualification."
+    },
+    "aperture_attachment": "An additional 58 micrometre selected 9471LE annulus between the 70/76 mm shield rim and aperture sheet; separate ordinary adhesive geometry, not an invisible fixed constraint.",
+    "limits": [
+      "Flat bracket legs are tangent to the cylindrical shield: contact area, local deformation and preload remain unqualified.",
+      "This is an ordinary removable fastener arrangement inferred for the demo, not a confirmed original paper construction.",
+      "Raw angle, hardware and adhesive stock are recorded separately in cover_stock.json; drilling/tapping and driver access remain unqualified.",
+      "Laboratory configuration integration is recorded in apparatus_stock_reconciliation.json; this source ledger itself grants no scene acceptance."
+    ]
+  },
+  "remaining": [
+    "Driver access, tangent bracket bearing and physical retention",
+    "Liner handling, cutting and application tools, residue removal and fresh-bond preparation",
+    "Full laboratory owner review and material/source equivalence",
+    "Membrane/contact/adhesion dynamics only after owner asset acceptance"
+  ],
+  "physical_installation_qualified": false,
+  "owner_acceptance": null
+}

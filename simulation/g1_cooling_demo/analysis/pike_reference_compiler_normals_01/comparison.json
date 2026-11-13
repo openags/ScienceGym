@@ -1,0 +1,357 @@
+{
+  "scope": "Diagnose compiled polygon normals without changing the source solids.\n\nThe MuJoCo 3.16.0 compiler can derive a polygon normal from nearly collinear\noutline vertices. Compare its result with a complete-loop area normal, with\nthe loop oriented away from the convex hull interior. This is a component\ndiagnostic, not a runtime patch or robot-handling qualification.\n",
+  "mujoco_version": "3.16.0",
+  "sources": [
+    "https://github.com/google-deepmind/mujoco/issues/3691",
+    "https://github.com/google-deepmind/mujoco/issues/3701"
+  ],
+  "source_world_sha256": "e8b76365fd5b3655f5911d84da4238bf365c6f5b4bce4e8de181d6d22852c520",
+  "source_contract_sha256": "8fb018e33d0cba8e4091ff4b55482bf531739a4f8c4f4e8b08f1eae51b710799",
+  "script_sha256": "8287b29e018230aca0584fc95b458dceaaa064355f003bfea747d7139fbca824",
+  "results": [
+    {
+      "variant": "source_compiler",
+      "case": "center_zero",
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "yaw_degrees": 0.0,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.01,
+        0.13502000431668013,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 664.4013497985363,
+      "maximum_lateral_normal_load_n": 517.1896955097542,
+      "maximum_penetration_m": 1.3187310998696906e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 3.979321008539804e-09,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0032999999999999982,
+        "normal_load_n": 35.438302131986234,
+        "geom_names": [
+          "panel_cell_14",
+          "pike_reference_shoulder_cell_79"
+        ],
+        "normal": [
+          0.7818823159837042,
+          -0.623426053314304,
+          -9.536516811038958e-07
+        ],
+        "distance_m": -7.270309407685428e-06
+      },
+      "trace_sha256": "7e285df2ec700b21fef7d65b928c45ea30a72ac477b9624c9840b7482c3597ea",
+      "model_sha256": "3abcb05027f1be3973b48678d579b265fec48483d0878ebb80dc0c62f050300e",
+      "qualified_support": false
+    },
+    {
+      "variant": "source_compiler",
+      "case": "center_selected",
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "yaw_degrees": 1.875,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.01,
+        0.13502000431668013,
+        0.0,
+        0.9998661379095618,
+        0.01636173162648678,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 2.802697153107469,
+      "maximum_lateral_normal_load_n": 0.0,
+      "maximum_penetration_m": 1.3428826448266853e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 2.7427721397456197e-09,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0021000000000000003,
+        "normal_load_n": 0.002573772136353759,
+        "geom_names": [
+          "panel_cell_43",
+          "pike_reference_shoulder_cell_55"
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance_m": -6.001587519177175e-07
+      },
+      "trace_sha256": "0f460ccb6ad2f6a0cfb0742f6ebed7eca726c0c5a1619f04e302bdb005f9fe8b",
+      "model_sha256": "3abcb05027f1be3973b48678d579b265fec48483d0878ebb80dc0c62f050300e",
+      "qualified_support": false
+    },
+    {
+      "variant": "source_compiler",
+      "case": "offset_y_selected",
+      "offset_m": [
+        0.0,
+        -0.0005
+      ],
+      "yaw_degrees": 1.875,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.0105,
+        0.13502000431668013,
+        0.0,
+        0.9998661379095618,
+        0.01636173162648678,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 104.41028309223739,
+      "maximum_lateral_normal_load_n": 79.95073579593536,
+      "maximum_penetration_m": 1.2635823950252238e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 5.494099530322245e-10,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0048,
+        "normal_load_n": 21.1084524759134,
+        "geom_names": [
+          "panel_cell_14",
+          "pike_reference_shoulder_cell_84"
+        ],
+        "normal": [
+          -0.7933517366731493,
+          0.608763518878764,
+          2.0699361722301048e-07
+        ],
+        "distance_m": -5.642466843057305e-06
+      },
+      "trace_sha256": "7bda93f195339051e3b4424f592627157c0e37d3b6ad1e554545b1691a50c36b",
+      "model_sha256": "3abcb05027f1be3973b48678d579b265fec48483d0878ebb80dc0c62f050300e",
+      "qualified_support": false
+    },
+    {
+      "variant": "whole_loop_normals",
+      "case": "center_zero",
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "yaw_degrees": 0.0,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.01,
+        0.13502000431668013,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 400.67982955587377,
+      "maximum_lateral_normal_load_n": 307.9228229766126,
+      "maximum_penetration_m": 1.3112870982213992e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 6.336072912335073e-10,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0032999999999999982,
+        "normal_load_n": 35.6926418580834,
+        "geom_names": [
+          "panel_cell_14",
+          "pike_reference_shoulder_cell_79"
+        ],
+        "normal": [
+          0.7818814970549895,
+          -0.6234270803884306,
+          -1.1856514697717355e-06
+        ],
+        "distance_m": -7.287734520040447e-06
+      },
+      "trace_sha256": "04bb330acfc9e3832b4681a839b1b4a63651555d57ad79e87fa0e928ebfad7ba",
+      "model_sha256": "fd10e9673f7f25c9530dc7600f4ce7af78064402cfaf9fc2a0db3d6c0bcdb911",
+      "qualified_support": false
+    },
+    {
+      "variant": "whole_loop_normals",
+      "case": "center_selected",
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "yaw_degrees": 1.875,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.01,
+        0.13502000431668013,
+        0.0,
+        0.9998661379095618,
+        0.01636173162648678,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 2.8026971530586433,
+      "maximum_lateral_normal_load_n": 0.0,
+      "maximum_penetration_m": 1.3428927507316877e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 2.7956941524765795e-09,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0021000000000000003,
+        "normal_load_n": 0.002574268828256712,
+        "geom_names": [
+          "panel_cell_43",
+          "pike_reference_shoulder_cell_55"
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "distance_m": -6.001587519191778e-07
+      },
+      "trace_sha256": "42f52716e875b05d02f9b759f3f5a55f15ca04a98ddb1cb2b6a3234edf18719b",
+      "model_sha256": "fd10e9673f7f25c9530dc7600f4ce7af78064402cfaf9fc2a0db3d6c0bcdb911",
+      "qualified_support": false
+    },
+    {
+      "variant": "whole_loop_normals",
+      "case": "offset_y_selected",
+      "offset_m": [
+        0.0,
+        -0.0005
+      ],
+      "yaw_degrees": 1.875,
+      "duration_s": 0.10000000000000184,
+      "initial_qpos": [
+        0.04,
+        -0.0105,
+        0.13502000431668013,
+        0.0,
+        0.9998661379095618,
+        0.01636173162648678,
+        0.0,
+        0.15,
+        -0.01,
+        2e-05,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_normal_load_n": 130.1989991667423,
+      "maximum_lateral_normal_load_n": 100.00934569101702,
+      "maximum_penetration_m": 1.2631745166843992e-05,
+      "maximum_optical_face_load_n": 0.0,
+      "final_speed": 3.291449576471518e-10,
+      "warnings": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "worst_contact": {
+        "time_s": 0.0048,
+        "normal_load_n": 16.34583228311444,
+        "geom_names": [
+          "panel_cell_14",
+          "pike_reference_shoulder_cell_84"
+        ],
+        "normal": [
+          -0.7933517394042634,
+          0.6087635153195528,
+          1.0264498408138151e-07
+        ],
+        "distance_m": -5.565582577865664e-06
+      },
+      "trace_sha256": "744b69943b3e070fb26030a7fd151ea03dcdcddd4294dec036d794e89c4281f9",
+      "model_sha256": "fd10e9673f7f25c9530dc7600f4ce7af78064402cfaf9fc2a0db3d6c0bcdb911",
+      "qualified_support": false
+    }
+  ],
+  "qualified_support": false,
+  "qualified_robot_handling": false
+}

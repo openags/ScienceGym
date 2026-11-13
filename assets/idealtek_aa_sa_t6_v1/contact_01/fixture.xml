@@ -1,0 +1,302 @@
+<mujoco model="Ideal-tek AA.SA.T.6 passive candidate">
+  <compiler angle="radian" meshdir="/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/revisions/passive_01/meshes" autolimits="true" />
+  <option timestep=".002" integrator="implicitfast" iterations="100" tolerance="1e-10" gravity="0 0 0" />
+  <default>
+    <geom type="mesh" density="8000.0" friction=".225 .002 .0001" priority="1" condim="4" solref=".004 1" solimp=".99 .99 .0001" rgba=".15 .17 .19 1" />
+  </default>
+  <asset>
+    <mesh name="negative_steel_arm_00" file="negative_steel_arm_00.stl" />
+    <mesh name="negative_steel_arm_01" file="negative_steel_arm_01.stl" />
+    <mesh name="negative_steel_arm_02" file="negative_steel_arm_02.stl" />
+    <mesh name="negative_steel_arm_03" file="negative_steel_arm_03.stl" />
+    <mesh name="negative_steel_arm_04" file="negative_steel_arm_04.stl" />
+    <mesh name="negative_steel_arm_05" file="negative_steel_arm_05.stl" />
+    <mesh name="negative_steel_arm_06" file="negative_steel_arm_06.stl" />
+    <mesh name="negative_steel_arm_07" file="negative_steel_arm_07.stl" />
+    <mesh name="negative_steel_arm_08" file="negative_steel_arm_08.stl" />
+    <mesh name="negative_steel_arm_09" file="negative_steel_arm_09.stl" />
+    <mesh name="negative_steel_arm_10" file="negative_steel_arm_10.stl" />
+    <mesh name="negative_steel_arm_11" file="negative_steel_arm_11.stl" />
+    <mesh name="negative_steel_arm_12" file="negative_steel_arm_12.stl" />
+    <mesh name="negative_steel_arm_13" file="negative_steel_arm_13.stl" />
+    <mesh name="negative_steel_arm_14" file="negative_steel_arm_14.stl" />
+    <mesh name="negative_steel_arm_15" file="negative_steel_arm_15.stl" />
+    <mesh name="negative_steel_arm_16" file="negative_steel_arm_16.stl" />
+    <mesh name="negative_steel_arm_17" file="negative_steel_arm_17.stl" />
+    <mesh name="negative_steel_arm_18" file="negative_steel_arm_18.stl" />
+    <mesh name="negative_steel_arm_19" file="negative_steel_arm_19.stl" />
+    <mesh name="negative_steel_arm_20" file="negative_steel_arm_20.stl" />
+    <mesh name="negative_steel_arm_21" file="negative_steel_arm_21.stl" />
+    <mesh name="negative_steel_arm_22" file="negative_steel_arm_22.stl" />
+    <mesh name="positive_steel_arm_00" file="positive_steel_arm_00.stl" />
+    <mesh name="positive_steel_arm_01" file="positive_steel_arm_01.stl" />
+    <mesh name="positive_steel_arm_02" file="positive_steel_arm_02.stl" />
+    <mesh name="positive_steel_arm_03" file="positive_steel_arm_03.stl" />
+    <mesh name="positive_steel_arm_04" file="positive_steel_arm_04.stl" />
+    <mesh name="positive_steel_arm_05" file="positive_steel_arm_05.stl" />
+    <mesh name="positive_steel_arm_06" file="positive_steel_arm_06.stl" />
+    <mesh name="positive_steel_arm_07" file="positive_steel_arm_07.stl" />
+    <mesh name="positive_steel_arm_08" file="positive_steel_arm_08.stl" />
+    <mesh name="positive_steel_arm_09" file="positive_steel_arm_09.stl" />
+    <mesh name="positive_steel_arm_10" file="positive_steel_arm_10.stl" />
+    <mesh name="positive_steel_arm_11" file="positive_steel_arm_11.stl" />
+    <mesh name="positive_steel_arm_12" file="positive_steel_arm_12.stl" />
+    <mesh name="positive_steel_arm_13" file="positive_steel_arm_13.stl" />
+    <mesh name="positive_steel_arm_14" file="positive_steel_arm_14.stl" />
+    <mesh name="positive_steel_arm_15" file="positive_steel_arm_15.stl" />
+    <mesh name="positive_steel_arm_16" file="positive_steel_arm_16.stl" />
+    <mesh name="positive_steel_arm_17" file="positive_steel_arm_17.stl" />
+    <mesh name="positive_steel_arm_18" file="positive_steel_arm_18.stl" />
+    <mesh name="positive_steel_arm_19" file="positive_steel_arm_19.stl" />
+    <mesh name="positive_steel_arm_20" file="positive_steel_arm_20.stl" />
+    <mesh name="positive_steel_arm_21" file="positive_steel_arm_21.stl" />
+    <mesh name="positive_steel_arm_22" file="positive_steel_arm_22.stl" />
+  </asset>
+  <worldbody>
+    <body name="tweezer" pos="0 0 .15">
+      <geom name="tweezer_heel" type="box" pos="-.0015 0 0" size=".0015 .001 .003" />
+      <body name="negative_beam_00" pos="-0.0030000000000000027 -0.0005 0.0">
+        <joint name="negative_bend_00" type="hinge" axis="0 0 1" limited="false" stiffness="88.08278321951867" damping="0.033733341517116586" />
+        <geom name="negative_steel_arm_00" mesh="negative_steel_arm_00" />
+        <body name="negative_beam_01" pos="-0.006350000000000008 -0.0005772727272727279 0.0">
+          <joint name="negative_bend_01" type="hinge" axis="0 0 1" limited="false" />
+          <geom name="negative_steel_arm_01" mesh="negative_steel_arm_01" />
+          <body name="negative_beam_02" pos="-0.0063499999999999945 -0.0005772727272727266 0.0">
+            <joint name="negative_bend_02" type="hinge" axis="0 0 1" limited="false" />
+            <geom name="negative_steel_arm_02" mesh="negative_steel_arm_02" />
+            <body name="negative_beam_03" pos="-0.006350000000000008 -0.0005772727272727279 0.0">
+              <joint name="negative_bend_03" type="hinge" axis="0 0 1" limited="false" />
+              <geom name="negative_steel_arm_03" mesh="negative_steel_arm_03" />
+              <body name="negative_beam_04" pos="-0.0029499999999999943 -0.0002681818181818176 0.0">
+                <joint name="negative_bend_04" type="hinge" axis="0 0 1" limited="false" />
+                <geom name="negative_steel_arm_04" mesh="negative_steel_arm_04" />
+                <body name="negative_beam_05" pos="-0.0034000000000000002 -0.00024065917339889924 0.0">
+                  <joint name="negative_bend_05" type="hinge" axis="0 0 1" limited="false" />
+                  <geom name="negative_steel_arm_05" mesh="negative_steel_arm_05" />
+                  <body name="negative_beam_06" pos="-0.0063499999999999945 -0.0004494663973773562 0.0">
+                    <joint name="negative_bend_06" type="hinge" axis="0 0 1" limited="false" />
+                    <geom name="negative_steel_arm_06" mesh="negative_steel_arm_06" />
+                    <body name="negative_beam_07" pos="-0.006350000000000008 -0.0004494663973773571 0.0">
+                      <joint name="negative_bend_07" type="hinge" axis="0 0 1" limited="false" />
+                      <geom name="negative_steel_arm_07" mesh="negative_steel_arm_07" />
+                      <body name="negative_beam_08" pos="-0.0063499999999999945 -0.0004494663973773562 0.0">
+                        <joint name="negative_bend_08" type="hinge" axis="0 0 1" limited="false" />
+                        <geom name="negative_steel_arm_08" mesh="negative_steel_arm_08" />
+                        <body name="negative_beam_09" pos="-0.006350000000000008 -0.00044946639737735664 0.0">
+                          <joint name="negative_bend_09" type="hinge" axis="0 0 1" limited="false" />
+                          <geom name="negative_steel_arm_09" mesh="negative_steel_arm_09" />
+                          <body name="negative_beam_10" pos="-0.0063499999999999945 -0.0004494663973773558 0.0">
+                            <joint name="negative_bend_10" type="hinge" axis="0 0 1" limited="false" />
+                            <geom name="negative_steel_arm_10" mesh="negative_steel_arm_10" />
+                            <body name="negative_beam_11" pos="-0.0063499999999999945 -0.00044946639737735664 0.0">
+                              <joint name="negative_bend_11" type="hinge" axis="0 0 1" limited="false" />
+                              <geom name="negative_steel_arm_11" mesh="negative_steel_arm_11" />
+                              <body name="negative_beam_12" pos="-0.003500000000000003 -0.00024773738438122004 0.0">
+                                <joint name="negative_bend_12" type="hinge" axis="0 0 1" limited="false" />
+                                <geom name="negative_steel_arm_12" mesh="negative_steel_arm_12" />
+                                <body name="negative_beam_13" pos="-0.0028499999999999984 7.676830874604832e-05 0.0">
+                                  <joint name="negative_bend_13" type="hinge" axis="0 0 1" limited="false" />
+                                  <geom name="negative_steel_arm_13" mesh="negative_steel_arm_13" />
+                                  <body name="negative_beam_14" pos="-0.0063500000000000015 0.00017104517913593253 0.0">
+                                    <joint name="negative_bend_14" type="hinge" axis="0 0 1" limited="false" />
+                                    <geom name="negative_steel_arm_14" mesh="negative_steel_arm_14" />
+                                    <body name="negative_beam_15" pos="-0.0063500000000000015 0.0001710451791359334 0.0">
+                                      <joint name="negative_bend_15" type="hinge" axis="0 0 1" limited="false" />
+                                      <geom name="negative_steel_arm_15" mesh="negative_steel_arm_15" />
+                                      <body name="negative_beam_16" pos="-0.0063500000000000015 0.00017104517913593253 0.0">
+                                        <joint name="negative_bend_16" type="hinge" axis="0 0 1" limited="false" />
+                                        <geom name="negative_steel_arm_16" mesh="negative_steel_arm_16" />
+                                        <body name="negative_beam_17" pos="-0.0063499999999999945 0.00017104517913593253 0.0">
+                                          <joint name="negative_bend_17" type="hinge" axis="0 0 1" limited="false" />
+                                          <geom name="negative_steel_arm_17" mesh="negative_steel_arm_17" />
+                                          <body name="negative_beam_18" pos="-0.0063500000000000015 0.00017104517913593253 0.0">
+                                            <joint name="negative_bend_18" type="hinge" axis="0 0 1" limited="false" />
+                                            <geom name="negative_steel_arm_18" mesh="negative_steel_arm_18" />
+                                            <body name="negative_beam_19" pos="-0.0063500000000000015 0.0001710451791359334 0.0">
+                                              <joint name="negative_bend_19" type="hinge" axis="0 0 1" limited="false" />
+                                              <geom name="negative_steel_arm_19" mesh="negative_steel_arm_19" />
+                                              <body name="negative_beam_20" pos="-0.003049999999999997 8.215555848261301e-05 0.0">
+                                                <joint name="negative_bend_20" type="hinge" axis="0 0 1" limited="false" />
+                                                <geom name="negative_steel_arm_20" mesh="negative_steel_arm_20" />
+                                                <body name="negative_beam_21" pos="-0.003300000000000001 6.18750000000003e-05 0.0">
+                                                  <joint name="negative_bend_21" type="hinge" axis="0 0 1" limited="false" />
+                                                  <geom name="negative_steel_arm_21" mesh="negative_steel_arm_21" />
+                                                  <body name="negative_beam_22" pos="-0.00635 0.00011906249999999938 0.0">
+                                                    <joint name="negative_bend_22" type="hinge" axis="0 0 1" limited="false" />
+                                                    <geom name="negative_steel_arm_22" mesh="negative_steel_arm_22" />
+                                                  </body>
+                                                </body>
+                                              </body>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="positive_beam_00" pos="-0.0030000000000000027 0.0005 0.0">
+        <joint name="positive_bend_00" type="hinge" axis="0 0 1" limited="false" stiffness="88.08278321951867" damping="0.03373334151711658" />
+        <geom name="positive_steel_arm_00" mesh="positive_steel_arm_00" />
+        <body name="positive_beam_01" pos="-0.006350000000000008 0.0005772727272727279 0.0">
+          <joint name="positive_bend_01" type="hinge" axis="0 0 1" limited="false" />
+          <geom name="positive_steel_arm_01" mesh="positive_steel_arm_01" />
+          <body name="positive_beam_02" pos="-0.0063499999999999945 0.0005772727272727266 0.0">
+            <joint name="positive_bend_02" type="hinge" axis="0 0 1" limited="false" />
+            <geom name="positive_steel_arm_02" mesh="positive_steel_arm_02" />
+            <body name="positive_beam_03" pos="-0.006350000000000008 0.0005772727272727279 0.0">
+              <joint name="positive_bend_03" type="hinge" axis="0 0 1" limited="false" />
+              <geom name="positive_steel_arm_03" mesh="positive_steel_arm_03" />
+              <body name="positive_beam_04" pos="-0.0029499999999999943 0.0002681818181818176 0.0">
+                <joint name="positive_bend_04" type="hinge" axis="0 0 1" limited="false" />
+                <geom name="positive_steel_arm_04" mesh="positive_steel_arm_04" />
+                <body name="positive_beam_05" pos="-0.0034000000000000002 0.00024065917339889924 0.0">
+                  <joint name="positive_bend_05" type="hinge" axis="0 0 1" limited="false" />
+                  <geom name="positive_steel_arm_05" mesh="positive_steel_arm_05" />
+                  <body name="positive_beam_06" pos="-0.0063499999999999945 0.0004494663973773562 0.0">
+                    <joint name="positive_bend_06" type="hinge" axis="0 0 1" limited="false" />
+                    <geom name="positive_steel_arm_06" mesh="positive_steel_arm_06" />
+                    <body name="positive_beam_07" pos="-0.006350000000000008 0.0004494663973773571 0.0">
+                      <joint name="positive_bend_07" type="hinge" axis="0 0 1" limited="false" />
+                      <geom name="positive_steel_arm_07" mesh="positive_steel_arm_07" />
+                      <body name="positive_beam_08" pos="-0.0063499999999999945 0.0004494663973773562 0.0">
+                        <joint name="positive_bend_08" type="hinge" axis="0 0 1" limited="false" />
+                        <geom name="positive_steel_arm_08" mesh="positive_steel_arm_08" />
+                        <body name="positive_beam_09" pos="-0.006350000000000008 0.00044946639737735664 0.0">
+                          <joint name="positive_bend_09" type="hinge" axis="0 0 1" limited="false" />
+                          <geom name="positive_steel_arm_09" mesh="positive_steel_arm_09" />
+                          <body name="positive_beam_10" pos="-0.0063499999999999945 0.0004494663973773558 0.0">
+                            <joint name="positive_bend_10" type="hinge" axis="0 0 1" limited="false" />
+                            <geom name="positive_steel_arm_10" mesh="positive_steel_arm_10" />
+                            <body name="positive_beam_11" pos="-0.0063499999999999945 0.00044946639737735664 0.0">
+                              <joint name="positive_bend_11" type="hinge" axis="0 0 1" limited="false" />
+                              <geom name="positive_steel_arm_11" mesh="positive_steel_arm_11" />
+                              <body name="positive_beam_12" pos="-0.003500000000000003 0.00024773738438122004 0.0">
+                                <joint name="positive_bend_12" type="hinge" axis="0 0 1" limited="false" />
+                                <geom name="positive_steel_arm_12" mesh="positive_steel_arm_12" />
+                                <body name="positive_beam_13" pos="-0.0028499999999999984 -7.676830874604832e-05 0.0">
+                                  <joint name="positive_bend_13" type="hinge" axis="0 0 1" limited="false" />
+                                  <geom name="positive_steel_arm_13" mesh="positive_steel_arm_13" />
+                                  <body name="positive_beam_14" pos="-0.0063500000000000015 -0.00017104517913593253 0.0">
+                                    <joint name="positive_bend_14" type="hinge" axis="0 0 1" limited="false" />
+                                    <geom name="positive_steel_arm_14" mesh="positive_steel_arm_14" />
+                                    <body name="positive_beam_15" pos="-0.0063500000000000015 -0.0001710451791359334 0.0">
+                                      <joint name="positive_bend_15" type="hinge" axis="0 0 1" limited="false" />
+                                      <geom name="positive_steel_arm_15" mesh="positive_steel_arm_15" />
+                                      <body name="positive_beam_16" pos="-0.0063500000000000015 -0.00017104517913593253 0.0">
+                                        <joint name="positive_bend_16" type="hinge" axis="0 0 1" limited="false" />
+                                        <geom name="positive_steel_arm_16" mesh="positive_steel_arm_16" />
+                                        <body name="positive_beam_17" pos="-0.0063499999999999945 -0.00017104517913593253 0.0">
+                                          <joint name="positive_bend_17" type="hinge" axis="0 0 1" limited="false" />
+                                          <geom name="positive_steel_arm_17" mesh="positive_steel_arm_17" />
+                                          <body name="positive_beam_18" pos="-0.0063500000000000015 -0.00017104517913593253 0.0">
+                                            <joint name="positive_bend_18" type="hinge" axis="0 0 1" limited="false" />
+                                            <geom name="positive_steel_arm_18" mesh="positive_steel_arm_18" />
+                                            <body name="positive_beam_19" pos="-0.0063500000000000015 -0.0001710451791359334 0.0">
+                                              <joint name="positive_bend_19" type="hinge" axis="0 0 1" limited="false" />
+                                              <geom name="positive_steel_arm_19" mesh="positive_steel_arm_19" />
+                                              <body name="positive_beam_20" pos="-0.003049999999999997 -8.215555848261301e-05 0.0">
+                                                <joint name="positive_bend_20" type="hinge" axis="0 0 1" limited="false" />
+                                                <geom name="positive_steel_arm_20" mesh="positive_steel_arm_20" />
+                                                <body name="positive_beam_21" pos="-0.003300000000000001 -6.18750000000003e-05 0.0">
+                                                  <joint name="positive_bend_21" type="hinge" axis="0 0 1" limited="false" />
+                                                  <geom name="positive_steel_arm_21" mesh="positive_steel_arm_21" />
+                                                  <body name="positive_beam_22" pos="-0.00635 -0.00011906249999999938 0.0">
+                                                    <joint name="positive_bend_22" type="hinge" axis="0 0 1" limited="false" />
+                                                    <geom name="positive_steel_arm_22" mesh="positive_steel_arm_22" />
+                                                  </body>
+                                                </body>
+                                              </body>
+                                            </body>
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="negative_probe" pos="-.065 -0.015 .15">
+      <joint name="negative_probe_slide" type="slide" axis="0 1 0" range="0 .010" />
+      <geom name="negative_probe" type="sphere" size=".003" mass=".05" rgba=".5 .7 .8 1" />
+    </body>
+    <body name="positive_probe" pos="-.065 0.015 .15">
+      <joint name="positive_probe_slide" type="slide" axis="0 -1 0" range="0 .010" />
+      <geom name="positive_probe" type="sphere" size=".003" mass=".05" rgba=".5 .7 .8 1" />
+    </body>
+  </worldbody>
+  <equality>
+    <joint name="negative_mode_01" joint1="negative_bend_01" joint2="negative_bend_00" polycoef="0 0.69865252391443833 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_02" joint1="negative_bend_02" joint2="negative_bend_00" polycoef="0 0.50457894246603974 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_03" joint1="negative_bend_03" joint2="negative_bend_00" polycoef="0 0.18961295492688768 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_04" joint1="negative_bend_04" joint2="negative_bend_00" polycoef="0 0.19976319905678327 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_05" joint1="negative_bend_05" joint2="negative_bend_00" polycoef="0 0.34843393257248073 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_06" joint1="negative_bend_06" joint2="negative_bend_00" polycoef="0 0.32321136379075222 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_07" joint1="negative_bend_07" joint2="negative_bend_00" polycoef="0 0.29831071976066315 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_08" joint1="negative_bend_08" joint2="negative_bend_00" polycoef="0 0.27372700268851829 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_09" joint1="negative_bend_09" joint2="negative_bend_00" polycoef="0 0.24945568371602769 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_10" joint1="negative_bend_10" joint2="negative_bend_00" polycoef="0 0.22549284416413776 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_11" joint1="negative_bend_11" joint2="negative_bend_00" polycoef="0 0.11664097209421276 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_12" joint1="negative_bend_12" joint2="negative_bend_00" polycoef="0 0.095226858485741486 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_13" joint1="negative_bend_13" joint2="negative_bend_00" polycoef="0 0.22616490927966562 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_14" joint1="negative_bend_14" joint2="negative_bend_00" polycoef="0 0.25814350895202415 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_15" joint1="negative_bend_15" joint2="negative_bend_00" polycoef="0 0.29606779891814433 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_16" joint1="negative_bend_16" joint2="negative_bend_00" polycoef="0 0.34110113701332756 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_17" joint1="negative_bend_17" joint2="negative_bend_00" polycoef="0 0.3943605967466694 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_18" joint1="negative_bend_18" joint2="negative_bend_00" polycoef="0 0.45624930007082765 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_19" joint1="negative_bend_19" joint2="negative_bend_00" polycoef="0 0.26495809191822994 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_20" joint1="negative_bend_20" joint2="negative_bend_00" polycoef="0 0.33601332312708521 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_21" joint1="negative_bend_21" joint2="negative_bend_00" polycoef="0 0.81148739889577459 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="negative_mode_22" joint1="negative_bend_22" joint2="negative_bend_00" polycoef="0 0.78754178941491537 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_01" joint1="positive_bend_01" joint2="positive_bend_00" polycoef="0 0.69865252391443833 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_02" joint1="positive_bend_02" joint2="positive_bend_00" polycoef="0 0.50457894246603974 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_03" joint1="positive_bend_03" joint2="positive_bend_00" polycoef="0 0.18961295492688768 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_04" joint1="positive_bend_04" joint2="positive_bend_00" polycoef="0 0.19976319905678327 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_05" joint1="positive_bend_05" joint2="positive_bend_00" polycoef="0 0.34843393257248073 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_06" joint1="positive_bend_06" joint2="positive_bend_00" polycoef="0 0.32321136379075222 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_07" joint1="positive_bend_07" joint2="positive_bend_00" polycoef="0 0.29831071976066315 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_08" joint1="positive_bend_08" joint2="positive_bend_00" polycoef="0 0.27372700268851829 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_09" joint1="positive_bend_09" joint2="positive_bend_00" polycoef="0 0.24945568371602769 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_10" joint1="positive_bend_10" joint2="positive_bend_00" polycoef="0 0.22549284416413776 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_11" joint1="positive_bend_11" joint2="positive_bend_00" polycoef="0 0.11664097209421276 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_12" joint1="positive_bend_12" joint2="positive_bend_00" polycoef="0 0.095226858485741486 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_13" joint1="positive_bend_13" joint2="positive_bend_00" polycoef="0 0.22616490927966562 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_14" joint1="positive_bend_14" joint2="positive_bend_00" polycoef="0 0.25814350895202415 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_15" joint1="positive_bend_15" joint2="positive_bend_00" polycoef="0 0.29606779891814433 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_16" joint1="positive_bend_16" joint2="positive_bend_00" polycoef="0 0.34110113701332756 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_17" joint1="positive_bend_17" joint2="positive_bend_00" polycoef="0 0.3943605967466694 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_18" joint1="positive_bend_18" joint2="positive_bend_00" polycoef="0 0.45624930007082765 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_19" joint1="positive_bend_19" joint2="positive_bend_00" polycoef="0 0.26495809191822994 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_20" joint1="positive_bend_20" joint2="positive_bend_00" polycoef="0 0.33601332312708521 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_21" joint1="positive_bend_21" joint2="positive_bend_00" polycoef="0 0.81148739889577459 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+    <joint name="positive_mode_22" joint1="positive_bend_22" joint2="positive_bend_00" polycoef="0 0.78754178941491537 0 0 0" solref=".004 1" solimp=".9999 .9999 .00001" />
+  </equality>
+  <actuator>
+    <position name="negative_probe_motor" joint="negative_probe_slide" kp="5000" kv="20" ctrllimited="true" ctrlrange="0 .010" forcelimited="true" forcerange="-5 5" />
+    <position name="positive_probe_motor" joint="positive_probe_slide" kp="5000" kv="20" ctrllimited="true" ctrlrange="0 .010" forcelimited="true" forcerange="-5 5" />
+  </actuator>
+</mujoco>

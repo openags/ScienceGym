@@ -1,0 +1,193 @@
+{
+  "scope": "Check a sensor-derived FTIR approach using the isolated robot/map model.\n\nThe author projects only the robot's declared initial pose into the planner.\nInstrument geometry and object truth are excluded from the planning model.\nThis is a planning diagnostic, not a dynamic trial or isolation attestation.\n",
+  "passed": true,
+  "plan": {
+    "planned": true,
+    "label": "BACKGROUND",
+    "arm_path_rad": [
+      [
+        0.2,
+        -0.25,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.4401594909295342,
+        -0.42029678582200924,
+        -0.7061269997873082,
+        0.6965166196115314,
+        -0.31927267337977006,
+        -0.013154986464609213,
+        -0.02327695661796763
+      ],
+      [
+        -0.1218403013316941,
+        -0.769618109191234,
+        -0.4289689243017184,
+        0.6576956707330305,
+        -0.40533163240030673,
+        0.05742333870352571,
+        0.22984479855737605
+      ],
+      [
+        -0.8380462458631431,
+        -0.6566606750411382,
+        0.11256146937673533,
+        0.4834294378137358,
+        -0.21222885536975766,
+        0.08652735002739279,
+        0.6064056054918479
+      ],
+      [
+        -1.2929484333656183,
+        -0.5448084292948078,
+        0.903971237333953,
+        0.6112491074519911,
+        -0.2884065277929791,
+        0.2896737122290792,
+        0.7339927421247678
+      ]
+    ],
+    "surface_m": [
+      6.43431362429838,
+      -5.705585223259891,
+      1.0891706472852714
+    ],
+    "normal": [
+      -0.41991674855521377,
+      -1.462729245388422e-06,
+      0.9075626282966248
+    ],
+    "contact_wrist_m": [
+      6.229754396259384,
+      -5.734250195499286,
+      1.154894061736642
+    ],
+    "wrist_rotation": [
+      [
+        0.9500367415637526,
+        -0.31213809196893844,
+        -3.4941662640351596e-05
+      ],
+      [
+        2.865259501557008e-05,
+        -2.473470815651078e-05,
+        0.999999999283612
+      ],
+      [
+        -0.3121380926095981,
+        -0.9500367418843265,
+        -1.4555315202423114e-05
+      ]
+    ],
+    "wrist_local_contact_m": [
+      0.2148543850154452,
+      -0.001411777623560061,
+      0.028658781204337475
+    ],
+    "lean_rad": 0.8,
+    "roll_rad": 3.141592653589793,
+    "attempts": [
+      {
+        "lean_rad": 0.8,
+        "roll_rad": 3.141592653589793,
+        "position_error_m": 2.7794573125026374e-06,
+        "rotation_error_rad": 2.1585051709921696e-06,
+        "rrt": {
+          "checks": 2066,
+          "vertices": 5,
+          "iterations": 199,
+          "search_edge_step_rad": 0.035,
+          "final_edge_step_rad": 0.008
+        }
+      }
+    ],
+    "observed_faces": 303126,
+    "clearance_metrics": {
+      "queries": 2069,
+      "exact_self_queries": 20814,
+      "exact_environment_queries": 8935
+    },
+    "physical_execution": false,
+    "unobserved_free_space_certified": false
+  },
+  "observation": {
+    "accepted": true,
+    "buttons": {
+      "SAMPLE": [
+        6.4345259125769605,
+        -5.6565747325612215,
+        1.0892689491434513
+      ],
+      "BACKGROUND": [
+        6.43431362429838,
+        -5.705585223259891,
+        1.0891706472852714
+      ],
+      "OK / ENTER": [
+        6.434241477560875,
+        -5.754463284779003,
+        1.089137187204551
+      ],
+      "STOP": [
+        6.434531048484103,
+        -5.803559928756337,
+        1.0892710885593135
+      ]
+    },
+    "outward_normal": [
+      -0.41991674855521377,
+      -1.462729245388422e-06,
+      0.9075626282966248
+    ],
+    "row_direction": [
+      3.494166264024784e-05,
+      -0.9999999992836116,
+      1.45553152024441e-05
+    ],
+    "spacing_m": [
+      0.049011049040934535,
+      0.04887812621812437,
+      0.04909768050253903
+    ],
+    "cap_plane_points": 97,
+    "plane_residual_m": 2.6825421333243727e-05,
+    "pixel_centers": [
+      [
+        324.6666666666667,
+        79.4920634920635
+      ],
+      [
+        364.4590163934426,
+        75.65573770491804
+      ],
+      [
+        402.35714285714283,
+        71.91071428571429
+      ],
+      [
+        438.64814814814815,
+        68.0925925925926
+      ]
+    ],
+    "source": "native_head_rgb_controls_with_native_depth_cap_plane"
+  },
+  "controller_model_sha256": "5a3ae74b808831f4cdac988794dfff4ff13f4168358409d8c4e7e7955e83764a",
+  "observed_frame_sha256": "e265e773e2ee00b064afbd53b32b19a14361857effbe02996927e6609a217a41",
+  "source_sha256": {
+    "check_dex3_ftir_observed_plan.py": "7568a67977d0cbef5255a097f89b1eb1609d31debd1b6ed0c1dab6daa6be2131",
+    "dex3_ftir_planning.py": "f3a3b04d86b17ef45d9f12e07474830fc3e47cc30aaf1fb942c8591da9318259",
+    "dex3_ftir_hand.py": "3d1a9ad0185208ad61d75b1dd6b66df01062cb9c3014c6f4cdcff89cd69370e1",
+    "ftir_hand.py": "aa5b05636e0a4b798a01745b1b713a807ca651e4760cbf695bf823d5412e4434",
+    "ftir_vision.py": "2b2dc10150d4b44d160797af08ce15977daaeace310b045d4186404e0131d8ab",
+    "robot_source_meshes.py": "ed732ff1c7cdaed21f72091f5f20d22d59d055110a302210eceba60b2bc30d03",
+    "source_proximity.py": "5b890513cdcf30746c12f2a44dfbd2838c5000f5aa97cb4c5436010c69978b28",
+    "joint_rrt.py": "8ebc34c13a43e844e99c4fdb6f79e9add2adc386aff9d6e96549d660be6de2ac",
+    "tool_approach_planning.py": "2f2dbfc08e32c6f9de1b69baf81cd63064ca0a34dcf1403a3bf4b0692a79df95"
+  },
+  "physical_execution": false,
+  "qualified_ftir_press": false
+}

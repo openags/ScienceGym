@@ -1,0 +1,89 @@
+{
+  "scope": "Build passive PIKE reference/cap bodies and test their physical support.\n\nThe selected commercial-device reconstruction has inferred fit and inertial\nparameters. These are component diagnostics, not robot placement, calibrated\ndevice dynamics, optical acquisition, or a completed paper branch.\n",
+  "source_manual": "https://www.piketech.com/files/user-manuals/MidIntegratIRwDTGSManual.pdf",
+  "source_manual_locator": "PN 350-048400-01, printed pages 1 and 4-5: reference, protective cap and substitution sequence",
+  "source_hashes": {
+    "assets/cooling_lab_v1/geometry/prepared_pike.glb": "8604a5bd0fd9cd242aedca25b72b5456d229dc8c8e6a078964457de259bbf133",
+    "assets/pike_integratir_dtgs_v1/revisions/cap_support/prepared_pike_candidate.glb": "5b32263298d577f53f84f7a1c1dc09b1feb3147c6066eaa2f5c1098e1cdca264",
+    "assets/pike_integratir_dtgs_v1/revisions/cap_support/revision.json": "5c7fcbf80a710ce3a6fc7ba676f61876bcc33d879ac0b7676300d8ae97d6c33a"
+  },
+  "source_panel_review_sha256": "bc4579ba98c740e8b6da1e0a335b694d3c4fc914f0727a33441d2a544cdb8448",
+  "source_reference_origin_normalized_m": [
+    0.06975000386592001,
+    -0.05042499837873038,
+    0.00899999961256981
+  ],
+  "source_cap_origin_normalized_m": [
+    0.13475000520702451,
+    -0.05042500210402068,
+    0.009000000078231098
+  ],
+  "geometry_revision": {
+    "reason": "Remove artificial shoulder occlusion introduced by the earlier optical-face datum correction",
+    "optical_face_translation_m": [
+      0.0,
+      0.0,
+      -0.00055
+    ],
+    "optical_face_recess_m": 4.9998986721040695e-05,
+    "shoulder_removed_volume_m3": 1.3986067687366303e-07,
+    "reference_outer_envelope_unchanged": true,
+    "optical_face_geometry_unchanged": true,
+    "dimensions_are_inferred": true,
+    "manufacturer_CAD": false
+  },
+  "optical_face_accessible": true,
+  "masses_kg": {
+    "pike_reference": 0.0941150722288438,
+    "pike_reference_cap": 0.0250124669472297
+  },
+  "effective_densities_kg_m3": {
+    "holder_and_shoulder": 1400.0,
+    "gold_face_effective_substrate": 2700.0,
+    "cap": 1400.0
+  },
+  "dynamics_basis": "Unmeasured development inputs; material composition, friction, compliance and inertial parameters require qualification",
+  "friction": [
+    0.3,
+    0.002,
+    0.0001
+  ],
+  "solref": [
+    0.002,
+    1.0
+  ],
+  "solimp": [
+    0.99,
+    0.99,
+    0.0001
+  ],
+  "reference_port_support_height_m": 0.03300000075250864,
+  "reference_cap_support_height_m": 0.02700000163167715,
+  "cap_height_m": 0.024000000674277544,
+  "cap_floor_thickness_m": 0.003,
+  "collision_cells": {
+    "shoulder": 97,
+    "cap": 97
+  },
+  "shoulder_partition_offset_m": [
+    0.0011,
+    0.0017
+  ],
+  "partition_basis": "Nonoverlapping convex cells with the same outer hull, blind recess and total volume; only internal cell boundaries change",
+  "initial_reference_release_gap_m": 2e-05,
+  "initial_cap_release_gap_m": 2e-05,
+  "initial_reference_yaw_degrees": 1.875,
+  "support_scope": "Only the declared seating gap and offsets; no larger drop, robot transfer or placement reliability qualification",
+  "numeric_limitations": "Exact concentric zero-yaw convex-cell boundaries produced spurious opposing loads in retained diagnostics; a passing authored orientation does not qualify untested orientations or rotation paths",
+  "world_sha256": "e8b76365fd5b3655f5911d84da4238bf365c6f5b4bce4e8de181d6d22852c520",
+  "model_inputs_sha256": "aa354866c7e4324ec177ed6978720525cd5177d1c6055329db2dd79d0d6eac72",
+  "source_snapshot_sha256": {
+    "build_pike_reference_runtime.py": "ccb0c9d4347f8e791de9221326f0ff1e40eaf3189d171e34899a279b5b4c00f9",
+    "revision.json": "5c7fcbf80a710ce3a6fc7ba676f61876bcc33d879ac0b7676300d8ae97d6c33a",
+    "convex_cells.py": "2ef57d92d60eed88503c9ce986e84007a3a59a6911a6f626c3f9c965c341d79a",
+    "build_bare_optical_coupon.py": "6cf8a58636bc015a749bc791b7c265b2f2a46743939cf39e0e84685518870ad9",
+    "build_tool_station.py": "c1fd14edb11671d8c2f180900ccb590c278a6d3074874a66c8c81cdd396870f7"
+  },
+  "qualified_robot_handling": false,
+  "qualified_paper_branch": false
+}

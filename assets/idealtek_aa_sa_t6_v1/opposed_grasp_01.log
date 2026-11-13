@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/search_opposed_grasp.py", line 251, in <module>
+    args = parser.parse_args(); run(args.source, args.support, args.output)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/search_opposed_grasp.py", line 89, in run
+    a = hand_fk(q); b = fk(dict(zip(drivers, q)))
+        ^^^^^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/assets/idealtek_aa_sa_t6_v1/search_opposed_grasp.py", line 77, in hand_fk
+    m = j['mimic']; values[j['name']] = m.get('offset', 0)+m.get('multiplier', 1)*values.get(m['joint'], 0)
+                                                           ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: can't multiply sequence by non-int of type 'numpy.float64'

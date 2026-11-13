@@ -1,0 +1,35 @@
+registered 2.2000000000002182 True [0.0014895361340601099, -0.00040323868742486724, -0.0007761372522243626]
+registered 2.4000000000006403 True [0.0014920548211057039, -0.0015151365173782239, -0.0007765411957217916]
+registered 2.6000000000010624 True [0.0014907510521684486, -0.0013502663199478349, -0.0007768652220960792]
+registered 2.8000000000014844 True [0.0014910063290249909, -0.0017589754148152892, -0.0007770188851742299]
+QH7089 qhull precision warning: The initial hull is narrow.  Is the input lower
+dimensional (e.g., a square in 3-d instead of a cube)?  Cosine of the minimum
+angle is 0.9999999999999996.  If so, Qhull may produce a wide facet.
+Options 'Qs' (search all points), 'Qbb' (scale last coordinate), or
+'QbB' (scale to unit box) may remove this warning.
+See 'Limitations' in qh-impre.htm.  Use 'Pp' to skip this warning.
+Traceback (most recent call last):
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/evaluate_optical_map_observation.py", line 121, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/amax/data/media/xyl_ps/scigym/ScienceGym/simulation/g1_cooling_demo/evaluate_optical_map_observation.py", line 116, in main
+    (out/'review.json').write_text(json.dumps(report,indent=2)+'\n')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/home/amax/data/anaconda3/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable
