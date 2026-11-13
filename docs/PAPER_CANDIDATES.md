@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-13**. Candidate count: **438**.
+Last screened: **2026-11-13**. Candidate count: **439**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4634,3 +4634,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - Published-version differences, the remaining supplementary theoretical derivation, figure pixels, the listed Supplementary Movie 1 and raw data remain unreviewed. Source screening is incomplete.
 - Suitability is preliminary. Specimens, fixtures, moving equipment, stored elastic energy, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-13**. Citation links and original screening commentary only; no source assets are redistributed. Public availability does not establish unrestricted reuse rights.
+
+
+## Additional candidate: elastoplastic compaction and morphology measurements (2026-11-13)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Compaction of quasi-one-dimensional elastoplastic materials](https://www.nature.com/articles/ncomms15568) | Nature Communications / 2017 | 10.1038/ncomms15568 | Specimen preparation and identification, fixture handling, mechanical measurements, imaging and ordered morphology records across repeated trials suggest a multistep soft-matter mechanics task. | Final published article text, Methods, figure captions and Data availability statement read. Figure pixels not independently inspected. No supplement identified in the article or indexed PMC metadata; live publisher inventory unverified. Underlying data not obtained. |
+
+- **Nature Communications 8, 15568 (2017)**; published 6 June 2017. Title, journal, year and DOI checked against the indexed official publisher record and the [University of Amsterdam final published CC BY copy](https://pure.uva.nl/ws/files/29670341/ncomms15568.pdf).
+- No supplementary material was identified in the article; indexed PMC metadata reports no supplement. The live publisher inventory could not be verified because of an access redirect. Figure pixels and underlying data, available on request, remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Some source specimens contain lead; material-safety review and suitable specimen selection remain pending. Fixtures, mechanical loading, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or executable-safety claim is supplied.
+- Access checked **2026-11-13**. Citation links and original screening commentary only; no source assets are redistributed.
