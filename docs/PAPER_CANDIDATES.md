@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-13**. Candidate count: **437**.
+Last screened: **2026-11-13**. Candidate count: **438**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4619,4 +4619,18 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - Lee et al., **Nature Communications 7, 11155 (2016)**. Title, journal, year and DOI checked against the official publisher record. Main text was read through publisher/PMC sources and supplementary text through the [public author-lab combined main/SI PDF](https://www.xml-postech.com/_files/ugd/49f4ba_cb175bdb2f17410388912e4f0336f078.pdf).
 - The supplementary inventory identifies Movie 1; its PMC link presented a browser challenge, which was not bypassed. Figure pixels, the movie and raw data remain unreviewed. Source screening is incomplete.
 - Suitability is preliminary. Materials, handling safety, coating and curing equipment, specimen qualification, calibration and acceptance criteria require independent review. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-13**. Citation links and original screening commentary only; no source assets are redistributed. Public availability does not establish unrestricted reuse rights.
+
+
+## Additional candidate: elastic snap-through and linked imaging (2026-11-13)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Critical slowing down in purely elastic ‘snap-through’ instabilities](https://www.nature.com/articles/nphys3915) | Nature Physics / 2017 (online 2016) | 10.1038/nphys3915 | Specimen preparation and identification, fixture adjustment, repeated mechanical tests and linked high-speed imaging suggest a multistep mechanics task. | Main author manuscript, captions, references and appended experimental supplementary methods read. Published version not fully read; supplementary theoretical derivation partly read. Figure pixels, Supplementary Movie 1 and raw data not inspected. |
+
+- Gomez, Moulton & Vella, **Nature Physics 13, 142–145 (2017)**; published online 17 October 2016. Title, journal, year and DOI checked against the official publisher record and [public Oxford author manuscript](https://people.maths.ox.ac.uk/moulton/Papers/GMV16_arXiv-submitted.pdf).
+- Published-version differences, the remaining supplementary theoretical derivation, figure pixels, the listed Supplementary Movie 1 and raw data remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Specimens, fixtures, moving equipment, stored elastic energy, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-13**. Citation links and original screening commentary only; no source assets are redistributed. Public availability does not establish unrestricted reuse rights.
