@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-13**. Candidate count: **440**.
+Last screened: **2026-11-13**. Candidate count: **441**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4662,3 +4662,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - Published-version differences, the remaining theoretical supplementary material, figure pixels and source-data files remain unreviewed. Source screening is incomplete.
 - Suitability is preliminary. Materials, specimen preparation, fixtures, magnetic actuation, mechanical loading, hardware and handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
 - Access checked **2026-11-13**. Publisher-final access redirected to authentication and PMC displayed a browser challenge; neither was bypassed. The public author manuscript was accessible. Citation links and original screening commentary only; no source assets are redistributed. Public availability does not establish unrestricted reuse rights.
+
+
+## Additional candidate: soft-contact comparisons and linked imaging (2026-11-13)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Creasing in microscale, soft static friction](https://www.nature.com/articles/s41467-023-38091-7) | Nature Communications / 2023 | 10.1038/s41467-023-38091-7 | Soft-specimen handling, comparative contact measurements, force and confocal imaging, and repeated measurement records suggest a multistep contact-mechanics task. | Main text, Methods, captions and written supplementary Notes 1–7 read through the public NSF-hosted source. Figure pixels, four supplementary movies and underlying data not inspected. |
+
+- **Nature Communications 14, 2362 (2023)**. Title, journal, year and DOI checked against the official publication record and the [public NSF-hosted source](https://par.nsf.gov/servlets/purl/10412896).
+- Written-source screening covered the main article and supplementary Notes 1–7. Figure pixels, four supplementary movies and underlying data remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Specimens, fixtures, contact loading, solvents, UV–ozone treatment, instrument handling, calibration and acceptance criteria require separate safety and technical qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-13** through the public NSF-hosted source. Public availability does not establish unrestricted reuse rights. Citation links and original screening commentary only; no source assets are redistributed.
