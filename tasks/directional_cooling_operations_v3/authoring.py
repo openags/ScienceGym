@@ -357,6 +357,16 @@ DETAIL = {
 }
 
 EXTRA = [
+    ("CAL_BLOCK_PREP", "Prepare the calibration block and probe holes", "WS_FAB", ["STOCK"], ["E_CAL"], ["U_FAB"], [
+        ("P", "Identify copper block stock and the proposed hole layout for the reference RTD and eight K probes", "Stock, hole diameters/depths and immersion clearances are defined; these dimensions are reconstructed inputs"),
+        ("M", "Seat the copper blank against the selected fixture datums and tighten its clamps", "Block is restrained without a clamp crossing a hole or tool path"),
+        ("M", "Fit the selected drill and align the work origin with the marked hole layout", "Tool identity and actual work datum agree with the drawing"),
+        ("M", "For each hole, set the bound depth stop and start the installed drilling control", "Each requested hole and depth has a distinct operation record"),
+        ("X", "Complete each machine-owned drilling cycle and observe spindle stop", "No access is permitted before the actual stopped state; failed holes remain recorded"),
+        ("M", "With tool motion stopped, clear chips and finish each supported hole edge", "Burrs and debris cannot obstruct probe seating"),
+        ("M", "Support the block, release its clamps and place it in its labeled carrier", "Block is retained before fixture release"),
+        ("P", "Inspect hole sizes, depths, spacing and probe insertion using the declared drawing", "Accepted block and actual hole-to-probe map are available before bath loading"),
+    ]),
     ("WITNESS_CUT", "Cut and retain the selected optical specimen", "WS_FAB", ["WITNESS_PREP"], ["E_OPT", "E_FIXED"], ["U_OPT", "U_FAB"], [
         ("P", "Identify the allocated material lot and the compatible specimen/holder drawing", "Material, coating route and aperture coverage are bound to this specimen"),
         ("M", "Clamp the copper/aluminum blank or retain the polymer sheets in a supported cutting jig", "The selected material is supported without stretching or damaging its optical area"),
@@ -419,6 +429,7 @@ def main():
                     "preconditions": ["Identified inputs and required qualified parameter cards are available", "Payload is supported at the bound station"],
                     "postconditions": [d[2] for d in details],
                     "manipulated_objects": {
+                        "CAL_BLOCK_PREP": ["copper block stock", "drill", "chips", "reference RTD and K-probe hole pattern"],
                         "WITNESS_CUT": ["allocated copper/aluminum coupon blank", "paired film sheets", "optical carrier", "offcuts"],
                         "ANGLE_REFERENCE": ["optical sample", "qualified angular reference", "angle accessory", "polarization optics"],
                         "HEATER_REMOVE": ["heater", "heater leads", "emitter", "temperature probe", "supported assembly"],
@@ -427,6 +438,7 @@ def main():
                         "WITNESS_PREP": ["identified optical specimens", "holders", "retained parent materials"],
                         "RESTORE_TRACKED": ["white assembly", "fixed band", "LDPE layers", "nanoporous cover", "disk track"]}[ident],
                     "tools_or_interfaces": {
+                        "CAL_BLOCK_PREP": ["drilling machine", "block clamping fixture", "depth stop", "deburring tool", "hole and depth gauges"],
                         "WITNESS_CUT": ["material-appropriate cutter", "clamping or film support jig", "edge-finishing tool", "caliper"],
                         "ANGLE_REFERENCE": ["FTIR scan controls", "reference/sample mount", "angle and polarization readback"],
                         "HEATER_REMOVE": ["output-off readback", "emitter support jig", "qualified adhesive-release tool"],
@@ -442,6 +454,7 @@ def main():
         "OPT_MOUNT": ["OPT_REFERENCE", "WITNESS_CUT"],
         "ANGLE_MOUNT": ["WITNESS_CUT"],
         "ANGLE_SCAN": ["ANGLE_REFERENCE"],
+        "CAL_MOUNT": ["CAL_BLOCK_PREP"],
     }
     kinds = {"P": "perception", "M": "manipulation", "T": "motion",
              "D": "planning", "A": "analysis", "X": "device_process_or_wait"}
@@ -498,11 +511,15 @@ def main():
                 postconditions=['Three distinct coats and final cure condition have been observed for this disk'],
                 manipulated_objects=['paint can and cap','supported emitter disk','masking'],
                 tools_or_interfaces=['spray nozzle','coating fixture','timer and cure inspection'])
+    from manipulation_refinement import refine
+    ops = refine(ops)
     write("operations.json", {"schema_version": SCHEMA, "doi": read("operations.json")["doi"],
                               "operations": ops})
     branches = read("branches.json")
     branches["schema_version"] = SCHEMA
     for b in branches["branches"]:
+        if b['id']=='CALIBRATE':
+            b['operation_ids'].insert(b['operation_ids'].index('CAL_MOUNT'), 'CAL_BLOCK_PREP')
         if b["id"] == "BUILD_PAIR":
             b["operation_ids"][3:3] = ["TRACK_DESIGN", "MACHINE_PARTS"]
         if b["id"] in {"OPT_HEMISPHERICAL", "OPT_ANGULAR"}:
@@ -540,7 +557,8 @@ def main():
             {"id": "INF_COVER_SUPPORT", "operation_ids": ["FILM", "SHIELD"], "source_basis": "SI Note 2 gives a 107 mm ring bore and 102 mm tube OD and calls the tube a cover support; the load-bearing attachment is not described", "selected": "Reconstruct the lower film as a tensioned membrane contacting the PE tube rim and supporting the outer spacer; keep the ring in its loading jig until stability, attachment and sag are qualified", "physical_rationale": "The ring cannot bear directly on a smaller-diameter tube, but the film spans both tube and ring; this supplies a possible continuous load path without silently adding a conductive bracket", "confidence": "Low; a physical reconstruction hypothesis, not established historical mounting or verified load capacity", "alternative": "A disclosed peripheral retaining fixture, with its extra contact and heat-transfer path included in the geometry and analysis", "validation": "Measure the actual ring load, film sag/creep, attachment strength and emitter gap using the installed material; if criteria fail, keep support retained and revise the design. The flat visual film is an unloaded approximation, not a support simulation"},
             {"id": "INF_OPTICAL_SPECIMENS", "selected": "Direct component measurement when compatible; otherwise matched-batch witnesses with explicit size and layer-spacing inputs", "alternative": "Custom holder accommodating the actual component", "validation": "Verify accessory aperture, coating/film equivalence and source interpretation; no historical serial reuse claim"},
             {"id": "INF_REFLECTOR_DATUM", "selected": "Use the text's nominal 150 mm emitter-to-reflector height for the reconstruction; retain the SI 100 mm dimension as unresolved", "alternative": "Reconstruct the schematic version after its datum is established", "validation": "Compare against source drawings and finite-aperture shadow geometry"},
-            {"id": "INF_SENSOR_COORDINATES", "selected": "Map six source-indicated surfaces to declared approximate coordinates in the new geometry", "alternative": "Obtain original sensor-location data", "validation": "Compare each surface association with SI Figure 5 and inspect actual attachment/access; coordinates remain inferred"},
+            {"id": "INF_SENSOR_COORDINATES", "selected": "Two additional insulation points near the axis and four PE/shield/aperture contacts have explicit approximate coordinates in sensor_installation.json", "alternative": "Obtain original sensor-location data", "validation": "SI Figure5 p6 re-inspected October17; two insulation locations require explicit recess/layer-interface handling. Positions, azimuth, attachment and changed heat paths remain inferred"},
+            {"id": "INF_FINE_WIRE_TRANSITION", "source_basis": ["E_CAL", "E_DAQ_MANUAL", "E_TC_WIRE"], "selected": "Install a K-compatible transition from the 36 AWG stripped probe to terminal-compatible extension conductors, with independent strain relief; calibrate the complete path", "rationale": "The manufacturer's 16-30 AWG terminal range does not cover the source's 36 AWG probe wire", "alternative": "A separately qualified fine-wire clamp/termination with documented thermoelectric behavior", "validation": "Select actual transition hardware, prove retention and polarity, inspect introduced junctions and include the complete connection in calibration. No historical adapter is asserted"},
         ],
     })
     write("revision_origin.json", {
@@ -552,6 +570,9 @@ def main():
         "generator": "authoring.py",
         "geometry_package": "../../assets/cooling_scene_assets_v2",
         "physical_execution_validated": False,
+        "previous_published_revision": "f7137685961e3828ad32bf7d399cefa8824b1d62",
+        "reconstruction_revision": "2026-10-17.manipulation.1",
+        "step_id_policy": "Step IDs are scoped to package content hashes and reconstruction revision; replaced decompositions must not inherit prior step observations",
     })
     print(f"Authored {len(ops)} operations and {sum(len(o['reference_steps']) for o in ops)} reference steps")
 

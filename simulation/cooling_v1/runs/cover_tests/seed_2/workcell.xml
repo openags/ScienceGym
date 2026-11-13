@@ -1,0 +1,490 @@
+<mujoco model="ScienceGym cooling contact workcell">
+  <compiler angle="radian" meshdir="" autolimits="true" />
+  <option integrator="implicitfast" timestep=".0005" iterations="100" cone="elliptic" impratio="10" noslip_iterations="0" />
+  <default>
+    <default class="panda">
+      <material specular="0.5" shininess="0.25" />
+      <joint armature="0.1" damping="1" axis="0 0 1" range="-2.8973 2.8973" />
+      <general dyntype="none" biastype="affine" ctrlrange="-2.8973 2.8973" forcerange="-87 87" />
+      <default class="finger">
+        <joint axis="0 1 0" type="slide" range="0 0.04" />
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom type="mesh" group="3" />
+        <default class="fingertip_pad_collision_1">
+          <geom type="box" size="0.0085 0.004 0.0085" pos="0 0.0055 0.0445" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_2">
+          <geom type="box" size="0.003 0.002 0.003" pos="0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_3">
+          <geom type="box" size="0.003 0.002 0.003" pos="-0.0055 0.002 0.05" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_4">
+          <geom type="box" size="0.003 0.002 0.0035" pos="0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+        <default class="fingertip_pad_collision_5">
+          <geom type="box" size="0.003 0.002 0.0035" pos="-0.0055 0.002 0.0395" friction="1.4 .01 .006" condim="6" />
+        </default>
+      </default>
+    </default>
+    <geom solref=".004 1" solimp=".95 .99 .0005" condim="4" />
+  </default>
+  <asset>
+    <material class="panda" name="white" rgba="1 1 1 1" />
+    <material class="panda" name="off_white" rgba="0.901961 0.921569 0.929412 1" />
+    <material class="panda" name="black" rgba="0.25 0.25 0.25 1" />
+    <material class="panda" name="green" rgba="0 1 0 1" />
+    <material class="panda" name="light_blue" rgba="0.039216 0.541176 0.780392 1" />
+    <mesh name="link0_c" file="robot/link0.stl" />
+    <mesh name="link1_c" file="robot/link1.stl" />
+    <mesh name="link2_c" file="robot/link2.stl" />
+    <mesh name="link3_c" file="robot/link3.stl" />
+    <mesh name="link4_c" file="robot/link4.stl" />
+    <mesh name="link5_c0" file="robot/link5_collision_0.obj" />
+    <mesh name="link5_c1" file="robot/link5_collision_1.obj" />
+    <mesh name="link5_c2" file="robot/link5_collision_2.obj" />
+    <mesh name="link6_c" file="robot/link6.stl" />
+    <mesh name="link7_c" file="robot/link7.stl" />
+    <mesh name="hand_c" file="robot/hand.stl" />
+    <mesh file="robot/link0_0.obj" />
+    <mesh file="robot/link0_1.obj" />
+    <mesh file="robot/link0_2.obj" />
+    <mesh file="robot/link0_3.obj" />
+    <mesh file="robot/link0_4.obj" />
+    <mesh file="robot/link0_5.obj" />
+    <mesh file="robot/link0_7.obj" />
+    <mesh file="robot/link0_8.obj" />
+    <mesh file="robot/link0_9.obj" />
+    <mesh file="robot/link0_10.obj" />
+    <mesh file="robot/link0_11.obj" />
+    <mesh file="robot/link1.obj" />
+    <mesh file="robot/link2.obj" />
+    <mesh file="robot/link3_0.obj" />
+    <mesh file="robot/link3_1.obj" />
+    <mesh file="robot/link3_2.obj" />
+    <mesh file="robot/link3_3.obj" />
+    <mesh file="robot/link4_0.obj" />
+    <mesh file="robot/link4_1.obj" />
+    <mesh file="robot/link4_2.obj" />
+    <mesh file="robot/link4_3.obj" />
+    <mesh file="robot/link5_0.obj" />
+    <mesh file="robot/link5_1.obj" />
+    <mesh file="robot/link5_2.obj" />
+    <mesh file="robot/link6_0.obj" />
+    <mesh file="robot/link6_1.obj" />
+    <mesh file="robot/link6_2.obj" />
+    <mesh file="robot/link6_3.obj" />
+    <mesh file="robot/link6_4.obj" />
+    <mesh file="robot/link6_5.obj" />
+    <mesh file="robot/link6_6.obj" />
+    <mesh file="robot/link6_7.obj" />
+    <mesh file="robot/link6_8.obj" />
+    <mesh file="robot/link6_9.obj" />
+    <mesh file="robot/link6_10.obj" />
+    <mesh file="robot/link6_11.obj" />
+    <mesh file="robot/link6_12.obj" />
+    <mesh file="robot/link6_13.obj" />
+    <mesh file="robot/link6_14.obj" />
+    <mesh file="robot/link6_15.obj" />
+    <mesh file="robot/link6_16.obj" />
+    <mesh file="robot/link7_0.obj" />
+    <mesh file="robot/link7_1.obj" />
+    <mesh file="robot/link7_2.obj" />
+    <mesh file="robot/link7_3.obj" />
+    <mesh file="robot/link7_4.obj" />
+    <mesh file="robot/link7_5.obj" />
+    <mesh file="robot/link7_6.obj" />
+    <mesh file="robot/link7_7.obj" />
+    <mesh file="robot/hand_0.obj" />
+    <mesh file="robot/hand_1.obj" />
+    <mesh file="robot/hand_2.obj" />
+    <mesh file="robot/hand_3.obj" />
+    <mesh file="robot/hand_4.obj" />
+    <mesh file="robot/finger_0.obj" />
+    <mesh file="robot/finger_1.obj" />
+    <texture name="floor_tex" type="2d" builtin="checker" rgb1=".17 .21 .26" rgb2=".2 .24 .29" width="512" height="512" />
+    <material name="floor_mat" texture="floor_tex" texrepeat="5 5" reflectance=".05" />
+    <mesh name="source_mesh_0006" file="equipment/mesh_0006.obj" />
+  </asset>
+  <worldbody>
+    <light name="top" pos="0 -1 3" mode="trackcom" diffuse=".8 .8 .8" directional="true" dir="0 .2 -1" />
+    <body name="link0" childclass="panda" pos="0 0 .74">
+      <inertial mass="0.629769" pos="-0.041018 -0.00014 0.049974" fullinertia="0.00315 0.00388 0.004285 8.2904e-7 0.00015 8.2299e-6" />
+      <geom mesh="link0_0" material="off_white" class="visual" />
+      <geom mesh="link0_1" material="black" class="visual" />
+      <geom mesh="link0_2" material="off_white" class="visual" />
+      <geom mesh="link0_3" material="black" class="visual" />
+      <geom mesh="link0_4" material="off_white" class="visual" />
+      <geom mesh="link0_5" material="black" class="visual" />
+      <geom mesh="link0_7" material="white" class="visual" />
+      <geom mesh="link0_8" material="white" class="visual" />
+      <geom mesh="link0_9" material="black" class="visual" />
+      <geom mesh="link0_10" material="off_white" class="visual" />
+      <geom mesh="link0_11" material="white" class="visual" />
+      <geom mesh="link0_c" class="collision" />
+      <body name="link1" pos="0 0 0.333">
+        <inertial mass="4.970684" pos="0.003875 0.002081 -0.04762" fullinertia="0.70337 0.70661 0.0091170 -0.00013900 0.0067720 0.019169" />
+        <joint name="joint1" />
+        <geom material="white" mesh="link1" class="visual" />
+        <geom mesh="link1_c" class="collision" />
+        <body name="link2" quat="1 -1 0 0">
+          <inertial mass="0.646926" pos="-0.003141 -0.02872 0.003495" fullinertia="0.0079620 2.8110e-2 2.5995e-2 -3.925e-3 1.0254e-2 7.04e-4" />
+          <joint name="joint2" range="-1.7628 1.7628" />
+          <geom material="white" mesh="link2" class="visual" />
+          <geom mesh="link2_c" class="collision" />
+          <body name="link3" pos="0 -0.316 0" quat="1 1 0 0">
+            <joint name="joint3" />
+            <inertial mass="3.228604" pos="2.7518e-2 3.9252e-2 -6.6502e-2" fullinertia="3.7242e-2 3.6155e-2 1.083e-2 -4.761e-3 -1.1396e-2 -1.2805e-2" />
+            <geom mesh="link3_0" material="white" class="visual" />
+            <geom mesh="link3_1" material="white" class="visual" />
+            <geom mesh="link3_2" material="white" class="visual" />
+            <geom mesh="link3_3" material="black" class="visual" />
+            <geom mesh="link3_c" class="collision" />
+            <body name="link4" pos="0.0825 0 0" quat="1 1 0 0">
+              <inertial mass="3.587895" pos="-5.317e-2 1.04419e-1 2.7454e-2" fullinertia="2.5853e-2 1.9552e-2 2.8323e-2 7.796e-3 -1.332e-3 8.641e-3" />
+              <joint name="joint4" range="-3.0718 -0.0698" />
+              <geom mesh="link4_0" material="white" class="visual" />
+              <geom mesh="link4_1" material="white" class="visual" />
+              <geom mesh="link4_2" material="black" class="visual" />
+              <geom mesh="link4_3" material="white" class="visual" />
+              <geom mesh="link4_c" class="collision" />
+              <body name="link5" pos="-0.0825 0.384 0" quat="1 -1 0 0">
+                <inertial mass="1.225946" pos="-1.1953e-2 4.1065e-2 -3.8437e-2" fullinertia="3.5549e-2 2.9474e-2 8.627e-3 -2.117e-3 -4.037e-3 2.29e-4" />
+                <joint name="joint5" />
+                <geom mesh="link5_0" material="black" class="visual" />
+                <geom mesh="link5_1" material="white" class="visual" />
+                <geom mesh="link5_2" material="white" class="visual" />
+                <geom mesh="link5_c0" class="collision" />
+                <geom mesh="link5_c1" class="collision" />
+                <geom mesh="link5_c2" class="collision" />
+                <body name="link6" quat="1 1 0 0">
+                  <inertial mass="1.666555" pos="6.0149e-2 -1.4117e-2 -1.0517e-2" fullinertia="1.964e-3 4.354e-3 5.433e-3 1.09e-4 -1.158e-3 3.41e-4" />
+                  <joint name="joint6" range="-0.0175 3.7525" />
+                  <geom mesh="link6_0" material="off_white" class="visual" />
+                  <geom mesh="link6_1" material="white" class="visual" />
+                  <geom mesh="link6_2" material="black" class="visual" />
+                  <geom mesh="link6_3" material="white" class="visual" />
+                  <geom mesh="link6_4" material="white" class="visual" />
+                  <geom mesh="link6_5" material="white" class="visual" />
+                  <geom mesh="link6_6" material="white" class="visual" />
+                  <geom mesh="link6_7" material="light_blue" class="visual" />
+                  <geom mesh="link6_8" material="light_blue" class="visual" />
+                  <geom mesh="link6_9" material="black" class="visual" />
+                  <geom mesh="link6_10" material="black" class="visual" />
+                  <geom mesh="link6_11" material="white" class="visual" />
+                  <geom mesh="link6_12" material="green" class="visual" />
+                  <geom mesh="link6_13" material="white" class="visual" />
+                  <geom mesh="link6_14" material="black" class="visual" />
+                  <geom mesh="link6_15" material="black" class="visual" />
+                  <geom mesh="link6_16" material="white" class="visual" />
+                  <geom mesh="link6_c" class="collision" />
+                  <body name="link7" pos="0.088 0 0" quat="1 1 0 0">
+                    <inertial mass="7.35522e-01" pos="1.0517e-2 -4.252e-3 6.1597e-2" fullinertia="1.2516e-2 1.0027e-2 4.815e-3 -4.28e-4 -1.196e-3 -7.41e-4" />
+                    <joint name="joint7" />
+                    <geom mesh="link7_0" material="white" class="visual" />
+                    <geom mesh="link7_1" material="black" class="visual" />
+                    <geom mesh="link7_2" material="black" class="visual" />
+                    <geom mesh="link7_3" material="black" class="visual" />
+                    <geom mesh="link7_4" material="black" class="visual" />
+                    <geom mesh="link7_5" material="black" class="visual" />
+                    <geom mesh="link7_6" material="black" class="visual" />
+                    <geom mesh="link7_7" material="white" class="visual" />
+                    <geom mesh="link7_c" class="collision" />
+                    <body name="hand" pos="0 0 0.107" quat="0.9238795 0 0 -0.3826834">
+                      <inertial mass="0.73" pos="-0.01 0 0.03" diaginertia="0.001 0.0025 0.0017" />
+                      <geom mesh="hand_0" material="off_white" class="visual" />
+                      <geom mesh="hand_1" material="black" class="visual" />
+                      <geom mesh="hand_2" material="black" class="visual" />
+                      <geom mesh="hand_3" material="white" class="visual" />
+                      <geom mesh="hand_4" material="off_white" class="visual" />
+                      <geom mesh="hand_c" class="collision" />
+                      <body name="left_finger" pos="0 0 0.0584">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint1" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <body name="right_finger" pos="0 0 0.0584" quat="0 0 0 1">
+                        <inertial mass="0.015" pos="0 0 0" diaginertia="2.375e-6 2.375e-6 7.5e-7" />
+                        <joint name="finger_joint2" class="finger" />
+                        <geom mesh="finger_0" material="off_white" class="visual" />
+                        <geom mesh="finger_1" material="black" class="visual" />
+                        <geom mesh="finger_0" class="collision" />
+                        <geom class="fingertip_pad_collision_1" />
+                        <geom class="fingertip_pad_collision_2" />
+                        <geom class="fingertip_pad_collision_3" />
+                        <geom class="fingertip_pad_collision_4" />
+                        <geom class="fingertip_pad_collision_5" />
+                      </body>
+                      <site name="tcp" pos="0 0 .1034" size=".003" rgba="0 .5 1 1" />
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <geom name="floor" type="plane" size="5 5 .1" material="floor_mat" />
+    <geom name="bench" type="box" size="0.68 0.67 0.04" pos="0.45 0 0.7" rgba="0.72 0.75 0.78 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_-0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_-0.14_0.57" type="box" size="0.035 0.035 0.37" pos="-0.14 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_-0.57" type="box" size="0.035 0.035 0.37" pos="1.04 -0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <geom name="leg_1.04_0.57" type="box" size="0.035 0.035 0.37" pos="1.04 0.57 0.37" rgba="0.22 0.27 0.32 1" friction="1 .005 .0001" />
+    <light pos="1 1 3" diffuse=".5 .5 .5" />
+    <body name="tube_support" pos="0.48 0.14 0.74">
+      <geom name="support_base" type="cylinder" size="0.08 0.03525" pos="0 0 0.03525" rgba="0.2 0.25 0.3 1" friction="1 .005 .0001" />
+      <geom name="tube_wall_0" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0445 0 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0" mass="0.0020833333333333333" />
+      <geom name="tube_wall_1" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0441192963 0.00580841555 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.130899694" mass="0.0020833333333333333" />
+      <geom name="tube_wall_2" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0429836993 0.0115174475 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.261799388" mass="0.0020833333333333333" />
+      <geom name="tube_wall_3" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0411126392 0.0170294127 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.392699082" mass="0.0020833333333333333" />
+      <geom name="tube_wall_4" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0385381305 0.02225 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.523598776" mass="0.0020833333333333333" />
+      <geom name="tube_wall_5" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0353042236 0.0270898836 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.654498469" mass="0.0020833333333333333" />
+      <geom name="tube_wall_6" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0314662518 0.0314662518 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.785398163" mass="0.0020833333333333333" />
+      <geom name="tube_wall_7" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0270898836 0.0353042236 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 0.916297857" mass="0.0020833333333333333" />
+      <geom name="tube_wall_8" type="box" size="0.0065 0.00299989373 0.0285" pos="0.02225 0.0385381305 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.04719755" mass="0.0020833333333333333" />
+      <geom name="tube_wall_9" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0170294127 0.0411126392 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.17809725" mass="0.0020833333333333333" />
+      <geom name="tube_wall_10" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0115174475 0.0429836993 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.30899694" mass="0.0020833333333333333" />
+      <geom name="tube_wall_11" type="box" size="0.0065 0.00299989373 0.0285" pos="0.00580841555 0.0441192963 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.43989663" mass="0.0020833333333333333" />
+      <geom name="tube_wall_12" type="box" size="0.0065 0.00299989373 0.0285" pos="2.72483913e-18 0.0445 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.57079633" mass="0.0020833333333333333" />
+      <geom name="tube_wall_13" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.00580841555 0.0441192963 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.70169602" mass="0.0020833333333333333" />
+      <geom name="tube_wall_14" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0115174475 0.0429836993 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.83259571" mass="0.0020833333333333333" />
+      <geom name="tube_wall_15" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0170294127 0.0411126392 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 1.96349541" mass="0.0020833333333333333" />
+      <geom name="tube_wall_16" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.02225 0.0385381305 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.0943951" mass="0.0020833333333333333" />
+      <geom name="tube_wall_17" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0270898836 0.0353042236 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.2252948" mass="0.0020833333333333333" />
+      <geom name="tube_wall_18" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0314662518 0.0314662518 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.35619449" mass="0.0020833333333333333" />
+      <geom name="tube_wall_19" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0353042236 0.0270898836 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.48709418" mass="0.0020833333333333333" />
+      <geom name="tube_wall_20" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0385381305 0.02225 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.61799388" mass="0.0020833333333333333" />
+      <geom name="tube_wall_21" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0411126392 0.0170294127 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.74889357" mass="0.0020833333333333333" />
+      <geom name="tube_wall_22" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0429836993 0.0115174475 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 2.87979327" mass="0.0020833333333333333" />
+      <geom name="tube_wall_23" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0441192963 0.00580841555 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.01069296" mass="0.0020833333333333333" />
+      <geom name="tube_wall_24" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0445 5.44967826e-18 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.14159265" mass="0.0020833333333333333" />
+      <geom name="tube_wall_25" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0441192963 -0.00580841555 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.27249235" mass="0.0020833333333333333" />
+      <geom name="tube_wall_26" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0429836993 -0.0115174475 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.40339204" mass="0.0020833333333333333" />
+      <geom name="tube_wall_27" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0411126392 -0.0170294127 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.53429174" mass="0.0020833333333333333" />
+      <geom name="tube_wall_28" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0385381305 -0.02225 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.66519143" mass="0.0020833333333333333" />
+      <geom name="tube_wall_29" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0353042236 -0.0270898836 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.79609112" mass="0.0020833333333333333" />
+      <geom name="tube_wall_30" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0314662518 -0.0314662518 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 3.92699082" mass="0.0020833333333333333" />
+      <geom name="tube_wall_31" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0270898836 -0.0353042236 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.05789051" mass="0.0020833333333333333" />
+      <geom name="tube_wall_32" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.02225 -0.0385381305 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.1887902" mass="0.0020833333333333333" />
+      <geom name="tube_wall_33" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0170294127 -0.0411126392 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.3196899" mass="0.0020833333333333333" />
+      <geom name="tube_wall_34" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.0115174475 -0.0429836993 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.45058959" mass="0.0020833333333333333" />
+      <geom name="tube_wall_35" type="box" size="0.0065 0.00299989373 0.0285" pos="-0.00580841555 -0.0441192963 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.58148929" mass="0.0020833333333333333" />
+      <geom name="tube_wall_36" type="box" size="0.0065 0.00299989373 0.0285" pos="-8.17451738e-18 -0.0445 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.71238898" mass="0.0020833333333333333" />
+      <geom name="tube_wall_37" type="box" size="0.0065 0.00299989373 0.0285" pos="0.00580841555 -0.0441192963 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.84328867" mass="0.0020833333333333333" />
+      <geom name="tube_wall_38" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0115174475 -0.0429836993 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 4.97418837" mass="0.0020833333333333333" />
+      <geom name="tube_wall_39" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0170294127 -0.0411126392 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.10508806" mass="0.0020833333333333333" />
+      <geom name="tube_wall_40" type="box" size="0.0065 0.00299989373 0.0285" pos="0.02225 -0.0385381305 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.23598776" mass="0.0020833333333333333" />
+      <geom name="tube_wall_41" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0270898836 -0.0353042236 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.36688745" mass="0.0020833333333333333" />
+      <geom name="tube_wall_42" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0314662518 -0.0314662518 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.49778714" mass="0.0020833333333333333" />
+      <geom name="tube_wall_43" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0353042236 -0.0270898836 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.62868684" mass="0.0020833333333333333" />
+      <geom name="tube_wall_44" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0385381305 -0.02225 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.75958653" mass="0.0020833333333333333" />
+      <geom name="tube_wall_45" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0411126392 -0.0170294127 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 5.89048623" mass="0.0020833333333333333" />
+      <geom name="tube_wall_46" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0429836993 -0.0115174475 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 6.02138592" mass="0.0020833333333333333" />
+      <geom name="tube_wall_47" type="box" size="0.0065 0.00299989373 0.0285" pos="0.0441192963 -0.00580841555 0.099" rgba="0.85 0.85 0.8 1" friction="1 .005 .0001" euler="0 0 6.15228561" mass="0.0020833333333333333" />
+    </body>
+    <body name="cover_stand" pos="0.34 -0.2 0.74">
+      <geom name="stand_base" type="cylinder" size="0.08 0.009" pos="0 0 0.009" rgba="0.2 0.25 0.3 1" friction="1 .005 .0001" />
+      <geom name="stand_post_0" type="cylinder" size="0.003 0.07" pos="3.58209189e-18 0.0585 0.07" rgba="0.2 0.25 0.3 1" friction="1 .005 .0001" />
+      <geom name="stand_post_1" type="cylinder" size="0.003 0.07" pos="-0.0506624861 -0.02925 0.07" rgba="0.2 0.25 0.3 1" friction="1 .005 .0001" />
+      <geom name="stand_post_2" type="cylinder" size="0.003 0.07" pos="0.0506624861 -0.02925 0.07" rgba="0.2 0.25 0.3 1" friction="1 .005 .0001" />
+    </body>
+    <body name="cover" pos="0.34 -0.2 0.8832">
+      <freejoint name="cover_free" />
+      <geom name="spacer_wall_0" type="box" size="0.005 0.00394368053 0.0032" pos="0.0585 0 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_1" type="box" size="0.005 0.00394368053 0.0032" pos="0.0579995244 0.00763578224 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.130899694" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_2" type="box" size="0.005 0.00394368053 0.0032" pos="0.0565066608 0.0151409141 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.261799388" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_3" type="box" size="0.005 0.00394368053 0.0032" pos="0.0540469527 0.0223869808 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.392699082" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_4" type="box" size="0.005 0.00394368053 0.0032" pos="0.0506624861 0.02925 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.523598776" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_5" type="box" size="0.005 0.00394368053 0.0032" pos="0.0464111704 0.0356125436 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.654498469" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_6" type="box" size="0.005 0.00394368053 0.0032" pos="0.0413657467 0.0413657467 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.785398163" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_7" type="box" size="0.005 0.00394368053 0.0032" pos="0.0356125436 0.0464111704 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 0.916297857" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_8" type="box" size="0.005 0.00394368053 0.0032" pos="0.02925 0.0506624861 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.04719755" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_9" type="box" size="0.005 0.00394368053 0.0032" pos="0.0223869808 0.0540469527 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.17809725" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_10" type="box" size="0.005 0.00394368053 0.0032" pos="0.0151409141 0.0565066608 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.30899694" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_11" type="box" size="0.005 0.00394368053 0.0032" pos="0.00763578224 0.0579995244 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.43989663" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_12" type="box" size="0.005 0.00394368053 0.0032" pos="3.58209189e-18 0.0585 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.57079633" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_13" type="box" size="0.005 0.00394368053 0.0032" pos="-0.00763578224 0.0579995244 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.70169602" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_14" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0151409141 0.0565066608 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.83259571" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_15" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0223869808 0.0540469527 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 1.96349541" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_16" type="box" size="0.005 0.00394368053 0.0032" pos="-0.02925 0.0506624861 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.0943951" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_17" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0356125436 0.0464111704 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.2252948" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_18" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0413657467 0.0413657467 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.35619449" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_19" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0464111704 0.0356125436 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.48709418" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_20" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0506624861 0.02925 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.61799388" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_21" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0540469527 0.0223869808 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.74889357" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_22" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0565066608 0.0151409141 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 2.87979327" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_23" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0579995244 0.00763578224 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.01069296" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_24" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0585 7.16418378e-18 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.14159265" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_25" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0579995244 -0.00763578224 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.27249235" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_26" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0565066608 -0.0151409141 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.40339204" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_27" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0540469527 -0.0223869808 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.53429174" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_28" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0506624861 -0.02925 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.66519143" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_29" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0464111704 -0.0356125436 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.79609112" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_30" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0413657467 -0.0413657467 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 3.92699082" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_31" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0356125436 -0.0464111704 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.05789051" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_32" type="box" size="0.005 0.00394368053 0.0032" pos="-0.02925 -0.0506624861 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.1887902" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_33" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0223869808 -0.0540469527 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.3196899" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_34" type="box" size="0.005 0.00394368053 0.0032" pos="-0.0151409141 -0.0565066608 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.45058959" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_35" type="box" size="0.005 0.00394368053 0.0032" pos="-0.00763578224 -0.0579995244 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.58148929" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_36" type="box" size="0.005 0.00394368053 0.0032" pos="-1.07462757e-17 -0.0585 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.71238898" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_37" type="box" size="0.005 0.00394368053 0.0032" pos="0.00763578224 -0.0579995244 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.84328867" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_38" type="box" size="0.005 0.00394368053 0.0032" pos="0.0151409141 -0.0565066608 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 4.97418837" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_39" type="box" size="0.005 0.00394368053 0.0032" pos="0.0223869808 -0.0540469527 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.10508806" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_40" type="box" size="0.005 0.00394368053 0.0032" pos="0.02925 -0.0506624861 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.23598776" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_41" type="box" size="0.005 0.00394368053 0.0032" pos="0.0356125436 -0.0464111704 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.36688745" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_42" type="box" size="0.005 0.00394368053 0.0032" pos="0.0413657467 -0.0413657467 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.49778714" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_43" type="box" size="0.005 0.00394368053 0.0032" pos="0.0464111704 -0.0356125436 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.62868684" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_44" type="box" size="0.005 0.00394368053 0.0032" pos="0.0506624861 -0.02925 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.75958653" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_45" type="box" size="0.005 0.00394368053 0.0032" pos="0.0540469527 -0.0223869808 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 5.89048623" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_46" type="box" size="0.005 0.00394368053 0.0032" pos="0.0565066608 -0.0151409141 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 6.02138592" mass="0.0013232388256920215" group="3" />
+      <geom name="spacer_wall_47" type="box" size="0.005 0.00394368053 0.0032" pos="0.0579995244 -0.00763578224 0" rgba="0.7 0.73 0.76 1" friction="1 .005 .0001" euler="0 0 6.15228561" mass="0.0013232388256920215" group="3" />
+      <geom name="physical_cover_COOLER_WHITE__film_spacer" type="mesh" mesh="source_mesh_0006" pos="0 0 -8.10317924e-11" rgba="0.479999989 0.519999981 0.569999993 1" contype="0" conaffinity="0" group="2" mass="0" />
+      <flexcomp name="cover_lower" type="direct" dim="2" point="0 0 -0.003208 0.038 0 -0.003208 0.0351074222 0.0145419704 -0.003208 0.0268700577 0.0268700577 -0.003208 0.0145419704 0.0351074222 -0.003208 2.32682892e-18 0.038 -0.003208 -0.0145419704 0.0351074222 -0.003208 -0.0268700577 0.0268700577 -0.003208 -0.0351074222 0.0145419704 -0.003208 -0.038 4.65365784e-18 -0.003208 -0.0351074222 -0.0145419704 -0.003208 -0.0268700577 -0.0268700577 -0.003208 -0.0145419704 -0.0351074222 -0.003208 -6.98048676e-18 -0.038 -0.003208 0.0145419704 -0.0351074222 -0.003208 0.0268700577 -0.0268700577 -0.003208 0.0351074222 -0.0145419704 -0.003208 0.0445 0 -0.003208 0.0411126392 0.0170294127 -0.003208 0.0314662518 0.0314662518 -0.003208 0.0170294127 0.0411126392 -0.003208 2.72483913e-18 0.0445 -0.003208 -0.0170294127 0.0411126392 -0.003208 -0.0314662518 0.0314662518 -0.003208 -0.0411126392 0.0170294127 -0.003208 -0.0445 5.44967826e-18 -0.003208 -0.0411126392 -0.0170294127 -0.003208 -0.0314662518 -0.0314662518 -0.003208 -0.0170294127 -0.0411126392 -0.003208 -8.17451738e-18 -0.0445 -0.003208 0.0170294127 -0.0411126392 -0.003208 0.0314662518 -0.0314662518 -0.003208 0.0411126392 -0.0170294127 -0.003208 0.051 0 -0.003208 0.0471178562 0.0195168551 -0.003208 0.0360624458 0.0360624458 -0.003208 0.0195168551 0.0471178562 -0.003208 3.12284934e-18 0.051 -0.003208 -0.0195168551 0.0471178562 -0.003208 -0.0360624458 0.0360624458 -0.003208 -0.0471178562 0.0195168551 -0.003208 -0.051 6.24569868e-18 -0.003208 -0.0471178562 -0.0195168551 -0.003208 -0.0360624458 -0.0360624458 -0.003208 -0.0195168551 -0.0471178562 -0.003208 -9.36854801e-18 -0.051 -0.003208 0.0195168551 -0.0471178562 -0.003208 0.0360624458 -0.0360624458 -0.003208 0.0471178562 -0.0195168551 -0.003208 0.0535 0 -0.003208 0.049427555 0.0204735636 -0.003208 0.0378302128 0.0378302128 -0.003208 0.0204735636 0.049427555 -0.003208 3.27593019e-18 0.0535 -0.003208 -0.0204735636 0.049427555 -0.003208 -0.0378302128 0.0378302128 -0.003208 -0.049427555 0.0204735636 -0.003208 -0.0535 6.55186038e-18 -0.003208 -0.049427555 -0.0204735636 -0.003208 -0.0378302128 -0.0378302128 -0.003208 -0.0204735636 -0.049427555 -0.003208 -9.82779056e-18 -0.0535 -0.003208 0.0204735636 -0.049427555 -0.003208 0.0378302128 -0.0378302128 -0.003208 0.049427555 -0.0204735636 -0.003208" element="0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0 7 8 0 8 9 0 9 10 0 10 11 0 11 12 0 12 13 0 13 14 0 14 15 0 15 16 0 16 1 1 17 18 1 18 2 2 18 19 2 19 3 3 19 20 3 20 4 4 20 21 4 21 5 5 21 22 5 22 6 6 22 23 6 23 7 7 23 24 7 24 8 8 24 25 8 25 9 9 25 26 9 26 10 10 26 27 10 27 11 11 27 28 11 28 12 12 28 29 12 29 13 13 29 30 13 30 14 14 30 31 14 31 15 15 31 32 15 32 16 16 32 17 16 17 1 17 33 34 17 34 18 18 34 35 18 35 19 19 35 36 19 36 20 20 36 37 20 37 21 21 37 38 21 38 22 22 38 39 22 39 23 23 39 40 23 40 24 24 40 41 24 41 25 25 41 42 25 42 26 26 42 43 26 43 27 27 43 44 27 44 28 28 44 45 28 45 29 29 45 46 29 46 30 30 46 47 30 47 31 31 47 48 31 48 32 32 48 33 32 33 17 33 49 50 33 50 34 34 50 51 34 51 35 35 51 52 35 52 36 36 52 53 36 53 37 37 53 54 37 54 38 38 54 55 38 55 39 39 55 56 39 56 40 40 56 57 40 57 41 41 57 58 41 58 42 42 58 59 42 59 43 43 59 60 43 60 44 44 60 61 44 61 45 45 61 62 45 62 46 46 62 63 46 63 47 47 63 64 47 64 48 48 64 49 48 49 33" mass="0.0001323625869906943" radius=".00025" rgba=".80 .87 .91 .65" inertiabox=".001">
+        <edge equality="true" solref=".001 1" solimp=".9999 .9999 .00001" />
+        <contact condim="3" friction=".4 .001 .0001" selfcollide="none" solref=".002 1" solimp=".95 .99 .0001" />
+        <pin id="49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64" />
+      </flexcomp>
+      <geom name="cover_lower_bonded_annulus_0" type="box" size="0.005 0.00394368053 8e-06" pos="0.0585 0 -0.003208" euler="0 0 0" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_1" type="box" size="0.005 0.00394368053 8e-06" pos="0.0579995244 0.00763578224 -0.003208" euler="0 0 0.130899694" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_2" type="box" size="0.005 0.00394368053 8e-06" pos="0.0565066608 0.0151409141 -0.003208" euler="0 0 0.261799388" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_3" type="box" size="0.005 0.00394368053 8e-06" pos="0.0540469527 0.0223869808 -0.003208" euler="0 0 0.392699082" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_4" type="box" size="0.005 0.00394368053 8e-06" pos="0.0506624861 0.02925 -0.003208" euler="0 0 0.523598776" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_5" type="box" size="0.005 0.00394368053 8e-06" pos="0.0464111704 0.0356125436 -0.003208" euler="0 0 0.654498469" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_6" type="box" size="0.005 0.00394368053 8e-06" pos="0.0413657467 0.0413657467 -0.003208" euler="0 0 0.785398163" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_7" type="box" size="0.005 0.00394368053 8e-06" pos="0.0356125436 0.0464111704 -0.003208" euler="0 0 0.916297857" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_8" type="box" size="0.005 0.00394368053 8e-06" pos="0.02925 0.0506624861 -0.003208" euler="0 0 1.04719755" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_9" type="box" size="0.005 0.00394368053 8e-06" pos="0.0223869808 0.0540469527 -0.003208" euler="0 0 1.17809725" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_10" type="box" size="0.005 0.00394368053 8e-06" pos="0.0151409141 0.0565066608 -0.003208" euler="0 0 1.30899694" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_11" type="box" size="0.005 0.00394368053 8e-06" pos="0.00763578224 0.0579995244 -0.003208" euler="0 0 1.43989663" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_12" type="box" size="0.005 0.00394368053 8e-06" pos="3.58209189e-18 0.0585 -0.003208" euler="0 0 1.57079633" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_13" type="box" size="0.005 0.00394368053 8e-06" pos="-0.00763578224 0.0579995244 -0.003208" euler="0 0 1.70169602" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_14" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0151409141 0.0565066608 -0.003208" euler="0 0 1.83259571" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_15" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0223869808 0.0540469527 -0.003208" euler="0 0 1.96349541" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_16" type="box" size="0.005 0.00394368053 8e-06" pos="-0.02925 0.0506624861 -0.003208" euler="0 0 2.0943951" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_17" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0356125436 0.0464111704 -0.003208" euler="0 0 2.2252948" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_18" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0413657467 0.0413657467 -0.003208" euler="0 0 2.35619449" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_19" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0464111704 0.0356125436 -0.003208" euler="0 0 2.48709418" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_20" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0506624861 0.02925 -0.003208" euler="0 0 2.61799388" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_21" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0540469527 0.0223869808 -0.003208" euler="0 0 2.74889357" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_22" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0565066608 0.0151409141 -0.003208" euler="0 0 2.87979327" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_23" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0579995244 0.00763578224 -0.003208" euler="0 0 3.01069296" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_24" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0585 7.16418378e-18 -0.003208" euler="0 0 3.14159265" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_25" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0579995244 -0.00763578224 -0.003208" euler="0 0 3.27249235" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_26" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0565066608 -0.0151409141 -0.003208" euler="0 0 3.40339204" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_27" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0540469527 -0.0223869808 -0.003208" euler="0 0 3.53429174" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_28" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0506624861 -0.02925 -0.003208" euler="0 0 3.66519143" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_29" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0464111704 -0.0356125436 -0.003208" euler="0 0 3.79609112" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_30" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0413657467 -0.0413657467 -0.003208" euler="0 0 3.92699082" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_31" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0356125436 -0.0464111704 -0.003208" euler="0 0 4.05789051" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_32" type="box" size="0.005 0.00394368053 8e-06" pos="-0.02925 -0.0506624861 -0.003208" euler="0 0 4.1887902" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_33" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0223869808 -0.0540469527 -0.003208" euler="0 0 4.3196899" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_34" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0151409141 -0.0565066608 -0.003208" euler="0 0 4.45058959" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_35" type="box" size="0.005 0.00394368053 8e-06" pos="-0.00763578224 -0.0579995244 -0.003208" euler="0 0 4.58148929" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_36" type="box" size="0.005 0.00394368053 8e-06" pos="-1.07462757e-17 -0.0585 -0.003208" euler="0 0 4.71238898" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_37" type="box" size="0.005 0.00394368053 8e-06" pos="0.00763578224 -0.0579995244 -0.003208" euler="0 0 4.84328867" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_38" type="box" size="0.005 0.00394368053 8e-06" pos="0.0151409141 -0.0565066608 -0.003208" euler="0 0 4.97418837" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_39" type="box" size="0.005 0.00394368053 8e-06" pos="0.0223869808 -0.0540469527 -0.003208" euler="0 0 5.10508806" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_40" type="box" size="0.005 0.00394368053 8e-06" pos="0.02925 -0.0506624861 -0.003208" euler="0 0 5.23598776" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_41" type="box" size="0.005 0.00394368053 8e-06" pos="0.0356125436 -0.0464111704 -0.003208" euler="0 0 5.36688745" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_42" type="box" size="0.005 0.00394368053 8e-06" pos="0.0413657467 -0.0413657467 -0.003208" euler="0 0 5.49778714" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_43" type="box" size="0.005 0.00394368053 8e-06" pos="0.0464111704 -0.0356125436 -0.003208" euler="0 0 5.62868684" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_44" type="box" size="0.005 0.00394368053 8e-06" pos="0.0506624861 -0.02925 -0.003208" euler="0 0 5.75958653" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_45" type="box" size="0.005 0.00394368053 8e-06" pos="0.0540469527 -0.0223869808 -0.003208" euler="0 0 5.89048623" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_46" type="box" size="0.005 0.00394368053 8e-06" pos="0.0565066608 -0.0151409141 -0.003208" euler="0 0 6.02138592" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_lower_bonded_annulus_47" type="box" size="0.005 0.00394368053 8e-06" pos="0.0579995244 -0.00763578224 -0.003208" euler="0 0 6.15228561" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <flexcomp name="cover_upper" type="direct" dim="2" point="0 0 0.003208 0.038 0 0.003208 0.0351074222 0.0145419704 0.003208 0.0268700577 0.0268700577 0.003208 0.0145419704 0.0351074222 0.003208 2.32682892e-18 0.038 0.003208 -0.0145419704 0.0351074222 0.003208 -0.0268700577 0.0268700577 0.003208 -0.0351074222 0.0145419704 0.003208 -0.038 4.65365784e-18 0.003208 -0.0351074222 -0.0145419704 0.003208 -0.0268700577 -0.0268700577 0.003208 -0.0145419704 -0.0351074222 0.003208 -6.98048676e-18 -0.038 0.003208 0.0145419704 -0.0351074222 0.003208 0.0268700577 -0.0268700577 0.003208 0.0351074222 -0.0145419704 0.003208 0.0445 0 0.003208 0.0411126392 0.0170294127 0.003208 0.0314662518 0.0314662518 0.003208 0.0170294127 0.0411126392 0.003208 2.72483913e-18 0.0445 0.003208 -0.0170294127 0.0411126392 0.003208 -0.0314662518 0.0314662518 0.003208 -0.0411126392 0.0170294127 0.003208 -0.0445 5.44967826e-18 0.003208 -0.0411126392 -0.0170294127 0.003208 -0.0314662518 -0.0314662518 0.003208 -0.0170294127 -0.0411126392 0.003208 -8.17451738e-18 -0.0445 0.003208 0.0170294127 -0.0411126392 0.003208 0.0314662518 -0.0314662518 0.003208 0.0411126392 -0.0170294127 0.003208 0.051 0 0.003208 0.0471178562 0.0195168551 0.003208 0.0360624458 0.0360624458 0.003208 0.0195168551 0.0471178562 0.003208 3.12284934e-18 0.051 0.003208 -0.0195168551 0.0471178562 0.003208 -0.0360624458 0.0360624458 0.003208 -0.0471178562 0.0195168551 0.003208 -0.051 6.24569868e-18 0.003208 -0.0471178562 -0.0195168551 0.003208 -0.0360624458 -0.0360624458 0.003208 -0.0195168551 -0.0471178562 0.003208 -9.36854801e-18 -0.051 0.003208 0.0195168551 -0.0471178562 0.003208 0.0360624458 -0.0360624458 0.003208 0.0471178562 -0.0195168551 0.003208 0.0535 0 0.003208 0.049427555 0.0204735636 0.003208 0.0378302128 0.0378302128 0.003208 0.0204735636 0.049427555 0.003208 3.27593019e-18 0.0535 0.003208 -0.0204735636 0.049427555 0.003208 -0.0378302128 0.0378302128 0.003208 -0.049427555 0.0204735636 0.003208 -0.0535 6.55186038e-18 0.003208 -0.049427555 -0.0204735636 0.003208 -0.0378302128 -0.0378302128 0.003208 -0.0204735636 -0.049427555 0.003208 -9.82779056e-18 -0.0535 0.003208 0.0204735636 -0.049427555 0.003208 0.0378302128 -0.0378302128 0.003208 0.049427555 -0.0204735636 0.003208" element="0 1 2 0 2 3 0 3 4 0 4 5 0 5 6 0 6 7 0 7 8 0 8 9 0 9 10 0 10 11 0 11 12 0 12 13 0 13 14 0 14 15 0 15 16 0 16 1 1 17 18 1 18 2 2 18 19 2 19 3 3 19 20 3 20 4 4 20 21 4 21 5 5 21 22 5 22 6 6 22 23 6 23 7 7 23 24 7 24 8 8 24 25 8 25 9 9 25 26 9 26 10 10 26 27 10 27 11 11 27 28 11 28 12 12 28 29 12 29 13 13 29 30 13 30 14 14 30 31 14 31 15 15 31 32 15 32 16 16 32 17 16 17 1 17 33 34 17 34 18 18 34 35 18 35 19 19 35 36 19 36 20 20 36 37 20 37 21 21 37 38 21 38 22 22 38 39 22 39 23 23 39 40 23 40 24 24 40 41 24 41 25 25 41 42 25 42 26 26 42 43 26 43 27 27 43 44 27 44 28 28 44 45 28 45 29 29 45 46 29 46 30 30 46 47 30 47 31 31 47 48 31 48 32 32 48 33 32 33 17 33 49 50 33 50 34 34 50 51 34 51 35 35 51 52 35 52 36 36 52 53 36 53 37 37 53 54 37 54 38 38 54 55 38 55 39 39 55 56 39 56 40 40 56 57 40 57 41 41 57 58 41 58 42 42 58 59 42 59 43 43 59 60 43 60 44 44 60 61 44 61 45 45 61 62 45 62 46 46 62 63 46 63 47 47 63 64 47 64 48 48 64 49 48 49 33" mass="0.0001323625869906943" radius=".00025" rgba=".80 .87 .91 .65" inertiabox=".001">
+        <edge equality="true" solref=".001 1" solimp=".9999 .9999 .00001" />
+        <contact condim="3" friction=".4 .001 .0001" selfcollide="none" solref=".002 1" solimp=".95 .99 .0001" />
+        <pin id="49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64" />
+      </flexcomp>
+      <geom name="cover_upper_bonded_annulus_0" type="box" size="0.005 0.00394368053 8e-06" pos="0.0585 0 0.003208" euler="0 0 0" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_1" type="box" size="0.005 0.00394368053 8e-06" pos="0.0579995244 0.00763578224 0.003208" euler="0 0 0.130899694" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_2" type="box" size="0.005 0.00394368053 8e-06" pos="0.0565066608 0.0151409141 0.003208" euler="0 0 0.261799388" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_3" type="box" size="0.005 0.00394368053 8e-06" pos="0.0540469527 0.0223869808 0.003208" euler="0 0 0.392699082" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_4" type="box" size="0.005 0.00394368053 8e-06" pos="0.0506624861 0.02925 0.003208" euler="0 0 0.523598776" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_5" type="box" size="0.005 0.00394368053 8e-06" pos="0.0464111704 0.0356125436 0.003208" euler="0 0 0.654498469" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_6" type="box" size="0.005 0.00394368053 8e-06" pos="0.0413657467 0.0413657467 0.003208" euler="0 0 0.785398163" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_7" type="box" size="0.005 0.00394368053 8e-06" pos="0.0356125436 0.0464111704 0.003208" euler="0 0 0.916297857" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_8" type="box" size="0.005 0.00394368053 8e-06" pos="0.02925 0.0506624861 0.003208" euler="0 0 1.04719755" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_9" type="box" size="0.005 0.00394368053 8e-06" pos="0.0223869808 0.0540469527 0.003208" euler="0 0 1.17809725" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_10" type="box" size="0.005 0.00394368053 8e-06" pos="0.0151409141 0.0565066608 0.003208" euler="0 0 1.30899694" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_11" type="box" size="0.005 0.00394368053 8e-06" pos="0.00763578224 0.0579995244 0.003208" euler="0 0 1.43989663" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_12" type="box" size="0.005 0.00394368053 8e-06" pos="3.58209189e-18 0.0585 0.003208" euler="0 0 1.57079633" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_13" type="box" size="0.005 0.00394368053 8e-06" pos="-0.00763578224 0.0579995244 0.003208" euler="0 0 1.70169602" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_14" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0151409141 0.0565066608 0.003208" euler="0 0 1.83259571" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_15" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0223869808 0.0540469527 0.003208" euler="0 0 1.96349541" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_16" type="box" size="0.005 0.00394368053 8e-06" pos="-0.02925 0.0506624861 0.003208" euler="0 0 2.0943951" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_17" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0356125436 0.0464111704 0.003208" euler="0 0 2.2252948" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_18" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0413657467 0.0413657467 0.003208" euler="0 0 2.35619449" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_19" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0464111704 0.0356125436 0.003208" euler="0 0 2.48709418" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_20" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0506624861 0.02925 0.003208" euler="0 0 2.61799388" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_21" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0540469527 0.0223869808 0.003208" euler="0 0 2.74889357" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_22" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0565066608 0.0151409141 0.003208" euler="0 0 2.87979327" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_23" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0579995244 0.00763578224 0.003208" euler="0 0 3.01069296" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_24" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0585 7.16418378e-18 0.003208" euler="0 0 3.14159265" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_25" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0579995244 -0.00763578224 0.003208" euler="0 0 3.27249235" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_26" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0565066608 -0.0151409141 0.003208" euler="0 0 3.40339204" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_27" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0540469527 -0.0223869808 0.003208" euler="0 0 3.53429174" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_28" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0506624861 -0.02925 0.003208" euler="0 0 3.66519143" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_29" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0464111704 -0.0356125436 0.003208" euler="0 0 3.79609112" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_30" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0413657467 -0.0413657467 0.003208" euler="0 0 3.92699082" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_31" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0356125436 -0.0464111704 0.003208" euler="0 0 4.05789051" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_32" type="box" size="0.005 0.00394368053 8e-06" pos="-0.02925 -0.0506624861 0.003208" euler="0 0 4.1887902" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_33" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0223869808 -0.0540469527 0.003208" euler="0 0 4.3196899" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_34" type="box" size="0.005 0.00394368053 8e-06" pos="-0.0151409141 -0.0565066608 0.003208" euler="0 0 4.45058959" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_35" type="box" size="0.005 0.00394368053 8e-06" pos="-0.00763578224 -0.0579995244 0.003208" euler="0 0 4.58148929" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_36" type="box" size="0.005 0.00394368053 8e-06" pos="-1.07462757e-17 -0.0585 0.003208" euler="0 0 4.71238898" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_37" type="box" size="0.005 0.00394368053 8e-06" pos="0.00763578224 -0.0579995244 0.003208" euler="0 0 4.84328867" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_38" type="box" size="0.005 0.00394368053 8e-06" pos="0.0151409141 -0.0565066608 0.003208" euler="0 0 4.97418837" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_39" type="box" size="0.005 0.00394368053 8e-06" pos="0.0223869808 -0.0540469527 0.003208" euler="0 0 5.10508806" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_40" type="box" size="0.005 0.00394368053 8e-06" pos="0.02925 -0.0506624861 0.003208" euler="0 0 5.23598776" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_41" type="box" size="0.005 0.00394368053 8e-06" pos="0.0356125436 -0.0464111704 0.003208" euler="0 0 5.36688745" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_42" type="box" size="0.005 0.00394368053 8e-06" pos="0.0413657467 -0.0413657467 0.003208" euler="0 0 5.49778714" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_43" type="box" size="0.005 0.00394368053 8e-06" pos="0.0464111704 -0.0356125436 0.003208" euler="0 0 5.62868684" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_44" type="box" size="0.005 0.00394368053 8e-06" pos="0.0506624861 -0.02925 0.003208" euler="0 0 5.75958653" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_45" type="box" size="0.005 0.00394368053 8e-06" pos="0.0540469527 -0.0223869808 0.003208" euler="0 0 5.89048623" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_46" type="box" size="0.005 0.00394368053 8e-06" pos="0.0565066608 -0.0151409141 0.003208" euler="0 0 6.02138592" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="cover_upper_bonded_annulus_47" type="box" size="0.005 0.00394368053 8e-06" pos="0.0579995244 -0.00763578224 0.003208" euler="0 0 6.15228561" mass="0.0" rgba=".80 .87 .91 .65" contype="0" conaffinity="0" group="2" />
+      <geom name="bonded_mass" type="cylinder" size="0.0001 0.0001" pos="0 0 0" rgba="0 0 0 0" friction="1 .005 .0001" mass="0.0001733746503836346" contype="0" conaffinity="0" />
+      <site name="cover_grasp" pos="0 -.063 0" size=".001" />
+    </body>
+  </worldbody>
+  <tendon>
+    <fixed name="split">
+      <joint joint="finger_joint1" coef="0.5" />
+      <joint joint="finger_joint2" coef="0.5" />
+    </fixed>
+  </tendon>
+  <equality>
+    <joint joint1="finger_joint1" joint2="finger_joint2" solimp="0.95 0.99 0.001" solref="0.005 1" />
+  </equality>
+  <actuator>
+    <general class="panda" name="actuator1" joint="joint1" gainprm="4500" biasprm="0 -4500 -450" />
+    <general class="panda" name="actuator2" joint="joint2" gainprm="4500" biasprm="0 -4500 -450" ctrlrange="-1.7628 1.7628" />
+    <general class="panda" name="actuator3" joint="joint3" gainprm="3500" biasprm="0 -3500 -350" />
+    <general class="panda" name="actuator4" joint="joint4" gainprm="3500" biasprm="0 -3500 -350" ctrlrange="-3.0718 -0.0698" />
+    <general class="panda" name="actuator5" joint="joint5" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator6" joint="joint6" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" ctrlrange="-0.0175 3.7525" />
+    <general class="panda" name="actuator7" joint="joint7" gainprm="2000" biasprm="0 -2000 -200" forcerange="-12 12" />
+    <general class="panda" name="actuator8" tendon="split" forcerange="-40 40" ctrlrange="0 255" gainprm=".31372549 0 0" biasprm="0 -2000 -40" />
+  </actuator>
+  <contact>
+    <exclude body1="link0" body2="link1" />
+  </contact>
+  <visual>
+    <global offwidth="1280" offheight="800" />
+  </visual>
+  <size memory="256M" />
+</mujoco>

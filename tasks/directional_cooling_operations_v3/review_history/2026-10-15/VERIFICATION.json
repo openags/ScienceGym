@@ -1,0 +1,48 @@
+{
+  "schema_version": "sciencegym.directional_cooling.v3",
+  "status": "static_and_symbolic_checks_passed_with_open_acceptance_gates",
+  "date_utc": "2026-10-15T11:44:40.982966+00:00",
+  "counts": {
+    "package_roles": 18,
+    "operations": 63,
+    "reference_steps": 248,
+    "branches": 11,
+    "planned_occurrences": 364,
+    "asset_parts": 634,
+    "export_roots": 10,
+    "physical_successes": 0,
+    "equipment_fidelity_accepted": false
+  },
+  "checks": [
+    {
+      "command": "python3 tasks/directional_cooling_operations_v3/validate.py",
+      "result": "passed",
+      "scope": "schema, references, DAG, branch/loop coverage, symbolic replay, part mesh parity, nominal dimensions and GLB buffer/index integrity"
+    },
+    {
+      "command": "python3 -m unittest discover -s tasks/directional_cooling_operations_v3/tests -v",
+      "result": "38 tests passed",
+      "scope": "positive symbolic walkthrough plus rejection tests and solar geometry; no physical observations"
+    },
+    {
+      "command": "python3 -B scripts/verify_release.py",
+      "result": "11/11 static groups passed",
+      "scope": "existing frozen release regression; does not certify the new pilot or physical execution"
+    }
+  ],
+  "geometry_checks": {
+    "authored_parts": 634,
+    "exported_mesh_parts": 634,
+    "roots": 10,
+    "nominal_dimension_comparison_tolerance_m": 1e-05,
+    "manufacturing_tolerance_qualified": false
+  },
+  "physical_execution_validated": false,
+  "equipment_fidelity_accepted": false,
+  "independent_review": false,
+  "review": "review.json",
+  "reports": [
+    "verification/pilot-tests.txt",
+    "verification/release-regression.txt"
+  ]
+}
