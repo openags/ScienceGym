@@ -1,6 +1,6 @@
 # Paper candidates for robot-laboratory tasks
 
-Last screened: **2026-11-13**. Candidate count: **439**.
+Last screened: **2026-11-13**. Candidate count: **440**.
 
 This is a lightweight discovery list of papers that may support future robot-laboratory task design. Every entry is a **CANDIDATE**, not a fully read source, reviewed task design, converted task, runnable experiment or asset package. Candidates do not change the repository's reviewed-design or task-package counts.
 
@@ -4648,3 +4648,17 @@ One **CANDIDATE** is added, not a reviewed design, converted task, executable pr
 - No supplementary material was identified in the article; indexed PMC metadata reports no supplement. The live publisher inventory could not be verified because of an access redirect. Figure pixels and underlying data, available on request, remain unreviewed. Source screening is incomplete.
 - Suitability is preliminary. Some source specimens contain lead; material-safety review and suitable specimen selection remain pending. Fixtures, mechanical loading, handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or executable-safety claim is supplied.
 - Access checked **2026-11-13**. Citation links and original screening commentary only; no source assets are redistributed.
+
+
+## Additional candidate: magneto-active shell comparisons and linked measurements (2026-11-13)
+
+One **CANDIDATE** is added, not a reviewed design, converted task, executable protocol or asset package. Task-package counts are unchanged.
+
+| Paper and official source | Journal / year | DOI | Preliminary task suitability | Source access checked |
+| --- | --- | --- | --- | --- |
+| [Magneto-active elastic shells with tunable buckling strength](https://www.nature.com/articles/s41467-021-22776-y) | Nature Communications / 2021 | 10.1038/s41467-021-22776-y | Specimen preparation and characterization, fixture positioning, comparative mechanical loading under magnetic actuation and linked measurement records suggest a multistep materials-mechanics task. | Public author-manuscript main text, Methods and experimental supplementary sections S1–S2 read. Theoretical sections S3–S4 not fully read. Publisher-final full text, figure pixels and source-data files not inspected. |
+
+- **Nature Communications 12, 2831 (2021)**; published 14 May 2021. Title, journal, year and DOI checked against the official publisher metadata and the [public author manuscript with supplementary information](https://arxiv.org/abs/2012.01163), which links the published DOI.
+- Published-version differences, the remaining theoretical supplementary material, figure pixels and source-data files remain unreviewed. Source screening is incomplete.
+- Suitability is preliminary. Materials, specimen preparation, fixtures, magnetic actuation, mechanical loading, hardware and handling safety, calibration and acceptance criteria require independent qualification. No preparation recipe, operating procedure, experimental settings, equipment command, robot controller or feasibility claim is supplied.
+- Access checked **2026-11-13**. Publisher-final access redirected to authentication and PMC displayed a browser challenge; neither was bypassed. The public author manuscript was accessible. Citation links and original screening commentary only; no source assets are redistributed. Public availability does not establish unrestricted reuse rights.
